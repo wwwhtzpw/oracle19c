@@ -1,0 +1,177 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Task 2: Prepare a Primary and Standby Base System for GGHub">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Task">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-78476A38-5FB9-4991-A4E2-F412D740DC93">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <title>Task 2: Prepare a Primary and Standby Base System for GGHub</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="task-1-configure-source-and-target-databases-oracle-goldengate-prem.html" title="Previous" type="text/html">
+      <link rel="next" href="task-3-configure-oracle-goldengate-primary-and-standby-gghub-prem.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Task 2: Prepare a Primary and Standby Base System for GGHub","description":"","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="task-1-configure-source-and-target-databases-oracle-goldengate-prem.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="task-3-configure-oracle-goldengate-primary-and-standby-gghub-prem.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-78476A38-5FB9-4991-A4E2-F412D740DC93" name="GUID-78476A38-5FB9-4991-A4E2-F412D740DC93"></a>
+         
+         <h2 id="HAOVW-GUID-78476A38-5FB9-4991-A4E2-F412D740DC93" class="sect2">Task 2: Prepare a Primary and Standby Base
+    System for GGHub</h2>
+         <div class="ind">
+            <div>
+               <p></p>
+               <div class="section">
+                  
+                  <p>Perform the following steps to complete this task:</p>
+                  
+                  <ul style="list-style-type: disc;" id="GUID-78476A38-5FB9-4991-A4E2-F412D740DC93__UL_C2N_P42_SYB">
+                     <li>Step 2.1 - Deploy Oracle 2-node Cluster System </li>
+                     <li>Step 2.2 - Download the Required
+          Software</li>
+                     <li>Step 2.3 - Configure Oracle Linux
+          to use the Oracle Public YUM Repository</li>
+                  </ul>
+                  
+               </div>
+               <div class="section">
+                  
+                  <p><span class="bold">Step 2.1 - Deploy a Oracle 2-Node
+          Oracle Grid Infrastructure System</span></p>
+                  
+                  <p>Deploy a minimum of two GGHubs  (primary and standby). Each GGHub must be
+        deployed as a 2-node Oracle Grid Infrastructure system as described in <a href="../cwlin/installing-oracle-grid-infrastructure.html#CWLIN-GUID-D4E3FADF-360E-49EB-89A2-E4CBBB9CC61F" target="_blank">Installing Oracle Grid Infrastructure</a>. 
+                  </p>
+                  
+                  <div class="figure" id="GUID-78476A38-5FB9-4991-A4E2-F412D740DC93__FIG_X1T_W42_SYB">
+                     <p class="titleinfigure">Figure 25-3 Oracle GoldenGate Hub Hardware
+                                                  Architecture</p><br><div class="imageleft"><img class="imageleft" id="GUID-78476A38-5FB9-4991-A4E2-F412D740DC93__IMAGE_Y1T_W42_SYB" src="img/gghub-hardware.png" alt="Oracle GoldenGate Hub Hardware Architecture" title="Oracle GoldenGate Hub Hardware Architecture"></div><br></div>
+                  
+                  <p><span class="bold">Step 2.2 - Download the Required
+          Software</span></p>
+                  
+                  <ol id="GUID-78476A38-5FB9-4991-A4E2-F412D740DC93__OL_UHF_RCL_SYB">
+                     <li>
+                        
+                        <p>As the <code class="codeph">root</code> OS user on all GGHub nodes, create the staging and scripts
+            directories:
+                        </p>
+                        <pre class="pre codeblock"><code>[root@gghub_prim1 ~]# 
+mkdir -p /u01/oracle/stage
+mkdir /u01/oracle/scripts
+chown -R oracle:oinstall /u01/oracle
+chmod -R g+w /u01/oracle
+chmod -R o+w /u01/oracle/stage</code></pre>
+                        </li>
+                     <li>
+                        
+                        <p>As the <code class="codeph">opc</code> OS user on all GGHub nodes, download the following software
+            in the directory /u01/oracle/stage:
+                        </p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-78476A38-5FB9-4991-A4E2-F412D740DC93__UL_ZZS_HC1_HZB">
+                           <li>Download the latest Oracle GoldenGate 21c (or later release)
+              Microservices software from <a href="https://support.oracle.com/rs?type=doc&amp;id=2193391.1" target="_blank">My Oracle Support Doc ID 2193391.1</a>.
+                           </li>
+                           <li>Download the Oracle Grid Infrastructure Standalone Agents for Oracle Clusterware
+              19c, release 10.2 or later, from <a href="http://www.oracle.com/technetwork/database/database-technologies/clusterware/downloads/xag-agents-downloads-3636484.html" target="_blank">Oracle Grid Infrastructure Standalone Agents for
+                Oracle Clusterware</a>.
+                           </li>
+                           <li>Download the python script (<code class="codeph">secureServices.py</code>) from My
+              Oracle Support <a href="https://support.oracle.com/rs?type=doc&amp;id=2826001.1" target="_blank">Document 2826001.1</a></li>
+                           <li>Download the Oracle GGHUB Scripts from My Oracle Support <a href="https://support.oracle.com/rs?type=doc&amp;id=2951572.1" target="_blank">Document 2951572.1</a></li>
+                        </ul>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>As the <code class="codeph">grid</code> OS user on all GGHub nodes, unzip the GGhub
+            scripts file downloaded from My Oracle Support <a href="https://support.oracle.com/rs?type=doc&amp;id=2951572.1" target="_blank">Document 2951572.1</a> into the directory
+              <code class="codeph">/u01/oracle/scripts</code>. 
+                        </p>
+                        
+                        <p>Place the script in the same location on all primary and standby GGhub nodes</p>
+                        <pre class="pre codeblock"><code>[grid@gghub_prim1 ~]$ unzip
+ -q /u01/oracle/stage/gghub_scripts_&lt;YYYYYMMDD&gt;.zip
+ -d /u01/oracle/scripts/</code></pre>
+                        </li>
+                  </ol>
+                  
+                  <p><span class="bold">Step 2.3 - Configure Oracle Linux
+          to use the Oracle Public YUM Repository</span></p>
+                  
+                  <p>The Oracle Linux yum server hosts software for
+                                                  Oracle Linux and compatible distributions. These
+                                                  instructions help you get started configuring your
+                                                  Linux system for Oracle Linux yum server and
+                                                  installing software through yum.</p>
+                  
+                  <p>For example, as the <code class="codeph">root</code> OS user in all GGHub systems, create
+        the file <code class="codeph">/etc/yum.repos.d/oracle-public-yum-ol7.repo</code> with the following
+        contents:
+                  </p>
+                  <pre class="pre codeblock"><code>[opc@gghub_prim1 ~]$ sudo su -
+[root@gghub_prim1 ~]#
+cat &gt; /etc/yum.repos.d/oracle-public-yum-ol7.repo &lt;&lt;EOF
+[ol7_latest]
+name=Oracle Linux $releasever Latest ($basearch)
+baseurl=http://yum.oracle.com/repo/OracleLinux/OL7/latest/\$basearch
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=1
+EOF</code></pre>
+                  </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

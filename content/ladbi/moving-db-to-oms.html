@@ -1,0 +1,298 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Moving the Entire Database to OMS">
+      <meta name="abstract" content="Use RMAN to move the entire database to Oracle Memory Speed (OMS) if the number of data files are large or if you want to move root PDB files.">
+      <meta name="description" content="Use RMAN to move the entire database to Oracle Memory Speed (OMS) if the number of data files are large or if you want to move root PDB files.">
+      <meta name="DC.Relation" scheme="URI" content="migrating-db-to-oms.html#GUID-E5F691FC-20A9-4C70-BB59-23F30F5FBC10">
+      <meta name="DC.Creator" content="Subhash Chandra">
+      <meta name="DC.Contributor" content="Douglas Williams">
+      <meta name="DC.Creator" content="Ranjit Noronha">
+      <meta name="DC.Creator" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Richard Roddy">
+      <meta name="DC.Creator" content="Rajesh Dasari">
+      <meta name="DC.Creator" content="Smitha Viswanathan">
+      <meta name="DC.Creator" content="Neha Avasthy">
+      <meta name="DC.Creator" content="Sampath Ravindhran">
+      <meta name="DC.Creator" content="Prasad Bagal">
+      <meta name="DC.Creator" content="Subhranshu Banerjee">
+      <meta name="DC.Creator" content="Gerald Venzl">
+      <meta name="DC.Creator" content="Tammy Bednar">
+      <meta name="DC.Creator" content="Avi Miller">
+      <meta name="DC.Creator" content="Jean-Marc Thayer">
+      <meta name="DC.Creator" content="Alok Sahu">
+      <meta name="DC.Creator" content="Gavin Bowe">
+      <meta name="DC.Creator" content="Gia-Khanh Nguyen">
+      <meta name="DC.Creator" content="Darcy Christensen">
+      <meta name="DC.Creator" content="Kiran Chamala">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Benoit Dageville">
+      <meta name="DC.Creator" content="Logeshwaran Rajan">
+      <meta name="DC.Creator" content="Angad Gokakkar">
+      <meta name="DC.Creator" content="Anu Natarajan">
+      <meta name="DC.Creator" content="Girdhari Ghantiyala">
+      <meta name="DC.Creator" content="Mani Mannampalli">
+      <meta name="DC.Creator" content="Bernard Clouse">
+      <meta name="DC.Creator" content="Chandrasekharan Iyer">
+      <meta name="DC.Creator" content="Anil Nair">
+      <meta name="DC.Creator" content="Sivaram Soma">
+      <meta name="DC.Creator" content="Lisa Vaz">
+      <meta name="DC.Creator" content="Vasu Venkatasubramanian">
+      <meta name="DC.Creator" content="Sumanta Chatterjee">
+      <meta name="DC.Creator" content="Margaret Susairaj">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="Markus Michalewicz">
+      <meta name="DC.Creator" content="Subrahmanyam Kodavaluru">
+      <meta name="DC.Creator" content="Sudip Datta">
+      <meta name="DC.Creator" content="Madhu Hunasigi">
+      <meta name="DC.Creator" content="Jim Erickson">
+      <meta name="DC.Creator" content="Marcus Fallen">
+      <meta name="DC.Creator" content="Joseph Francis">
+      <meta name="DC.Creator" content="Allan Graves">
+      <meta name="DC.Creator" content="Barbara Glover">
+      <meta name="DC.Creator" content="Asad Hasan">
+      <meta name="DC.Creator" content="Thirumaleshwara Hasandka">
+      <meta name="DC.Creator" content="Putta Ramesh">
+      <meta name="DC.Creator" content="Sergio Leunissen">
+      <meta name="DC.Creator" content="Aneesh Khandelwal">
+      <meta name="DC.Creator" content="Joel Kallman">
+      <meta name="DC.Creator" content="Eugene Karichkin">
+      <meta name="DC.Creator" content="Jai Krishnani">
+      <meta name="DC.Creator" content="Prasad K Kulkarni">
+      <meta name="DC.Creator" content="Ranjith Kundapur">
+      <meta name="DC.Creator" content="Balaji Pagadala">
+      <meta name="DC.Creator" content="Christopher Jones">
+      <meta name="DC.Creator" content="Tak Wang">
+      <meta name="DC.Creator" content="Bryn Llewellyn">
+      <meta name="DC.Creator" content="Saar Maoz">
+      <meta name="DC.Creator" content="Chao Liang">
+      <meta name="DC.Creator" content="Gopal Mulagund">
+      <meta name="DC.Creator" content="Pushkar Punit">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Ankur Kemkar">
+      <meta name="DC.Creator" content="Sue Lee">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Ricardo Alonso Gonzalez Acuna">
+      <meta name="DC.Creator" content="Barb Lundhild">
+      <meta name="DC.Creator" content="Sangeeth Jose">
+      <meta name="DC.Creator" content="Rudregowda Mallegowda">
+      <meta name="DC.Creator" content="Prasad Kuruvadi Nagaraj">
+      <meta name="DC.Creator" content="Mughees Minhas">
+      <meta name="DC.Creator" content="Krishna Mohan">
+      <meta name="DC.Creator" content="Matthew McKerley">
+      <meta name="DC.Creator" content="John McHugh">
+      <meta name="DC.Creator" content="Gurudas Pai">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Rajesh Prasad">
+      <meta name="DC.Creator" content="Rajendra Pingte">
+      <meta name="DC.Creator" content="Ramesh Chakravarthula">
+      <meta name="DC.Creator" content="Rajagopal Kunhappan">
+      <meta name="DC.Creator" content="Srinivas Poovala">
+      <meta name="DC.Creator" content="David Price">
+      <meta name="DC.Creator" content="Hanlin Qian">
+      <meta name="DC.Creator" content="Michael Coulter">
+      <meta name="DC.Creator" content="Hema Ramamurthy">
+      <meta name="DC.Creator" content="Sunil Ravindrachar">
+      <meta name="DC.Creator" content="Mark Richwine">
+      <meta name="DC.Creator" content="Dipak Saggi">
+      <meta name="DC.Creator" content="Alan Tam">
+      <meta name="DC.Creator" content="Ian Cookson">
+      <meta name="DC.Creator" content="David Schreiner">
+      <meta name="DC.Creator" content="Ara Shakian">
+      <meta name="DC.Creator" content="Naveen Ramamurthy">
+      <meta name="DC.Creator" content="Mohit Singhal">
+      <meta name="DC.Creator" content="Dharma Sirnapalli">
+      <meta name="DC.Creator" content="Akshay Shah">
+      <meta name="DC.Creator" content="James Spiller">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Binoy Sukumaran">
+      <meta name="DC.Creator" content="Jagvir Yadav">
+      <meta name="DC.Creator" content="Ravi Thammaiah">
+      <meta name="DC.Creator" content="Shekhar Vaggu">
+      <meta name="DC.Creator" content="Pablo Sainz Albanez">
+      <meta name="DC.Creator" content="Hector Vieyra">
+      <meta name="DC.Creator" content="Peter Wahl">
+      <meta name="DC.Creator" content="John Haxby">
+      <meta name="DC.Creator" content="Sergiusz Wolicki">
+      <meta name="DC.Creator" content="Sivakumar Yarlagadda">
+      <meta name="DC.Creator" content="Nagendra Kumar Ym">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-E0B11BB3-7D4B-405F-A070-0CEF14039D83">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Use RMAN to move the entire database to Oracle Memory Speed (OMS) if the number of data files are large or if you want to move root PDB files.">
+      <meta name="description" content="Use RMAN to move the entire database to Oracle Memory Speed (OMS) if the number of data files are large or if you want to move root PDB files.">
+      <title>Moving the Entire Database to OMS</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Installation Guide">
+      <meta property="og:description" content="Use RMAN to move the entire database to Oracle Memory Speed (OMS) if the number of data files are large or if you want to move root PDB files.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Installation Guide for Linux">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-installation-guide-linux.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T02:02:33-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2015, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96432-45">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="moving-datafiles-to-oms.html" title="Previous" type="text/html">
+      <link rel="next" href="configuring-storage-for-oracle-grid-infrastructure-for-a-standalone-server.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database Installation Guide for Linux">
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LADBI">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Moving the Entire Database to OMS","description":"Use RMAN to move the entire database to Oracle Memory Speed (OMS) if the number of data files are large or if you want to move root PDB files.","datePublished":"2025-07-23 CST","dateModified":"2025-07-23 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="moving-datafiles-to-oms.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="configuring-storage-for-oracle-grid-infrastructure-for-a-standalone-server.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-E0B11BB3-7D4B-405F-A070-0CEF14039D83" name="GUID-E0B11BB3-7D4B-405F-A070-0CEF14039D83"></a>
+         
+         <h2 id="LADBI-GUID-E0B11BB3-7D4B-405F-A070-0CEF14039D83" class="sect2">Moving the Entire Database to OMS</h2>
+         <div class="ind">
+            <div>
+               <p>Use RMAN to move the entire database to Oracle Memory Speed (OMS) if the number of data files are large or if you want to move <code class="codeph">root</code> PDB files.
+               </p>
+               <div class="section">
+                  <p>To migrate your entire database:</p>
+                  <ol id="GUID-E0B11BB3-7D4B-405F-A070-0CEF14039D83__OL_OQ3_SGZ_QQB">
+                     <li>Backup your database.</li>
+                     <li>Restore the file on OMS and recover the database.</li>
+                  </ol>
+               </div>
+               <div class="p">
+                  <p>Before you start the database backup:</p>
+                  <ul style="list-style-type: disc;" id="GUID-E0B11BB3-7D4B-405F-A070-0CEF14039D83__UL_RX3_5WP_SQB">
+                     <li>If you have any read-only transportable tablespaces with the <span class="parmname" translate="no">COMPATIBLE</span> initialization parameter set to less than <span class="parmname" translate="no">11.0.0</span>, then make any read-only transportable tablespaces read/write for RMAN backup to work on the tablespaces.
+                     </li>
+                     <li>
+                        <p>If you have a physical standby database, then stop any running managed recovery:</p><pre class="pre codeblock"><code>SQL&gt; ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;</code></pre></li>
+                  </ul>
+               </div>
+               <ol id="GUID-E0B11BB3-7D4B-405F-A070-0CEF14039D83__STEPS_Q3N_3HZ_QQB">
+                  <li class="stepexpand"><span>Start the RMAN session and connect to the database that you want to migrate. Perform a <code class="codeph">level 0</code> copy of the database in OMS storage.</span><div><pre class="pre codeblock"><code>RUN
+{
+          ALLOCATE CHANNEL dev1 DEVICE TYPE DISK;
+          ALLOCATE CHANNEL dev2 DEVICE TYPE DISK;
+          ALLOCATE CHANNEL dev3 DEVICE TYPE DISK;
+          ALLOCATE CHANNEL dev4 DEVICE TYPE DISK;
+          BACKUP AS COPY
+               INCREMENTAL LEVEL 0
+               DATABASE
+               FORMAT '<span class="variable" translate="no">oms_mount_path</span>/%U'
+              TAG 'ORA_OMS_MIGRATION';
+}</code></pre></div>
+                     <div>
+                        <p>The format clause specifies <span class="variable" translate="no">oms_mount_path/%U</span>, which corresponds to the OMS file system that you will use for storing the database.
+                        </p>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>If you are not using an SPFILE, then create an SPFILE in the OMS storage using the current PFILE.</span><div><pre class="pre codeblock"><code>SQL&gt; CREATE SPFILE='<span class="variable" translate="no">oms_mount_path</span>/spfile<span class="variable" translate="no">sid.ora</span>' FROM PFILE='?/dbs/initsid.ora';</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Archive the current online redo logs and back up the server parameter file <code class="codeph">SPFILE</code>.</span><div><pre class="pre codeblock"><code>RMAN&gt; SQL "ALTER SYSTEM ARCHIVE LOG CURRENT";
+RMAN&gt; BACKUP AS BACKUPSET SPFILE;
+RMAN&gt; SHUTDOWN IMMEDIATE;</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>If the database uses change tracking or Flashback Database, then disable these features before you shut down the database instance.</span><div><pre class="pre codeblock"><code>RMAN&gt; SQL "ALTER DATABASE DISABLE BLOCK CHANGE TRACKING";
+RMAN&gt; SQL "ALTER DATABASE FLASHBACK OFF";</code></pre></div>
+                     <div>
+                        <p>You have now created a full copy of the database and the instance is shut down.</p>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>To start the database instance and switch to the RMAN copy in OMS storage, create a <code class="codeph">SPFILE</code> in the OMS storage area.</span><div><pre class="pre codeblock"><code>RMAN&gt; STARTUP MOUNT;
+RMAN&gt; RESTORE SPFILE TO '<span class="variable" translate="no">oms_mount_path</span>/spfile<span class="variable" translate="no">sid.ora</span>';
+RMAN&gt; SHUTDOWN IMMEDIATE;
+</code></pre></div>
+                     <div>
+                        <p>Where <span class="variable" translate="no">oms_mount_path</span> is the mount path to the OMS storage and <span class="variable" translate="no">sid</span> is the SID of the instance.
+                        </p>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Set the Oracle Managed Files (OMF) parameters to point to the OMS mount path.</span><div><pre class="pre codeblock"><code>SQL&gt; STARTUP FORCE NOMOUNT;
+SQL&gt; ALTER SYSTEM SET DB_CREATE_FILE_DEST='<span class="variable" translate="no">oms_mount_path</span>' SID='*';
+SQL&gt; ALTER SYSTEM SET DB_RECOVERY_FILE_DEST='<span class="variable" translate="no">oms_mount_path</span>' SID='*';</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Migrate the control files to OMS, set the control file location to the OMS path, and restore the control file from the original non-OMS location.</span><div><pre class="pre codeblock"><code>SQL&gt; STARTUP FORCE NOMOUNT;
+SQL&gt; ALTER SYSTEM SET CONTROL_FILES='<span class="variable" translate="no">oms_mount_path</span>' SCOPE=SPFILE SID='*';</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Restore the control file.</span><div><pre class="pre codeblock"><code>RMAN&gt; STARTUP FORCE NOMOUNT;
+RMAN&gt; RESTORE CONTROLFILE FROM '<span class="variable" translate="no">original_cf_name</span>';
+RMAN&gt; ALTER DATABASE MOUNT;</code></pre></div>
+                     <div>
+                        <p>In this example, <span class="variable" translate="no">original_cf_name</span> is a control file name in the initialization parameter file before migration.
+                        </p>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Migrate the data files to the OMS copy using RMAN <code>SWITCH DATABASE</code>.</span><div><pre class="pre codeblock"><code>SWITCH DATABASE TO COPY;
+RUN
+{
+ALLOCATE CHANNEL dev1 DEVICE TYPE DISK;
+ALLOCATE CHANNEL dev2 DEVICE TYPE DISK;
+ALLOCATE CHANNEL dev3 DEVICE TYPE DISK;
+ALLOCATE CHANNEL dev4 DEVICE TYPE DISK;
+RECOVER DATABASE;
+}
+</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Enable change tracking or Flashback Database, if the database uses these features.</span><div><pre class="pre codeblock"><code>SQL&gt; ALTER DATABASE ENABLE BLOCK CHANGE TRACKING USING FILE '<span class="variable" translate="no">oms_mount_path</span>';
+SQL&gt; ALTER DATABASE FLASHBACK ON;</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Place the database in its normal operation mode to use OMS.</span><div>
+                        <ul style="list-style-type: disc;" id="GUID-E0B11BB3-7D4B-405F-A070-0CEF14039D83__UL_K2K_SLZ_QQB">
+                           <li>
+                              <p>If the database is a primary database, then open it using: </p><pre class="pre codeblock"><code>SQL&gt; ALTER DATABASE OPEN;</code></pre></li>
+                           <li>
+                              <p>If the database is a standby database, then resume managed recovery mode:</p><pre class="pre codeblock"><code>SQL&gt; ALTER DATABASE RECOVER MANAGED STANDBY DATABASE;</code></pre></li>
+                        </ul>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>If you want to migrate any tempfiles to OMS, then drop the existing tempfiles and add a new temp file in the OMS mount path. </span><div><pre class="pre codeblock"><code>SQL&gt; ALTER DATABASE TEMPFILE '<span class="variable" translate="no">tempfile_name</span>' DROP;
+SQL&gt; ALTER TABLESPACE <span class="variable" translate="no">temp_tbs_name</span> ADD TEMPFILE;</code></pre></div>
+                     <div>In this example, the name of the tempfile in the original storage is <span class="variable" translate="no">tempfile_name</span>. The name of the temporary tablespace is <span class="variable" translate="no">temp_tbs_name</span>. 
+                     </div>
+                  </li>
+               </ol>
+               <div class="section">To migrate online redo logs to the OMS location, see <a href="adding-redo-to-oms.html#GUID-29062B75-C730-4C62-AE7E-52ADB3F196C5" title="To achieve best redo performance, Oracle recommends that you add all members of a redo group to storage with similar characteristics. For Oracle Memory Speed (OMS) file system, adding all the members of the redo group to OMS provides efficient redo log write times.">Adding Redo Log Files to OMS</a></div>
+            </div>
+            <div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="migrating-db-to-oms.html#GUID-E5F691FC-20A9-4C70-BB59-23F30F5FBC10" title="Starting with Oracle Database 19c Release Update (19.12) you can migrate your database files to Oracle Memory Speed (OMS) storage using SQL and RMAN commands.">Migrating Oracle Database to Oracle Memory Speed</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

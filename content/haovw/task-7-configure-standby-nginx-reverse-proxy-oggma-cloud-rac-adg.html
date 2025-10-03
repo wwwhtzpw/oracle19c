@@ -1,0 +1,294 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Task 7 - Configure Standby NGINX Reverse Proxy">
+      <meta name="abstract" content="The Oracle GoldenGate reverse proxy feature allows a single point of contact for all of the Oracle GoldenGate microservices associated with an Oracle GoldenGate deployment.">
+      <meta name="description" content="The Oracle GoldenGate reverse proxy feature allows a single point of contact for all of the Oracle GoldenGate microservices associated with an Oracle GoldenGate deployment.">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Task">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-8A476068-04BC-4CC9-BECF-EB57C86D68A3">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The Oracle GoldenGate reverse proxy feature allows a single point of contact for all of the Oracle GoldenGate microservices associated with an Oracle GoldenGate deployment.">
+      <meta name="description" content="The Oracle GoldenGate reverse proxy feature allows a single point of contact for all of the Oracle GoldenGate microservices associated with an Oracle GoldenGate deployment.">
+      <title>Task 7 - Configure Standby NGINX Reverse Proxy</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content="The Oracle GoldenGate reverse proxy feature allows a single point of contact for all of the Oracle GoldenGate microservices associated with an Oracle GoldenGate deployment.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="task-6-network-configuration-oggma-cloud-rac-adg.html" title="Previous" type="text/html">
+      <link rel="next" href="task-8-configure-oracle-grid-infrastructure-agent-oggma-cloud-rac-adg.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Task 7 - Configure Standby NGINX Reverse Proxy","description":"The Oracle GoldenGate reverse proxy feature allows a single point of contact for all of the Oracle GoldenGate microservices associated with an Oracle GoldenGate deployment.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="task-6-network-configuration-oggma-cloud-rac-adg.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="task-8-configure-oracle-grid-infrastructure-agent-oggma-cloud-rac-adg.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-8A476068-04BC-4CC9-BECF-EB57C86D68A3" name="GUID-8A476068-04BC-4CC9-BECF-EB57C86D68A3"></a>
+         
+         <h2 id="HAOVW-GUID-8A476068-04BC-4CC9-BECF-EB57C86D68A3" class="sect2">Task 7 - Configure Standby NGINX Reverse
+                Proxy</h2>
+         <div class="ind">
+            <div>
+               <p>The Oracle GoldenGate reverse proxy feature allows a
+                single point of contact for all of the Oracle GoldenGate microservices associated
+                with an Oracle GoldenGate deployment. </p>
+               <div class="section">
+                  
+                  
+                  <p>Without reverse proxy, the GoldenGate deployment microservices are
+                                contacted using a URL consisting of a host name or IP address and
+                                separate port numbers, one for each of the services. Reverse proxy
+                                is mandatory to ensure easy access to microservices and provide
+                                enhanced security and manageability.</p>
+                  
+                  <p>Perform the following steps to complete this task:</p>
+                  
+                  <ul style="list-style-type: disc;" id="GUID-8A476068-04BC-4CC9-BECF-EB57C86D68A3__UL_CBH_SR3_TYB">
+                     <li>Step 7.1 - Install NGINX Reverse Proxy</li>
+                     <li>Step 7.2 - Copy NGINX Configuration Files from the Primary
+                                        System</li>
+                     <li>Step 7.3 - Install Server Certificates for NGINX</li>
+                     <li>Step 7.4 - Test and Reload the New NGINX Configuration</li>
+                     <li>Step 7.5 - Distribute the GoldenGate NGINX Configuration
+                                        Files</li>
+                     <li>Step 7.6 - Create a Clusterware Resource to Manage NGINX</li>
+                  </ul>
+                  
+                  <p><span class="bold">Step 7.1 - Install NGINX Reverse Proxy</span></p>
+                  
+                  <p>On the standby system, follow the instructions in “Step 8.1 - Install
+                                NGINX Reverse Proxy Server” of <a href="task-8-configure-nginx-reverse-proxy1.html#GUID-D8BA954A-CCB5-4684-8089-767136FF2907" title="The Oracle GoldenGate reverse proxy feature allows a single point of contact for all of the Oracle GoldenGate Microservices associated with an Oracle GoldenGate deployment.">Task 8 - Configure NGINX Reverse Proxy</a> to install NGINX.
+                  </p>
+                  
+                  <p><span class="bold">Step 7.2 - Copy NGINX Configuration Files from the Primary
+                                System</span></p>
+                  
+                  <ol id="GUID-8A476068-04BC-4CC9-BECF-EB57C86D68A3__OL_MZJ_2S3_TYB">
+                     <li>As the <code class="codeph">opc</code> user on the standby system, copy the
+                                        NGINX configuration file from the primary to the standby
+                                        database
+                                        system:<pre class="pre codeblock"><code>[opc@<span class="variable" translate="no">standby_node_1</span> ~]$ scp 
+<span class="variable" translate="no">primary_node_1</span>.oracle.com:/etc/nginx/conf.d/ogg_&lt;deployment_name&gt;.conf
+ /tmp</code></pre></li>
+                     <li>As the <code class="codeph">root</code> user on the standby system, copy
+                                        the NGINX configuration file from the directory
+                                                <code class="codeph">/tmp</code> to the directory
+                                                <code class="codeph">/etc/nginx/conf.d</code>:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ sudo su -
+[root@exastb-node1 ~]# cp /tmp/ogg_&lt;deployment_name&gt;.conf /etc/nginx/conf.d</code></pre></li>
+                  </ol>
+                  
+                  <p><span class="bold">Step 7.3 - Install Server Certificates for NGINX</span></p>
+                  
+                  <p>The standby system will need a different CA signed certificate due to
+                                using a different VIP name/address than the primary system. Contact
+                                your systems administrator to follow your corporate standards to
+                                create or obtain the server certificate before proceeding. A
+                                separate certificate is required for each VIP and Service Manager
+                                pair.</p>
+                  
+                  <ol id="GUID-8A476068-04BC-4CC9-BECF-EB57C86D68A3__OL_V3G_RS3_TYB">
+                     <li>As the <code class="codeph">root</code> user on the standby system, copy
+                                        the server CA certificates and key files in the
+                                                <code class="codeph">/etc/nginx/ssl</code> directory, owned by
+                                                <code class="codeph">root</code> with file permissions 400
+                                        (-r--------):<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ sudo su -
+[root@exastb-node1 ~]# mkdir /etc/nginx/ssl
+[root@exastb-node1 ~]# chmod 400 /etc/nginx/ssl</code></pre></li>
+                     <li>As the <code class="codeph">root</code> user on the standby system, set the
+                                        correct filenames for the certificate and key file to match
+                                        the same the filenames in the NGINX configuration file:<pre class="pre codeblock"><code>[root@exastb-node1 ~]# grep
+ ssl_certificate /etc/nginx/conf.d/ogg_&lt;deployment_name&gt;.conf
+    ssl_certificate         /etc/nginx/ssl/server.chained.crt;
+    ssl_certificate_key     /etc/nginx/ssl/server.key; </code></pre><div class="infoboxnote" id="GUID-8A476068-04BC-4CC9-BECF-EB57C86D68A3__GUID-36D9F442-0A1A-457D-9218-CF6F82E8A59E">
+                           <p class="notep1">Note:</p>
+                           
+                           <p>If you have copied multiple reverse proxy
+                                                  configuration files copied from the primary
+                                                  system, you will need to repeat this process for
+                                                  each file.</p>
+                           
+                        </div>
+                        <p>When using CA signed certificates, the certificate
+                                                named with the <code class="codeph">ssl_certificate</code>
+                                                NGINX parameter must include the 1) CA signed, 2)
+                                                intermediate and 3) root certificates in a single
+                                                file. The order is very important, otherwise NGINX
+                                                fails to start and displays the error message:
+                                                  
+                        </p>
+                        <p><code class="codeph">(SSL: error:0B080074:x509
+                                                  certificate routines: X509_check_private_key:key
+                                                  values mismatch).</code></p>
+                        <p>The root and
+                                                intermediate certificates can be downloaded from the
+                                                CA signed certificate provider.</p>
+                        <p>The single
+                                                file can be generated using the following example
+                                                command:</p><pre class="pre codeblock"><code>[root@exastb-node1 ~]# cat CA_signed_cert.crt intermediate.crt root.crt &gt;
+ /etc/nginx/ssl/server.chained.crt</code></pre><p>The
+                                                  <code class="codeph">ssl_certificate_key</code> file is the
+                                                key file generated when creating the Certificate
+                                                Signing Request (CSR), which is required when
+                                                requesting a CA signed certificate.
+                        </p>
+                     </li>
+                     <li>As the <code class="codeph">root</code> user on the standby system, change
+                                        the <code class="codeph">server_name</code> parameter to the correct
+                                        VIP name in the reverse proxy configuration file copied from
+                                        the primary
+                                        system:<pre class="pre codeblock"><code>[root@exastb-node1 ~]# vi /etc/nginx/conf.d/ogg_&lt;deployment_name&gt;.conf
+# Before:
+server_name             exapri-vip.oracle.com;
+# After:
+server_name             exastb-vip.oracle.com;</code></pre></li>
+                  </ol>
+                  
+                  <p><span class="bold">Step 7.4 - Test and Reload the New NGINX Configuration</span></p>
+                  
+                  <p>Because the VIP will not be running on the standby system until the
+                                primary database service is running, there is a parameter that needs
+                                to be set in the <code class="codeph">/etc/sysctl.conf</code> file. 
+                  </p>
+                  
+                  <ol id="GUID-8A476068-04BC-4CC9-BECF-EB57C86D68A3__OL_BBM_GT3_TYB">
+                     <li>As the <code class="codeph">opc</code> user on the standby system, add the
+                                        following parameter to the file
+                                                <code class="codeph">/etc/sysctl.conf</code>:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ sudo vi /etc/sysctl.conf
+# allow processes to bind to the non-local address
+net.ipv4.ip_nonlocal_bind = 1</code></pre></li>
+                     <li>As the <code class="codeph">opc</code> user on the standby system,
+                                        distribute the <code class="codeph">/etc/sysctl.conf</code>
+                                        file:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc
+ -d /tmp -f /etc/sysctl.conf
+[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc sudo
+ cp /tmp/sysctl.conf /etc/sysctl.conf</code></pre></li>
+                     <li>As the <code class="codeph">opc</code> user on the standby system, reload
+                                        the modified
+                                        configuration:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc sudo sysctl
+ -p /etc/sysctl.conf </code></pre></li>
+                     <li>As the <code class="codeph">opc</code> user on the standby system, validate
+                                        the NGINX configuration file to detect any errors in the
+                                        configuration. If there are errors in the file, they will be
+                                        reported by the following
+                                        command:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ sudo nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginxconf test is successful</code></pre></li>
+                     <li>As the <code class="codeph">opc</code> user on the standby system, restart
+                                        NGINX with the new
+                                        configuration:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ sudo systemctl restart nginx</code></pre></li>
+                  </ol>
+                  
+                  <p><span class="bold">Step 7.5 - Distribute the GoldenGate NGINX Configuration Files</span></p>
+                  
+                  <p>Once all the reverse proxy configuration files have been created for the
+                                GoldenGate Service Managers, they need to be copied to all the
+                                database nodes.</p>
+                  
+                  <ol id="GUID-8A476068-04BC-4CC9-BECF-EB57C86D68A3__OL_C1W_ST3_TYB">
+                     <li>As the <code class="codeph">opc</code> OS user on the standby system,
+                                        distribute the NGINX configuration files to all the database
+                                        nodes:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ sudo tar fczP nginx_conf.tar
+ /etc/nginx/conf.d/ /etc/nginx/ssl/
+[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc
+ -d /tmp -f nginx_conf.tar
+[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc
+ sudo tar fxzP /tmp/nginx_conf.tar</code></pre></li>
+                     <li>As the <code class="codeph">opc</code> OS user on the standby system, test
+                                        the new NGINX configuration on all nodes the new
+                                        configuration files were copied
+                                        to:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc sudo nginx -t
+ 
+exastb-node1: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+exastb-node1: nginx: configuration file /etc/nginx/nginx.conf test is successful
+exastb-node2: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+exastb-node2: nginx: configuration file /etc/nginx/nginx.conf test is successful</code></pre></li>
+                     <li>As the <code class="codeph">opc</code> OS user on the standby system,
+                                        restart NGINX to load the new configuration on all
+                                        nodes:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc
+ sudo systemctl restart nginx</code></pre></li>
+                  </ol>
+                  
+                  <p><span class="bold">Step 7.6 - Create a Clusterware Resource to Manage NGINX</span></p>
+                  
+                  <p>Oracle Clusterware needs to have control over starting the NGINX reverse
+                                proxy so that it can be started automatically before the GoldenGate
+                                deployments are started. </p>
+                  
+                  <ol id="GUID-8A476068-04BC-4CC9-BECF-EB57C86D68A3__OL_VK5_ZT3_TYB">
+                     <li>As the <code class="codeph">grid</code> OS user on the standby system, use
+                                        the following command to get the network CRS resource name
+                                        required to create the NGINX resource with a dependency on
+                                        the underlying network CRS
+                                        resource:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ sudo su - grid
+[grid@exastb-node1 ~]$ crsctl stat res -w "TYPE == ora.network.type"|grep NAME
+NAME=ora.net1.network</code></pre></li>
+                     <li>As the <code class="codeph">root</code> user on the standby system, use the
+                                        following example command to create a Clusterware resource
+                                        to manage NGINX. Replace <code class="codeph">HOSTING_MEMBERS</code>
+                                        and <code class="codeph">CARDINALITY</code> to match your
+                                        environment:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ sudo su -
+
+[root@exastb-node1 ~]# $(grep ^crs_home /etc/oracle/olr.loc | cut -d=
+ -f2)/bin/crsctl add resource nginx -type generic_application -attr
+ "ACL='owner:root:rwx,pgrp:root:rwx,other::r--,group:oinstall:r-x,user:oracle:rwx',
+EXECUTABLE_NAMES=nginx,START_PROGRAM='/bin/systemctl start -f nginx',
+STOP_PROGRAM='/bin/systemctl stop -f nginx',
+CHECK_PROGRAMS='/bin/systemctl status nginx' ,
+START_DEPENDENCIES='hard(ora.net1.network) pullup(ora.net1.network)', 
+STOP_DEPENDENCIES='hard(intermediate:ora.net1.network)', RESTART_ATTEMPTS=0, 
+HOSTING_MEMBERS='&lt;exastb-node1, exastb-node2&gt;', CARDINALITY=2"</code></pre></li>
+                  </ol>
+                  
+                  <p>The NGINX resource created in this example will run on the named database
+                                nodes at the same time, specified by
+                                        <code class="codeph">HOSTING_MEMBERS</code>. This is recommended when
+                                multiple GoldenGate Service Manager deployments are configured, and
+                                they can independently move between database nodes.
+                  </p>
+                  
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

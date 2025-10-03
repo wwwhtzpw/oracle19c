@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Part number: F19261-02 -->
+    <!-- Published date: January 2020 -->
+    <!-- Template date: October 15, 2018 -->
+    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+    <meta name="contentid" content="26774">
+    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+    <!-- Use an imperative verb in the title. -->
+    <title>Create a Data Miner Workflow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Put the description of the tutorial here.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+  
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+    <meta name="dcterms.created" content="2020-01-27T15:58:50+00:00">
+    <meta name="dcterms.title" content="Create a Data Miner Workflow">
+    <meta name="dcterms.category" content="database">
+    <meta name="dcterms.isVersionOf" content="TUTORIAL-CREATE-DM-WORKFLOW">
+    <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+    <meta name="dcterms.identifier" content="F19261-02">
+    <meta name="dcterms.release" content="Release 19">
+  <script id="ssot-metadata" type="application/json"> {"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}} </script>
+    </head>
+  <body>
+    <header>
+      <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo"> <img src="img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a> </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+      <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+      <!-- Use an imperative verb in the title. -->
+      <h1><img src="img/obe_tag.png" alt="Oracle by Example branding" align="middle">Create
+        a Data Miner Workflow</h1>
+      <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+          <div class="left-nav-tut"><!-- -->
+            <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+            <div id="navbar" class="left-nav-w"><!-- -->
+              <div id="toc" class="tocify"><!-- --></div>
+            </div>
+          </div>
+        </div>
+        <div id="bookContainer">
+          <article>
+            <section>
+              <h2><img src="img/32_begin.png" alt="section 0" class="num_circ" height="32" width="32">Before You Begin</h2>
+              <p>This 15-minute tutorial shows you how to create a Data Miner
+                workflow, add a data source and examine the data source.</p>
+              <p>Oracle SQL Developer is a free graphical tool for database development. With SQL Developer, you can browse database objects, run SQL statements and SQL scripts, and edit and debug PL/SQL statements. With SQL Developer, version 19.x, you can use the Oracle Data Miner against Oracle Database 19c. </p>
+            <h3>Background</h3>
+              <p>Data mining is the process of extracting useful information
+                from masses of data by extracting patterns and trends from the
+                data. Data mining can be used to solve many kinds of business
+                problems, including:</p>
+              <ul>
+                <li>Predict individual behavior, for example, the customers
+                  likely to respond to a promotional offer or the customers
+                  likely to buy a specific product (Classification)</li>
+                <li>Find profiles of targeted people or items (Classification
+                  using Decision Trees)</li>
+                <li>Find natural segments or clusters (Clustering)</li>
+                <li>Identify factors more associated with a target attribute
+                  (Attribute Importance)</li>
+                <li>Find co-occurring events or purchases (Associations,
+                  sometimes known as Market Basket Analysis) </li>
+                <li>Find fraudulent or rare events (Anomaly Detection)</li>
+              </ul>
+              <p><strong>Problem Definition and Business Goals</strong></p>
+                <p>When performing data mining, the business problem must be well-defined and stated in terms of data mining functionality. For example, retail businesses, telephone companies, financial institutions, and other types of enterprises are interested in customer “churn” – that is, the act of a previously loyal customer in switching to a rival vendor. The statement “I want to use data mining to solve my churn problem” is much too vague. From a business point of view, the reality is that it is much more difficult and costly to try to win a defected customer back than to prevent a disaffected customer from leaving; furthermore, you may not be interested in retaining a low-value customer. Thus, from a data mining point of view, the problem is to predict which customers are likely to churn with high probability, and also to predict which of those are potentially high-value customers.</p>
+                <p><strong>Building and Evaluation of Models</strong></p>
+                <p>The Workflow creation process of Oracle Data Miner automates many of the difficult tasks during the building and testing of models. It’s difficult to know in advance which algorithms will best solve the business problem, so normally several models are created and tested. No model is perfect, and the search for the best predictive model is not necessarily a question of determining the model with the highest accuracy, but rather a question of determining the types of errors that are tolerable in view of the business goals.</p>
+                <p><strong>Deployment</strong></p>
+                <p>Oracle Data Mining produces actionable results, but the results are not useful unless they can be placed into the correct hands quickly. The Oracle Data Miner user interface provides several options for publishing the results.</p>
+                <h3>Scenario</h3>
+                <p>This lesson focuses on a business problem that can be solved by applying a Classification model. In our scenario, ABC Company wants to identify customers who are most likely to purchase insurance.</p>
+                <p>Note: For the purposes of this tutorial, the "Data and Acquisition" phase has already been completed, and the sample data set contains all required data fields. Therefore, this lesson focuses primarliy on the "Building and Evaluation of Models" phase.</p>
+              <h3>What Do You Need?</h3>
+              <ul>
+                <li>Oracle Database 19c Enterprise Edition</li>
+                <li><a href="https://www.oracle.com/tools/downloads/sqldev-downloads.html">Oracle SQL Developer version 19.x</a></li>
+                <li>Oracle Data Miner User Account</li>
+              </ul>
+            </section>
+            <!-- ========================================================================================================================= -->
+            <section>
+              <hr>
+              <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" class="num_circ" height="32" width="32">Create
+                a Data Miner Project</h2>
+              <ol>
+                <li>If the Data Miner tab is not open, select <strong>Tools
+                  &gt; Data Miner</strong> &gt; <strong>Make Visible</strong>
+                  from the SQL Develper main menu.</li>
+                <li>In the Data Miner tab, right-click <strong>PDB1-DMUSER</strong> and select <strong>New
+                    Project</strong>.</li>
+                <li>In the Create Project window, enter <strong>ABC Insurance</strong> as the project name and then click <strong>OK.</strong> </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" class="num_circ" height="32" width="32">About Data Miner Workflows</h2>
+              <p>A Data Miner Workflow is a collection of connected nodes that
+                describe a data mining processes. A workflow provides directions
+                for the Data Mining server. For example, the workflow says
+                "Build a model with these characteristics." The model is built
+                by the data mining server with the results returned to the
+                workflow.</p>
+              <p><strong>What Does a Data Miner Workflow Contain?</strong></p>
+              <p>Visually, the workflow window serves as a canvas on which you build the graphical representation of a data mining process flow, like the one you are going to create, shown here:</p>
+              <figure><img src="img/data-miner-workflow.jpg" alt="Description of data-miner-workflow.jpg follows">
+                <figcaption><a href="files/data-miner-workflow.txt">Description
+                    of the illustration data-miner-workflow.jpg</a></figcaption>
+              </figure>
+              <ul>
+                <li>Each element in the process is represented by a graphical icon called a node.</li>
+                <li>Each node has a specific purpose, contains specific instructions, and may be modified individually in numerous ways.</li>
+                <li>When linked together, workflow nodes construct the modeling process by which your particular data mining problem is solved.</li>
+              </ul>
+              <p>As you will learn, any node may be added to a workflow by simply dragging and dropping it onto the workflow area. Each node contains a set of default properties. You modify the properties as desired until you are ready to move onto the next step in the process. </p>
+              <p><strong>Sample Data Mining Scenario</strong></p>
+              <p>In this multistep topic, you will create a data mining process that predicts which existing customers are most likely to purchase insurance.</p>
+              <p>To accomplishe this goal, you build a workflow that enables you to:</p>
+              <ul>
+                <li>Identify and examine the source data</li>
+                <li<build and compare several classification models< li>
+                <li>Select and run the models that produce the most actionable results</li>
+              </li<build></ul>
+              <p>To create the workflow for this process, perform the following steps.</p>
+            </section>
+            <hr>
+            <section>
+                <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" class="num_circ" height="32" width="32">Create
+                  a Workflow and Add a Data Source</h2>
+              <ol>
+                <li>Right-click your project (ABC Insurance) and select New
+                  Workflow from the menu.</li>
+                <li>In the Create Workflow window, enter Targeting Best
+                  Customers as the name and click <b>OK</b>.
+                  <figure><img src="img/workflow-window.png" alt="Description of workflow-window.png follows">
+                    <figcaption><a href="files/workflow-window.txt">Description
+                        of the illustration workflow-window.png</a></figcaption>
+                  </figure>
+                  <p> In the middle of the SQL Developer window, an empty
+                    workflow tabbed window opens with the name that you
+                    specified. On the lower right-hand side of the interface the
+                    Properties tab is shown. On the upper right-hand side of the
+                    interface, the Components tab of the Workflow Editor
+                    appears.</p>
+                </li>
+                <li>In the Components tab, drill on the <strong>Data</strong>
+                  category.</li>
+                <li>Drag and drop the<strong> Data Source</strong> node onto the
+                  Workflow pane.
+                  <figure><img src="img/add-data-source.png" alt="Description of add-data-source.png follows">
+                    <figcaption><a href="files/add-data-source.txt">Description
+                        of the illustration add-data-source.png</a></figcaption>
+                  </figure>
+                </li>
+                <li>Select <strong>INSUR_CUST_LTV_SAMPLE</strong> from the
+                  Available Tables/Views list.</li>
+                <li>Click <strong>Next</strong> to continue.
+                  <p> You may remove individual columns that you don't need in
+                    your data source. In our case, we'll keep all of the
+                    attributes that are defined in the table. </p>
+                </li>
+                <li>Click <b>Finish</b>.<br>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" class="num_circ" height="32" width="32">Examine
+                a Data Miner Data Source</h2>
+              <p> You can use an Explore Data node to examine the source data.
+                You can also use a Graph node to visualize data. Although these
+                are optional steps in a workflow, Oracle Data Miner provides
+                these tools to enable you to verify if the selected data meets
+                the criteria to solve the stated business problem. </p>
+              <ol>
+                <li>Drag and drop the<strong> Explore Data</strong> node from
+                  the Data group to the Workflow.
+                  <p> A yellow Information (!) icon in the border around any
+                    node indicates that it is not complete. Therefore, at least
+                    one addition step is required before the Explore Data node
+                    can be used. In this case, you must connect the data source
+                    node to the Explore Data node to enable further exploration
+                    of the source data. </p>
+                </li>
+                <li>Right-click the data source node (INSUR_CUST_LTV_SAMPLE),
+                  select <strong>Connect</strong> from the pop-up menu, and
+                  then drag the pointer to the Explore Data node.
+                  <figure><img src="img/connect-explore-data.png" alt="Description of connect-explore-data.png follows">
+                    <figcaption><a href="files/connect-explore-data.txt">Description
+                        of the illustration connect-explore-data.png</a></figcaption>
+                  </figure>
+                </li>
+                <li>Double-click the <strong>Explore Data</strong> node to
+                  display the Edit Explore Data Node window.</li>
+                <li>In the Group By list, select the<strong> BUY_INSURANCE</strong>
+                  attribute, and click <b>OK</b>.</li>
+                <li>Right-click the Explore Data node and select <strong>Run</strong>.
+                  <p> Data Miner saves the workflow document, and displays
+                    status information at the top of the Workflow pane while
+                    processing the node. As each node is processed, a green gear
+                    icon displays in the node border. When the update is
+                    complete, the data source and explore data nodes show a
+                    green check mark in the borders.</p>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" class="num_circ" height="32" width="32">Review the Results</h2>
+              <ol>
+                <li>Right-click the Explore Data node and select <strong>View
+                    Data</strong> from the menu.</li>
+                <li>When a new tab opens for the Explore Data node, select the <strong>Statistics</strong>
+                  tab.
+                  <figure><img src="img/view-statistics.png" alt="Description of view-statistics.png follows">
+                    <figcaption><a href="files/view-statistics.txt">Description
+                        of the illustration view-statistics.png</a></figcaption>
+                  </figure>
+                  <p> Data Miner calculates a variety of statistics about each
+                    attribute in the data set, as it relates to the "Group By"
+                    attribute that you previously defined (BUY_INSURANCE).
+                    Output columns include: a Histogram thumbnail, Data Type,
+                    Distinct Values, Distinct Percent, Mode, Average, Median,
+                    Min and Max value, Standard Deviation, and Variance. </p>
+                </li>
+                <li>Dismiss the Expore Data tab by clicking the Close icon (<b>X</b>).</li>
+                <li>Use a Graph node to further visualize the data. Drag and
+                  drop the <strong>Graph</strong> node from the Data group to
+                  the workflow.</li>
+                <li>Connect the data source node to the Graph node.</li>
+                <li>Double-click the Graph node to display the New Graph window.
+                  Specify the following attributes:
+                  <ul>
+                    <li>Click the <strong>Histogram</strong> button at the top,
+                      to select the graph type.</li>
+                    <li>In the Histogram Settings region, select <strong>AGE</strong>
+                      for the Attribute value.</li>
+                    <li>Enable the <strong>Group By</strong> option.</li>
+                    <li>For the Group By Attribute option, select <strong>LTV_BIN</strong>.</li>
+                  </ul>
+                </li>
+                <li>Click <b>OK</b>.
+                  <figure><img src="img/histogram.png" alt="Description of histogram.png follows">
+                    <figcaption><a href="files/histogram.txt">Description of the
+                        illustration histogram.png</a></figcaption> </figure>
+                </li>
+                <li> Select the <strong>Maximize</strong> tool <img src="img/bt20208b2.jpg" alt="Maximize tool"> to view a full-window display of the
+                  graph.</li>
+                <li>Create a second graph by clicking the New Graph tool (green
+                  "+" icon).</li>
+                <li>Select the Box graph and specify the following attributes:
+                  <ul>
+                    <li> Enter "Box Plot of LTV grouped by MARITAL_STATUS" as
+                      the title</li>
+                    <li>Select LTV (Life Time Value) as the attribute.</li>
+                    <li>Click Group By and select MARITAL_STATUS.</li>
+                    <li>Click OK.</li>
+                  </ul>
+                  <figure><img src="img/two-graphs.png" alt="Description of two-graphs.png follows">
+                    <figcaption><a href="files/two-graphs.txt">Description of
+                        the illustration two-graphs.png</a></figcaption> </figure>
+                </li>
+              <ol>
+            </ol></ol></section>
+            <hr>
+            <section>
+                <h2 id="next" role="button" style="text-align: left;"><img src="img/32_next.png" alt="next step" height="32" width="32" class="num_circ">Next Tutorial</h2>
+                <p>In the next tutorial, you'll move from a high-level manual analytic exercise to using the power of database data mining.</p>
+            </section>
+            <hr>
+          </article>
+        </div>
+        <br class="clearfloat">
+      </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+      <div style="max-width: 994px; padding:10px 0 0 17px;">
+        <footer class="footer-list">
+          <ul>
+            <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                Oracle</a> </li>
+            <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                Notices</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                of Use</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your
+                Privacy Rights</a> </li>
+            <li> <a href="./sp_common/en/cpyr.htm">Copyright
+                © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+          </ul>
+        </footer>
+      </div>
+      <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+      <!-- Modal hdr and body -->
+      <div id="obe_dialog" class="modal-content">
+        <div class="modal-header"> <a href="#" class="close"> <span class="close">×</span>
+          </a>
+          <h1>Associated Learning Paths</h1>
+        </div>
+        <div id="dialog-content"> </div>
+        <div id="dialog-close" class="closeBtn"> <a href="#" class="close2">
+            <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+          </a> </div>
+      </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+  </body>
+</html>

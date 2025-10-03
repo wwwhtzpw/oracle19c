@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Part number: F19263-02 -->
+    <!-- Published date: January 2020 -->
+    <!-- Template date: October 15, 2018 -->
+    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+    <meta name="contentid" content="26776">
+    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+    <!-- Use an imperative verb in the title. -->
+    <title>Apply a Decision Tree Model</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Put the description of the tutorial here.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+  
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+    <meta name="dcterms.created" content="2020-01-27T15:08:54+00:00">
+    <meta name="dcterms.title" content="Apply a Decision Tree Model">
+    <meta name="dcterms.category" content="database">
+    <meta name="dcterms.isVersionOf" content="TUTORIAL-APPLY-DECISION-TREE">
+    <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+    <meta name="dcterms.identifier" content="F19263-02">
+    <meta name="dcterms.release" content="Release 19">
+  <script id="ssot-metadata" type="application/json"> {"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}} </script>
+    </head>
+  <body>
+    <header>
+      <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo"> <img src="img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a> </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+      <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+      <!-- Use an imperative verb in the title. -->
+      <h1><img src="img/obe_tag.png" alt="Oracle by Example branding" align="middle">Apply
+        a Decision Tree Model</h1>
+      <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+          <div class="left-nav-tut"><!-- -->
+            <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+            <div id="navbar" class="left-nav-w"><!-- -->
+              <div id="toc" class="tocify"><!-- --></div>
+            </div>
+          </div>
+        </div>
+        <div id="bookContainer">
+          <article>
+            <section>
+              <h2><img src="img/32_begin.png" alt="section 0" class="num_circ" height="32" width="32">Before You Begin</h2>
+              <p>This 15-minute tutorial shows you how to apply a decision tree
+                model and create a table to display the results by using the
+                Data Miner graphical user interface.</p>
+              <h3>Background</h3>
+              <p>The Workflow creation process of Oracle Data Miner automates
+                many of the difficult tasks during the building and testing of
+                models. It’s difficult to know in advance which algorithms will
+                best solve the business problem, so normally several models are
+                created and tested. No model is perfect, and the search for the
+                best predictive model is not necessarily a question of
+                determining the model with the highest accuracy, but rather a
+                question of determining the types of errors that are tolerable
+                in view of the business goals.</p>
+              <h3>What Do You Need?</h3>
+              <ul>
+                <li>Oracle Database 19c Enterprise Edition</li>
+                <li><a href="https://www.oracle.com/tools/downloads/sqldev-downloads.html">Oracle SQL Developer version 19.x</a></li>
+                <li>Oracle Data Miner User Account</li>
+                <li>Oracle Data Miner Project and Workflow</li>
+                <li>A Data Miner Decision Tree Classification Model Built from
+                  the INSUR_CUST_LTV_SAMPLE data</li>
+              </ul>
+            </section>
+            <!-- ========================================================================================================================= -->
+            <section>
+              <hr>
+              <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" class="num_circ" height="32" width="32">Choose
+                A Model</h2>
+              <ol>
+                <li>In the workflow, select the Class Build node. Then, using
+                  the Models section of the Properties tab, deselect all of the
+                  models except for the DT model.
+                  <p> To deselect a model, click the large green arrow in the
+                    model's Output column. This action adds a small red "x" to
+                    the column, indicating that the model will not be used in
+                    the next build. </p>
+                </li>
+                <li>Add a new Data Source node in the workflow.
+                  <p> Note: Even though we are using the same table as the
+                    "Apply" data source, you must still add a second data source
+                    node to the workflow. </p>
+                </li>
+                <li> In the Define Data Source wizard, select the <strong>INSUR_CUST_LTV_SAMPLE</strong>
+                  table, and then click <strong>FINISH</strong>.</li>
+                <li>Click on the the new data source node name in the workflow.
+                  Then, change the node name to <strong>INSUR_CUST_LTV_APPLY</strong>.
+                </li>
+                <li>Expand the <strong>Model Operations</strong> category in
+                  the Components tab. </li>
+                <li>Rename the Apply node to <strong>Apply Model</strong>.</li>
+                <li> Connect the Class Build node to the Apply Model node.
+                  <figure><img src="img/apply-model-setup.png" alt="Description of apply-model-setup.png follows">
+                    <figcaption><a href="files/apply-model-setup.txt">Description
+                        of the illustration apply-model-setup.png</a></figcaption>
+                  </figure>
+                  <p>The yellow exclamation mark disappears from the Apply node
+                    border once the second link is completed. This indicates
+                    that the node is ready to be run.</p>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" class="num_circ" height="32" width="32">Specify
+                the Output and Run the Model</h2>
+              <p>Before you run the apply model node, consider the resulting
+                output. By default, an apply node creates two columns of
+                information for each customer: the prediction (Yes or No); and
+                the probability of the prediction.</p>
+              <p>However, you really want to know this information for each
+                customer, so that you can readily associate the predictive
+                information with a given customer.To get this information, you
+                need to add a third column to the apply output: CUSTOMER_ID.</p>
+              <ol>
+                <li>Right-click the Apply Model node and select <strong>Edit</strong>.</li>
+                <li> In the Predictions tab of the Edit Apply Node window,
+                  select <strong>CUSTOMER_ID</strong> as the Case ID.</li>
+                <li>Click <strong>OK</strong>.</li>
+                <li>Right-click the Apply Model node and select <strong>Run</strong>
+                  from the menu.
+                  <p> When the process is complete, green check mark icons are
+                    displayed in the border of all workflow nodes to indicate
+                    that the server process completed successfully. </p>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" class="num_circ" height="32" width="32">Create
+                a Database Table to Store the Results</h2>
+              <ol>
+                <li>Using the Data category in the Components pane, drag the <strong>Create
+                    Table or View</strong> node to the workflow window.</li>
+                <li> Connect the Apply Model node to the OUTPUT node.</li>
+                <li> specify a name for the table that will be created:</li>
+                <ul>
+                  <li> Right-click the OUTPUT node and select <strong>Edit</strong>
+                    from the menu.</li>
+                  <li> In the Edit Create Table or View Node window, change the
+                    default table name to <strong>DT_PREDICTIONS</strong>.</li>
+                  <li> Click <strong>OK</strong>.</li>
+                </ul>
+                <li> Right-click the DT_PREDICTIONS node and select <strong>Run</strong>
+                  from the menu.
+                  <figure><img src="img/create-table.png" alt="Description of create-table.png follows">
+                    <figcaption><a href="files/create-table.txt">Description of
+                        the illustration create-table.png</a></figcaption> </figure>
+                  <p> After you run the OUTPUT node (DT_PREDICTIONS), the table
+                    is created in your schema. </p>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" class="num_circ" height="32" width="32">View
+                the Results</h2>
+              <ol>
+                <li>Right-click the DT_PREDICTIONS Table node and select <strong>View
+                    Data</strong> from the Menu.</li>
+                <li> Sort the table results on any of the columns using the Sort
+                  button:</li>
+                <ul>
+                  <li>The Predicted outcome (CLAS_DT_1_1_PRED), in <strong>Descending</strong>
+                    order (meaning that the prediction of "Yes" for buying
+                    insurance is first.</li>
+                  <li> Prediction Probability (CLAS_DT_1_1_PROB), in <strong>Descending</strong>
+                    order (meaning that the highest prediction probabilities are
+                    at the top of the table display.</li>
+                </ul>
+                <figure><img src="img/sort-results.jpg" alt="Description of sort-results.jpg follows">
+                  <figcaption><a href="files/sort-results.txt">Description of
+                      the illustration sort-results.jpg</a></figcaption> </figure>
+                <li> Click <strong>Apply Sort</strong> to view the results.</li>
+                <li> When you are done viewing the results, dismiss the tab for
+                  the DT_PREDICTIONS table, and click <strong>Save All</strong>.</li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+                <h2 id="more_info" role="button" style="text-align: left;"><img src="img/32_more.png" alt="more information" height="32" width="32" class="num_circ">Want to Learn More?</h2>
+                <ul>
+                    <li><a href="https://docs.oracle.com/en/database/oracle/sql-developer/19.4/dmrug/oracle-data-miner.html" target="_blank">Oracle Data Miner User's Guide</a></li>
+                    <li><a href="https://www.oracle.com/database/technologies/advanced-analytics/odm.html" target="_blank">Oracle Data Miner product page</a></li>
+                </ul>
+            </section>
+            <hr>
+          </article>
+        </div>
+        <br class="clearfloat">
+      </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+      <div style="max-width: 994px; padding:10px 0 0 17px;">
+        <footer class="footer-list">
+          <ul>
+            <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                Oracle</a> </li>
+            <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                Notices</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                of Use</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your
+                Privacy Rights</a> </li>
+            <li> <a href="./sp_common/en/cpyr.htm">Copyright
+                © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+          </ul>
+        </footer>
+      </div>
+      <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+      <!-- Modal hdr and body -->
+      <div id="obe_dialog" class="modal-content">
+        <div class="modal-header"> <a href="#" class="close"> <span class="close">×</span>
+          </a>
+          <h1>Associated Learning Paths</h1>
+        </div>
+        <div id="dialog-content"> </div>
+        <div id="dialog-close" class="closeBtn"> <a href="#" class="close2">
+            <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+          </a> </div>
+      </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+  </body>
+</html>

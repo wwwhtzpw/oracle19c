@@ -1,0 +1,1559 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Oracle Maximum Availability Architecture in Oracle Exadata Cloud Systems">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-E4CE41ED-E170-47BB-9867-70AF5F83CD38">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Oracle Maximum Availability Architecture in Oracle Exadata Cloud Systems</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="autonomous-database-serverless.html" title="Previous" type="text/html">
+      <link rel="next" href="multicloud1.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Oracle Maximum Availability Architecture in Oracle Exadata Cloud Systems","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="autonomous-database-serverless.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="multicloud1.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-E4CE41ED-E170-47BB-9867-70AF5F83CD38" name="GUID-E4CE41ED-E170-47BB-9867-70AF5F83CD38"></a>
+         
+         <h2 id="HAOVW-GUID-E4CE41ED-E170-47BB-9867-70AF5F83CD38" class="sect2"><span class="enumeration_chapter">34 </span>Oracle Maximum Availability Architecture in
+        Oracle Exadata Cloud Systems
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Oracle Maximum Availability Architecture in Oracle Exadata Cloud
+            Infrastructure (ExaDB-D) and Oracle Exadata Cloud@Customer (ExaDB-C@C) provides inherent
+            high availability, data protection, and disaster recovery protection integrated with
+            both cloud automation and life cycle operations, enabling Oracle Exadata Cloud systems
+            to be the best cloud solution for enterprise databases and applications.</p>
+               <p>See <a href="https://www.oracle.com/a/tech/docs/cloud-maa-overview.pdf" target="_blank">Oracle Cloud: Maximum Availability Architecture</a> for detailed
+            walk-through of Oracle Cloud MAA architectures and features.
+               </p>
+            </div>
+            <div class="sect2"><a id="GUID-CEC984CE-003D-4FFA-B63D-9354AFC9A0B0" name="GUID-CEC984CE-003D-4FFA-B63D-9354AFC9A0B0"></a><h3 id="HAOVW-GUID-CEC984CE-003D-4FFA-B63D-9354AFC9A0B0" class="sect3">Oracle Maximum Availability
+        Architecture Benefits</h3>
+               <div>
+                  <ul style="list-style-type: disc;" id="GUID-CEC984CE-003D-4FFA-B63D-9354AFC9A0B0__UL_ZGT_D2S_LRB">
+                     <li>
+                        
+                        <p><span class="bold">Deployment</span>: Oracle Exadata Cloud systems (ExaDB-D and
+                    ExaDB-C@C)) are deployed using Oracle Maximum Availability Architecture best
+                    practices, including configuration best practices for storage, network,
+                    operating system, Oracle Grid Infrastructure, and Oracle Database. ExaDB-D is
+                    optimized to run enterprise Oracle databases with extreme scalability,
+                    availability, and elasticity.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Oracle Maximum Availability Architecture database templates</span>:
+                    All Oracle Cloud databases created with Oracle Cloud automation use Oracle
+                    Maximum Availability Architecture default settings, which are optimized for
+                    ExaDB-D. 
+                        </p>
+                        
+                        <p>Oracle does not recommend that you use custom scripts to create
+                    cloud databases. Other than adjusting memory and system resource settings, avoid
+                    migrating previous database parameter settings, especially undocumented
+                    parameters. One beneficial database data protection parameter,
+                        <code class="codeph">DB_BLOCK_CHECKING</code>, is not enabled by default due to its
+                    potential overhead. MAA recommends evaluating the performance impact for your
+                    application and enabling this setting if performance impact is reasonable.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Backup and restore automation</span>: When you configure automatic
+                    backup to Oracle Cloud Infrastructure Object Storage, backup copies provide
+                    additional protection when multiple availability domains exist in your region,
+                    and RMAN validates cloud database backups for any physical corruptions. 
+                        </p>
+                        
+                        <p>Database backups occur daily, with a full backup occurring once per
+                    week and incremental backups occurring on all other days. Archive log backups
+                    occur frequently to reduce potential data loss in case of disaster. The archive
+                    log frequency is typically 30 minutes. </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Oracle Exadata Database Machine inherent benefits</span>: Oracle
+                    Exadata Database Machine is the best Oracle Maximum Availability Architecture
+                    platform that Oracle offers. Exadata is engineered with hardware, software,
+                    database, and availability innovations that support the most mission-critical
+                    enterprise applications. 
+                        </p>
+                        
+                        <p>Specifically, Exadata provides unique high availability, data
+                    protection, and quality-of-service capabilities that set Oracle apart from any
+                    other platform or cloud vendor. Sizing Exadata cloud systems to meet your
+                    application and database system resource needs (for example, sufficient CPU,
+                    memory, and I/O resources) is very important to maintain the highest
+                    availability, stability, and performance. Proper sizing is especially important
+                    when consolidating many databases on the same cluster. </p>
+                        
+                     </li>
+                  </ul>
+                  <p>For a comprehensive list of Oracle Maximum Availability Architecture
+            benefits for Oracle Exadata Database Machine systems, see <a href="https://www.oracle.com/database/technologies/high-availability/exadata-maa-best-practices.html" target="_blank">Exadata Database Machine: Maximum
+                Availability Architecture Best Practices</a>. 
+                  </p>
+                  <p>Examples of these benefits include:</p>
+                  <ul style="list-style-type: disc;" id="GUID-CEC984CE-003D-4FFA-B63D-9354AFC9A0B0__UL_BHT_D2S_LRB">
+                     <li>
+                        
+                        <p><span class="bold">High availability and low brownout</span>: Fully-redundant,
+                    fault-tolerant hardware exists in the storage, network, and database servers.
+                    Resilient, highly-available software, such as Oracle Real Application Clusters
+                    (Oracle RAC), Oracle Clusterware, Oracle Database, Oracle Automatic Storage
+                    Management, Oracle Linux, and Oracle Exadata Storage Server enable applications
+                    to maintain application service levels through unplanned outages and planned
+                    maintenance events. 
+                        </p>
+                        
+                        <p>For example, Exadata has instant failure detection that can detect
+                    and repair database node, storage server, and network failures in less than two
+                    seconds, and resume application and database service uptime and performance.
+                    Other platforms can experience 30 seconds, or even minutes, of blackout and
+                    extended application brownouts for the same type of failures. Only the Exadata
+                    platform offers a wide range of unplanned outage and planned maintenance tests
+                    to evaluate end-to-end application and database brownouts and blackouts.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Data protection</span>: Exadata provides Oracle Database with
+                    physical and logical block corruption prevention, detection, and, in some cases,
+                    automatic remediation. 
+                        </p>
+                        
+                        <p>The Exadata Hardware Assisted Resilient Data (HARD) checks include
+                    support for server parameter files, control files, log files, Oracle data files,
+                    and Oracle Data Guard broker files, when those files are stored in Exadata
+                    storage. This intelligent Exadata storage validation stops corrupted data from
+                    being written to disk when a HARD check fails, which eliminates a large class of
+                    failures that the database industry had previously been unable to prevent.</p>
+                        
+                        <p>Examples of the Exadata HARD checks include:</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-CEC984CE-003D-4FFA-B63D-9354AFC9A0B0__UL_CHT_D2S_LRB">
+                           <li>Redo and block checksum</li>
+                           <li>Correct log sequence</li>
+                           <li>Block type validation</li>
+                           <li>Block number validation</li>
+                           <li>Oracle data structures, such as block magic number, block size, sequence
+                        number, and block header and tail data structures</li>
+                        </ul>
+                        
+                        <p>Exadata HARD checks are initiated from Exadata storage software (cell services)
+                    and work transparently after enabling a database
+                        <code class="codeph">DB_BLOCK_CHECKSUM</code> parameter, which is enabled by default in
+                    the cloud. Exadata is the only platform that currently supports the HARD
+                    initiative.
+                        </p>
+                        
+                        <p>Furthermore, Oracle Exadata Storage Server provides non-intrusive, automatic hard
+                    disk scrub and repair. This feature periodically inspects and repairs hard disks
+                    during idle time. If bad sectors are detected on a hard disk, then Oracle
+                    Exadata Storage Server automatically sends a request to Oracle Automatic Storage
+                    Management (ASM) to repair the bad sectors by reading the data from another
+                    mirror copy.</p>
+                        
+                        <p>Finally, Exadata and Oracle ASM can detect corruptions as data blocks
+                    are read into the buffer cache, and automatically repair data corruption with a
+                    good copy of the data block on a subsequent database write. This inherent
+                    intelligent data protection makes Exadata Database Machine and ExaDB-D the best
+                    data protection storage platform for Oracle databases.</p>
+                        
+                        <p>For comprehensive data protection, a Maximum Availability Architecture best
+                    practice is to use a standby database on a separate Exadata instance to detect,
+                    prevent, and automatically repair corruptions that cannot be addressed by
+                    Exadata alone. The standby database also minimizes downtime and data loss for
+                    disasters that result from site, cluster, and database failures.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Response time quality of service</span>: Only Exadata has end-to-end
+                    quality-of-service capabilities to ensure that response time remains low and
+                    optimum. Database server I/O latency capping and Exadata storage I/O latency
+                    capping ensure that read or write I/O can be redirected to partnered cells when
+                    response time exceeds a certain threshold. 
+                        </p>
+                        
+                        <p>If storage becomes unreliable (but not failed) because of poor and unpredictable
+                    performance, then the disk or flash cache can be confined offline, and later
+                    brought back online if heuristics show that I/O performance is back to
+                    acceptable levels. Resource management can help prioritize key database network
+                    or I/O functionality, so that your application and database perform at an
+                    optimized level. </p>
+                        
+                        <p>For example, database log writes get priority over backup requests on Exadata
+                    network and storage. Furthermore, rapid response time is maintained during
+                    storage software updates by ensuring that partner flash cache is warmed so flash
+                    misses are minimized.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">End-to-end testing and holistic health checks</span>: Because Oracle
+                    owns the entire Oracle Exadata Cloud Infrastructure, end-to-end testing and
+                    optimizations benefit every Exadata customer around the world, whether hosted
+                    on-premises or in the cloud. Validated optimizations and fixes required to run
+                    any mission-critical system are uniformly applied after rigorous testing. Health
+                    checks are designed to evaluate the entire stack. 
+                        </p>
+                        
+                        <p>The Exadata health check utility EXACHK is Exadata cloud-aware and
+                    highlights any configuration and software alerts that may have occurred because
+                    of customer changes. No other cloud platform currently has this kind of
+                    end-to-end health check available. For Oracle Autonomous Database, EXACHK runs
+                    automatically to evaluate Maximum Availability Architecture compliance. For
+                    non-autonomous databases, Oracle recommends running EXACHK at least once a
+                    month, and before and after any software updates, to evaluate any new best
+                    practices and alerts.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Higher Uptime</span>: The uptime service-level agreement per month is
+                    99.95% (a maximum of 22 minutes of downtime per month), but when you use MAA
+                    best practices for continuous service, most months would have zero downtime.
+                        </p>
+                        
+                     </li>
+                  </ul>
+                  <p><span class="bold">Full list of Exadata features and benefits</span>: <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/haovw&id=DBMSO-GUID-45D4D12A-C249-46B3-B698-FE176601674B" target="_blank">Whats New in Oracle Exadata Database Machine</a></p>
+                  <p><span class="bold">Oracle Maximum Availability Architecture best practices paper</span>: Oracle Maximum
+            Availability Architecture (MAA) engineering collaborates with Oracle Cloud teams to
+            integrate Oracle MAA practices that are optimized for Oracle Cloud Infrastructure and
+            security. See <a href="https://www.oracle.com/database/technologies/high-availability/oracle-cloud-maa.html" target="_blank">MAA Best Practices for the Oracle Cloud</a> for
+            additional information about continuous availability, Oracle Data Guard, Hybrid Data
+            Guard, Oracle GoldenGate, and other Maximum Availability Architecture-related
+            topics.
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-5A7414A0-DEF7-4BBA-9B66-EF765BE30C48" name="GUID-5A7414A0-DEF7-4BBA-9B66-EF765BE30C48"></a><h3 id="HAOVW-GUID-5A7414A0-DEF7-4BBA-9B66-EF765BE30C48" class="sect3">Expected Impact with Unplanned
+        Outages</h3>
+               <div>
+                  <p>The following table lists various unplanned outages and the associated potential database
+            downtime, application level Recovery Time Objective (RTO), and data loss potential or
+            recovery point objective (RPO). For Oracle Data Guard architectures, the database
+            downtime or service level downtime does not include detection time or the time it takes
+            before a customer initiates the Cloud Console Data Guard failover operation.</p>
+                  <div class="tblformalwide" id="GUID-5A7414A0-DEF7-4BBA-9B66-EF765BE30C48__TABLE_FTF_WFS_LRB">
+                     <p class="titleintable">Table 34-1 Availability and Performance Impact for Exadata Cloud Software Updates</p>
+                     <table cellpadding="4" cellspacing="0" class="FormalWide" title="Availability and Performance Impact for Exadata Cloud Software Updates" summary="A list of failure and maintenance events and their expected downtime and data&#xA;                loss" width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d88381e211">Failure and Maintenance Events</th>
+                              <th align="left" valign="bottom" width="0%" id="d88381e213">Database Downtime</th>
+                              <th align="left" valign="bottom" width="0%" id="d88381e215">Service-Level Downtime (RTO)</th>
+                              <th align="left" valign="bottom" width="0%" id="d88381e217">Potential Service-Level Data Loss (RPO)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e221" headers="d88381e211 ">
+                                 
+                                 <p>Localized events, including:</p>
+                                 
+                                 <p>Exadata cluster network topology failures</p>
+                                 
+                                 <p>Storage (disk and flash) failures</p>
+                                 
+                                 <p>Database instance failures</p>
+                                 
+                                 <p>Database server failures</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e221 d88381e213 ">Zero</td>
+                              <td align="left" valign="top" width="0%" headers="d88381e221 d88381e215 ">Near-zero</td>
+                              <td align="left" valign="top" width="0%" headers="d88381e221 d88381e217 ">Zero</td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e245" headers="d88381e211 ">
+                                 
+                                 <p>Events that require restoring from backup because a standby database
+                                does not exist:</p>
+                                 
+                                 <p>Data corruptions</p>
+                                 
+                                 <p>Full database failures</p>
+                                 
+                                 <p>Complete storage failures</p>
+                                 
+                                 <p>Availability domain</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e245 d88381e213 ">
+                                 
+                                 <p>Minutes to hours</p>
+                                 
+                                 <p>(without Data Guard)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e245 d88381e215 ">
+                                 
+                                 <p>Minutes to hours</p>
+                                 
+                                 <p>(without Data Guard)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e245 d88381e217 ">
+                                 
+                                 <p>30 minutes</p>
+                                 
+                                 <p>(without Data Guard)</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e287" headers="d88381e211 ">
+                                 
+                                 <p>Events using Data Guard to fail over:</p>
+                                 
+                                 <p>Data corruptions</p>
+                                 
+                                 <p>Full database failures</p>
+                                 
+                                 <p>Complete storage failures</p>
+                                 
+                                 <p>Availability domain or region failures</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e287 d88381e213 ">
+                                 
+                                 <p>Seconds to minutes<sup>1</sup></p>
+                                 
+                                 <p>Zero downtime for physical corruptions due to auto-block repair
+                                feature</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e287 d88381e215 ">
+                                 
+                                 <p>Seconds to minutes<sup>1</sup></p>
+                                 
+                                 <p>The foreground process that detects the physical corruption pauses
+                                while auto block repair completes</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e287 d88381e217 ">
+                                 
+                                 <p>Zero for Max Availability (SYNC)</p>
+                                 
+                                 <p>Near Zero for Max Performance (ASYNC)</p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <p><sup>1</sup>  To protect from regional failure, you will need a standby
+            database in a different region than the primary database.
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-1E9C935C-01B6-4F7C-8519-86D30C1AF2A3" name="GUID-1E9C935C-01B6-4F7C-8519-86D30C1AF2A3"></a><h3 id="HAOVW-GUID-1E9C935C-01B6-4F7C-8519-86D30C1AF2A3" class="sect3">Expected Impact with Planned
+        Maintenance</h3>
+               <div>
+                  <p>The following table lists various software updates and the associated
+            database and application impact. This is applicable for all Oracle Exadata Cloud
+            infrastructures, including Oracle Exadata Cloud@Customer (ExaDB-C@C), Oracle Exadata
+            Cloud Infrastructure (ExaDB-D) Gen2, and Oracle Autonomous Database (ADB). </p>
+                  <div class="tblformalwide" id="GUID-1E9C935C-01B6-4F7C-8519-86D30C1AF2A3__TABLE_KNC_MGS_LRB">
+                     <p class="titleintable">Table 34-2 Availability and Performance
+                Impact for Oracle Exadata Cloud Software Updates</p>
+                     <table cellpadding="4" cellspacing="0" class="FormalWide" title="Availability and Performance&#xA;                Impact for Oracle Exadata Cloud Software Updates" summary="expected downtime, application impacts " width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d88381e367">Software Update</th>
+                              <th align="left" valign="bottom" width="0%" id="d88381e369">Database Impact</th>
+                              <th align="left" valign="bottom" width="0%" id="d88381e371">Application Impact</th>
+                              <th align="left" valign="bottom" width="0%" id="d88381e373">Scheduled By</th>
+                              <th align="left" valign="bottom" width="0%" id="d88381e375">Performed By</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e379" headers="d88381e367 ">
+                                 
+                                 <p>Exadata Network Fabric Switches</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e379 d88381e369 ">
+                                 
+                                 <p>Zero downtime with No Database Restart</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e379 d88381e371 ">
+                                 
+                                 <p>Zero to single-digit seconds brownout</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e379 d88381e373 ">
+                                 
+                                 <p>Oracle schedules based on customer preferences and customer can
+                                reschedule</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e379 d88381e375 ">
+                                 
+                                 <p>Oracle Cloud for both ADB and non-ADB</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e405" headers="d88381e367 ">
+                                 
+                                 <p>Exadata Storage Servers</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e405 d88381e369 ">
+                                 
+                                 <p>Zero downtime with No Database Restart</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e405 d88381e371 ">
+                                 
+                                 <p>Zero to single-digit seconds brownout</p>
+                                 
+                                 <p>Exadata storage servers are updated in rolling manner maintaining
+                                redundancy</p>
+                                 
+                                 <p>Oracle Exadata System Software pre-fetches the secondary mirrors of
+                                the OLTP data that is most frequently accessed into the flash cache,
+                                maintaining application performance during storage server
+                                restarts</p>
+                                 
+                                 <p>Exadata smart flash for database buffers is maintained across storage
+                                server restart</p>
+                                 
+                                 <p>With Exadata 21.2 software, <a href="https://docs.oracle.com/en/engineered-systems/exadata-database-machine/dbmso/new-features-exadata-system-software-release-21.html#GUID-3C74128F-3305-40EC-9481-81843C0B2075" target="_blank">Persistent Storage
+                                    Index</a> and <a href="https://docs.oracle.com/en/engineered-systems/exadata-database-machine/dbmso/new-features-exadata-system-software-release-21.html#GUID-88E0A908-C2E7-4D86-B880-C6AF0F46FD60" target="_blank">Persistent Columnar
+                                    Cache</a> features enable consistent query performance after
+                                a storage server software update
+                                 </p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e405 d88381e373 ">
+                                 
+                                 <p>Oracle schedules based on customer preferences and customer can
+                                reschedule</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e405 d88381e375 ">
+                                 
+                                 <p>Oracle Cloud for both ADB and non-ADB</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e451" headers="d88381e367 ">
+                                 
+                                 <p>Exadata Database Host - Monthly Infrastructure Security
+                                Maintenance</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e451 d88381e369 ">
+                                 
+                                 <p>Zero downtime with No Host or Database Restart</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e451 d88381e371 ">
+                                 
+                                 <p>Zero downtime </p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e451 d88381e373 ">
+                                 
+                                 <p>Oracle schedules and customer can reschedule</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e451 d88381e375 ">
+                                 
+                                 <p>Oracle Cloud for both ADB and non-ADB</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e477" headers="d88381e367 ">
+                                 
+                                 <p>Exadata Database Host - Quarterly Infrastructure Maintenance</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e477 d88381e369 ">
+                                 
+                                 <p>Zero downtime with Oracle RAC rolling updates</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e477 d88381e371 ">
+                                 
+                                 <p>Zero downtime</p>
+                                 
+                                 <p>Exadata Database compute resources are reduced until planned
+                                maintenance completes</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e477 d88381e373 ">
+                                 
+                                 <p>Oracle schedules based on customer preferences and customer can
+                                reschedule</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e477 d88381e375 ">
+                                 
+                                 <p>Oracle Cloud for both ADB and non-ADB</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e506" headers="d88381e367 ">
+                                 
+                                 <p>Exadata Database Guest</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e506 d88381e369 ">
+                                 
+                                 <p>Zero downtime with Oracle RAC rolling updates</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e506 d88381e371 ">
+                                 
+                                 <p>Zero downtime</p>
+                                 
+                                 <p>Exadata Database compute resources are reduced until planned
+                                maintenance completes</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e506 d88381e373 ">
+                                 
+                                 <p>Customer for ADB</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e506 d88381e375 ">
+                                 
+                                 <p>Oracle Cloud for ADB</p>
+                                 
+                                 <p>Customer using Oracle Cloud Console/APIs for non-ADB</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e538" headers="d88381e367 ">
+                                 
+                                 <p>Oracle Database quarterly update or custom image update</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e538 d88381e369 ">
+                                 
+                                 <p>Zero downtime with Oracle RAC rolling updates</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e538 d88381e371 ">
+                                 
+                                 <p>Zero downtime</p>
+                                 
+                                 <p>Exadata Database compute resources are reduced until planned
+                                maintenance completes</p>
+                                 
+                                 <p>Special consideration is required during rolling database quarterly
+                                updates for applications that use database OJVM. See MOS Note
+                                2217053.1 for details.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e538 d88381e373 ">
+                                 
+                                 <p>Customer for ADB</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e538 d88381e375 ">
+                                 
+                                 <p>Oracle Cloud for ADB. For ADB-D, standby-first patch
+                                practices are automatically applied. </p>
+                                 
+                                 <p>Customer using Oracle Cloud Console/APIs or dbaascli
+                                utility for non-ADB. In-place via database home patch, and
+                                out-of-place via database move, software updates exist. Works for
+                                Data Guard and standby databases (refer to MOS 2701789.1)</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e573" headers="d88381e367 ">
+                                 
+                                 <p>Oracle Grid Infrastructure quarterly update or upgrade</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e573 d88381e369 ">
+                                 
+                                 <p>Zero downtime with Oracle RAC rolling updates</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e573 d88381e371 ">
+                                 
+                                 <p>Zero downtime</p>
+                                 
+                                 <p>Exadata Database compute resources are reduced until planned
+                                maintenance completes</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e573 d88381e373 ">
+                                 
+                                 <p>Customer for ADB</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e573 d88381e375 ">
+                                 
+                                 <p>Oracle Cloud for ADB</p>
+                                 
+                                 <p>Customer using Oracle Cloud Console/APIs or dbaascli
+                                utility for non-ADB</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e605" headers="d88381e367 ">
+                                 
+                                 <p>Oracle Database upgrade with downtime</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e605 d88381e369 ">
+                                 
+                                 <p>Minutes to Hour(s) downtime</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e605 d88381e371 ">
+                                 
+                                 <p>Minutes to Hour(s) downtime</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e605 d88381e373 ">
+                                 
+                                 <p>Customer for ADB</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e605 d88381e375 ">
+                                 
+                                 <p>Oracle Cloud for ADB</p>
+                                 
+                                 <p>Customer using Oracle Cloud Console/APIs or dbaascli
+                                utility for non-ADB</p>
+                                 
+                                 <p>Works for Data Guard and standby databases (refer to MOS
+                                2628228.1)</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e637" headers="d88381e367 ">
+                                 
+                                 <p>Oracle Database upgrade with near zero downtime</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e637 d88381e369 ">
+                                 
+                                 <p>Minimal downtime with DBMS_ROLLING, Oracle GoldenGate replication, or
+                                with pluggable database relocate</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e637 d88381e371 ">
+                                 
+                                 <p>Minimal downtime with DBMS_ROLLING, Oracle GoldenGate replication, or
+                                with pluggable database relocate</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e637 d88381e373 ">
+                                 
+                                 <p>Customer for non-ADB</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e637 d88381e375 ">
+                                 
+                                 <p>Oracle Cloud for ADB on Shared Exadata Infrastructure
+                                (ADB-S) can run pluggable database relocate for upgrade use
+                                cases</p>
+                                 
+                                 <p>Customer using dbaascli for non-autonomous leveraging DBMS_ROLLING.
+                                Refer to <a href="https://support.oracle.com/rs?type=doc&amp;id=2832235.1" target="_blank">Exadata Cloud Database 19c
+                                    Rolling Upgrade With DBMS_ROLLING (Doc ID 2832235.1)</a></p>
+                                 
+                                 <p>Customer using generic Maximum Availability Architecture
+                                best practices for non-ADB</p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <p>Exadata cloud systems have many elastic capabilities that can be used to
+            adjust database and application performance needs. By rearranging resources on need, you
+            can maximize system resources to targeted databases and applications and you can
+            minimize costs. The following table lists elastic Oracle Exadata Cloud Infrastructure
+            and VM Cluster updates, and the impacts associated with those updates on databases and
+            applications. All of these operations can be performed using Oracle Cloud Console or
+            APIs unless specified otherwise.</p>
+                  <div class="tblformalwide" id="GUID-1E9C935C-01B6-4F7C-8519-86D30C1AF2A3__TABLE_S4W_1HS_LRB">
+                     <p class="titleintable">Table 34-3 Availability and Performance Impact for Exadata Elastic Operations</p>
+                     <table cellpadding="4" cellspacing="0" class="FormalWide" title="Availability and Performance Impact for Exadata Elastic Operations" summary="impacts on database and application with listed VM cluster changes" width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d88381e684">VM Cluster Changes</th>
+                              <th align="left" valign="bottom" width="0%" id="d88381e686">Database Impact</th>
+                              <th align="left" valign="bottom" width="0%" id="d88381e688">Application Impact</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e692" headers="d88381e684 ">
+                                 
+                                 <p>Scale Up or Down VM Cluster Memory</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e692 d88381e686 ">
+                                 
+                                 <p>Zero downtime with Oracle RAC rolling updates</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e692 d88381e688 ">
+                                 
+                                 <p>Zero to single-digit seconds brownout</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e708" headers="d88381e684 ">
+                                 
+                                 <p>Scale Up or Down VM Cluster CPU</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e708 d88381e686 ">
+                                 
+                                 <p>Zero downtime with No Database Restart</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e708 d88381e688 ">
+                                 
+                                 <p>Zero downtime</p>
+                                 
+                                 <p>Application performance and throughput can be impacted by available
+                                CPU resources</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e727" headers="d88381e684 ">
+                                 
+                                 <p>Scale Up or Down (resize) ASM Storage for Database usage</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e727 d88381e686 ">
+                                 
+                                 <p>Zero downtime with No Database Restart</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e727 d88381e688 ">
+                                 
+                                 <p>Zero downtime</p>
+                                 
+                                 <p>Application performance might be minimally impacted.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e746" headers="d88381e684 ">
+                                 
+                                 <p>Scale Up VM Local /u02 File System Size (Exadata X8M and
+                                later systems)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e746 d88381e686 ">
+                                 
+                                 <p>Zero downtime with No Database Restart</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e746 d88381e688 ">
+                                 
+                                 <p>Zero downtime</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e762" headers="d88381e684 ">
+                                 
+                                 <p>Scale Up VM Local /u02 File System Size (Exadata X8 and earlier
+                                systems)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e762 d88381e686 ">
+                                 
+                                 <p>Zero downtime with Oracle RAC rolling updates</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e762 d88381e688 ">
+                                 
+                                 <p>Zero to single-digit seconds brownout</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e778" headers="d88381e684 ">
+                                 
+                                 <p>Scale Down VM Local /u02 File System Size</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e778 d88381e686 ">
+                                 
+                                 <p>Zero downtime with Oracle RAC rolling updates for scaling down</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e778 d88381e688 ">
+                                 
+                                 <p>Zero to single-digit seconds brownout</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e794" headers="d88381e684 ">
+                                 
+                                 <p>Adding Exadata Storage Cells</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e794 d88381e686 ">
+                                 
+                                 <p>Zero downtime with No Database Restart</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e794 d88381e688 ">
+                                 
+                                 <p>Zero to single-digit seconds brownout</p>
+                                 
+                                 <p>Application performance might be minimally impacted</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e813" headers="d88381e684 ">
+                                 
+                                 <p>Adding Exadata Database Servers</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e813 d88381e686 ">
+                                 
+                                 <p>Zero downtime with No Database Restart</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e813 d88381e688 ">
+                                 
+                                 <p>Zero to single-digit seconds brownout</p>
+                                 
+                                 <p>Application performance and throughput may increase by
+                                adding Oracle RAC instances and CPU resources</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e832" headers="d88381e684 ">
+                                 
+                                 <p>Adding/Dropping Database Nodes in Virtual Machines (VMs) Cluster</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e832 d88381e686 ">
+                                 
+                                 <p>Zero downtime with No Database Restart</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e832 d88381e688 ">
+                                 
+                                 <p>Zero to single-digit seconds brownout</p>
+                                 
+                                 <p>Application performance and throughput may increase or decrease by
+                                adding or dropping Oracle RAC instances and CPU resources</p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <p>Because some of these elastic changes may take significant time, and may
+            impact available resources for your application, some planning is required. </p>
+                  <p>Note that “scale down” and “drop” changes will decrease available resources.
+            Care must be taken to not reduce resources below the amount required for database and
+            application stability and to meet application performance targets. Refer to the
+            following table for estimated timings and planning recommendations.</p>
+                  <div class="tblformalwide" id="GUID-1E9C935C-01B6-4F7C-8519-86D30C1AF2A3__TABLE_W1Q_M3S_LRB">
+                     <p class="titleintable">Table 34-4 Customer Planning Recommendations for Exadata Elastic Operations</p>
+                     <table cellpadding="4" cellspacing="0" class="FormalWide" title="Customer Planning Recommendations for Exadata Elastic Operations" summary="estimated timings and recommendations for VM cluster changes" width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d88381e865">VM Cluster Changes</th>
+                              <th align="left" valign="bottom" width="0%" id="d88381e867">Estimated Timings</th>
+                              <th align="left" valign="bottom" width="0%" id="d88381e869">Customer Planning Recommendations</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e873" headers="d88381e865 ">
+                                 
+                                 <p>Scale Up or Down VM Cluster Memory</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e873 d88381e867 ">
+                                 
+                                 <p>Time to drain services and Oracle RAC rolling restart</p>
+                                 
+                                 <p>Typically 15-30 minutes per node, but may vary depending on
+                                application draining</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e873 d88381e869 ">
+                                 
+                                 <p>Understanding application draining. </p>
+                                 
+                                 <p>See <a href="oracle-maximum-availability-architecture-oracle-exadata-cloud-systems.html#GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F">Achieving Continuous Availability For Your Applications</a></p>
+                                 
+                                 <p>Before scaling down memory, ensure that database SGAs can
+                                still be stored in hugepages, and that application performance is
+                                still acceptable.</p>
+                                 
+                                 <p>To preserve predictable application performance and stability:</p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-1E9C935C-01B6-4F7C-8519-86D30C1AF2A3__UL_C5M_THS_LRB">
+                                    <li>Monitor and scale up before important high workload patterns
+                                    require the memory resources</li>
+                                    <li>Avoid memory scale down unless all your Databases'
+                                    SGA and PGA memory fit into the new memory size and that all
+                                    SGAs are accommodated by system's hugepages.</li>
+                                 </ul>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e909" headers="d88381e865 ">
+                                 
+                                 <p>Scale Up or Down VM Cluster CPU</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e909 d88381e867 ">
+                                 
+                                 <p>Online operation, typically less than 5 minutes per VM
+                                cluster. Scaling up from a very low value to very high value (10+
+                                oCPU increase) may take 10 minutes.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e909 d88381e869 ">
+                                 
+                                 <p>To preserve predictable application performance and stability:</p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-1E9C935C-01B6-4F7C-8519-86D30C1AF2A3__UL_F5M_THS_LRB">
+                                    <li>Monitor and scale up before important high workload
+                                    patterns require the CPU resources or when consistently reaching
+                                    an OCPU threshold for tolerated amount of time.</li>
+                                    <li>Only scale down if the load average is below a
+                                    threshold for at least 30 minutes or scale down based on fixed
+                                    workload schedules (e.g. business hours with 60 OCPUs,
+                                    non-business hours with 10 OCPUs and batch with 100 oCPUs)</li>
+                                    <li>Avoid more than one scale down requests within 2 hours
+                                    period</li>
+                                 </ul>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e933" headers="d88381e865 ">
+                                 
+                                 <p>Scale Up or Down (resize) ASM Storage for Database usage</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e933 d88381e867 ">
+                                 
+                                 <p>Time varies based on utilized database storage capacity and database
+                                activity. The higher percentage of utilized database storage, the
+                                longer the resize operation (which includes ASM rebalance) will
+                                take.</p>
+                                 
+                                 <p>Typically minutes to hours.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e933 d88381e869 ">
+                                 
+                                 <p>Oracle ASM rebalance is initiated automatically. Storage
+                                redundancy is retained. Due to inherent best practices of using
+                                non-intrusive ASM power limit, application workload impact is
+                                minimal.</p>
+                                 
+                                 <p>Choose a non-peak window so resize and rebalance operations can be
+                                optimized.</p>
+                                 
+                                 <p>Since the time may vary significantly, plan for the
+                                operation to complete in hours. To estimate the time that an
+                                existing resize or rebalance operation per VM cluster, query
+                                    <code class="codeph">GV$ASM_OPERATION</code>. For example, a customer can
+                                run the following query every 30 minutes to evaluate how much work
+                                (EST_WORK) and how much more time (EST_MINUTES) potentially is
+                                required:
+                                 </p>
+                                 
+                                 <p><code class="codeph">select operation, pass, state, sofar, est_work, est_minutes
+                                    from gv$asm_operation where operation='REBAL';</code></p>
+                                 
+                                 <p>Note the estimated statistics tend to become more
+                                accurate as the rebalance progresses but can vary based on the
+                                concurrent workload.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e968" headers="d88381e865 ">
+                                 
+                                 <p>Scale Up VM Local /u02 File System Size (Exadata X8M and
+                                later)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e968 d88381e867 ">
+                                 
+                                 <p>Online operation, typically less than 5 minutes per VM cluster</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e968 d88381e869 ">
+                                 
+                                 <p>VM local file system space is allocated on local database host disks,
+                                which is shared by all VM guests for all VM clusters provisioned on
+                                that database host. Do not scale up space for Local /u02 File System
+                                unnecessarily on one VM cluster such that no space remains to scale
+                                up on other VM clusters on the same Exadata Infrastructure because
+                                Local /u02 File System scale down must be performed in a RAC rolling
+                                manner, which may cause application disruption.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e984" headers="d88381e865 ">
+                                 
+                                 <p>Scale Up VM Local /u02 File System Size (Exadata X8 and earlier)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e984 d88381e867 ">
+                                 
+                                 <p>Time to drain services and Oracle RAC rolling restart. Typically
+                                15-30 minutes per node, but may vary depending on application
+                                draining settings.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e984 d88381e869 ">
+                                 
+                                 <p>Understanding application draining. </p>
+                                 
+                                 <p>See <a href="oracle-maximum-availability-architecture-oracle-exadata-cloud-systems.html#GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F">Achieving Continuous Availability For Your Applications</a></p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e1005" headers="d88381e865 ">
+                                 
+                                 <p>Scale Down VM Local /u02 File System Size</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1005 d88381e867 ">
+                                 
+                                 <p>Time to drain services and Oracle RAC rolling restart. Typically
+                                15-30 minutes per node, but may vary depending on application
+                                draining settings.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1005 d88381e869 ">
+                                 
+                                 <p>Understanding application draining</p>
+                                 
+                                 <p>See <a href="oracle-maximum-availability-architecture-oracle-exadata-cloud-systems.html#GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F">Achieving Continuous Availability For Your Applications</a></p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e1026" headers="d88381e865 ">
+                                 
+                                 <p>Adding Exadata Storage Cells</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1026 d88381e867 ">
+                                 
+                                 <p>Online operation to create more available space for administrator to
+                                choose how to distribute. </p>
+                                 
+                                 <p>Typically 3-72 hours per operation depending number of
+                                VM clusters, database storage usage and storage activity. With very
+                                active database and heavy storage activity, this can take up to take
+                                72 hours. </p>
+                                 
+                                 <p>As part of the add storage cell operation, there are two
+                                parts to this operation. 1) storage is added to the  system as part
+                                the add storage, 2) administrator needs to decide which VM cluster
+                                to expand its ASM disk groups as a separate operation.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1026 d88381e869 ">
+                                 
+                                 <p>Plan to add storage when your storage capacity utilization will hit
+                                80% within a month's time since the operation may complete in days. </p>
+                                 
+                                 <p>Oracle ASM rebalance is initiated automatically. Storage
+                                redundancy is retained. Due to inherent best practices of using
+                                non-intrusive ASM power limit, application workload impact is
+                                minimal.</p>
+                                 
+                                 <p>Since the time may vary significantly, plan for the
+                                operation to complete in days before the storage is available. To
+                                estimate the time that an existing resize or rebalance operation per
+                                VM cluster, query <code class="codeph">GV$ASM_OPERATION</code>. For example a
+                                customer can run the following query every 30 minutes to evaluate
+                                how much work (EST_WORK) and how much more time (EST_MINUTES)
+                                potentially is required:
+                                 </p>
+                                 
+                                 <p><code class="codeph">select operation, pass, state, sofar, est_work, est_minutes
+                                    from gv$asm_operation where operation='REBAL';</code></p>
+                                 
+                                 <p>Note the estimated statistics tend to become more
+                                accurate as the rebalance progresses, but can vary based on the
+                                concurrent workload.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e1064" headers="d88381e865 ">
+                                 
+                                 <p>Adding Exadata Database Servers</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1064 d88381e867 ">
+                                 
+                                 <p>Online operation to expand your VM cluster. One step
+                                process to add the Database Compute to the ExaDB-D and then expand
+                                the VM cluster. </p>
+                                 
+                                 <p>Approximately 1 to 6 hours per Exadata Database Server </p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1064 d88381e869 ">
+                                 
+                                 <p>Plan to add Database Compute when your Database resource
+                                utilization will hit 80% within a month's time. Be aware and plan
+                                for this operation to take many hours to a day.</p>
+                                 
+                                 <p>Choose a non-peak window so that the add Database Compute operation
+                                can complete faster</p>
+                                 
+                                 <p>Each Oracle RAC database registered by Oracle
+                                Clusterware and visible in the Oracle Cloud Console is extended. If
+                                a database was configured outside the Oracle Cloud Console or
+                                without dbaascli, then those databases will not be extended.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e1089" headers="d88381e865 ">
+                                 
+                                 <p>Adding/Dropping Database Nodes in Virtual Machines (VMs) Cluster</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1089 d88381e867 ">
+                                 
+                                 <p>Zero database downtime when adding Database Nodes in VM cluster
+                                typically takes 3-6 hours, depending on the number of databases in
+                                the VM cluster</p>
+                                 
+                                 <p>Zero database downtime with dropping Database Nodes in VM cluster
+                                typically takes 1-2 hours, depending on number of databases in the
+                                VM cluster</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1089 d88381e869 ">
+                                 
+                                 <p>Understand that the add/drop operation is not instantaneous, and
+                                operation may take several hours to complete</p>
+                                 
+                                 <p>Drop operation reduces Database compute, OCPU and memory
+                                resources, so application performance can be impacted</p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F" name="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F"></a><h3 id="HAOVW-GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F" class="sect3">Achieving Continuous Availability
+        For Your Applications</h3>
+               <div>
+                  <p>As part of Oracle Exadata Database Service (ExaDB-D and ExaDB-C@C) all
+            software updates (except for non-rolling database upgrades or non-rolling patches) can
+            be done online or with Oracle RAC rolling updates to achieve continuous database up
+            time. Furthermore, any local failures of storage, Exadata network, or Exadata database
+            server are managed automatically, and database up time is maintained.</p>
+                  <p>To achieve continuous application up time during Oracle RAC switchover or
+            failover events, follow these application-configuration best practices:</p>
+                  <ul style="list-style-type: disc;" id="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F__UL_U12_LJS_LRB">
+                     <li>Use Oracle Clusterware-managed database services to connect your
+                application. For Oracle Data Guard environments, use role based services.</li>
+                     <li>Use recommended connection string with built-in timeouts, retries, and delays, so
+                that incoming connections do not see errors during outages. </li>
+                     <li>Configure your connections with Fast Application Notification.</li>
+                     <li>Drain and relocate services. Refer to the table below and use
+                recommended best practices that support draining, such as test connections, when
+                borrowing or starting batches of work, and return connections to pools between
+                uses.</li>
+                     <li>Leverage Application Continuity or Transparent Application Continuity to replay
+                in-flight uncommitted transactions transparently after failures.</li>
+                  </ul>
+                  <p>For more details on the above checklist, refer to <a href="Chunk964113041.html#GUID-5EBF37EA-48AB-4508-A14E-86A2583A24BF" title="Ensure that your applications are configured to quickly and automatically shift workload to available Oracle RAC instances or standby databases during planned maintenance and unplanned outages.">Configuring Continuous Availability for Applications</a>. Oracle recommends testing your application readiness by following <a href="https://support.oracle.com/rs?type=doc&amp;id=2758734.1" target="_blank">Validating Application Failover Readiness (Doc ID
+                2758734.1)</a>.
+                  </p>
+                  <p>Depending on the Oracle Exadata Database Service planned maintenance event,
+            Oracle attempts to automatically drain and relocate database services before stopping
+            any Oracle RAC instance. For OLTP applications, draining and relocating services
+            typically work very well and result in zero application downtime. </p>
+                  <p>Some applications, such as long running batch jobs or reports, may not be
+            able to drain and relocate gracefully within the maximum draining time. For those
+            applications, Oracle recommends scheduling the software planned maintenance window
+            around these types of activities or stopping these activities before the planned
+            maintenance window. For example, you can reschedule a planned maintenance window to run
+            outside your batch windows, or stop batch jobs before a planned maintenance window.</p>
+                  <p>Special consideration is required during rolling database quarterly updates for
+            applications that use database OJVM. See MOS Note 2217053.1 for details.</p>
+                  <p>The following table lists planned maintenance events that perform Oracle RAC instance
+            rolling restart, and the relevant service drain timeout variables that may impact your
+            application.</p>
+                  <div class="tblformal" id="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F__TABLE_U4P_VJS_LRB">
+                     <p class="titleintable">Table 34-5 Application Drain Attributes for
+                Exadata Cloud Software Updates and Elastic Operations</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Application Drain Attributes for&#xA;                Exadata Cloud Software Updates and Elastic Operations" summary="draining timeout variable settings for Oracle Exadata Database Service&#xA;                updates and operations" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d88381e1170">Oracle Exadata Database Service Software Updates or
+                            Elastic Operations</th>
+                              <th align="left" valign="bottom" width="0%" id="d88381e1172">Drain Timeout Variables</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e1176" headers="d88381e1170 ">
+                                 
+                                 <p>Oracle DBHOME patch apply and database MOVE</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1176 d88381e1172 ">
+                                 
+                                 <p>Oracle Cloud software automation stops/relocates
+                                database services while honoring drain_timeout settings defined by
+                                database service configuration (for example,
+                                srvctl).<sup>1</sup></p>
+                                 
+                                 <p>You can override drain_timeout defined on services by using option
+                                    <code class="codeph">&#x2013;drainTimeoutInSeconds</code> with command line
+                                operation <code class="codeph">dbaascli dbHome patch</code> or <code class="codeph">dbaascli
+                                    database move</code>.
+                                 </p>
+                                 
+                                 <p>The Oracle Cloud internal maximum draining time
+                                supported is 2 hours.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e1204" headers="d88381e1170 ">
+                                 
+                                 <p>Oracle Grid Infrastructure (GI) patch apply and
+                                upgrade</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1204 d88381e1172 ">
+                                 
+                                 <p>Oracle Cloud software automation stops/relocates
+                                database services while honoring drain_timeout settings defined by
+                                database service configuration (for example,. srvctl).1</p>
+                                 
+                                 <p>You can override <code class="codeph">drain_timeout</code> defined
+                                on services by using option <code class="codeph">&#x2013;drainTimeoutInSeconds</code>
+                                with command line operation <code class="codeph">dbaascli grid patch</code> or
+                                    <code class="codeph">dbaascli grid upgrade</code>.
+                                 </p>
+                                 
+                                 <p>The Oracle cloud internal maximum draining time
+                                supported is 2 hours.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e1233" headers="d88381e1170 ">
+                                 
+                                 <p>Virtual machine operating system software update (Exadata
+                                Database Guest)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1233 d88381e1172 ">
+                                 
+                                 <p>Exadata patchmgr/dbnodeupdate software program calls drain
+                                orchestration (rhphelper).</p>
+                                 
+                                 <p>Drain orchestration has the following drain timeout
+                                settings (See <a href="https://support.oracle.com/rs?type=doc&amp;id=2385790.1" target="_blank">Using RHPhelper to Minimize
+                                    Downtime During Planned Maintenance on Exadata (Doc ID
+                                    2385790.1)</a> for details):
+                                 </p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F__UL_QGX_YJS_LRB">
+                                    <li>DRAIN_TIMEOUT &#x2013; if a service does not have drain_timeout
+                                    defined, then this value is used. Default value is 180
+                                    seconds.</li>
+                                    <li>MAX_DRAIN_TIMEOUT - overrides any higher
+                                    drain_timeout value defined by database service configuration.
+                                    Default value is 300 seconds. There is no maximum value.</li>
+                                 </ul>
+                                 
+                                 <p>DRAIN_TIMEOUT settings defined by database service configuration are
+                                honored during service stop/relocate.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e1260" headers="d88381e1170 ">
+                                 
+                                 <p>Exadata X8 and earlier systems</p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F__UL_RGX_YJS_LRB">
+                                    <li>Scale up and down VM local /u02 file system
+                                    size</li>
+                                    <li>Scale up or down VM cluster memory</li>
+                                 </ul>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1260 d88381e1172 ">
+                                 
+                                 <p>Exadata X8 and earlier systems local file system resize operation
+                                calls drain orchestration (rhphelper). </p>
+                                 
+                                 <p>Drain orchestration has the following drain timeout
+                                settings (See <a href="https://support.oracle.com/rs?type=doc&amp;id=2385790.1" target="_blank">Using RHPhelper to Minimize
+                                    Downtime During Planned Maintenance on Exadata (Doc ID
+                                    2385790.1)</a> for details):
+                                 </p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F__UL_SGX_YJS_LRB">
+                                    <li>DRAIN_TIMEOUT &#x2013; if a service does not have drain_timeout
+                                    defined, then this value is used. Default value is 180
+                                    seconds.</li>
+                                    <li>MAX_DRAIN_TIMEOUT - overrides any higher
+                                    drain_timeout value defined by database service configuration.
+                                    Default value is 300 seconds.</li>
+                                 </ul>
+                                 
+                                 <p>DRAIN_TIMEOUT settings defined by database service configuration are
+                                honored during service stop/relocate.</p>
+                                 
+                                 <p>The Oracle Cloud internal maximum draining time supported
+                                for this operation is 300 seconds.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e1296" headers="d88381e1170 ">
+                                 
+                                 <p>Exadata X8M and later systems</p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F__UL_TGX_YJS_LRB">
+                                    <li>Scale down VM local file system size</li>
+                                 </ul>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1296 d88381e1172 ">
+                                 
+                                 <p>Exadata X8M and later systems call drain orchestration (rhphelper). </p>
+                                 
+                                 <p>Drain orchestration has the following drain timeout
+                                settings (See <a href="https://support.oracle.com/rs?type=doc&amp;id=2385790.1" target="_blank">Using RHPhelper to Minimize
+                                    Downtime During Planned Maintenance on Exadata (Doc ID
+                                    2385790.1)</a> for details):
+                                 </p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F__UL_UGX_YJS_LRB">
+                                    <li>DRAIN_TIMEOUT &#x2013; if a service does not have drain_timeout
+                                    defined, then this value is used. Default value is 180
+                                    seconds.</li>
+                                    <li>MAX_DRAIN_TIMEOUT - overrides any higher
+                                    drain_timeout value defined by database service configuration.
+                                    Default value is 300 seconds. </li>
+                                 </ul>
+                                 
+                                 <p>DRAIN_TIMEOUT settings defined by database service configuration are
+                                honored during service stop/relocate.</p>
+                                 
+                                 <p>The Oracle Cloud internal maximum draining time
+                                supported for this operation is 300 seconds.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e1330" headers="d88381e1170 ">
+                                 
+                                 <p>Exadata X8M and later systems</p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F__UL_VGX_YJS_LRB">
+                                    <li>Scale up or down VM cluster memory</li>
+                                 </ul>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1330 d88381e1172 ">
+                                 
+                                 <p>Exadata X8M and later systems call drain orchestration (rhphelper). </p>
+                                 
+                                 <p>Drain orchestration has the following drain timeout
+                                settings (See <a href="https://support.oracle.com/rs?type=doc&amp;id=2385790.1" target="_blank">Using RHPhelper to Minimize
+                                    Downtime During Planned Maintenance on Exadata (Doc ID
+                                    2385790.1)</a> for details):
+                                 </p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F__UL_WGX_YJS_LRB">
+                                    <li>DRAIN_TIMEOUT &#x2013; if a service does not have drain_timeout
+                                    defined, then this value is used. Default value is 180
+                                    seconds.</li>
+                                    <li>MAX_DRAIN_TIMEOUT - overrides any higher drain_timeout value
+                                    defined for a given service, default 300. </li>
+                                 </ul>
+                                 
+                                 <p>DRAIN_TIMEOUT settings defined by database service configuration are
+                                honored during service stop/relocate.</p>
+                                 
+                                 <p>The Oracle Cloud internal maximum draining time supported
+                                for this operation is 300 seconds.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d88381e1364" headers="d88381e1170 ">
+                                 
+                                 <p>Oracle Exadata Cloud Infrastructure (ExaDB-D) software
+                                update</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d88381e1364 d88381e1172 ">
+                                 
+                                 <p>The ExaDB-D database host calls drain orchestration
+                                (rhphelper). </p>
+                                 
+                                 <p>Drain orchestration has the following drain timeout
+                                settings (See <a href="https://support.oracle.com/rs?type=doc&amp;id=2385790.1" target="_blank">Using RHPhelper to
+                                    Minimize Downtime During Planned Maintenance on Exadata (Doc ID
+                                    2385790.1)</a> for details):
+                                 </p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F__UL_XGX_YJS_LRB">
+                                    <li>DRAIN_TIMEOUT &#x2013; if a service does not have
+                                    drain_timeout defined, then this value is used. Default value is
+                                    180 seconds.</li>
+                                    <li>MAX_DRAIN_TIMEOUT - overrides any higher
+                                    drain_timeout value defined by database service configuration.
+                                    Default value is 300 seconds. </li>
+                                 </ul>
+                                 
+                                 <p>DRAIN_TIMEOUT settings defined by database service
+                                configuration are honored during service stop/relocate.</p>
+                                 
+                                 <p>The Oracle Cloud internal maximum draining time
+                                supported for this operation is</p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-E9DF9482-A414-45E0-A5F4-29F6056E364F__UL_YV2_VJ1_FTB">
+                                    <li>For Exadata X8 and earlier systems, the timeout is
+                                    300 seconds.</li>
+                                    <li>For Exadata X8M and later systems, the timeout is
+                                    500 seconds.</li>
+                                 </ul>
+                                 
+                                 <p>Enhanced Infrastructure Maintenance Controls feature:</p>
+                                 
+                                 <p>To achieve draining time longer than the Oracle Cloud
+                                internal maximum, leverage the custom action capability of the
+                                Enhanced Infrastructure Maintenance Controls feature, which allows
+                                you to suspend infrastructure maintenance before the next database
+                                server update starts, then directly stop/relocate database services
+                                running on the database server, and then resume infrastructure
+                                maintenance to proceed to the next database server. This feature is
+                                also currently available for Oracle Exadata Cloud@Customer
+                                (ExaDB-C@C). See <a href="https://docs.oracle.com/en-us/iaas/exadata/doc/ecc-vw-maint-hist.html" target="_blank">Configure
+                                    Oracle-Managed Infrastructure Maintenance</a> in Oracle Cloud
+                                Infrastructure Documentation for details.
+                                 </p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <p><sup>1</sup> Minimum software requirements to achieve this service drain
+            capability is 1) Oracle Database 12.2 and later and 2) the latest Oracle Cloud DBaaS
+                tooling software
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-3AA3C2B3-3DD5-4B40-BBCD-B9440BB33A17" name="GUID-3AA3C2B3-3DD5-4B40-BBCD-B9440BB33A17"></a><h3 id="HAOVW-GUID-3AA3C2B3-3DD5-4B40-BBCD-B9440BB33A17" class="sect3">Oracle Maximum Availability
+        Architecture Reference Architectures in Oracle Exadata Cloud</h3>
+               <div>
+                  <p>Oracle Exadata Cloud (ExaDB-D and ExaDB-C@C) supports all Oracle Maximum
+            Availability Architecture reference architectures, providing support for all Oracle
+            Databases, regardless of their specific high availability, data protection, and disaster
+            recovery service-level agreements. See <a href="https://www.oracle.com/database/technologies/high-availability/oracle-cloud-maa.html" target="_blank">MAA Best Practices for the Oracle
+                Cloud</a> for more information about Oracle Maximum Availability Architecture in
+            the Oracle Exadata Cloud.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

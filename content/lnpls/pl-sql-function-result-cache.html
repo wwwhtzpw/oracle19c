@@ -1,0 +1,768 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="PL/SQL Function Result Cache">
+      <meta name="abstract" content="When a PL/SQL function has the RESULT_CACHE option, its results are cached in the shared global area (SGA) so sessions connected to the same instance can reuse these results when available.">
+      <meta name="description" content="When a PL/SQL function has the RESULT_CACHE option, its results are cached in the shared global area (SGA) so sessions connected to the same instance can reuse these results when available.">
+      <meta name="DC.subject" content="PL/SQL function result cache, function result cache, result cache, cache, function result, RESULT_CACHE clause, recursive subprogram, result-cached, Oracle RAC environment, result caches in">
+      <meta name="keywords" content="PL/SQL function result cache, function result cache, result cache, cache, function result, RESULT_CACHE clause, recursive subprogram, result-cached, Oracle RAC environment, result caches in">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-250BDBBB-0CD6-4D56-9DDF-6FCEDC110D00">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="When a PL/SQL function has the RESULT_CACHE option, its results are cached in the shared global area (SGA) so sessions connected to the same instance can reuse these results when available.">
+      <meta name="description" content="When a PL/SQL function has the RESULT_CACHE option, its results are cached in the shared global area (SGA) so sessions connected to the same instance can reuse these results when available.">
+      <title>PL/SQL Function Result Cache</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content="When a PL/SQL function has the RESULT_CACHE option, its results are cached in the shared global area (SGA) so sessions connected to the same instance can reuse these results when available.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="subprogram-side-effects.html" title="Previous" type="text/html">
+      <link rel="next" href="pl-sql-functions-that-sql-statements-can-invoke.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"PL/SQL Function Result Cache","description":"When a PL/SQL function has the RESULT_CACHE option, its results are cached in the shared global area (SGA) so sessions connected to the same instance can reuse these results when available.","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="subprogram-side-effects.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="pl-sql-functions-that-sql-statements-can-invoke.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-250BDBBB-0CD6-4D56-9DDF-6FCEDC110D00" name="GUID-250BDBBB-0CD6-4D56-9DDF-6FCEDC110D00"></a><a id="LNPLS587"></a><a id="LNPLS00817"></a>
+         
+         <h2 id="LNPLS-GUID-250BDBBB-0CD6-4D56-9DDF-6FCEDC110D00" class="sect2"><span class="enumeration_section">8.12 </span>PL/SQL Function Result Cache
+         </h2>
+         <div class="ind">
+            <div>
+               <p>When a PL/SQL function has the <code class="codeph">RESULT_CACHE</code> option, its results are cached in the shared global area (SGA) so sessions connected to the same instance can reuse these results when available.
+               </p>
+               <p>Oracle Database automatically detects all data sources (tables and views) that are queried while a result-cached function is running. If changes to any of these data sources are committed, the cached result becomes invalid across all instances. The best candidates for result-caching are functions that are invoked frequently but depend on information that changes infrequently or never.</p>
+               <div class="section">
+                  <p class="subhead1" id="GUID-250BDBBB-0CD6-4D56-9DDF-6FCEDC110D00__GUID-B4552D3D-3CCF-428C-8B3A-D6F3FB6913B3">Topics</p>
+               </div>
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-4389252A-5F5F-45FD-9D5B-24F7358BB42D">Enabling Result-Caching for a Function</a></p>
+                     </li>
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-E7506691-0AF7-4907-8DCA-4119D956027A">Developing Applications with Result-Cached Functions</a></p>
+                     </li>
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-72DC4B02-9AB6-4AE1-9EE0-EB00E73BB490">Requirements for Result-Cached Functions</a></p>
+                     </li>
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-0F00DAC5-8F3D-426F-BBA4-86424CD7BD75">Examples of Result-Cached Functions</a></p>
+                     </li>
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-267D2E0E-18B1-4815-9903-965C1B4A5A1B" title="The PL/SQL function result cache shares its administrative and manageability infrastructure with the Result Cache.">Advanced Result-Cached Function Topics</a></p>
+                     </li>
+                  </ul>
+               </div>
+            </div><a id="LNPLS699"></a><a id="LNPLS698"></a><div class="props_rev_3"><a id="GUID-4389252A-5F5F-45FD-9D5B-24F7358BB42D" name="GUID-4389252A-5F5F-45FD-9D5B-24F7358BB42D"></a><h3 id="LNPLS-GUID-4389252A-5F5F-45FD-9D5B-24F7358BB42D" class="sect3"><span class="enumeration_section">8.12.1 </span>Enabling Result-Caching for a Function
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>To make a function result-cached, include the <code class="codeph">RESULT_CACHE</code> clause in the function declaration and definition. For syntax details, see <span class="q">"<a href="function-declaration-and-definition.html#GUID-4E19FB09-46B5-4CE5-8A5B-CD815C29DA1C" title="Before invoking a function, you must declare and define it. You can either declare it first (with function_declaration) and then define it later in the same block, subprogram, or package (with function_definition) or declare and define it at the same time (with function_definition).">Function Declaration and Definition</a>"</span>.
+                     </p>
+                     <div class="infoboxnote" id="GUID-4389252A-5F5F-45FD-9D5B-24F7358BB42D__GUID-F15FCB31-0C35-4D40-9BD3-212CD09CB58A">
+                        <p class="notep1">Note:</p>
+                        <p>For more information about configuring and managing the database server result cache, see <a href="../refrn/RESULT_CACHE_MODE.html#REFRN10270" target="_blank"><span class="italic">Oracle Database Reference</span></a> and <a href="../tgdba/tuning-result-cache.html#TGDBA640" target="_blank"><span class="italic">Oracle Database Performance Tuning Guide</span></a>.
+                        </p>
+                     </div>
+                     <p>In <a href="pl-sql-function-result-cache.html#GUID-4389252A-5F5F-45FD-9D5B-24F7358BB42D__G3307801">Example 8-37</a>, the package <code class="codeph">department_pkg</code> declares and then defines a result-cached function, <code class="codeph">get_dept_info</code>, which returns a record of information about a given department. The function depends on the database tables <code class="codeph">DEPARTMENTS</code> and <code class="codeph">EMPLOYEES</code>.
+                     </p>
+                     <p>You invoke the function <code class="codeph">get_dept_info</code> as you invoke any function. For example, this invocation returns a record of information about department number 10:
+                     </p><pre class="oac_no_warn" dir="ltr">department_pkg.get_dept_info(10);
+</pre><p>This invocation returns only the name of department number 10:</p><pre class="oac_no_warn" dir="ltr">department_pkg.get_dept_info(10).dept_name;
+</pre><p>If the result for <code class="codeph">get_dept_info(10)</code> is in the result cache, the result is returned from the cache; otherwise, the result is computed and added to the cache. Because <code class="codeph">get_dept_info</code> depends on the <code class="codeph">DEPARTMENTS</code> and <code class="codeph">EMPLOYEES</code> tables, any committed change to <code class="codeph">DEPARTMENTS</code> or <code class="codeph">EMPLOYEES</code> invalidates all cached results for <code class="codeph">get_dept_info</code>, relieving you of programming cache invalidation logic everywhere that <code class="codeph">DEPARTMENTS</code> or <code class="codeph">EMPLOYEES</code> might change.
+                     </p>
+                  </div>
+                  <div class="example" id="GUID-4389252A-5F5F-45FD-9D5B-24F7358BB42D__G3307801">
+                     <p class="titleinexample">Example 8-37 Declaring and Defining Result-Cached Function</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE PACKAGE department_pkg AUTHID DEFINER IS
+ 
+  TYPE dept_info_record IS RECORD (
+    dept_name  departments.department_name%TYPE,
+    mgr_name   employees.last_name%TYPE,
+    dept_size  PLS_INTEGER
+  );
+ 
+  <span class="bold">-- Function declaration</span>
+ 
+  FUNCTION get_dept_info (dept_id NUMBER)
+    RETURN dept_info_record
+    <span class="bold">RESULT_CACHE</span>;
+ 
+END department_pkg;
+/
+CREATE OR REPLACE PACKAGE BODY department_pkg IS
+  <span class="bold">-- Function definition</span>
+  FUNCTION get_dept_info (dept_id NUMBER)
+    RETURN dept_info_record
+    <span class="bold">RESULT_CACHE</span>
+  IS
+    rec  dept_info_record;
+  BEGIN
+    SELECT department_name INTO rec.dept_name
+    FROM departments
+    WHERE department_id = dept_id;
+ 
+    SELECT e.last_name INTO rec.mgr_name
+    FROM departments d, employees e
+    WHERE d.department_id = dept_id
+    AND d.manager_id = e.employee_id;
+ 
+    SELECT COUNT(*) INTO rec.dept_size
+    FROM EMPLOYEES
+    WHERE department_id = dept_id;
+ 
+    RETURN rec;
+  END get_dept_info;
+END department_pkg;
+/
+</pre></div>
+               </div>
+            </div><a id="LNPLS700"></a><div class="props_rev_3"><a id="GUID-E7506691-0AF7-4907-8DCA-4119D956027A" name="GUID-E7506691-0AF7-4907-8DCA-4119D956027A"></a><h3 id="LNPLS-GUID-E7506691-0AF7-4907-8DCA-4119D956027A" class="sect3"><span class="enumeration_section">8.12.2 </span>Developing Applications with Result-Cached Functions
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>When developing an application that uses a result-cached function, make no assumptions about the number of times the body of the function will run for a given set of parameter values.</p>
+                     <p>Some situations in which the body of a result-cached function runs are:</p>
+                  </div>
+                  <div class="section">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>The first time a session on this database instance invokes the function with these parameter values</p>
+                        </li>
+                        <li>
+                           <p>When the cached result for these parameter values is <span class="bold">invalid</span></p>
+                           <p>When a change to any data source on which the function depends is committed, the cached result becomes invalid.</p>
+                        </li>
+                        <li>
+                           <p>When the cached results for these parameter values have aged out</p>
+                           <p>If the system needs memory, it might discard the oldest cached values.</p>
+                        </li>
+                        <li>
+                           <p>When the function bypasses the cache (see <span class="q">"<a href="pl-sql-function-result-cache.html#GUID-F9B72877-32FB-43B3-8E95-63DC29BA276E">Result Cache Bypass</a>"</span>)
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div><a id="LNPLS701"></a><div class="props_rev_3"><a id="GUID-72DC4B02-9AB6-4AE1-9EE0-EB00E73BB490" name="GUID-72DC4B02-9AB6-4AE1-9EE0-EB00E73BB490"></a><h3 id="LNPLS-GUID-72DC4B02-9AB6-4AE1-9EE0-EB00E73BB490" class="sect3"><span class="enumeration_section">8.12.3 </span>Requirements for Result-Cached Functions
+               </h3>
+               <div>
+                  <p>A result-cached PL/SQL function is safe if it always produces the same output for any input that it would produce were it not marked with <code class="codeph">RESULT_CACHE</code>. This safety is only guaranteed if these conditions are met:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>When the function is executed, it has no side effects.</p>
+                        <p>For information about side effects, see <span class="q">"<a href="subprogram-side-effects.html#GUID-6C6A828F-8FA0-4278-97D2-6D5649A66A9A">Subprogram Side Effects</a>"</span>.
+                        </p>
+                     </li>
+                     <li>
+                        <p>All tables that the function accesses are ordinary, non-<code class="codeph">SYS</code>-owned permanent tables in the same database as the function.
+                        </p>
+                     </li>
+                     <li>
+                        <p>The function’s result must be determined only by the vector of input actuals together with the committed content, at the current <code class="codeph">SCN</code>, of the tables that it references.
+                        </p>
+                     </li>
+                  </ul>
+                  <p>It is recommended that a result-cached function also meet these criteria:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>It does not depend on session-specific settings.</p>
+                        <p>For more information, see <span class="q">"<a href="pl-sql-function-result-cache.html#GUID-3A24DD0F-DC69-43B7-A820-0950D86AB9AB">Making Result-Cached Functions Handle Session-Specific Settings</a>"</span>.
+                        </p>
+                     </li>
+                     <li>
+                        <p>It does not depend on session-specific application contexts.</p>
+                        <p>For more information, see <span class="q">"<a href="pl-sql-function-result-cache.html#GUID-F14A3A45-C880-4175-B42D-55EFB29EDEAE">Making Result-Cached Functions Handle Session-Specific Application Contexts</a>"</span>.
+                        </p>
+                     </li>
+                  </ul>
+                  <p>For more information, see <a href="../tgdba/tuning-result-cache.html#TGDBA642" target="_blank"><span class="italic">Oracle Database Performance Tuning Guide</span></a>.
+                  </p>
+               </div>
+            </div><a id="LNPLS702"></a><div class="props_rev_3"><a id="GUID-0F00DAC5-8F3D-426F-BBA4-86424CD7BD75" name="GUID-0F00DAC5-8F3D-426F-BBA4-86424CD7BD75"></a><h3 id="LNPLS-GUID-0F00DAC5-8F3D-426F-BBA4-86424CD7BD75" class="sect3"><span class="enumeration_section">8.12.4 </span>Examples of Result-Cached Functions
+               </h3>
+               <div>
+                  <p>The best candidates for result-caching are functions that are invoked frequently but depend on information that changes infrequently (as might be the case in the first example). Result-caching avoids redundant computations in recursive functions.</p>
+                  <p>Examples:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-801471B1-3CBC-469C-AF7D-6820F3E51A78">Result-Cached Application Configuration Parameters</a></p>
+                     </li>
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-EA53AF86-8BC6-467C-9FFA-968D45B63D17">Result-Cached Recursive Function</a></p>
+                     </li>
+                  </ul>
+               </div><a id="LNPLS704"></a><a id="LNPLS703"></a><div class="props_rev_3"><a id="GUID-801471B1-3CBC-469C-AF7D-6820F3E51A78" name="GUID-801471B1-3CBC-469C-AF7D-6820F3E51A78"></a><h4 id="LNPLS-GUID-801471B1-3CBC-469C-AF7D-6820F3E51A78" class="sect4"><span class="enumeration_section">8.12.4.1 </span>Result-Cached Application Configuration Parameters
+                  </h4>
+                  <div>
+                     <p>Consider an application that has configuration parameters that can be set at either the global level, the application level, or the role level. The application stores the configuration information in these tables:</p><pre class="oac_no_warn" dir="ltr">-- Global Configuration Settings
+DROP TABLE global_config_params;
+CREATE TABLE global_config_params
+  (name  VARCHAR2(20), -- parameter NAME
+   val   VARCHAR2(20), -- parameter VALUE
+   PRIMARY KEY (name)
+  );
+
+-- Application-Level Configuration Settings
+CREATE TABLE app_level_config_params
+  (app_id  VARCHAR2(20), -- application ID
+   name    VARCHAR2(20), -- parameter NAME
+   val     VARCHAR2(20), -- parameter VALUE
+   PRIMARY KEY (app_id, name)
+  );
+
+-- Role-Level Configuration Settings
+CREATE TABLE role_level_config_params
+  (role_id  VARCHAR2(20), -- application (role) ID
+   name     VARCHAR2(20),  -- parameter NAME
+   val      VARCHAR2(20),  -- parameter VALUE
+   PRIMARY KEY (role_id, name)
+  );
+</pre><p>For each configuration parameter, the role-level setting overrides the application-level setting, which overrides the global setting. To determine which setting applies to a parameter, the application defines the PL/SQL function <code class="codeph">get_value</code>. Given a parameter name, application ID, and role ID, <code class="codeph">get_value</code> returns the setting that applies to the parameter.
+                     </p>
+                     <p>The function <code class="codeph">get_value</code> is a good candidate for result-caching if it is invoked frequently and if the configuration information changes infrequently.
+                     </p>
+                     <p><a href="pl-sql-function-result-cache.html#GUID-801471B1-3CBC-469C-AF7D-6820F3E51A78__g3299007">Example 8-38</a> shows a possible definition for <code class="codeph">get_value</code>. Suppose that for one set of parameter values, the global setting determines the result of <code class="codeph">get_value</code>. While <code class="codeph">get_value</code> is running, the database detects that three tables are queried—<code class="codeph">role_level_config_params</code>, <code class="codeph">app_level_config_params</code>, and <code class="codeph">global_config_params</code>. If a change to any of these three tables is committed, the cached result for this set of parameter values is invalidated and must be recomputed.
+                     </p>
+                     <p>Now suppose that, for a second set of parameter values, the role-level setting determines the result of <code class="codeph">get_value</code>. While <code class="codeph">get_value</code> is running, the database detects that only the <code class="codeph">role_level_config_params</code> table is queried. If a change to <code class="codeph">role_level_config_params</code> is committed, the cached result for the second set of parameter values is invalidated; however, committed changes to <code class="codeph">app_level_config_params</code> or <code class="codeph">global_config_params</code> do not affect the cached result.
+                     </p>
+                     <div class="example" id="GUID-801471B1-3CBC-469C-AF7D-6820F3E51A78__g3299007">
+                        <p class="titleinexample">Example 8-38 Result-Cached Function Returns Configuration Parameter Setting</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE FUNCTION get_value
+  (p_param VARCHAR2,
+   p_app_id  NUMBER,
+   p_role_id NUMBER
+  )
+  RETURN VARCHAR2
+  <span class="bold">RESULT_CACHE</span>
+  AUTHID DEFINER
+IS
+  answer VARCHAR2(20);
+BEGIN
+  <span class="bold">-- Is parameter set at role level?</span>
+  BEGIN
+    SELECT val INTO answer
+      FROM <span class="bold">role_level_config_params</span>
+        WHERE role_id = p_role_id
+          AND name = p_param;
+    RETURN answer;  -- Found
+    EXCEPTION
+      WHEN no_data_found THEN
+        NULL;  -- Fall through to following code
+  END;
+ <span class="bold"> -- Is parameter set at application level?</span>
+  BEGIN
+    SELECT val INTO answer
+      FROM <span class="bold">app_level_config_params</span>
+        WHERE app_id = p_app_id
+          AND name = p_param;
+    RETURN answer;  -- Found
+    EXCEPTION
+      WHEN no_data_found THEN
+        NULL;  -- Fall through to following code
+  END;
+ <span class="bold"> -- Is parameter set at global level?</span>
+    SELECT val INTO answer
+     FROM <span class="bold">global_config_params</span>
+      WHERE name = p_param;
+    RETURN answer;
+END;</pre></div>
+                  </div>
+               </div><a id="LNPLS705"></a><div class="props_rev_3"><a id="GUID-EA53AF86-8BC6-467C-9FFA-968D45B63D17" name="GUID-EA53AF86-8BC6-467C-9FFA-968D45B63D17"></a><h4 id="LNPLS-GUID-EA53AF86-8BC6-467C-9FFA-968D45B63D17" class="sect4"><span class="enumeration_section">8.12.4.2 </span>Result-Cached Recursive Function
+                  </h4>
+                  <div>
+                     <p>A recursive function for finding the <span class="italic">n</span>th term of a Fibonacci series that mirrors the mathematical definition of the series might do many redundant computations. For example, to evaluate <code class="codeph">fibonacci(7)</code>, the function must compute <code class="codeph">fibonacci(6)</code> and <code class="codeph">fibonacci(5)</code>. To compute <code class="codeph">fibonacci(6)</code>, the function must compute <code class="codeph">fibonacci(5)</code> and <code class="codeph">fibonacci(4)</code>. Therefore, <code class="codeph">fibonacci(5)</code> and several other terms are computed redundantly. Result-caching avoids these redundant computations.
+                     </p>
+                     <div class="infoboxnote" id="GUID-EA53AF86-8BC6-467C-9FFA-968D45B63D17__GUID-90390B78-AF0E-44EF-BF5C-DD889BCCE4F4">
+                        <p class="notep1">Note:</p>
+                        <p>The maximum number of recursive invocations cached is 128.</p>
+                     </div><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE FUNCTION fibonacci (n NUMBER)
+  RETURN NUMBER
+  <span class="bold">RESULT_CACHE</span>
+  AUTHID DEFINER
+IS
+BEGIN
+  IF (n =0) OR (n =1) THEN
+    RETURN 1;
+  ELSE
+    RETURN fibonacci(n - 1) + fibonacci(n - 2);
+  END IF;
+END;
+/</pre></div>
+               </div>
+            </div><a id="LNPLS588"></a><a id="LNPLS706"></a><div class="props_rev_3"><a id="GUID-267D2E0E-18B1-4815-9903-965C1B4A5A1B" name="GUID-267D2E0E-18B1-4815-9903-965C1B4A5A1B"></a><h3 id="LNPLS-GUID-267D2E0E-18B1-4815-9903-965C1B4A5A1B" class="sect3"><span class="enumeration_section">8.12.5 </span>Advanced Result-Cached Function Topics
+               </h3>
+               <div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-267D2E0E-18B1-4815-9903-965C1B4A5A1B__GUID-366E9A64-AB7E-4686-94A6-B0DFE437DA53">Topics</p>
+                  </div>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-B7FA8EB2-2075-4EAC-9A15-8E710EDE987A">Rules for a Cache Hit</a></p>
+                     </li>
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-F9B72877-32FB-43B3-8E95-63DC29BA276E">Result Cache Bypass</a></p>
+                     </li>
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-3A24DD0F-DC69-43B7-A820-0950D86AB9AB">Making Result-Cached Functions Handle Session-Specific Settings</a></p>
+                     </li>
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-F14A3A45-C880-4175-B42D-55EFB29EDEAE">Making Result-Cached Functions Handle Session-Specific Application Contexts</a></p>
+                     </li>
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-63930E6C-9244-4A1A-97FC-49B0A44888AC">Choosing Result-Caching Granularity</a></p>
+                     </li>
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-8F7227E9-4388-4A64-9D1C-5F134A3022F2">Result Caches in Oracle RAC Environment</a></p>
+                     </li>
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-4051143D-CABC-4395-BF7C-915253CA4CAB" title="The PL/SQL function result cache shares its administrative and manageability infrastructure with the Result Cache.">Result Cache Management</a></p>
+                     </li>
+                     <li>
+                        <p><a href="pl-sql-function-result-cache.html#GUID-7AEE971F-0A1E-4417-B13F-2E87D59A0441">Hot-Patching PL/SQL Units on Which Result-Cached Functions Depend</a></p>
+                     </li>
+                  </ul>
+               </div><a id="LNPLS707"></a><div class="props_rev_3"><a id="GUID-B7FA8EB2-2075-4EAC-9A15-8E710EDE987A" name="GUID-B7FA8EB2-2075-4EAC-9A15-8E710EDE987A"></a><h4 id="LNPLS-GUID-B7FA8EB2-2075-4EAC-9A15-8E710EDE987A" class="sect4"><span class="enumeration_section">8.12.5.1 </span>Rules for a Cache Hit
+                  </h4>
+                  <div>
+                     <p>Each time a result-cached function is invoked with different parameter values, those parameters and their result are stored in the cache. Subsequently, when the same function is invoked with the same parameter values (that is, when there is a <span class="bold">cache hit</span>), the result is retrieved from the cache, instead of being recomputed.
+                     </p>
+                     <p>The rules for parameter comparison for a cache hit differ from the rules for the PL/SQL "equal to" (=) operator, as follows:</p>
+                     <div class="tblformal" id="GUID-B7FA8EB2-2075-4EAC-9A15-8E710EDE987A__GUID-00874D87-989D-47C3-833D-BC09EB61D08A">
+                        <table cellpadding="4" cellspacing="0" class="Formal" title summary="This table compares the rules for determining whether two parameter values are the same (for a cache hit) to the rules for determining whether two values are equal." width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="23%" id="d66333e1144">Category</th>
+                                 <th align="left" valign="bottom" width="36%" id="d66333e1147">Cache Hit Rules</th>
+                                 <th align="left" valign="bottom" width="41%" id="d66333e1150">"Equal To" Operator Rules</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="23%" id="d66333e1155" headers="d66333e1144 ">
+                                    <p>NULL comparison</p>
+                                 </td>
+                                 <td align="left" valign="top" width="36%" headers="d66333e1155 d66333e1147 ">
+                                    <p><code class="codeph">NULL</code> equals <code class="codeph">NULL</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="41%" headers="d66333e1155 d66333e1150 ">
+                                    <p><code class="codeph">NULL = NULL</code> evaluates to <code class="codeph">NULL</code>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="23%" id="d66333e1174" headers="d66333e1144 ">
+                                    <p>Non-null scalar comparison</p>
+                                 </td>
+                                 <td align="left" valign="top" width="36%" headers="d66333e1174 d66333e1147 ">
+                                    <p>Non-null scalars are the same if and only if their values are identical; that is, if and only if their values have identical bit patterns on the given platform. For example, <code class="codeph">CHAR</code> values <code class="codeph">'AA'</code> and <code class="codeph">'AA  '</code> are different. (This rule is stricter than the rule for the "equal to" operator.)
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="41%" headers="d66333e1174 d66333e1150 ">
+                                    <p>Non-null scalars can be equal even if their values do not have identical bit patterns on the given platform; for example, <code class="codeph">CHAR</code> values <code class="codeph">'AA'</code> and <code class="codeph">'AA  '</code> are equal.
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div><a id="LNPLS708"></a><div class="props_rev_3"><a id="GUID-F9B72877-32FB-43B3-8E95-63DC29BA276E" name="GUID-F9B72877-32FB-43B3-8E95-63DC29BA276E"></a><h4 id="LNPLS-GUID-F9B72877-32FB-43B3-8E95-63DC29BA276E" class="sect4"><span class="enumeration_section">8.12.5.2 </span>Result Cache Bypass
+                  </h4>
+                  <div>
+                     <p>In some situations, the cache is bypassed. When the cache is bypassed:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>The function computes the result instead of retrieving it from the cache.</p>
+                        </li>
+                        <li>
+                           <p>The result that the function computes is not added to the cache.</p>
+                        </li>
+                     </ul>
+                     <p>Some examples of situations in which the cache is bypassed are:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>The cache is unavailable to all sessions.</p>
+                           <p>For example, the database administrator has disabled the use of the result cache during application patching (as in <span class="q">"<a href="pl-sql-function-result-cache.html#GUID-7AEE971F-0A1E-4417-B13F-2E87D59A0441">Hot-Patching PL/SQL Units on Which Result-Cached Functions Depend</a>"</span>).
+                           </p>
+                        </li>
+                        <li>
+                           <p>A session is performing a DML statement on a table or view on which a result-cached function depends.</p>
+                           <p>The session bypasses the result cache for that function until the DML statement is completed—either committed or rolled back. If the statement is rolled back, the session resumes using the cache for that function.</p>
+                           <p>Cache bypass ensures that:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>The user of each session sees his or her own uncommitted changes.</p>
+                              </li>
+                              <li>
+                                 <p>The PL/SQL function result cache has only committed changes that are visible to all sessions, so that uncommitted changes in one session are not visible to other sessions.</p>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </div>
+               </div><a id="LNPLS710"></a><a id="LNPLS709"></a><div class="props_rev_3"><a id="GUID-3A24DD0F-DC69-43B7-A820-0950D86AB9AB" name="GUID-3A24DD0F-DC69-43B7-A820-0950D86AB9AB"></a><h4 id="LNPLS-GUID-3A24DD0F-DC69-43B7-A820-0950D86AB9AB" class="sect4"><span class="enumeration_section">8.12.5.3 </span>Making Result-Cached Functions Handle Session-Specific Settings
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>If a function depends on settings that might vary from session to session (such as <code class="codeph">NLS_DATE_FORMAT</code> and <code class="codeph">TIME ZONE</code>), make the function result-cached only if you can modify it to handle the various settings.
+                        </p>
+                        <p>The function, <code class="codeph">get_hire_date</code>, in Example 8&#x2013;39 uses the <code class="codeph">TO_CHAR</code> function to convert a <code class="codeph">DATE</code> item to a <code class="codeph">VARCHAR</code> item. The function <code class="codeph">get_hire_date</code> does not specify a format mask, so the format mask defaults to the one that <code class="codeph">NLS_DATE_FORMAT</code> specifies. If sessions that invoke <code class="codeph">get_hire_date</code> have different <code class="codeph">NLS_DATE_FORMAT</code> settings, cached results can have different formats. If a cached result computed by one session ages out, and another session recomputes it, the format might vary even for the same parameter value. If a session gets a cached result whose format differs from its own format, that result is probably incorrect.
+                        </p>
+                        <p>Some possible solutions to this problem are:</p>
+                     </div>
+                     <div class="section">
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>Change the return type of <code class="codeph">get_hire_date</code> to <code class="codeph">DATE</code> and have each session invoke the <code class="codeph">TO_CHAR</code> function.
+                              </p>
+                           </li>
+                           <li>
+                              <p>If a common format is acceptable to all sessions, specify a format mask, removing the dependency on <code class="codeph">NLS_DATE_FORMAT</code>. For example:
+                              </p><pre class="oac_no_warn" dir="ltr">TO_CHAR(date_hired, 'mm/dd/yy');
+</pre></li>
+                           <li>
+                              <p>Add a format mask parameter to <code class="codeph">get_hire_date</code>. For example:
+                              </p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE FUNCTION get_hire_date (emp_id NUMBER, <span class="bold">fmt VARCHAR</span>)
+  RETURN VARCHAR
+  RESULT_CACHE
+  AUTHID DEFINER
+IS
+  date_hired DATE;
+BEGIN
+  SELECT hire_date INTO date_hired
+    FROM HR.EMPLOYEES
+      WHERE EMPLOYEE_ID = emp_id;
+  RETURN TO_CHAR(date_hired, <span class="bold">fmt</span>);
+END;
+/</pre></li>
+                        </ul>
+                     </div>
+                     <div class="example" id="GUID-3A24DD0F-DC69-43B7-A820-0950D86AB9AB__GUID-E286AD42-90B8-4E9A-A390-329DC3ECC4DB">
+                        <p class="titleinexample">Example 8-39 Result-Cached Function Handles Session-Specific Settings</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE FUNCTION get_hire_date (emp_id NUMBER)
+  RETURN VARCHAR
+  <span class="bold">RESULT_CACHE</span>
+  AUTHID DEFINER
+IS
+  date_hired DATE;
+BEGIN
+  SELECT hire_date INTO date_hired
+    FROM HR.EMPLOYEES
+      WHERE EMPLOYEE_ID = emp_id;
+  RETURN <span class="bold">TO_CHAR</span>(date_hired);
+END;
+/
+</pre></div>
+                  </div>
+               </div><a id="LNPLS712"></a><a id="LNPLS711"></a><div class="props_rev_3"><a id="GUID-F14A3A45-C880-4175-B42D-55EFB29EDEAE" name="GUID-F14A3A45-C880-4175-B42D-55EFB29EDEAE"></a><h4 id="LNPLS-GUID-F14A3A45-C880-4175-B42D-55EFB29EDEAE" class="sect4"><span class="enumeration_section">8.12.5.4 </span>Making Result-Cached Functions Handle Session-Specific Application Contexts
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>An <span class="bold">application context</span>, which can be either global or session-specific, is a set of attributes and their values. A PL/SQL function depends on session-specific application contexts if it does one or more of the following:
+                        </p>
+                     </div>
+                     <div class="section">
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>Directly invokes the SQL function <code class="codeph">SYS_CONTEXT</code>, which returns the value of a specified attribute in a specified context
+                              </p>
+                           </li>
+                           <li>
+                              <p>Indirectly invokes <code class="codeph">SYS_CONTEXT</code> by using Virtual Private Database (VPD) mechanisms for fine-grained security
+                              </p>
+                              <p>(For information about VPD, see <a href="../dbseg/using-oracle-vpd-to-control-data-access.html#DBSEG007" target="_blank"><span class="italic">Oracle Database Security Guide</span></a>.)
+                              </p>
+                           </li>
+                        </ul>
+                        <p>The PL/SQL function result-caching feature does not automatically handle dependence on session-specific application contexts. If you must cache the results of a function that depends on session-specific application contexts, you must pass the application context to the function as a parameter. You can give the parameter a default value, so that not every user must specify it.</p>
+                        <p>In <a href="pl-sql-function-result-cache.html#GUID-F14A3A45-C880-4175-B42D-55EFB29EDEAE__g3297326">Example 8-40</a>, assume that a table, <code class="codeph">config_tab</code>, has a VPD policy that translates this query:
+                        </p><pre class="oac_no_warn" dir="ltr">SELECT value FROM config_tab WHERE name = param_name;
+</pre><p>To this query:</p><pre class="oac_no_warn" dir="ltr">SELECT value FROM config_tab
+WHERE name = param_name
+<span class="bold">AND app_id = SYS_CONTEXT('Config', 'App_ID')</span>;</pre></div>
+                     <div class="example" id="GUID-F14A3A45-C880-4175-B42D-55EFB29EDEAE__g3297326">
+                        <p class="titleinexample">Example 8-40 Result-Cached Function Handles Session-Specific Application Context</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE FUNCTION get_param_value (
+  param_name VARCHAR,
+  appctx     VARCHAR  DEFAULT SYS_CONTEXT('Config', 'App_ID')
+) RETURN VARCHAR
+  RESULT_CACHE
+  AUTHID DEFINER
+IS
+  rec VARCHAR(2000);
+BEGIN
+  SELECT val INTO rec
+  FROM config_tab
+  WHERE name = param_name;
+ 
+  RETURN rec;
+END;
+/</pre></div>
+                  </div>
+               </div><a id="LNPLS714"></a><a id="LNPLS715"></a><a id="LNPLS716"></a><a id="LNPLS713"></a><div class="props_rev_3"><a id="GUID-63930E6C-9244-4A1A-97FC-49B0A44888AC" name="GUID-63930E6C-9244-4A1A-97FC-49B0A44888AC"></a><h4 id="LNPLS-GUID-63930E6C-9244-4A1A-97FC-49B0A44888AC" class="sect4"><span class="enumeration_section">8.12.5.5 </span>Choosing Result-Caching Granularity
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>PL/SQL provides the function result cache, but you choose the caching granularity. To understand the concept of granularity, consider the <code class="codeph">Product_Descriptions</code> table in the Order Entry (<code class="codeph">OE</code>) sample schema:
+                        </p><pre class="oac_no_warn" dir="ltr">NAME                     NULL?      TYPE
+----------------------   --------   ---------------
+PRODUCT_ID               NOT NULL   NUMBER(6)
+LANGUAGE_ID              NOT NULL   VARCHAR2(3)
+TRANSLATED_NAME          NOT NULL   NVARCHAR2(50)
+TRANSLATED_DESCRIPTION   NOT NULL   NVARCHAR2(2000)
+</pre><p>The table has the name and description of each product in several languages. The unique key for each row is <code class="codeph">PRODUCT_ID,LANGUAGE_ID</code>.
+                        </p>
+                        <p>Suppose that you must define a function that takes a <code class="codeph">PRODUCT_ID</code> and a <code class="codeph">LANGUAGE_ID</code> and returns the associated <code class="codeph">TRANSLATED_NAME</code>. You also want to cache the translated names. Some of the granularity choices for caching the names are:
+                        </p>
+                     </div>
+                     <div class="section">
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>One name at a time (finer granularity)</p>
+                           </li>
+                           <li>
+                              <p>One language at a time (coarser granularity)</p>
+                           </li>
+                        </ul>
+                        <div class="tblformal" id="GUID-63930E6C-9244-4A1A-97FC-49B0A44888AC__GUID-526367F9-070F-4A85-9FBE-75FD0009088B">
+                           <p class="titleintable">Table 8-4 Finer and Coarser Caching Granularity</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="Finer and Coarser Caching Granularity" summary="This table compares finest- and coarsest-grained function result caching." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="32%" id="d66333e1728">Granularity</th>
+                                    <th align="left" valign="bottom" width="68%" id="d66333e1731">Benefits</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="32%" id="d66333e1736" headers="d66333e1728 ">
+                                       <p>Finer</p>
+                                    </td>
+                                    <td align="left" valign="top" width="68%" headers="d66333e1736 d66333e1731 ">
+                                       <p>Each function result corresponds to one logical result.</p>
+                                       <p>Stores only data that is needed at least once.</p>
+                                       <p>Each data item ages out individually.</p>
+                                       <p>Does not allow bulk loading optimizations.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="32%" id="d66333e1749" headers="d66333e1728 ">
+                                       <p>Coarser</p>
+                                    </td>
+                                    <td align="left" valign="top" width="68%" headers="d66333e1749 d66333e1731 ">
+                                       <p>Each function result contains many logical subresults.</p>
+                                       <p>Might store data that is never used.</p>
+                                       <p>One aged-out data item ages out the whole set.</p>
+                                       <p>Allows bulk loading optimizations.</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <p>In <a href="pl-sql-function-result-cache.html#GUID-63930E6C-9244-4A1A-97FC-49B0A44888AC__BABDDJCD">Example 8-41</a> and <a href="pl-sql-function-result-cache.html#GUID-63930E6C-9244-4A1A-97FC-49B0A44888AC__BABCDECH">Example 8-42</a>, the function <code class="codeph">productName</code> takes a <code class="codeph">PRODUCT_ID</code> and a <code class="codeph">LANGUAGE_ID</code> and returns the associated <code class="codeph">TRANSLATED_NAME</code>. Each version of <code class="codeph">productName</code> caches translated names, but at a different granularity.
+                        </p>
+                        <p>In <a href="pl-sql-function-result-cache.html#GUID-63930E6C-9244-4A1A-97FC-49B0A44888AC__BABDDJCD">Example 8-41</a>, <code class="codeph">get_product_name_1</code> is a result-cached function. Whenever <code class="codeph">get_product_name_1</code> is invoked with a different <code class="codeph">PRODUCT_ID</code> and <code class="codeph">LANGUAGE_ID</code>, it caches the associated <code class="codeph">TRANSLATED_NAME</code>. Each invocation of <code class="codeph">get_product_name_1</code> adds at most one <code class="codeph">TRANSLATED_NAME</code> to the cache.
+                        </p>
+                        <p>In <a href="pl-sql-function-result-cache.html#GUID-63930E6C-9244-4A1A-97FC-49B0A44888AC__BABCDECH">Example 8-42</a>, <code class="codeph">get_product_name_2</code> defines a result-cached function, <code class="codeph">all_product_names</code>. Whenever <code class="codeph">get_product_name_2</code> invokes <code class="codeph">all_product_names</code> with a different <code class="codeph">LANGUAGE_ID</code>, <code class="codeph">all_product_names</code> caches every <code class="codeph">TRANSLATED_NAME</code> associated with that <code class="codeph">LANGUAGE_ID</code>. Each invocation of <code class="codeph">all_product_names</code> adds every <code class="codeph">TRANSLATED_NAME</code> of at most one <code class="codeph">LANGUAGE_ID</code> to the cache.
+                        </p>
+                     </div>
+                     <div class="example" id="GUID-63930E6C-9244-4A1A-97FC-49B0A44888AC__BABDDJCD">
+                        <p class="titleinexample">Example 8-41 Caching One Name at a Time (Finer Granularity)</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE FUNCTION get_product_name_1 (
+  prod_id NUMBER,
+  lang_id VARCHAR2
+)
+  RETURN NVARCHAR2
+  <span class="bold">RESULT_CACHE</span>
+  AUTHID DEFINER
+IS
+  result_ VARCHAR2(50);
+BEGIN
+  SELECT translated_name INTO result_
+  FROM OE.Product_Descriptions
+  WHERE PRODUCT_ID = prod_id
+  AND LANGUAGE_ID = lang_id;
+  RETURN result_;
+END;
+/
+</pre></div>
+                     <div class="example" id="GUID-63930E6C-9244-4A1A-97FC-49B0A44888AC__BABCDECH">
+                        <p class="titleinexample">Example 8-42 Caching Translated Names One Language at a Time (Coarser Granularity)</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE FUNCTION get_product_name_2 (
+  prod_id NUMBER,
+  lang_id VARCHAR2
+)
+  RETURN NVARCHAR2
+  AUTHID DEFINER
+IS
+  TYPE product_names IS TABLE OF NVARCHAR2(50) INDEX BY PLS_INTEGER;
+ 
+  FUNCTION all_product_names (lang_id VARCHAR2)
+    RETURN product_names
+    <span class="bold">RESULT_CACHE</span>
+  IS
+    all_names product_names;
+  BEGIN
+    FOR c IN (SELECT * FROM OE.Product_Descriptions
+              WHERE LANGUAGE_ID = lang_id) LOOP
+      all_names(c.PRODUCT_ID) := c.TRANSLATED_NAME;
+    END LOOP;
+    RETURN all_names;
+  END;
+BEGIN
+  RETURN all_product_names(lang_id)(prod_id);
+END;
+/</pre></div>
+                  </div>
+               </div><a id="LNPLS717"></a><div class="props_rev_3"><a id="GUID-8F7227E9-4388-4A64-9D1C-5F134A3022F2" name="GUID-8F7227E9-4388-4A64-9D1C-5F134A3022F2"></a><h4 id="LNPLS-GUID-8F7227E9-4388-4A64-9D1C-5F134A3022F2" class="sect4"><span class="enumeration_section">8.12.5.6 </span>Result Caches in Oracle RAC Environment
+                  </h4>
+                  <div>
+                     <p>Cached results are stored in the system global area (SGA). In an Oracle RAC environment, each database instance manages its own local function result cache. However, the contents of the local result cache are accessible to sessions attached to other Oracle RAC instances. If a required result is missing from the result cache of the local instance, the result might be retrieved from the local cache of another instance, instead of being locally computed.</p>
+                     <p>The access pattern and work load of an instance determine the set of results in its local cache; therefore, the local caches of different instances can have different sets of results.</p>
+                     <p>Although each database instance might have its own set of cached results, the mechanisms for handling invalid results are Oracle RAC environment-wide. If results were invalidated only in the local instance's result cache, other instances might use invalid results. For example, consider a result cache of item prices that are computed from data in database tables. If any of these database tables is updated in a way that affects the price of an item, the cached price of that item must be invalidated in every database instance in the Oracle RAC environment.</p>
+                  </div>
+               </div><a id="LNPLS718"></a><div class="props_rev_3"><a id="GUID-4051143D-CABC-4395-BF7C-915253CA4CAB" name="GUID-4051143D-CABC-4395-BF7C-915253CA4CAB"></a><h4 id="LNPLS-GUID-4051143D-CABC-4395-BF7C-915253CA4CAB" class="sect4"><span class="enumeration_section">8.12.5.7 </span>Result Cache Management
+                  </h4>
+                  <div>
+                     <p>The PL/SQL function result cache shares its administrative and manageability infrastructure with the Result Cache.</p>
+                     <p>The database administrator manages the server result cache by specifying the <code class="codeph">RESULT_CACHE_MAX_SIZE</code> , <code class="codeph">RESULT_CACHE_MAX_RESULT</code> and <code class="codeph">RESULT_CACHE_REMOTE_EXPIRATION</code> initialization parameters.
+                     </p>
+                     <p>The <code class="codeph">DBMS_RESULT_CACHE</code> package provides an interface to allow the DBA to administer that part of the shared pool that is used by the SQL result cache and the PL/SQL function result cache. 
+                     </p>
+                     <p>Dynamic performance views provide information to monitor the server and client result caches.</p>
+                     <div class="infoboxnotealso" id="GUID-4051143D-CABC-4395-BF7C-915253CA4CAB__GUID-A7211E9B-D84D-44A8-8BE4-569DC0E68559">
+                        <p class="notep1">See Also:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><a href="../refrn/RESULT_CACHE_MAX_SIZE.html#REFRN10272" target="_blank"><span class="italic">Oracle Database Reference</span></a> for more information about <code class="codeph">RESULT_CACHE_MAX_SIZE</code></p>
+                           </li>
+                           <li>
+                              <p><a href="../refrn/RESULT_CACHE_MAX_RESULT.html#REFRN10298" target="_blank"><span class="italic">Oracle Database Reference</span></a> for more information about <code class="codeph">RESULT_CACHE_MAX_RESULT</code></p>
+                           </li>
+                           <li>
+                              <p><a href="../tgdba/tuning-result-cache.html#TGDBA631" target="_blank"><span class="italic">Oracle Database Performance Tuning Guide</span></a> for more information about result cache concepts
+                              </p>
+                           </li>
+                           <li>
+                              <p><a href="../arpls/DBMS_RESULT_CACHE.html#ARPLS202" target="_blank"><span class="italic">Oracle Database PL/SQL Packages and Types Reference</span></a> for more information about the <code class="codeph">DBMS_RESULT_CACHE</code> package
+                              </p>
+                           </li>
+                           <li>
+                              <p><a href="../refrn/V-RESULT_CACHE_STATISTICS.html#REFRN30439" target="_blank"><span class="italic">Oracle Database Reference</span> </a> for more information about <code class="codeph">V$RESULT_CACHE_STATISTICS</code></p>
+                           </li>
+                           <li>
+                              <p><a href="../refrn/V-RESULT_CACHE_MEMORY.html#REFRN30437" target="_blank"><span class="italic">Oracle Database Reference</span> </a> for more information about <code class="codeph">V$RESULT_CACHE_MEMORY</code></p>
+                           </li>
+                           <li>
+                              <p><a href="../refrn/V-RESULT_CACHE_OBJECTS.html#REFRN30438" target="_blank"><span class="italic">Oracle Database Reference</span> </a> for more information about <code class="codeph">V$RESULT_CACHE_OBJECTS</code></p>
+                           </li>
+                           <li>
+                              <p><a href="../refrn/V-RESULT_CACHE_DEPENDENCY.html#REFRN30436" target="_blank"><span class="italic">Oracle Database Reference</span> </a> for more information about <code class="codeph">V$RESULT_CACHE_DEPENDENCY</code></p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="LNPLS719"></a><div class="props_rev_3"><a id="GUID-7AEE971F-0A1E-4417-B13F-2E87D59A0441" name="GUID-7AEE971F-0A1E-4417-B13F-2E87D59A0441"></a><h4 id="LNPLS-GUID-7AEE971F-0A1E-4417-B13F-2E87D59A0441" class="sect4"><span class="enumeration_section">8.12.5.8 </span>Hot-Patching PL/SQL Units on Which Result-Cached Functions Depend
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>When you hot-patch a PL/SQL unit on which a result-cached function depends (directly or indirectly), the cached results associated with the result-cached function might not be automatically flushed in all cases.</p>
+                        <p>For example, suppose that the result-cached function <code class="codeph">P1</code>.<code class="codeph">foo()</code> depends on the package subprogram <code class="codeph">P2</code>.<code class="codeph">bar()</code>. If a new version of the body of package <code class="codeph">P2</code> is loaded, the cached results associated with <code class="codeph">P1</code>.<code class="codeph">foo()</code> are not automatically flushed.
+                        </p>
+                        <p>Therefore, this is the recommended procedure for hot-patching a PL/SQL unit:</p>
+                        <div class="infoboxnote" id="GUID-7AEE971F-0A1E-4417-B13F-2E87D59A0441__GUID-CD7E2AD7-1974-4FE6-A1F0-3756D983D07D">
+                           <p class="notep1">Note:</p>
+                           <p>To follow these steps, you must have the <code class="codeph">EXECUTE</code> privilege on the package <code class="codeph">DBMS_RESULT_CACHE</code>.
+                           </p>
+                        </div>
+                     </div>
+                     <ol>
+                        <li class="stepexpand"><span>Put the result cache in bypass mode and flush existing results:</span><div><pre class="oac_no_warn" dir="ltr">BEGIN
+  DBMS_RESULT_CACHE.Bypass(TRUE);
+  DBMS_RESULT_CACHE.Flush;
+END;
+/</pre><p>In an Oracle RAC environment, perform this step for each database instance.</p>
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Patch the PL/SQL code.</span></li>
+                        <li class="stepexpand"><span>Resume using the result cache:</span><div><pre class="oac_no_warn" dir="ltr">BEGIN
+  DBMS_RESULT_CACHE.Bypass(FALSE);
+END;
+/</pre><p>In an Oracle RAC environment, perform this step for each database instance.</p>
+                           </div>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

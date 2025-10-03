@@ -1,0 +1,295 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Preparing to Upgrade Oracle Database">
+      <meta name="abstract" content="Before you upgrade Oracle Database, review new features, and carry out procedures to prepare your database for upgrade.">
+      <meta name="description" content="Before you upgrade Oracle Database, review new features, and carry out procedures to prepare your database for upgrade.">
+      <meta name="DC.subject" content="AutoUpgrade">
+      <meta name="keywords" content="AutoUpgrade">
+      <meta name="DC.Relation" scheme="URI" content="installing-oracle-software-in-a-new-oracle-home.html#GUID-184AEF67-4227-4CC1-93C4-BDF24F6C46D9">
+      <meta name="DC.Relation" scheme="URI" content="preparing-to-upgrade.html#GUID-3FCFB2A6-4617-4783-828A-41BD635FC88C">
+      <meta name="DC.Relation" scheme="URI" content="prepare-a-backup-strategy-before-upgrading-db.html#GUID-671004F2-89AC-464D-A1E2-B4ED418D23C0">
+      <meta name="DC.Relation" scheme="URI" content="db-preparation-tasks-before-starting-db-upgrades.html#GUID-58C1A4B9-32F4-44E5-B82B-5D0EC78A6AE2">
+      <meta name="DC.Relation" scheme="URI" content="preparing-to-upgrade.html#GUID-9616616A-98AB-4F39-9A5F-78ACAE22BA70">
+      <meta name="DC.Relation" scheme="URI" content="preparing-to-upgrade.html#GUID-1A9651AE-854F-47F4-8BAE-166F0A35FB16">
+      <meta name="DC.Relation" scheme="URI" content="enabling-oracle-db-vault-after-upgrading-oracle-db.html#GUID-12B920E9-B2DA-48A0-832C-3E07D172A011">
+      <meta name="DC.Contributor" content="Sunil Surabhi">
+      <meta name="DC.Contributor" content="Nirmal Kumar">
+      <meta name="DC.Contributor" content="Daniel Overby Hansen">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Byron Motta">
+      <meta name="DC.Creator" content="Hector Vieyra Farfan">
+      <meta name="DC.Creator" content="Carol Tagliaferri">
+      <meta name="DC.Creator" content="Mike Dietrich">
+      <meta name="DC.Creator" content="Cindy Lim">
+      <meta name="DC.Creator" content="Douglas Williams">
+      <meta name="DC.Publisher" content="June2022">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-E1C7B8AF-FF00-4E91-86FE-D02395B430D8">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Before you upgrade Oracle Database, review new features, and carry out procedures to prepare your database for upgrade.">
+      <meta name="description" content="Before you upgrade Oracle Database, review new features, and carry out procedures to prepare your database for upgrade.">
+      <title>Preparing to Upgrade Oracle Database</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Upgrading Non-CDBs on the Same System ">
+      <meta property="og:description" content="Before you upgrade Oracle Database, review new features, and carry out procedures to prepare your database for upgrade.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Upgrading Non-CDBs on the Same System">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="upgrading-non-cdbs-same-system.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2022-06-23T12:33:23-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2018, 2022">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F10896-05">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="values-for-the-compatible-initialization-parameter.html" title="Previous" type="text/html">
+      <link rel="next" href="installing-oracle-software-in-a-new-oracle-home.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Upgrading Non-CDBs on the Same System">
+    <meta name="dcterms.isVersionOf" content="SPUSS">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","name":"Preparing to Upgrade Oracle Database","description":"Before you upgrade Oracle Database, review new features, and carry out procedures to prepare your database for upgrade.","datePublished":"2019-01-12 04:42:51 GMT","dateModified":"2022-06-23 19:36:45 GMT"} </script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="values-for-the-compatible-initialization-parameter.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="installing-oracle-software-in-a-new-oracle-home.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Upgrading Non-CDBs on the Same System </span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Preparing to Upgrade Oracle Database</li>
+            </ol>
+            <a id="GUID-E1C7B8AF-FF00-4E91-86FE-D02395B430D8" name="GUID-E1C7B8AF-FF00-4E91-86FE-D02395B430D8"></a>
+            
+            <h2 id="SPUSS-GUID-E1C7B8AF-FF00-4E91-86FE-D02395B430D8" class="sect2"><span class="enumeration_chapter">2 </span>Preparing to Upgrade Oracle Database
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Before you upgrade Oracle Database, review new features, and carry out
+        procedures to prepare your database for upgrade. </p>
+               <div class="infoboxnote" id="GUID-E1C7B8AF-FF00-4E91-86FE-D02395B430D8__GUID-C6A05B9C-5B60-4571-AE44-FC0D3069856C">
+                  <p class="notep1">Note:</p>Oracle strongly recommends that you test the upgrade process and prepare a backup
+            strategy.
+               </div>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="installing-oracle-software-in-a-new-oracle-home.html#GUID-184AEF67-4227-4CC1-93C4-BDF24F6C46D9">Installing Oracle Software in a New Oracle Home</a><br>Choose a new location for the target Oracle home, and then install the new         Oracle Database release software for single-instance.
+                  </li>
+                  <li class="ulchildlink"><a href="preparing-to-upgrade.html#GUID-3FCFB2A6-4617-4783-828A-41BD635FC88C">About Oracle Database AutoUpgrade</a><br><span>The AutoUpgrade utility identifies issues before                     upgrades, performs pre- and postupgrade actions, deploys upgrades, performs                     postupgrade actions, and starts the upgraded Oracle Database.</span></li>
+                  <li class="ulchildlink"><a href="prepare-a-backup-strategy-before-upgrading-db.html#GUID-671004F2-89AC-464D-A1E2-B4ED418D23C0">Prepare a Backup Strategy Before Upgrading Oracle Database</a><br>You must design and carry out an appropriate backup strategy to ensure a successful upgrade. 
+                  </li>
+                  <li class="ulchildlink"><a href="db-preparation-tasks-before-starting-db-upgrades.html#GUID-58C1A4B9-32F4-44E5-B82B-5D0EC78A6AE2">Database Preparation Tasks to Complete Before Starting Oracle Database Upgrades</a><br>Ensure that you have completed these database preparation tasks before starting an Oracle Database upgrade.
+                  </li>
+                  <li class="ulchildlink"><a href="preparing-to-upgrade.html#GUID-9616616A-98AB-4F39-9A5F-78ACAE22BA70">About the AutoUpgrade Analyze Processing Mode</a><br>The AutoUpgrade Analyze (<code class="codeph">analyze</code>) processing mode checks your database to see if it is ready for upgrade.
+                  </li>
+                  <li class="ulchildlink"><a href="preparing-to-upgrade.html#GUID-1A9651AE-854F-47F4-8BAE-166F0A35FB16">AutoUpgrade with Source and Target Database Homes on Same Server (Typical)</a><br>When your Oracle Database Source and Target Oracle homes are installed on                 the same physical server, use this example.
+                  </li>
+                  <li class="ulchildlink"><a href="enabling-oracle-db-vault-after-upgrading-oracle-db.html#GUID-12B920E9-B2DA-48A0-832C-3E07D172A011">Enabling Oracle Database Vault After Upgrading Oracle Database</a><br>Depending on your target database release, you can be required to disable Oracle Database Vault to complete an Oracle Database upgrade.
+                  </li>
+               </ul>
+            </div>
+            
+            <div class="sect2"><a id="GUID-3FCFB2A6-4617-4783-828A-41BD635FC88C" name="GUID-3FCFB2A6-4617-4783-828A-41BD635FC88C"></a><h3 id="SPUSS-GUID-3FCFB2A6-4617-4783-828A-41BD635FC88C" class="sect3">About Oracle Database AutoUpgrade</h3>
+               <div>
+                  <p><span>The AutoUpgrade utility identifies issues before
+                    upgrades, performs pre- and postupgrade actions, deploys upgrades, performs
+                    postupgrade actions, and starts the upgraded Oracle Database.</span></p>
+                  <p>In place of <code class="codeph">preupgrade.jar</code>, Oracle
+                recommends that you download the most recent version of the AutoUpgrade Utility from
+                My Oracle Support Document 2485457.1, and use <code class="codeph">autoupgrade.jar -mode
+                    analyze</code>. The AutoUpgrade utility is designed to automate the upgrade
+                process, both before starting upgrades with preupgrade checks, during upgrade
+                deployments, and during postupgrade checks and configuration migration. You use
+                AutoUpgrade after you have downloaded binaries for the new Oracle Database release,
+                and set up new release Oracle homes. When you use AutoUpgrade, you can upgrade
+                multiple Oracle Database deployments at the same time, using a single configuration
+                file, customized as needed for each database deployment.
+                  </p>
+                  <p>With the January 2019 Release Updates (<code class="codeph">DBJAN2019RU</code>) and later
+            updates, AutoUpgrade support is available for Oracle Database 12c Release 2 (12.2) and
+            Oracle Database 18c (18.5) target homes. For both Oracle Database 12c Release 2 (12.2)
+            and Oracle Database 18c (18.5) target homes, you must download the AutoUpgrade kit from
+            My Oracle Support Document 2485457.1. 
+                  </p>
+                  <p>In Oracle Database 19c (19.3) and later target Oracle homes, the
+                <code class="codeph">autoupgrade.jar</code> file exists by default. However, before you use
+            AutoUpgrade, Oracle strongly recommends that you download the latest AutoUpgrade
+            version. AutoUpgrade is included with each release update (RU), but the most recent
+            AutoUpgrade version is always available from My Oracle Support Document 2485457.1.
+                  </p>
+                  <div class="infoboxnote" id="GUID-3FCFB2A6-4617-4783-828A-41BD635FC88C__GUID-F6DA92E2-CBBD-4763-92EE-0E17B3EBC202">
+                     <p class="notep1">Note:</p>
+                     <p>AutoUpgrade is available for Oracle Database Enterprise Edition, and Oracle Database Standard Edition. It is not available for Oracle Database Express Edition. </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-3FCFB2A6-4617-4783-828A-41BD635FC88C__GUID-E94F7F5B-82BC-4C37-A18E-D3D9D9026418">Preventing Issues: Analyze and Fixup
+                Modes</p>
+                     <p>Before the upgrade, in Analyze mode, the AutoUpgrade utility performs read-only
+                analysis of databases before upgrade, so that it can identify issues that require
+                fixing. You can run the utility during normal database operations. In Fixup Mode,
+                the AutoUpgrade utility detects and identifies both fixes that require manual
+                intervention, and fixes that the AutoUpgrade utility can perform during the upgrade
+                deployment phase. </p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-3FCFB2A6-4617-4783-828A-41BD635FC88C__GUID-968AEEF8-29D5-4A20-82E6-1B69FCFACD2D">Simplifying Upgrades: Deploy and Upgrade Modes</p>
+                     <p>In Deploy phase, the AutoUpgrade utility modifies the databases you indicate in your
+                configuration file. It enables you to call your own custom scripts during the
+                upgrade to configure databases. In many cases, the AutoUpgrade utility can perform
+                automatic fixes to databases during the upgrade process without requiring manual
+                intervention. </p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-3FCFB2A6-4617-4783-828A-41BD635FC88C__GUID-C4F1EC59-548D-427D-8CA1-127DD1AC902B">Deploy and Upgrade Postupgrade Checks and Fixes</p>
+                     
+                     
+                     <p>After an upgrade completes with either Deploy or Upgrade modes, AutoUpgrade performs
+                postupgrade checks. It provides a process where you can enable your custom scripts
+                to be run on each of the upgraded databases, in accordance with the configuration
+                instructions you provide in the AutoUpgrade configuration file, and also can run
+                automatic postupgrade fixups as part of the postupgrade process. In Deploy mode,
+                AutoUpgrade also confirms that the upgrade has succeeded, and copies database files
+                such as <code class="codeph">sqlnet.ora</code>, <code class="codeph">tnsname.ora</code>, and
+                    <code class="codeph">listener.ora</code> from the source home to the target home. After
+                these actions are complete, the upgraded Oracle Database release is started in the
+                new Oracle home. 
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="https://support.oracle.com/rs?type=doc&amp;id=2485457.1" target="_blank">My Oracle Support Document 2485457.1</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="preparing-to-upgrade.html#GUID-E1C7B8AF-FF00-4E91-86FE-D02395B430D8" title="Before you upgrade Oracle Database, review new features, and carry out procedures to prepare your database for upgrade.">Preparing to Upgrade Oracle Database</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-9616616A-98AB-4F39-9A5F-78ACAE22BA70" name="GUID-9616616A-98AB-4F39-9A5F-78ACAE22BA70"></a><h3 id="SPUSS-GUID-9616616A-98AB-4F39-9A5F-78ACAE22BA70" class="sect3">About the AutoUpgrade Analyze Processing Mode</h3>
+               <div>
+                  <p>The AutoUpgrade Analyze (<code class="codeph">analyze</code>) processing mode checks your database to see if it is ready for upgrade.
+                  </p>
+                  <p>When you run AutoUpgrade in Analyze mode, AutoUpgrade only reads data from the database, and does not perform any updates to the database. You can run AutoUpgrade using the Analyze mode during normal business hours. You can run AutoUpgrade in Analyze mode on your source Oracle Database home before you have set up your target release Oracle Database home. </p>
+                  <p>You start AutoUpgrade in Analyze mode using the following syntax, where <code class="codeph"><span class="variable" translate="no">Java-8-home</span></code> is the location of your Java 8 distribution, or the environment variable set for the Java 8 home:
+                  </p><pre class="pre codeblock"><code><span class="variable" translate="no">Java-8-home</span>/bin/java -jar autoupgrade.jar -config yourconfig.txt -mode analyze</code></pre><p>Oracle Database Release 12.2  (12.2.0.1) or newer Oracle homes have a valid java
+            version by default. Start AutoUpgrade in Analyze mode using the following syntax, where
+                    <code class="codeph"><span class="variable" translate="no">Oracle_home</span></code> is the Oracle home
+            directory, or the environment variable set for the Oracle home, and
+                <code class="codeph">yourconfig.txt</code> is your configuration file: 
+                  </p><pre class="pre codeblock"><code><span class="variable" translate="no">Oracle_home</span>/jdk/bin/java -jar autoupgrade.jar -config yourconfig.txt -mode analyze</code></pre><img id="GUID-9616616A-98AB-4F39-9A5F-78ACAE22BA70__IMAGE_BCP_P4N_DHB" src="img/autoupgrade-analyze-flow.png" alt="Description of autoupgrade-analyze-flow.eps follows" title="Description of autoupgrade-analyze-flow.eps follows" longdesc="img_text/autoupgrade-analyze-flow.html"><br><a href="img_text/autoupgrade-analyze-flow.html">Description of the illustration autoupgrade-analyze-flow.eps</a><p>The AutoUpgrade Analyze mode produces two output files, which are given the name of the system identifier (<code class="codeph"><span class="variable" translate="no">SID</span></code>) of the database that you check: 
+                  </p>
+                  <ul style="list-style-type: disc;" id="GUID-9616616A-98AB-4F39-9A5F-78ACAE22BA70__UL_JLT_YDP_SGB">
+                     <li>
+                        <p><code class="codeph"><span class="variable" translate="no">SID</span>.html</code>: View this file using a web browser. 
+                        </p>
+                     </li>
+                  </ul>
+                  <ul style="list-style-type: disc;" id="GUID-9616616A-98AB-4F39-9A5F-78ACAE22BA70__UL_Y3T_R2P_SGB">
+                     <li>
+                        <p><code class="codeph"><span class="variable" translate="no">SID</span>_preupgrade.log</code>: View this file using a text editor.
+                        </p>
+                     </li>
+                  </ul>
+                  <p>Each report identifies upgrade errors that would occur if you do not correct them, either by running an automatic fixup script, or by manual correction. If errors occur, then they are reported in the user log file, and also in the <code class="codeph">status.json</code> file.
+                  </p>
+                  <p>The Analyze mode also generates a status directory in the path <code class="codeph">cfgtoollogs/upgrade/auto/status</code>. This directory contains files that indicate if the analysis was successful or failed. This directory has two JSON files,  <code class="codeph">status.json</code> and <code class="codeph">progress.json</code>:
+                  </p>
+                  <ul style="list-style-type: disc;" id="GUID-9616616A-98AB-4F39-9A5F-78ACAE22BA70__UL_E3S_HNP_BHB">
+                     <li><code class="codeph">status.json </code>: A high-level status JSON file that contains the final status of the upgrade. 
+                     </li>
+                     <li><code class="codeph">progress.json</code>: A JSON file that contains the current progress of all upgrades being performed on behalf of the configuration file. If errors occur, then they are reported in the log file of the user running AutoUpgrade, and also in the <code class="codeph">status.json</code> file.
+                     </li>
+                  </ul>
+                  <p>If your target database Oracle home is not available on the server, then in your
+            configuration file, you must set the source Oracle home parameters to the same path, so
+            that the AutoUpgrade analyze processing mode can run. For example:</p><pre class="pre codeblock"><code>#
+# Source Home
+#
+sales3.source_home=d:\app\oracle\product\12.1.0\dbhome_1
+#
+# Target Oracle Home
+#
+sales3.target_home=d:\app\oracle\product\19.1.0\dbhome_1</code></pre><p>Earlier releases of AutoUpgrade required you to set
+                <code class="codeph">target_home</code> and <code class="codeph">target_version</code>. In later releases
+            of AutoUpgrade, this restriction has been lifted for both Analyze and Fixups modes. 
+                  </p>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="preparing-to-upgrade.html#GUID-E1C7B8AF-FF00-4E91-86FE-D02395B430D8" title="Before you upgrade Oracle Database, review new features, and carry out procedures to prepare your database for upgrade.">Preparing to Upgrade Oracle Database</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="sect2"><a id="GUID-1A9651AE-854F-47F4-8BAE-166F0A35FB16" name="GUID-1A9651AE-854F-47F4-8BAE-166F0A35FB16"></a><h3 id="SPUSS-GUID-1A9651AE-854F-47F4-8BAE-166F0A35FB16" class="sect3">AutoUpgrade with Source and Target Database
+                Homes on Same Server (Typical)</h3>
+               <div>
+                  <p>When your Oracle Database Source and Target Oracle homes are installed on
+                the same physical server, use this example.</p>
+                  <div class="section">
+                     <p>Context: Source and Target homes are on the same server. </p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="example" id="GUID-1A9651AE-854F-47F4-8BAE-166F0A35FB16__GUID-9B582C36-E150-4AD3-8422-DAB0D7D1D49C">
+                     <p>To start the analysis, enter the following command. </p><pre class="pre codeblock"><code>java -jar autoupgrade.jar -config config.txt -mode analyze</code></pre><p>The command produces a report that indicates any error conditions that the command
+                                                  finds. Review the error conditions.</p>
+                  </div>
+                  <!-- class="example" -->
+                  <div class="example" id="GUID-1A9651AE-854F-47F4-8BAE-166F0A35FB16__GUID-A4A77EC8-1D3B-44DE-9A86-9F1392E169B3">
+                     <p>To start the deployment of the upgrade, enter the following command:</p><pre class="pre codeblock"><code>java -jar autoupgrade.jar -config config.txt -mode deploy</code></pre></div>
+                  <!-- class="example" -->
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="preparing-to-upgrade.html#GUID-E1C7B8AF-FF00-4E91-86FE-D02395B430D8" title="Before you upgrade Oracle Database, review new features, and carry out procedures to prepare your database for upgrade.">Preparing to Upgrade Oracle Database</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

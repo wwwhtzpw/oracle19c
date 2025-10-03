@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Part number: F13372-01 -->
+    <!-- Published date: January 2019 -->
+    <!-- See this link for directions on getting a part number: https://confluence.oraclecorp.com/confluence/display/DLPP/Archive+an+OBE -->
+    <!-- Template date: October 15, 2018 -->
+    <meta name="contentid" content="26697">
+    <title>Manage Partitions in Hybrid Partitioned Tables</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Learn how to create hybrid partitioned tables and manage internal and external partitions in hybrid partitioned tables.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+  
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+    <meta name="dcterms.created" content="2019-05-14T12:04:54+00:00">
+    <meta name="dcterms.title" content="Manage Partitions in Hybrid Partitioned Tables">
+    <meta name="dcterms.category" content="database">
+    <meta name="dcterms.isVersionOf" content="TUTORIAL-MANAGE-PARTITIONS-IN-HYBRID-PARTITIONED-TABLES">
+    <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+    <meta name="dcterms.identifier" content="F13372-01">
+    <meta name="dcterms.release" content="Release 19">
+  <script id="ssot-metadata" type="application/json"> {"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}} </script>
+    </head>
+  <body>
+    <header>
+      <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo"> <img src="./img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a> </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+      <h1><img src="./img/obe_tag.png" alt="Oracle by Example branding" align="middle">Manage
+        Partitions in Hybrid Partitioned Tables</h1>
+      <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+          <div class="left-nav-tut"><!-- -->
+            <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+            <div id="navbar" class="left-nav-w"><!-- -->
+              <div id="toc" class="tocify"><!-- --></div>
+            </div>
+          </div>
+        </div>
+        <div id="bookContainer">
+          <article>
+            <section>
+              <h2><img src="./img/32_begin.png" alt="section 0" class="num_circ" height="32" width="32"> Before You Begin</h2>
+              <p>This 15-minute tutorial shows you how to create a hybrid
+                partitioned table with both internal and external partitions and
+                manage the internal and external partitions. </p>
+              <h3>Background</h3>
+              <p>Oracle Database 12c allows partitions of a partitioned table to
+                be created either as internal partitions in the database in
+                Oracle data files or in external sources as external partitions.</p>
+              <p>Oracle Database 19c allows a partitioned table to hold both
+                internal partitions and external partitions. These partitioned
+                tables are called hybrid partitioned tables.</p>
+              <h3>What Do You Need?</h3>
+              <ul>
+                <li>Oracle Database 19c installed</li>
+                <li>A database, either non-CDB or CDB with a PDB</li>
+                <li>Tablespaces created in the non-CDB or PDB for internal
+                  partitions of hybrid partitioned tables</li>
+                <li>Source data files for external partitions of hybrid
+                  partitioned tables: <code><a href="files/CENT17/cent17.dat" target="_blank">
+                      cent17.dat,</a> <a href="files/CENT19/cent19.dat" target="_blank">cent19.dat,</a></code>
+                  and <code><a href="files/CENT20/cent20.dat" target="_blank">
+                      cent20.dat</a></code>. Download the .dat files to the labs
+                  directory created on your server in their respective
+                  subdirectories, <code>/home/oracle/labs/CENT17</code>, <code>/home/oracle/labs/CENT19</code>,
+                  and <code>/home/oracle/labs/CENT20</code></li>
+                <li>The <code><a href="files/create_hybrid_table.sql" target="_blank">
+                      create_hybrid_table.sql</a></code> SQL script. Download
+                  the SQL script to the labs directory created on your server <code>/home/oracle/labs</code>
+                </li>
+                <li>The <code><a href="files/insert.sql" target="_blank">
+                      insert.sql</a></code> SQL script. Download the SQL script
+                  to the labs directory created on your server <code>/home/oracle/labs</code></li>
+                <li>The <code><a href="files/insert2.sql" target="_blank">
+                      insert2.sql</a></code> SQL script. Download the SQL script
+                  to the labs directory created on your server <code>/home/oracle/labs</code></li>
+              </ul>
+            </section>
+            <!-- ========================================================================================================================= -->
+            <section>
+              <hr>
+              <h2 id="section_1" style="text-align: left;"><img src="./img/32_1.png" alt="section 1" class="num_circ" height="32" width="32">Create
+                the Tablespaces for the Internal Partitions</h2>
+              <p>In this section, you create two tablespaces to store data of
+                the internal partitions, one of the two tablespaces to be the
+                default tablespace for internal partitions.</p>
+              <ol>
+                <li>Log in to the PDB as <code> SYSTEM</code>.
+                  <pre>sqlplus system@PDB1
+Enter password: <em>password</em>
+</pre></li>
+                <li>Create the tablespaces <code> TS1 </code> and <code> TS2
+                  </code> to store internal partitions of the hybrid partitioned
+                  table.
+                  <pre>CREATE TABLESPACE ts1 DATAFILE '/u02/app/oracle/oradata/ORCL/pdb1/ts1.dbf' SIZE 100M;
+</pre>
+                  <pre>CREATE TABLESPACE ts2 DATAFILE '/u02/app/oracle/oradata/ORCL/pdb1/ts2.dbf' SIZE 100M;
+</pre></li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_2" role="button" style="text-align: left;"><img src="./img/32_2.png" alt="section 2" class="num_circ" height="32" width="32">Create
+                the Logical Directories for the External Partitions</h2>
+              <p>In this section, you create the logical directories to store
+                the source data files for external partitions.</p>
+              <ol>
+                <li>Create the logical directory <code> CENT18</code> to store
+                  the source data file <code> cent18.dat </code> for the <code>
+                    CENT18 </code> external partition.
+                  <pre>CREATE DIRECTORY cent18 AS '/home/oracle/labs/CENT18'; </pre>
+                </li>
+                <li>Create the logical directory <code> CENT19</code> to store
+                  the source data file <code> cent19.dat </code> for the <code>
+                    CENT19 </code> external partition.
+                  <pre>CREATE DIRECTORY cent19 AS '/home/oracle/labs/CENT19'; </pre>
+                </li>
+                <li>Create the logical directory <code> CENT20</code> to store
+                  the source data file <code> cent20.dat </code> for the <code>
+                    CENT20 </code> external partition.
+                  <pre>CREATE DIRECTORY cent20 AS '/home/oracle/labs/CENT20'; </pre>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_3" role="button" style="text-align: left;"><img src="./img/32_3.png" alt="section 3" class="num_circ" height="32" width="32">Create
+                the Hybrid Partitioned Table</h2>
+              <ol>
+                <li>Create the user that owns the hybrid partitioned table.
+                  <pre>CREATE USER hypt IDENTIFIED BY <em>password</em>;</pre>
+                </li>
+                <li>Grant the read and write privileges on the directories that
+                  store the source data files to the table owner.
+                  <pre>GRANT read, write ON DIRECTORY cent18 TO hypt;</pre>
+                  <pre>GRANT read, write ON DIRECTORY cent19 TO hypt;</pre>
+                  <pre>GRANT read, write ON DIRECTORY cent20 TO hypt;</pre>
+                </li>
+                <li>Grant the <code>CREATE SESSION</code>, <code>CREATE TABLE</code>
+                  and <code>UNLIMITED TABLESPACE</code> privileges to the table
+                  owner.
+                  <pre>GRANT create session, create table, unlimited tablespace TO hypt;</pre>
+                </li>
+                <li>Execute the <code><a href="files/create_hybrid_table.sql" target="_blank">
+                      create_hybrid_table.sql</a></code> SQL script to create
+                  the <code>HYPT_TAB</code> hybrid partitioned table with the
+                  following attributes:
+                  <ul>
+                    <li>The table is partitioned by range on the <code>TIME_ID</code>
+                      column.</li>
+                    <li>The default tablespace for internal partitions is <code>TS1</code>.</li>
+                    <li>The default tablespace for external partitions is <code>CENT20</code>.</li>
+                    <li>The fields in the records of the external files are
+                      separated by ','.</li>
+                    <li>The table is partitioned into five parts: <br>
+                      <ul>
+                        <li>Three external partitions: <code>CENT18</code> is
+                          empty for the moment; <code>CENT19</code> has the <code>cent19.dat</code>
+                          file stored in another directory than the default, <code>CENT19</code>;
+                          <code>CENT20</code> has the <code>cent20.dat</code>
+                          file stored in the default directory.</li>
+                        <li>Two internal partitions: <code>Y2000</code> is
+                          stored in tablespace <code>TS2</code> and <code>PMAX</code>
+                          is stored in the default tablespace <code>TS1</code>.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <pre>@/home/oracle/labs/create_hybrid_table.sql</pre>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_4" role="button" style="text-align: left;"><img src="./img/32_4.png" alt="section 4" class="num_circ" height="32" width="32">Insert
+                Data Into the Partitions</h2>
+              <ol>
+                <li>Insert rows into the internal partitions of the table.
+                  Execute the <code><a href="files/insert.sql" target="_blank">
+                      insert.sql</a></code> SQL script.
+                  <pre>@/home/oracle/labs/insert.sql </pre>
+                </li>
+                <li>Insert a row for the date of 12 August 1997.
+                  <pre>INSERT INTO hypt.hypt_tab VALUES (41, to_date('12.08.1997', 'dd.mm.yyyy'));
+INSERT INTO hypt.hypt_tab
+                 *
+ERROR at line 1:
+ORA-14466: Data in a read-only partition or subpartition cannot be modified. </pre>
+                  The data can be inserted into the external partition only via
+                  the external source data file. </li>
+                <li>Insert the data for the date of 12 August 1997 into the
+                  appropriate external source data file.
+                  <pre>host echo "41,12-Aug-1997" &gt;&gt; /home/oracle/labs/CENT20/cent20.dat
+</pre> </li>
+                <li>Verify that the row is readable from the appropriate
+                  external partition <code>CENT20</code>.
+                  <pre>SELECT history_event, TO_CHAR(time_id, 'dd-MON-yyyy') 
+FROM   hypt.hypt_tab PARTITION (cent20) ORDER BY 1; </pre>
+                  Read the result from the <code><a href="files/result1.txt" target="_blank">
+                      result1</a></code> text file.</li>
+                <li>Append another record into the external source data file <code>CENT19</code>.
+                  <pre>host echo "42,12-Aug-1997" &gt;&gt; /home/oracle/labs/CENT19/cent19.dat
+</pre>
+                  <pre>SELECT history_event, TO_CHAR(time_id, 'dd-MON-yyyy') 
+FROM   hypt.hypt_tab PARTITION (cent19) ORDER BY 1; </pre>
+                  Read the result from the <code><a href="files/result2.txt" target="_blank">
+                      result2</a></code> text file. Observe that the row is
+                  readable from the external partition <code>CENT19</code>
+                  although the row should be stored in another partition. There
+                  is no control on the <code>TIME_ID</code> of the records
+                  inserted as rows into the external partitions, as it is the
+                  case for rows inserted into internal partitions.</li>
+                <li>Use an text editor to remove the record inserted into <code>/home/oracle/labs/CENT19/cent19.dat</code>.</li>
+                <li>Query the rows of the five partitions.
+                  <pre>SELECT history_event, TO_CHAR(time_id, 'dd-MON-yyyy') 
+FROM   hypt.hypt_tab PARTITION (cent18) ORDER BY 1; 
+no rows selected
+</pre>
+                  <pre>SELECT history_event, TO_CHAR(time_id, 'dd-MON-yyyy') 
+FROM   hypt.hypt_tab PARTITION (cent19) ORDER BY 1; </pre>
+                  Read the result from the <code><a href="files/result3.txt" target="_blank">
+                      result3</a></code> text file.
+                  <pre>SELECT history_event, TO_CHAR(time_id, 'dd-MON-yyyy') 
+FROM   hypt.hypt_tab PARTITION (cent20) ORDER BY 1; </pre>
+                  Read the result from the <code><a href="files/result1.txt" target="_blank">
+                      result1</a></code> text file.
+                  <pre>SELECT history_event, TO_CHAR(time_id, 'dd-MON-yyyy') 
+FROM   hypt.hypt_tab PARTITION (y2000) ORDER BY 1; </pre>
+                  Read the result from the <code><a href="files/result4.txt" target="_blank">
+                      result4</a></code> text file.
+                  <pre>SELECT history_event, TO_CHAR(time_id, 'dd-MON-yyyy') 
+FROM   hypt.hypt_tab PARTITION (pmax) ORDER BY 1;
+
+HISTORY_EVENT TO_CHAR(TIME_ID,'DD-
+------------- --------------------
+           29 12-AUG-2018
+           30 15-SEP-2017 </pre>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_5" role="button" style="text-align: left;"><img src="./img/32_5.png" alt="section 5" class="num_circ" height="32" width="32">List
+                the Partitions of the Hybrid Partitioned Table</h2>
+              <ol>
+                <li>Distinguish the partitioned tables from the hybrid
+                  partitioned tables. Verify the existence of the hybrid
+                  partitioned table in the <code>DBA_EXTERNAL_TABLES</code>
+                  view and its associated partitions from the <code>DBA_TAB_PARTITIONS</code>
+                  view.
+                  <pre>SELECT * FROM dba_external_tables WHERE owner = 'HYPT';</pre>
+                  Read the result from the <code><a href="files/hypt_table.txt" target="_blank"> hypt_table</a></code> text file.
+                  <pre>SELECT partition_name, high_value FROM dba_tab_partitions
+WHERE  table_name = 'HYPT_TAB' ORDER BY 1;
+</pre> Read the result from the <code><a href="files/partitions.txt" target="_blank">
+                      partitions</a></code> text file.</li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_6" role="button" style="text-align: left;"><img src="./img/32_6.png" alt="section 6" class="num_circ" height="32" width="32">Add
+                and Remove External Partitions</h2>
+              <p>In this section, you add an external partition to the internal
+                partitioned table <code>HYPT.PART_TAB</code> for the 17th
+                century. The external file <code><a href="files/CENT17/cent17.dat" target="_blank"> cent17.dat</a></code> source data file
+                storing historic events of the 17th century is stored in the
+                directory <code>/home/oracle/labs/CENT17</code>. </p>
+              <ol>
+                <li>Drop the hybrid partitioned table.
+                  <pre>DROP TABLE hypt.hypt_tab;
+</pre> </li>
+                <li>Create another partitioned table with internal partitions
+                  only.
+                  <pre>CREATE TABLE hypt.part_tab (history_event NUMBER , time_id DATE) TABLESPACE ts1 
+   PARTITION BY RANGE (time_id) 
+   (PARTITION cent18 VALUES LESS THAN (TO_DATE('01-Jan-1800','dd-MON-yyyy')) ,
+    PARTITION cent19 VALUES LESS THAN (TO_DATE('01-Jan-1900','dd-MON-yyyy')) ,
+    PARTITION cent20 VALUES LESS THAN (TO_DATE('01-Jan-2000','dd-MON-yyyy')) ,
+    PARTITION y2000 VALUES LESS THAN  (TO_DATE('01-Jan-2001','dd-MON-yyyy')) <br>              TABLESPACE ts2,
+    PARTITION pmax VALUES LESS THAN (MAXVALUE));</pre>
+                </li>
+                <li>Execute the <code><a href="files/insert2.sql" target="_blank">
+                      insert2.sql</a></code> SQL script to insert rows into the
+                  internal partitions of the <code>PART_TAB</code> table.
+                  <pre>@/home/oracle/labs/insert2.sql
+</pre></li>
+                <li> Display the rows in the table.
+                  <pre>SELECT * FROM hypt.part_tab ORDER BY 1;
+</pre> Read the result from the <code><a href="files/result5.txt" target="_blank">
+                      result5</a></code> text file.</li>
+                <li>Create the logical directory for the <code>/home/oracle/lab/CENT17</code>
+                  directory.
+                  <pre>CREATE DIRECTORY cent17 AS '/home/oracle/labs/CENT17';</pre>
+                </li>
+                <li>Grant the read and write privileges on the directory to
+                  HYPT.
+                  <pre>GRANT read, write ON DIRECTORY cent17 TO hypt;
+</pre> </li>
+                <li>Define the external parameters for all external partitions
+                  that might be added to the <code>HYPT.PART_TAB </code>
+                  table.
+                  <pre>ALTER TABLE hypt.part_tab
+    ADD EXTERNAL PARTITION ATTRIBUTES 
+       (TYPE ORACLE_LOADER 
+        DEFAULT DIRECTORY cent17 
+        ACCESS PARAMETERS
+         (FIELDS TERMINATED BY ','
+          (history_event , time_id DATE 'dd-MON-yyyy'))
+          REJECT LIMIT UNLIMITED
+         );</pre>
+                </li>
+                <li>Split the first partition to a partition limit that will be
+                  the high limit of the partition added.<br>
+                  <pre>ALTER TABLE hypt.part_tab 
+       SPLIT PARTITION cent18 AT (TO_DATE('01-Jan-1700','dd-MON-yyyy')) 
+       INTO (PARTITION cent17 EXTERNAL LOCATION ('cent17.dat'), 
+             PARTITION cent18);</pre>
+                </li>
+                <li>Read the rows of the external partition.
+                  <pre>SELECT history_event, TO_CHAR(time_id, 'dd-MON-yyyy')
+FROM   hypt.part_tab PARTITION (cent17) ORDER BY 1;</pre>
+                  Read the result from the <code><a href="files/result6.txt" target="_blank">
+                      result6</a></code> text file.</li>
+                <li>The partition storing 17th century historic events is no
+                  longer required. Remove the external parameters for the hybrid
+                  partitioned that was added to the <code>HYPT.PART_TAB</code>
+                  table.
+                  <pre>ALTER TABLE hypt.part_tab DROP EXTERNAL PARTITION ATTRIBUTES();
+ALTER TABLE hypt.part_tab DROP EXTERNAL PARTITION ATTRIBUTES()
+*
+ERROR at line 1:
+ORA-14354: operation not supported for a hybrid-partitioned table</pre>
+                  External partitions must be dropped first before you can
+                  remove external attributes at the table level. </li>
+                <li>Drop the external partition from the <code>HYPT.PART_TAB</code>
+                  table. Because there is one external partition left, the
+                  attributes for the external partitions cannot be removed from
+                  the hybrid partitioned table.
+                  <pre>ALTER TABLE hypt.part_tab DROP PARTITION cent17;</pre>
+                </li>
+                <li>Remove the external parameters for the hybrid partitioned <code>HYPT.PART_TAB</code>
+                  table.
+                  <pre>ALTER TABLE hypt.part_tab DROP EXTERNAL PARTITION ATTRIBUTES();</pre>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_7" role="button" style="text-align: left;"><img src="./img/32_7.png" alt="section 7" class="num_circ" height="32" width="32">Clean
+                Up the Environment</h2>
+              <ol>
+                <li>Drop the hybrid partitioned <code>HYPT.PART_TAB</code>
+                  table.
+                  <pre>DROP TABLE hypt.part_tab PURGE;
+</pre></li>
+                <li>Quit the session.
+                  <pre>EXIT</pre>
+                </li>
+              </ol>
+            </section>
+          </article>
+        </div>
+      </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+      <div style="max-width: 994px; padding:10px 0 0 17px;">
+        <footer class="footer-list">
+          <ul>
+            <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                Oracle</a> </li>
+            <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                Notices</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                of Use</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your
+                Privacy Rights</a> </li>
+            <li><a href="./sp_common/en/cpyr.htm">Copyright
+                © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>
+          </ul>
+        </footer>
+      </div>
+      <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+      <!-- Modal hdr and body -->
+      <div id="obe_dialog" class="modal-content">
+        <div class="modal-header"> <a href="#" class="close"> <span class="close">×</span>
+          </a>
+          <h1>Associated Learning Paths</h1>
+        </div>
+        <div id="dialog-content"> </div>
+        <div id="dialog-close" class="closeBtn"> <a href="#" class="close2">
+            <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+          </a> </div>
+      </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+  </body>
+</html>

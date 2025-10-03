@@ -1,0 +1,517 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Backing Up an Oracle Database to Cloud">
+      <meta name="abstract" content="Using an off-site storage location, such as public cloud, can be an important part of your Oracle Database backup strategy. Cloud backups are always accessible over the Internet and are immediately available for recovery purposes when needed.">
+      <meta name="description" content="Using an off-site storage location, such as public cloud, can be an important part of your Oracle Database backup strategy. Cloud backups are always accessible over the Internet and are immediately available for recovery purposes when needed.">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="K. Weill">
+      <meta name="DC.Creator" content="L. Ashdown">
+      <meta name="DC.Creator" content="T. Bednar">
+      <meta name="DC.Creator" content="A. Beldalker">
+      <meta name="DC.Creator" content="T. Chien">
+      <meta name="DC.Creator" content="M. Dilman">
+      <meta name="DC.Creator" content="S. Fogel">
+      <meta name="DC.Creator" content="R. Guzman">
+      <meta name="DC.Creator" content="S. Haisley">
+      <meta name="DC.Creator" content="W. Hu">
+      <meta name="DC.Creator" content="A. Hwang">
+      <meta name="DC.Creator" content="A. Joshi">
+      <meta name="DC.Creator" content="V. Krishnaswamy">
+      <meta name="DC.Creator" content="J. W. Lee">
+      <meta name="DC.Creator" content="V. Moore">
+      <meta name="DC.Creator" content="M. Olagappan">
+      <meta name="DC.Creator" content="V. Panteleenko">
+      <meta name="DC.Creator" content="S. Ranganathan">
+      <meta name="DC.Creator" content="F. Sanchez">
+      <meta name="DC.Creator" content="Kelly D. Smith">
+      <meta name="DC.Creator" content="V. Srihari">
+      <meta name="DC.Creator" content="M. Susairaj">
+      <meta name="DC.Creator" content="M. Stewart">
+      <meta name="DC.Creator" content="S. Wertheimer">
+      <meta name="DC.Creator" content="W. Yang">
+      <meta name="DC.Creator" content="R. Zijlstra">
+      <meta name="DC.Creator" content="Ramya P">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Orientation">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-B1EBFA43-F75F-4E2A-BC50-4FD570868332">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Using an off-site storage location, such as public cloud, can be an important part of your Oracle Database backup strategy. Cloud backups are always accessible over the Internet and are immediately available for recovery purposes when needed.">
+      <meta name="description" content="Using an off-site storage location, such as public cloud, can be an important part of your Oracle Database backup strategy. Cloud backups are always accessible over the Internet and are immediately available for recovery purposes when needed.">
+      <title>Backing Up an Oracle Database to Cloud</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Backup and Recovery User's Guide">
+      <meta property="og:description" content="Using an off-site storage location, such as public cloud, can be an important part of your Oracle Database backup strategy. Cloud backups are always accessible over the Internet and are immediately available for recovery purposes when needed.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Backup and Recovery User's Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-backup-and-recovery-users-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-22T05:13:41-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2024, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96241-21">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="cloud-backups-sbt.html" title="Previous" type="text/html">
+      <link rel="next" href="rman-cloud-settings.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database Backup and Recovery User's Guide">
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="BRADV">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Backing Up an Oracle Database to Cloud","description":"Using an off-site storage location, such as public cloud, can be an important part of your Oracle Database backup strategy. Cloud backups are always accessible over the Internet and are immediately available for recovery purposes when needed.","datePublished":"2025-07-22 CST","dateModified":"2025-07-22 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="cloud-backups-sbt.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="rman-cloud-settings.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-B1EBFA43-F75F-4E2A-BC50-4FD570868332" name="GUID-B1EBFA43-F75F-4E2A-BC50-4FD570868332"></a>
+         
+         <h2 id="BRADV-GUID-B1EBFA43-F75F-4E2A-BC50-4FD570868332" class="sect2"><span class="enumeration_chapter">29 </span>Backing Up an Oracle Database to
+                                Cloud
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Using an off-site storage location, such as public cloud, can be an
+        important part of your Oracle Database backup strategy. Cloud backups are always accessible
+        over the Internet and are immediately available for recovery purposes when
+        needed.</p>
+            </div>
+            <div class="sect2"><a id="GUID-B2003059-6967-4384-AD25-47E0AFE8D6E7" name="GUID-B2003059-6967-4384-AD25-47E0AFE8D6E7"></a><h3 id="BRADV-GUID-B2003059-6967-4384-AD25-47E0AFE8D6E7" class="sect3"><span class="enumeration_section">29.1 </span>About Using RMAN to Backup an
+                On-Premises Oracle Database to Cloud
+               </h3>
+               <div>
+                  <p>RMAN can backup directly to Oracle Cloud, Microsoft Azure Blob Storage, and
+                Amazon Web Services. Obtain a subscription to the preferred cloud storage provider
+                and then configure RMAN to directly backup to the cloud storage
+                destination.</p>
+                  <p>The Oracle Database Cloud Backup module is an Oracle-supplied media
+                        management software that enables RMAN to directly backup and restore with a
+                        cloud service. Starting with Oracle Database 19c Release Update version 27
+                        (19.27), the backup module installer files are available in the Oracle home
+                        directory after you install the Oracle Database. </p>
+                  <p>On the target database server, install the Oracle Database Cloud
+                        Backup Module that corresponds to your preferred cloud backup destination.
+                        For example, to backup your Oracle Database to Azure Blob Storage, you must
+                        set up the Oracle Database Cloud Backup Module for Azure on the target
+                        database server.</p>
+                  <p>RMAN uses the SBT (tape) channel to create backups on cloud storage.
+                        When you configure an SBT channel, you must also specify the SBT library
+                        that corresponds with a cloud backup module.</p>
+                  <p>Starting with Oracle Database 19c Release Update version 28 (19.28),
+                        each SBT library has a predefined alias name. For example,
+                                <code class="codeph">oracle.azure</code> is the SBT library for Azure Blob
+                        Storage. You can either specify the native SBT library alias (recommended)
+                        or provide the absolute path to the library file located in the Oracle home
+                        directory.
+                  </p>
+                  <div class="infoboxnote" id="GUID-B2003059-6967-4384-AD25-47E0AFE8D6E7__GUID-1DA7D037-EC52-439B-9DB2-4F9897524E84">
+                     <p class="notep1">Note:</p>
+                     
+                     <p>For Oracle Database 19c Release Update version 26 (19.26) and earlier
+        versions, download the operating system-specific cloud backup modules from <a href="https://support.oracle.com/epmos/faces/ui/patch/PatchDetail.jspx?patchId=37855779" target="_blank">My Oracle Support Patch Number
+        37855779</a>.
+                     </p>
+                     
+                     <p>Run the backup module installer to set up the authentication required for RMAN to access
+        the cloud storage. You must use the SBT library included with the patch instead of
+        downloading the library while running the installer.</p>
+                     
+                  </div>
+                  <p>After you install the backup module and configure the SBT channels,
+                        you can use the RMAN utility to perform backup and restores with the chosen
+                        cloud backup destination.</p>
+                  <div class="p">These are the high-level steps to set up RMAN for cloud backup and
+                                restores.
+                     <ol id="GUID-B2003059-6967-4384-AD25-47E0AFE8D6E7__OL_FKP_TWZ_K2C">
+                        <li>Obtain a subscription to the preferred cloud
+                                        storage service. You must have an active account and
+                                        credentials associated with the chosen cloud service.
+                           <div class="p">RMAN supports backups and restores with
+                                                these popular cloud services:
+                              <ul style="list-style-type: disc;" id="GUID-B2003059-6967-4384-AD25-47E0AFE8D6E7__UL_H31_QBG_S2C">
+                                 <li>Oracle Cloud Infrastructure (OCI) Object
+                                                  Storage</li>
+                                 <li>Oracle Cloud Infrastructure (OCI)
+                                                  Object Storage Service with Swift APIs</li>
+                                 <li>Microsoft Azure Blob Storage</li>
+                                 <li>Amazon Simple Storage Service (S3)</li>
+                              </ul>
+                              
+                           </div>
+                        </li>
+                        <li>Install the Oracle Database Cloud Backup Module on
+                                        the target database server.
+                           <p>The backup module installer
+                                                files are available in the Oracle home directory as
+                                                part of the database installation.</p>
+                        </li>
+                        <li>Configure an RMAN SBT (tape) channel and specify the
+                                        SBT library for backup and restore operations with the
+                                        chosen cloud service.</li>
+                        <li>Use RMAN to directly backup and restore to
+                                        cloud.</li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-51FB298A-D76A-4760-BACB-F536A437B312" name="GUID-51FB298A-D76A-4760-BACB-F536A437B312"></a><h3 id="BRADV-GUID-51FB298A-D76A-4760-BACB-F536A437B312" class="sect3"><span class="enumeration_section">29.2 </span>Oracle Database Cloud Backup Modules and RMAN
+    SBT Libraries
+               </h3>
+               <div>
+                  <p>To create backups to cloud, you must install or setup the Oracle Database
+    Cloud Backup Module, and then configure an RMAN SBT channel using the relevant SBT
+    Library.</p>
+                  <div class="tblformal" id="GUID-51FB298A-D76A-4760-BACB-F536A437B312__TABLE_SBJ_WCN_H2C">
+                     <p class="titleintable">Table 29-1 Oracle Database Cloud
+        Backup Modules and RMAN SBT Library Matrix</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Oracle Database Cloud&#xA;        Backup Modules and RMAN SBT Library Matrix" summary="Oracle Database Cloud Backup Module and RMAN SBT Library Matrix" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="25%" id="d130962e290">
+              To Store Backups in
+            </th>
+                              <th align="left" valign="bottom" width="30%" id="d130962e295">
+              Install/Setup
+            </th>
+                              <th align="left" valign="bottom" width="25%" id="d130962e300">
+              Using the Installer File/Setup Tool
+            </th>
+                              <th align="left" valign="bottom" width="20%" id="d130962e305"> SBT_LIBRARY </th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="25%" id="d130962e309" headers="d130962e290 ">
+                                 
+                                 <p>Oracle Cloud Infrastructure Object Storage</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="30%" headers="d130962e309 d130962e295 ">
+                                 
+                                 <p><a href="backup-cloud-oci.html#GUID-600A939A-6BA8-48F5-8F2F-DFF2A74A015A" title="Before you back up to Oracle Cloud Infrastructure, you must install the Oracle Database Cloud Backup Module for OCI on the target database server.">Oracle Database Cloud Backup Module for OCI</a></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="25%" headers="d130962e309 d130962e300 ">
+                                 
+                                 <p><code>oci_installer.zip</code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="20%" headers="d130962e309 d130962e305 ">
+                                 
+                                 <p><code class="codeph">oracle.oci</code></p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="25%" id="d130962e340" headers="d130962e290 ">
+                                 
+                                 <p>Oracle Cloud Infrastructure Object Storage Service with Swift APIs</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="30%" headers="d130962e340 d130962e295 ">
+                                 
+                                 <p><a href="backup-cloud-oci.html#GUID-4E945356-F5B6-4267-8D33-ADB4C1D5413C" title="Before you back up to Oracle Cloud Infrastructure Object Storage Service with Swift API, you must install the cloud backup module on the target database server.">Oracle Database Cloud Backup Module for OCI Classic</a></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="25%" headers="d130962e340 d130962e300 ">
+                                 
+                                 <p><code>opc_installer.zip</code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="20%" headers="d130962e340 d130962e305 ">
+                                 
+                                 <p><code class="codeph">oracle.oci</code></p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="25%" id="d130962e368" headers="d130962e290 ">
+                                 
+                                 <p>Microsoft Azure Blob Storage</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="30%" headers="d130962e368 d130962e295 ">
+                                 
+                                 <p><a href="azure-sbt-module.html#GUID-5630EB19-8D3C-45EC-B0ED-13699A5946C1" title="Before you backup to Azure, you must set up the Oracle Database Cloud Backup Module for Azure on the target Oracle Database server.">Oracle Database Cloud Backup Module for Azure</a></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="25%" headers="d130962e368 d130962e300 ">
+                                 
+                                 <p><code>az_setup.zip</code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="20%" headers="d130962e368 d130962e305 ">
+                                 
+                                 <p><code class="codeph">oracle.azure</code></p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="25%" id="d130962e396" headers="d130962e290 ">
+                                 
+                                 <p>Amazon Simple Storage Service (S3) (AWS)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="30%" headers="d130962e396 d130962e295 ">
+                                 
+                                 <p><a href="backup-cloud-osb.html#GUID-964AADD2-3405-4476-8698-E9F2133CB5B7" title="Before you backup to Amazon S3 Cloud, you need to install the Oracle Secure Backup (OSB) Cloud Module on the target database server. The backup module installer file osbws_installer.zip is available in the Oracle home directory after you install the Oracle Database.">Oracle Secure Backup (OSB) Cloud Module</a></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="25%" headers="d130962e396 d130962e300 ">
+                                 
+                                 <p><code>osbws_installer.zip</code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="20%" headers="d130962e396 d130962e305 ">
+                                 
+                                 <p><code class="codeph">oracle.osbws</code></p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-FF483F02-31EF-4136-B9BC-C3EF898ED1C0" name="GUID-FF483F02-31EF-4136-B9BC-C3EF898ED1C0"></a><h3 id="BRADV-GUID-FF483F02-31EF-4136-B9BC-C3EF898ED1C0" class="sect3"><span class="enumeration_section">29.3 </span>Typical Workflow to Configure RMAN for Cloud
+    Backups
+               </h3>
+               <div>
+                  <p>Refer this workflow to set up RMAN for cloud backup and restores.</p>
+                  <div class="tblformal" id="GUID-FF483F02-31EF-4136-B9BC-C3EF898ED1C0__TABLE_BLV_ZQ3_J2C">
+                     <p class="titleintable">Table 29-2 Task Workflow to Set Up RMAN for Cloud
+        Backups and Restores</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Task Workflow to Set Up RMAN for Cloud&#xA;        Backups and Restores" summary="high-level steps required for cloud backup and restores" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="30%" id="d130962e514">Step</th>
+                              <th align="left" valign="bottom" width="35%" id="d130962e516">Description</th>
+                              <th align="left" valign="bottom" width="35%" id="d130962e518">More Information</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="30%" id="d130962e522" headers="d130962e514 ">
+                                 
+                                 <p>Obtain a cloud service account</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e522 d130962e516 ">
+                                 
+                                 <p>Create an account with the chosen cloud service provider: Oracle Cloud
+                (OCI), Microsoft Azure Blob Storage, or Amazon S3 (AWS).</p>
+                                 
+                                 <p>The cloud service account details are required to authenticate RMAN operations with
+                the chosen cloud service.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e522 d130962e518 ">
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-FF483F02-31EF-4136-B9BC-C3EF898ED1C0__UL_VNG_23D_S2C">
+                                    <li><a href="backup-cloud-oci.html#GUID-3C94DD40-33E3-4D59-A949-1D2A75770676" title="Learn how to get started with Oracle Database Backup Cloud Service subscriptions.">Request Trial or Paid Subscription to Oracle Database Backup Cloud Service</a></li>
+                                    <li><a href="azure-sbt-module.html#GUID-CE95B2C4-8EEF-4679-9121-ED3B8B5153DD" title="To backup your Oracle Database to Microsoft Azure, you need an existing Microsoft Azure Blob Storage account.">Sign-up for a Microsoft Azure Blob Storage Account</a></li>
+                                    <li><a href="backup-cloud-osb.html#GUID-34CC9F1F-83ED-4BB9-BD53-9CF085ED9485" title="Before you can use the Oracle Secure Backup Cloud Backup Module and access Amazon S3, you must create an AWS account. The account requires that you provide a means of payment for Amazon to charge for your AWS S3 usage.">Sign-up for an Amazon S3 - AWS Account</a></li>
+                                 </ul>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="30%" id="d130962e561" headers="d130962e514 ">
+                                 
+                                 <p>Verify the prerequisites</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e561 d130962e516 ">
+                                 
+                                 <p>Review the supported Oracle Database version and the  requirements
+                specific to each cloud backup module.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e561 d130962e518 ">
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-FF483F02-31EF-4136-B9BC-C3EF898ED1C0__UL_JNW_G3D_S2C">
+                                    <li><a href="backup-cloud-oci.html#GUID-C3515402-4226-4B62-A800-27AC4656F393" title="Verify these minimum requirements before installing the Oracle Database Backup Cloud Service.">Software Prerequisites for Oracle Database Backup Cloud Service</a></li>
+                                    <li><a href="azure-sbt-module.html#GUID-2D523974-77DB-46A0-B6CC-485B4A3EBF68" title="Verify these minimum requirements before you set up the Oracle Database Cloud Backup Module for Azure.">Prerequisites for the Oracle Database Cloud Backup Module for Azure</a></li>
+                                    <li><a href="backup-cloud-osb.html#GUID-692AA33C-C6C9-4F03-AD68-5DC9DC2B416D" title="You can backup Oracle Database 9i Release 2 and higher to Amazon S3 Cloud.">Prerequisites for Oracle Secure Backup Cloud Module</a></li>
+                                 </ul>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="30%" id="d130962e597" headers="d130962e514 ">
+                                 
+                                 <p>Install or setup the required Oracle Database Cloud Backup Module.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e597 d130962e516 ">
+                                 
+                                 <p>Access the Oracle Database Cloud Backup Module installer files from
+                the Oracle home directory of the target database.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e597 d130962e518 ">
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-FF483F02-31EF-4136-B9BC-C3EF898ED1C0__UL_PGS_33D_S2C">
+                                    <li><a href="backup-cloud-oci.html#GUID-600A939A-6BA8-48F5-8F2F-DFF2A74A015A" title="Before you back up to Oracle Cloud Infrastructure, you must install the Oracle Database Cloud Backup Module for OCI on the target database server.">Installing the Oracle Database Cloud Backup Module for OCI</a></li>
+                                    <li><a href="backup-cloud-oci.html#GUID-4E945356-F5B6-4267-8D33-ADB4C1D5413C" title="Before you back up to Oracle Cloud Infrastructure Object Storage Service with Swift API, you must install the cloud backup module on the target database server.">Installing the Oracle Database Cloud Backup Module for OCI Classic</a></li>
+                                    <li><a href="azure-sbt-module.html#GUID-5630EB19-8D3C-45EC-B0ED-13699A5946C1" title="Before you backup to Azure, you must set up the Oracle Database Cloud Backup Module for Azure on the target Oracle Database server.">Set Up the Oracle Database Cloud Backup Module for Azure</a></li>
+                                    <li><a href="backup-cloud-osb.html#GUID-964AADD2-3405-4476-8698-E9F2133CB5B7" title="Before you backup to Amazon S3 Cloud, you need to install the Oracle Secure Backup (OSB) Cloud Module on the target database server. The backup module installer file osbws_installer.zip is available in the Oracle home directory after you install the Oracle Database.">Installing the Oracle Secure Backup Cloud Module</a></li>
+                                 </ul>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="30%" id="d130962e642" headers="d130962e514 ">
+                                 
+                                 <p>Configure the RMAN environment to create persistent settings for cloud
+                backup and restores.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e642 d130962e516 ">
+                                 
+                                 <p>Use the RMAN <code class="codeph">CONFIGURE</code> command to create an automatic
+                SBT channel for RMAN cloud backup and restore operations. Configure SBT as the
+                default device type to directly send all backups to the configured cloud
+                destination.
+                                 </p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e642 d130962e518 ">
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-FF483F02-31EF-4136-B9BC-C3EF898ED1C0__UL_X3Z_K3D_S2C">
+                                    <li><a href="backup-cloud-oci.html#GUID-62B6B816-D911-415E-B5C4-F3D23B9C2FD7" title="Configure an automatic SBT channel so that RMAN can directly send database backups to Oracle Cloud.">Configuring SBT Channel for Oracle Cloud (OCI)</a></li>
+                                    <li><a href="azure-sbt-module.html#GUID-6FE2F411-A06F-47AD-B13B-3FBA332EC15C" title="Configure an automatic SBT channel so that RMAN can directly send backups to Azure Blob Storage containers.">Configuring SBT Channel for Azure Storage</a></li>
+                                    <li><a href="backup-cloud-osb.html#GUID-E797873E-482A-4EEF-926F-EC851E8330A6" title="Configure an RMAN automatic SBT (tape) channel and specify the oracle.osbws SBT library that corresponds to Amazon Web Services. You can optionally configure the SBT channel as the default channel so that RMAN can directly make all backups to Amazon S3 storage.">Configuring SBT Channel for Amazon S3</a></li>
+                                 </ul>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="30%" id="d130962e681" headers="d130962e514 ">
+                                 
+                                 <p>Configure RMAN Encryption</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e681 d130962e516 ">
+                                 
+                                 <p>Configure RMAN encryption. Oracle recommends that you encrypt the RMAN database
+                backups before they can be sent to the cloud.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e681 d130962e518 ">
+                                 
+                                 <div class="p">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-FF483F02-31EF-4136-B9BC-C3EF898ED1C0__UL_TCS_FYM_S2C">
+                                       <li><a href="rman-cloud-settings.html#GUID-59F3A0DE-A96C-4BBD-8360-DEF9ABC742E9" title="To ensure backup security and data protection, Oracle recommends that you make RMAN backup encryption a standard part of your backup processes.">About Securing Cloud Backups</a></li>
+                                    </ul>
+                                    
+                                 </div>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="30%" id="d130962e705" headers="d130962e514 ">
+                                 
+                                 <p>Configure RMAN Compression (optional)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e705 d130962e516 ">
+                                 
+                                 <p>Configure compression to reduce the size of RMAN database backups before they are
+                sent to the cloud.</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e705 d130962e518 ">
+                                 
+                                 <div class="p">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-FF483F02-31EF-4136-B9BC-C3EF898ED1C0__UL_PNB_GYM_S2C">
+                                       <li><a href="rman-cloud-settings.html#GUID-3E6CCA67-E8D6-4BF3-B9F5-6E9B01D8D57B" title="You can optionally use compression when backing up Oracle Databases to cloud. Compression conserves bandwidth by reducing the size of your backups before they are sent to the cloud. You can specify compression when you perform a backup.">Configuring Compression for Cloud Backups</a></li>
+                                    </ul>
+                                    
+                                 </div>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="30%" id="d130962e729" headers="d130962e514 ">
+                                 
+                                 <p>Perform Cloud Backup and Recovery operations using RMAN</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e729 d130962e516 ">
+                                 
+                                 <p>Connect RMAN to the target Oracle Database. Use RMAN commands to create a backup to
+                cloud and restore backups from cloud. </p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="35%" headers="d130962e729 d130962e518 ">
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-FF483F02-31EF-4136-B9BC-C3EF898ED1C0__UL_BGV_Q3D_S2C">
+                                    <li><a href="backup-cloud-oci.html#GUID-C50DCAB1-33EC-4A94-BD71-FCC2D80EADE2" title="After you install the required backup module and configure Recovery Manager (RMAN) settings, you can create backups using familiar RMAN commands.">Backing Up to Oracle Database Backup Cloud Service</a></li>
+                                    <li><a href="azure-sbt-module.html#GUID-62C4D75E-0D13-4A9C-9E94-168679242DDC" title="After you set up the Oracle Database Backup Module for Azure and configure a corresponding SBT channel, use this procedure to directly backup and restore with Azure blob storage.">Backup and Restore with Azure Storage Using RMAN</a></li>
+                                    <li><a href="backup-cloud-osb.html#GUID-1C77DA69-FDEE-446A-8CB0-EC5DABD5AE38" title="Connect RMAN to your target database and perform backup and restores with Amazon S3 Cloud.">Backup and Recover with Amazon S3 Cloud</a></li>
+                                 </ul>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-5A3100FF-9B4E-4119-B6FA-2DEB59B970AF" name="GUID-5A3100FF-9B4E-4119-B6FA-2DEB59B970AF"></a><h3 id="BRADV-GUID-5A3100FF-9B4E-4119-B6FA-2DEB59B970AF" class="sect3"><span class="enumeration_section">29.4 </span>Management Interfaces for Cloud Backups
+               </h3>
+               <div>
+                  <p>You can use any of the following options to manage cloud backup operations.</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>RMAN interface</p>
+                        <p>Use the RMAN command-line interface to run familiar commands and perform backups on demand. You can also create automated backup jobs using the cron utility.</p>
+                     </li>
+                     <li>
+                        <p>Oracle Enterprise Manager Cloud Control</p>
+                        <p>Use Oracle Enterprise Manager Cloud Control to configure the backup module and
+                    perform backup and recovery operations.</p>
+                     </li>
+                     <li>
+                        <p>Third-party tools</p>
+                        <p>Use third-party tools such as CloudBerry Lab's cloud backup solution. See <a href="https://www.cloudberrylab.com/backup.aspx" target="_blank"><code class="codeph">https://www.cloudberrylab.com/backup.aspx</code></a>.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Avoiding Inner Capture in SELECT and DML Statements">
+      <meta name="DC.subject" content="inner capture, avoiding, SELECT INTO statement, avoiding inner capture in, DML statement, alias, table, for avoiding inner capture, table alias, for table element attribute or method, for row expression">
+      <meta name="keywords" content="inner capture, avoiding, SELECT INTO statement, avoiding inner capture in, DML statement, alias, table, for avoiding inner capture, table alias, for table element attribute or method, for row expression">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-5B50488D-CF48-4A77-BD75-96D62EDF4BBE">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Avoiding Inner Capture in SELECT and DML Statements</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="what-is-capture.html" title="Previous" type="text/html">
+      <link rel="next" href="plsql-program-limits.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Avoiding Inner Capture in SELECT and DML Statements","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="what-is-capture.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="plsql-program-limits.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-5B50488D-CF48-4A77-BD75-96D62EDF4BBE" name="GUID-5B50488D-CF48-4A77-BD75-96D62EDF4BBE"></a><a id="LNPLS2160"></a><a id="LNPLS2159"></a><a id="LNPLS01705"></a>
+         
+         <h2 id="LNPLS-GUID-5B50488D-CF48-4A77-BD75-96D62EDF4BBE" class="sect2"><span class="enumeration_section">B.6 </span>Avoiding Inner Capture in SELECT and DML Statements
+         </h2>
+         <div class="ind">
+            <div>
+               <div class="section">
+                  <p>Avoid inner capture of references in <code class="codeph">SELECT</code>, <code class="codeph">SELECT</code> <code class="codeph">INTO</code>, and DML statements by following these recommendations:
+                  </p>
+               </div>
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Specify a unique alias for each table in the statement.</p>
+                     </li>
+                     <li>
+                        <p>Do not specify a table alias that is the name of a schema that owns an item referenced in the statement.</p>
+                     </li>
+                     <li>
+                        <p>Qualify each column reference in the statement with the appropriate table alias.</p>
+                     </li>
+                  </ul>
+                  <p>In <a href="avoiding-inner-capture-select-and-dml-statements.html#GUID-5B50488D-CF48-4A77-BD75-96D62EDF4BBE__BABGIFBD">Example B-7</a>, schema <code class="codeph">hr</code> owns tables <code class="codeph">tab1</code> and <code class="codeph">tab2</code>. Table <code class="codeph">tab1</code> has a column named <code class="codeph">tab2</code>, whose Abstract Data Type (ADT) has attribute <code class="codeph">a</code>. Table <code class="codeph">tab2</code> does not have a column named <code class="codeph">a</code>. Against recommendation, the query specifies alias <code class="codeph">hr</code> for table <code class="codeph">tab1</code> and references table <code class="codeph">tab2</code>. Therefore, in the query, the reference <code class="codeph">hr.tab2.a</code> resolves to table <code class="codeph">tab1</code>, column <code class="codeph">tab2</code>, attribute <code class="codeph">a</code>. Then the example adds column <code class="codeph">a</code> to table <code class="codeph">tab2</code>. Now the reference <code class="codeph">hr.tab2.a</code> in the query resolves to schema <code class="codeph">hr</code>, table <code class="codeph">tab2</code>, column <code class="codeph">a</code>. Column <code class="codeph">a</code> of table <code class="codeph">tab2</code> captures the reference to attribute <code class="codeph">a</code> in column <code class="codeph">tab2</code> of table <code class="codeph">tab1</code>.
+                  </p>
+               </div>
+               <div class="section">
+                  <p class="subhead1" id="GUID-5B50488D-CF48-4A77-BD75-96D62EDF4BBE__GUID-F416694B-02C8-4610-9422-FF0074F4FCDA">Topics</p>
+               </div>
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="avoiding-inner-capture-select-and-dml-statements.html#GUID-4E9FC578-F161-454E-BE4B-DE2AC43277CE">Qualifying References to Attributes and Methods</a></p>
+                     </li>
+                     <li>
+                        <p><a href="avoiding-inner-capture-select-and-dml-statements.html#GUID-E052D320-D7F7-45EF-A577-3401776C478F">Qualifying References to Row Expressions</a></p>
+                     </li>
+                  </ul>
+               </div>
+               <div class="example" id="GUID-5B50488D-CF48-4A77-BD75-96D62EDF4BBE__BABGIFBD">
+                  <p class="titleinexample">Example B-7 Inner Capture of Attribute Reference</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE <span class="bold">TYPE type1</span> AS OBJECT (<span class="bold">a</span> NUMBER);
+/
+DROP TABLE tab1;
+CREATE <span class="bold">TABLE tab1 (tab2 type1)</span>;
+INSERT INTO tab1 (tab2) VALUES (type1(10));
+
+DROP TABLE tab2;
+CREATE <span class="bold">TABLE tab2 (x NUMBER)</span>;
+INSERT INTO tab2 (x) VALUES (10);
+
+<span class="bold">/* Alias tab1 with same name as schema name,</span>
+   <span class="bold">a bad practice used here for illustration purpose.</span>
+   <span class="bold">Note lack of alias in second SELECT statement. */</span>
+
+SELECT * FROM tab1 <span class="bold">hr</span>
+WHERE EXISTS (SELECT * FROM <span class="bold">hr.tab2</span> WHERE x = <span class="bold">hr.tab2.a</span>);
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">TAB2(A)
+---------------
+ 
+TYPE1(10)
+ 
+1 row selected.
+</pre><p>Add a column named <code class="codeph">a</code> to table <code class="codeph">tab2</code> (which belongs to schema <code class="codeph">hr</code>):
+                  </p><pre class="oac_no_warn" dir="ltr">ALTER TABLE tab2 ADD (a NUMBER);
+</pre><p>Now, when the query runs, <code class="codeph">hr.tab2.a</code> resolves to schema <code class="codeph">hr</code>, table <code class="codeph">tab2</code>, column <code class="codeph">a</code>. To avoid this inner capture, apply the recommendations to the query:
+                  </p><pre class="oac_no_warn" dir="ltr">SELECT * FROM <span class="bold">hr.</span>tab1 <span class="bold">p1</span>
+WHERE EXISTS (SELECT * FROM hr.tab2 <span class="bold">p2</span> WHERE <span class="bold">p2.</span>x = <span class="bold">p1.</span>tab2.a);</pre></div>
+            </div><a id="LNPLS2161"></a><a id="LNPLS1755"></a><div class="props_rev_3"><a id="GUID-4E9FC578-F161-454E-BE4B-DE2AC43277CE" name="GUID-4E9FC578-F161-454E-BE4B-DE2AC43277CE"></a><h3 id="LNPLS-GUID-4E9FC578-F161-454E-BE4B-DE2AC43277CE" class="sect3"><span class="enumeration_section">B.6.1 </span>Qualifying References to Attributes and Methods
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>To reference an attribute or method of a table element, you must give the table an alias and use the alias to qualify the reference to the attribute or method.</p>
+                     <p>In <a href="avoiding-inner-capture-select-and-dml-statements.html#GUID-4E9FC578-F161-454E-BE4B-DE2AC43277CE__BABFBEBJ">Example B-8</a>, table <code class="codeph">tbl1</code> has column <code class="codeph">col1</code> of data type <code class="codeph">t1</code>, an ADT with attribute <code class="codeph">x</code>. The example shows several correct and incorrect references to <code class="codeph">tbl1.col1.x</code>.
+                     </p>
+                  </div>
+                  <div class="example" id="GUID-4E9FC578-F161-454E-BE4B-DE2AC43277CE__BABFBEBJ">
+                     <p class="titleinexample">Example B-8 Qualifying ADT Attribute References</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE TYPE t1 AS OBJECT (x NUMBER);
+/
+DROP TABLE tb1;
+CREATE TABLE tb1 (col1 t1); 
+</pre><p>The references in the following <code class="codeph">INSERT</code> statements do not need aliases, because they have no column lists:
+                     </p><pre class="oac_no_warn" dir="ltr">BEGIN
+  INSERT INTO tb1 VALUES ( t1(10) );
+  INSERT INTO tb1 VALUES ( t1(20) );
+  INSERT INTO tb1 VALUES ( t1(30) );
+END;
+/
+</pre><p>The following references to the attribute <code class="codeph">x</code> cause error ORA-00904:
+                     </p><pre class="oac_no_warn" dir="ltr">UPDATE tb1 SET <span class="bold">col1.x</span> = 10 WHERE <span class="bold">col1.x</span> = 20;
+
+UPDATE tb1 SET <span class="bold">tb1.col1.x</span> = 10 WHERE <span class="bold">tb1.col1.x</span> = 20;
+
+UPDATE hr.tb1 SET <span class="bold">hr.tb1.col1.x</span> = 10 WHERE <span class="bold">hr.tb1.col1.x</span> = 20;
+
+DELETE FROM tb1 WHERE <span class="bold">tb1.col1.x</span> = 10;
+</pre><p>The following references to the attribute <code class="codeph">x</code>, with table aliases, are correct:
+                     </p><pre class="oac_no_warn" dir="ltr">UPDATE hr.tb1 <span class="bold">t</span> SET <span class="bold">t.col1.x</span> = 10 WHERE <span class="bold">t.col1.x</span> = 20;
+
+DECLARE
+  y NUMBER;
+BEGIN
+  SELECT <span class="bold">t.col1.x</span> INTO y FROM tb1 <span class="bold">t</span> WHERE <span class="bold">t.col1.x</span> = 30;
+END;
+/
+
+DELETE FROM tb1 <span class="bold">t</span> WHERE <span class="bold">t.col1.x</span> = 10;</pre></div>
+               </div>
+            </div><a id="LNPLS2162"></a><a id="LNPLS1756"></a><div class="props_rev_3"><a id="GUID-E052D320-D7F7-45EF-A577-3401776C478F" name="GUID-E052D320-D7F7-45EF-A577-3401776C478F"></a><h3 id="LNPLS-GUID-E052D320-D7F7-45EF-A577-3401776C478F" class="sect3"><span class="enumeration_section">B.6.2 </span>Qualifying References to Row Expressions
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>Row expressions must resolve as references to table aliases. A row expression can appear in the <code class="codeph">SET</code> clause of an <code class="codeph">UPDATE</code> statement or be the parameter of the SQL function <code class="codeph">REF</code> or <code class="codeph">VALUE</code>.
+                     </p>
+                     <p>In <a href="avoiding-inner-capture-select-and-dml-statements.html#GUID-E052D320-D7F7-45EF-A577-3401776C478F__BABICCCJ">Example B-9</a>, table <code class="codeph">ot1</code> is a standalone nested table of elements of data type <code class="codeph">t1</code>, an ADT with attribute <code class="codeph">x</code>. The example shows several correct and incorrect references to row expressions.
+                     </p>
+                  </div>
+                  <div class="example" id="GUID-E052D320-D7F7-45EF-A577-3401776C478F__BABICCCJ">
+                     <p class="titleinexample">Example B-9 Qualifying References to Row Expressions</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE TYPE t1 AS OBJECT (x number);
+/
+DROP TABLE ot1;
+CREATE TABLE ot1 OF t1;
+
+BEGIN
+  INSERT INTO ot1 VALUES (t1(10));
+  INSERT INTO ot1 VALUES (20);
+  INSERT INTO ot1 VALUES (30);
+END;
+/
+</pre><p>The following references cause error ORA-00904:</p><pre class="oac_no_warn" dir="ltr">UPDATE ot1 SET VALUE(<span class="bold">ot1.x</span>) = t1(20) WHERE VALUE(<span class="bold">ot1.x</span>) = t1(10);
+
+DELETE FROM ot1 WHERE VALUE(<span class="bold">ot1</span>) = (t1(10));
+</pre><p>The following references, with table aliases, are correct:</p><pre class="oac_no_warn" dir="ltr">
+UPDATE ot1 <span class="bold">o</span> SET <span class="bold">o</span> = (t1(20)) WHERE <span class="bold">o.x</span> = 10;
+
+DECLARE
+  n_ref  REF t1;
+BEGIN
+  SELECT REF(<span class="bold">o</span>) INTO n_ref FROM ot1 <span class="bold">o</span> WHERE VALUE(<span class="bold">o</span>) = t1(30);
+END;
+/
+
+DECLARE
+  n t1;
+BEGIN
+  SELECT VALUE(<span class="bold">o</span>) INTO n FROM ot1 <span class="bold">o</span> WHERE VALUE(<span class="bold">o</span>) = t1(30);
+END;
+/
+
+DECLARE
+  n NUMBER;
+BEGIN
+  SELECT <span class="bold">o.x</span> INTO n FROM ot1 <span class="bold">o</span> WHERE <span class="bold">o.x</span> = 30;
+END;
+/
+
+DELETE FROM ot1 <span class="bold">o</span> WHERE VALUE(<span class="bold">o</span>) = (t1(20));</pre></div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

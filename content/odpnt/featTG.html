@@ -1,0 +1,296 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Using Transaction Guard to Prevent Logical Corruption</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="featRAC.html" title="Previous" type="text/html">
+      <link rel="next" href="featAppCont.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="featRAC.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="featAppCont.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="features.html" property="item" typeof="WebPage"><span property="name">Features of Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Using Transaction Guard to Prevent Logical Corruption</li>
+            </ol>
+            <a id="GUID-A99CC6F9-D58C-44C6-8762-0851264724B3" name="GUID-A99CC6F9-D58C-44C6-8762-0851264724B3"></a><a id="ODPNT8183"></a>
+            
+            <h2 id="ODPNT-GUID-A99CC6F9-D58C-44C6-8762-0851264724B3" class="sect2">Using Transaction Guard to Prevent Logical Corruption</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <div class="section">
+                  <p>Transaction Guard allows managed and unmanged ODP.NET applications to use at-most-once execution in case of planned and unplanned outages and repeated submissions. Without Transaction Guard, applications that attempt to retry operations following outages can cause logical corruption by committing duplicate transactions.</p>
+                  <p>After an outage, one of the traditional problems for recovering applications had been the non-durable commit message sent back to the client. If there is a break between the client and the server, the client sees an error message indicating that the communication failed, also known as a recoverable error. This error does not inform the application if the submission executed any commit operations, or if a procedural call ran to completion while executing all expected commits. The error also does not indicate session state changes or intermittent failures. The client is left wondering if the transaction committed and if it fully completed.</p>
+                  <p>These recoverable errors may require end users or applications to attempt replay by issuing duplicate transaction submissions or other forms of logical corruption. The transaction cannot be validly resubmitted if the non-transactional state is incorrect or if it is committed. Continuing to process a committed but not completed call can result in the application using a database session that is in the wrong state.</p>
+               </div>
+               <!-- class="section" -->
+            </div><a id="ODPNT8539"></a><a id="ODPNT8538"></a><div class="props_rev_3"><a id="GUID-B7624C82-CDB3-4FF2-BE89-9D658AA791C7" name="GUID-B7624C82-CDB3-4FF2-BE89-9D658AA791C7"></a><h3 id="ODPNT-GUID-B7624C82-CDB3-4FF2-BE89-9D658AA791C7" class="sect3">ODP.NET and Transaction Guard</h3>
+               <div>
+                  <p>Transaction Guard allows ODP.NET, Managed Driver and ODP.NET, Unmanaged Driver to eliminate duplicate transactions automatically and transparently, and in a manner that scales.</p>
+                  <p>When a failure occurs, such as a node, network, or database failure, ODP.NET applications can deterministically conclude whether the transaction committed by querying its status, if the database service is up. Oracle retains the transaction status automatically, even after one of these failures. </p>
+                  <p>In ODAC 12<span class="italic">c</span> Release 4, using Transaction Guard application development has been streamlined, reducing the application logic needed to determine the transaction outcome. Moreover, these benefits are available to both managed and unmanaged ODP.NET.
+                  </p>
+                  <p>When a recoverable error is raised by a Transaction Guard enabled database service upon a database commit or upon a SQL or PL/SQL execution, which could have called a commit, then an ODP.NET <code class="codeph">OracleException</code> is created with an <code class="codeph">OracleLogicalTransaction</code> instance. <code class="codeph">OracleLogicalTransaction</code> is always non-null. The database maintains the outcome of the logical transaction for the retention period specified by the administrator. ODP.NET automatically queries the database on behalf of the application when a recoverable error occurs so that the <code class="codeph">OracleLogicalTransaction</code> object instance on the <code class="codeph">OracleException</code> object can indicate whether the transaction has committed or not and whether the user call has completed or not.
+                  </p>
+                  <p>If the status is committed, then the transaction has completed successfully. No other action is likely needed by the administrator.</p>
+                  <p>If not committed, then ODP.NET applications can learn the current transaction state, whether it is recoverable, and whether it can be retried using <code class="codeph">OracleLogicalTransaction</code>. If the error is recoverable, then the transaction is safe to re-submit. If the error is not recoverable, the application will need to determine the transaction outcome using an alternative mechanism.
+                  </p>
+                  <div class="infoboxnote" id="GUID-B7624C82-CDB3-4FF2-BE89-9D658AA791C7__GUID-650FB184-27B1-45A6-8367-5936814D72D0">
+                     <p class="notep1">Note:</p>
+                     <p>Transaction Guard supports only local transactions. It does not support distributed transactions.</p>
+                  </div>
+                  <p>The Transaction Guard feature is enabled or disabled through the Oracle service-level configuration through the <code class="codeph">COMMIT_OUTCOME</code> setting. By default, it is not enabled. This setting can be changed without bringing down the database. Only new connections created against the service will use the new setting.
+                  </p>
+                  <p>Here's an example of setting the <code class="codeph">COMMIT_OUTCOME</code> using <code class="codeph">SRVCTL</code>:
+                  </p><pre class="oac_no_warn" dir="ltr">srvctl modify service -d orcl -s GOLD -commit_outcome TRUE
+</pre><div class="infoboxnote" id="GUID-B7624C82-CDB3-4FF2-BE89-9D658AA791C7__GUID-4031EE40-B890-4DAB-ADB5-A1403D6ECC19">
+                     <p class="notep1">Note:</p>
+                     <p>Grant the <code class="codeph">EXECUTE</code> privilege on the <code class="codeph">DBMS_APP_CONT</code> package to the database users that retrieve the transaction status:
+                     </p><pre class="oac_no_warn" dir="ltr">GRANT EXECUTE ON DBMS_APP_CONT TO &lt;user name&gt; ;
+</pre></div>
+                  <p>The following is an example ODP.NET Transaction Guard application scenario:</p>
+                  <p>An ODP.NET application receives a Fast Application Notification (FAN) down event or error. FAN automatically aborts the dead session and the application receives an <code class="codeph">OracleException</code>. A Transaction Guard application built to handle errors transparently would do the following:
+                  </p>
+                  <ol>
+                     <li>
+                        <p><code class="codeph">OracleException.OracleLogicalTransaction.LogicalTransactionId</code> property
+                        </p>
+                        <p>The value returned by this property will be non-null if </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>Transaction Guard is enabled,</p>
+                           </li>
+                           <li>
+                              <p>Transparent Application Failover (TAF) is not enabled on the connection, and</p>
+                           </li>
+                           <li>
+                              <p>ODP.NET was not able to determine the outcome of the transaction.</p>
+                           </li>
+                        </ul>
+                        <p>For a given <code class="codeph">OracleException</code> object, if <code class="codeph">OracleLogicalTransaction.Committed</code> and <code class="codeph">OracleLogicalTransaction.UserCallCompleted</code> return all nulls, then the error is either a non-recoverable error, Transaction Guard is not enabled, or TAF is enabled on the connection. In any of these cases, the application should rollback then re-submit the transaction. 
+                        </p>
+                        <p>The <code class="codeph">LogicalTransactionId</code> property will return null even if Transaction Guard is enabled and a recoverable error happens, if <code class="codeph">OracleLogicalTransaction.Committed</code> is true or false. 
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">OracleException.OracleLogicalTransaction.Committed</code> property
+                        </p>
+                        <p>This property returns true or false, depending on whether the transaction has been committed or not. If it returns null, then</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>ODP.NET could not determine the outcome of the transaction,</p>
+                           </li>
+                           <li>
+                              <p>Error is not recoverable,</p>
+                           </li>
+                           <li>
+                              <p>Transaction Guard was not enabled, or </p>
+                           </li>
+                           <li>
+                              <p>TAF is enabled on the connection.</p>
+                           </li>
+                        </ul>
+                     </li>
+                     <li>
+                        <p><code class="codeph">OracleException.OracleLogicalTransaction.UserCallCompleted</code> property
+                        </p>
+                        <p>This property returns true if the user call has completed, else it returns false. This property returns null if </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>Transaction Guard was not enabled,</p>
+                           </li>
+                           <li>
+                              <p>Error is not recoverable,</p>
+                           </li>
+                           <li>
+                              <p>TAF is enabled on the connection, or</p>
+                           </li>
+                           <li>
+                              <p>ODP.NET is not able to determine if the user call has completed or not.</p>
+                           </li>
+                        </ul>
+                        <p>See the following table for the implications of what <code class="codeph">Committed</code> and <code class="codeph">UserCallCompleted</code> values mean.
+                        </p>
+                     </li>
+                  </ol>
+                  <div class="tblformal" id="GUID-B7624C82-CDB3-4FF2-BE89-9D658AA791C7__GUID-2585A9FF-1917-4291-9AE6-DC07B2538AE9">
+                     <p class="titleintable">Table 3-6 Implication of Committed and UserCallCompleted Values</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Implication of Committed and UserCallCompleted Values" summary="Column 1 lists the Committed values, the second column lists the UserCallCompleted values, and column 3 lists the outcomes." width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" id="d71113e200">Committed Value</th>
+                              <th align="left" valign="bottom" id="d71113e203">UserCallCompleted Value</th>
+                              <th align="left" valign="bottom" id="d71113e206">Outcome</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d71113e211" headers="d71113e200 ">
+                                 <p><code class="codeph">True</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d71113e211 d71113e203 ">
+                                 <p><code class="codeph">True</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d71113e211 d71113e206 ">
+                                 <p>The transaction was successful. The result can be returned to the application.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d71113e223" headers="d71113e200 ">
+                                 <p><code class="codeph">False</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d71113e223 d71113e203 ">
+                                 <p><code class="codeph">False</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d71113e223 d71113e206 ">
+                                 <p>The transaction was not successful. The application can resubmit the transaction again.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d71113e235" headers="d71113e200 ">
+                                 <p><code class="codeph">True</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d71113e235 d71113e203 ">
+                                 <p><code class="codeph">False</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d71113e235 d71113e206 ">
+                                 <p>The transaction committed, but there may be additional state, such as row counts or nested PL/SQL logic, that prevents the application from continuing as expected.</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <!-- class="inftblhruleinformal" -->
+                  <div class="example" id="GUID-B7624C82-CDB3-4FF2-BE89-9D658AA791C7__GUID-5D5929FF-35B3-465F-8BC9-059B91EEC7DD">
+                     <p class="titleinexample">Example 3-4 Using Transaction Guard: Sample Code</p><pre class="pre codeblock"><code>using System;
+using Oracle.DataAccess.Client;
+//alternatively can use using Oracle.ManagedDataAccess.Client;
+ 
+class TransactionGuardSample
+{
+    static void Main()
+    {
+        bool bReadyToCommit = false;
+ 
+        string constr = "user id=hr;password=hr;data source=oracle";
+        OracleConnection con = new OracleConnection(constr);
+        OracleTransaction txn = null;
+        OracleCommand cmd = null;
+ 
+        try
+        {
+            string sql = " update employees set salary=10000 where employee_id=103";
+            con.Open();
+            txn = con.BeginTransaction();
+            cmd = new OracleCommand(con, sql);
+            cmd.ExecuteNonQuery();
+            bReadyToCommit = true;
+        }
+        catch (Exception ex)
+        {
+            // rollback here as the SQL execution is unsuccessful
+            txn.Rollback();  
+            Console.WriteLine(ex.ToString());
+        }
+ 
+        try
+        {
+            if (bReadyToCommit)
+                txn.Commit();
+        }
+        catch (Exception ex)
+        {
+            if (ex is OracleException)
+            {
+                //  It's safe to re-submit the work if the error is recoverable and the transaction has not been committed
+                if (ex.IsRecoverable &amp;&amp; ex.OracleLogicalTransaction.Committed == false)  
+                {
+                    // safe to re-submit work
+                }
+                else
+                {
+                    // do not re-submit work
+                }
+            }
+        }
+        finally
+        {
+            // dispose all objects
+            txn.Dispose();
+            cmd.Dispose();
+            con.Dispose(); // place the connection back to the connection pool
+        }
+    }
+}</code></pre></div>
+                  <!-- class="example" -->
+                  <div class="section">
+                     <p>Transaction Guard is not supported when Transparent Application Failover (TAF) is enabled for the service. As such, when TAF is enabled, the <code class="codeph">LogicalTransactionId</code> will always be null and the transaction outcome will not be determined. 
+                     </p>
+                     <div class="infoboxnotealso" id="GUID-B7624C82-CDB3-4FF2-BE89-9D658AA791C7__GUID-E942A8B2-B5B0-4BCC-8E85-AFF9316FED23">
+                        <p class="notep1">See Also:</p>
+                        <p></p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><span class="q">"<a href="OracleLogicalTransactionClass.html#GUID-28836692-AB05-4E34-AE58-FB87DADDAA1C">OracleLogicalTransaction Class</a>"</span></p>
+                           </li>
+                           <li>
+                              <p><a href="../adfns/transaction-guard.html#ADFNS8000" target="_blank"><span class="italic">Oracle Database Development Guide</span></a> for more information on Transaction Guard
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

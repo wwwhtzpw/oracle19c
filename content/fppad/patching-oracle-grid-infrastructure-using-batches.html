@@ -1,0 +1,246 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Patching Oracle Grid Infrastructure Using Batches">
+      <meta name="abstract" content="The third patching method is to sequentially process batches of nodes, with a number of nodes in each batch being restarted in parallel.">
+      <meta name="description" content="The third patching method is to sequentially process batches of nodes, with a number of nodes in each batch being restarted in parallel.">
+      <meta name="DC.subject" content="Oracle Grid Infrastructure, patching using Fleet Patching and Provisioning, in batches, patching software, user-defined, Fleet Patching and Provisioning-defined">
+      <meta name="keywords" content="Oracle Grid Infrastructure, patching using Fleet Patching and Provisioning, in batches, patching software, user-defined, Fleet Patching and Provisioning-defined">
+      <meta name="DC.Relation" scheme="URI" content="advanced-oracle-fpp-configurations.html#GUID-0972E7BF-C9F8-4865-81EF-3FB552E45D43">
+      <meta name="DC.Relation" scheme="URI" content="gihome-commands.html#GUID-4706B307-CEDE-4A91-97DE-6AFF552AEDC8">
+      <meta name="DC.Creator" content="Eric Belden">
+      <meta name="DC.Creator" content="Ludovico Caldara">
+      <meta name="DC.Creator" content="Philippe Fierens">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Kamalesh Ramasamy">
+      <meta name="DC.Creator" content="Kannan S. Viswanathan">
+      <meta name="DC.Creator" content="Rahul Desale">
+      <meta name="DC.Creator" content="Ricardo A. Gonzalez">
+      <meta name="DC.Creator" content="Ricardo Tamez Durandeau">
+      <meta name="DC.Creator" content="Sampath Ravindhran">
+      <meta name="DC.Creator" content="Siddharth Shankaran">
+      <meta name="DC.Creator" content="Soo Huey Wong">
+      <meta name="DC.Creator" content="Subhash Chandra">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-83518C02-E439-49E7-A406-47FE5DCF49B0">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The third patching method is to sequentially process batches of nodes, with a number of nodes in each batch being restarted in parallel.">
+      <meta name="description" content="The third patching method is to sequentially process batches of nodes, with a number of nodes in each batch being restarted in parallel.">
+      <title>Patching Oracle Grid Infrastructure Using Batches</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Oracle Fleet Patching and Provisioning Administrator's Guide">
+      <meta property="og:description" content="The third patching method is to sequentially process batches of nodes, with a number of nodes in each batch being restarted in parallel.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Oracle Fleet Patching and Provisioning Administrator's Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="fleet-patching-and-provisioning-administrators-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-15T22:02:19-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2016, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F38220-07">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="job-scheduler-for-operations.html" title="Previous" type="text/html">
+      <link rel="next" href="sharing-gold-images-between-peer-oracle-fpp-servers.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Fleet Patching and Provisioning Administrator's Guide">
+    <meta name="dcterms.isVersionOf" content="FPPAD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Patching Oracle Grid Infrastructure Using Batches","description":"The third patching method is to sequentially process batches of nodes, with a number of nodes in each batch being restarted in parallel.","datePublished":"2025-07-16 CST","dateModified":"2025-07-16 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="job-scheduler-for-operations.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="sharing-gold-images-between-peer-oracle-fpp-servers.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-83518C02-E439-49E7-A406-47FE5DCF49B0" name="GUID-83518C02-E439-49E7-A406-47FE5DCF49B0"></a>
+         
+         <h2 id="FPPAD-GUID-83518C02-E439-49E7-A406-47FE5DCF49B0" class="sect2">Patching Oracle Grid Infrastructure Using Batches</h2>
+         <div class="ind">
+            <div>
+               <p>The third patching method is to sequentially process batches of nodes, with a number of nodes in each batch being restarted in parallel.</p>
+               <div class="section">This method maximizes service availability during the patching process. When you patch Oracle Grid Infrastructure 12<span class="italic">c</span> release 2 (12.2.x) software homes, you can define the batches on the command line or choose to have Fleet Patching and Provisioning generate the list of batches based on its analysis of the database services running in the cluster.
+               </div>
+               <div class="section">There are two methods for defining batches:
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="patching-oracle-grid-infrastructure-using-batches.html#GUID-83518C02-E439-49E7-A406-47FE5DCF49B0__USER-DEFINEDBATCHES-5B5324C9">User-Defined Batches</a></p>
+                     </li>
+                     <li>
+                        <p><a href="patching-oracle-grid-infrastructure-using-batches.html#GUID-83518C02-E439-49E7-A406-47FE5DCF49B0__RAPIDHOMEPROVISIONING-DEFINEDBATCHE-5B531F59">Fleet Patching and Provisioning-Defined Batches</a></p>
+                     </li>
+                  </ul>
+               </div>
+               <div class="section" id="GUID-83518C02-E439-49E7-A406-47FE5DCF49B0__USER-DEFINEDBATCHES-5B5324C9">
+                  <p class="subhead1" id="GUID-83518C02-E439-49E7-A406-47FE5DCF49B0__GUID-E21983C3-C7F0-4FFE-B317-97F743EF7712">User-Defined Batches</p>
+                  <p>When you use this method of patching, the first time you run the <code class="codeph">rhpctl move gihome</code> command, you must specify the source home, the destination home, the batches, and other options, as needed. The command terminates after the first node restarts.
+                  </p>
+                  <p>To patch Oracle Grid Infrastructure using batches that you define:</p>
+                  <ol>
+                     <li>
+                        <p>Define a list of batches on the command line and begin the patching process, as in the following example:</p><pre class="pre codeblock"><code>$ rhpctl move gihome -sourcewc wc1 -destwc wc2 -batches "(n1),(n2,n3),(n4)"</code></pre><p>The preceding command example initiates the move operation, and terminates and reports successful when the Oracle Grid Infrastructure stack restarts in the first batch. Oracle Grid Infrastructure restarts the batches in the order you specified in the <code class="codeph">-batches</code> parameter.
+                        </p>
+                        
+                        <p>If
+                        your batches do not include all the nodes in the cluster, then Oracle FPP
+                        automatically adds the excluded nodes as a new batch group at the end of the
+                        list of batches. For example, if your cluster has four nodes n1, n2, n3, n4,
+                        and you create two batches as "(n1),(n2)", then Oracle FPP automatically
+                        adds a third batch group at the end as "(n1),(n2),(n3,n4)". </p>
+                        <p>In the command example, node <code class="codeph">n1</code> forms the first batch, nodes <code class="codeph">n2</code> and <code class="codeph">n3</code> form the second batch, and node <code class="codeph">n4</code> forms the last batch. The command defines the source working copy as <code class="codeph">wc1</code> and the patched (destination) working copy as <code class="codeph">wc2</code>.
+                        </p>
+                        <div class="infoboxnote" id="GUID-83518C02-E439-49E7-A406-47FE5DCF49B0__GUID-9C2857EF-2E1A-48DA-AD2E-84EFC1BB49BB">
+                           <p class="notep1">Notes:</p>
+                           <p>You can specify batches such that singleton services (policy-managed singleton services or administrator-managed services running on one instance) are relocated between batches and non-singleton services remain partially available during the patching process.</p>
+                        </div>
+                     </li>
+                     <li>
+                        <p>You must process the next batch by running the <code class="codeph">rhpctl move gihome</code> command, again, as follows:
+                        </p><pre class="pre codeblock"><code>$ rhpctl move gihome -destwc wc2 -continue</code></pre><p>The preceding command example restarts the Oracle Grid Infrastructure stack on the second batch (nodes <code class="codeph">n2</code> and <code class="codeph">n3</code>). The command terminates by reporting that the second batch was successfully patched.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Repeat the previous step until you have processed the last batch of nodes. If you attempt to run the command with the <code class="codeph">-continue</code> parameter after the last batch has been processed, then the command returns an error.
+                        </p>
+                        <p>If the <code class="codeph">rhpctl move gihome</code> command fails at any time during the above sequence, then, after determining and fixing the cause of the failure, rerun the command with the <code class="codeph">-continue</code> option to attempt to patch the failed batch. If you want to skip the failed batch and continue with the next batch, use the <code class="codeph">-continue</code> and <code class="codeph">-skip</code> parameters. If you attempt to skip over the last batch, then the move operation is terminated.
+                        </p>
+                        <p>Alternatively, you can reissue the command using the <code class="codeph">-revert</code> parameter to undo the changes that have been made and return the configuration to its initial state.
+                        </p>
+                        <p>You can use the <code class="codeph">-abort</code> parameter instead of the <code class="codeph">-continue</code> parameter at any point in the preceding procedure to terminate the patching process and leave the cluster in its current state.
+                        </p>
+                        <div class="infoboxnote" id="GUID-83518C02-E439-49E7-A406-47FE5DCF49B0__GUID-72638C6B-CE52-42DF-83EF-7FD38AF37124">
+                           <p class="notep1">Notes:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>Policy-managed services hosted on a server pool with one active server, and administrator-managed services with one preferred instance and no available instances cannot be relocated and will go OFFLINE while instances are being restarted.</p>
+                              </li>
+                              <li>
+                                 <p>If a move operation is in progress, then you cannot initiate another move operation from the same source home or to the same destination home.</p>
+                              </li>
+                              <li>
+                                 <p>After the move operation has ended, services may be running on nodes different from the ones they were running on before the move and you will have to manually relocate them back to the original instances, if necessary.</p>
+                              </li>
+                              <li>
+                                 <p>If you use the <code class="codeph">-abort</code> parameter to terminate the patching operation, then Fleet Patching and Provisioning does not clean up or undo any of the patching steps. The cluster, databases, or both may be in an inconsistent state because all nodes are not patched.
+                                 </p>
+                              </li>
+                              <li>
+                                 <p>Depending on the start dependencies, services that were offline before the move began could come online during the move.</p>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+                  </ol>
+               </div>
+               <div class="section" id="GUID-83518C02-E439-49E7-A406-47FE5DCF49B0__RAPIDHOMEPROVISIONING-DEFINEDBATCHE-5B531F59">
+                  <p class="subhead1" id="GUID-83518C02-E439-49E7-A406-47FE5DCF49B0__GUID-64FDD6DB-027A-47D9-A189-C482625C8C30">Fleet Patching and Provisioning-Defined Batches</p>
+                  <p>Using Fleet Patching and Provisioning to define and patch batches of nodes means that you need only run one command, as shown in the following command example, where the source working is <code class="codeph">wc1</code> and the destination working copy is <code class="codeph">wc2</code>:
+                  </p><pre class="pre codeblock"><code>$ rhpctl move gihome -sourcewc wc1 -destwc wc2 -smartmove -saf <span class="variable" translate="no">Z+</span> [-eval]</code></pre>
+                  <div class="p">If the move operation fails at some point before completing, then you can either rerun the operation by running the command again, or you can undo the partially completed operation, as follows:<pre class="pre codeblock"><code>$ rhpctl move gihome -destwc <span class="variable" translate="no">destination_workingcopy_name</span> -revert [<span class="variable" translate="no">authentication_option</span>]</code></pre>You can use the <code class="codeph">-revert</code> parameter with an un-managed home.
+                  </div>
+                  <p>The parameters used in the preceding example are as follows:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <div class="p"><code class="codeph">-smartmove</code>: This parameter restarts the Oracle Grid Infrastructure stack on disjoint sets of nodes so that singleton resources are relocated before Oracle Grid Infrastructure starts.
+                           <div class="infoboxnote" id="GUID-83518C02-E439-49E7-A406-47FE5DCF49B0__GUID-7A593538-CE7D-45A7-ADD3-8CC20B343F54">
+                              <p class="notep1">Note:</p>If the server pool to which a resource belongs contains only one active server, then that resource will go offline as relocation cannot take place.
+                           </div>
+                        </div>
+                        <p>The <code class="codeph">-smartmove</code> parameter:
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>Creates a map of services and nodes on which they are running.</p>
+                           </li>
+                           <li>
+                              <p>Creates batches of nodes. The first batch will contain only the Hub node, if the configuration is an Oracle Flex Cluster. For additional batches, a node can be merged into a batch if:</p>
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p>The availability of any non-singleton service, running on this node, does not go below the specified service availability factor (or the default of 50%).</p>
+                                 </li>
+                                 <li>
+                                    <p>There is a singleton service running on this node and the batch does not contain any of the relocation target nodes for the service.</p>
+                                 </li>
+                              </ul>
+                           </li>
+                           <li>
+                              <p>Restarts the Oracle Grid Infrastructure stack batch by batch.</p>
+                           </li>
+                        </ul>
+                     </li>
+                     <li>
+                        <p>Service availability factor (<code class="codeph">-saf <span class="variable" translate="no">Z+</span></code>): You can specify a positive number, as a percentage, that will indicate the minimum number of database instances on which a database service must be running. For example:
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>If you specify <code class="codeph">-saf 50</code> for a service running on two instances, then only one instance can go offline at a time.
+                              </p>
+                           </li>
+                           <li>
+                              <p>If you specify <code class="codeph">-saf 50</code> for a service running on three instances, then only one instance can go offline at a time.
+                              </p>
+                           </li>
+                           <li>
+                              <p>If you specify <code class="codeph">-saf 75</code> for a service running on two instances, then an error occurs because the target can never be met.
+                              </p>
+                           </li>
+                           <li>
+                              <p>The service availability factor is applicable for services running on at least two instances. As such, the service availability factor can be 0% to indicate a non-rolling move, but not 100%. The default is 50%.</p>
+                           </li>
+                           <li>
+                              <p>If you specify a service availability factor for singleton services, then the parameter will be ignored because the availability of such services is 100% and the services will be relocated.</p>
+                           </li>
+                        </ul>
+                     </li>
+                     <li>
+                        <p><code class="codeph">-eval</code>: You can optionally use this parameter to view the auto-generated batches. This parameter also shows the sequence of the move operation without actually patching the software.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div>
+               <div class="relinfo">
+                  <p><strong>Related Topics</strong></p>
+                  <ul>
+                     <li><a href="gihome-commands.html#GUID-4706B307-CEDE-4A91-97DE-6AFF552AEDC8" title="Moves the Oracle Grid Infrastructure software stack from one home to another.">rhpctl move gihome</a></li>
+                  </ul>
+               </div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="advanced-oracle-fpp-configurations.html#GUID-0972E7BF-C9F8-4865-81EF-3FB552E45D43" title="Use these advanced configurations of Oracle Fleet Patching and Provisioning Server to perform specialized tasks.">Advanced&nbsp;Oracle Fleet Patching and Provisioning&nbsp;Configurations</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

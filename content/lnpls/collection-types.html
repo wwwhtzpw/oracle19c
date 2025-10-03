@@ -1,0 +1,306 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Collection Types">
+      <meta name="abstract" content="PL/SQL has three collection types—associative array, VARRAY (variable-size array), and nested table.">
+      <meta name="description" content="PL/SQL has three collection types—associative array, VARRAY (variable-size array), and nested table.">
+      <meta name="DC.subject" content="collection, types of, associative array, characteristics of, array, associative, See, varray, nested table, table, nested, dense collection, sparse collection, empty collection, empty, null, null collection, atomically null collection, hash table, hash, unordered table, unordered, set data structure, bag data structure, non-PL/SQL">
+      <meta name="keywords" content="collection, types of, associative array, characteristics of, array, associative, See, varray, nested table, table, nested, dense collection, sparse collection, empty collection, empty, null, null collection, atomically null collection, hash table, hash, unordered table, unordered, set data structure, bag data structure, non-PL/SQL">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-7E9034D5-0D33-43A1-9012-918350FE148C">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="PL/SQL has three collection types—associative array, VARRAY (variable-size array), and nested table.">
+      <meta name="description" content="PL/SQL has three collection types—associative array, VARRAY (variable-size array), and nested table.">
+      <title>Collection Types</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content="PL/SQL has three collection types—associative array, VARRAY (variable-size array), and nested table.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="plsql-collections-and-records.html" title="Previous" type="text/html">
+      <link rel="next" href="associative-arrays.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Collection Types","description":"PL/SQL has three collection types—associative array, VARRAY (variable-size array), and nested table.","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="plsql-collections-and-records.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="associative-arrays.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C" name="GUID-7E9034D5-0D33-43A1-9012-918350FE148C"></a><a id="LNPLS350"></a><a id="LNPLS351"></a><a id="LNPLS352"></a><a id="LNPLS353"></a><a id="LNPLS354"></a><a id="LNPLS355"></a><a id="LNPLS356"></a><a id="LNPLS00501"></a>
+         
+         <h2 id="LNPLS-GUID-7E9034D5-0D33-43A1-9012-918350FE148C" class="sect2"><span class="enumeration_section">5.1 </span>Collection Types
+         </h2>
+         <div class="ind">
+            <div>
+               <p>PL/SQL has three collection types—associative array, <code class="codeph">VARRAY</code> (variable-size array), and nested table. 
+               </p>
+               <p><a href="collection-types.html#GUID-7E9034D5-0D33-43A1-9012-918350FE148C__CIHHDDGF" title="Summarizes the similarities and differences of the three types of PL/SQL collections.">Table 5-1</a> summarizes their similarities and differences.
+               </p>
+               <div class="tblformalwide" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__CIHHDDGF">
+                  <p class="titleintable">Table 5-1 PL/SQL Collection Types</p>
+                  <table cellpadding="4" cellspacing="0" class="FormalWide" title="PL/SQL Collection Types" summary="Summarizes the similarities and differences of the three types of PL/SQL collections." width="100%" frame="hsides" border="1" rules="rows">
+                     <thead>
+                        <tr align="left" valign="top">
+                           <th align="left" valign="bottom" width="19%" id="d38049e181">Collection Type</th>
+                           <th align="left" valign="bottom" width="12%" id="d38049e183">Number of Elements</th>
+                           <th align="left" valign="bottom" width="11%" id="d38049e185">Index Type</th>
+                           <th align="left" valign="bottom" width="13%" id="d38049e187">Dense or Sparse</th>
+                           <th align="left" valign="bottom" width="13%" id="d38049e189">Uninitialized Status</th>
+                           <th align="left" valign="bottom" width="16%" id="d38049e191">Where Defined</th>
+                           <th align="left" valign="bottom" width="15%" id="d38049e193">Can Be ADT Attribute Data Type</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="19%" id="d38049e197" headers="d38049e181 ">
+                              <p>Associative array (or index-by table)</p>
+                           </td>
+                           <td align="left" valign="top" width="12%" headers="d38049e197 d38049e183 ">
+                              <p>Unspecified</p>
+                           </td>
+                           <td align="left" valign="top" width="11%" headers="d38049e197 d38049e185 ">
+                              <p>String or <code class="codeph">PLS_INTEGER</code></p>
+                           </td>
+                           <td align="left" valign="top" width="13%" headers="d38049e197 d38049e187 ">
+                              <p>Either</p>
+                           </td>
+                           <td align="left" valign="top" width="13%" headers="d38049e197 d38049e189 ">
+                              <p>Empty</p>
+                           </td>
+                           <td align="left" valign="top" width="16%" headers="d38049e197 d38049e191 ">
+                              <p>In PL/SQL block or package</p>
+                           </td>
+                           <td align="left" valign="top" width="15%" headers="d38049e197 d38049e193 ">
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="19%" id="d38049e221" headers="d38049e181 ">
+                              <p><code class="codeph">VARRAY</code> (variable-size array)
+                              </p>
+                           </td>
+                           <td align="left" valign="top" width="12%" headers="d38049e221 d38049e183 ">
+                              <p>Specified</p>
+                           </td>
+                           <td align="left" valign="top" width="11%" headers="d38049e221 d38049e185 ">
+                              <p>Integer</p>
+                           </td>
+                           <td align="left" valign="top" width="13%" headers="d38049e221 d38049e187 ">
+                              <p>Always dense</p>
+                           </td>
+                           <td align="left" valign="top" width="13%" headers="d38049e221 d38049e189 ">
+                              <p>Null</p>
+                           </td>
+                           <td align="left" valign="top" width="16%" headers="d38049e221 d38049e191 ">
+                              <p>In PL/SQL block or package or at schema level</p>
+                           </td>
+                           <td align="left" valign="top" width="15%" headers="d38049e221 d38049e193 ">
+                              <p>Only if defined at schema level</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="19%" id="d38049e245" headers="d38049e181 ">
+                              <p>Nested table</p>
+                           </td>
+                           <td align="left" valign="top" width="12%" headers="d38049e245 d38049e183 ">
+                              <p>Unspecified</p>
+                           </td>
+                           <td align="left" valign="top" width="11%" headers="d38049e245 d38049e185 ">
+                              <p>Integer</p>
+                           </td>
+                           <td align="left" valign="top" width="13%" headers="d38049e245 d38049e187 ">
+                              <p>Starts dense, can become sparse</p>
+                           </td>
+                           <td align="left" valign="top" width="13%" headers="d38049e245 d38049e189 ">
+                              <p>Null</p>
+                           </td>
+                           <td align="left" valign="top" width="16%" headers="d38049e245 d38049e191 ">
+                              <p>In PL/SQL block or package or at schema level</p>
+                           </td>
+                           <td align="left" valign="top" width="15%" headers="d38049e245 d38049e193 ">
+                              <p>Only if defined at schema level</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="section" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__CIHHHHAG">
+                  <p class="subhead1" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__GUID-FA1CC9EA-4573-4AB9-BFA8-39C442A077D0">Number of Elements</p>
+               </div>
+               <div class="section">
+                  <p>If the number of elements is specified, it is the maximum number of elements in the collection. If the number of elements is unspecified, the maximum number of elements in the collection is the upper limit of the index type.</p>
+               </div>
+               <div class="section" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__CIHDHIFD">
+                  <p class="subhead1" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__GUID-6567234A-2303-4C7B-8233-85EAFC00754A">Dense or Sparse</p>
+               </div>
+               <div class="section">
+                  <p>A <span class="bold">dense collection</span> has no gaps between elements—every element between the first and last element is defined and has a value (the value can be <code class="codeph">NULL</code> unless the element has a <code class="codeph">NOT</code> <code class="codeph">NULL</code> constraint). A <span class="bold">sparse collection</span> has gaps between elements.
+                  </p>
+               </div>
+               <div class="section" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__CIHCDDDG">
+                  <p class="subhead1" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__GUID-991E22B8-56BA-4D34-8FB7-E37AAFD20BD8">Uninitialized Status</p>
+               </div>
+               <div class="section">
+                  <p>An <span class="bold">empty collection</span> exists but has no elements. To add elements to an empty collection, invoke the <code class="codeph">EXTEND</code> method (described in <span class="q">"<a href="collection-methods.html#GUID-03F74821-BC33-4544-9304-5FBBE6EFE450" title="EXTEND is a procedure that adds elements to the end of a varray or nested table.">EXTEND Collection Method</a>"</span>).
+                  </p>
+                  <p>A <span class="bold">null collection</span> (also called an <span class="bold">atomically null collection</span>) does not exist. To change a null collection to an existing collection, you must initialize it, either by making it empty or by assigning a non-<code class="codeph">NULL</code> value to it (for details, see <span class="q">"<a href="collection-constructors.html#GUID-92967CC1-481E-472A-BB4C-90C60F75296D" title="A collection constructor (constructor) is a system-defined function with the same name as a collection type, which returns a collection of that type.">Collection Constructors</a>"</span> and <span class="q">"<a href="assigning-values-collection-variables.html#GUID-7836EEC3-2642-4CF8-AA50-81034855119D" title="You can assign a collection to a collection variable only if they have the same data type. Having the same element type is not enough.To a varray or nested table variable, you can assign the value NULL or a null collection of the same data type. Either assignment makes the variable null.To a nested table variable, you can assign the result of a SQL MULTISET operation or SQL SET function invocation.">Assigning Values to Collection Variables</a>"</span>). You cannot use the <code class="codeph">EXTEND</code> method to initialize a null collection.
+                  </p>
+               </div>
+               <div class="section" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__CIHFCEAE">
+                  <p class="subhead1" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__GUID-8C030ED1-3103-4655-8317-E1A53D236312">Where Defined</p>
+               </div>
+               <div class="section">
+                  <p>A collection type defined in a PL/SQL block is a <span class="bold">local type</span>. It is available only in the block, and is stored in the database only if the block is in a standalone or package subprogram. (Standalone and package subprograms are explained in <span class="q">"<a href="nested-package-and-standalone-subprograms.html#GUID-E03F512B-1A30-43B4-8DCA-64DA68AE7CE4">Nested, Package, and Standalone Subprograms</a>"</span>.)
+                  </p>
+                  <p>A collection type defined in a package specification is a <span class="bold">public item</span>. You can reference it from outside the package by qualifying it with the package name (<span class="italic"><code class="codeph">package_name.type_name</code></span>). It is stored in the database until you drop the package. (Packages are explained in <a href="plsql-packages.html#GUID-C285EC5A-BE50-4192-A88E-48C0778B34E0" title="This chapter explains how to bundle related PL/SQL code and data into a package, whose contents are available to many applications.">PL/SQL Packages</a>.)
+                  </p>
+                  <p>A collection type defined at schema level is a <span class="bold">standalone type</span>. You create it with the <span class="q">"<a href="CREATE-TYPE-statement.html#GUID-389D603D-FBD0-452A-8414-240BBBC57034" title="The CREATE TYPE statement specifies the name of the type and its attributes, methods, and other properties.">CREATE TYPE Statement</a>"</span>. It is stored in the database until you drop it with the <span class="q">"<a href="DROP-TYPE-statement.html#GUID-EDB83D12-26B5-42D1-9DB6-BD8AAB6490EC" title="The DROP TYPE statement drops the specification and body of an ADT, VARRAY type, or nested table type.">DROP TYPE Statement</a>"</span>.
+                  </p>
+                  <div class="infoboxnote" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__GUID-B496A4B0-5BE4-4189-A0AD-41B60A82018A">
+                     <p class="notep1">Note:</p>
+                     <p>A collection type defined in a package specification is incompatible with an identically defined local or standalone collection type (see <a href="collection-types-defined-package-specifications.html#GUID-7C84EBD2-D0A5-4126-8EB7-FF9243EE5B47__CHDIHDIJ">Example 5-33</a> and <a href="collection-types-defined-package-specifications.html#GUID-7C84EBD2-D0A5-4126-8EB7-FF9243EE5B47__CIHBGBBH">Example 5-34</a>).
+                     </p>
+                  </div>
+               </div>
+               <div class="section" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__CIHDDDIG">
+                  <p class="subhead1" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__GUID-D78F61C6-A94E-48C8-9E33-4BE5EC2D710E">Can Be ADT Attribute Data Type</p>
+               </div>
+               <div class="section">
+                  <p>To be an ADT attribute data type, a collection type must be a standalone collection type. For other restrictions, see <span class="bold"><a href="CREATE-TYPE-statement.html#GUID-389D603D-FBD0-452A-8414-240BBBC57034__BABEHDBJ">Restrictions on datatype</a></span>.
+                  </p>
+               </div>
+               <div class="section">
+                  <p class="subhead1" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__GUID-4B5B2EFD-9428-4AA1-94EC-3278D595D08C">Translating Non-PL/SQL Composite Types to PL/SQL Composite Types</p>
+               </div>
+               <div class="section">
+                  <p>If you have code or business logic that uses another language, you can usually translate the array and set types of that language directly to PL/SQL collection types. For example:</p>
+                  <div class="tblformal" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__GUID-40D3ACE9-7926-4D89-BD10-2A576AC86A6C">
+                     <table cellpadding="4" cellspacing="0" class="Formal" title summary="This table gives five examples of non-PL/SQL composite types and their equivalent PL/SQL composite types." width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="36%" id="d38049e447">Non-PL/SQL Composite Type</th>
+                              <th align="left" valign="bottom" width="64%" id="d38049e449">Equivalent PL/SQL Composite Type</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="36%" id="d38049e453" headers="d38049e447 ">
+                                 <p>Hash table</p>
+                              </td>
+                              <td align="left" valign="top" width="64%" headers="d38049e453 d38049e449 ">
+                                 <p>Associative array</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="36%" id="d38049e460" headers="d38049e447 ">
+                                 <p>Unordered table</p>
+                              </td>
+                              <td align="left" valign="top" width="64%" headers="d38049e460 d38049e449 ">
+                                 <p>Associative array</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="36%" id="d38049e467" headers="d38049e447 ">
+                                 <p>Set</p>
+                              </td>
+                              <td align="left" valign="top" width="64%" headers="d38049e467 d38049e449 ">
+                                 <p>Nested table</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="36%" id="d38049e474" headers="d38049e447 ">
+                                 <p>Bag</p>
+                              </td>
+                              <td align="left" valign="top" width="64%" headers="d38049e474 d38049e449 ">
+                                 <p>Nested table</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="36%" id="d38049e481" headers="d38049e447 ">
+                                 <p>Array</p>
+                              </td>
+                              <td align="left" valign="top" width="64%" headers="d38049e481 d38049e449 ">
+                                 <p><code class="codeph">VARRAY</code></p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="infoboxnotealso" id="GUID-7E9034D5-0D33-43A1-9012-918350FE148C__GUID-6AEE21F7-4CEB-4628-9515-2AA6D78C4601">
+                     <p class="notep1">See Also:</p>
+                     <p><a href="../sqlrf/CAST.html#SQLRF00613" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a> for information about the <code class="codeph">CAST</code> function, which converts one SQL data type or collection-typed value into another SQL data type or collection-typed value.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>PL/SQL REF CURSOR and OracleRefCursor</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="featData.html" title="Previous" type="text/html">
+      <link rel="next" href="featImplRefCursor.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="featData.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="featImplRefCursor.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="features.html" property="item" typeof="WebPage"><span property="name">Features of Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">PL/SQL REF CURSOR and OracleRefCursor</li>
+            </ol>
+            <a id="GUID-4215DACA-977E-473F-AF4E-764841A476D7" name="GUID-4215DACA-977E-473F-AF4E-764841A476D7"></a><a id="ODPNT311"></a>
+            
+            <h2 id="ODPNT-GUID-4215DACA-977E-473F-AF4E-764841A476D7" class="sect2">PL/SQL REF CURSOR and OracleRefCursor</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>The <code class="codeph">REF</code> <code class="codeph">CURSOR</code> is a data type in the Oracle PL/SQL language. It represents a cursor or a result set in Oracle Database. The <code class="codeph">OracleRefCursor</code> object is a corresponding ODP.NET type for the <code class="codeph">REF</code> <code class="codeph">CURSOR</code> type.
+               </p>
+               <p>This section discusses the following aspects of using the <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data type and <code class="codeph">OracleRefCursor</code> objects:
+               </p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="featRefCursor.html#GUID-7A9BE6A9-1906-48B1-9F31-0E2F0FEFD34D">Obtaining an OracleRefCursor Object</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featRefCursor.html#GUID-C0BC3A31-3A60-4E79-8EB8-697DCD360236">Obtaining a REF CURSOR Data Type</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featRefCursor.html#GUID-36260337-4147-4216-B1DD-87A75D6B0C4E">Populating an OracleDataReader from a REF CURSOR</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featRefCursor.html#GUID-49782070-0E6C-4F1E-9892-1880CF88E21E">Populating the DataSet from a REF CURSOR</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featRefCursor.html#GUID-BC3749BF-55DF-4108-BDC6-35960B4AC30B">Populating an OracleRefCursor from a REF CURSOR</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featRefCursor.html#GUID-78B33464-4EB0-40DF-9B60-3924BD369C9D">Updating a DataSet Obtained from a REF CURSOR</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featRefCursor.html#GUID-B7E226A9-9A90-4650-B553-2B1DF8BAAB9F">Behavior of ExecuteScalar Method for REF CURSOR</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featRefCursor.html#GUID-7F6AFF30-E28B-4827-B54B-0678BBFB9373">Passing a REF CURSOR to a Stored Procedure</a></p>
+                  </li>
+               </ul>
+            </div><a id="ODPNT312"></a><div class="props_rev_3"><a id="GUID-7A9BE6A9-1906-48B1-9F31-0E2F0FEFD34D" name="GUID-7A9BE6A9-1906-48B1-9F31-0E2F0FEFD34D"></a><h3 id="ODPNT-GUID-7A9BE6A9-1906-48B1-9F31-0E2F0FEFD34D" class="sect3">Obtaining an OracleRefCursor Object</h3>
+               <div>
+                  <div class="section">
+                     <p>There are no constructors for <code class="codeph">OracleRefCursor</code> objects. They can be acquired only as parameter values from PL/SQL stored procedures, stored functions, or anonymous blocks. 
+                     </p>
+                     <p>An <code class="codeph">OracleRefCursor</code> object is a connected object. The connection used to execute the command returning an <code class="codeph">OracleRefCursor</code> object is required for its lifetime. Once the connection associated with an <code class="codeph">OracleRefCursor object </code>is closed, the <code class="codeph">OracleRefCursor</code> object cannot be used.
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT313"></a><div class="props_rev_3"><a id="GUID-C0BC3A31-3A60-4E79-8EB8-697DCD360236" name="GUID-C0BC3A31-3A60-4E79-8EB8-697DCD360236"></a><h3 id="ODPNT-GUID-C0BC3A31-3A60-4E79-8EB8-697DCD360236" class="sect3">Obtaining a REF CURSOR Data Type</h3>
+               <div>
+                  <div class="section">
+                     <p>A <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data type can be obtained as an <code class="codeph">OracleDataReader</code>, <code class="codeph">DataSet</code>, or <code class="codeph">OracleRefCursor</code> object. If the <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data type is obtained as an <code class="codeph">OracleRefCursor</code> object, it can be used to create an <code class="codeph">OracleDataReader</code> object or populate a <code class="codeph">DataSet</code> from it. When accessing a <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data type, always bind it as an <code class="codeph">OracleDbType.RefCursor</code> parameter.
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT314"></a><div class="props_rev_3"><a id="GUID-36260337-4147-4216-B1DD-87A75D6B0C4E" name="GUID-36260337-4147-4216-B1DD-87A75D6B0C4E"></a><h3 id="ODPNT-GUID-36260337-4147-4216-B1DD-87A75D6B0C4E" class="sect3">Populating an OracleDataReader from a REF CURSOR</h3>
+               <div>
+                  <div class="section">
+                     <p>A <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data type can be obtained as an <code class="codeph">OracleDataReader</code> object by calling the <code class="codeph">ExecuteReader</code> method of the <code class="codeph">OracleCommand</code> object. The output parameter with the <code class="codeph">OracleDbType</code> property set is bound to <code class="codeph">OracleDbType.RefCursor</code>. None of the output parameters of type <code class="codeph">OracleDbType.RefCursor</code> is populated after the <code class="codeph">ExecuteReader</code> method is invoked. 
+                     </p>
+                     <p>If there are multiple output <code class="codeph">REF</code> <code class="codeph">CURSOR</code> parameters, use the <code class="codeph">NextResult</code> method of the <code class="codeph">OracleDataReader</code> object to access the next <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data type. The <code class="codeph">OracleDataReader</code> <code class="codeph">NextResult</code> method provides sequential access to the <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data types; only one <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data type can be accessed at a given time. 
+                     </p>
+                     <p>The order in which <code class="codeph">OracleDataReader</code> objects are created for the corresponding <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data types depends on the order in which the parameters are bound. If a PL/SQL stored function returns a <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data type, then it becomes the first <code class="codeph">OracleDataReader</code> object and all the output <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data types follow the order in which the parameters are bound. 
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT315"></a><div class="props_rev_3"><a id="GUID-49782070-0E6C-4F1E-9892-1880CF88E21E" name="GUID-49782070-0E6C-4F1E-9892-1880CF88E21E"></a><h3 id="ODPNT-GUID-49782070-0E6C-4F1E-9892-1880CF88E21E" class="sect3">Populating the DataSet from a REF CURSOR</h3>
+               <div>
+                  <div class="section">
+                     <p>For the <code class="codeph">Fill</code> method to populate the <code class="codeph">DataSet</code> properly, the <code class="codeph">SelectCommand</code> property of the <code class="codeph">OracleDataAdapter</code> class must be bound with an output parameter of type <code class="codeph">OracleDbType.RefCursor</code>. If the <code class="codeph">Fill</code> method is successful, the <code class="codeph">DataSet</code> is populated with a <code class="codeph">DataTable</code> that represents a <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data type. 
+                     </p>
+                     <p>If the command execution returns multiple <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data types, the <code class="codeph">DataSet</code> is populated with multiple <code class="codeph">DataTable</code> objects.
+                     </p>
+                     <p>With Oracle Data Provider for .NET release 11.1.0.6.20, the extended property, <code class="codeph">REFCursorName</code>, has been introduced on the <code class="codeph">DataTable</code>, to identify the <code class="codeph">REF</code> <code class="codeph">CURSOR</code> that populates the <code class="codeph">DataTable</code>.
+                     </p>
+                     <p>This property is particularly useful when a <code class="codeph">DataSet</code> is being populated with more than one <code class="codeph">REF</code> <code class="codeph">CURSOR</code>, one or more of which is <code class="codeph">NULL</code>. For example, if a <code class="codeph">DataSet</code> is populated by executing a stored procedure that returns three <code class="codeph">REF</code> <code class="codeph">CURSOR</code>s and the second <code class="codeph">REF</code> <code class="codeph">CURSOR</code> is <code class="codeph">NULL</code>, the <code class="codeph">REFCursorName</code> property value for the first <code class="codeph">DataTable</code> is <code class="codeph">REFCursor</code> and for the second <code class="codeph">DataTable</code>, <code class="codeph">REFCursor2</code> . No <code class="codeph">DataTable</code> is populated for the <code class="codeph">NULL</code> <code class="codeph">REF</code> <code class="codeph">CURSOR</code>.
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT316"></a><div class="props_rev_3"><a id="GUID-BC3749BF-55DF-4108-BDC6-35960B4AC30B" name="GUID-BC3749BF-55DF-4108-BDC6-35960B4AC30B"></a><h3 id="ODPNT-GUID-BC3749BF-55DF-4108-BDC6-35960B4AC30B" class="sect3">Populating an OracleRefCursor from a REF CURSOR</h3>
+               <div>
+                  <div class="section">
+                     <p>When the <code class="codeph">ExecuteNonQuery</code> method is invoked on a command that returns one or more <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data types, each of the <code class="codeph">OracleCommand</code> parameters that are bound as an <code class="codeph">OracleDbType.RefCursor</code> gets a reference to an <code class="codeph">OracleRefCursor</code> object. 
+                     </p>
+                     <p>To create an <code class="codeph">OracleDataReader</code> object from an <code class="codeph">OracleRefCursor</code> object, invoke the <code class="codeph">GetDataReader</code> method from the <code class="codeph">OracleRefCursor</code> object. Subsequent calls to the <code class="codeph">GetDataReader</code> method return a reference to the same <code class="codeph">OracleDataReader</code> object.
+                     </p>
+                     <p>To populate a <code class="codeph">DataSet</code> with an <code class="codeph">OracleRefCursor</code> object, the application can invoke a <code class="codeph">Fill</code> method of the <code class="codeph">OracleDataAdapter</code> class that takes an <code class="codeph">OracleRefCursor</code> object. Similar to the <code class="codeph">OracleDataReader</code> object, an <code class="codeph">OracleRefCursor</code> object is forward-only. Therefore, once a row is read from an <code class="codeph">OracleRefCursor</code> object, that same row cannot be obtained again from it unless it is populated again from a query.
+                     </p>
+                     <p>When multiple <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data types are returned from a command execution as <code class="codeph">OracleRefCursor</code> objects, the application can choose to create an <code class="codeph">OracleDataReader</code> object or populate a <code class="codeph">DataSet</code> with a particular <code class="codeph">OracleRefCursor</code> object. All the <code class="codeph">OracleDataReader</code> objects or <code class="codeph">DataSet</code> objects created from the <code class="codeph">OracleRefCursor</code> objects are active at the same time, and can be accessed in any order.
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT317"></a><div class="props_rev_3"><a id="GUID-78B33464-4EB0-40DF-9B60-3924BD369C9D" name="GUID-78B33464-4EB0-40DF-9B60-3924BD369C9D"></a><h3 id="ODPNT-GUID-78B33464-4EB0-40DF-9B60-3924BD369C9D" class="sect3">Updating a DataSet Obtained from a REF CURSOR</h3>
+               <div>
+                  <div class="section">
+                     <p><code class="codeph">REF</code> <code class="codeph">CURSOR</code> types cannot be updated. However, data that is retrieved into a <code class="codeph">DataSet</code> can be updated. Therefore, the <code class="codeph">OracleDataAdapter</code> class requires a custom SQL statement to flush any <code class="codeph">REF</code> <code class="codeph">CURSOR</code> data updates to the database. 
+                     </p>
+                     <p>The <code class="codeph">OracleCommandBuilder</code> object cannot be used to generate SQL statements for <code class="codeph">REF</code> <code class="codeph">CURSOR</code> updates. 
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT318"></a><div class="props_rev_3"><a id="GUID-B7E226A9-9A90-4650-B553-2B1DF8BAAB9F" name="GUID-B7E226A9-9A90-4650-B553-2B1DF8BAAB9F"></a><h3 id="ODPNT-GUID-B7E226A9-9A90-4650-B553-2B1DF8BAAB9F" class="sect3">Behavior of ExecuteScalar Method for REF CURSOR</h3>
+               <div>
+                  <p>The <code class="codeph">ExecuteScalar</code> method returns the value of the first column of the first row of the <code class="codeph">REF</code> <code class="codeph">CURSOR</code> if it is one of the following:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>A return value of a stored function execution</p>
+                     </li>
+                     <li>
+                        <p>The first bind parameter of a stored procedure execution</p>
+                     </li>
+                  </ul>
+                  <div class="infoboxnotealso" id="GUID-B7E226A9-9A90-4650-B553-2B1DF8BAAB9F__GUID-AA2FAD62-64A7-4038-BF9F-1C140E747B5C">
+                     <p class="notep1">See Also:</p>
+                     <p><a href="../adlob/introduction-to-large-objects.html#ADLOB001" target="_blank"><span><cite>Oracle Database SecureFiles and Large Objects Developer's Guide</cite></span></a>for more information
+                     </p>
+                  </div>
+               </div>
+            </div><a id="ODPNT319"></a><div class="props_rev_3"><a id="GUID-7F6AFF30-E28B-4827-B54B-0678BBFB9373" name="GUID-7F6AFF30-E28B-4827-B54B-0678BBFB9373"></a><h3 id="ODPNT-GUID-7F6AFF30-E28B-4827-B54B-0678BBFB9373" class="sect3">Passing a REF CURSOR to a Stored Procedure</h3>
+               <div>
+                  <div class="section">
+                     <p>An application can retrieve a <code class="codeph">REF</code> <code class="codeph">CURSOR</code> type from a PL/SQL stored procedure or function and pass it to another stored procedure or function. This feature is useful in scenarios where a stored procedure or a function returns a <code class="codeph">REF</code> <code class="codeph">CURSOR</code> type to the .NET application, and based on the application logic, the application passes this <code class="codeph">REF</code> <code class="codeph">CURSOR</code> to another stored procedure for processing. Note that if you retrieve the data from a <code class="codeph">REF</code> <code class="codeph">CURSOR</code> type in the .NET application, you cannot pass it back to another stored procedure.
+                     </p>
+                     <p>The following example demonstrate passing a <code class="codeph">REF</code> <code class="codeph">CURSOR</code>:
+                     </p><pre class="oac_no_warn" dir="ltr">/*
+connect scott/tiger@oracle
+create table test (col1 number);
+insert into test(col1) values (1);
+commit;
+ 
+create or replace package testPkg as type empCur is REF Cursor;
+end testPkg;
+/
+ 
+create or replace procedure testSP(param1 IN testPkg.empCur, param2 OUT NUMBER)
+as
+begin
+FETCH param1 into param2;
+end;
+/
+*/
+ 
+// C#
+ 
+ 
+using System;
+using Oracle.DataAccess.Client;
+using System.Data;
+ 
+class InRefCursorParameterSample
+{
+  static void Main()
+  {
+    OracleConnection conn = new OracleConnection
+      ("User Id=scott; Password=tiger; Data Source=oracle");
+ 
+    conn.Open(); // Open the connection to the database
+ 
+    // Command text for getting the REF Cursor as OUT parameter
+    String cmdTxt1 = "begin open :1 for select col1 from test; end;";
+ 
+    // Command text to pass the REF Cursor as IN parameter
+    String cmdTxt2 = "begin testSP (:1, :2); end;";
+ 
+    // Create the command object for executing cmdTxt1 and cmdTxt2
+    OracleCommand cmd = new OracleCommand(cmdTxt1, conn);
+ 
+    // Bind the Ref cursor to the PL/SQL stored procedure
+    OracleParameter outRefPrm = cmd.Parameters.Add("outRefPrm",
+      OracleDbType.RefCursor, DBNull.Value, ParameterDirection.Output);
+ 
+    cmd.ExecuteNonQuery(); // Execute the anonymous PL/SQL block
+ 
+    // Reset the command object to execute another anonymous PL/SQL block
+    cmd.Parameters.Clear();
+    cmd.CommandText = cmdTxt2;
+ 
+    // REF Cursor obtained from previous execution is passed to this 
+    // procedure as IN parameter
+    OracleParameter inRefPrm = cmd.Parameters.Add("inRefPrm",
+      OracleDbType.RefCursor, outRefPrm.Value, ParameterDirection.Input);
+ 
+    // Bind another Number parameter to get the REF Cursor column value
+    OracleParameter outNumPrm = cmd.Parameters.Add("outNumPrm",
+      OracleDbType.Int32, DBNull.Value, ParameterDirection.Output);
+ 
+    cmd.ExecuteNonQuery(); //Execute the stored procedure
+ 
+    // Display the out parameter value
+    Console.WriteLine("out parameter is: " + outNumPrm.Value.ToString());
+  }
+}</pre></div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

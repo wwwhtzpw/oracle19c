@@ -1,0 +1,679 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Chaining Pipelined Table Functions for Multiple Transformations">
+      <meta name="DC.subject" content="table function, pipelined, pipelined table function, See, multiple data transformations, function, table, nested table, returned by function, varray, PARALLEL_ENABLE option, for table function, PIPELINED option, collection, pipelined table function and, where to specify, for pipelined table function, DML statement, inside pipelined table function, AUTONOMOUS_TRANSACTION pragma, pragma, AUTONOMOUS_TRANSACTION, DETERMINISTIC option, ANYTYPE data type, ANYDATA data type, ANYDATASET data type, PIPE ROW statement, named cursor, cursor, named, SQL optimizer, optimizer, SQL, CURSOR expression, passing to pipelined table function, expression, CURSOR, aggregate function, pipelined table function as, as aggregate function, aggregate, on pipelined table function result, INSTEAD OF trigger, on DML statement, for pipelined table function result, NO_DATA_NEEDED exception, exception handler, for NO_DATA_NEEDED">
+      <meta name="keywords" content="table function, pipelined, pipelined table function, See, multiple data transformations, function, table, nested table, returned by function, varray, PARALLEL_ENABLE option, for table function, PIPELINED option, collection, pipelined table function and, where to specify, for pipelined table function, DML statement, inside pipelined table function, AUTONOMOUS_TRANSACTION pragma, pragma, AUTONOMOUS_TRANSACTION, DETERMINISTIC option, ANYTYPE data type, ANYDATA data type, ANYDATASET data type, PIPE ROW statement, named cursor, cursor, named, SQL optimizer, optimizer, SQL, CURSOR expression, passing to pipelined table function, expression, CURSOR, aggregate function, pipelined table function as, as aggregate function, aggregate, on pipelined table function result, INSTEAD OF trigger, on DML statement, for pipelined table function result, NO_DATA_NEEDED exception, exception handler, for NO_DATA_NEEDED">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-ED557894-EC08-47E0-A629-0E4AEDDBB77B">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Chaining Pipelined Table Functions for Multiple Transformations</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="bulk-sql-and-bulk-binding.html" title="Previous" type="text/html">
+      <link rel="next" href="overview-polymorphic-table-functions.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Chaining Pipelined Table Functions for Multiple Transformations","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="bulk-sql-and-bulk-binding.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="overview-polymorphic-table-functions.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-ED557894-EC08-47E0-A629-0E4AEDDBB77B" name="GUID-ED557894-EC08-47E0-A629-0E4AEDDBB77B"></a><a id="LNPLS808"></a><a id="LNPLS01210"></a>
+         
+         <h2 id="LNPLS-GUID-ED557894-EC08-47E0-A629-0E4AEDDBB77B" class="sect2"><span class="enumeration_section">12.5 </span>Chaining Pipelined Table Functions for Multiple Transformations
+         </h2>
+         <div class="ind">
+            <div>
+               <div class="section">
+                  <p>Chaining pipelined table functions is an efficient way to perform multiple transformations on data.</p>
+                  <div class="infoboxnote" id="GUID-ED557894-EC08-47E0-A629-0E4AEDDBB77B__GUID-9AFBBB9C-B647-498E-8EE7-8148D76636C9">
+                     <p class="notep1">Note:</p>
+                     <p>You cannot run a pipelined table function over a database link. The reason is that the return type of a pipelined table function is a SQL user-defined type, which can be used only in a single database (as explained in <a href="../adobj/Sql-object-types-and-references.html#ADOBJ7083" target="_blank"><span class="italic">Oracle Database Object-Relational Developer's Guide</span></a>). Although the return type of a pipelined table function might appear to be a PL/SQL type, the database actually converts that PL/SQL type to a corresponding SQL user-defined type.
+                     </p>
+                  </div>
+               </div>
+               <div class="section">
+                  <p class="subhead1" id="GUID-ED557894-EC08-47E0-A629-0E4AEDDBB77B__GUID-D3676553-6971-4826-A7F8-C1FFAFB9C597">Topics</p>
+               </div>
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-4E10CBFA-4B6A-4761-8905-83C26C112694" title="A table function is a user-defined PL/SQL function that returns a collection of rows (an associative array, nested table or varray).">Overview of Table Functions</a></p>
+                     </li>
+                     <li>
+                        <p><a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-58D850B2-A416-47EA-8803-8936E2D6748A">Creating Pipelined Table Functions</a></p>
+                     </li>
+                     <li>
+                        <p><a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-6C5DE334-7A63-41A3-BB4C-7B32CBF5607E">Pipelined Table Functions as Transformation Functions</a></p>
+                     </li>
+                     <li>
+                        <p><a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-F99730AD-EBF2-4BD6-B63D-BFEFBF569A1E">Chaining Pipelined Table Functions</a></p>
+                     </li>
+                     <li>
+                        <p><a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-66AF0686-5781-4BCB-B067-6F03BA9B23AE">Fetching from Results of Pipelined Table Functions</a></p>
+                     </li>
+                     <li>
+                        <p><a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-BC13A2D1-A182-46C7-A3DC-959724DD5BD6">Passing CURSOR Expressions to Pipelined Table Functions</a></p>
+                     </li>
+                     <li>
+                        <p><a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-4903A047-B1E7-4654-A842-630E9EDFDF14">DML Statements on Pipelined Table Function Results</a></p>
+                     </li>
+                     <li>
+                        <p><a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-4B0E1C6B-8C73-4905-9E97-37C2667D2184">NO_DATA_NEEDED Exception</a></p>
+                     </li>
+                  </ul>
+               </div>
+            </div><a id="LNPLS915"></a><div class="props_rev_3"><a id="GUID-4E10CBFA-4B6A-4761-8905-83C26C112694" name="GUID-4E10CBFA-4B6A-4761-8905-83C26C112694"></a><h3 id="LNPLS-GUID-4E10CBFA-4B6A-4761-8905-83C26C112694" class="sect3"><span class="enumeration_section">12.5.1 </span>Overview of Table Functions
+               </h3>
+               <div>
+                  <p>A <span class="bold">table function</span> is a user-defined PL/SQL function that returns a collection of rows (an associative array, nested table or varray). 
+                  </p>
+                  <p>You can select from this collection as if it were a database table by invoking the table function inside the <code class="codeph">TABLE</code> clause in a <code class="codeph">SELECT</code> statement. The TABLE operator is optional.
+                  </p>
+                  <p>For example:</p><pre class="oac_no_warn" dir="ltr">SELECT * FROM TABLE(<span class="italic">table_function_name</span>(<span class="italic">parameter_list</span>))
+</pre><p>Alternatively, the same query can be written without the TABLE operator as follow:</p><pre class="oac_no_warn" dir="ltr">SELECT * FROM <span class="italic">table_function_name</span>(<span class="italic">parameter_list</span>)
+</pre><p>A table function can take a collection of rows as input (that is, it can have an input parameter that is a nested table, varray, or cursor variable). Therefore, output from table function <code class="codeph">tf1</code> can be input to table function <code class="codeph">tf2</code>, and output from <code class="codeph">tf2</code> can be input to table function <code class="codeph">tf3</code>, and so on. 
+                  </p>
+                  <p>To improve the performance of a table function, you can:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Enable the function for parallel execution, with the <code class="codeph">PARALLEL_ENABLE</code> option.
+                        </p>
+                        <p>Functions enabled for parallel execution can run concurrently.</p>
+                     </li>
+                     <li>
+                        <p>Stream the function results directly to the next process, with Oracle Streams.</p>
+                        <p>Streaming eliminates intermediate staging between processes. </p>
+                     </li>
+                     <li>
+                        <p>Pipeline the function results, with the <code class="codeph">PIPELINED</code> option.
+                        </p>
+                        <p>A <span class="bold">pipelined table function</span> returns a row to its invoker immediately after processing that row and continues to process rows. Response time improves because the entire collection need not be constructed and returned to the server before the query can return a single result row. (Also, the function needs less memory, because the object cache need not materialize the entire collection.)
+                        </p>
+                        <div class="infobox-caution" id="GUID-4E10CBFA-4B6A-4761-8905-83C26C112694__GUID-7C0FFF2A-FA95-413F-83E4-15C34A108D99">
+                           <p class="notep1">Caution:</p>
+                           <p>A pipelined table function always references the current state of the data. If the data in the collection changes after the cursor opens for the collection, then the cursor reflects the changes. PL/SQL variables are private to a session and are not transactional. Therefore, read consistency, well known for its applicability to table data, does not apply to PL/SQL collection variables.</p>
+                        </div>
+                     </li>
+                  </ul>
+                  <div class="infoboxnotealso" id="GUID-4E10CBFA-4B6A-4761-8905-83C26C112694__GUID-959E1FAE-503A-4A95-8D3E-4E8AC64A34BA">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-F99730AD-EBF2-4BD6-B63D-BFEFBF569A1E">Chaining Pipelined Table Functions</a></p>
+                        </li>
+                        <li>
+                           <p><a href="../sqlrf/SELECT.html#SQLRF55241" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a> for more information about the <code class="codeph">TABLE</code> clause of the <code class="codeph">SELECT</code> statement
+                           </p>
+                        </li>
+                        <li>
+                           <p><a href="../addci/using-pipelined-and-parallel-table-functions.html#ADDCI2140" target="_blank"><span class="italic">Oracle Database Data Cartridge Developer's Guide</span></a> for information about using pipelined and parallel table functions
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div><a id="LNPLS812"></a><a id="LNPLS814"></a><a id="LNPLS815"></a><a id="LNPLS817"></a><a id="LNPLS818"></a><a id="LNPLS819"></a><a id="LNPLS820"></a><a id="LNPLS821"></a><a id="LNPLS822"></a><a id="LNPLS917"></a><a id="LNPLS916"></a><div class="props_rev_3"><a id="GUID-58D850B2-A416-47EA-8803-8936E2D6748A" name="GUID-58D850B2-A416-47EA-8803-8936E2D6748A"></a><h3 id="LNPLS-GUID-58D850B2-A416-47EA-8803-8936E2D6748A" class="sect3"><span class="enumeration_section">12.5.2 </span>Creating Pipelined Table Functions
+               </h3>
+               <div>
+                  <p>A pipelined table function must be either a standalone function or a package function.</p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-58D850B2-A416-47EA-8803-8936E2D6748A__GUID-41A5E255-6CE6-4C9F-885E-629CDC346391">PIPELINED Option (Required)</p>
+                  </div>
+                  <div class="section">
+                     <p>For a standalone function, specify the <code class="codeph">PIPELINED</code> option in the <code class="codeph">CREATE</code> <code class="codeph">FUNCTION</code> statement (for syntax, see <span class="q">"<a href="CREATE-FUNCTION-statement.html#GUID-B71BC5BD-B87C-4054-AAA5-213E856651F2" title="The CREATE FUNCTION statement creates or replaces a standalone function or a call specification.">CREATE FUNCTION Statement</a>"</span>). For a package function, specify the <code class="codeph">PIPELINED</code> option in both the function declaration and function definition (for syntax, see <span class="q">"<a href="function-declaration-and-definition.html#GUID-4E19FB09-46B5-4CE5-8A5B-CD815C29DA1C" title="Before invoking a function, you must declare and define it. You can either declare it first (with function_declaration) and then define it later in the same block, subprogram, or package (with function_definition) or declare and define it at the same time (with function_definition).">Function Declaration and Definition</a>"</span>).
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-58D850B2-A416-47EA-8803-8936E2D6748A__GUID-CA0BC3A1-06BA-4A57-8B43-9877CF7920C9">PARALLEL_ENABLE Option (Recommended)</p>
+                  </div>
+                  <div class="section">
+                     <p>To improve its performance, enable the pipelined table function for parallel execution by specifying the <code class="codeph">PARALLEL_ENABLE</code> option.
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-58D850B2-A416-47EA-8803-8936E2D6748A__GUID-C2E6238D-0092-48B3-8AE9-6E376A017B55">AUTONOMOUS_TRANSACTION Pragma</p>
+                  </div>
+                  <div class="section">
+                     <p>If the pipelined table function runs DML statements, then make it autonomous, with the <code class="codeph">AUTONOMOUS_TRANSACTION</code> pragma (described in <span class="q">"<a href="AUTONOMOUS_TRANSACTION-pragma.html#GUID-AD33D949-081B-4CD3-A240-C29773E908C3" title="The AUTONOMOUS_TRANSACTION pragma marks a routine as autonomous; that is, independent of the main transaction.">AUTONOMOUS_TRANSACTION Pragma</a>"</span>). Then, during parallel execution, each instance of the function creates an independent transaction.
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-58D850B2-A416-47EA-8803-8936E2D6748A__GUID-495A9DF1-3DD7-421F-ADF3-64A867141604">DETERMINISTIC Option (Recommended)</p>
+                  </div>
+                  <div class="section">
+                     <p>Multiple invocations of a pipelined table function, in either the same query or separate queries, cause multiple executions of the underlying implementation. If the function is deterministic, specify the <code class="codeph">DETERMINISTIC</code> option, described in <span class="q">"<a href="DETERMINISTIC-clause.html#GUID-6AECC957-27CC-4334-9F43-0FBE88F92654" title="The deterministic option marks a function that returns predictable results and has no side effects.">DETERMINISTIC Clause</a>"</span>.
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-58D850B2-A416-47EA-8803-8936E2D6748A__GUID-78C71E9A-32AB-4423-848A-B085420AB9B7">Parameters</p>
+                  </div>
+                  <div class="section">
+                     <p>Typically, a pipelined table function has one or more cursor variable parameters. For information about cursor variables as function parameters, see <span class="q">"<a href="cursor-variables.html#GUID-9713DFC2-3C2E-49B2-922F-02D43F9D0619" title="You can use a cursor variable as a subprogram parameter, which makes it useful for passing query results between subprograms.">Cursor Variables as Subprogram Parameters</a>"</span>.
+                     </p>
+                     <div class="infoboxnotealso" id="GUID-58D850B2-A416-47EA-8803-8936E2D6748A__GUID-99E1FA89-3D24-490D-B2A6-9B019685B4A2">
+                        <p class="notep1">See Also:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><span class="q">"<a href="cursor-variables.html#GUID-4A6E054A-4002-418D-A1CA-DE849CD7E6D5" title="To create a cursor variable, either declare a variable of the predefined type SYS_REFCURSOR or define a REF CURSOR type and then declare a variable of that type.After opening a cursor variable, you can fetch the rows of the query result set with the FETCH statement.You can assign to a PL/SQL cursor variable the value of another PL/SQL cursor variable or host cursor variable.The query associated with a cursor variable can reference any variable in its scope.You can use a cursor variable as a subprogram parameter, which makes it useful for passing query results between subprograms.You can use a cursor variable as a host variable, which makes it useful for passing query results between PL/SQL stored subprograms and their clients.">Cursor Variables</a>"</span> for general information about cursor variables
+                              </p>
+                           </li>
+                           <li>
+                              <p><span class="q">"<a href="subprogram-parameters.html#GUID-C0397690-70F4-480D-ADC9-02D277DAA1BB">Subprogram Parameters</a>"</span> for general information about subprogram parameters
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-58D850B2-A416-47EA-8803-8936E2D6748A__GUID-77C6682E-71FE-4AB6-B50D-BC33EFE6E3EE">RETURN Data Type</p>
+                  </div>
+                  <div class="section">
+                     <p>The data type of the value that a pipelined table function returns must be a collection type defined either at schema level or inside a package (therefore, it cannot be an associative array type). The elements of the collection type must be SQL data types, not data types supported only by PL/SQL (such as <code class="codeph">PLS_INTEGER</code> and <code class="codeph">BOOLEAN</code>). For information about collection types, see <span class="q">"<a href="collection-types.html#GUID-7E9034D5-0D33-43A1-9012-918350FE148C" title="PL/SQL has three collection types—associative array, VARRAY (variable-size array), and nested table.">Collection Types</a>"</span>. For information about SQL data types, see <a href="../sqlrf/Basic-Elements-of-Oracle-SQL.html#SQLRF002" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a>.
+                     </p>
+                     <p>You can use SQL data types <code class="codeph">ANYTYPE</code>, <code class="codeph">ANYDATA</code>, and <code class="codeph">ANYDATASET</code> to dynamically encapsulate and access type descriptions, data instances, and sets of data instances of any other SQL type, including object and collection types. You can also use these types to create unnamed types, including anonymous collection types. For information about these types, see <a href="../arpls/DBMS_TYPES.html#ARPLS076" target="_blank"><span class="italic">Oracle Database PL/SQL Packages and Types Reference</span></a>.
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-58D850B2-A416-47EA-8803-8936E2D6748A__GUID-378C1F09-915F-4470-B275-C5F6398396D5">PIPE ROW Statement</p>
+                  </div>
+                  <div class="section">
+                     <p>Inside a pipelined table function, use the <code class="codeph">PIPE</code> <code class="codeph">ROW</code> statement to return a collection element to the invoker without returning control to the invoker. See <span class="q">"<a href="PIPE-ROW-statement.html#GUID-AD2713A9-062A-42DD-B49E-804C6120378B" title="The PIPE ROW statement, which can appear only in the body of a pipelined table function, returns a table row (but not control) to the invoker of the function.">PIPE ROW Statement</a>"</span> for its syntax and semantics.
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-58D850B2-A416-47EA-8803-8936E2D6748A__GUID-4EF5A313-685A-41FA-ABEE-B3AC8FE583B9">RETURN Statement</p>
+                  </div>
+                  <div class="section">
+                     <p>As in every function, every execution path in a pipelined table function must lead to a <code class="codeph">RETURN</code> statement, which returns control to the invoker. However, in a pipelined table function, a <code class="codeph">RETURN</code> statement need not return a value to the invoker. See <span class="q">"<a href="RETURN-statement.html#GUID-2DCDD1F2-041A-479C-A2F8-B3B68F50FE5D" title="The RETURN statement immediately ends the execution of the subprogram or anonymous block that contains it.">RETURN Statement</a>"</span> for its syntax and semantics.
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-58D850B2-A416-47EA-8803-8936E2D6748A__GUID-3F621E40-EBFE-45E3-82B0-D9BBAF013C08">Example</p>
+                  </div>
+                  <div class="example" id="GUID-58D850B2-A416-47EA-8803-8936E2D6748A__BABDGCDH">
+                     <p class="titleinexample">Example 12-29 Creating and Invoking Pipelined Table Function</p>
+                     <p>This example creates a package that includes a pipelined table function, <code class="codeph">f1</code>, and then selects from the collection of rows that <code class="codeph">f1</code> returns.
+                     </p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE PACKAGE pkg1 AUTHID DEFINER AS
+  TYPE numset_t IS TABLE OF NUMBER;
+  <span class="bold">FUNCTION f1(x NUMBER) RETURN numset_t PIPELINED;</span>
+END pkg1;
+/
+
+</pre><p>Create a pipelined table function f1 that returns a collection of elements (1,2,3,... x).</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE PACKAGE BODY pkg1 AS
+  <span class="bold">FUNCTION f1(x NUMBER) RETURN numset_t PIPELINED IS</span>
+  BEGIN
+    FOR i IN 1..x LOOP
+      <span class="bold">PIPE ROW(i);</span>
+    END LOOP;
+    <span class="bold">RETURN;</span>
+  END f1;
+END pkg1;
+</pre><pre class="oac_no_warn" dir="ltr">SELECT * FROM <span class="bold">TABLE(pkg1.f1(5)</span>);
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">COLUMN_VALUE
+------------
+           1
+           2
+           3
+           4
+           5
+ 
+5 rows selected.</pre><pre class="oac_no_warn" dir="ltr">SELECT * FROM <span class="bold">pkg1.f1(2)</span>;
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">COLUMN_VALUE
+------------
+           1
+           2
+</pre></div>
+               </div>
+            </div><a id="LNPLS919"></a><a id="LNPLS918"></a><div class="props_rev_3"><a id="GUID-6C5DE334-7A63-41A3-BB4C-7B32CBF5607E" name="GUID-6C5DE334-7A63-41A3-BB4C-7B32CBF5607E"></a><h3 id="LNPLS-GUID-6C5DE334-7A63-41A3-BB4C-7B32CBF5607E" class="sect3"><span class="enumeration_section">12.5.3 </span>Pipelined Table Functions as Transformation Functions
+               </h3>
+               <div>
+                  <p>A pipelined table function with a cursor variable parameter can serve as a transformation function. Using the cursor variable, the function fetches an input row. Using the <code class="codeph">PIPE</code> <code class="codeph">ROW</code> statement, the function pipes the transformed row or rows to the invoker. If the <code class="codeph">FETCH</code> and <code class="codeph">PIPE</code> <code class="codeph">ROW</code> statements are inside a <code class="codeph">LOOP</code> statement, the function can transform multiple input rows.
+                  </p>
+                  <p>In <a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-6C5DE334-7A63-41A3-BB4C-7B32CBF5607E__BABIEICA">Example 12-30</a>, the pipelined table function transforms each selected row of the <code class="codeph">employees</code> table to two nested table rows, which it pipes to the <code class="codeph">SELECT</code> statement that invokes it. The actual parameter that corresponds to the formal cursor variable parameter is a <code class="codeph">CURSOR</code> expression; for information about these, see <span class="q">"<a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-BC13A2D1-A182-46C7-A3DC-959724DD5BD6">Passing CURSOR Expressions to Pipelined Table Functions</a>"</span>.
+                  </p>
+                  <div class="example" id="GUID-6C5DE334-7A63-41A3-BB4C-7B32CBF5607E__BABIEICA">
+                     <p class="titleinexample">Example 12-30 Pipelined Table Function Transforms Each Row to Two Rows</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE PACKAGE refcur_pkg AUTHID DEFINER IS
+  TYPE refcur_t IS REF CURSOR RETURN employees%ROWTYPE;
+  TYPE outrec_typ IS RECORD (
+    var_num    NUMBER(6),
+    var_char1  VARCHAR2(30),
+    var_char2  VARCHAR2(30)
+  );
+  TYPE outrecset IS TABLE OF outrec_typ;
+  FUNCTION f_trans (p refcur_t) RETURN outrecset PIPELINED;
+END refcur_pkg;
+/
+
+CREATE OR REPLACE PACKAGE BODY refcur_pkg IS
+  <span class="bold">FUNCTION f_trans (p refcur_t) RETURN outrecset PIPELINED IS</span>
+    out_rec outrec_typ;
+    in_rec  p%ROWTYPE;
+  BEGIN
+    LOOP
+      <span class="bold">FETCH p INTO in_rec;  -- input row</span>
+      EXIT WHEN p%NOTFOUND;
+
+      out_rec.var_num := in_rec.employee_id;
+      out_rec.var_char1 := in_rec.first_name;
+      out_rec.var_char2 := in_rec.last_name;
+      <span class="bold">PIPE ROW(out_rec);  -- first transformed output row</span>
+
+      out_rec.var_char1 := in_rec.email;
+      out_rec.var_char2 := in_rec.phone_number;
+      <span class="bold">PIPE ROW(out_rec);  -- second transformed output row</span>
+    END LOOP;
+    CLOSE p;
+    RETURN;
+  END f_trans;
+END refcur_pkg;
+/
+
+SELECT * FROM <span class="bold">TABLE (</span>
+  <span class="bold">refcur_pkg.f_trans (</span>
+    <span class="bold">CURSOR (SELECT * FROM employees WHERE department_id = 60)</span>
+  <span class="bold">)</span>
+);
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">   VAR_NUM VAR_CHAR1                      VAR_CHAR2
+---------- ------------------------------ ------------------------------
+       103 Alexander                      Hunold
+       103 AHUNOLD                        590.423.4567
+       104 Bruce                          Ernst
+       104 BERNST                         590.423.4568
+       105 David                          Austin
+       105 DAUSTIN                        590.423.4569
+       106 Valli                          Pataballa
+       106 VPATABAL                       590.423.4560
+       107 Diana                          Lorentz
+       107 DLORENTZ                       590.423.5567
+
+10 rows selected.</pre></div>
+               </div>
+            </div><a id="LNPLS921"></a><div class="props_rev_3"><a id="GUID-F99730AD-EBF2-4BD6-B63D-BFEFBF569A1E" name="GUID-F99730AD-EBF2-4BD6-B63D-BFEFBF569A1E"></a><h3 id="LNPLS-GUID-F99730AD-EBF2-4BD6-B63D-BFEFBF569A1E" class="sect3"><span class="enumeration_section">12.5.4 </span>Chaining Pipelined Table Functions
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>To <span class="bold">chain</span> pipelined table functions <code class="codeph">tf1</code> and <code class="codeph">tf2</code> is to make the output of <code class="codeph">tf1</code> the input of <code class="codeph">tf2</code>. For example:
+                     </p><pre class="oac_no_warn" dir="ltr">SELECT * FROM TABLE(tf2(CURSOR(SELECT * FROM TABLE(tf1()))));
+</pre><p>The rows that <code class="codeph">tf1</code> pipes out must be compatible actual parameters for the formal input parameters of <code class="codeph">tf2</code>.
+                     </p>
+                     <p>If chained pipelined table functions are enabled for parallel execution, then each function runs in a different process (or set of processes).</p>
+                     <div class="infoboxnotealso" id="GUID-F99730AD-EBF2-4BD6-B63D-BFEFBF569A1E__GUID-FB6C185F-0FEB-41AC-9956-839D8AE69926">
+                        <p class="notep1">See Also:</p>
+                        <p><span class="q">"<a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-BC13A2D1-A182-46C7-A3DC-959724DD5BD6">Passing CURSOR Expressions to Pipelined Table Functions</a>"</span></p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="LNPLS823"></a><a id="LNPLS923"></a><div class="props_rev_3"><a id="GUID-66AF0686-5781-4BCB-B067-6F03BA9B23AE" name="GUID-66AF0686-5781-4BCB-B067-6F03BA9B23AE"></a><h3 id="LNPLS-GUID-66AF0686-5781-4BCB-B067-6F03BA9B23AE" class="sect3"><span class="enumeration_section">12.5.5 </span>Fetching from Results of Pipelined Table Functions
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>You can associate a named cursor with a query that invokes a pipelined table function. Such a cursor has no special fetch semantics, and such a cursor variable has no special assignment semantics.</p>
+                     <p>However, the SQL optimizer does not optimize across PL/SQL statements. Therefore, in <a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-66AF0686-5781-4BCB-B067-6F03BA9B23AE__BABFHAIG">Example 12-31</a>, the first PL/SQL statement is slower than the second—despite the overhead of running two SQL statements in the second PL/SQL statement, and even if function results are piped between the two SQL statements in the first PL/SQL statement.
+                     </p>
+                     <p>In <a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-66AF0686-5781-4BCB-B067-6F03BA9B23AE__BABFHAIG">Example 12-31</a>, assume that <code class="codeph">f</code> and <code class="codeph">g</code> are pipelined table functions, and that each function accepts a cursor variable parameter. The first PL/SQL statement associates cursor variable <code class="codeph">r</code> with a query that invokes <code class="codeph">f</code>, and then passes <code class="codeph">r</code> to <code class="codeph">g</code>. The second PL/SQL statement passes <code class="codeph">CURSOR</code> expressions to both <code class="codeph">f</code> and <code class="codeph">g</code>.
+                     </p>
+                     <div class="infoboxnotealso" id="GUID-66AF0686-5781-4BCB-B067-6F03BA9B23AE__GUID-7C858138-7612-4350-8C16-9DBE92636DD1">
+                        <p class="notep1">See Also:</p>
+                        <p><span class="q">"<a href="cursor-variables.html#GUID-9713DFC2-3C2E-49B2-922F-02D43F9D0619" title="You can use a cursor variable as a subprogram parameter, which makes it useful for passing query results between subprograms.">Cursor Variables as Subprogram Parameters</a>"</span></p>
+                     </div>
+                  </div>
+                  <div class="example" id="GUID-66AF0686-5781-4BCB-B067-6F03BA9B23AE__BABFHAIG">
+                     <p class="titleinexample">Example 12-31 Fetching from Results of Pipelined Table Functions</p><pre class="oac_no_warn" dir="ltr">
+DECLARE
+  r SYS_REFCURSOR;
+  ...
+  -- First PL/SQL statement (slower):
+BEGIN
+  OPEN r FOR SELECT * FROM TABLE(f(CURSOR(SELECT * FROM tab)));
+  SELECT * BULK COLLECT INTO rec_tab FROM TABLE(g(r));
+
+  -- NOTE: When g completes, it closes r.
+END;
+
+-- Second PL/SQL statement (faster):
+
+SELECT * FROM TABLE(g(CURSOR(SELECT * FROM
+  TABLE(f(CURSOR(SELECT * FROM tab))))));
+/</pre></div>
+               </div>
+            </div><a id="LNPLS925"></a><a id="LNPLS926"></a><a id="LNPLS924"></a><div class="props_rev_3"><a id="GUID-BC13A2D1-A182-46C7-A3DC-959724DD5BD6" name="GUID-BC13A2D1-A182-46C7-A3DC-959724DD5BD6"></a><h3 id="LNPLS-GUID-BC13A2D1-A182-46C7-A3DC-959724DD5BD6" class="sect3"><span class="enumeration_section">12.5.6 </span>Passing CURSOR Expressions to Pipelined Table Functions
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>As <a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-66AF0686-5781-4BCB-B067-6F03BA9B23AE__BABFHAIG">Example 12-31</a> shows, the actual parameter for the cursor variable parameter of a pipelined table function can be either a cursor variable or a <code class="codeph">CURSOR</code> expression, and the latter is more efficient.
+                     </p>
+                     <div class="infoboxnote" id="GUID-BC13A2D1-A182-46C7-A3DC-959724DD5BD6__GUID-9BA2A27B-49BF-49D7-82FC-ED63B7ED46B5">
+                        <p class="notep1">Note:</p>
+                        <p>When a SQL <code class="codeph">SELECT</code> statement passes a <code class="codeph">CURSOR</code> expression to a function, the referenced cursor opens when the function begins to run and closes when the function completes.
+                        </p>
+                     </div>
+                     <div class="infoboxnotealso" id="GUID-BC13A2D1-A182-46C7-A3DC-959724DD5BD6__GUID-D8856691-7B0F-4AAE-8CA6-D3367D9BADB4">
+                        <p class="notep1">See Also:</p>
+                        <p><span class="q">"<a href="cursor-expressions.html#GUID-77FF2850-F338-4C77-9577-0FE3399D39BA" title="A CURSOR expression returns a nested cursor.">CURSOR Expressions</a>"</span> for general information about <code class="codeph">CURSOR</code> expressions
+                        </p>
+                     </div>
+                     <p><a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-BC13A2D1-A182-46C7-A3DC-959724DD5BD6__BABEIAIG">Example 12-32</a> creates a package that includes a pipelined table function with two cursor variable parameters and then invokes the function in a <code class="codeph">SELECT</code> statement, using <code class="codeph">CURSOR</code> expressions for actual parameters.
+                     </p>
+                     <p><a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-BC13A2D1-A182-46C7-A3DC-959724DD5BD6__BABEEIHA">Example 12-33</a> uses a pipelined table function as an aggregate function, which takes a set of input rows and returns a single result. The <code class="codeph">SELECT</code> statement selects the function result. (For information about the pseudocolumn <code class="codeph">COLUMN_VALUE</code>, see <a href="../sqlrf/COLUMN_VALUE-Pseudocolumn.html#SQLRF50950" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a>.)
+                     </p>
+                  </div>
+                  <div class="example" id="GUID-BC13A2D1-A182-46C7-A3DC-959724DD5BD6__BABEIAIG">
+                     <p class="titleinexample">Example 12-32 Pipelined Table Function with Two Cursor Variable Parameters</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE PACKAGE refcur_pkg AUTHID DEFINER IS
+  TYPE refcur_t1 IS REF CURSOR RETURN employees%ROWTYPE;
+  TYPE refcur_t2 IS REF CURSOR RETURN departments%ROWTYPE;
+  TYPE outrec_typ IS RECORD (
+    var_num    NUMBER(6),
+    var_char1  VARCHAR2(30),
+    var_char2  VARCHAR2(30)
+  );
+  TYPE outrecset IS TABLE OF outrec_typ;
+  <span class="bold">FUNCTION g_trans (p1 refcur_t1, p2 refcur_t2) RETURN outrecset PIPELINED;</span>
+END refcur_pkg;
+/
+</pre><pre class="oac_no_warn" dir="ltr">
+CREATE PACKAGE BODY refcur_pkg IS
+  FUNCTION g_trans (
+    p1 refcur_t1,
+    p2 refcur_t2
+  ) RETURN outrecset PIPELINED
+  IS
+    out_rec outrec_typ;
+    in_rec1 p1%ROWTYPE;
+    in_rec2 p2%ROWTYPE;
+  BEGIN
+    LOOP
+      FETCH p2 INTO in_rec2;
+      EXIT WHEN p2%NOTFOUND;
+    END LOOP;
+    CLOSE p2;
+    LOOP
+      FETCH p1 INTO in_rec1;
+      EXIT WHEN p1%NOTFOUND;
+      -- first row
+      out_rec.var_num := in_rec1.employee_id;
+      out_rec.var_char1 := in_rec1.first_name;
+      out_rec.var_char2 := in_rec1.last_name;
+      PIPE ROW(out_rec);
+      -- second row
+      out_rec.var_num := in_rec2.department_id;
+      out_rec.var_char1 := in_rec2.department_name;
+      out_rec.var_char2 := TO_CHAR(in_rec2.location_id);
+      PIPE ROW(out_rec);
+    END LOOP;
+    CLOSE p1;
+    RETURN;
+  END g_trans;
+END refcur_pkg;
+/
+</pre><pre class="oac_no_warn" dir="ltr">
+SELECT * FROM TABLE (
+  refcur_pkg.g_trans (
+    <span class="bold">CURSOR (SELECT * FROM employees WHERE department_id = 60)</span>,
+    <span class="bold">CURSOR (SELECT * FROM departments WHERE department_id = 60)</span>
+  )
+);
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">   VAR_NUM VAR_CHAR1                      VAR_CHAR2
+---------- ------------------------------ ------------------------------
+       103 Alexander                      Hunold
+        60 IT                             1400
+       104 Bruce                          Ernst
+        60 IT                             1400
+       105 David                          Austin
+        60 IT                             1400
+       106 Valli                          Pataballa
+        60 IT                             1400
+       107 Diana                          Lorentz
+        60 IT                             1400
+ 
+10 rows selected.
+</pre></div>
+                  <div class="example" id="GUID-BC13A2D1-A182-46C7-A3DC-959724DD5BD6__BABEEIHA">
+                     <p class="titleinexample">Example 12-33 Pipelined Table Function as Aggregate Function</p><pre class="oac_no_warn" dir="ltr">DROP TABLE gradereport;
+CREATE TABLE gradereport (
+  student VARCHAR2(30),
+  subject VARCHAR2(30),
+  weight NUMBER,
+  grade NUMBER
+);
+
+INSERT INTO gradereport (student, subject, weight, grade)
+VALUES ('Mark', 'Physics', 4, 4);
+ 
+INSERT INTO gradereport (student, subject, weight, grade) 
+VALUES ('Mark','Chemistry', 4, 3);
+ 
+INSERT INTO gradereport (student, subject, weight, grade) 
+VALUES ('Mark','Maths', 3, 3);
+ 
+INSERT INTO gradereport (student, subject, weight, grade) 
+VALUES ('Mark','Economics', 3, 4);
+
+</pre><pre class="oac_no_warn" dir="ltr">CREATE PACKAGE pkg_gpa AUTHID DEFINER IS
+  TYPE gpa IS TABLE OF NUMBER;
+  FUNCTION weighted_average(input_values SYS_REFCURSOR)
+    RETURN gpa PIPELINED;
+END pkg_gpa;
+
+CREATE PACKAGE BODY pkg_gpa IS
+  <span class="bold">FUNCTION weighted_average (input_values SYS_REFCURSOR)</span>
+    <span class="bold">RETURN gpa PIPELINED</span>
+  IS
+    grade         NUMBER;
+    total         NUMBER := 0;
+    total_weight  NUMBER := 0;
+    weight        NUMBER := 0;
+  BEGIN
+    <span class="bold">LOOP</span>
+      <span class="bold">FETCH input_values INTO weight, grade;</span>
+      <span class="bold">EXIT WHEN input_values%NOTFOUND;</span>
+      total_weight := total_weight + weight;  -- Accumulate weighted average
+      total := total + grade*weight;
+    END LOOP;
+    <span class="bold">PIPE ROW (total / total_weight);</span>
+    RETURN; -- returns single result
+  END weighted_average;
+END pkg_gpa;
+
+</pre><p>This query shows how the table function can be invoked without the optional TABLE operator.</p><pre class="oac_no_warn" dir="ltr">SELECT w.<span class="bold">column_value</span> "weighted result" 
+FROM pkg_gpa.weighted_average (
+    <span class="bold">CURSOR (SELECT weight, grade FROM gradereport)</span>
+  ) w;
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">weighted result
+---------------
+            3.5
+ 
+1 row selected.</pre></div>
+               </div>
+            </div><a id="LNPLS928"></a><div class="props_rev_3"><a id="GUID-4903A047-B1E7-4654-A842-630E9EDFDF14" name="GUID-4903A047-B1E7-4654-A842-630E9EDFDF14"></a><h3 id="LNPLS-GUID-4903A047-B1E7-4654-A842-630E9EDFDF14" class="sect3"><span class="enumeration_section">12.5.7 </span>DML Statements on Pipelined Table Function Results
+               </h3>
+               <div>
+                  <p>The "table" that a pipelined table function returns cannot be the target table of a <code class="codeph">DELETE</code>, <code class="codeph">INSERT</code>, <code class="codeph">UPDATE</code>, or <code class="codeph">MERGE</code> statement. However, you can create a view of such a table and create <code class="codeph">INSTEAD</code> <code class="codeph">OF</code> triggers on the view. For information about <code class="codeph">INSTEAD</code> <code class="codeph">OF</code> triggers, see <span class="q">"<a href="dml-triggers.html#GUID-9F06D45C-7C60-434E-A597-114A0C445671" title="An INSTEAD OF DML trigger is a DML trigger created on a noneditioning view, or on a nested table column of a noneditioning view. The database fires the INSTEAD OF trigger instead of running the triggering DML statement.">INSTEAD OF DML Triggers</a>"</span>.
+                  </p>
+                  <div class="infoboxnotealso" id="GUID-4903A047-B1E7-4654-A842-630E9EDFDF14__GUID-8B394893-91D3-4211-A59B-B0DF29C166DC">
+                     <p class="notep1">See Also:</p>
+                     <p><a href="../sqlrf/CREATE-VIEW.html#SQLRF01504" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a> for information about the <code class="codeph">CREATE</code> <code class="codeph">VIEW</code> statement
+                     </p>
+                  </div>
+               </div>
+            </div><a id="LNPLS824"></a><a id="LNPLS825"></a><a id="LNPLS929"></a><div class="props_rev_3"><a id="GUID-4B0E1C6B-8C73-4905-9E97-37C2667D2184" name="GUID-4B0E1C6B-8C73-4905-9E97-37C2667D2184"></a><h3 id="LNPLS-GUID-4B0E1C6B-8C73-4905-9E97-37C2667D2184" class="sect3"><span class="enumeration_section">12.5.8 </span>NO_DATA_NEEDED Exception
+               </h3>
+               <div>
+                  <p>You must understand the predefined exception <code class="codeph">NO_DATA_NEEDED</code> in two cases:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>You include an <code class="codeph">OTHERS</code> exception handler in a block that includes a <code class="codeph">PIPE</code> <code class="codeph">ROW</code> statement
+                        </p>
+                     </li>
+                     <li>
+                        <p>Your code that feeds a <code class="codeph">PIPE</code> <code class="codeph">ROW</code> statement must be followed by a clean-up procedure
+                        </p>
+                        <p>Typically, the clean-up procedure releases resources that the code no longer needs.</p>
+                     </li>
+                  </ul>
+                  <p>When the invoker of a pipelined table function needs no more rows from the function, the <code class="codeph">PIPE</code> <code class="codeph">ROW</code> statement raises <code class="codeph">NO_DATA_NEEDED</code>. If the pipelined table function does not handle <code class="codeph">NO_DATA_NEEDED</code>, as in <a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-4B0E1C6B-8C73-4905-9E97-37C2667D2184__CHDEEGJD">Example 12-34</a>, then the function invocation terminates but the invoking statement does not terminate. If the pipelined table function handles <code class="codeph">NO_DATA_NEEDED</code>, its exception handler can release the resources that it no longer needs, as in <a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-4B0E1C6B-8C73-4905-9E97-37C2667D2184__CHDIAFFB">Example 12-35</a>.
+                  </p>
+                  <p>In <a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-4B0E1C6B-8C73-4905-9E97-37C2667D2184__CHDEEGJD">Example 12-34</a>, the pipelined table function <code class="codeph">pipe_rows</code> does not handle the <code class="codeph">NO_DATA_NEEDED</code> exception. The <code class="codeph">SELECT</code> statement that invokes <code class="codeph">pipe_rows</code> needs only four rows. Therefore, during the fifth invocation of <code class="codeph">pipe_rows</code>, the <code class="codeph">PIPE</code> <code class="codeph">ROW</code> statement raises the exception <code class="codeph">NO_DATA_NEEDED</code>. The fifth invocation of <code class="codeph">pipe_rows</code> terminates, but the <code class="codeph">SELECT</code> statement does not terminate.
+                  </p>
+                  <p>If the exception-handling part of a block that includes a <code class="codeph">PIPE</code> <code class="codeph">ROW</code> statement includes an <code class="codeph">OTHERS</code> exception handler to handle unexpected exceptions, then it must also include an exception handler for the expected <code class="codeph">NO_DATA_NEEDED</code> exception. Otherwise, the <code class="codeph">OTHERS</code> exception handler handles the <code class="codeph">NO_DATA_NEEDED</code> exception, treating it as an unexpected error. The following exception handler reraises the <code class="codeph">NO_DATA_NEEDED</code> exception, instead of treating it as a irrecoverable error:
+                  </p><pre class="oac_no_warn" dir="ltr">EXCEPTION
+  <span class="bold">WHEN NO_DATA_NEEDED THEN</span>
+    <span class="bold">RAISE;</span>
+  WHEN OTHERS THEN
+    -- (Put error-logging code here)
+    RAISE_APPLICATION_ERROR(-20000, 'Fatal error.');
+END;
+</pre><p>In <a href="chaining-pipelined-table-functions-multiple-transformations.html#GUID-4B0E1C6B-8C73-4905-9E97-37C2667D2184__CHDIAFFB">Example 12-35</a>, assume that the package <code class="codeph">External_Source</code> contains these public items:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Procedure <code class="codeph">Init</code>, which allocates and initializes the resources that <code class="codeph">Next_Row</code> needs
+                        </p>
+                     </li>
+                     <li>
+                        <p>Function <code class="codeph">Next_Row</code>, which returns some data from a specific external source and raises the user-defined exception <code class="codeph">Done</code> (which is also a public item in the package) when the external source has no more data
+                        </p>
+                     </li>
+                     <li>
+                        <p>Procedure <code class="codeph">Clean_Up</code>, which releases the resources that <code class="codeph">Init</code> allocated
+                        </p>
+                     </li>
+                  </ul>
+                  <p>The pipelined table function <code class="codeph">get_external_source_data</code> pipes rows from the external source by invoking <code class="codeph">External_Source.Next_Row</code> until either:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>The external source has no more rows.</p>
+                        <p>In this case, the <code class="codeph">External_Source.Next_Row</code> function raises the user-defined exception <code class="codeph">External_Source.Done</code>.
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">get_external_source_data</code> needs no more rows.
+                        </p>
+                        <p>In this case, the <code class="codeph">PIPE</code> <code class="codeph">ROW</code> statement in <code class="codeph">get_external_source_data</code> raises the <code class="codeph">NO_DATA_NEEDED</code> exception.
+                        </p>
+                     </li>
+                  </ul>
+                  <p>In either case, an exception handler in block <code class="codeph">b</code> in <code class="codeph">get_external_source_data</code> invokes <code class="codeph">External_Source.Clean_Up</code>, which releases the resources that <code class="codeph">Next_Row</code> was using.
+                  </p>
+                  <div class="example" id="GUID-4B0E1C6B-8C73-4905-9E97-37C2667D2184__CHDEEGJD">
+                     <p class="titleinexample">Example 12-34 Pipelined Table Function Does Not Handle NO_DATA_NEEDED</p><pre class="oac_no_warn" dir="ltr">CREATE TYPE t IS TABLE OF NUMBER
+/
+CREATE OR REPLACE FUNCTION pipe_rows RETURN t PIPELINED AUTHID DEFINER IS
+  n NUMBER := 0;
+BEGIN
+  LOOP
+    n := n + 1;
+    PIPE ROW (n);
+  END LOOP;
+END pipe_rows;
+/
+SELECT COLUMN_VALUE
+  <span class="bold">FROM TABLE(pipe_rows())</span>
+  <span class="bold">WHERE ROWNUM &lt; 5</span>
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">COLUMN_VALUE
+------------
+           1
+           2
+           3
+           4
+
+4 rows selected.
+</pre></div>
+                  <div class="example" id="GUID-4B0E1C6B-8C73-4905-9E97-37C2667D2184__CHDIAFFB">
+                     <p class="titleinexample">Example 12-35 Pipelined Table Function Handles NO_DATA_NEEDED</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE FUNCTION get_external_source_data
+  RETURN t PIPELINED AUTHID DEFINER IS
+BEGIN
+  External_Source.Init();           -- Initialize.
+  &lt;&lt;b&gt;&gt; BEGIN
+    LOOP                            -- Pipe rows from external source.
+      PIPE ROW (External_Source.Next_Row());
+    END LOOP;
+  <span class="bold">EXCEPTION</span>
+    WHEN External_Source.Done THEN  -- When no more rows are available,
+      External_Source.Clean_Up();   --  clean up.
+    WHEN <span class="bold">NO_DATA_NEEDED</span> THEN        -- When no more rows are needed,
+      External_Source.Clean_Up();   --  clean up.
+      RAISE NO_DATA_NEEDED;           -- Optional, equivalent to RETURN.
+  END b;
+END get_external_source_data;
+/</pre></div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

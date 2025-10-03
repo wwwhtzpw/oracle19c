@@ -1,0 +1,232 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Bulk Copy</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="featUDTs.html" title="Previous" type="text/html">
+      <link rel="next" href="featAQ.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="featUDTs.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="featAQ.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="features.html" property="item" typeof="WebPage"><span property="name">Features of Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Bulk Copy</li>
+            </ol>
+            <a id="GUID-91569C5F-52C3-4F95-8040-432A8AA8D0F8" name="GUID-91569C5F-52C3-4F95-8040-432A8AA8D0F8"></a><a id="ODPNT212"></a>
+            
+            <h2 id="ODPNT-GUID-91569C5F-52C3-4F95-8040-432A8AA8D0F8" class="sect2">Bulk Copy</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>ODP.NET provides a Bulk Copy feature which enables applications to efficiently load large amounts of data from a table in one database to another table in the same or a different database.</p>
+               <p>The ODP.NET Bulk Copy feature uses a direct path load approach, which is similar to, but not the same as Oracle SQL*Loader. Using direct path load is faster than conventional loading (using conventional SQL <code class="codeph">INSERT</code> statements). Conventional loading formats Oracle data blocks and writes the data blocks directly to the data files. Bulk Copy eliminates considerable processing overhead.
+               </p>
+               <p>The ODP.NET Bulk Copy feature can load data into older Oracle databases.</p>
+               <div class="infoboxnote" id="GUID-91569C5F-52C3-4F95-8040-432A8AA8D0F8__GUID-FA26F1E2-42C3-47B3-A149-22A334F3FCB6">
+                  <p class="notep1">Note:</p>
+                  <p>ODP.NET, Managed Driver and ODP.NET Core do not support Bulk Copy.</p>
+               </div>
+               <p>The ODP.NET Bulk Copy feature is subject to the same basic restrictions and integrity constraints for direct path loads, as discussed in the next few sections.</p>
+               <div class="infoboxnotealso" id="GUID-91569C5F-52C3-4F95-8040-432A8AA8D0F8__GUID-55510DBF-5B7C-4D6B-8D21-89798351FDFE">
+                  <p class="notep1">See Also:</p>
+                  <p><span class="q">"<a href="InstallSystemRequirements.html#GUID-A6405CAD-C0E9-45E0-9C38-26B7ED214479">System Requirements</a>"</span> to learn which versions of the Oracle Database ODP.NET interoperates with 
+                  </p>
+               </div>
+            </div><a id="ODPNT213"></a><div class="props_rev_3"><a id="GUID-841F3699-2E7F-42C4-AF35-4687335C6910" name="GUID-841F3699-2E7F-42C4-AF35-4687335C6910"></a><h3 id="ODPNT-GUID-841F3699-2E7F-42C4-AF35-4687335C6910" class="sect3">Data Types Supported by Bulk Copy</h3>
+               <div>
+                  <div class="section">
+                     <p>Bulk Copy supports the following Oracle database data types:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><code class="codeph">NUMBER</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">BINARY_DOUBLE</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">BINARY_FLOAT</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">CHAR</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">NCHAR</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">VARCHAR2</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">NVARCHAR2</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">LONG</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">CLOB</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">BLOB</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">DATE</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">TIMESTAMP</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">TIMESTAMP WITH TIME ZONE</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">TIMESTAMP WITH LOCAL TIME ZONE</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">INTERVAL YEAR TO MONTH</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">INTERVAL DAY TO SECOND</code></p>
+                        </li>
+                     </ul>
+                     <p>Bulk copy does not support overwrites.</p>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT214"></a><div class="props_rev_3"><a id="GUID-3482D57A-1A2A-4359-82E8-AECF00DD90E7" name="GUID-3482D57A-1A2A-4359-82E8-AECF00DD90E7"></a><h3 id="ODPNT-GUID-3482D57A-1A2A-4359-82E8-AECF00DD90E7" class="sect3">Restrictions on Oracle Bulk Copy of a Single Partition</h3>
+               <div>
+                  <div class="section">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>The table that contains the partition cannot have any global indexes defined on it.</p>
+                        </li>
+                        <li>
+                           <p>The tables that the partition is a member of cannot have referential and check constraints enabled.</p>
+                        </li>
+                        <li>
+                           <p>Enabled triggers are not allowed.</p>
+                        </li>
+                     </ul>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT216"></a><a id="ODPNT217"></a><a id="ODPNT215"></a><div class="props_rev_3"><a id="GUID-01B022D8-D721-4AC5-94D4-8E035BB376BE" name="GUID-01B022D8-D721-4AC5-94D4-8E035BB376BE"></a><h3 id="ODPNT-GUID-01B022D8-D721-4AC5-94D4-8E035BB376BE" class="sect3">Integrity Constraints Affecting Oracle Bulk Copy</h3>
+               <div>
+                  <div class="section">
+                     <p>During a Oracle bulk copy, some integrity constraints are automatically enabled or disabled, as follows: </p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-01B022D8-D721-4AC5-94D4-8E035BB376BE__GUID-CDFFC55F-0866-44F3-8384-FF6CBDBF9464">Enabled Constraints</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>During an Oracle bulk copy, the following constraints are automatically enabled by default:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><code class="codeph">NOT</code> <code class="codeph">NULL</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">UNIQUE</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">PRIMARY</code> <code class="codeph">KEY</code> (unique-constraints on not-null columns)
+                           </p>
+                        </li>
+                     </ul>
+                     <p><code class="codeph">NOT</code> <code class="codeph">NULL</code> constraints are checked at column array build time. Any row that violates the <code class="codeph">NOT</code> <code class="codeph">NULL</code> constraint is rejected.
+                     </p>
+                     <p><code class="codeph">UNIQUE</code> constraints are verified when indexes are rebuilt at the end of the load. The index is left in an Index Unusable state if it violates a <code class="codeph">UNIQUE</code> constraint. 
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-01B022D8-D721-4AC5-94D4-8E035BB376BE__GUID-3C461C8F-FCED-4123-BA96-69B6CCE7BBF6">Disabled Constraints</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>During an Oracle bulk copy, the following constraints are automatically disabled by default:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><code class="codeph">CHECK</code> constraints
+                           </p>
+                        </li>
+                        <li>
+                           <p>Referential constraints (<code class="codeph">FOREIGN</code> <code class="codeph">KEY</code>)
+                           </p>
+                        </li>
+                     </ul>
+                     <p>If the <code class="codeph">EVALUATE</code> <code class="codeph">CHECK_CONSTRAINTS</code> clause is specified, then <code class="codeph">CHECK</code> constraints are not automatically disabled. The <code class="codeph">CHECK</code> constraints are evaluated during a direct path load and any row that violates the <code class="codeph">CHECK</code> constraint is rejected.
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT218"></a><div class="props_rev_3"><a id="GUID-92E155D6-1E0D-437C-B02B-D937C1254E42" name="GUID-92E155D6-1E0D-437C-B02B-D937C1254E42"></a><h3 id="ODPNT-GUID-92E155D6-1E0D-437C-B02B-D937C1254E42" class="sect3">Database Insert Triggers</h3>
+               <div>
+                  <div class="section">
+                     <p>Table insert triggers are disabled when a direct path load begins. After the rows are loaded and indexes rebuilt, any triggers that were disabled are automatically reenabled. The log file lists all triggers that were disabled for the load. There should be no errors reenabling triggers.</p>
+                     <p>Unlike integrity constraints, insert triggers are not reapplied to the whole table when they are enabled. As a result, insert triggers do not fire for any rows loaded on the direct path. When using the direct path, the application must ensure that any behavior associated with insert triggers is carried out for the new rows.</p>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT219"></a><div class="props_rev_3"><a id="GUID-91C38427-5EC0-43E8-A455-A6821FBDC9EB" name="GUID-91C38427-5EC0-43E8-A455-A6821FBDC9EB"></a><h3 id="ODPNT-GUID-91C38427-5EC0-43E8-A455-A6821FBDC9EB" class="sect3">Field Defaults</h3>
+               <div>
+                  <div class="section">
+                     <p>Default column specifications defined in the database are not available with direct path loading. Fields for which default values are desired must be specified with the <code class="codeph">DEFAULTIF</code> clause. If a <code class="codeph">DEFAULTIF</code> clause is not specified and the field is <code class="codeph">NULL</code>, then a null value is inserted into the database.
+                     </p>
+                     <div class="infoboxnotealso" id="GUID-91C38427-5EC0-43E8-A455-A6821FBDC9EB__GUID-0AD3D47F-E6DE-40D9-BFD2-F09F0D41719F">
+                        <p class="notep1">See Also:</p>
+                        <p><a href="bulk-copy-classes.html#GUID-D22429BA-AB13-4BFF-831E-C2C18ACEC378">Oracle Data Provider for .NET Bulk Copy Classes</a></p>
+                     </div>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

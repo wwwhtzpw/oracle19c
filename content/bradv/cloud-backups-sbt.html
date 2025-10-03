@@ -1,0 +1,125 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Setting Up RMAN for Cloud Backup and Restores">
+      <meta name="abstract" content="This part describes how to implement a persistent cloud backup strategy using RMAN.">
+      <meta name="description" content="This part describes how to implement a persistent cloud backup strategy using RMAN.">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="K. Weill">
+      <meta name="DC.Creator" content="L. Ashdown">
+      <meta name="DC.Creator" content="T. Bednar">
+      <meta name="DC.Creator" content="A. Beldalker">
+      <meta name="DC.Creator" content="T. Chien">
+      <meta name="DC.Creator" content="M. Dilman">
+      <meta name="DC.Creator" content="S. Fogel">
+      <meta name="DC.Creator" content="R. Guzman">
+      <meta name="DC.Creator" content="S. Haisley">
+      <meta name="DC.Creator" content="W. Hu">
+      <meta name="DC.Creator" content="A. Hwang">
+      <meta name="DC.Creator" content="A. Joshi">
+      <meta name="DC.Creator" content="V. Krishnaswamy">
+      <meta name="DC.Creator" content="J. W. Lee">
+      <meta name="DC.Creator" content="V. Moore">
+      <meta name="DC.Creator" content="M. Olagappan">
+      <meta name="DC.Creator" content="V. Panteleenko">
+      <meta name="DC.Creator" content="S. Ranganathan">
+      <meta name="DC.Creator" content="F. Sanchez">
+      <meta name="DC.Creator" content="Kelly D. Smith">
+      <meta name="DC.Creator" content="V. Srihari">
+      <meta name="DC.Creator" content="M. Susairaj">
+      <meta name="DC.Creator" content="M. Stewart">
+      <meta name="DC.Creator" content="S. Wertheimer">
+      <meta name="DC.Creator" content="W. Yang">
+      <meta name="DC.Creator" content="R. Zijlstra">
+      <meta name="DC.Creator" content="Ramya P">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Orientation">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-55952963-AC6F-457F-A893-3EED29952857">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="This part describes how to implement a persistent cloud backup strategy using RMAN.">
+      <meta name="description" content="This part describes how to implement a persistent cloud backup strategy using RMAN.">
+      <title>Setting Up RMAN for Cloud Backup and Restores</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Backup and Recovery User's Guide">
+      <meta property="og:description" content="This part describes how to implement a persistent cloud backup strategy using RMAN.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Backup and Recovery User's Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-backup-and-recovery-users-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-22T05:13:41-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2024, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96241-21">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="rman-transporting-data-across-platforms.html" title="Previous" type="text/html">
+      <link rel="next" href="rman-backup-cloud.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database Backup and Recovery User's Guide">
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="BRADV">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Setting Up RMAN for Cloud Backup and Restores","description":"This part describes how to implement a persistent cloud backup strategy using RMAN.","datePublished":"2025-07-22 CST","dateModified":"2025-07-22 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="rman-transporting-data-across-platforms.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="rman-backup-cloud.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-55952963-AC6F-457F-A893-3EED29952857" name="GUID-55952963-AC6F-457F-A893-3EED29952857"></a>
+         
+         <h2 id="BRADV-GUID-55952963-AC6F-457F-A893-3EED29952857" class="sect2"><span class="enumeration_part">Part VIII </span>Setting Up RMAN for Cloud Backup
+        and Restores
+         </h2>
+         <div class="ind">
+            <div>
+               <p>This part describes how to implement a persistent cloud backup strategy
+                using RMAN. </p>
+               <div class="p">The following chapters describe the Oracle-supplied cloud backup
+                        modules and the procedure to integrate RMAN with each module so that you can
+                        directly backup your Oracle Database to a preferred cloud
+                                destination.
+                  <div class="infoboxnote" id="GUID-55952963-AC6F-457F-A893-3EED29952857__GUID-CD4D9629-8C75-4606-A311-0B85CBF4B7B3">
+                     <p class="notep1">Note:</p>The information
+                                provided in this section applies to Oracle Database 19c Release 27
+                                (19.27) and later releases. 
+                  </div>
+                  <ul style="list-style-type: disc;" id="GUID-55952963-AC6F-457F-A893-3EED29952857__UL_GJX_BXW_K2C">
+                     <li><a href="rman-backup-cloud.html#GUID-B1EBFA43-F75F-4E2A-BC50-4FD570868332" title="Using an off-site storage location, such as public cloud, can be an important part of your Oracle Database backup strategy. Cloud backups are always accessible over the Internet and are immediately available for recovery purposes when needed.">Backing Up an Oracle Database to Cloud</a></li>
+                     <li><a href="rman-cloud-settings.html#GUID-8D0CBFB9-63C0-4141-A838-9611D77FF7BB" title="After you install the Oracle Database Cloud Backup Module, use the RMAN CONFIGURE command to create a persistent RMAN configuration for cloud backup and restore operations.">Persistent Settings for RMAN Cloud Backups</a></li>
+                     <li><a href="backup-cloud-oci.html#GUID-52D314EB-40D7-444A-A73B-8DB9EFF92A3E" title="Oracle Database Backup Cloud Service is a secure, scalable, on-demand storage solution for backing up Oracle Databases to Oracle Cloud. The service complements your existing backup strategy by providing an off-site storage location in the public cloud.">Oracle Database Backup Cloud Service</a></li>
+                     <li><a href="azure-sbt-module.html#GUID-24B1BDAC-B4C4-4C1D-8519-27BF7AD5BC53" title="Use the Oracle Database Cloud Backup Module for Azure to backup your Oracle Databases to Microsoft Azure Cloud Storage using RMAN.">Oracle Database Cloud Backup Module for Azure</a></li>
+                     <li><a href="backup-cloud-osb.html#GUID-F187E3A0-EA0E-49DA-B075-4FE7C5846A32" title="The Oracle Secure Backup (OSB) Cloud Module enables you to take advantage of internet-based data storage services offered by Amazon Simple Storage Service (S3) for RMAN backup and recovery tasks.">Oracle Secure Backup Cloud Module for Amazon S3</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

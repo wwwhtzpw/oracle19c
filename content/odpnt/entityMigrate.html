@@ -1,0 +1,111 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Migrating Existing Entity Framework 5 Applications to Entity Framework 6</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="entityDataTypeMapping.html" title="Previous" type="text/html">
+      <link rel="next" href="entityCodeFirst.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="entityDataTypeMapping.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="entityCodeFirst.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="entity_framework.html" property="item" typeof="WebPage"><span property="name">ADO.NET Entity Framework and LINQ to Entities</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Migrating Existing Entity Framework 5 Applications to Entity Framework 6</li>
+            </ol>
+            <a id="GUID-2A2E0DB7-DDFC-4065-B2D2-EDE08B50509A" name="GUID-2A2E0DB7-DDFC-4065-B2D2-EDE08B50509A"></a><a id="ODPNT8471"></a>
+            
+            <h2 id="ODPNT-GUID-2A2E0DB7-DDFC-4065-B2D2-EDE08B50509A" class="sect2">Migrating Existing Entity Framework 5 Applications to Entity Framework 6</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>To migrate existing Database First Entity Framework 5 applications to Entity Framework 6, use the following instructions. The first four steps are generic to all Entity Framework applications. The last four steps are specific to Oracle deployments.</p>
+               <ol>
+                  <li>
+                     <p>Uninstall Entity Framework 5 in Visual Studio Package Manager Console. For example, </p>
+                     <p><code class="codeph">Uninstall-Package EntityFramework</code></p>
+                  </li>
+                  <li>
+                     <p>Install Entity Framework 6 in Package Manager Console. For example,</p>
+                     <p><code class="codeph">Install-Package EntityFramework -Version 6.0.2</code></p>
+                     <p>This step adds Entity Framework 6 to the <code class="codeph">configSections</code> entry and adds a new section called <code class="codeph">entityFramework</code>. 
+                     </p>
+                  </li>
+                  <li>
+                     <p>Delete the following namespaces from your application:</p><pre class="oac_no_warn" dir="ltr">// C# 
+using System.Data.EntityClient; 
+using System.Data.Objects;
+</pre></li>
+                  <li>
+                     <p>Add the following namespaces to your application:</p><pre class="oac_no_warn" dir="ltr">// C# 
+using System.Data.Entity.Core.EntityClient;
+using System.Data.Entity.Core.Objects;
+</pre></li>
+                  <li>
+                     <p>Add the Oracle Entity Framework 6 provider configuration information to the .NET config file in the <code class="codeph">providers</code> section. Modify the ODP.NET version if using a version besides 6.121.2.0. If you installed the ODP.NET NuGet package, you can skip this step as the NuGet install has already added made this change.
+                     </p><pre class="oac_no_warn" dir="ltr">&lt;provider invariantName="Oracle.DataAccess.Client" type="Oracle.DataAccess.EntityFramework.EFOracleProviderServices,Oracle.DataAccess.EntityFramework, Version=6.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342" /&gt;
+</pre><pre class="oac_no_warn" dir="ltr">&lt;provider invariantName="Oracle.ManagedDataAccess.Client" type="Oracle.ManagedDataAccess.EntityFramework.EFOracleProviderServices,Oracle.ManagedDataAccess.EntityFramework, Version=6.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342" /&gt;
+</pre></li>
+                  <li>
+                     <p>Add the <code class="codeph">Oracle.ManagedDataAccess.EntityFramework</code> or <code class="codeph">Oracle.DataAccess.EntityFramework</code> assembly as a reference to the project.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Modify the Oracle data type to .NET data type mappings as required by your application. See <span class="q">"<a href="entityDataTypeMapping.html#GUID-4C48988B-CEA2-4193-95AC-949CCE90D601">Entity Framework 6 Mapping and Customization</a>"</span> for more details.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Rebuild the application.</p>
+                  </li>
+               </ol>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

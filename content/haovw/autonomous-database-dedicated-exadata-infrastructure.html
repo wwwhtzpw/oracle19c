@@ -1,0 +1,880 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Oracle MAA for Oracle Autonomous Database on Dedicated Exadata Infrastructure">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Orientation">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-402F489C-400A-4E59-B261-971FE73B4440">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <title>Oracle MAA for Oracle Autonomous Database on Dedicated Exadata Infrastructure</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="oracle-maximum-availability-architecture-and-oracle-autonomous-database.html" title="Previous" type="text/html">
+      <link rel="next" href="autonomous-database-serverless.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Oracle MAA for Oracle Autonomous Database on Dedicated Exadata Infrastructure","description":"","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="oracle-maximum-availability-architecture-and-oracle-autonomous-database.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="autonomous-database-serverless.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-402F489C-400A-4E59-B261-971FE73B4440" name="GUID-402F489C-400A-4E59-B261-971FE73B4440"></a>
+         
+         <h2 id="HAOVW-GUID-402F489C-400A-4E59-B261-971FE73B4440" class="sect2">Oracle MAA for Oracle Autonomous
+                Database on Dedicated Exadata Infrastructure</h2>
+         <div class="ind">
+            <div>
+               <p></p>
+            </div>
+            <div class="sect2"><a id="GUID-7E9E848B-9730-42A6-9132-68B235894C9E" name="GUID-7E9E848B-9730-42A6-9132-68B235894C9E"></a><h3 id="HAOVW-GUID-7E9E848B-9730-42A6-9132-68B235894C9E" class="sect3">Autonomous Database Dedicated with
+        Default High Availability Option (MAA Silver)</h3>
+               <div>
+                  <p>High availability is suitable for all development, test, and production
+        databases that have high uptime requirements and zero or low data loss
+        tolerance.</p>
+                  <p>By default, Autonomous Database is highly available, incorporating a multi-node
+            configuration to protect against localized software and hardware failures.</p>
+                  <p>Each Autonomous Database application service resides in at least one Oracle Real
+            Application Clusters (Oracle RAC) instance, with the option to fail over to another
+            available Oracle RAC instance for unplanned outages or planned maintenance activities,
+            enabling zero or near-zero downtime.</p>
+                  <p>Autonomous Database automatic backups are stored in Oracle Cloud Infrastructure Object
+            Storage, and are replicated to another available domain if available. For Autonomous
+            Database with Exadata Cloud at Customer, you have the option to back up to NFS, Oracle
+            Cloud Infrastructure Object Storage, or Zero Data Loss Recovery Appliance (ZDLRA);
+            however, replication of those backups in NFS or ZDLRA is the responsibility of the
+            customer. </p>
+                  <p>You can set up Automatic Backups with varying backup retention policy/period or on-demand
+            manual backups including long-term backups. These backups can be used to restore the
+            database in the event of a disaster. See <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbcm/index.html#articletitle" target="_blank">Backup and Restore Autonomous Database on Dedicated
+                Exadata Infrastructure</a></p>
+                  <p>The uptime service-level objective (SLOs) per month is 99.95% (a maximum of
+            22 minutes of downtime per month). To achieve the application uptime SLAs where most
+            months would be zero downtime, see <a href="autonomous-database-dedicated-exadata-infrastructure.html#GUID-62D0C46D-6E5D-46B5-A7CC-B6EBFF6EAF53" title="Ensure that network connectivity to Oracle Cloud Infrastructure is reliable so that you can access your tenancy's Autonomous Database resources.">Preparing Application for Seamless Application Failover</a>.
+                  </p>
+                  <p>The following table describes the recovery-time objectives and recovery-point objectives
+            (data loss tolerance) for different outages.</p>
+                  <div class="tblformalwide" id="GUID-7E9E848B-9730-42A6-9132-68B235894C9E__TABLE_PCK_R1S_LRB">
+                     <p class="titleintable">Table 33-1 Default High Availability Policy
+                Recovery Time (RTO) and Recovery Point (RPO) Service-level Objectives for Autonomous
+                Database Dedicated</p>
+                     <table cellpadding="4" cellspacing="0" class="FormalWide" title="Default High Availability Policy&#xA;                Recovery Time (RTO) and Recovery Point (RPO) Service-level Objectives for Autonomous&#xA;                Database Dedicated" summary="a list of failure and maintenance events with expected downtime and data&#xA;                loss" width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d82549e66">Failure and Maintenance Events</th>
+                              <th align="left" valign="bottom" width="0%" id="d82549e68">Database Downtime</th>
+                              <th align="left" valign="bottom" width="0%" id="d82549e70">Service-level Downtime (RTO)</th>
+                              <th align="left" valign="bottom" width="0%" id="d82549e72">Potential Service-level Data Loss (RPO)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d82549e76" headers="d82549e66 ">
+                                 
+                                 <p>Localized events, including:</p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-7E9E848B-9730-42A6-9132-68B235894C9E__UL_RWX_S1S_LRB">
+                                    <li>Exadata cluster network topology failures</li>
+                                    <li>Storage (disk and flash) failures</li>
+                                    <li>Database instance failures</li>
+                                    <li>Database server failures</li>
+                                    <li>Periodic software and hardware maintenance updates</li>
+                                 </ul>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d82549e76 d82549e68 ">
+                                 
+                                 <p>Zero</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d82549e76 d82549e70 ">
+                                 
+                                 <p>Near-zero</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d82549e76 d82549e72 ">
+                                 
+                                 <p>Zero</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d82549e109" headers="d82549e66 ">
+                                 
+                                 <p>Events that require restoring from backup because a
+                                standby database does not exist:</p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-7E9E848B-9730-42A6-9132-68B235894C9E__UL_SWX_S1S_LRB">
+                                    <li>Data corruptions</li>
+                                    <li>Human error</li>
+                                    <li>Full database failures</li>
+                                    <li>Complete storage failures</li>
+                                    <li>Availability domain (AD) for multi-AD regions </li>
+                                 </ul>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d82549e109 d82549e68 ">
+                                 
+                                 <p>Minutes to hours</p>
+                                 
+                                 <p>(without Autonomous Data Guard)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d82549e109 d82549e70 ">
+                                 
+                                 <p>Minutes to hours</p>
+                                 
+                                 <p>(without Autonomous Data Guard)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d82549e109 d82549e72 ">
+                                 
+                                 <p>15 minutes for Autonomous Database on Dedicated
+                                Infrastructure(without Autonomous Data Guard)</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d82549e148" headers="d82549e66 ">
+                                 
+                                 <p>Events that require non-rolling software updates or database
+                                upgrades</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d82549e148 d82549e68 ">
+                                 
+                                 <p>Minutes to an hour for Autonomous Database on Dedicated
+                                Infrastructure</p>
+                                 
+                                 <p>(without Autonomous Data Guard)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d82549e148 d82549e70 ">
+                                 
+                                 <p>Minutes to an hour for Autonomous Database on Dedicated
+                                Infrastructure</p>
+                                 
+                                 <p>(without Autonomous Data Guard)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d82549e148 d82549e72 ">
+                                 
+                                 <p>Zero</p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <p>In the table above, the amount of downtime for events that require restoring from a
+            backup varies depending on the nature of the failure. In the most optimistic case,
+            physical block corruption is detected, and the block is repaired with block media
+            recovery in minutes. In this case, only a small portion of the database is affected with
+            zero data loss. In a more pessimistic case, the entire database or cluster fails, then
+            the database is restored and recovered using the latest database backup, including all
+            archives.</p>
+                  <p>Data loss is limited by the last successful archive log backup, the frequency of which is
+            every 15 minutes for Autonomous Database on Dedicated Exadata Infrastructure. Archive or
+            redo logs are backed up to Oracle Cloud Infrastructure Object Storage, or any supported
+            Autonomous Database on Dedicated Exadata Infrastructure backup destination. Data loss
+            can be seconds, or, at worst minutes of data loss, around the last successful archive
+            log and remaining redo in the online redo logs that were not archived to backup
+            destination.</p>
+                  <p>All local failures incur zero database downtime because of built-in Exadata
+            HA benefit and Oracle Cloud Infrastructure redundancy, and application brownouts are
+            near zero or less 10 seconds. Software and hardware maintenance updates can incur zero
+            database downtime and possible zero application impact because of online updates, Oracle
+            RAC rolling updates, and application failover best practices. See <a href="autonomous-database-dedicated-exadata-infrastructure.html#GUID-62D0C46D-6E5D-46B5-A7CC-B6EBFF6EAF53" title="Ensure that network connectivity to Oracle Cloud Infrastructure is reliable so that you can access your tenancy's Autonomous Database resources.">Preparing Application for Seamless Application Failover</a>. 
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-A0E336EC-AFBC-44BB-8FA8-70C60718626A" name="GUID-A0E336EC-AFBC-44BB-8FA8-70C60718626A"></a><h3 id="HAOVW-GUID-A0E336EC-AFBC-44BB-8FA8-70C60718626A" class="sect3">Autonomous Database Dedicated with
+        Autonomous Data Guard Option (MAA Gold)</h3>
+               <div>
+                  <p>Enable Autonomous Data Guard for mission-critical production databases
+        that require better uptime requirements for disasters from data corruptions, and database or
+        site failures, while still reaping the Autonomous Database High Availability Option
+        benefits. Additionally, a read-only standby database provides expanded application services
+        to offload reporting, queries, and some updates.</p>
+                  <p>You can also convert your physical standby database to a snapshot standby, but that
+            impacts your Recovery Time Objective (RTO) if you have to switchover or failover to that
+            specific standby.</p>
+                  <p>Enabling Autonomous Data Guard adds one symmetric standby database to an Exadata rack
+            that is located in the same availability domain, another availability domain, or in
+            another region. The primary and standby database systems are configured symmetrically to
+            ensure that performance service levels are maintained after Data Guard role transitions.
+            Up to two standby databases are supported. </p>
+                  <p>For additional protection, a typical MAA Gold architecture consists of a local standby
+            with automatic failover enabled, and a cross-region standby for disaster recovery. For
+            more information about managing an Autonomous Data Guard configuration, see <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbcl/index.html#GUID-B86D1882-FC9E-41BF-9658-23CFAD91A666" target="_blank">View the Status of an Autonomous Data Guard
+                Configuration</a></p>
+                  <p>To meet bound Recovery Time Objectives (RTO) and Recovery Point Objectives
+            (RPO) service-level objectives for database, cluster, or even site failures, enable
+            Automatic Failover in the OCI Console Autonomous Data Guard Settings (see <a href="autonomous-database-dedicated-exadata-infrastructure.html#GUID-F26E02AD-6C95-442C-AF75-6D856ED3012A" title="You can update the settings of an Autonomous Data Guard standby from the details page of the primary Autonomous Container Database in the configuration.">Updating Autonomous Data Guard Settings</a>). You can choose which standby you want as the automatic failover target by updating
+            Autonomous Data Guard Settings.
+                  </p>
+                  <p>If RPO=0 or zero data loss is required, MAA customers typically deploy a local standby
+            where the standby database is placed within the same availability domain or in a
+            different availability domain in the same region. MAA recommends placing the standby in
+            a separate availability domain if available. The round-trip latency between availability
+            domains is typically less 1 millisecond, which in most cases has minimum application
+            performance impact. </p>
+                  <p>MAA recommends evaluating zero data loss configuration or Maximum Availability protection
+            mode with Data Guard synchronous transport mode to ensure acceptable performance. If
+            your RPO is near zero or minimum data loss is acceptable, you can choose any standby
+            database to enable automatic failover, and configure a fast start failover lag limit to
+            bound maximum data loss before initiating automatic failover. </p>
+                  <p>If the target is a cross-region standby and cross-region disaster recovery orchestration
+            is required, MAA recommends enabling OCI Full Stack Disaster Recovery service where
+            applicable to orchestrate database, application, and possibly network DNS failover and
+            switchover operations. See <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/ufcif/index.html" target="_blank">Use OCI Full Stack Disaster Recovery on Autonomous
+                Database on Dedicated Exadata infrastructure</a>.
+                  </p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-A0E336EC-AFBC-44BB-8FA8-70C60718626A__GUID-9D386048-FE6B-4234-BC98-348BE8F83288">Backups</p>
+                     
+                     
+                     <p>Backups are scheduled automatically for the standby database, and they are stored in
+                Oracle Cloud Infrastructure Object Storage. </p>
+                     
+                     <p>Autonomous Database with Exadata Cloud at Customer provides you with an option to
+                backup to NFS, Oracle Cloud Infrastructure Object Storage, or Zero Data Loss
+                Recovery Appliance; however, replication of those backups is your responsibility.
+                Those backups can be used to restore databases in the event of a double disaster,
+                where both primary and standby databases are lost. </p>
+                     
+                     <p>You can set up Automatic Backups with varying backup retention policy/period or
+                on-demand manual backups including long-term backups. See <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbcm/index.html#articletitle" target="_blank">Backup and Restore Autonomous Database on
+                    Dedicated Exadata Infrastructure</a>.
+                     </p>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-A0E336EC-AFBC-44BB-8FA8-70C60718626A__GUID-787D966E-52AD-4594-977D-02345FCB1153">Autonomous Data Guard Recovery Time (RTO) and Recovery Point (RPO) Service-level
+                Objectives</p>
+                     
+                     
+                     <p>The uptime service-level objective (SLO) per month is 99.995% (maximum 132 seconds of
+                downtime per month) and recovery time objectives (downtime) and recovery point
+                objectives (data loss) are low, as described in the table below. </p>
+                     
+                     <p>To achieve the application uptime SLAs where most months would be zero
+                downtime, see <a href="autonomous-database-dedicated-exadata-infrastructure.html#GUID-62D0C46D-6E5D-46B5-A7CC-B6EBFF6EAF53" title="Ensure that network connectivity to Oracle Cloud Infrastructure is reliable so that you can access your tenancy's Autonomous Database resources.">Preparing Application for Seamless Application Failover</a>. The target uptime SLO 99.995 applies to container databases with less 25
+                pluggable databases and does not include 30 seconds default detection time for
+                automatic failover to standby.
+                     </p>
+                     
+                     <div class="tblformalwide" id="GUID-A0E336EC-AFBC-44BB-8FA8-70C60718626A__TABLE_YDS_DCS_LRB">
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title summary="a list of failure and maintenance events and their expected&#xA;                    downtime and data loss" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="0%" id="d82549e275">Failure and Maintenance Events</th>
+                                 <th align="left" valign="bottom" width="0%" id="d82549e277">Service-level Downtime (RTO)<sup>1</sup></th>
+                                 <th align="left" valign="bottom" width="0%" id="d82549e281">Potential Service-level Data Loss (RPO)</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d82549e285" headers="d82549e275 ">
+                                    
+                                    <p>Localized events, including:</p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-A0E336EC-AFBC-44BB-8FA8-70C60718626A__UL_JGN_2CS_LRB">
+                                       <li>Exadata cluster network fabric failures</li>
+                                       <li>Storage (disk and flash) failures</li>
+                                       <li>Database instance failures</li>
+                                       <li>Database server failures</li>
+                                       <li>Periodic software and hardware maintenance updates on
+                                        primary or standby</li>
+                                    </ul>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e285 d82549e277 ">
+                                    
+                                    <p>Zero or Near Zero</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e285 d82549e281 ">
+                                    
+                                    <p>Zero</p>
+                                    
+                                    <div class="infoboxnote" id="GUID-A0E336EC-AFBC-44BB-8FA8-70C60718626A__GUID-E11F5606-DC17-4CF3-8204-2C42AEE577DF">
+                                       <p class="notep1">Note:</p>Maintenance is typically applied on the standby first. For
+                                    database software updates, the standby software is applied
+                                    first, and after approximately a week the primary database
+                                    software is updated.
+                                    </div>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d82549e316" headers="d82549e275 ">
+                                    
+                                    <p>Events that require failover to the standby database
+                                    using Autonomous Data Guard, including:</p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-A0E336EC-AFBC-44BB-8FA8-70C60718626A__UL_MZW_CCQ_4FC">
+                                       <li>Data corruptions (because Active Data Guard has automatic
+                                        block repair for physical corruptions2, a failover operation
+                                        is required only for logical corruptions or extensive data
+                                        corruptions)</li>
+                                       <li>Full database failures</li>
+                                       <li>Complete storage failures</li>
+                                       <li>Availability domain or region failures3</li>
+                                    </ul>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e316 d82549e277 ">
+                                    
+                                    <p>A few seconds to two minutes<sup>4</sup></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e316 d82549e281 ">
+                                    
+                                    <p>Zero with maximum availability protection mode (uses synchronous
+                                    redo transport). Most commonly used for intra-region standby
+                                    databases.</p>
+                                    
+                                    <p>Near zero for maximum performance protection mode (uses
+                                    asynchronous redo transport). Most commonly used for
+                                    cross-region standby databases. Also used for intra-regional
+                                    standby databases and to ensure zero application impact. RPO is
+                                    typically less than 10 seconds. RPO can be impacted by network
+                                    bandwidth and workload throughput between primary and standby
+                                    clusters.</p>
+                                    
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     
+                     <p><sup>1</sup> Service-Level Downtime (RTO) excludes detection time that includes
+                multiple heartbeats to ensure the source is indeed inaccessible before initiating an
+                automatic failover.
+                     </p>
+                     
+                     <p><sup>2</sup> The Active Data Guard automatic block repair for physical corruptions
+                feature is only available for Autonomous Data Guard on Dedicated Infrastructure.
+                     </p>
+                     
+                     <p><sup>3</sup> Regional failure protection is only available if the standby is located
+                in another region.
+                     </p>
+                     
+                     <p><sup>4</sup> The back-end Autonomous Data Guard role transition timings are much
+                faster than indicated by the Cloud Console refresh rates.
+                     </p>
+                     
+                     <p>Autonomous Database on Dedicated Infrastructure has been MAA Gold validated and
+                certified. Autonomous Database on Dedicated Infrastructure was validated with a
+                standby database in the same region, and also with a standby database in a different
+                region, and the above SLOs were met when the standby target was symmetric to the
+                primary. RTO and RPO SLOs were met with redo rates of up to 1100 MB/sec. </p>
+                     
+                     <p>Depending on workload, you may have to scale your Autonomous Exadata VM Cluster
+                system resource on either the primary or standby clusters. Follow the instructions
+                in <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbcj/index.html#ADBCJ-GUID-574B2EC9-A13B-47EB-92F5-0B4D034A1B12" target="_blank">Manage Autonomous Exadata VM Cluster
+                    Resources</a>.
+                     </p>
+                     
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-F26E02AD-6C95-442C-AF75-6D856ED3012A" name="GUID-F26E02AD-6C95-442C-AF75-6D856ED3012A"></a><h4 id="HAOVW-GUID-F26E02AD-6C95-442C-AF75-6D856ED3012A" class="sect4">Updating Autonomous Data Guard
+        Settings</h4>
+                  <div>
+                     <p>You can update the settings of an Autonomous Data Guard standby from the
+        details page of the primary Autonomous Container Database in the configuration.</p>
+                     <div class="p">
+                        
+                        <p>Required IAM Policies:</p>
+                        <pre class="pre codeblock"><code>use autonomous-container-databases</code></pre>
+                        </div>
+                     <div class="section">
+                        
+                        <ol id="GUID-F26E02AD-6C95-442C-AF75-6D856ED3012A__OL_RPP_31Q_4FC">
+                           <li>
+                              
+                              <p>Go to the details page of the primary Autonomous Container
+                        Database in the Autonomous Data Guard configuration.</p>
+                              
+                              <p>For instructions, see <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbck/index.html" target="_blank">View Details of an
+                            Autonomous Container Database</a>.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Click <span class="bold">Update Autonomous Data Guard</span> from <span class="bold">More
+                            actions</span>.
+                              </p>
+                              
+                              <p>The Update Autonomous Data Guard dialog displays the current
+                        settings for Protection Mode and Automatic Failover.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>You can make the following updates from this dialog:</p>
+                              
+                              <ol type="a" id="GUID-F26E02AD-6C95-442C-AF75-6D856ED3012A__OL_SPP_31Q_4FC">
+                                 <li>
+                                    
+                                    <p><span class="bold">Protection mode</span>: Select Maximum performance or
+                                Maximum availability from the drop-down list.
+                                    </p>
+                                    
+                                 </li>
+                                 <li>
+                                    
+                                    <p><span class="bold">Automatic failover:</span> To bound RTO and RPO,
+                                automatic failover needs to be enabled.
+                                    </p>
+                                    
+                                    <p>If automatic failover is not enabled already, you can
+                                enable it by selecting <span class="bold">Enable automatic failover</span>. Similarly,
+                                you can deselect <span class="bold">Enable automatic failover</span> to disable
+                                automatic failover for this Autonomous Data Guard setup. 
+                                    </p>
+                                    
+                                    <p>If one of your standby databases is in the same region
+                                as the primary database, and the second is in a different region,
+                                the local standby database is prioritized over the remote standby as
+                                the automatic failover target. When you enable automatic failover,
+                                any of the standby databases is considered for the automatic
+                                failover target.</p>
+                                    
+                                    <div class="infoboxnote" id="GUID-F26E02AD-6C95-442C-AF75-6D856ED3012A__GUID-8FE80CF8-BA32-4A2D-A441-B8F7218F1157">
+                                       <p class="notep1">Note:</p>You can not enable
+                                Automatic Failover for databases with cross-region Autonomous Data
+                                Guard setup on Exadata Cloud@Customer deployments.
+                                    </div>
+                                    
+                                 </li>
+                                 <li>
+                                    
+                                    <p><span class="bold">Fast start failover lag limit:</span> If automatic
+                                failover is enabled and the protection mode is Maximum Performance,
+                                the Fast Start Failover lag limit value is displayed in seconds. By
+                                default, this value is set to 30 seconds, but you can change it to
+                                any value between 5 and 3600 seconds.
+                                    </p>
+                                    
+                                 </li>
+                              </ol>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Save your changes.</p>
+                              
+                           </li>
+                        </ol>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-5628F009-6AB0-4247-BA66-DB762C206F73" name="GUID-5628F009-6AB0-4247-BA66-DB762C206F73"></a><h4 id="HAOVW-GUID-5628F009-6AB0-4247-BA66-DB762C206F73" class="sect4">Autonomous Data Guard Life Cycle
+        Management</h4>
+                  <div>
+                     <p></p>
+                     <div class="section">
+                        
+                        <ol id="GUID-5628F009-6AB0-4247-BA66-DB762C206F73__OL_AMC_LFQ_4FC">
+                           <li>Setting up Standby or Adding Standby with Automatic Failover: see <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbcl/index.html#articletitle" target="_blank">Manage Autonomous Data Guard
+                        Configuration</a></li>
+                           <li>Monitoring Transport and Apply Lags
+                              <ol type="a" id="GUID-5628F009-6AB0-4247-BA66-DB762C206F73__OL_BMC_LFQ_4FC">
+                                 <li>You can view the Autonomous Data Guard details by selecting Autonomous
+                            Data Guard groups or Autonomous Data Guard associations under Resources.
+                            The Autonomous Data Guard table displays information about the peer
+                            container database, the current apply lag and transport lag, state, and
+                            last role change and creation dates. See <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/hkuka/#articletitle" target="_blank">Manage Primary and Standby Databases
+                                in an Autonomous Data Guard Configuration</a></li>
+                                 <li>Set alarms for <code class="codeph">ApplyLag</code> and
+                                <code class="codeph">TransportLag</code> to ensure the standby is in sync and
+                            protecting your primary database. See <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/lbdmm/index.html#GUID-B28C699E-0CBC-4843-8AB5-501BB0C160A9" target="_blank">Using the Console</a></li>
+                              </ol>
+                           </li>
+                           <li>Data Guard Role Transitions or Reinstate Standby: see Switchover or Failover
+                    topics in <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbcl/index.html#articletitle" target="_blank">Manage Autonomous Data Guard
+                        Configuration</a></li>
+                           <li>Automatic Failover Notifications can be set up using information in <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/arfad/index.html" target="_blank">Events for Autonomous Database on Dedicated
+                        Exadata Infrastructure</a></li>
+                        </ol>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-4900CA53-B2D2-4595-9717-F996E1D6EC4F" name="GUID-4900CA53-B2D2-4595-9717-F996E1D6EC4F"></a><h4 id="HAOVW-GUID-4900CA53-B2D2-4595-9717-F996E1D6EC4F" class="sect4">MAA Autonomous Data Guard RTO and
+        RPO Observations</h4>
+                  <div>
+                     <p></p>
+                     <p>The following table illustrates several configurations that MAA testing and evaluation
+            show achieve 99.995 SLOs. This was achieved after hundreds of role transitions with
+            various database and cluster outages.</p>
+                     <div class="tblformalwide" id="GUID-4900CA53-B2D2-4595-9717-F996E1D6EC4F__TABLE_V14_DGQ_4FC">
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title summary="MAA role transition testing and evaluation" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="0%" id="d82549e572">Primary Cluster</th>
+                                 <th align="left" valign="bottom" width="0%" id="d82549e574">Standby Cluster</th>
+                                 <th align="left" valign="bottom" width="0%" id="d82549e576">PDBs</th>
+                                 <th align="left" valign="bottom" width="0%" id="d82549e578">Data Files</th>
+                                 <th align="left" valign="bottom" width="0%" id="d82549e580">Services</th>
+                                 <th align="left" valign="bottom" width="0%" id="d82549e582">Timing (minutes)</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d82549e586" headers="d82549e572 ">2 Node</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e586 d82549e574 ">2 Node</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e586 d82549e576 ">1</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e586 d82549e578 ">14</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e586 d82549e580 ">2</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e586 d82549e582 "><span class="bold">1:18</span></td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d82549e600" headers="d82549e572 ">2 Node</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e600 d82549e574 ">2 Node</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e600 d82549e576 ">5</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e600 d82549e578 ">50</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e600 d82549e580 ">10</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e600 d82549e582 "><span class="bold">1:20</span></td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d82549e614" headers="d82549e572 ">2 Node</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e614 d82549e574 ">2 Node</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e614 d82549e576 ">25</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e614 d82549e578 ">300</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e614 d82549e580 ">250</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e614 d82549e582 "><span class="bold">1:44</span></td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d82549e628" headers="d82549e572 ">4 Node</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e628 d82549e574 ">4 Node</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e628 d82549e576 ">1</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e628 d82549e578 ">500</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e628 d82549e580 ">12</td>
+                                 <td align="left" valign="top" width="0%" headers="d82549e628 d82549e582 "><span class="bold">1:17</span></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4900CA53-B2D2-4595-9717-F996E1D6EC4F__GUID-C6F2769E-8EDA-401B-B74C-B7205B8BC7C9">Autonomous Data Guard Failover Improvements</p>
+                        
+                        
+                        <p>The tables below illustrate how role transition times have improved in Oracle
+                23ai.</p>
+                        
+                        <p><span class="bold">Large CDB with Single PDB: Data Guard Failover Improvements</span></p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-4900CA53-B2D2-4595-9717-F996E1D6EC4F__UL_HV3_PJQ_4FC">
+                           <li>
+                              
+                              <p>Data Guard configured with between primary Exadata (4 node RAC) and standby
+                        Exadata (4 node RAC) X9</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>CDB version 23.4 with one PDB, 500 data files, and 12 services</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Workload running: OLTP Swingbench against PDB during role transition</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Redo rate 100MB/second at CDB level with no lag</p>
+                              
+                           </li>
+                        </ul>
+                        
+                        <div class="tblformalwide" id="GUID-4900CA53-B2D2-4595-9717-F996E1D6EC4F__TABLE_SQQ_DKQ_4FC">
+                           <table cellpadding="4" cellspacing="0" class="FormalWide" title summary="large CDB with single PDB data guard failover improvements in Oracle 23ai&#xA;                    compared to Oracle 19c " width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="0%" id="d82549e689">Oracle release</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e691">Close to mount</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e693">Term recovery</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e695">Media recovery</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e697">Convert to primary</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e699">CDB open</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e701">PDB open + srv start</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e703">Total</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="0%" id="d82549e707" headers="d82549e689 ">Oracle 19c (19.22)</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e707 d82549e691 ">00:14</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e707 d82549e693 ">00:17</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e707 d82549e695 ">00:05</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e707 d82549e697 ">00:01</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e707 d82549e699 ">00:06</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e707 d82549e701 ">00:50</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e707 d82549e703 ">01:17</td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="0%" id="d82549e724" headers="d82549e689 ">Oracle 23ai (23.4) Release Label</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e724 d82549e691 ">00:04</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e724 d82549e693 ">00:07</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e724 d82549e695 ">00:08</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e724 d82549e697 ">00:01</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e724 d82549e699 ">00:06</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e724 d82549e701 ">00:07</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e724 d82549e703 "><span class="bold">00:29</span><p><span class="bold">(62% drop)</span></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        
+                        <p><span class="bold">CBD with 5 PDBs: Data Guard Failover Improvements</span></p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-4900CA53-B2D2-4595-9717-F996E1D6EC4F__UL_RFX_VKQ_4FC">
+                           <li>
+                              
+                              <p>Data Guard configured with between primary Exadata (2 node RAC) and standby
+                        Exadata (2 node RAC)</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>CDB version 23.4 with 5x PDB</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>50 total data files spread across the 5 PDBs</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>10 services - 2 per PDB</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Workload running: OLTP Swingbench against each PDB during role transition</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Redo rate ~60MB/second on the CDB</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>All improvements in timing have been the result of code fixes</p>
+                              
+                           </li>
+                        </ul>
+                        
+                        <div class="tblformalwide" id="GUID-4900CA53-B2D2-4595-9717-F996E1D6EC4F__TABLE_F2K_NLQ_4FC">
+                           <table cellpadding="4" cellspacing="0" class="FormalWide" title summary="CDB with 5 PDBS: role transition improvements from 19c to 23ai" width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="0%" id="d82549e801">Oracle release</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e803">Close to mount</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e805">Term recovery</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e807">Media recovery</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e809">Convert to primary</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e811">CDB open</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e813">PDB open + srv start</th>
+                                    <th align="left" valign="bottom" width="0%" id="d82549e815">Total</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="0%" id="d82549e819" headers="d82549e801 ">ExaCS Oracle 19c (19.18 + fixes)</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e819 d82549e803 ">00:19</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e819 d82549e805 ">00:25</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e819 d82549e807 ">00:05</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e819 d82549e809 ">00:01</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e819 d82549e811 ">00:15</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e819 d82549e813 ">00:24</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e819 d82549e815 ">)1:20</td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="0%" id="d82549e836" headers="d82549e801 ">Oracle 23ai (23.4) Release Label</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e836 d82549e803 ">00:02</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e836 d82549e805 ">00:03</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e836 d82549e807 ">00:01</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e836 d82549e809 ">00:01</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e836 d82549e811 ">00:04</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e836 d82549e813 ">00:04</td>
+                                    <td align="left" valign="top" width="0%" headers="d82549e836 d82549e815 "><span class="bold">00:15</span><p><span class="bold">(81% drop)</span></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-D81B6C8A-2501-4A6B-BA89-50F219FF698F" name="GUID-D81B6C8A-2501-4A6B-BA89-50F219FF698F"></a><h3 id="HAOVW-GUID-D81B6C8A-2501-4A6B-BA89-50F219FF698F" class="sect3">Autonomous Database with
+        Autonomous Data Guard Option and Oracle GoldenGate (MAA Platinum)</h3>
+               <div>
+                  <p>MAA Platinum with Autonomous Database on Dedicated Infrastructure is
+        configurable. No guaranteed SLAs are provided since the GoldenGate and application failover
+        configuration is manual.</p>
+                  <p>MAA Platinum or Never-Down Architecture, delivers near-zero recovery time objective (RTO,
+            or downtime incurred during an outage) and potentially zero or near zero recover point
+            objective (RPO, or data loss potential).</p>
+                  <p>The MAA Platinum with Autonomous Database on Dedicated Infrastructure ensures:</p>
+                  <ul style="list-style-type: disc;" id="GUID-D81B6C8A-2501-4A6B-BA89-50F219FF698F__UL_NSN_KWB_KBC">
+                     <li>RTO = zero or near-zero for all local failures</li>
+                     <li>RTO = zero or near-zero for disasters, such as database, cluster, or site failures,
+                achieved by redirecting the application to an Autonomous Database with Autonomous
+                Data Guard or Oracle GoldenGate replica</li>
+                     <li>Zero downtime maintenance for software and hardware updates</li>
+                     <li>Zero downtime database upgrade or application upgrade by redirecting the application
+                to an upgraded Oracle GoldenGate replica residing in a separate Autonomous Database
+                on Dedicated Infrastructure</li>
+                     <li>RPO = zero or near-zero data loss, depending on selecting the Oracle Data Guard
+                Maximum Availability or Maximum Performance protection modes with synchronous redo
+                transport in Autonomous Database with Autonomous Data Guard</li>
+                     <li>Fast re-synchronization and zero or near-zero RPO between Oracle GoldenGate source
+                and target databases after a disaster using Cloud MAA GoldenGate Hub and Oracle
+                GoldenGate best practices</li>
+                     <li>After any database failure, automatic failover to its standby database occurs
+                automatically using integrated Data Guard Fast-start Failover (FSFO). Subsequently,
+                automatic re-synchronization between Oracle GoldenGate source and target databases
+                resumes from the new primary after a role transition. For synchronous transport,
+                this leads to eventual zero data loss.</li>
+                  </ul>
+                  <p>Prerequisites:</p>
+                  <ul style="list-style-type: disc;" id="GUID-D81B6C8A-2501-4A6B-BA89-50F219FF698F__UL_OSN_KWB_KBC">
+                     <li>Autonomous Database on Dedicated Infrastructure must be running Oracle Database
+                software release 19.20 or later for GoldenGate conflict resolution support</li>
+                     <li>Autonomous Database with Autonomous Data Guard and automatic failover needs to be
+                configured for fast GoldenGate resynchronization after a disaster</li>
+                     <li>GoldenGate setup must be done manually according to Cloud MAA best practices</li>
+                     <li>Application failover to an available GoldenGate replica or a new primary database
+                must be configured. Currently, Global Data Services (GDS) cannot be used with an
+                Autonomous Database in this architecture.</li>
+                  </ul>
+               </div>
+               <div class="sect3"><a id="GUID-D39957E6-8E38-4DE3-B9E1-4FFE93DB4D27" name="GUID-D39957E6-8E38-4DE3-B9E1-4FFE93DB4D27"></a><h4 id="HAOVW-GUID-D39957E6-8E38-4DE3-B9E1-4FFE93DB4D27" class="sect4">Implementing the MAA Platinum Solution</h4>
+                  <div>
+                     <p>To achieve an MAA Platinum solution, review and leverage the technical
+        briefs and documentation referenced in the following steps.</p>
+                     <ol>
+                        <li><span>Review <a href="https://www.oracle.com/a/tech/docs/exadata-maa-platinum-focused.pdf" target="_blank">Oracle MAA Platinum Tier for Oracle
+                        Exadata</a> to understand MAA Platinum benefits and use cases.</span><ol type="a" id="GUID-D39957E6-8E38-4DE3-B9E1-4FFE93DB4D27__SUBSTEPS_KTY_QXB_KBC">
+                              <li><span>Decide primary database locations based on application needs. The
+                            primary database will reside in Autonomous Database on Dedicated
+                            Infrastructure.</span></li>
+                              <li><span>Decide standby database location based on fault isolation
+                            requirements.</span></li>
+                              <li><span>Enable Autonomous Data Guard. </span></li>
+                              <li><span>Choose Autonomous Data Guard protection mode based on RPO tolerance,
+                            and set up automatic failover. </span></li>
+                           </ol>
+                        </li>
+                        <li><span>Set up MAA GoldenGate Hub in Oracle cloud.</span><ol type="a" id="GUID-D39957E6-8E38-4DE3-B9E1-4FFE93DB4D27__SUBSTEPS_WMZ_XXB_KBC">
+                              <li class="substepexpand"><span>If all primary databases (GoldenGate replicas) are in the same region,
+                            see <a href="cloud-gghub-region.html#GUID-FB908805-CD78-4F0C-BB98-BF147E4E3727" title="Configure and deploy MAA Oracle GoldenGate Hub architecture within one region on Oracle Cloud using the provided planning considerations, tasks, management, and troubleshooting information.">Cloud Within Region: Configuring Oracle GoldenGate Hub for MAA Platinum</a>.</span><div>
+                                    
+                                    <p>If primary databases (GoldenGate replicas) are spread across 2
+                                regions, see <a href="cloud-gghub-regions.html#GUID-A3F05E29-1EB1-417B-9D55-6FEA47C86D2A" title="Configure and deploy MAA Oracle GoldenGate Hub architecture on Oracle Cloud using the provided planning considerations, tasks, management, and troubleshooting information.">Cloud Across Regions: Configuring Oracle GoldenGate Hub for MAA Platinum</a>.
+                                    </p>
+                                    
+                                 </div>
+                              </li>
+                              <li class="substepexpand"><span>Configure Bidirectional Replication and Automatic Conflict Detection
+                            and Resolution. See <a href="https://docs.oracle.com/en/middleware/goldengate/core/21.3/coredoc/quickstart-bidirectional-replication.html" target="_blank">Set Up Bidirectional Replication for
+                                Oracle GoldenGate Microservices Architecture</a> or the latest
+                                <a href="https://docs.oracle.com/en/middleware/goldengate/core/21.3/mabooks.html" target="_blank">Oracle GoldenGate 21c
+                                documentation</a>.</span></li>
+                           </ol>
+                        </li>
+                        <li><span>Configure custom application failover options so that your application can fail
+                    over automatically in the case of database, cluster, or site failure.</span></li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-62D0C46D-6E5D-46B5-A7CC-B6EBFF6EAF53" name="GUID-62D0C46D-6E5D-46B5-A7CC-B6EBFF6EAF53"></a><h3 id="HAOVW-GUID-62D0C46D-6E5D-46B5-A7CC-B6EBFF6EAF53" class="sect3">Preparing Application for Seamless
+        Application Failover</h3>
+               <div>
+                  <p>Ensure that network connectivity to Oracle Cloud Infrastructure is
+        reliable so that you can access your tenancy's Autonomous Database resources.</p>
+                  <p>Follow the guidelines to connect to your Autonomous Database (see <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbbd/index.html#articletitle" target="_blank">Autonomous Database on Dedicated Exadata
+                Infrastructure</a>). Applications must connect to the predefined service name and
+            download client credentials that include the proper <code class="codeph">tnsnsames.ora</code> and
+                <code class="codeph">sqlnet.ora</code> files. You can also change your specific application
+            service’s <code class="codeph">drain_timeout</code> attribute to fit your requirements.
+                  </p>
+                  <p>For more details about enabling continuous application service through
+            planned and unplanned outages, see <a href="Chunk964113041.html#GUID-5EBF37EA-48AB-4508-A14E-86A2583A24BF" title="Ensure that your applications are configured to quickly and automatically shift workload to available Oracle RAC instances or standby databases during planned maintenance and unplanned outages.">Configuring Continuous Availability for Applications</a>.
+                  </p>
+                  <p>For Exadata cloud planned maintenance events that require restarting
+            database instances, Oracle automatically relocates services and drain sessions to
+            another available Oracle RAC instance before stopping any Oracle RAC instance. For OLTP
+            applications that follow the MAA checklist, draining and relocating services results in
+            zero application downtime.</p>
+                  <p>Some applications, such as long-running batch jobs or reports, may not be able to drain
+            and relocate gracefully, even with a longer drain timeout. For those applications,
+            Oracle recommends that you schedule the software planned maintenance window excluding
+            these types of activities, or stop these activities before the planned maintenance
+            window. For example, you can reschedule a planned maintenance window so that it is
+            outside your batch windows, or stop batch jobs before a planned maintenance window. </p>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

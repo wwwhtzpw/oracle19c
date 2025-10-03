@@ -1,0 +1,869 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Registering Application Data Usage with the Database">
+      <meta name="DC.subject" content="registering application data usage, annotations, overview, annotations and comments, supported objects, privileges, annotation DDL statements topics, annotation syntax, DDL statments, tables, DDL statments, table columns, views and materialized views, indexes, dictionary table and views, dictionary table and views, querying dictionary views">
+      <meta name="keywords" content="registering application data usage, annotations, overview, annotations and comments, supported objects, privileges, annotation DDL statements topics, annotation syntax, DDL statments, tables, DDL statments, table columns, views and materialized views, indexes, dictionary table and views, dictionary table and views, querying dictionary views">
+      <meta name="DC.Contributor" content="Amith Kumar">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Tom Kyte">
+      <meta name="DC.Contributor" content="D. Adams">
+      <meta name="DC.Contributor" content="L. Ashdown">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="E. Paapanen">
+      <meta name="DC.Contributor" content="R. Strohm">
+      <meta name="DC.Contributor" content="R. Ward">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="G. Arora">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Day">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="G. Doherty">
+      <meta name="DC.Creator" content="A. Ganesh">
+      <meta name="DC.Creator" content="M. Hartstein">
+      <meta name="DC.Creator" content="Y. Hu">
+      <meta name="DC.Creator" content="J. Huang">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="N. Jain">
+      <meta name="DC.Creator" content="V. Krishnaswamy">
+      <meta name="DC.Creator" content="R. Kumar">
+      <meta name="DC.Creator" content="S. Kumar">
+      <meta name="DC.Creator" content="C. Lei">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="K. Mohan">
+      <meta name="DC.Creator" content="V. Moore">
+      <meta name="DC.Creator" content="J. Muller">
+      <meta name="DC.Creator" content="R. Murthy">
+      <meta name="DC.Creator" content="R. Pang">
+      <meta name="DC.Creator" content="B. Sinha">
+      <meta name="DC.Creator" content="S. Vemuri">
+      <meta name="DC.Creator" content="W. Wang">
+      <meta name="DC.Creator" content="D. Wong">
+      <meta name="DC.Creator" content="Jayashree Sharma">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-6F630041-B7AE-4183-9F97-E54682CA6319">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Registering Application Data Usage with the Database</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Development Guide">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Development Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-development-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-15T00:10:36-07:00">
+      <meta name="dcterms.title" content="Database Development Guide">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96334-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="sql-data-types.html" title="Previous" type="text/html">
+      <link rel="next" href="regexp.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="ADFNS">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Registering Application Data Usage with the Database","datePublished":"2025-07-15 CST","dateModified":"2025-07-15 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="sql-data-types.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="regexp.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-6F630041-B7AE-4183-9F97-E54682CA6319" name="GUID-6F630041-B7AE-4183-9F97-E54682CA6319"></a>
+         
+         <h2 id="ADFNS-GUID-6F630041-B7AE-4183-9F97-E54682CA6319" class="sect2"><span class="enumeration_chapter">10 </span>Registering Application Data Usage with the
+        Database
+         </h2>
+         <div class="ind">
+            <div>
+               <p>This chapter details how you can use a centralized database-centric entity called
+            schema annotations to register information about the intended application data
+            usage.</p>
+               <p>Oracle Database 19c introduces a centralized, database-centric approach to
+            handling intended data usage information using schema annotations. You can add schema
+            annotations centrally in the database to register data usage intent, which is then
+            accessible to various applications and tools.</p>
+               <div class="infoboxnotealso" id="GUID-6F630041-B7AE-4183-9F97-E54682CA6319__ORACLEDATABASECONCEPTSFORINFORMATIO-CA456CAE">
+                  <p class="notep1">See Also:</p>
+                  
+                  <ul style="list-style-type: disc;" id="GUID-6F630041-B7AE-4183-9F97-E54682CA6319__UL_PV1_4ZX_XWB">
+                     <li>
+                        
+                        <p><span class="italic">Oracle Database Concepts</span> for information about <a href="../cncpt/application-data-usage.html#CNCPT-GUID-D5D5615C-BB2C-4833-A9AF-6BAF0BF9CEC0" target="_blank">Schema Annotations</a></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="italic">Oracle Database SQL Language Reference</span> for the syntactic
+                        and semantic information about schema annotations
+                        </p>
+                        
+                     </li>
+                  </ul>
+                  
+               </div>
+               <div class="section">
+                  
+                  <ul style="list-style-type: disc;" id="GUID-6F630041-B7AE-4183-9F97-E54682CA6319__UL_SMD_GHY_XWB">
+                     <li>
+                        
+                        <p><a href="registering-application-data-usage-database.html#GUID-2DAF069E-0938-40AF-B05B-75AFE71D666C" title='This section explains how you can use schema annotations (hereinafter "annotations") for database objects.'>Schema Annotations</a></p>
+                        
+                     </li>
+                  </ul>
+                  
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-2DAF069E-0938-40AF-B05B-75AFE71D666C" name="GUID-2DAF069E-0938-40AF-B05B-75AFE71D666C"></a><h3 id="ADFNS-GUID-2DAF069E-0938-40AF-B05B-75AFE71D666C" class="sect3"><span class="enumeration_section">10.1 </span>Schema Annotations
+               </h3>
+               <div>
+                  <p>This section explains how you can use schema annotations (hereinafter
+        "annotations") for database objects.</p>
+                  <p>For many applications, it is important to maintain additional property
+            metadata for database objects such as tables, views, table columns, and indexes.
+            Annotations enable your applications to store and retrieve additional user-specific
+            metadata about database objects and table columns. Applications can use such metadata to
+            help render effective user interfaces and customize application logic.</p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-2DAF069E-0938-40AF-B05B-75AFE71D666C__GUID-74EFAD92-F3CD-400F-9CD5-00C55904AE0C">Topics:</p>
+                     
+                     
+                     <ul style="list-style-type: disc;" id="GUID-2DAF069E-0938-40AF-B05B-75AFE71D666C__UL_IJR_JMM_1VB">
+                        <li>
+                           
+                           <p><a href="registering-application-data-usage-database.html#GUID-DF156923-19A2-4B8C-8134-8CBC3039F72D" title="What are annotations and where can you use them?">Overview of Annotations</a></p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><a href="registering-application-data-usage-database.html#GUID-3EE1555A-2214-45DF-84A6-C06212A38E66">Annotations and Comments</a></p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><a href="registering-application-data-usage-database.html#GUID-0ADCF5F4-40E9-45B0-8B56-ACBD17CAE608" title="Annotations are supported for the following database objects.">Supported Database Objects</a></p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><a href="registering-application-data-usage-database.html#GUID-D7ED81F1-DA42-4FB8-9231-11BCFAE74383">Privileges Required for Using Annotations</a></p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><a href="registering-application-data-usage-database.html#GUID-1E79B6E4-FDDB-42EB-A8DE-D22493CD7F80" title="This section explains the annotation syntax and provides the DDL statements to define or alter annotations for tables, table columns, views, materialized views, and indexes.">DDL Statements for Annotations</a></p>
+                           
+                        </li>
+                     </ul>
+                     
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-DF156923-19A2-4B8C-8134-8CBC3039F72D" name="GUID-DF156923-19A2-4B8C-8134-8CBC3039F72D"></a><h4 id="ADFNS-GUID-DF156923-19A2-4B8C-8134-8CBC3039F72D" class="sect4"><span class="enumeration_section">10.1.1 </span>Overview of Annotations
+                  </h4>
+                  <div>
+                     <p>What are annotations and where can you use them?</p>
+                     <p>Annotations are a lightweight declarative facility for developers to
+            centrally register usage properties for database schema objects. Annotations are stored
+            in dictionary tables and are available to any application looking to standardize
+            behavior across common data in related applications. Annotations are not interpreted by
+            the database in any way. They are custom data properties for database metadata -
+            included for table columns, tables, and indexes, that applications can use as additional
+            property metadata to render user interfaces or customize application logic.</p>
+                     <p>Being a mechanism to define and store application metadata centrally in the
+            database, annotations enable you to share the metadata information across applications,
+            modules and microservices. You can add annotations to schema objects when you create new
+            objects (using the <code class="codeph">CREATE</code> statements) or modify existing objects (using
+            the <code class="codeph">ALTER</code> statements).
+                     </p>
+                     <p>Annotating the data model with metadata provides additional data integrity,
+            consistency and data model documentation benefits. Your applications can store
+            user-defined metadata for database objects and table columns that other applications or
+            users can retrieve and use. Storing the metadata along with the data guarantees
+            consistency and universal accessibility to any user or application that uses the
+            data.</p>
+                     <p>An individual annotation has a name and an optional value. The name and the
+            optional value are freeform text fields. For example, you can have an annotation with a
+            name and value pair, such as <code class="codeph">Display_Label ‘Employee Salary’</code>, or you
+            can have a standalone annotation with only a name, such as <code class="codeph">UI_Hidden</code>,
+            which does not need a value because the name is self-explanatory.
+                     </p>
+                     <p>The following are further details about annotations.</p>
+                     <ul style="list-style-type: disc;" id="GUID-DF156923-19A2-4B8C-8134-8CBC3039F72D__UL_LRC_VRX_Z5B">
+                        <li>
+                           
+                           <p>When an annotation name is specified for a schema object using the
+                        <code class="codeph">CREATE</code> DDL statement, an annotation is automatically
+                    created.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Annotations are additive, meaning that you can specify multiple annotations for
+                    the same schema object.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>You can add multiple annotations at once to a schema object using a
+                    single DDL statement. Similarly, a single DDL statement can drop multiple
+                    annotations from a schema object.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>An annotation is represented as a subordinate element to the database
+                    object to which the annotation is added. Annotations do not create a new object
+                    type inside the database.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>You can add annotations to any schema object that supports
+                    annotations provided you own or have alter privileges on the schema object. You
+                    do not need to schema qualify the annotation name.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>You can issue SQL queries on dictionary views to obtain all
+                    annotations, including their names and values, and their usage with schema
+                    objects.</p>
+                           
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-3EE1555A-2214-45DF-84A6-C06212A38E66" name="GUID-3EE1555A-2214-45DF-84A6-C06212A38E66"></a><h4 id="ADFNS-GUID-3EE1555A-2214-45DF-84A6-C06212A38E66" class="sect4"><span class="enumeration_section">10.1.2 </span>Annotations and Comments
+                  </h4>
+                  <div>
+                     <p>You can also annotate database objects such as tables and table columns using
+            the <code class="codeph">COMMENT</code> command. Comments that are associated with schema objects
+            are stored in data dictionaries along with the metadata of the objects.
+                     </p>
+                     <p>Annotations are simpler to use and have a broader scope than comments.
+            Following are the major differences between comments and annotations:</p>
+                     <ul style="list-style-type: disc;" id="GUID-3EE1555A-2214-45DF-84A6-C06212A38E66__UL_IFM_LDY_Z5B">
+                        <li>
+                           
+                           <p>Comments are a commenting mechanism used to add metadata to only
+                    certain schema objects, such as tables and columns. Comments are not available
+                    for other schema objects, such as indexes, procedures, and triggers.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Comments do not have a name, they have only a freeform value.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Comments are not additive meaning that you cannot add multiple
+                    comments for the same object. Specifying a new comment overwrites the prior
+                    comment for the corresponding table or column.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>You need separate DDL statements for comments whereas you can
+                    combine multiple annotations into one DDL statement.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>A separate set of dictionary views exists for different entities.
+                    For instance, there is a view for table comments and another view for column
+                    comments. Annotations, on the other hand, are unified across all object types,
+                    which makes them simpler to query and use.</p>
+                           
+                        </li>
+                     </ul>
+                     <div class="infoboxnotealso" id="GUID-3EE1555A-2214-45DF-84A6-C06212A38E66__GUID-3F122526-1005-4047-B34B-3ED864197A10">
+                        <p class="notep1">See Also:</p>
+                        
+                        <p><a href="../sqlrf/Comments.html#SQLRF-GUID-79B6B8FD-2DD4-471E-B9E0-0C8D20B058F6" target="_blank">Comments</a> for more information about using
+                    <code class="codeph">COMMENTS</code>.
+                        </p>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-0ADCF5F4-40E9-45B0-8B56-ACBD17CAE608" name="GUID-0ADCF5F4-40E9-45B0-8B56-ACBD17CAE608"></a><h4 id="ADFNS-GUID-0ADCF5F4-40E9-45B0-8B56-ACBD17CAE608" class="sect4"><span class="enumeration_section">10.1.3 </span>Supported Database Objects
+                  </h4>
+                  <div>
+                     <p>Annotations are supported for the following database objects.</p>
+                     <ul style="list-style-type: disc;" id="GUID-0ADCF5F4-40E9-45B0-8B56-ACBD17CAE608__UL_WVL_M3Y_Z5B">
+                        <li>
+                           
+                           <p>Tables and table columns</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Views and view columns</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Materialized views and materialized view columns</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Indexes</p>
+                           
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-D7ED81F1-DA42-4FB8-9231-11BCFAE74383" name="GUID-D7ED81F1-DA42-4FB8-9231-11BCFAE74383"></a><h4 id="ADFNS-GUID-D7ED81F1-DA42-4FB8-9231-11BCFAE74383" class="sect4"><span class="enumeration_section">10.1.4 </span>Privileges Required for Using
+        Annotations
+                  </h4>
+                  <div>
+                     <p>To add or drop annotations, you require the <code class="codeph">CREATE</code> or
+                <code class="codeph">ALTER</code> privilege on the schema object for which the annotation is
+            specified in the <code class="codeph">CREATE</code> or <code class="codeph">ALTER</code> DDL statements.
+                     </p>
+                     <p>You cannot create or remove annotations explicitly. Annotations are automatically
+            created when they are used for the first time. Since annotations are stored as
+            subordinate elements within the database object on which they are defined, adding
+            annotations does not create a new object type inside the database.</p>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-1E79B6E4-FDDB-42EB-A8DE-D22493CD7F80" name="GUID-1E79B6E4-FDDB-42EB-A8DE-D22493CD7F80"></a><h4 id="ADFNS-GUID-1E79B6E4-FDDB-42EB-A8DE-D22493CD7F80" class="sect4"><span class="enumeration_section">10.1.5 </span>DDL Statements for
+        Annotations
+                  </h4>
+                  <div>
+                     <p>This section explains the annotation syntax and provides the DDL statements
+        to define or alter annotations for tables, table columns, views, materialized views, and
+        indexes.</p>
+                     <p>Topics:</p>
+                     <ul style="list-style-type: disc;" id="GUID-1E79B6E4-FDDB-42EB-A8DE-D22493CD7F80__UL_JND_RBK_1VB">
+                        <li>
+                           
+                           <p><a href="registering-application-data-usage-database.html#GUID-907DAB18-2A4F-460B-9A38-A080CE8D1F7F" title="The following snippet illustrates the annotation syntax that is used in DDL statements to define annotations for tables, table columns, views, materialized views, and indexes.">Annotation Syntax</a></p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><a href="registering-application-data-usage-database.html#GUID-ED3BBF94-49CC-4182-B838-943000C33772" title="You can use the following DDL statements to annotate a table when creating or altering the table.">DDL Statements to Annotate a Table</a></p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><a href="registering-application-data-usage-database.html#GUID-D0B0EBD4-90B7-4180-8C95-3E9C38E290CD" title="You can use the following DDL statements to annotate a table column when creating or altering the table.">DDL Statements to Annotate a Table Column</a></p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><a href="registering-application-data-usage-database.html#GUID-7072D6D1-5948-44E4-96DA-58D5B7F2B8EC" title="You can use the following DDL statements to annotate a view and a materialized view.">DDL Statements to Annotate Views and Materialized Views</a></p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><a href="registering-application-data-usage-database.html#GUID-DB44028D-685C-4AC7-8129-05E6C01E69C5" title="You can use the following DDL statements to annotate an index.">DDL Statements to Annotate Indexes</a></p>
+                           
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="sect4"><a id="GUID-907DAB18-2A4F-460B-9A38-A080CE8D1F7F" name="GUID-907DAB18-2A4F-460B-9A38-A080CE8D1F7F"></a><h5 id="ADFNS-GUID-907DAB18-2A4F-460B-9A38-A080CE8D1F7F" class="sect5"><span class="enumeration_section">10.1.5.1 </span>Annotation Syntax
+                     </h5>
+                     <div>
+                        <p>The following snippet illustrates the annotation syntax that is used in
+        DDL statements to define annotations for tables, table columns, views, materialized views,
+        and indexes.</p><pre class="oac_no_warn" dir="ltr">annotations
+         ::= 'ANNOTATIONS' '(' annotations_list ')'
+
+annotations_list
+         ::= ( 'ADD' ('IF NOT EXISTS' | 'OR REPLACE' )? | 'DROP' 'IF EXISTS'? | REPLACE)?
+ annotation ( ',' ( 'ADD' ('IF NOT EXISTS' | 'OR REPLACE' )? | 'DROP' 'IF EXISTS'? | REPLACE)?
+ annotation )*
+
+annotation
+         ::= annotation_name annotation_value?
+
+annotation_name
+         ::= identifier
+
+annotation_value
+         ::= character_string_literal</pre><p>&lt;<code class="codeph">annotation_value</code>&gt; is a character string literal that can hold up
+            to 4000 characters.
+                        </p>
+                        <p>&lt;<code class="codeph">annotation_name</code>&gt; is an identifier and has the
+            following requirements:
+                        </p>
+                        <ul style="list-style-type: disc;" id="GUID-907DAB18-2A4F-460B-9A38-A080CE8D1F7F__UL_TQ2_SXC_1VB">
+                           <li>
+                              
+                              <p>An identifier can have up to 1024 characters.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>If an identifier is a reserved word, you must provide the annotation
+                    name in double quotes.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>An identifier with double quotes can contain white characters.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>An identifier that contains only white characters is not allowed.</p>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-ED3BBF94-49CC-4182-B838-943000C33772" name="GUID-ED3BBF94-49CC-4182-B838-943000C33772"></a><h5 id="ADFNS-GUID-ED3BBF94-49CC-4182-B838-943000C33772" class="sect5"><span class="enumeration_section">10.1.5.2 </span>DDL Statements to Annotate a
+        Table
+                     </h5>
+                     <div>
+                        <p>You can use the following DDL statements to annotate a table when creating
+        or altering the table.</p>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-ED3BBF94-49CC-4182-B838-943000C33772__GUID-4DE3D518-6BA8-453B-BE78-8468FB05FC3E">Using the <code class="codeph">CREATE TABLE
+                </code> Statement
+                           </p>
+                           
+                           
+                           <p>The following are examples of the <code class="codeph">CREATE TABLE</code> statement
+                with annotations.
+                           </p>
+                           
+                           <p>The following example adds an annotation: <code class="codeph">Operation</code>
+                with a JSON value, and another annotation: <code class="codeph">Hidden</code>, which is
+                standalone and has no value.
+                           </p>
+                           <pre class="oac_no_warn" dir="ltr">CREATE TABLE Table1 (
+  T NUMBER)
+  ANNOTATIONS(Operations '["Sort", "Group"]', Hidden);
+</pre>
+                           <p>Adding an annotation can be preceded by the <code class="codeph">ADD</code>
+                keyword. The <code class="codeph">ADD</code> keyword is considered to be the default operation,
+                if nothing is specified.
+                           </p>
+                           
+                           <p>The following example uses the optional <code class="codeph">ADD</code> keyword to
+                add the <code class="codeph">Hidden</code> annotation (which is also standalone) to
+                    <code class="codeph">Table2</code>.
+                           </p>
+                           <pre class="oac_no_warn" dir="ltr">CREATE TABLE Table2 (
+  T NUMBER)
+  ANNOTATIONS (ADD Hidden);</pre>
+                           <p>The <code class="codeph">ADD</code> keyword is an implicit operation when
+                annotations are defined, and can be omitted.
+                           </p>
+                           
+                        </div>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-ED3BBF94-49CC-4182-B838-943000C33772__GUID-9BA4F5ED-A76D-4381-9762-9411F691BD56">Using the <code class="codeph">ALTER TABLE
+                </code> Statement
+                           </p>
+                           
+                           
+                           <p>In the following example, the <code class="codeph">ALTER TABLE</code> command drops
+                all annotation values for the following annotation names:
+                    <code class="codeph">Operations</code> and <code class="codeph">Hidden</code>.
+                           </p>
+                           <pre class="oac_no_warn" dir="ltr">ALTER TABLE Table1
+  ANNOTATIONS(DROP Operations, DROP Hidden);</pre>
+                           <p>The following example has the <code class="codeph">ALTER TABLE</code> command to
+                add <code class="codeph">JoinOperations</code> annotation with <code class="codeph">Join</code> value, and
+                to drop the annotation name: <code class="codeph">Hidden</code>. When dropping an annotation,
+                you need to only include the annotation name with the <code class="codeph">DROP</code>
+                command.
+                           </p>
+                           <pre class="oac_no_warn" dir="ltr">ALTER TABLE Table1
+  ANNOTATIONS(ADD JoinOperations 'Join', DROP Hidden);</pre>
+                           <p>Due to the Hidden annotation being dropped in the earlier statement, the output is:
+                    <code class="codeph">ORA-11553: Annotation name 'HIDDEN' does not exist for the object
+                    'Table1'</code>. To avoid this error: when the annotation does not exist, you
+                can use the IF EXISTS clause.
+                           </p>
+                           <pre class="oac_no_warn" dir="ltr">ALTER TABLE Table1 ANNOTATIONS(ADD JoinOperations 'Join', DROP IF EXISTS Hidden);</pre>
+                           <p>Multiple <code class="codeph">ADD</code> and <code class="codeph">DROP</code> keywords can be
+                specified in one DDL statement.
+                           </p>
+                           
+                           <div class="p">Trying to re-add an annotation with a different value for the same object
+                (for object-level annotations) or for the same column (for column-level annotations)
+                raises an error. For instance, the following statement
+                fails:<pre class="oac_no_warn" dir="ltr">ALTER TABLE Table1
+  ANNOTATIONS(ADD JoinOperations 'Join Ops');</pre></div>
+                           
+                           <p>The output is:</p>
+                           <pre class="oac_no_warn" dir="ltr">ORA-11552: Annotation name 'JOINOPERATIONS' already exists for the object 'TABLE1'.</pre>
+                           <div class="p">As an alternative, the annotation syntax allows you to replace an
+                annotation value using the <code class="codeph">REPLACE</code> keyword. The following statement
+                replaces the value of <code class="codeph">JoinOperations</code> with '<code class="codeph">Join
+                    Ops</code>':<pre class="oac_no_warn" dir="ltr">ALTER TABLE Table1
+  ANNOTATIONS(REPLACE JoinOperations 'Join Ops');
+</pre></div>
+                           
+                           <p>The output is</p>
+                           <pre class="oac_no_warn" dir="ltr">Table altered.</pre>
+                           <div class="p">Alternatively, to avoid an error when an annotation already exists, you
+                can use the <code class="codeph">IF NOT EXISTS</code> clause. The following statement adds the
+                    <code class="codeph">JoinOperations</code> annotation only if it does not exist. If the
+                annotation exists, the annotation value is unchanged and no error is
+                raised.<pre class="oac_no_warn" dir="ltr">ALTER TABLE Table1
+  ANNOTATIONS(ADD IF NOT EXISTS JoinOperations 'Join Ops');</pre></div>
+                           
+                           <div class="p">Similarly, dropping a non-existent annotation raises an
+                error:<pre class="oac_no_warn" dir="ltr">ALTER TABLE Table1 ANNOTATIONS(DROP Title);
+</pre></div>
+                           
+                           <p>The output is:</p>
+                           <pre class="oac_no_warn" dir="ltr">ORA-11553: Annotation name 'TITLE' does not exist.</pre>
+                           <div class="p">To avoid the error, the <code class="codeph">IF EXISTS</code> clause can be used, as
+                follows:<pre class="oac_no_warn" dir="ltr">ALTER TABLE Table1
+  ANNOTATIONS(DROP IF EXISTS Title);
+</pre></div>
+                           
+                           <p>The output is:</p>
+                           <pre class="oac_no_warn" dir="ltr">Table altered.</pre>
+                           </div>
+                        <div class="section">
+                           
+                           <div class="infoboxnotealso" id="GUID-ED3BBF94-49CC-4182-B838-943000C33772__GUID-3F122526-1005-4047-B34B-3ED864197A10">
+                              <p class="notep1">See Also:</p>
+                              
+                              <p><a href="../sqlrf/CREATE-TABLE.html#SQLRF-GUID-F9CE0CC3-13AE-4744-A43C-EAC7A71AAAB6" target="_blank">CREATE TABLE</a> and <a href="../sqlrf/ALTER-TABLE.html#SQLRF-GUID-552E7373-BF93-477D-9DA3-B2C9386F2877" target="_blank">ALTER TABLE</a> in SQL Language Reference for complete
+                    clause changes and definitions.
+                              </p>
+                              
+                           </div>
+                           
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-D0B0EBD4-90B7-4180-8C95-3E9C38E290CD" name="GUID-D0B0EBD4-90B7-4180-8C95-3E9C38E290CD"></a><h5 id="ADFNS-GUID-D0B0EBD4-90B7-4180-8C95-3E9C38E290CD" class="sect5"><span class="enumeration_section">10.1.5.3 </span>DDL Statements to Annotate a Table
+        Column
+                     </h5>
+                     <div>
+                        <p>You can use the following DDL statements to annotate a table column when
+        creating or altering the table.</p>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-D0B0EBD4-90B7-4180-8C95-3E9C38E290CD__GUID-15B9AF3F-8317-46CF-BAF1-AE2B407B469B">Using the <code class="codeph">CREATE TABLE </code> Statement
+                           </p>
+                           
+                           
+                           <p>To add column-level annotations using a <code class="codeph">CREATE TABLE</code>
+                statement, specify the annotations as a part of the
+                    <code class="codeph">column_definition</code> clause. Annotations are specified at the end,
+                after inline constraints. 
+                           </p>
+                           
+                           <p>The following examples specify annotations for columns at table creation.</p>
+                           <pre class="oac_no_warn" dir="ltr">CREATE TABLE Table1
+  (T NUMBER ANNOTATIONS(Operations 'Sort', Hidden));
+
+CREATE TABLE Table2
+  (T NUMBER ANNOTATIONS (Hidden));
+ 
+</pre>
+                           <p>The following example specifies table-level and column-level annotations for the
+                    <code class="codeph">Employee</code> table.
+                           </p>
+                           <pre class="oac_no_warn" dir="ltr">CREATE TABLE Employee (
+  Id NUMBER(5) ANNOTATIONS(Identity, Display 'Employee ID', "Group" 'Emp_Info'),
+  Ename VARCHAR2(50) ANNOTATIONS(Display 'Employee Name', "Group" 'Emp_Info'),
+  Sal NUMBER ANNOTATIONS(Display 'Employee Salary', UI_Hidden)
+)
+ ANNOTATIONS (Display 'Employee Table');
+</pre>
+                           <p>The <code class="codeph">Employee</code> table in the previous example has
+                column-level and object-level annotations with <code class="codeph">Display</code> annotations
+                defined at the column level and object level. You can define a new annotation with
+                the same name as long as it corresponds to a different object, column pair. For
+                instance, you cannot define another annotation with the <code class="codeph">Display</code>
+                name for the <code class="codeph">Employee</code> table but you can define new annotations with
+                    <code class="codeph">Display</code> name for every column of the <code class="codeph">Employee</code>
+                table. You can also define other annotations such as "<code class="codeph">Group</code>" for
+                the <code class="codeph">Sal</code> column. The annotation "<code class="codeph">Group</code>" needs to be
+                double quoted because it is a reserved word.
+                           </p>
+                           
+                        </div>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-D0B0EBD4-90B7-4180-8C95-3E9C38E290CD__GUID-F3BFF4AC-E186-444B-BFB5-0B3934E1D341">Using the <code class="codeph">ALTER TABLE </code> Statement
+                           </p>
+                           
+                           
+                           <p>To add column-level annotations using an <code class="codeph">ALTER TABLE</code>
+                statement, specify the annotations as a part of the
+                    <code class="codeph">modify_col_properties</code> clause. Annotations are specified at the
+                end, after inline constraints.
+                           </p>
+                           
+                           <p>The following example adds a new <code class="codeph">Identity</code> annotation for the column
+                T of <code class="codeph">Table1</code> table.
+                           </p>
+                           <pre class="oac_no_warn" dir="ltr">ALTER TABLE Table1
+  MODIFY T ANNOTATIONS(Identity 'ID');
+</pre>
+                           <p>The following example adds a <code class="codeph">Label</code> annotation and drops the
+                    <code class="codeph">Identity</code> annotation.
+                           </p>
+                           <pre class="oac_no_warn" dir="ltr">ALTER TABLE Table1
+  MODIFY T ANNOTATIONS(ADD Label, DROP Identity);</pre>
+                           </div>
+                        <div class="section">
+                           
+                           <div class="infoboxnotealso" id="GUID-D0B0EBD4-90B7-4180-8C95-3E9C38E290CD__GUID-3F122526-1005-4047-B34B-3ED864197A10">
+                              <p class="notep1">See Also:</p>
+                              
+                              <p><a href="../sqlrf/CREATE-TABLE.html#SQLRF-GUID-F9CE0CC3-13AE-4744-A43C-EAC7A71AAAB6" target="_blank">CREATE TABLE</a> and <a href="../sqlrf/ALTER-TABLE.html#SQLRF-GUID-552E7373-BF93-477D-9DA3-B2C9386F2877" target="_blank">ALTER TABLE</a> in SQL Language Reference for complete
+                    clause changes and definitions.
+                              </p>
+                              
+                           </div>
+                           
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-7072D6D1-5948-44E4-96DA-58D5B7F2B8EC" name="GUID-7072D6D1-5948-44E4-96DA-58D5B7F2B8EC"></a><h5 id="ADFNS-GUID-7072D6D1-5948-44E4-96DA-58D5B7F2B8EC" class="sect5"><span class="enumeration_section">10.1.5.4 </span>DDL Statements to Annotate Views
+        and Materialized Views
+                     </h5>
+                     <div>
+                        <p>You can use the following DDL statements to annotate a view and a
+        materialized view.</p>
+                        <p>Views and materialized views support annotations at the view level and column
+            level. Column-level annotations are only supported for table views as a part of the
+            column alias definition clause.</p>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-7072D6D1-5948-44E4-96DA-58D5B7F2B8EC__GUID-B69DFD95-D4A1-4F7F-BC6B-151D3A856A7F">Using the <code class="codeph">CREATE
+                    VIEW</code> Statement
+                           </p>
+                           
+                           
+                           <p>The following example shows the view-level and column-level
+                annotations:</p>
+                           <pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE VIEW HighWageEmp  
+(
+  Id ANNOTATIONS(Identity, Display 'Employee ID', "Group" 'Emp_Info'),
+  Ename ANNOTATIONS (Display 'Employee Name',  "Group" 'Emp_Info'),
+  Sal  ANNOTATIONS (Display 'Emp Salary')  
+)
+ANNOTATIONS (Title 'High Wage Employee View')
+AS SELECT * FROM EMPLOYEE WHERE Sal &gt; 100000;
+</pre>
+                           </div>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-7072D6D1-5948-44E4-96DA-58D5B7F2B8EC__GUID-D223C848-6640-4212-8A1D-3850F8459472">Using the <code class="codeph">CREATE
+                    MATERIALIZED VIEW</code> Statement
+                           </p>
+                           
+                           
+                           <p>The following example adds annotation at the view level in the
+                    <code class="codeph">Materialized View</code> statement:
+                           </p>
+                           <pre class="oac_no_warn" dir="ltr">CREATE MATERIALIZED VIEW MView1
+  ANNOTATIONS (Title 'Tab1 MV1', ADD Snapshot)
+  AS SELECT * FROM Table1;
+</pre>
+                           <p>The following example adds annotation at the view level and column level
+                in the <code class="codeph">Materialized View</code> statement:
+                           </p>
+                           <pre class="oac_no_warn" dir="ltr">CREATE MATERIALIZED VIEW MView1(
+  T ANNOTATIONS (Hidden)) 
+ ANNOTATIONS (Title 'Tab1 MV1', ADD Snapshot)
+ AS SELECT * FROM Table1;</pre>
+                           </div>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-7072D6D1-5948-44E4-96DA-58D5B7F2B8EC__GUID-7B9413E7-C1A8-4354-AC90-AF7920344043">Using the <code class="codeph">ALTER
+                    VIEW</code> Statement
+                           </p>
+                           
+                           
+                           <p>To provide support for annotations, the <code class="codeph">ALTER VIEW</code>
+                statement has a new sub-clause added to it that allows altering annotations at the
+                view level. Other sub-clauses that are supported in the <code class="codeph">ALTER VIEW</code>
+                statement are: modifying view constraints, enabling recompilation, and changing
+                    <code class="codeph">EDITIONABLE</code> property.
+                           </p>
+                           
+                           <p>Column-level annotations for views cannot be altered. Previously added
+                column-level annotations can be dropped only by dropping the view and recreating a
+                new one.</p>
+                           
+                           <p>The following example is an <code class="codeph">ALTER VIEW</code> statement that
+                drops the <code class="codeph">Title</code> annotation and adds the <code class="codeph">Identity</code>
+                annotation at the view level.
+                           </p>
+                           <pre class="oac_no_warn" dir="ltr">ALTER VIEW HighWageEmp
+  ANNOTATIONS(DROP Title, ADD Identity);
+</pre>
+                           </div>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-7072D6D1-5948-44E4-96DA-58D5B7F2B8EC__GUID-A554517B-E2F5-4B80-8F15-E578A9513881">Using the <code class="codeph">ALTER
+                    MATERIALIZED VIEW</code> Statement
+                           </p>
+                           
+                           
+                           <p>The <code class="codeph">ALTER MATERIALIZED VIEW</code> statement has a new
+                sub-clause that is added to alter annotations globally at the materialized view
+                level. Column-level annotations can be dropped only by dropping and recreating the
+                materialized view.
+                           </p>
+                           
+                           <p>The following <code class="codeph">ALTER MATERIALIZED VIEW</code> statement drops
+                    <code class="codeph">Snapshot</code> annotation from <code class="codeph">MView1</code>.
+                           </p>
+                           <pre class="oac_no_warn" dir="ltr">ALTER MATERIALIZED VIEW MView1
+  ANNOTATIONS(DROP Snapshot);
+</pre>
+                           </div>
+                        <div class="section">
+                           
+                           <div class="infoboxnotealso" id="GUID-7072D6D1-5948-44E4-96DA-58D5B7F2B8EC__GUID-3F122526-1005-4047-B34B-3ED864197A10">
+                              <p class="notep1">See Also:</p>
+                              
+                              <p><a href="../sqlrf/CREATE-VIEW.html#SQLRF-GUID-61D2D2B4-DACC-4C7C-89EB-7E50D9594D30" target="_blank">CREATE VIEW</a>, <a href="../sqlrf/ALTER-VIEW.html#SQLRF-GUID-0DEDE960-B481-4B55-8027-EA9E4C863625" target="_blank">ALTER VIEW</a>, <a href="../sqlrf/CREATE-MATERIALIZED-VIEW.html#SQLRF-GUID-EE262CA4-01E5-4618-B659-6165D993CA1B" target="_blank">CREATE MATERIALIZED VIEW</a>, and <a href="../sqlrf/ALTER-MATERIALIZED-VIEW.html#SQLRF-GUID-29EE5682-AE42-4879-ABAD-E34E66ADD233" target="_blank">ALTER MATERIALIZED VIEW</a> in SQL Language Reference
+                    for complete clause changes and definitions.
+                              </p>
+                              
+                           </div>
+                           
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-DB44028D-685C-4AC7-8129-05E6C01E69C5" name="GUID-DB44028D-685C-4AC7-8129-05E6C01E69C5"></a><h5 id="ADFNS-GUID-DB44028D-685C-4AC7-8129-05E6C01E69C5" class="sect5"><span class="enumeration_section">10.1.5.5 </span>DDL Statements to Annotate
+        Indexes
+                     </h5>
+                     <div>
+                        <p>You can use the following DDL statements to annotate an index.</p>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-DB44028D-685C-4AC7-8129-05E6C01E69C5__GUID-001A73EC-DBFE-4479-A2BE-8F0070D54A28">Using the <code class="codeph">CREATE INDEX</code> Statement
+                           </p>
+                           
+                           
+                           <p>The following are examples of creating index-level annotations.</p>
+                           <pre class="oac_no_warn" dir="ltr">CREATE TABLE DEPARTMENT(
+  DEPT_ID NUMBER,
+  UNIT NUMBER);
+
+CREATE INDEX I_DEPT_ID ON DEPARTMENT(DEPT_ID)
+  ANNOTATIONS(Display 'Department Index');
+
+CREATE UNIQUE INDEX UI_UNIT ON DEPARTMENT(UNIT)
+  ANNOTATIONS(Display 'Department Unique Index');</pre>
+                           </div>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-DB44028D-685C-4AC7-8129-05E6C01E69C5__GUID-59861060-882D-4A8A-AF6E-390465DE7C31">Using the <code class="codeph">ALTER INDEX</code> Statement
+                           </p>
+                           
+                           
+                           <p>The following is an example of altering an index-level annotation.</p>
+                           <pre class="oac_no_warn" dir="ltr">ALTER INDEX I_DEPT_ID
+  ANNOTATIONS(DROP Display, ADD ColumnGroup 'Group1');</pre>
+                           </div>
+                        <div class="section">
+                           
+                           <div class="infoboxnotealso" id="GUID-DB44028D-685C-4AC7-8129-05E6C01E69C5__GUID-3F122526-1005-4047-B34B-3ED864197A10">
+                              <p class="notep1">See Also:</p>
+                              
+                              <p><a href="../sqlrf/CREATE-INDEX.html#SQLRF-GUID-1F89BBC0-825F-4215-AF71-7588E31D8BFE" target="_blank">CREATE INDEX</a> and <a href="../sqlrf/ALTER-INDEX.html#SQLRF-GUID-D8F648E7-8C07-4C89-BB71-862512536558" target="_blank">ALTER INDEX</a> in SQL Language Reference for complete
+                    clause changes and definitions.
+                              </p>
+                              
+                           </div>
+                           
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-E6EF98D7-42E4-485E-B6A7-B8E386D314F3" name="GUID-E6EF98D7-42E4-485E-B6A7-B8E386D314F3"></a><h4 id="ADFNS-GUID-E6EF98D7-42E4-485E-B6A7-B8E386D314F3" class="sect4"><span class="enumeration_section">10.1.6 </span>Dictionary Table and Views
+                  </h4>
+                  <div>
+                     <p>A dictionary table called <code class="codeph">ANNOTATIONS_USAGE$</code> includes all
+            the usage of annotations with schema objects, such as tables and views. When a new
+            annotation name, value, or both are specified to a schema object, a new entry in
+                <code class="codeph">ANNOTATIONS_USAGE$</code> table is created. Similarly, when a schema
+            object drops an annotation, the corresponding entry is dropped from the
+                <code class="codeph">ANNOTATIONS_USAGE$</code> table.
+                     </p>
+                     <p>The following dictionary views track the list of annotations and their usage across
+            all schema objects:</p>
+                     <ul style="list-style-type: disc;" id="GUID-E6EF98D7-42E4-485E-B6A7-B8E386D314F3__UL_DLD_KFF_1VB">
+                        <li>
+                           
+                           <p><code class="codeph">{DBA|USER|ALL|CDB}_ANNOTATIONS</code></p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><code class="codeph">{DBA|USER|ALL|CDB}_ANNOTATIONS_USAGE</code></p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><code class="codeph">{DBA|USER|ALL|CDB}_ANNOTATIONS_VALUES</code></p>
+                           
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="sect4"><a id="GUID-68C6D08D-2D44-43B8-8A73-6B23FCAC42DD" name="GUID-68C6D08D-2D44-43B8-8A73-6B23FCAC42DD"></a><h5 id="ADFNS-GUID-68C6D08D-2D44-43B8-8A73-6B23FCAC42DD" class="sect5"><span class="enumeration_section">10.1.6.1 </span>Querying Dictionary Views
+                     </h5>
+                     <div>
+                        <p>You can run queries on dictionary views to obtain the list of annotations
+        that are used for specific schema objects.</p>
+                        <p>Here are examples of query statements issued on an 'EMP' table:</p>
+                        <div class="p">To obtain table-level annotations for the ‘EMP’
+            table:<pre class="oac_no_warn" dir="ltr">SELECT * FROM USER_ANNOTATIONS_USAGE
+  WHERE Object_Name = 'EMPLOYEE'
+   AND Object_Type = 'TABLE'
+   AND Column_Name IS NULL;
+</pre></div>
+                        <div class="p">To obtain column-level annotations for the ‘EMP’
+            table:<pre class="oac_no_warn" dir="ltr">SELECT * FROM USER_ANNOTATIONS_USAGE
+  WHERE Object_Name = 'EMPLOYEE'
+   AND Object_Type = 'TABLE'
+   AND Column_Name IS NOT NULL;
+</pre></div>
+                        <div class="p">To obtain column-level annotations for the ‘EMP’ table as a single JSON
+            collection per
+            column:<pre class="oac_no_warn" dir="ltr">SELECT  U.Column_Name, JSON_ARRAYAGG(JSON_OBJECT(U.Annotation_Name, U.Annotation_Value))
+  FROM USER_ANNOTATIONS_USAGE U
+  WHERE Object_Name = 'EMPLOYEE' AND Object_Type = 'TABLE' AND Column_Name IS NOT NULL
+  GROUP BY Column_Name;</pre></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

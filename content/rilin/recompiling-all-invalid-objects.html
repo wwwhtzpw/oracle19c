@@ -1,0 +1,255 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Recompile Invalid Objects in the Database">
+      <meta name="abstract" content="After you install, patch, or upgrade a database, recompile invalid objects on the CDB and PDBs with a recompilation driver script.">
+      <meta name="description" content="After you install, patch, or upgrade a database, recompile invalid objects on the CDB and PDBs with a recompilation driver script.">
+      <meta name="DC.subject" content="invalid objects, recompiling, utlrp.sql, recompiling invalid objects">
+      <meta name="keywords" content="invalid objects, recompiling, utlrp.sql, recompiling invalid objects">
+      <meta name="DC.Relation" scheme="URI" content="required-postinstallation-tasks.html#GUID-57C27D5D-7C92-4919-A430-690B89C57665">
+      <meta name="DC.Relation" scheme="URI" content="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/rilin&amp;id=ADMIN-GUID-98F9A223-DE19-498B-8082-3A814F147D1F">
+      <meta name="DC.Contributor" content="Aparna Kamath">
+      <meta name="DC.Contributor" content="Janet Stern">
+      <meta name="DC.Contributor" content="Douglas Williams">
+      <meta name="DC.Contributor" content="Mark Bauer">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Anil Nair">
+      <meta name="DC.Creator" content="Markus Michalewicz">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="David Austin">
+      <meta name="DC.Creator" content="Ian Cookson">
+      <meta name="DC.Creator" content="Mark Fuller">
+      <meta name="DC.Creator" content="Donald Graves">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Kevin Jernigan">
+      <meta name="DC.Creator" content="Aneesh Khandelwal">
+      <meta name="DC.Creator" content="Bryn Llewellyn">
+      <meta name="DC.Creator" content="Mughees Minhas">
+      <meta name="DC.Creator" content="Srinivas Poovala">
+      <meta name="DC.Creator" content="Sampath Ravindhran">
+      <meta name="DC.Creator" content="Janelle Simmons">
+      <meta name="DC.Creator" content="James Spiller">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="Richard Strohm">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Siu Tam">
+      <meta name="DC.Creator" content="Ara Shakian">
+      <meta name="DC.Creator" content="Jingci Wang">
+      <meta name="DC.Creator" content="James Williams">
+      <meta name="DC.Creator" content="Ying Zhang">
+      <meta name="DC.Creator" content="Michael Zoll">
+      <meta name="DC.Creator" content="Michael Coulter">
+      <meta name="DC.Creator" content="Rajesh Prasad">
+      <meta name="DC.Creator" content="Kannan Viswanathan">
+      <meta name="DC.Creator" content="Robert Achacoso">
+      <meta name="DC.Creator" content="David Price">
+      <meta name="DC.Creator" content="Ramesh Chakravarthula">
+      <meta name="DC.Creator" content="Subhash Chandra">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-1023C5FB-B409-4F16-BCA1-C14CB9B7E625">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="After you install, patch, or upgrade a database, recompile invalid objects on the CDB and PDBs with a recompilation driver script.">
+      <meta name="description" content="After you install, patch, or upgrade a database, recompile invalid objects on the CDB and PDBs with a recompilation driver script.">
+      <title>Recompile Invalid Objects in the Database</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Real Application Clusters Installation Guide">
+      <meta property="og:description" content="After you install, patch, or upgrade a database, recompile invalid objects on the CDB and PDBs with a recompilation driver script.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Real Application Clusters Installation Guide for Linux and UNIX">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="real-application-clusters-installation-guide-linux-and-unix.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-22T23:12:35-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2013, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96277-07">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="setting-the-oracle-user-environment-variables.html" title="Previous" type="text/html">
+      <link rel="next" href="configuring-services-on-oracle-rac-and-oracle-rac-one-node-cdbs.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Real Application Clusters Installation Guide for Linux and UNIX">
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="RILIN">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Recompile Invalid Objects in the Database","description":"After you install, patch, or upgrade a database, recompile invalid objects on the CDB and PDBs with a recompilation driver script.","datePublished":"2025-07-23 CST","dateModified":"2025-07-23 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="setting-the-oracle-user-environment-variables.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="configuring-services-on-oracle-rac-and-oracle-rac-one-node-cdbs.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-1023C5FB-B409-4F16-BCA1-C14CB9B7E625" name="GUID-1023C5FB-B409-4F16-BCA1-C14CB9B7E625"></a><a id="RILIN1048"></a>
+         
+         <h2 id="RILIN-GUID-1023C5FB-B409-4F16-BCA1-C14CB9B7E625" class="sect2">Recompile Invalid Objects in the Database </h2>
+         <div class="ind">
+            <div>
+               <p>After you install, patch, or upgrade a database, recompile invalid objects
+        on the CDB and PDBs with a recompilation driver script. </p>
+               <div class="section">
+                  
+                  
+                  
+                  
+                  <p>By default, AutoUpgrade performs a recompilation of invalid Oracle
+                objects, which is controlled by the configuraiton file run_utlrp local parameter
+                (default: <code class="codeph"><span class="variable" translate="no">prefix</span>.run_utlrp=yes</code>). In
+                addition, Oracle provides the recompilation scripts <code class="codeph">utlrp.sql</code> and
+                    <code class="codeph">utlprp.sql</code>. These scripts are located in the <code class="codeph"><span class="variable" translate="no">Oracle_home</span>/rdbms/admin</code> directory. 
+                  </p>
+                  
+                  <div class="infoboxnote" id="GUID-1023C5FB-B409-4F16-BCA1-C14CB9B7E625__GUID-2D33C4FB-0E27-45CA-AB1F-01020A3C5D70">
+                     <p class="notep1">Note:</p>
+                     
+                     <p>Starting with AutoUpgrade 23.1, when you run the AutoUpgrade utility,
+                    AutoUpgrade runs the <code class="codeph">utlprpom.sql</code> script, and does not run
+                        <code class="codeph">utlrp.sql</code>. When AutoUpgrade is used for upgrades to Oracle
+                    Database 12c Release 2 (12.2.0.1) and later releases, AutoUpgrade only
+                    recompiles invalid objects owned by Oracle-maintained schemas. Because database
+                    upgrades do not need to touch user objects, AutoUpgrade maintains this policy
+                    when it recompiles invalid objects.
+                     </p>
+                     
+                  </div>
+                  
+                  
+                  
+                  <p>After installing a database, recomplile all invalid objects;</p>
+                  
+               </div>
+               <div class="section">
+                  
+                  <ol id="GUID-1023C5FB-B409-4F16-BCA1-C14CB9B7E625__OL_XBR_TRC_MXB">
+                     <li>
+                        
+                        <p>Change directory to <code class="codeph"><span class="variable" translate="no">Oracle_home</span>/rdbms/admin</code>. For example
+                        </p>
+                        <pre class="pre codeblock"><code>$ cd $ORACLE_HOME/rdbms/admin</code></pre>
+                        </li>
+                     <li>
+                        
+                        <p>Use the <code class="codeph">catcon.pl</code> script in the Oracle home to run <code>utlrp.sql</code>. For example:
+                        </p>
+                        <pre class="pre codeblock"><code>$ORACLE_HOME/perl/bin/perl catcon.pl --n 1 --e --b utlrp --d '''.''' utlrp.sql</code></pre>
+                        <p> Note the following conditions of this use case:</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-1023C5FB-B409-4F16-BCA1-C14CB9B7E625__UL_FZ5_GLQ_ZHB">
+                           <li>
+                              
+                              <p><code class="codeph">--n</code> parameter: is set to 1, so the
+                                script runs each PDB recompilation in sequence.
+                              </p>
+                              
+                           </li>
+                           <li><code class="codeph">--e</code> parameter: turns echo on. 
+                           </li>
+                           <li><code class="codeph">--b</code> parameter: Sets the log file base
+                            name. It is set to <code class="codeph">utlrp</code>.
+                           </li>
+                        </ul>
+                        
+                        <p>Expect a time delay for the serial recompilation of PDBs to
+                        complete. Depending on the number of PDBs that you are upgrading, the
+                        recompilation can extend significantly beyond the time required for the
+                        upgrade scripts to complete.</p>
+                        
+                        <p>The <code>utlrp.sql</code> script
+                        automatically recompiles invalid objects in either serial or parallel
+                        recompilation, based on both the number of invalid objects, and on the
+                        number of CPUs available. CPUs are calculated using the number of CPUs
+                            (<span class="variable" translate="no">cpu_count</span>) multiplied by the number of
+                        threads for each CPU (<span class="variable" translate="no">parallel_threads_per_cpu</span>). On Oracle Real Application
+                        Clusters (Oracle RAC), this number is added across all Oracle RAC nodes. 
+                        </p>
+                        
+                        
+                     </li>
+                  </ol>
+                  
+                  
+                  <p>After patching or upgrading a database, there is more than one approach you can use
+                to recompile invalid Oracle-owned and user-owned objects:</p>
+                  
+                  <p>Recompile all invalid objects (the invalid objects in both Oracle and user schemas) by
+                using <code class="codeph">utlrp.sql</code> or <code class="codeph">utlprp.sql</code>. 
+                  </p>
+                  
+                  <p>If time is a factor and the type of invalid objects is predominately
+                application owned, then you can recompile Oracle-owned invalid objects first, and
+                defer recompiling application-owned invalid objects to a later time. To recompile
+                invalid objects in Oracle schemas, use <code class="codeph">utlprpom.sql</code>. To recompile
+                the remaining invalid objects, use <code class="codeph">utlrp.sql</code> or
+                    <code class="codeph">utlprp.sql</code>.  
+                  </p>
+                  
+                  <div class="infoboxnote" id="GUID-1023C5FB-B409-4F16-BCA1-C14CB9B7E625__GUID-64065BA4-2B94-4F27-B25B-B875C023C0C3">
+                     <p class="notep1">Note:</p>When you use either
+                    <code class="codeph">utlprp.sql</code> or <code class="codeph">utlprpom.sql</code>, note that both
+                scripts require you to define the degree of parallelism that the script should use,
+                or determine the number of parallel recompile jobs to use. 
+                  </div>
+                  
+               </div>
+               <div class="example" id="GUID-1023C5FB-B409-4F16-BCA1-C14CB9B7E625__GUID-3D58896F-9827-4DFA-8EBF-DF073D542591">
+                  
+                  <p> The script uses syntax as follows, where <code class="codeph"><span class="variable" translate="no">base</span></code> is
+                the base name you want to have given to log files,
+                    <code class="codeph"><span class="variable" translate="no">N</span></code> is the number of PDBs on which you want to
+                run recompilation jobs in parallel (degrees of parallelism),
+                        <code class="codeph"><span class="variable" translate="no">script.sql</span></code> is the Oracle recompilation
+                script you chose to use, and <code class="codeph"><span class="variable" translate="no">P</span></code> is the number of
+                PDBs on which you want to run in parallel: 
+                  </p>
+                  <pre class="pre codeblock"><code>$ORACLE_HOME/perl/bin/perl $ORACLE_HOME/rdbms/admin/catcon.pl -b <span class="variable" translate="no">base</span> -d $ORACLE_HOME/rdbms/admin
+          -n <span class="variable" translate="no">N</span> -l /tmp <span class="variable" translate="no">script.sql</span> '--p<span class="variable" translate="no">P</span>'</code></pre>
+                  <p>Suppose you are running recompilation in a CDB using the log file base name
+                    <code class="codeph">recomp</code>, with a degrees of parallelism setting of 3 jobs per PDB
+                container, the script you choose to use is <code class="codeph">utlprp.sql</code>, and you want
+                to recompile across at most 10 PDBs at a time. In that case, the syntax you use to
+                run the recompile operation is similar to the following,
+                  </p>
+                  <pre class="pre codeblock"><code>$ORACLE_HOME/perl/bin/perl $ORACLE_HOME/rdbms/admin/catcon.pl -b recomp -d $ORACLE_HOME/rdbms/admin -n 10 -l /tmp utlprp.sql '--p3'</code></pre>
+                  </div>
+            </div>
+            <div>
+               <div class="relinfo">
+                  <p><strong>Related Topics</strong></p>
+                  <ul>
+                     <li><a href="../multi/administering-a-cdb-with-sql-plus.html#GUID-98F9A223-DE19-498B-8082-3A814F147D1F" target="_blank">Syntax and Parameters for catcon.pl</a></li>
+                  </ul>
+               </div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="required-postinstallation-tasks.html#GUID-57C27D5D-7C92-4919-A430-690B89C57665" title="Download and apply required patches for your software release after completing your initial installation.">Required Postinstallation Tasks</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Configuring the Open IPMI Driver">
+      <meta name="abstract" content="On Linux systems, the OpenIPMI driver is the supported driver for Oracle Clusterware deployments with IPMI. You can install and configure the driver dynamically by manually loading the required modules.">
+      <meta name="description" content="On Linux systems, the OpenIPMI driver is the supported driver for Oracle Clusterware deployments with IPMI. You can install and configure the driver dynamically by manually loading the required modules.">
+      <meta name="DC.subject" content="commands, modprobe, lsmod">
+      <meta name="keywords" content="commands, modprobe, lsmod">
+      <meta name="DC.Relation" scheme="URI" content="enabling-intelligent-platform-management-interface-ipmi.html#GUID-96249852-936C-480C-A166-6926A654F014">
+      <meta name="DC.Contributor" content="Aparna Kamath">
+      <meta name="DC.Contributor" content="Douglas Williams">
+      <meta name="DC.Contributor" content="Mark Bauer">
+      <meta name="DC.Contributor" content="Prakash Jashnani">
+      <meta name="DC.Contributor" content="Janet Stern">
+      <meta name="DC.Creator" content="Markus Michalewicz">
+      <meta name="DC.Creator" content="Aneesh Khandelwal">
+      <meta name="DC.Creator" content="James Williams">
+      <meta name="DC.Creator" content="Ian Cookson">
+      <meta name="DC.Creator" content="Rajesh Dasari">
+      <meta name="DC.Creator" content="Pallavi Kamath">
+      <meta name="DC.Creator" content="Donald Graves">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Angad Gokakkar">
+      <meta name="DC.Creator" content="Srinivas Poovala">
+      <meta name="DC.Creator" content="Prasad Bagal">
+      <meta name="DC.Creator" content="Balaji Pagadala">
+      <meta name="DC.Creator" content="Neha Avasthy">
+      <meta name="DC.Creator" content="Mark Scardina">
+      <meta name="DC.Creator" content="Hanlin Chien">
+      <meta name="DC.Creator" content="Anil Nair">
+      <meta name="DC.Creator" content="Apparsamy Perumal">
+      <meta name="DC.Creator" content="Samarjeet Tomar">
+      <meta name="DC.Creator" content="Akshay Shah">
+      <meta name="DC.Creator" content="Kevin Jernigan">
+      <meta name="DC.Creator" content="Eric Belden">
+      <meta name="DC.Creator" content="Mark Fuller">
+      <meta name="DC.Creator" content="Barbara Glover">
+      <meta name="DC.Creator" content="Saar Maoz">
+      <meta name="DC.Creator" content="Binoy Sukumaran">
+      <meta name="DC.Creator" content="Subhash Chandra">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-BD943D46-0AAA-44E2-AD07-0651526DB13B">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="On Linux systems, the OpenIPMI driver is the supported driver for Oracle Clusterware deployments with IPMI. You can install and configure the driver dynamically by manually loading the required modules.">
+      <meta name="description" content="On Linux systems, the OpenIPMI driver is the supported driver for Oracle Clusterware deployments with IPMI. You can install and configure the driver dynamically by manually loading the required modules.">
+      <title>Configuring the Open IPMI Driver</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Grid Infrastructure Installation and Upgrade Guide">
+      <meta property="og:description" content="On Linux systems, the OpenIPMI driver is the supported driver for Oracle Clusterware deployments with IPMI. You can install and configure the driver dynamically by manually loading the required modules.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Grid Infrastructure Installation and Upgrade Guide for Linux">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="grid-infrastructure-installation-and-upgrade-guide-linux.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T01:22:43-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2013, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96272-36">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="configuring-the-ipmi-management-network.html" title="Previous" type="text/html">
+      <link rel="next" href="configuring-the-bmc.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Grid Infrastructure Installation and Upgrade Guide for Linux">
+    <meta name="dcterms.isVersionOf" content="CWLIN">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Configuring the Open IPMI Driver","description":"On Linux systems, the OpenIPMI driver is the supported driver for Oracle Clusterware deployments with IPMI. You can install and configure the driver dynamically by manually loading the required modules.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="configuring-the-ipmi-management-network.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="configuring-the-bmc.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-BD943D46-0AAA-44E2-AD07-0651526DB13B" name="GUID-BD943D46-0AAA-44E2-AD07-0651526DB13B"></a>
+         
+         <h2 id="CWLIN-GUID-BD943D46-0AAA-44E2-AD07-0651526DB13B" class="sect2">Configuring the Open IPMI Driver</h2>
+         <div class="ind">
+            <div>
+               <p>On Linux systems, the OpenIPMI driver is the supported driver for Oracle Clusterware deployments with IPMI. You can install and configure the driver dynamically by manually loading the required modules. </p>
+               <div class="p">Contact your Linux distribution vendor for information about how to configure IPMI for your distribution. Configure the Open IPMI driver manually on Oracle Linux as follows:</div>
+               <ol>
+                  <li class="stepexpand"><span>Log in as <code class="codeph">root</code>.</span></li>
+                  <li class="stepexpand"><span>Run the following commands:</span><div><pre class="pre codeblock"><code># /sbin/modprobe ipmi_msghandler
+# /sbin/modprobe ipmi_si 
+# /sbin/modprobe ipmi_devintf</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>(Optional) Run the command <code class="codeph">/sbin/lsmod |grep ipmi</code> to confirm that the IPMI modules are loaded. For example:</span><div><pre class="pre codeblock"><code># /sbin/lsmod | grep ipmi
+ipmi_devintf 12617  0 
+ipmi_si 33377  0 
+ipmi_msghandler  33701  2 
+ipmi_devintf,ipmi_si</code></pre><p>You can install the modules whether or not a BMC is present.</p>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Open the <code class="codeph">/etc/rc.local</code> file using a text editor, navigate to the end of the file, and enter lines similar to the following, to run the <code class="codeph">modprobe</code> commands in step 2 automatically on system restart:</span><div><pre class="pre codeblock"><code># START IPMI ON SYSTEM RESTART 
+/sbin/modprobe ipmi_msghandler 
+/sbin/modprobe ipmi_si 
+/sbin/modprobe ipmi_devintf</code></pre><p>On SUSE Linux Enterprise Server systems, add the <code class="codeph">modprobe</code> commands above to<code class="codeph"> /etc/init.d/boot.local</code>.
+                        </p>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Check to ensure that the Linux system is recognizing the IPMI device, using the following command:</span><div><pre class="pre codeblock"><code>ls -l /dev/ipmi0</code></pre></div>
+                     <div>If the IPMI device is dynamically loaded, then the output must be similar to the following:<pre class="pre codeblock"><code># ls -l /dev/ipmi0 crw-------  1 root root 253, 0 Sep 23 06:29 /dev/ipmi0</code></pre><p>If you do see the device file output, then the IPMI driver is configured, and you can ignore the following step. </p>
+                        <p>If you do not see the device file output, then the <code class="codeph">udevd</code> daemon is not set up to create device files automatically. Proceed to the next step.
+                        </p>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Determine the device major number for the IPMI device using the command <code class="codeph">grep ipmi /proc/devices</code>. For example:</span><div><pre class="pre codeblock"><code># grep ipmi /proc/devices 253 ipmidev</code></pre></div>
+                     <div>The device major number is 253.</div>
+                  </li>
+                  <li class="stepexpand"><span>Run the <code class="codeph">mknod</code> command to create a directory entry and<code class="codeph"> i-node</code> for the IPMI device, using the device major number. For example:</span><div><pre class="pre codeblock"><code># mknod /dev/ipmi0 c 253 0x0</code></pre></div>
+                     <div>The permissions on <code class="codeph">/dev/ipmi0</code> in the example allow the device to be accessible only by root. The device should only be accessed by root, to prevent a system vulnerability.
+                     </div>
+                  </li>
+               </ol>
+            </div>
+            <div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="enabling-intelligent-platform-management-interface-ipmi.html#GUID-96249852-936C-480C-A166-6926A654F014" title="Intelligent Platform Management Interface (IPMI) provides a set of common interfaces to computer hardware and firmware that system administrators can use to monitor system health and manage the system.">Enabling Intelligent Platform Management Interface (IPMI)</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

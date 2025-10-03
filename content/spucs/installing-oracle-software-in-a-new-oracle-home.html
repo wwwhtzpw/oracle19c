@@ -1,0 +1,170 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Installing Oracle Software in a New Oracle Home">
+      <meta name="abstract" content="Choose a new location for the target Oracle home, and then install the new Oracle Database release software for single-instance.">
+      <meta name="description" content="Choose a new location for the target Oracle home, and then install the new Oracle Database release software for single-instance.">
+      <meta name="DC.subject" content="Oracle home, out-of-place requirement, out-of-place upgrades, out-of-place patching, unplug-plug upgrades, rootupgrade.sh script, installation, Oracle Database software, Oracle Database Vault, Oracle Label Security, Oracle Universal Installer, PRKH-1014 error">
+      <meta name="keywords" content="Oracle home, out-of-place requirement, out-of-place upgrades, out-of-place patching, unplug-plug upgrades, rootupgrade.sh script, installation, Oracle Database software, Oracle Database Vault, Oracle Label Security, Oracle Universal Installer, PRKH-1014 error">
+      <meta name="DC.Relation" scheme="URI" content="preparing-to-upgrade.html#GUID-E1C7B8AF-FF00-4E91-86FE-D02395B430D8">
+      <meta name="DC.Relation" scheme="URI" content="unresolvable-reference.html">
+      <meta name="DC.Relation" scheme="URI" content="unresolvable-reference.html">
+      <meta name="DC.Creator" content="Sunil Surabhi">
+      <meta name="DC.Creator" content="Douglas Williams">
+      <meta name="DC.Contributor" content="Padmaja Potineni">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Prakash Jashnani">
+      <meta name="DC.Contributor" content="Mark Bauer">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Byron Motta">
+      <meta name="DC.Creator" content="Hector Vieyra Farfan">
+      <meta name="DC.Creator" content="Daniel Overby Hansen">
+      <meta name="DC.Creator" content="Carol Tagliaferri">
+      <meta name="DC.Creator" content="Mike Dietrich">
+      <meta name="DC.Creator" content="Marcus Doeringer">
+      <meta name="DC.Creator" content="Umesh Aswathnarayana Rao">
+      <meta name="DC.Creator" content="Rae Burns">
+      <meta name="DC.Creator" content="Subrahmanyam Kodavaluru">
+      <meta name="DC.Creator" content="Cindy Lim">
+      <meta name="DC.Creator" content="Amar Mbaye">
+      <meta name="DC.Creator" content="Akash Pathak">
+      <meta name="DC.Creator" content="Thomas Zhang">
+      <meta name="DC.Creator" content="Zhihai Zhang">
+      <meta name="DC.Creator" content="Nirmal Kumar">
+      <meta name="DC.Publisher" content="February2024">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-184AEF67-4227-4CC1-93C4-BDF24F6C46D9">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Choose a new location for the target Oracle home, and then install the new Oracle Database release software for single-instance.">
+      <meta name="description" content="Choose a new location for the target Oracle home, and then install the new Oracle Database release software for single-instance.">
+      <title>Installing Oracle Software in a New Oracle Home</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Using AutoUpgrade to Upgrade and Convert Non-CDBs to a PDB with the Same Operating System ">
+      <meta property="og:description" content="Choose a new location for the target Oracle home, and then install the new Oracle Database release software for single-instance.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Using AutoUpgrade to Upgrade and Convert Non-CDBs to a PDB with the Same Operating System">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="using-autoupgrade-upgrade-and-convert-non-cdbs-pdb-same-operating-system.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2024-02-08T10:11:38-08:00">
+      <meta name="dcterms.title" content="Using AutoUpgrade to Upgrade and Convert Non-CDBs to a PDB with the Same Operating System ">
+      <meta name="dcterms.dateCopyrighted" content="2018, 2024">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F10903-07">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="preparing-to-upgrade.html" title="Previous" type="text/html">
+      <link rel="next" href="prepare-a-backup-strategy-before-upgrading-db.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="SPUCS">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","name":"Installing Oracle Software in a New Oracle Home","description":"Choose a new location for the target Oracle home, and then install the new Oracle Database release software for single-instance.","datePublished":"2019-01-12 04:42:51 GMT","dateModified":"2024-02-08 18:15:45 GMT"} </script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="preparing-to-upgrade.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="prepare-a-backup-strategy-before-upgrading-db.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Using AutoUpgrade to Upgrade and Convert Non-CDBs to a PDB with the Same Operating System </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="preparing-to-upgrade.html" property="item" typeof="WebPage"><span property="name">Preparing to Upgrade Oracle Database</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Installing Oracle Software in a New Oracle Home</li>
+            </ol>
+            <a id="GUID-184AEF67-4227-4CC1-93C4-BDF24F6C46D9" name="GUID-184AEF67-4227-4CC1-93C4-BDF24F6C46D9"></a>
+            
+            <h2 id="SPUCS-GUID-184AEF67-4227-4CC1-93C4-BDF24F6C46D9" class="sect2">Installing Oracle Software in a New Oracle Home</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Choose a new location for the target Oracle home, and then install the new
+        Oracle Database release software for single-instance.</p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/spucs/unresolvable-reference.html">Choose a New Location for Oracle Home when Upgrading or Patching</a><br>When you upgrade or patch the database, you install the new Oracle home         in a new location (an out-of-place upgrade or patch).
+                  </li>
+                  <li class="ulchildlink"><a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/spucs/unresolvable-reference.html">Installing the New Oracle Database Software for Single Instance</a><br>Use this procedure overview to assist you to install the software for the new Oracle Database release for a single instance deployment.
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="preparing-to-upgrade.html#GUID-E1C7B8AF-FF00-4E91-86FE-D02395B430D8" title="Before you upgrade Oracle Database, review new features, and carry out procedures to prepare your database for upgrade.">Preparing to Upgrade Oracle Database</a></p>
+                  </div>
+               </div>
+            </div>
+            <a id="UPGRD12370"></a><div class="props_rev_3"><a id="GUID-AFA0564D-F5B5-40CA-988C-011AFCE2084B" name="GUID-AFA0564D-F5B5-40CA-988C-011AFCE2084B"></a><h3 id="SPUCS-GUID-AFA0564D-F5B5-40CA-988C-011AFCE2084B" class="sect3">Choose a New Location for Oracle Home when
+        Upgrading or Patching</h3>
+               <div>
+                  <p>When you upgrade or patch the database, you install the new Oracle home
+        in a new location (an out-of-place upgrade or patch).</p>
+                  <p>AutoUpgrade performs out-of-place upgrades and patches. This means that the
+            upgrade or the patched Oracle home is in a new Oracle home. Using separate installation
+            locations enables you to keep your existing Oracle software installed along with the new
+            Oracle software. By using separate installation locations, you can test the upgrade or
+            patch process in the out-of-place Oracle home database before replacing your production
+            environment entirely.</p>
+                  <p>If you are upgrading a PDB by using an unplug/plug upgrade, then the target
+            CDB into which you plug the PDB is the location for the PDB. Because the CDB is the
+            target release, it is already in a new Oracle home for that release. There is no need to
+            choose a new location for installing the target Oracle homes for the PDBs, because the
+            target CDB already has its Oracle home. </p>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="https://mikedietrichde.com/2022/05/09/how-to-speed-up-your-database-and-gi-patching/" target="_blank">How to Speed Up Your Database and GI Patching</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-9FFE2643-6529-4AB2-A92F-082361739A81" name="GUID-9FFE2643-6529-4AB2-A92F-082361739A81"></a><h3 id="SPUCS-GUID-9FFE2643-6529-4AB2-A92F-082361739A81" class="sect3">Installing the New Oracle Database Software for Single Instance</h3>
+               <div>
+                  <p>Use this procedure overview to assist you to install the software for the new Oracle Database release for a single instance deployment.</p>
+                  <p>To install the new Oracle Database software for this release:</p>
+                  <ol>
+                     <li>
+                        <p>Follow the instructions in your Oracle operating system-specific documentation to prepare for installation of Oracle Database software. </p>
+                     </li>
+                     <li>
+                        <p>Start Oracle Universal Installer, and select a software-only installation.</p>
+                        <p>When installation of Oracle Database software has completed successfully, click <span class="uicontrol bold">Exit</span> to close Oracle Universal Installer.
+                        </p>
+                     </li>
+                     <li>
+                        <p>If you use Oracle Label Security, Oracle Database Vault, or both, then select <span class="uicontrol bold">Enterprise Edition</span> on the <span class="wintitle">Select Database Edition</span> page, click <span class="uicontrol bold">Select Options</span>, and enable one or both components from the components list. 
+                        </p>
+                     </li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

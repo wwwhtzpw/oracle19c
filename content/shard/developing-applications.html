@@ -1,0 +1,568 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Developing Applications for the Sharded Database">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <meta name="DC.Creator" content="Roopam Jain">
+      <meta name="DC.Creator" content="Shailesh Dwivedi">
+      <meta name="DC.Creator" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Pankaj Chandiramani">
+      <meta name="DC.Creator" content="Mark Dilman">
+      <meta name="DC.Creator" content="Nourdine Benadjaoud">
+      <meta name="DC.Creator" content="Rennie Sreekumar Ranjit Kumar">
+      <meta name="DC.Creator" content="David Colello">
+      <meta name="DC.Creator" content="Steve Ball">
+      <meta name="DC.Creator" content="Abhishek Srivastava">
+      <meta name="DC.Creator" content="Sebastian Binek">
+      <meta name="DC.Creator" content="Shahab Hamid">
+      <meta name="DC.Creator" content="Virginia Beecher">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-4EB511F9-05AB-4E3F-9B69-D59F21799FFF">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <title>Developing Applications for the Sharded Database</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Using Oracle Sharding">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Using Oracle Sharding">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-globally-distributed-database-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-24T13:16:05-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2018, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E87088-15">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="query-and-dml-processing1.html" title="Previous" type="text/html">
+      <link rel="next" href="sharding-lifecycle-management.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Globally Distributed Database Guide">
+    <meta name="dcterms.isVersionOf" content="SHARD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Developing Applications for the Sharded Database","description":"","datePublished":"2025-06-25 CST","dateModified":"2025-06-25 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="query-and-dml-processing1.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="sharding-lifecycle-management.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-4EB511F9-05AB-4E3F-9B69-D59F21799FFF" name="GUID-4EB511F9-05AB-4E3F-9B69-D59F21799FFF"></a>
+         
+         <h2 id="SHARD-GUID-4EB511F9-05AB-4E3F-9B69-D59F21799FFF" class="sect2"><span class="enumeration_chapter">9 </span>Developing Applications for the Sharded
+        Database
+         </h2>
+         <div class="ind">
+            <div>
+               <p></p>
+            </div>
+            <div class="sect2"><a id="GUID-64CAD794-FAAA-406B-9E20-0C35E96D3FA8" name="GUID-64CAD794-FAAA-406B-9E20-0C35E96D3FA8"></a><h3 id="SHARD-GUID-64CAD794-FAAA-406B-9E20-0C35E96D3FA8" class="sect3">Direct Routing to a Shard</h3>
+               <div>
+                  <p>Oracle clients and connections pools are able to recognize sharding keys specified in the connection string for high performance data dependent routing. A shard routing cache in the connection layer is used to route database requests directly to the shard where the data resides.</p>
+                  <p>In direct, key-based, routing to a shard, a connection is established to a single,
+            relevant shard which contains the data pertinent to the required transaction using a
+            sharding key.</p>
+                  <p>A sharding key is used to route database connection requests at a user
+            session level during connection checkout. The composite sharding method requires both a
+            sharding key and a super sharding key. Direct, key-based, routing requires the sharding
+            key (or super sharding key) be passed as part of the connection. Based on this
+            information, a connection is established to the relevant shard which contains the data
+            pertinent to the given sharding key or super sharding key. </p>
+                  <p>Once the session is established with a shard, all SQL queries and DMLs are
+            supported and executed in the scope of the given shard. This routing is fast and is used
+            for all OLTP workloads that perform intra-shard transactions. It is recommended that
+            direct routing be employed for all OLTP workloads that require the highest performance
+            and availability. </p>
+                  <p>In support of Oracle Sharding, key enhancements have been made to Oracle
+            connection pools and drivers. JDBC, Universal Connection Pool (UCP), OCI Session Pool
+            (OCI), and Oracle Data Provider for .NET (ODP.NET) provide APIs to pass sharding keys
+            during the connection creation. Apache Tomcat, IBM Websphere, Oracle WebLogic Server,
+            and JBOSS can leverage JDBC/UCP support and use sharding. PHP, Python, Perl, and Node.js
+            can leverage OCI support.</p>
+                  <p>A shard topology cache is a mapping of the sharding key ranges to the
+            shards. Oracle Integrated Connection Pools maintain this shard topology cache in their
+            memory. Upon the first connection to a given shard (during pool initialization or when
+            the pool connects to newer shards), the sharding key range mapping is collected from the
+            shards to dynamically build the shard topology cache.</p>
+                  <p>Caching the shard topology creates a fast path to the shards and expedites
+            the process of creating a connection to a shard. When a connection request is made with
+            a sharding key, the connection pool looks up the corresponding shard on which this
+            particular sharding key exists (from its topology cache). If a matching connection is
+            available in the pool then the pool returns a connection to the shard by applying its
+            internal connection selection algorithm.</p>
+                  <p>A database connection request for a given sharding key that is in any of the
+            cached topology map, goes directly to the shard (that is, bypassing the shard director).
+            Connection Pool also subscribes to RLB notifications from the SDB and dispenses the best
+            connection based on runtime load balancing advisory. Once the connection is established,
+            the client executes transactions directly on the shard. After all transactions for the
+            given sharding key have been executed, the application must return the connection to the
+            pool and obtain a connection for another key.</p>
+                  <p>If a matching connection is not available in the pool, then a new connection
+            is created by forwarding the connection request with the sharding key to the shard
+            director.</p>
+                  <p>Once the pools are initialized and the shard topology cache is built based on
+            all shards, a shard director outage has no impact on direct routing.</p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-A49CEDDD-49F7-49EF-B83B-74048A63021E" name="GUID-A49CEDDD-49F7-49EF-B83B-74048A63021E"></a><h3 id="SHARD-GUID-A49CEDDD-49F7-49EF-B83B-74048A63021E" class="sect3">Sharding APIs Supporting Direct
+        Routing</h3>
+               <div>
+                  <p>Oracle connection pools and drivers support Oracle Sharding.</p>
+                  <p>JDBC, UCP, OCI, and Oracle Data Provider for .NET (ODP.NET) recognize sharding keys as part of the connection check. Apache Tomcat, Websphere, and WebLogic leverage UCP support for sharding and PHP, Python, Perl, and Node.js leverage OCI support.</p>
+               </div>
+               <div class="sect3"><a id="GUID-E5812B03-8A91-4898-B372-5D39E99335E3" name="GUID-E5812B03-8A91-4898-B372-5D39E99335E3"></a><h4 id="SHARD-GUID-E5812B03-8A91-4898-B372-5D39E99335E3" class="sect4">Oracle JDBC APIs for Oracle
+                Sharding</h4>
+                  <div>
+                     <p>Oracle Java Database Connectivity (JDBC) provides APIs for connecting to
+                database shards in an Oracle Sharding configuration.</p>
+                     <p>The JDBC driver recognizes the specified sharding key and super sharding key and connects
+            to the relevant shard that contains the data. Once the connection is established to a
+            shard, then any database operations, such as DMLs, SQL queries and so on, are supported
+            and executed in the usual way. </p>
+                     <p>A shard-aware application gets a connection to a given shard by specifying the
+                        sharding key using the database sharding APIs.</p>
+                     <ul style="list-style-type: disc;" id="GUID-E5812B03-8A91-4898-B372-5D39E99335E3__UL_TCK_M5D_CLB">
+                        <li>The <code class="codeph">OracleShardingKey</code> interface indicates that the
+                                current object represents an Oracle sharding key that is to be used
+                                with Oracle sharded database.
+                        </li>
+                        <li>The <code class="codeph">OracleShardingKeyBuilder</code> interface builds the
+                                compound sharding key with subkeys of various supported data types.
+                                This interface uses the new JDK 8 builder pattern for building a
+                                sharding key. 
+                        </li>
+                        <li>The <code class="codeph">OracleConnectionBuilder</code> interface builds connection
+                                objects with additional parameters other than user name and
+                                password.
+                        </li>
+                        <li>The <code class="codeph">OracleDataSource</code> class provides database sharding
+                                support with the <code class="codeph">createConnectionBuilder</code> and
+                                        <code class="codeph">createShardingKeyBulider</code> methods.
+                        </li>
+                        <li>The <code class="codeph">OracleXADataSource</code> class provides database sharding
+                                support with the <code class="codeph">createConnectionBuilder</code>
+                                method
+                        </li>
+                        <li>The <code class="codeph">OracleConnection</code> class provides database sharding
+                                support with the <code class="codeph">setShardingKeyIfValid</code> and
+                                        <code class="codeph">setShardingKey</code> methods.
+                        </li>
+                        <li>The <code class="codeph">OracleXAConnection</code> class provides database sharding
+                                support with the <code class="codeph">setShardingKeyIfValid</code> and
+                                        <code class="codeph">setShardingKey</code> methods.
+                        </li>
+                     </ul>
+                     <p>See the <span><cite>Oracle Database JDBC Developer’s Guide</cite></span> for more information and examples.
+                     </p>
+                     <div class="example" id="GUID-E5812B03-8A91-4898-B372-5D39E99335E3__GUID-1D7B2539-5CD6-4ADD-A89A-E2502F44B7F4">
+                        <p class="titleinexample">Example 9-1 Sample Shard-Aware Application
+                                Code Using JDBC</p>
+                        <p>The following code snippet shows how to use JDBC sharding APIs</p>
+                        <pre class="pre codeblock"><code>OracleDataSource ods = new OracleDataSource();
+   ods.setURL("jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(HOST=myhost)(PORT=1521)(PROTOCOL=tcp))(CONNECT_DATA=(SERVICE_NAME=myorcldbservicename)))");
+   ods.setUser("hr");
+   ods.setPassword("hr");
+ 
+  // Employee name is the sharding Key in this example.
+  // Build the Sharding Key using employee name as shown below.
+
+   OracleShardingKey employeeNameShardKey = ods.createShardingKeyBuilder()
+                                               .subkey("Mary", JDBCType.VARCHAR)// First Name
+                                               .subkey("Claire", JDBCType.VARCHAR)// Last Name
+                                               .build();
+
+   OracleShardingKey locationSuperShardKey = ods.createShardingKeyBuilder() // Building a super sharding key using location as the key
+                                                .subkey("US", JDBCType.VARCHAR)
+                                                .build();
+
+   OracleConnection connection = ods.createConnectionBuilder()
+                                    .shardingKey(employeeNameShardKey)
+                                    .superShardingKey(locationSuperShardKey)
+                                    .build();</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="../jjdbc/database-sharding.html#JJDBC-GUID-1D7795CA-79DC-452B-9FCC-0EF430F87461" target="_blank">JDBC Support for Database Sharding in <span><cite>Oracle Database JDBC Developer’s Guide</cite></span></a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-2BF7AD3E-B8C5-4A75-8DCF-D13AB208A46B" name="GUID-2BF7AD3E-B8C5-4A75-8DCF-D13AB208A46B"></a><h4 id="SHARD-GUID-2BF7AD3E-B8C5-4A75-8DCF-D13AB208A46B" class="sect4">Oracle Call Interface for Oracle
+        Sharding</h4>
+                  <div>
+                     <p>Oracle Call Interface (OCI) provides an interface for connecting to database
+        shards in an Oracle Sharding configuration.</p>
+                     <p>To make requests that read from or write to a chunk, your application must be routed to
+            the appropriate database (shard) that stores that chunk during the connection initiation
+            step. This routing is accomplished by using a data key. The data key enables routing to
+            the specific chunk by specifying its sharding key or to a group of chunks by specifying
+            its super sharding key. </p>
+                     <p>In order to get a connection to the correct shard containing the chunk you wish to
+            operate on, you must specify a key in your application before getting a connection to a
+            sharded Oracle database for either stand-alone connections or connections obtained from
+            an OCI Session pool. For an OCI Session pool, you must specify a data key before you
+            check out connections from the pool.</p>
+                     <p>At a high-level, the following steps have to be followed to form sharding keys and shard
+            group keys and get a session with an underlying connection:</p>
+                     <ol id="GUID-2BF7AD3E-B8C5-4A75-8DCF-D13AB208A46B__OL_X5Q_4ZD_CLB">
+                        <li>Allocate the sharding key descriptor by calling
+                    <code class="codeph">OCIDescriptorAlloc()</code> and specifying the descriptor type
+                parameter as <code class="codeph">OCI_DTYPE_SHARDING_KEY</code> to form the sharding key.
+                        </li>
+                        <li>Allocate the shard group key descriptor by calling
+                    <code class="codeph">OCIDescriptorAlloc()</code> and specifying the descriptor type
+                parameter as <code class="codeph">OCI_DTYPE_SHARDING_KEY</code> to form the shard group
+                key.
+                        </li>
+                        <li>Call <code class="codeph">OCISessionGet()</code> using the initialized authentication handle
+                from the previous step containing the sharding key and shard group key information
+                to get the database connection to the shard and chunk specified by the sharding key
+                and group of chunks as specified by the shard group key. 
+                        </li>
+                     </ol>
+                     <p>See <span><cite>Oracle Call Interface Programmer's Guide</cite></span> for information about creating connections to OCI Session pools,
+            stand-alone connections, and custom pool connections.
+                     </p>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="../lnoci/oci-interface-for-using-shards.html#LNOCI-GUID-C64136C2-CF65-4507-8811-9A03946CC817" target="_blank">OCI Interface for Using Shards in <span><cite>Oracle Call Interface Programmer's Guide</cite></span></a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-25BE1526-B71C-402D-A2EC-12ABE665F283" name="GUID-25BE1526-B71C-402D-A2EC-12ABE665F283"></a><h4 id="SHARD-GUID-25BE1526-B71C-402D-A2EC-12ABE665F283" class="sect4">Oracle Universal Connection Pool
+        APIs for Oracle Sharding</h4>
+                  <div>
+                     <p>Oracle Universal Connection Pool (UCP) provides APIs for connecting to
+        database shards in an Oracle Sharding configuration.</p>
+                     <p>A shard-aware application gets a connection to a given shard by specifying
+            the sharding key using the enhanced sharding API calls
+                <code class="codeph">createShardingKeyBuilder</code> and
+                <code class="codeph">createConnectionBuilder</code>.
+                     </p>
+                     <p>At a high-level, the following steps have to be followed in making an
+            application work with a sharded database:</p>
+                     <ol id="GUID-25BE1526-B71C-402D-A2EC-12ABE665F283__OL_LDP_GKD_CLB">
+                        <li>
+                           
+                           <p>Update the URL to reflect the shard directors and global
+                    service.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Set the following pool parameters at the pool level and the shard
+                    level.</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-25BE1526-B71C-402D-A2EC-12ABE665F283__UL_MDP_GKD_CLB">
+                              <li>
+                                 
+                                 <p><code class="codeph">setInitialPoolSize</code> sets the initial number
+                            of connections to be created when UCP is started
+                                 </p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p><code class="codeph">setMinPoolSize</code> sets the minimum number of
+                            connections maintained by pool at runtime
+                                 </p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p><code class="codeph">setMaxPoolSize</code> sets maximum number of
+                            connections allowed on connection pool
+                                 </p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p><code class="codeph">setMaxConnectionsPerShard</code> sets max
+                            connections per shard
+                                 </p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Build a sharding key object with
+                        <code class="codeph">createShardingKeyBuilder</code>.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Establish a connection using
+                        <code class="codeph">createConnectionBuilder</code>.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Execute transactions within the scope of the given shard.</p>
+                           
+                        </li>
+                     </ol>
+                     <div class="example" id="GUID-25BE1526-B71C-402D-A2EC-12ABE665F283__GUID-0C81050C-FC81-4CE1-8EAE-59AC42C587C1">
+                        <p class="titleinexample">Example 9-2 Establishing a Connection Using
+                UCP Sharding API</p>
+                        
+                        
+                        <p>The following is a code fragment which illustrates how the sharding keys
+                are built and connections established using UCP Sharding API calls.</p>
+                        <pre class="pre codeblock"><code>...
+
+PoolDataSource pds =                                
+     PoolDataSourceFactory.getPoolDataSource();
+  
+  // Set Connection Pool properties
+pds.setURL(DB_URL);
+pds.setUser("hr");  
+pds.setPassword("****");
+pds.setInitialPoolSize(10);
+pds.setMinPoolSize(20);
+pds.setMaxPoolSize(30);
+                
+// build the sharding key object
+
+OracleShardingKey shardingKey = 
+    pds.createShardingKeyBuilder() 
+      .subkey("mary.smith@example.com", OracleType.VARCHAR2)
+      .build(); 
+
+  // Get an UCP connection for a shard
+Connection conn = 
+    pds.createConnectionBuilder()
+     .shardingKey(shardingKey)
+     .build();
+...</code></pre>
+                        </div>
+                     <div class="example" id="GUID-25BE1526-B71C-402D-A2EC-12ABE665F283__GUID-33BFD16B-5472-41D4-A38B-12A7ECEB7E9F">
+                        <p class="titleinexample">Example 9-3 Sample Shard-Aware Application
+                Code Using UCP Connection Pool</p>
+                        
+                        
+                        <p> In this example the pool settings are defined at the pool level and at
+                the shard level.</p>
+                        <pre class="pre codeblock"><code>import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import oracle.jdbc.OracleShardingKey;
+import oracle.jdbc.OracleType;
+import oracle.jdbc.pool.OracleDataSource;
+import oracle.ucp.jdbc.PoolDataSource;
+import oracle.ucp.jdbc.PoolDataSourceFactory;
+
+public class MaxConnPerShard
+{    
+  public static void main(String[] args) throws SQLException
+  {    
+    <span class="bold">String url = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(HOST=<span class="variable" translate="no">shard-dir1</span>)(PORT=3216)
+ (PROTOCOL=tcp))(CONNECT_DATA=(SERVICE_NAME=shsvc.shpool.oradbcloud)(REGION=east)))";
+    String user="testuser1", pwd = "testuser1";</span>  
+  
+    <span class="bold">int maxPerShard = 100, initPoolSize = 20;</span>    
+
+    PoolDataSource pds = PoolDataSourceFactory.getPoolDataSource();
+    pds.setConnectionFactoryClassName(OracleDataSource.class.getName());
+    pds.setURL(url);
+    pds.setUser(user);
+    pds.setPassword(pwd);
+    pds.setConnectionPoolName("testpool");
+    <span class="bold">pds.setInitialPoolSize(initPoolSize);</span>    
+
+    <span class="bold">// set max connection per shard
+    pds.setMaxConnectionsPerShard(maxPerShard);</span>
+    System.out.println("Max-connections per shard is: "+pds.getMaxConnectionsPerShard());
+                
+    <span class="bold">// build the sharding key object
+    int shardingKeyVal = 123;    
+    OracleShardingKey sdkey = pds.createShardingKeyBuilder()
+        .subkey(shardingKeyVal, OracleType.NUMBER)
+        .build();</span>
+
+    // try to build maxPerShard connections with the sharding key
+    Connection[] conns = new Connection[maxPerShard];
+    for (int i=0; i&lt;maxPerShard; i++)
+    {      
+      <span class="bold">conns[i] = pds.createConnectionBuilder()
+          .shardingKey(sdkey)
+          .build();</span>
+    
+Statement stmt = conns[i].createStatement();
+      ResultSet rs = stmt.executeQuery("select sys_context('userenv', 'instance_name'),
+       sys_context('userenv', 'chunk_id') from dual");
+      while (rs.next()) {
+        System.out.println((i+1)+" - inst:"+rs.getString(1)+", chunk:"+rs.getString(2));
+      }
+      rs.close();
+      stmt.close();
+    }      
+
+    System.out.println("Try to build "+(maxPerShard+1)+" connection ...");
+    try {
+      Connection conn = pds.createConnectionBuilder()
+          .shardingKey(sdkey)
+          .build();
+
+      Statement stmt = conn.createStatement();
+      ResultSet rs = stmt.executeQuery("select sys_context('userenv', 'instance_name'),
+       sys_context('userenv', 'chunk_id') from dual");
+      while (rs.next()) {
+        System.out.println((maxPerShard+1)+" - inst:"+rs.getString(1)+",
+         chunk:"+rs.getString(2));
+      }
+      rs.close();
+      stmt.close();
+
+      System.out.println("Problem!!! could not build connection as max-connections per
+        shard exceeded");
+      conn.close();
+    } catch (SQLException e) {
+      System.out.println("Max-connections per shard met, could not build connection
+        any more, expected exception: "+e.getMessage());
+    }    
+    for (int i=0; i&lt;conns.length; i++)
+    {
+      conns[i].close();
+    }        
+  }
+}</code></pre>
+                        </div>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="../jjucp/ucp-sharding-api.html#JJUCP-GUID-3B91E8F7-AE45-4CC8-B87F-6F4FC9EEA001" target="_blank">UCP APIs for Database Sharding Support in <span><cite>Oracle Universal Connection Pool Developer’s Guide</cite></span></a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-90A7B5A6-372A-4C9A-91CE-27591A8F5945" name="GUID-90A7B5A6-372A-4C9A-91CE-27591A8F5945"></a><h4 id="SHARD-GUID-90A7B5A6-372A-4C9A-91CE-27591A8F5945" class="sect4">Oracle Data Provider for .NET APIs
+        for Oracle Sharding</h4>
+                  <div>
+                     <p>Oracle Data Provider for .NET (ODP.NET) provides APIs for connecting to
+        database shards in an Oracle Sharding configuration.</p>
+                     <p>Using ODP.NET APIs, a shard-aware application gets a connection to a given shard by
+            specifying the sharding key and super sharding key with APIs such as the
+                <code class="codeph">SetShardingKey(OracleShardingKey shardingKey, OracleShardingKey
+                superShardingKey)</code> instance method in the <code class="codeph">OracleConnection</code>
+            class.
+                     </p>
+                     <p>At a high level, the following steps are necessary for a .NET application to
+            work with a sharded database:</p>
+                     <ol id="GUID-90A7B5A6-372A-4C9A-91CE-27591A8F5945__OL_M4P_SHD_CLB">
+                        <li>
+                           
+                           <p>Use ODP.NET, Unmanaged Driver.</p>
+                           
+                           <p>Sharding is supported with or without ODP.NET connection pooling.
+                    Each pool can maintain connections to different shards of the sharded
+                    database.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Use an <code class="codeph">OracleShardingKey</code> class to set the sharding
+                    key and another instance for the super sharding key.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>&nbsp;Invoke the <code class="codeph">OracleConnection.SetShardingKey()</code> method
+                    prior to calling <code class="codeph">OracleConnection.Open()</code> so that ODP.NET can
+                    return a connection with the specified sharding key and super sharding key.
+                           </p>
+                           
+                           <p>These keys must be set while the <code class="codeph">OracleConnection</code> is
+                    in a Closed state, otherwise an exception is thrown.
+                           </p>
+                           
+                        </li>
+                     </ol>
+                     <div class="example" id="GUID-90A7B5A6-372A-4C9A-91CE-27591A8F5945__GUID-5DD88D24-08B8-4EAC-A094-076301374AE5">
+                        <p class="titleinexample">Example 9-4 Sample Shard-Aware Application
+                Code Using ODP.NET</p>
+                        
+                        <pre class="pre codeblock"><code>using System;
+using Oracle.DataAccess.Client;
+ 
+class Sharding
+{
+  static void Main()
+  {
+    OracleConnection con = new OracleConnection
+      ("user id=hr;password=hr;Data Source=orcl;");
+    //Setting a shard key
+    OracleShardingKey shardingKey = new OracleShardingKey(OracleDbType.Int32, 123);
+    //Setting a second shard key value for a composite key
+    shardingKey.SetShardingKey(OracleDbType.Varchar2, "gold");
+    //Creating and setting the super shard key
+    OracleShardingKey superShardingKey = new OracleShardingKey();
+    superShardingKey.SetShardingKey(OracleDbType.Int32, 1000);
+    
+    //Setting super sharding key and sharding key on the connection
+    con.SetShardingKey(shardingKey, superShardingKey);
+    con.Open();
+
+    //perform SQL query
+  }
+}</code></pre>
+                        </div>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="../odpnt/featDataSharding.html#ODPNT-GUID-D42183C2-3C84-443E-9A92-93EF764D5770" target="_blank">Database Sharding in <span><cite>Oracle Data Provider for .NET Developer's Guide for Microsoft Windows</cite></span></a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

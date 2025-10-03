@@ -1,0 +1,305 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Overview of Database Creation Tasks on Windows Using Command-Line Tools">
+      <meta name="abstract" content="Learn how to create a new database manually. As part of its database software files, Oracle Database provides a sample initialization parameter file, which can you can edit to suit your needs.">
+      <meta name="description" content="Learn how to create a new database manually. As part of its database software files, Oracle Database provides a sample initialization parameter file, which can you can edit to suit your needs.">
+      <meta name="DC.subject" content="databases, creating manually">
+      <meta name="keywords" content="databases, creating manually">
+      <meta name="DC.Relation" scheme="URI" content="postinstallation-database-creation-on-windows.html#GUID-2EC2C9F6-FCC3-4A49-B1AB-66FAB06E67A0">
+      <meta name="DC.Relation" scheme="URI" content="about-exporting-an-existing-database.html#GUID-13BA4E56-3B71-47DE-B43C-AF173502794B">
+      <meta name="DC.Relation" scheme="URI" content="deleting-database-files.html#GUID-F86698F7-0DBF-4EB1-B6FA-09FF2E9A357E">
+      <meta name="DC.Relation" scheme="URI" content="modifying-the-initialization-parameter-file.html#GUID-0A6E458D-19C0-4BD6-906D-3C20CDC443A9">
+      <meta name="DC.Relation" scheme="URI" content="about-creating-and-starting-an-oracle-database-service.html#GUID-2E9384AB-DE00-4F1A-9940-FCD465A35F98">
+      <meta name="DC.Relation" scheme="URI" content="starting-an-oracle-database-instance.html#GUID-3675A123-8E05-4646-B3D5-EA61334420C0">
+      <meta name="DC.Relation" scheme="URI" content="putting-the-create-database-statement-in-a-script.html#GUID-B2F891CB-33FE-474E-AF2D-ED46A6081F13">
+      <meta name="DC.Relation" scheme="URI" content="running-the-create-database-script.html#GUID-1E2BC9AD-DA6A-4E47-9D19-5F4479759D05">
+      <meta name="DC.Relation" scheme="URI" content="about-importing-a-database.html#GUID-DCD850D6-0059-4202-BEE5-7E973E5763A9">
+      <meta name="DC.Relation" scheme="URI" content="updating-oracle-sid-in-the-registry.html#GUID-E7747FAF-4477-40A1-8CC9-40022890C643">
+      <meta name="DC.Relation" scheme="URI" content="creating-the-oracle-sid-parameter.html#GUID-0EC88CC9-E852-4C84-A7B7-315F09E04E51">
+      <meta name="DC.Relation" scheme="URI" content="backing-up-the-new-database.html#GUID-2A3E5D6A-F9F2-4E44-B067-7E7928C28438">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Creator" content="Sunil Surabhi">
+      <meta name="DC.Creator" content="Alexander Keh">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Ricky Chen">
+      <meta name="DC.Creator" content="David Collelo">
+      <meta name="DC.Creator" content="David Friedman">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Mark Bauer">
+      <meta name="DC.Creator" content="Sue K. Lee">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Ravi Thammaiah">
+      <meta name="DC.Creator" content="Michael Verheij">
+      <meta name="DC.Creator" content="Tanaya Bhattacharjee">
+      <meta name="DC.Publisher" content="January2020">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-B16F2CD7-5FD4-4FB5-A93D-7FA4DC6AFA80">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Learn how to create a new database manually. As part of its database software files, Oracle Database provides a sample initialization parameter file, which can you can edit to suit your needs.">
+      <meta name="description" content="Learn how to create a new database manually. As part of its database software files, Oracle Database provides a sample initialization parameter file, which can you can edit to suit your needs.">
+      <title>Overview of Database Creation Tasks on Windows Using Command-Line Tools</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Administrator's Reference ">
+      <meta property="og:description" content="Learn how to create a new database manually. As part of its database software files, Oracle Database provides a sample initialization parameter file, which can you can edit to suit your needs.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Administrator's Reference for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="administrators-reference-guide-microsoft-windows.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2020-01-09T06:34:26-08:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2020">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96296-03">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="overview-of-database-creation-on-windows-using-oracle-database-configuration-assistant.html" title="Previous" type="text/html">
+      <link rel="next" href="about-exporting-an-existing-database.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Administrator's Reference Guide for Microsoft Windows">
+    <meta name="dcterms.isVersionOf" content="NTQRF">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="overview-of-database-creation-on-windows-using-oracle-database-configuration-assistant.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="about-exporting-an-existing-database.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database Administrator's Reference </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="postinstallation-database-creation-on-windows.html" property="item" typeof="WebPage"><span property="name">Postinstallation Database Creation on Windows</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Overview of Database Creation Tasks on Windows Using Command-Line Tools</li>
+            </ol>
+            <a id="GUID-B16F2CD7-5FD4-4FB5-A93D-7FA4DC6AFA80" name="GUID-B16F2CD7-5FD4-4FB5-A93D-7FA4DC6AFA80"></a><a id="NTQRF474"></a><a id="NTQRF134"></a><a id="NTQRF135"></a><a id="NTQRF136"></a><a id="NTQRF133"></a>
+            
+            <h2 id="NTQRF-GUID-B16F2CD7-5FD4-4FB5-A93D-7FA4DC6AFA80" class="sect2">Overview of Database Creation Tasks on Windows Using Command-Line Tools</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Learn how to create a new database manually. As part of its database software files, Oracle Database provides a sample initialization parameter file, which can you can edit to suit your needs. </p>
+               <p>You can choose to create database creation scripts using Oracle Database Configuration Assistant.</p>
+               <p>The following are the types of Database creation tasks:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p>Copy an existing database and delete the old database.</p>
+                  </li>
+                  <li>
+                     <p>Copy an existing database and keep the old database.</p>
+                  </li>
+                  <li>
+                     <p>Create a new database when no database exists on your system.</p>
+                  </li>
+               </ul>
+               <div class="section">
+                  <p class="subhead1" id="GUID-B16F2CD7-5FD4-4FB5-A93D-7FA4DC6AFA80__GUID-59E8AF84-0354-4417-A0AC-55F28A413A3E">Manual Database Creation Tasks</p>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <p>Use Manual Database Creation Tasks to understand the manual tasks involved in creating a new database for each of these database creation categories. Each step is explained in detail in the following subsections.</p>
+                  <div class="tblformalwide" id="GUID-B16F2CD7-5FD4-4FB5-A93D-7FA4DC6AFA80__G1015865">
+                     <p class="titleintable">Table 4-1 Manual Database Creation Tasks</p>
+                     <table cellpadding="4" cellspacing="0" class="FormalWide" title="Manual Database Creation Tasks" summary="Rows are tasks. For each task, the first column describes the task, and the other three columns indicate whether the task is necessary or not for different database creation situations." width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="28%" id="d12535e89">Task</th>
+                              <th align="left" valign="bottom" width="23%" id="d12535e92">Copy existing database and delete old database</th>
+                              <th align="left" valign="bottom" width="21%" id="d12535e95">Copy existing database and keep old database</th>
+                              <th align="left" valign="bottom" width="28%" id="d12535e98">Create new database when no database exists on system</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d12535e103" headers="d12535e89 "><a href="about-exporting-an-existing-database.html#GUID-13BA4E56-3B71-47DE-B43C-AF173502794B" title="You are required to export an existing database only if you intend to copy its contents to a new database.">About Exporting an Existing Database</a></td>
+                              <td align="left" valign="top" width="23%" headers="d12535e103 d12535e92 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="21%" headers="d12535e103 d12535e95 ">Note 1</td>
+                              <td align="left" valign="top" width="28%" headers="d12535e103 d12535e98 ">
+                                 <p>Not applicable</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d12535e119" headers="d12535e89 "><a href="deleting-database-files.html#GUID-F86698F7-0DBF-4EB1-B6FA-09FF2E9A357E" title="Deleting database files is required only when you copy an existing database to a new database to replace the old database.">Deleting Database Files</a></td>
+                              <td align="left" valign="top" width="23%" headers="d12535e119 d12535e92 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="21%" headers="d12535e119 d12535e95 ">
+                                 <p>No</p>
+                              </td>
+                              <td align="left" valign="top" width="28%" headers="d12535e119 d12535e98 ">
+                                 <p>Not applicable</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d12535e136" headers="d12535e89 "><a href="modifying-the-initialization-parameter-file.html#GUID-0A6E458D-19C0-4BD6-906D-3C20CDC443A9" title="Describes how to modify the initialization parameter file.">Modifying the Initialization Parameter File</a></td>
+                              <td align="left" valign="top" width="23%" headers="d12535e136 d12535e92 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="21%" headers="d12535e136 d12535e95 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="28%" headers="d12535e136 d12535e98 ">
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d12535e153" headers="d12535e89 "><a href="starting-an-oracle-database-instance.html#GUID-3675A123-8E05-4646-B3D5-EA61334420C0" title="Learn how to start an instance without mounting a database.">Starting an Oracle Database Instance</a></td>
+                              <td align="left" valign="top" width="23%" headers="d12535e153 d12535e92 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="21%" headers="d12535e153 d12535e95 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="28%" headers="d12535e153 d12535e98 ">
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d12535e170" headers="d12535e89 "><a href="about-creating-and-starting-an-oracle-database-service.html#GUID-2E9384AB-DE00-4F1A-9940-FCD465A35F98" title="Learn how to create and start an Oracle Database service.">About Creating and Starting an Oracle Database Service</a></td>
+                              <td align="left" valign="top" width="23%" headers="d12535e170 d12535e92 ">
+                                 <p>No</p>
+                              </td>
+                              <td align="left" valign="top" width="21%" headers="d12535e170 d12535e95 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="28%" headers="d12535e170 d12535e98 ">
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d12535e187" headers="d12535e89 "><a href="putting-the-create-database-statement-in-a-script.html#GUID-B2F891CB-33FE-474E-AF2D-ED46A6081F13" title="The CREATE DATABASE statement is a SQL statement that creates the database.">Adding the CREATE DATABASE Statement in a Script</a></td>
+                              <td align="left" valign="top" width="23%" headers="d12535e187 d12535e92 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="21%" headers="d12535e187 d12535e95 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="28%" headers="d12535e187 d12535e98 ">
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d12535e207" headers="d12535e89 "><a href="running-the-create-database-script.html#GUID-1E2BC9AD-DA6A-4E47-9D19-5F4479759D05" title="Use this procedure to run the CREATE DATABASE script.">Running the CREATE DATABASE Script</a></td>
+                              <td align="left" valign="top" width="23%" headers="d12535e207 d12535e92 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="21%" headers="d12535e207 d12535e95 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="28%" headers="d12535e207 d12535e98 ">
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d12535e224" headers="d12535e89 "><a href="about-importing-a-database.html#GUID-DCD850D6-0059-4202-BEE5-7E973E5763A9" title="Learn how to use Data Pump Import or Import.">About Importing a Database</a></td>
+                              <td align="left" valign="top" width="23%" headers="d12535e224 d12535e92 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="21%" headers="d12535e224 d12535e95 ">Note 2</td>
+                              <td align="left" valign="top" width="28%" headers="d12535e224 d12535e98 ">
+                                 <p>Not applicable</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d12535e240" headers="d12535e89 "><a href="updating-oracle-sid-in-the-registry.html#GUID-E7747FAF-4477-40A1-8CC9-40022890C643" title="If this is the first database on your computer or if you intend to make the new database the default database, then you must make a change in the registry.">Updating ORACLE_SID in the Registry</a></td>
+                              <td align="left" valign="top" width="23%" headers="d12535e240 d12535e92 ">
+                                 <p>No</p>
+                              </td>
+                              <td align="left" valign="top" width="21%" headers="d12535e240 d12535e95 ">
+                                 <p>Only if you change the default <span class="italic"><code class="codeph">SID</code></span></p>
+                              </td>
+                              <td align="left" valign="top" width="28%" headers="d12535e240 d12535e98 ">
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d12535e260" headers="d12535e89 "><a href="backing-up-the-new-database.html#GUID-2A3E5D6A-F9F2-4E44-B067-7E7928C28438" title="Use this procedure to prevent data loss.">Backing Up the New Database</a></td>
+                              <td align="left" valign="top" width="23%" headers="d12535e260 d12535e92 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="21%" headers="d12535e260 d12535e95 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" width="28%" headers="d12535e260 d12535e98 ">
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <!-- class="inftblhruleinformal" -->
+                  <div class="infoboxnote" id="GUID-B16F2CD7-5FD4-4FB5-A93D-7FA4DC6AFA80__GUID-C0582ABE-FE3C-42E5-8197-0A35A7AF9D7E">
+                     <p class="notep1">Note:</p> If you copy data from an existing database to the new database, select Yes; otherwise, No. Also, if you import tables and other objects from the existing database, select Yes; otherwise, No.
+                  </div>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <p>An example in the following sections demonstrates how to create a database. In this example, the existing database is the starter database with a <span class="italic"><code class="codeph">SID</code></span> of <code class="codeph">orcl</code> located in directory <code>C</code>:\<span class="variable" translate="no">app</span>\<span class="variable" translate="no">username</span>\<code>oradata\orcl</code>. Copy <code>orcl</code> to a new database with a database name and <code>SID</code> of <code>prod</code> located in the directory <code>C:</code><span class="variable" translate="no">\app\username</span><code>\oradata\prod</code>. Then, delete the starter database <code class="codeph">orcl</code>.
+                  </p>
+               </div>
+               <!-- class="section" -->
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="about-exporting-an-existing-database.html#GUID-13BA4E56-3B71-47DE-B43C-AF173502794B">About Exporting an Existing Database</a><br>You are required to export an existing database only if you intend to copy its contents to a new database.
+                  </li>
+                  <li class="ulchildlink"><a href="deleting-database-files.html#GUID-F86698F7-0DBF-4EB1-B6FA-09FF2E9A357E">Deleting Database Files</a><br>Deleting database files is required only when you copy an existing database to a new database to replace the old database. 
+                  </li>
+                  <li class="ulchildlink"><a href="modifying-the-initialization-parameter-file.html#GUID-0A6E458D-19C0-4BD6-906D-3C20CDC443A9">Modifying the Initialization Parameter File</a><br>Describes how to modify the initialization parameter file.
+                  </li>
+                  <li class="ulchildlink"><a href="about-creating-and-starting-an-oracle-database-service.html#GUID-2E9384AB-DE00-4F1A-9940-FCD465A35F98">About Creating and Starting an Oracle Database Service</a><br>Learn how to create and start an Oracle Database service.
+                  </li>
+                  <li class="ulchildlink"><a href="starting-an-oracle-database-instance.html#GUID-3675A123-8E05-4646-B3D5-EA61334420C0">Starting an Oracle Database Instance</a><br>Learn how to start an instance without mounting a database.
+                  </li>
+                  <li class="ulchildlink"><a href="putting-the-create-database-statement-in-a-script.html#GUID-B2F891CB-33FE-474E-AF2D-ED46A6081F13">Adding the CREATE DATABASE Statement in a Script</a><br>The <code class="codeph">CREATE DATABASE</code> statement is a SQL statement that creates the database. 
+                  </li>
+                  <li class="ulchildlink"><a href="running-the-create-database-script.html#GUID-1E2BC9AD-DA6A-4E47-9D19-5F4479759D05">Running the CREATE DATABASE Script</a><br>Use this procedure to run the CREATE DATABASE script.
+                  </li>
+                  <li class="ulchildlink"><a href="about-importing-a-database.html#GUID-DCD850D6-0059-4202-BEE5-7E973E5763A9">About Importing a Database</a><br>Learn how to use Data Pump Import or Import.
+                  </li>
+                  <li class="ulchildlink"><a href="updating-oracle-sid-in-the-registry.html#GUID-E7747FAF-4477-40A1-8CC9-40022890C643">Updating ORACLE_SID in the Registry</a><br>If this is the first database on your computer or if you intend to make the new database the default database, then you must make a change in the registry.
+                  </li>
+                  <li class="ulchildlink"><a href="creating-the-oracle-sid-parameter.html#GUID-0EC88CC9-E852-4C84-A7B7-315F09E04E51">Creating the ORACLE_SID Parameter</a><br>If you do not yet have the parameter <code class="codeph">ORACLE_SID</code>, because this is the first database on your system, then you must create it.
+                  </li>
+                  <li class="ulchildlink"><a href="backing-up-the-new-database.html#GUID-2A3E5D6A-F9F2-4E44-B067-7E7928C28438">Backing Up the New Database</a><br>Use this procedure to prevent data loss.
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="postinstallation-database-creation-on-windows.html#GUID-2EC2C9F6-FCC3-4A49-B1AB-66FAB06E67A0" title="Learn how to create a database after installing Oracle Database, using either Oracle Database Configuration Assistant or command-line tools.">Postinstallation Database Creation on Windows</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

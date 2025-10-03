@@ -1,0 +1,724 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Oracle Data Mining Basics">
+      <meta name="abstract" content="Understand the basic concepts of Oracle Data Mining.">
+      <meta name="description" content="Understand the basic concepts of Oracle Data Mining.">
+      <meta name="DC.subject" content="descriptive models, scoring, unsupervised models, anomaly detection, feature extraction, Automatic Data Preparation, sparse data, transparency">
+      <meta name="keywords" content="descriptive models, scoring, unsupervised models, anomaly detection, feature extraction, Automatic Data Preparation, sparse data, transparency">
+      <meta name="DC.Creator" content="Sarika Surampudi">
+      <meta name="DC.Publisher" content="March2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-2116E665-721E-4EBA-AFE1-A30D6E8078C6">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Understand the basic concepts of Oracle Data Mining.">
+      <meta name="description" content="Understand the basic concepts of Oracle Data Mining.">
+      <title>Oracle Data Mining Basics</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="API Guide">
+      <meta property="og:description" content="Understand the basic concepts of Oracle Data Mining.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="API Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-machine-learning-sql-api-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-03-19T05:47:32-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E97869-10">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="introduction-to-oracle-data-mining.html" title="Previous" type="text/html">
+      <link rel="next" href="mining-functions.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Machine Learning for SQL API Guide">
+    <meta name="dcterms.isVersionOf" content="DMAPI">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","name":"Oracle Data Mining Basics","description":"Understand the basic concepts of Oracle Data Mining.","datePublished":"2019-01-13 CST","dateModified":"2025-03-19 CST"} </script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="introduction-to-oracle-data-mining.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="mining-functions.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">API Guide</span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="oracle-data-mining.html" property="item" typeof="WebPage"><span property="name"> Introductions</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Oracle Data Mining Basics </li>
+            </ol>
+            <a id="GUID-2116E665-721E-4EBA-AFE1-A30D6E8078C6" name="GUID-2116E665-721E-4EBA-AFE1-A30D6E8078C6"></a><a id="DMCON620"></a>
+            
+            <h2 id="DMAPI-GUID-2116E665-721E-4EBA-AFE1-A30D6E8078C6" class="sect2"><span class="enumeration_chapter">2 </span>Oracle Data Mining Basics 
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Understand the basic concepts of Oracle Data Mining.</p>
+               <p><a id="d7028e19" class="indexterm-anchor"></a></p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="data-mining-basics.html#GUID-2E33469E-D6D2-4B31-B62D-3C2E2F88340B" title="Introduces the concept of data mining functions.">Mining Functions</a></p>
+                  </li>
+                  <li>
+                     <p><a href="data-mining-basics.html#GUID-BFA7FAAE-F5CB-4A42-886A-47B6D502B492" title="Learn about unsupervised algorithms that Oracle Data Mining supports.">Algorithms</a></p>
+                  </li>
+                  <li>
+                     <p><a href="data-mining-basics.html#GUID-1F28AA79-0508-40C4-BB62-A7A7EAFE5E2F" title="Prepare and transform unstructured text data for data mining.">Data Preparation</a></p>
+                  </li>
+                  <li>
+                     <p><a href="data-mining-basics.html#GUID-21677973-2248-4119-A560-24D7F2FD7EAD" title="All Oracle Data Mining scoring routines support parallel execution for scoring large data sets.In Oracle Data Mining, scoring is performed by SQL language functions. Understand the different ways involved in SQL function scoring.">In-Database Scoring</a></p>
+                  </li>
+               </ul>
+            </div><a id="DMCON030"></a><div class="props_rev_3"><a id="GUID-2E33469E-D6D2-4B31-B62D-3C2E2F88340B" name="GUID-2E33469E-D6D2-4B31-B62D-3C2E2F88340B"></a><h3 id="DMAPI-GUID-2E33469E-D6D2-4B31-B62D-3C2E2F88340B" class="sect3"><span class="enumeration_section">2.1 </span>Mining Functions
+               </h3>
+               <div>
+                  <p>Introduces the concept of data mining functions.</p>
+                  <p>A basic understanding of data <a id="d7028e78" class="indexterm-anchor"></a>mining functions and algorithms is required for using Oracle Data Mining.
+                  </p>
+                  <p>Each data mining <strong class="term">function</strong> specifies a class of problems that can be modeled and solved. Data mining functions fall generally into two categories: <strong class="term">supervised</strong> and <strong class="term">unsupervised</strong>. Notions of supervised and unsupervised learning are derived from the science of <a id="d7028e92" class="indexterm-anchor"></a>machine learning, which has been called a sub-area of <a id="d7028e95" class="indexterm-anchor"></a>artificial intelligence.
+                  </p>
+                  <p>Artificial intelligence refers to the implementation and study of systems that exhibit autonomous intelligence or behavior of their own. Machine learning deals with techniques that enable devices to learn from their own performance and modify their own functioning. Data mining applies machine learning concepts to data.</p>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="data-mining-basics.html#GUID-BFA7FAAE-F5CB-4A42-886A-47B6D502B492" title="Learn about unsupervised algorithms that Oracle Data Mining supports.">Algorithms</a></li>
+                     </ul>
+                  </div>
+               </div><a id="DMCON128"></a><div class="props_rev_3"><a id="GUID-2BB02332-4824-4D04-BE04-4265C75BEAA9" name="GUID-2BB02332-4824-4D04-BE04-4265C75BEAA9"></a><h4 id="DMAPI-GUID-2BB02332-4824-4D04-BE04-4265C75BEAA9" class="sect4"><span class="enumeration_section">2.1.1 </span>Supervised Data Mining
+                  </h4>
+                  <div>
+                     <p>Supervised <a id="d7028e128" class="indexterm-anchor"></a>learning is also known as <a id="d7028e131" class="indexterm-anchor"></a>directed learning. The learning process is directed by a previously known dependent attribute or <a id="d7028e134" class="indexterm-anchor"></a>target. Directed data mining attempts to explain the behavior of the target as a function of a set of independent attributes or predictors.
+                     </p>
+                     <p>Supervised learning generally results in <a id="d7028e139" class="indexterm-anchor"></a>predictive models. This is in contrast to unsupervised learning where the goal is pattern detection.
+                     </p>
+                     <p>The building of a supervised model involves <strong class="term">training</strong>, a process whereby the software analyzes many cases where the target value is already known. In the training process, the model "learns" the logic for making the prediction. For example, a model that seeks to identify the customers who are likely to respond to a promotion must be trained by analyzing the characteristics of many customers who are known to have responded or not responded to a promotion in the past.
+                     </p>
+                  </div><a id="DMCON129"></a><div class="props_rev_3"><a id="GUID-ED7D5FD4-E421-44DC-A790-A96274E649B2" name="GUID-ED7D5FD4-E421-44DC-A790-A96274E649B2"></a><h5 id="DMAPI-GUID-ED7D5FD4-E421-44DC-A790-A96274E649B2" class="sect5"><span class="enumeration_section">2.1.1.1 </span>Supervised Learning: Testing
+                     </h5>
+                     <div>
+                        <p>Separate data sets are required for building (training) <a id="d7028e167" class="indexterm-anchor"></a>and testing some predictive models. The build data (training data) and test data must have the same column structure. Typically, one large table or view is split into two data sets: one for building the model, and the other for testing the model.
+                        </p>
+                        <p>The process of applying the model to test data helps to determine whether the model, built on one chosen sample, is generalizable to other data. In particular, it helps to avoid the phenomenon of <a id="d7028e174" class="indexterm-anchor"></a>overfitting, which can occur when the logic of the model fits the build data too well and therefore has little predictive power.
+                        </p>
+                     </div>
+                  </div><a id="DMCON624"></a><a id="DMCON130"></a><div class="props_rev_3"><a id="GUID-99532F63-0417-45DC-908D-C5D7FCD083D9" name="GUID-99532F63-0417-45DC-908D-C5D7FCD083D9"></a><h5 id="DMAPI-GUID-99532F63-0417-45DC-908D-C5D7FCD083D9" class="sect5"><span class="enumeration_section">2.1.1.2 </span>Supervised Learning: Scoring
+                     </h5>
+                     <div>
+                        <p><a id="d7028e197" class="indexterm-anchor"></a>Apply data, also <a id="d7028e202" class="indexterm-anchor"></a>called scoring data, is the actual <a id="d7028e207" class="indexterm-anchor"></a>population to which a model is applied. For example, you might build a model that identifies the characteristics of customers who frequently buy a certain product. To obtain a list of customers who shop at a certain store and are likely to buy a related product, you might apply the model to the customer data for that store. In this case, the store customer data is the scoring data.
+                        </p>
+                        <p>Most supervised learning can be applied to a population of interest. The principal supervised mining techniques, <strong class="term">Classification</strong> and <strong class="term">Regression</strong>, can both be used for scoring.
+                        </p>
+                        <p>Oracle Data Mining does not support the scoring operation for <strong class="term">Attribute Importance</strong>, another supervised function. Models of this type are built on a population of interest to obtain information about that population; they cannot be applied to separate data. An attribute importance model returns and ranks the attributes that are most important in predicting a target value. 
+                        </p>
+                        <p>Oracle Data Mining supports the supervised data mining functions described in<a id="d7028e227" class="indexterm-anchor"></a> the following table: 
+                        </p>
+                        <div class="tblformalwide" id="GUID-99532F63-0417-45DC-908D-C5D7FCD083D9__CIHDADDJ">
+                           <p class="titleintable">Table 2-1 Oracle Data Mining Supervised Functions </p>
+                           <table cellpadding="4" cellspacing="0" class="FormalWide" title="Oracle Data Mining Supervised Functions " summary="This table describes the predictive mining functions." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="24%" id="d7028e241">Function</th>
+                                    <th align="left" valign="bottom" width="37%" id="d7028e244">Description</th>
+                                    <th align="left" valign="bottom" width="39%" id="d7028e247">Sample Problem</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="24%" id="d7028e252" headers="d7028e241 ">
+                                       <p>Attribute Importance<a id="d7028e255" class="indexterm-anchor"></a></p>
+                                    </td>
+                                    <td align="left" valign="top" width="37%" headers="d7028e252 d7028e244 ">
+                                       <p>Identifies the attributes that are most important in predicting a target attribute</p>
+                                    </td>
+                                    <td align="left" valign="top" width="39%" headers="d7028e252 d7028e247 ">
+                                       <p>Given customer response to an affinity card program, find the most significant predictors</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="24%" id="d7028e264" headers="d7028e241 ">
+                                       <p><a id="d7028e266" class="indexterm-anchor"></a><a id="d7028e268" class="indexterm-anchor"></a>Classification
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="37%" headers="d7028e264 d7028e244 ">
+                                       <p>Assigns items to discrete classes and predicts the class to which an item belongs</p>
+                                    </td>
+                                    <td align="left" valign="top" width="39%" headers="d7028e264 d7028e247 ">
+                                       <p>Given demographic data about a set of customers, predict customer response to an affinity card program</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="24%" id="d7028e280" headers="d7028e241 ">
+                                       <p><a id="d7028e282" class="indexterm-anchor"></a><a id="d7028e284" class="indexterm-anchor"></a>Regression
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="37%" headers="d7028e280 d7028e244 ">
+                                       <p>Approximates and forecasts continuous values</p>
+                                    </td>
+                                    <td align="left" valign="top" width="39%" headers="d7028e280 d7028e247 ">
+                                       <p>Given demographic and purchasing data about a set of customers, predict customers' age</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <!-- class="inftblhruleinformal" -->
+                     </div>
+                  </div>
+               </div><a id="DMCON131"></a><div class="props_rev_3"><a id="GUID-91F9B08B-B262-4726-A109-A90E68A062D0" name="GUID-91F9B08B-B262-4726-A109-A90E68A062D0"></a><h4 id="DMAPI-GUID-91F9B08B-B262-4726-A109-A90E68A062D0" class="sect4"><span class="enumeration_section">2.1.2 </span>Unsupervised Data Mining
+                  </h4>
+                  <div>
+                     <p>Unsupervised <a id="d7028e320" class="indexterm-anchor"></a>learning is non-directed. There is no distinction between dependent and independent attributes. There is no previously-known result to guide the algorithm in building the model.
+                     </p>
+                     <p>Unsupervised learning can be used for <strong class="term">descriptive</strong> purposes. It can also be used to make predictions. 
+                     </p>
+                  </div><a id="DMCON135"></a><a id="DMCON132"></a><div class="props_rev_3"><a id="GUID-039F01D5-C94A-4571-9C08-3B9D8AB78629" name="GUID-039F01D5-C94A-4571-9C08-3B9D8AB78629"></a><h5 id="DMAPI-GUID-039F01D5-C94A-4571-9C08-3B9D8AB78629" class="sect5"><span class="enumeration_section">2.1.2.1 </span>Unsupervised Learning: Scoring
+                     </h5>
+                     <div>
+                        <p>Introduces unsupervised learning, supported scoring operations, and unsupervised Oracle Data Mining functions.</p>
+                        <p>Although unsupervised data mining does not <a id="d7028e361" class="indexterm-anchor"></a>specify a <a id="d7028e366" class="indexterm-anchor"></a>target, most unsupervised learning can be applied to a population of interest. For exa<a id="d7028e369" class="indexterm-anchor"></a>mple, <a id="d7028e374" class="indexterm-anchor"></a>clustering models use descriptive data mining techniques, but they can be applied to classify cases according to their cluster assignments. <a id="d7028e377" class="indexterm-anchor"></a><a id="d7028e379" class="indexterm-anchor"></a><strong class="term">Anomaly detection</strong>, <a id="d7028e387" class="indexterm-anchor"></a>although unsupervised, is typically used to predict whether a data point is typical among a set of cases.
+                        </p>
+                        <p>Oracle Data Mining supports the scoring operation for <a id="d7028e394" class="indexterm-anchor"></a><a id="d7028e396" class="indexterm-anchor"></a><strong class="term">Clustering</strong> and <strong class="term">Feature Extraction</strong>, both unsupervised mining functions. Oracle Data Mining does not support the <a id="d7028e404" class="indexterm-anchor"></a>scoring operation for <a id="d7028e407" class="indexterm-anchor"></a><strong class="term">Association Rules</strong>, another unsupervised function. Association models are built on a population of interest to obtain information about that population; they cannot be applied to separate data. An association model returns rules that explain how items or events are associated with each other. The association rules are returned with statistics that can be used to rank them according to their probability. 
+                        </p>
+                        <p>Oracle Data Mining supports the unsupervised functions described in the following table:</p>
+                        <div class="tblformalwide" id="GUID-039F01D5-C94A-4571-9C08-3B9D8AB78629__CHDDDCEE">
+                           <p class="titleintable">Table 2-2 Oracle Data Mining Unsupervised Functions</p>
+                           <table cellpadding="4" cellspacing="0" class="FormalWide" title="Oracle Data Mining Unsupervised Functions" summary="This table describes the descriptive data mining functions." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="20%" id="d7028e425">Function</th>
+                                    <th align="left" valign="bottom" width="36%" id="d7028e428">Description</th>
+                                    <th align="left" valign="bottom" width="43%" id="d7028e431">Sample Problem</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="20%" id="d7028e436" headers="d7028e425 ">
+                                       <p><a id="d7028e438" class="indexterm-anchor"></a><a id="d7028e440" class="indexterm-anchor"></a>Anomaly Detection
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d7028e436 d7028e428 ">
+                                       <p>Identifies items (outliers) that do not satisfy the characteristics of "normal" data</p>
+                                    </td>
+                                    <td align="left" valign="top" width="43%" headers="d7028e436 d7028e431 ">
+                                       <p>Given demographic data about a set of customers, identify customer purchasing behavior that is significantly different from the norm</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="20%" id="d7028e452" headers="d7028e425 ">
+                                       <p>Association<a id="d7028e455" class="indexterm-anchor"></a><a id="d7028e457" class="indexterm-anchor"></a> Rules
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d7028e452 d7028e428 ">
+                                       <p>Finds items that tend to co-occur in the data and specifies the rules that govern their co-occurrence</p>
+                                    </td>
+                                    <td align="left" valign="top" width="43%" headers="d7028e452 d7028e431 ">
+                                       <p>Find the items that tend to be purchased together and specify their relationship</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="20%" id="d7028e469" headers="d7028e425 ">
+                                       <p>Clustering<a id="d7028e472" class="indexterm-anchor"></a><a id="d7028e474" class="indexterm-anchor"></a></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d7028e469 d7028e428 ">
+                                       <p>Finds natural groupings in the data</p>
+                                    </td>
+                                    <td align="left" valign="top" width="43%" headers="d7028e469 d7028e431 ">
+                                       <p>Segment demographic data into clusters and rank the probability that an individual belongs to a given cluster</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="20%" id="d7028e485" headers="d7028e425 ">
+                                       <p>Feature Extraction<a id="d7028e488" class="indexterm-anchor"></a><a id="d7028e490" class="indexterm-anchor"></a></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d7028e485 d7028e428 ">
+                                       <p>Creates new <a id="d7028e497" class="indexterm-anchor"></a>attributes (features) using linear combinations of the original attributes
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="43%" headers="d7028e485 d7028e431 ">
+                                       <p>Given demographic data about a set of customers, group the attributes into general characteristics of the customers</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <!-- class="inftblhruleinformal" -->
+                     </div>
+                     <div>
+                        <div class="relinfo">
+                           <p><strong>Related Topics</strong></p>
+                           <ul>
+                              <li><a href="mining-functions.html#GUID-3BC8FD92-9B6A-4612-A458-7E5FFDDC5EA7" title="Part II provides basic conceptual information about the mining functions that the Oracle Data Mining supports.">Mining Functions</a></li>
+                              <li><a href="data-mining-basics.html#GUID-21677973-2248-4119-A560-24D7F2FD7EAD" title="All Oracle Data Mining scoring routines support parallel execution for scoring large data sets.In Oracle Data Mining, scoring is performed by SQL language functions. Understand the different ways involved in SQL function scoring.">In-Database Scoring</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="DMCON031"></a><div class="props_rev_3"><a id="GUID-BFA7FAAE-F5CB-4A42-886A-47B6D502B492" name="GUID-BFA7FAAE-F5CB-4A42-886A-47B6D502B492"></a><h3 id="DMAPI-GUID-BFA7FAAE-F5CB-4A42-886A-47B6D502B492" class="sect3"><span class="enumeration_section">2.2 </span>Algorithms
+               </h3>
+               <div>
+                  <p>An <a id="d7028e539" class="indexterm-anchor"></a>algorithm is a mathematical procedure for solving a specific kind of problem. Oracle Data Mining supports at least one algorithm for each data mining function. For some functions, you can choose among several algorithms. For example, Oracle Data Mining supports four classification algorithms.
+                  </p>
+                  <p>Each data mining model is produced by a specific algorithm. Some data mining problems can best be solved by using more than one algorithm. This necessitates the development of more than one model. For example, you might first use a feature extraction model to create an optimized set of predictors, then a classification model to make a prediction on the results.</p>
+               </div><a id="DMCON137"></a><a id="DMCON136"></a><div class="props_rev_3"><a id="GUID-208DD1B9-4B6E-4D51-A1C2-C58356DECE4E" name="GUID-208DD1B9-4B6E-4D51-A1C2-C58356DECE4E"></a><h4 id="DMAPI-GUID-208DD1B9-4B6E-4D51-A1C2-C58356DECE4E" class="sect4"><span class="enumeration_section">2.2.1 </span>Oracle Data Mining Supervised Algorithms
+                  </h4>
+                  <div>
+                     <p>Oracle <a id="d7028e567" class="indexterm-anchor"></a>Data Mining supports the supervised data mining <a id="d7028e572" class="indexterm-anchor"></a>algorithms described in the following table. The algorithm abbreviations are used throughout this manual.
+                     </p>
+                     <div class="tblformalwide" id="GUID-208DD1B9-4B6E-4D51-A1C2-C58356DECE4E__BHCGGHBA">
+                        <p class="titleintable">Table 2-3 Oracle Data Mining Algorithms for Supervised Functions</p>
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title="Oracle Data Mining Algorithms for Supervised Functions" summary="Oracle Algorithms for Supervised Data Mining" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="20%" id="d7028e588">Algorithm</th>
+                                 <th align="left" valign="bottom" width="16%" id="d7028e591">Function</th>
+                                 <th align="left" valign="bottom" width="64%" id="d7028e594">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e599" headers="d7028e588 ">
+                                    <p><a id="d7028e601" class="indexterm-anchor"></a><a id="d7028e603" class="indexterm-anchor"></a>Decision Tree
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d7028e599 d7028e591 ">
+                                    <p><a id="d7028e610" class="indexterm-anchor"></a><a id="d7028e612" class="indexterm-anchor"></a><span>Classification</span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d7028e599 d7028e594 ">
+                                    <p>Decision trees extract predictive information in the form of human-understandable rules. The rules are if-then-else expressions; they explain the decisions that lead to the prediction.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e622" headers="d7028e588 ">
+                                    <p>Explicit Semantic Analysis<a id="d7028e625" class="indexterm-anchor"></a><a id="d7028e627" class="indexterm-anchor"></a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d7028e622 d7028e591 ">
+                                    <p><a id="d7028e631" class="indexterm-anchor"></a><a id="d7028e633" class="indexterm-anchor"></a><span>Classification</span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d7028e622 d7028e594 ">
+                                    <p>Explicit Semantic Analysis (ESA) is designed to make predictions for text data. This algorithm can address use cases with hundreds of thousands of classes. In Oracle Database 12<span class="italic">c</span> Release 2, ESA was introduced as Feature Extraction algorithm.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e646" headers="d7028e588 ">
+                                    <p><a id="d7028e648" class="indexterm-anchor"></a><a id="d7028e650" class="indexterm-anchor"></a>Exponential Smoothing
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d7028e646 d7028e591 ">
+                                    <p><a id="d7028e657" class="indexterm-anchor"></a><a id="d7028e659" class="indexterm-anchor"></a><span>Time Series</span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d7028e646 d7028e594 ">
+                                    <p><span>Exponential Smoothing</span> (ESM) provides forecasts for time series data. Forecasts are made for each time period within a user-specified forecast window. ESM provides a total of 14 different time series models, including all the most popular estimates of trend and seasonal effects. Choice of model is controlled by user settings. ESM provides confidence bounds on its forecasts.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e671" headers="d7028e588 ">
+                                    <p><a id="d7028e673" class="indexterm-anchor"></a><a id="d7028e675" class="indexterm-anchor"></a>Generalized Linear Models
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d7028e671 d7028e591 ">
+                                    <p><span>Classification</span> and <a id="d7028e685" class="indexterm-anchor"></a><a id="d7028e687" class="indexterm-anchor"></a><span>Regression</span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d7028e671 d7028e594 ">
+                                    <p>Generalized Linear Models (GLM) implement <a id="d7028e696" class="indexterm-anchor"></a>logistic regression for classification of binary targets and<a id="d7028e699" class="indexterm-anchor"></a> linear regression for continuous targets. GLM classification supports<a id="d7028e702" class="indexterm-anchor"></a> confidence bounds for prediction probabilities. GLM regression supports confidence bounds for predictions.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e706" headers="d7028e588 ">
+                                    <p><a id="d7028e708" class="indexterm-anchor"></a><a id="d7028e710" class="indexterm-anchor"></a>Minimum Description Length
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d7028e706 d7028e591 ">
+                                    <p><a id="d7028e717" class="indexterm-anchor"></a><a id="d7028e719" class="indexterm-anchor"></a>Attribute Importance
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d7028e706 d7028e594 ">
+                                    <p>Minimum Description Length (MDL) is an information theoretic model selection principle. MDL assumes that the simplest, most compact representation of data is the best and most probable explanation of the data.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e728" headers="d7028e588 ">
+                                    <p><a id="d7028e730" class="indexterm-anchor"></a><a id="d7028e732" class="indexterm-anchor"></a>Naive Bayes
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d7028e728 d7028e591 ">
+                                    <p><a id="d7028e739" class="indexterm-anchor"></a><a id="d7028e741" class="indexterm-anchor"></a><span>Classification</span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d7028e728 d7028e594 ">
+                                    <p>Naive Bayes makes predictions using Bayes' Theorem, which derives the probability of a prediction from the underlying evidence, as observed in the data. </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e751" headers="d7028e588 ">
+                                    <p><a id="d7028e753" class="indexterm-anchor"></a><a id="d7028e755" class="indexterm-anchor"></a>Neural Network
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d7028e751 d7028e591 ">
+                                    <p><a id="d7028e762" class="indexterm-anchor"></a><a id="d7028e764" class="indexterm-anchor"></a><span>Classification</span> and <a id="d7028e771" class="indexterm-anchor"></a><a id="d7028e773" class="indexterm-anchor"></a><span>Regression</span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d7028e751 d7028e594 ">
+                                    <p><span>Neural Network</span> in <a id="d7028e784" class="indexterm-anchor"></a>Machine Learning is an artificial algorithm inspired from biological neural network and is used to estimate or approximate functions that depend on a large number of generally unknown inputs. <span>Neural Network</span> is designed for <span>Classification</span> and <span>Regression</span>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e797" headers="d7028e588 ">
+                                    <p><a id="d7028e799" class="indexterm-anchor"></a><a id="d7028e801" class="indexterm-anchor"></a><span>Random Forest</span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d7028e797 d7028e591 ">
+                                    <p><a id="d7028e809" class="indexterm-anchor"></a><a id="d7028e811" class="indexterm-anchor"></a><span>Classification</span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d7028e797 d7028e594 ">
+                                    <p><span>Random Forest</span> is a powerful <a id="d7028e822" class="indexterm-anchor"></a>machine learning algorithm.<span>Random Forest</span> algorithm builds a number of decision tree models and predicts using the ensemble of trees. 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e829" headers="d7028e588 ">
+                                    <p><a id="d7028e831" class="indexterm-anchor"></a><a id="d7028e833" class="indexterm-anchor"></a>Support Vector Machines 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d7028e829 d7028e591 ">
+                                    <p><a id="d7028e840" class="indexterm-anchor"></a><a id="d7028e842" class="indexterm-anchor"></a><span>Classification</span> and <a id="d7028e849" class="indexterm-anchor"></a><a id="d7028e851" class="indexterm-anchor"></a><span>Regression</span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d7028e829 d7028e594 ">
+                                    <p>Distinct versions of Support Vector Machines (SVM) use different kernel functions to handle different types of data sets. <a id="d7028e860" class="indexterm-anchor"></a><a id="d7028e864" class="indexterm-anchor"></a>Linear and Gaussian (nonlinear) kernels are supported.
+                                    </p>
+                                    <p>SVM <a id="d7028e871" class="indexterm-anchor"></a>classification attempts to separate the target classes with the widest possible margin.
+                                    </p>
+                                    <p>SVM <a id="d7028e878" class="indexterm-anchor"></a>regression tries to find a continuous function such that the maximum number of data points lie within an epsilon-wide tube around it. 
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div><a id="DMCON139"></a><a id="DMCON138"></a><div class="props_rev_3"><a id="GUID-B232C37E-6B54-43C7-8498-1B9D63219A09" name="GUID-B232C37E-6B54-43C7-8498-1B9D63219A09"></a><h4 id="DMAPI-GUID-B232C37E-6B54-43C7-8498-1B9D63219A09" class="sect4"><span class="enumeration_section">2.2.2 </span>Oracle Data Mining Unsupervised Algorithms
+                  </h4>
+                  <div>
+                     <p>Learn about unsupervised algorithms that Oracle Data Mining supports. </p>
+                     <p>Oracle Data Mining <a id="d7028e906" class="indexterm-anchor"></a>supports the unsupervised data mining algorithms described in the following table. The algorithm abbreviations are used throughout this manual.
+                     </p>
+                     <div class="tblformalwide" id="GUID-B232C37E-6B54-43C7-8498-1B9D63219A09__BHCHAHIG">
+                        <p class="titleintable">Table 2-4 Oracle Data Mining Algorithms for Unsupervised Functions</p>
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title="Oracle Data Mining Algorithms for Unsupervised Functions" summary="Lists the unsupervised data mining algorithms supported by Oracle Data Mining." width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="20%" id="d7028e922">Algorithm</th>
+                                 <th align="left" valign="bottom" width="18%" id="d7028e925">Function</th>
+                                 <th align="left" valign="bottom" width="62%" id="d7028e928">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e933" headers="d7028e922 ">
+                                    <p><a id="d7028e935" class="indexterm-anchor"></a><a id="d7028e937" class="indexterm-anchor"></a>Apriori
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d7028e933 d7028e925 ">
+                                    <p><a id="d7028e944" class="indexterm-anchor"></a><a id="d7028e946" class="indexterm-anchor"></a>Association
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="62%" headers="d7028e933 d7028e928 ">
+                                    <p>Apriori performs market basket analysis by identifying co-occurring items (frequent itemsets) within a set. Apriori finds rules with support greater than a specified minimum <a id="d7028e954" class="indexterm-anchor"></a>support and <a id="d7028e959" class="indexterm-anchor"></a>confidence greater than a specified minimum confidence.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e965" headers="d7028e922 ">
+                                    <p><span>CUR matrix decomposition</span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d7028e965 d7028e925 ">
+                                    <p><a id="d7028e971" class="indexterm-anchor"></a><a id="d7028e973" class="indexterm-anchor"></a><span>Attribute Importance</span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="62%" headers="d7028e965 d7028e928 ">
+                                    <p><span>CUR matrix decomposition</span> is an alternative to <span>Support Vector Machines</span>(SVM) and Principal Component Analysis (PCA) and an important tool for exploratory data analysis. This algorithm performs analytical processing and singles out important columns and rows.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e988" headers="d7028e922 ">
+                                    <p><a id="d7028e990" class="indexterm-anchor"></a><a id="d7028e992" class="indexterm-anchor"></a>Expectation Maximization
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d7028e988 d7028e925 ">
+                                    <p><a id="d7028e999" class="indexterm-anchor"></a><a id="d7028e1001" class="indexterm-anchor"></a>Clustering
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="62%" headers="d7028e988 d7028e928 ">
+                                    <p>Expectation Maximization (EM) is a density estimation algorithm that performs probabilistic clustering. In density estimation, the goal is to construct a density function that captures how a given population is distributed. The density estimate is based on observed data that represents a sample of the population.</p>
+                                    <p>Oracle Data Mining supports probabilistic clustering and data frequency estimates and other applications of Expectation Maximization.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e1012" headers="d7028e922 ">
+                                    <p>Explicit Semantic Analysis<a id="d7028e1015" class="indexterm-anchor"></a><a id="d7028e1017" class="indexterm-anchor"></a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d7028e1012 d7028e925 ">
+                                    <p><a id="d7028e1021" class="indexterm-anchor"></a><a id="d7028e1023" class="indexterm-anchor"></a>Feature Extraction
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="62%" headers="d7028e1012 d7028e928 ">
+                                    <p>Explicit Semantic Analysis (ESA) uses existing knowledge base as features. An attribute vector represents each feature or a concept. ESA creates a reverse index that maps every attribute to the knowledge base concepts or the concept-attribute association vector value.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e1032" headers="d7028e922 ">
+                                    <p><a id="d7028e1034" class="indexterm-anchor"></a><a id="d7028e1036" class="indexterm-anchor"></a><span class="italic">k</span>-Means
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d7028e1032 d7028e925 ">
+                                    <p><a id="d7028e1047" class="indexterm-anchor"></a><a id="d7028e1049" class="indexterm-anchor"></a>Clustering
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="62%" headers="d7028e1032 d7028e928 ">
+                                    <p><span class="italic">k</span>-Means is a distance-based clustering algorithm that partitions the data into a predetermined number of clusters. Each cluster has a centroid (center of gravity). Cases (individuals within the population) that are in a cluster are close to the centroid.
+                                    </p>
+                                    <p>Oracle Data Mining supports an enhanced version of <span class="italic">k</span>-Means. It goes beyond the classical implementation by defining <a id="d7028e1064" class="indexterm-anchor"></a><a id="d7028e1066" class="indexterm-anchor"></a>a hierarchical parent-child relationship of clusters.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e1072" headers="d7028e922 ">
+                                    <p><a id="d7028e1074" class="indexterm-anchor"></a><a id="d7028e1076" class="indexterm-anchor"></a>Non-Negative Matrix Factorization
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d7028e1072 d7028e925 ">
+                                    <p><a id="d7028e1083" class="indexterm-anchor"></a><a id="d7028e1085" class="indexterm-anchor"></a>Feature Extraction
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="62%" headers="d7028e1072 d7028e928 ">
+                                    <p>Non-Negative Matrix Factorization (NMF) generates new attributes using linear combinations of the original attributes. The <a id="d7028e1093" class="indexterm-anchor"></a>coefficients of the linear combinations are non-negative. During model apply, an NMF model maps the original data into the new set of attributes (features) discovered by the model.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e1099" headers="d7028e922 ">
+                                    <p><a id="d7028e1101" class="indexterm-anchor"></a>One Class Support Vector Machines<a id="d7028e1106" class="indexterm-anchor"></a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d7028e1099 d7028e925 ">
+                                    <p><a id="d7028e1110" class="indexterm-anchor"></a><a id="d7028e1112" class="indexterm-anchor"></a>Anomaly Detection
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="62%" headers="d7028e1099 d7028e928 ">
+                                    <p>One-class<a id="d7028e1120" class="indexterm-anchor"></a> SVM builds a profile of one class. When the model is applied, it identifies cases that are somehow different from that profile. This allows for the detection of rare cases that are not necessarily related to each other.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e1126" headers="d7028e922 ">
+                                    <p>Orthogonal Partitioning Clustering<a id="d7028e1129" class="indexterm-anchor"></a><a id="d7028e1131" class="indexterm-anchor"></a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d7028e1126 d7028e925 ">
+                                    <p>Clustering</p>
+                                 </td>
+                                 <td align="left" valign="top" width="62%" headers="d7028e1126 d7028e928 ">
+                                    <p>Orthogonal Partitioning Clustering (o-cluster) creates a hierarchical, grid-based clustering model. The algorithm creates clusters that define dense areas in the attribute space. A sensitivity parameter defines the baseline density level. </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d7028e1142" headers="d7028e922 ">
+                                    <p><a id="d7028e1144" class="indexterm-anchor"></a>Singular Value Decomposition and <a id="d7028e1149" class="indexterm-anchor"></a><a id="d7028e1151" class="indexterm-anchor"></a>Principal Component Analysis
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d7028e1142 d7028e925 ">
+                                    <p>Feature Extraction</p>
+                                 </td>
+                                 <td align="left" valign="top" width="62%" headers="d7028e1142 d7028e928 ">
+                                    <p>Singular Value Decomposition (SVD) and Principal Component Analysis (PCA) are orthogonal linear transformations that are optimal at capturing the underlying variance of the data. This property is extremely useful for reducing the dimensionality of high-dimensional data and for supporting meaningful data visualization. </p>
+                                    <p>In addition to dimensionality reduction, SVD and PCA have a number of other important applications, such as data de-noising (smoothing), data compression, matrix inversion, and solving a system of linear equations.</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="algorithms.html#GUID-B901A29B-218C-4F37-91E0-AA94631364E3" title="Part III provides basic conceptual information about the algorithms supported by Oracle Data Mining. There is at least one algorithm for each of the mining functions.">Algorithms</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="DMCON625"></a><div class="props_rev_3"><a id="GUID-1F28AA79-0508-40C4-BB62-A7A7EAFE5E2F" name="GUID-1F28AA79-0508-40C4-BB62-A7A7EAFE5E2F"></a><h3 id="DMAPI-GUID-1F28AA79-0508-40C4-BB62-A7A7EAFE5E2F" class="sect3"><span class="enumeration_section">2.3 </span>Data Preparation
+               </h3>
+               <div>
+                  <p>The quality of a model depends to a large extent on the quality of the data used to build (train) it. Much of the time spent in any given data mining project is devoted to data preparation. The data must be carefully inspected, cleansed, and transformed, and algorithm-appropriate data preparation methods must be applied.</p>
+                  <p>The process of data preparation is further complicated by the fact that any data to which a model is applied, whether for testing or for scoring, must undergo the same transformations as the data used to train the model.</p>
+               </div><a id="DMCON626"></a><div class="props_rev_3"><a id="GUID-C0EF2463-8975-4B15-9AC2-B64EE5C14324" name="GUID-C0EF2463-8975-4B15-9AC2-B64EE5C14324"></a><h4 id="DMAPI-GUID-C0EF2463-8975-4B15-9AC2-B64EE5C14324" class="sect4"><span class="enumeration_section">2.3.1 </span>Oracle Data Mining Simplifies Data Preparation
+                  </h4>
+                  <div>
+                     <p>Oracle Data Mining offers several features that significantly simplify the process of data preparation: </p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>Embedded data preparation: <a id="d7028e1226" class="indexterm-anchor"></a>The transformations used in training the model are embedded in the model and automatically executed whenever the model is applied to new data. If you specify transformations for the model, you only have to specify them once. 
+                           </p>
+                        </li>
+                        <li>
+                           <p>Automatic Data Preparation (ADP): Oracle Data Mining supports an automated data preparation mode. When ADP is active, Oracle Data Mining automatically performs the data transformations required by the algorithm. The transformation instructions are embedded in the model along with any user-specified transformation instructions.</p>
+                        </li>
+                        <li>
+                           <p>Automatic management of missing values and sparse data: <a id="d7028e1235" class="indexterm-anchor"></a> Oracle Data Mining uses consistent methodology across mining algorithms to handle sparsity and missing values. 
+                           </p>
+                        </li>
+                        <li>
+                           <p>Transparency: Oracle Data Mining provides model details, which are a view of the attributes that are internal to the model. This insight into the inner details of the model is possible because of reverse transformations, which map the transformed attribute values to a form that can be interpreted by a user. Where possible, attribute values are reversed to the original column values. Reverse transformations are also applied to the target of a supervised model, thus the results of scoring are in the same units as the units of the original target. </p>
+                        </li>
+                        <li>
+                           <p>Tools for custom data preparation: Oracle Data Mining provides many common transformation routines in the <code class="codeph">DBMS_DATA_MINING_TRANSFORM</code> PL/SQL package. You can use these routines, or develop your own routines in SQL, or both. The SQL language is well suited for implementing transformations in the database. You can use custom transformation instructions along with ADP or instead of ADP.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div><a id="DMCON627"></a><div class="props_rev_3"><a id="GUID-FD2B3D12-42CA-4F35-AD2D-BAFD8BBE918A" name="GUID-FD2B3D12-42CA-4F35-AD2D-BAFD8BBE918A"></a><h4 id="DMAPI-GUID-FD2B3D12-42CA-4F35-AD2D-BAFD8BBE918A" class="sect4"><span class="enumeration_section">2.3.2 </span>Case Data
+                  </h4>
+                  <div>
+                     <p>Most data mining algorithms act on single-record case data, where the information for each case is stored in a separate row. The data attributes for the cases are stored in the columns. </p>
+                     <p>When the data is organized in transactions, the data for one case (one transaction) is stored in many rows. An example of transactional data is market basket data. With the single exception of Association Rules, which can operate on native transactional data, Oracle Data Mining algorithms require single-record case organization.</p>
+                  </div><a id="DMCON628"></a><div class="props_rev_3"><a id="GUID-BF8E80CD-60C1-4127-95F7-C39AD83B8E63" name="GUID-BF8E80CD-60C1-4127-95F7-C39AD83B8E63"></a><h5 id="DMAPI-GUID-BF8E80CD-60C1-4127-95F7-C39AD83B8E63" class="sect5"><span class="enumeration_section">2.3.2.1 </span>Nested Data
+                     </h5>
+                     <div>
+                        <p>Oracle Data Mining supports attributes in nested columns. A transactional table can be cast as a nested column and included in a table of single-record case data. Similarly, star schemas can be cast as nested columns. With nested data transformations, Oracle Data Mining can effectively mine data originating from multiple sources and configurations. </p>
+                     </div>
+                  </div>
+               </div><a id="DMCON638"></a><div class="props_rev_3"><a id="GUID-32CBE82E-326F-4BCF-B45D-26E3F1660191" name="GUID-32CBE82E-326F-4BCF-B45D-26E3F1660191"></a><h4 id="DMAPI-GUID-32CBE82E-326F-4BCF-B45D-26E3F1660191" class="sect4"><span class="enumeration_section">2.3.3 </span>Text Data
+                  </h4>
+                  <div>
+                     <p>Prepare and transform unstructured text data for data mining.</p>
+                     <p><a id="d7028e1311" class="indexterm-anchor"></a><a id="d7028e1313" class="indexterm-anchor"></a>Oracle Data Mining interprets <code class="codeph">CLOB</code> columns and long <code class="codeph">VARCHAR2</code> columns automatically as unstructured text. Additionally, you can specify columns of short <code class="codeph">VARCHAR2</code>, <code class="codeph">CHAR</code>, <code class="codeph">BLOB</code>, and <code class="codeph">BFILE</code> as unstructured text. Unstructured text includes data items such as web pages, document libraries, Power Point presentations, product specifications, emails, comment fields in reports, and call center notes. 
+                     </p>
+                     <p>Oracle Data Mining uses Oracle Text utilities and term weighting strategies to transform unstructured text for mining. In text transformation, text terms are extracted and given numeric values in a text index. The text transformation process is configurable for the model and for individual attributes. Once transformed, the text can by mined with a data mining algorithm. </p>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="../dmprg/preparing-data.html#DMPRG-GUID-E1AB599C-1921-4BD7-B06B-FC466180A460" target="_blank">Preparing the Data</a></li>
+                           <li><a href="../dmprg/transforming-data.html#DMPRG-GUID-C3FDDEC7-8CC9-4AC1-A6C3-75D91E26B703" target="_blank">Transforming the Data</a></li>
+                           <li><a href="../dmprg/mining-unstructured-text.html#DMPRG-GUID-DC9371F7-B16A-43C7-A563-5C2016064E72" target="_blank">Mining Unstructured Text</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="DMCON630"></a><div class="props_rev_3"><a id="GUID-21677973-2248-4119-A560-24D7F2FD7EAD" name="GUID-21677973-2248-4119-A560-24D7F2FD7EAD"></a><h3 id="DMAPI-GUID-21677973-2248-4119-A560-24D7F2FD7EAD" class="sect3"><span class="enumeration_section">2.4 </span>In-Database Scoring
+               </h3>
+               <div>
+                  <p>Scoring is the application of a data mining algorithm to new data. In traditional data mining, models are built using specialized software on a remote system and deployed to another system for scoring. This is a cumbersome, error-prone process open to security violations and difficulties in data synchronization.</p>
+                  <p>With Oracle Data Mining, scoring is easy and secure. The scoring engine and the data both reside within the database. Scoring is an extension to the SQL language, so the results of mining can easily be incorporated into applications and reporting systems.</p>
+               </div><a id="DMCON668"></a><div class="props_rev_3"><a id="GUID-6BFCB980-D04A-42B6-A3BD-74FCF352A500" name="GUID-6BFCB980-D04A-42B6-A3BD-74FCF352A500"></a><h4 id="DMAPI-GUID-6BFCB980-D04A-42B6-A3BD-74FCF352A500" class="sect4"><span class="enumeration_section">2.4.1 </span>Parallel Execution and Ease of Administration
+                  </h4>
+                  <div>
+                     <p>All Oracle Data Mining scoring routines support parallel execution for scoring large data sets.</p>
+                     <p>In-database <a id="d7028e1394" class="indexterm-anchor"></a>scoring provides performance advantages. All Oracle Data Mining scoring routines support <a id="d7028e1399" class="indexterm-anchor"></a>parallel execution, which significantly reduces the time required for executing complex queries and scoring large data sets. 
+                     </p>
+                     <p>In-database mining minimizes the IT effort needed to support data mining initiatives. Using standard database techniques, models can easily be refreshed (re-created) on more recent data and redeployed. The deployment is immediate since the scoring query remains the same; only the underlying model is replaced in the database.</p>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="../vldbg/using-parallel.html#VLDBG010" target="_blank"><span><cite>Oracle Database VLDB and Partitioning Guide</cite></span></a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="DMCON631"></a><a id="DMCON632"></a><a id="DMCON669"></a><div class="props_rev_3"><a id="GUID-B4916CE4-F771-4111-A5DF-20977FB3EE49" name="GUID-B4916CE4-F771-4111-A5DF-20977FB3EE49"></a><h4 id="DMAPI-GUID-B4916CE4-F771-4111-A5DF-20977FB3EE49" class="sect4"><span class="enumeration_section">2.4.2 </span>SQL Functions for Model Apply and Dynamic Scoring
+                  </h4>
+                  <div>
+                     <p>In Oracle Data Mining, scoring is performed by SQL language functions. Understand the different ways involved in SQL function scoring.</p>
+                     <p><a id="d7028e1434" class="indexterm-anchor"></a>The functions perform prediction, clustering, and feature extraction. The functions can be invoked in two different ways: By applying a mining model object (<a href="data-mining-basics.html#GUID-B4916CE4-F771-4111-A5DF-20977FB3EE49__BABDDAEF">Example 2-1</a>), or by executing an analytic clause that computes the mining analysis dynamically and applies it to the data (<a href="data-mining-basics.html#GUID-B4916CE4-F771-4111-A5DF-20977FB3EE49__BABGEAJA">Example 2-2</a>). Dynamic scoring, which eliminates the need for a model, can supplement, or even replace, the more traditional data mining methodology described in <span class="q">"The Data Mining Process"</span>.
+                     </p>
+                     <p>In <a href="data-mining-basics.html#GUID-B4916CE4-F771-4111-A5DF-20977FB3EE49__BABDDAEF">Example 2-1</a>, the <code class="codeph">PREDICTION_PROBABILITY</code> function applies the model svmc_sh_clas_sample, created in <a href="introduction-to-oracle-data-mining.html#GUID-EC7AC64D-CFB7-48CE-9B54-9E553DD79234__BABEHGJB">Example 1-1</a>, to score the data in <code class="codeph">mining_data_apply_v</code>. The function returns the ten customers in Italy who are most likely to use an affinity card.
+                     </p>
+                     <p>In <a href="data-mining-basics.html#GUID-B4916CE4-F771-4111-A5DF-20977FB3EE49__BABGEAJA">Example 2-2</a>, the functions <code class="codeph">PREDICTION</code> and <code class="codeph">PREDICTION_PROBABILITY</code> use the analytic syntax (the <code class="codeph">OVER</code> () clause) to dynamically score the data in <code class="codeph">mining_data_apply_v</code>. The query returns the customers who currently do not have an affinity card with the probability that they are likely to use.
+                     </p>
+                     <div class="example" id="GUID-B4916CE4-F771-4111-A5DF-20977FB3EE49__BABDDAEF">
+                        <p class="titleinexample">Example 2-1 Applying a Mining Model to Score Data</p><pre class="oac_no_warn" dir="ltr">SELECT cust_id FROM
+  (SELECT cust_id, 
+        rank() over (order by PREDICTION_PROBABILITY(svmc_sh_clas_sample, 1
+                     USING *) DESC, cust_id) rnk
+   FROM mining_data_apply_v
+   WHERE country_name = 'Italy')
+WHERE rnk &lt;= 10
+ORDER BY rnk;
+
+   CUST_ID
+----------
+    101445
+    100179
+    100662
+    100733
+    100554
+    100081
+    100344
+    100324
+    100185
+    101345
+</pre></div>
+                     <!-- class="example" -->
+                     <div class="example" id="GUID-B4916CE4-F771-4111-A5DF-20977FB3EE49__BABGEAJA">
+                        <p class="titleinexample">Example 2-2 Executing an Analytic Function to Score Data</p><pre class="oac_no_warn" dir="ltr">SELECT cust_id, pred_prob FROM
+  (SELECT cust_id, affinity_card, 
+    PREDICTION(FOR TO_CHAR(affinity_card) USING *) OVER () pred_card,
+    PREDICTION_PROBABILITY(FOR TO_CHAR(affinity_card),1 USING *) OVER () pred_prob
+   FROM mining_data_build_v)
+WHERE affinity_card = 0
+AND pred_card = 1
+ORDER BY pred_prob DESC;
+
+   CUST_ID PRED_PROB
+---------- ---------
+    102434       .96
+    102365       .96
+    102330       .96
+    101733       .95
+    102615       .94
+    102686       .94
+    102749       .93
+    .
+    .
+    .
+    101656       .51</pre></div>
+                     <!-- class="example" -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

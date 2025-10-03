@@ -1,0 +1,640 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="DBMS_OPTIM_BUNDLE">
+      <meta name="abstract" content="The DBMS_OPTIM_BUNDLE package is used to manage the installed but disabled module bug fixes which cause an execution plan change.">
+      <meta name="description" content="The DBMS_OPTIM_BUNDLE package is used to manage the installed but disabled module bug fixes which cause an execution plan change.">
+      <meta name="DC.subject" content="DBMS_OPTIM_BUNDLE package, ENABLE_OPTIM_FIXES Procedures, GETBUGSFORBUNDLE Procedures, LISTBUNDLESWITHFCFIXES Procedures, SET_FIX_CONTROLS Procedures">
+      <meta name="keywords" content="DBMS_OPTIM_BUNDLE package, ENABLE_OPTIM_FIXES Procedures, GETBUGSFORBUNDLE Procedures, LISTBUNDLESWITHFCFIXES Procedures, SET_FIX_CONTROLS Procedures">
+      <meta name="DC.Creator" content="Gunjan Jain">
+      <meta name="DC.Contributor" content="Prashant Kannan">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Denis Raphaely">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Contributor" content="Drue Baker">
+      <meta name="DC.Contributor" content="Donna Carver">
+      <meta name="DC.Contributor" content="Maitreyee Chaliha">
+      <meta name="DC.Contributor" content="Beethoven Cheng">
+      <meta name="DC.Contributor" content="Rhonda Day">
+      <meta name="DC.Contributor" content="Steve Fogel">
+      <meta name="DC.Contributor" content="Bryn Llewellyn">
+      <meta name="DC.Contributor" content="Paul Lane">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Tony Morales">
+      <meta name="DC.Contributor" content="Anne Murphy">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Sue Pelski">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Antonio Romero">
+      <meta name="DC.Contributor" content="Vivian Schupmann">
+      <meta name="DC.Contributor" content="Cathy Shea">
+      <meta name="DC.Contributor" content="Margaret Taft">
+      <meta name="DC.Contributor" content="Kathy Taylor">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Contributor" content="Pat Huey">
+      <meta name="DC.Contributor" content="Drew Adams">
+      <meta name="DC.Contributor" content="Sarika Surumpudi">
+      <meta name="DC.Contributor" content="Rodney Ward">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Tanmay Choudhury">
+      <meta name="DC.Contributor" content="Roopesh Ashok Kumar">
+      <meta name="DC.Contributor" content="Atif Chaudhry">
+      <meta name="DC.Creator" content="Gunjan Jain">
+      <meta name="DC.Contributor" content="Prashant Kannan">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Denis Raphaely">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Contributor" content="Drue Baker">
+      <meta name="DC.Contributor" content="Donna Carver">
+      <meta name="DC.Contributor" content="Maitreyee Chaliha">
+      <meta name="DC.Contributor" content="Beethoven Cheng">
+      <meta name="DC.Contributor" content="Rhonda Day">
+      <meta name="DC.Contributor" content="Steve Fogel">
+      <meta name="DC.Contributor" content="Bryn Llewellyn">
+      <meta name="DC.Contributor" content="Paul Lane">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Tony Morales">
+      <meta name="DC.Contributor" content="Anne Murphy">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Sue Pelski">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Antonio Romero">
+      <meta name="DC.Contributor" content="Vivian Schupmann">
+      <meta name="DC.Contributor" content="Cathy Shea">
+      <meta name="DC.Contributor" content="Margaret Taft">
+      <meta name="DC.Contributor" content="Kathy Taylor">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Contributor" content="Pat Huey">
+      <meta name="DC.Contributor" content="Drew Adams">
+      <meta name="DC.Contributor" content="Sarika Surumpudi">
+      <meta name="DC.Contributor" content="Rodney Ward">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Tanmay Choudhury">
+      <meta name="DC.Contributor" content="Roopesh Ashok Kumar">
+      <meta name="DC.Contributor" content="Atif Chaudhry">
+      <meta name="DC.Contributor" content="Prashant Kannan">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Denis Raphaely">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Contributor" content="Drue Baker">
+      <meta name="DC.Contributor" content="Donna Carver">
+      <meta name="DC.Contributor" content="Maitreyee Chaliha">
+      <meta name="DC.Contributor" content="Beethoven Cheng">
+      <meta name="DC.Contributor" content="Rhonda Day">
+      <meta name="DC.Contributor" content="Steve Fogel">
+      <meta name="DC.Contributor" content="Bryn Llewellyn">
+      <meta name="DC.Contributor" content="Paul Lane">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Tony Morales">
+      <meta name="DC.Contributor" content="Anne Murphy">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Sue Pelski">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Antonio Romero">
+      <meta name="DC.Contributor" content="Vivian Schupmann">
+      <meta name="DC.Contributor" content="Cathy Shea">
+      <meta name="DC.Contributor" content="Margaret Taft">
+      <meta name="DC.Contributor" content="Kathy Taylor">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Contributor" content="Pat Huey">
+      <meta name="DC.Contributor" content="Drew Adams">
+      <meta name="DC.Contributor" content="Sarika Surumpudi">
+      <meta name="DC.Contributor" content="Rodney Ward">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Tanmay Choudhury">
+      <meta name="DC.Contributor" content="Roopesh Ashok Kumar">
+      <meta name="DC.Contributor" content="Atif Chaudhry">
+      <meta name="DC.Creator" content="Gunjan Jain">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-F423991C-C3D9-4881-A3CD-6C67CA25930A">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The DBMS_OPTIM_BUNDLE package is used to manage the installed but disabled module bug fixes which cause an execution plan change.">
+      <meta name="description" content="The DBMS_OPTIM_BUNDLE package is used to manage the installed but disabled module bug fixes which cause an execution plan change.">
+      <title>DBMS_OPTIM_BUNDLE</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="PL/SQL Packages and Types Reference">
+      <meta property="og:description" content="The DBMS_OPTIM_BUNDLE package is used to manage the installed but disabled module bug fixes which cause an execution plan change.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="PL/SQL Packages and Types Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-packages-and-types-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-17T01:44:29-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96430-32">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="DBMS_ODCI.html" title="Previous" type="text/html">
+      <link rel="next" href="DBMS_OUTLN.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database PL/SQL Packages and Types Reference">
+    <meta name="dcterms.isVersionOf" content="ARPLS">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"DBMS_OPTIM_BUNDLE","description":"The DBMS_OPTIM_BUNDLE package is used to manage the installed but disabled module bug fixes which cause an execution plan change.","datePublished":"2025-07-17 CST","dateModified":"2025-07-17 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="DBMS_ODCI.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="DBMS_OUTLN.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-F423991C-C3D9-4881-A3CD-6C67CA25930A" name="GUID-F423991C-C3D9-4881-A3CD-6C67CA25930A"></a>
+         
+         <h2 id="ARPLS-GUID-F423991C-C3D9-4881-A3CD-6C67CA25930A" class="sect2"><span class="enumeration_chapter">121 </span>DBMS_OPTIM_BUNDLE
+         </h2>
+         <div class="ind">
+            <div>
+               <p>The <code class="codeph">DBMS_OPTIM_BUNDLE</code> package is used to manage the
+        installed but disabled module bug fixes which cause an execution plan change.
+               </p>
+               <div class="p">This chapter contains the following topics:
+                  <ul style="list-style-type: disc;" id="GUID-F423991C-C3D9-4881-A3CD-6C67CA25930A__UL_KXL_CGX_JQB">
+                     <li><a href="dbms_optim_bundle.html#GUID-DE376BF9-3CF9-4CAD-A6CC-8540A4FAF973" title="The DBMS_OPTIM_BUNDLE package runs with the privileges of the user starting the package. DBA role is required to run this package.">DBMS_OPTIM_BUNDLE Security Model</a></li>
+                     <li><a href="dbms_optim_bundle.html#GUID-C34FF45C-3EE7-4BE3-8EED-D005439AC8D6" title="This table lists the DBMS_OPTIM_BUNDLE subprograms and briefly describes them.">Summary of DBMS_OPTIM_BUNDLE Subprograms</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-DE376BF9-3CF9-4CAD-A6CC-8540A4FAF973" name="GUID-DE376BF9-3CF9-4CAD-A6CC-8540A4FAF973"></a><h3 id="ARPLS-GUID-DE376BF9-3CF9-4CAD-A6CC-8540A4FAF973" class="sect3"><span class="enumeration_section">121.1 </span>DBMS_OPTIM_BUNDLE Security Model
+               </h3>
+               <p>The <code class="codeph">DBMS_OPTIM_BUNDLE</code> package runs with the privileges of
+        the user starting the package. DBA role is required to run this package.
+               </p>
+            </div>
+            <div class="props_rev_3"><a id="GUID-C34FF45C-3EE7-4BE3-8EED-D005439AC8D6" name="GUID-C34FF45C-3EE7-4BE3-8EED-D005439AC8D6"></a><h3 id="ARPLS-GUID-C34FF45C-3EE7-4BE3-8EED-D005439AC8D6" class="sect3"><span class="enumeration_section">121.2 </span>Summary of DBMS_OPTIM_BUNDLE
+        Subprograms
+               </h3>
+               <div>
+                  <p>This table lists the <code class="codeph">DBMS_OPTIM_BUNDLE</code> subprograms and
+        briefly describes them.
+                  </p>
+                  <div class="tblformal" id="GUID-C34FF45C-3EE7-4BE3-8EED-D005439AC8D6__TABLE_B54_H3F_3QB">
+                     <p class="titleintable">Table 121-1 DBMS_OPTIM_BUNDLE Package Subprograms</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="DBMS_OPTIM_BUNDLE Package Subprograms" summary="This table lists the DBMS_OPTIM_BUNDLE subprograms in alphabetical order and&#xA;                briefly describes them." frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d697628e873">
+                            Subprogram
+                        </th>
+                              <th align="left" valign="bottom" width="0%" id="d697628e878">
+                            Description
+                        </th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d697628e885" headers="d697628e873 ">
+                                 
+                                 <p><a href="dbms_optim_bundle.html#GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93" title="The DBMS_OPTIM_BUNDLE subprogram, ENABLE_OPTIM_FIXES procedure enables or disables fixes with plan changes up to the latest installed release update.">ENABLE_OPTIM_FIXES Procedure</a></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d697628e885 d697628e878 ">
+                                 
+                                 <p>This procedure enables or disables fixes with plan
+                                changes up to the latest installed release update.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d697628e906" headers="d697628e873 ">
+                                 
+                                 <p><a href="dbms_optim_bundle.html#GUID-B2281FE8-6A12-4C04-9C19-45EFF578B20C" title="The DBMS_OPTIM_BUNDLE subprogram, GETBUGSFORBUNDLE procedure displays execution plan bug fixes applied as part of release updates.">GETBUGSFORBUNDLE Procedure</a></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d697628e906 d697628e878 ">
+                                 
+                                 <p>This procedure displays execution plan bug fixes applied
+                                as part of release updates.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d697628e927" headers="d697628e873 ">
+                                 
+                                 <p><a href="dbms_optim_bundle.html#GUID-56B9D6BA-E7FE-4981-8D48-B7B9842170E1" title="The DBMS_OPTIM_BUNDLE subprogram, LISTBUNDLESWITHFCFIXES procedure lists the release update names and release update IDs of release updates with fix control fixes.">LISTBUNDLESWITHFCFIXES Procedure</a></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d697628e927 d697628e878 ">
+                                 
+                                 <p>This procedure lists the release update names and
+                                release update IDs of release updates with fix control fixes.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d697628e948" headers="d697628e873 ">
+                                 
+                                 <p><a href="dbms_optim_bundle.html#GUID-D9DBDC73-38A2-428A-BC27-7CA8EDC67E8A" title="The DBMS_OPTIM_BUNDLE subprogram, SET_FIX_CONTROLS procedure enables or disables a list of fixes with _fix_controls. The fixes can be present in a base version, in a release update, or in a one-off release. This procedure appends the new fix control settings to the existing ones.">SET_FIX_CONTROLS Procedure</a></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d697628e948 d697628e878 ">
+                                 
+                                 <p>This procedure enables or disables a list of fixes with
+                                    <code class="codeph">_fix_controls</code>.
+                                 </p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93" name="GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93"></a><h4 id="ARPLS-GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93" class="sect4"><span class="enumeration_section">121.2.1 </span>ENABLE_OPTIM_FIXES Procedure
+                  </h4>
+                  <div>
+                     <p>The <code class="codeph">DBMS_OPTIM_BUNDLE</code> subprogram,
+         <code class="codeph">ENABLE_OPTIM_FIXES</code> procedure enables or disables fixes with plan changes
+      up to the latest installed release update.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93__GUID-E23BB97F-AAC7-4A6D-8EE5-5270C467D862">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_OPTIM_BUNDLE.ENABLE_OPTIM_FIXES ( 
+   action                           IN  VARCHAR2  DEFAULT 'OFF', 
+   scope                            IN  VARCHAR2  DEFAULT 'MEMORY',
+   current_setting_precedence       IN  VARCHAR2  DEFAULT 'YES');</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93__GUID-DAED4F00-D450-4A8E-90D7-D0A60BA3CCA3">Parameters</p>
+                        <div class="tblformal" id="GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93__GUID-B5F10809-7A1D-49E1-9093-66975DC5DBCF">
+                           <p class="titleintable">Table 121-2 ENABLE_OPTIM_FIXES Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="ENABLE_OPTIM_FIXES Procedure Parameters " summary="This table describes parameters used by the DBMS_OPTIM_BUNDLE.ENABLE_OPTIM_FIXES&#xA;               subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d697628e1371">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d697628e1374">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d697628e1379" headers="d697628e1371 ">
+                                       <p><code class="codeph">action</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d697628e1379 d697628e1374 ">
+                                       
+                                       <p>Enables or disables all of the installed but disabled
+                           execution plan bug fixes up to and including the current release
+                           update.</p>
+                                       
+                                       <div class="p">The possible values are:
+                                          <ul style="list-style-type: disc;" id="GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93__UL_FHJ_MFB_3QB">
+                                             <li><code class="codeph">ON</code>-enables the bundle fixes.
+                                             </li>
+                                             <li><code class="codeph">OFF</code>-disables bundle fixes by setting
+                                 the <code class="codeph">_fix_controls</code> to the value <code class="codeph">0</code>.
+                                 It will not remove <code class="codeph">_fix_control</code> entries from
+                                    <code class="codeph">SPFILE</code>.
+                                             </li>
+                                          </ul>
+                                       </div>
+                                       
+                                       <p>The default value is <code class="codeph">OFF</code>.
+                                       </p>
+                                       
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d697628e1419" headers="d697628e1371 "><code class="codeph">scope</code></td>
+                                    <td align="left" valign="top" width="74%" headers="d697628e1419 d697628e1374 ">
+                                       
+                                       <p>The scope of enabling or disabling the installed but
+                           disabled execution plan bug fixes.</p>
+                                       
+                                       <div class="p">The possible values are:
+                                          <ul style="list-style-type: disc;" id="GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93__UL_KQ2_RFB_3QB">
+                                             <li><code class="codeph">MEMORY</code></li>
+                                             <li><code class="codeph">SPFILE</code></li>
+                                             <li><code class="codeph">BOTH</code></li>
+                                             <li><code class="codeph">INITORA</code></li>
+                                          </ul>
+                                       </div>
+                                       
+                                       <p><code class="codeph">MEMORY</code>/<code class="codeph">SPFILE</code>/<code class="codeph">BOTH</code>:
+                           These three input values enables or disables the fixes in a given
+                           scope.
+                                       </p>
+                                       
+                                       <p><code class="codeph">INITORA</code>: This input value will just display
+                           manual command syntax that the user needs to manually enter into the
+                           database's <code class="codeph">init.ora</code> file in order to enable or disable
+                           execution plan bug fixes. When using <code class="codeph">SCOPE=INITORA</code> in
+                           this way, the <code class="codeph">current_setting_precedence</code> field has no
+                           significance.
+                                       </p>
+                                       
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d697628e1469" headers="d697628e1371 "><code class="codeph">current_setting_precedence</code></td>
+                                    <td align="left" valign="top" width="74%" headers="d697628e1469 d697628e1374 ">
+                                       
+                                       <p>Sets the precedence of environment settings or release update
+                           settings, where these settings are in conflict.</p>
+                                       
+                                       <div class="p">The possible values are:
+                                          <ul style="list-style-type: disc;" id="GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93__UL_TXP_PHB_3QB">
+                                             <li><code class="codeph">YES</code>-the current environment settings take
+                                 precedence in case of conflict
+                                             </li>
+                                             <li><code class="codeph">NO</code>-release update settings take
+                                 precedence in case of conflict
+                                             </li>
+                                          </ul>
+                                       </div>
+                                       
+                                       <p>The default value is <code class="codeph">YES</code>.
+                                       </p>
+                                       
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93__GUID-5622A4A6-F8B2-4867-9AC3-6C4C7F1432D0">Examples</p>
+                        <p>To enable all of the installed but disabled execution plan bug fixes up to and
+            including those from the current release update:</p>
+                        <pre class="oac_no_warn" dir="ltr">SQL&gt; execute dbms_optim_bundle.enable_optim_fixes('ON','BOTH', 'YES');</pre>
+                        <p>This instruction would enable all fixes, in both <code class="codeph">MEMORY</code> and in the
+            persistant <code class="codeph">SPFILE</code>, with a precedence of current setting.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93__GUID-FE6BC15E-EDA1-464C-8C81-F47FD24E1EB3">Exceptions</p>
+                        
+                        
+                        <div class="p">The following exceptions are raised by the <code class="codeph">ENABLE_OPTIM_FIXES
+               Procedure</code>:
+                           <ul style="list-style-type: disc;" id="GUID-BED2272D-57A7-441C-B94F-51BDCFD5DF93__UL_IJ1_5QG_KQB">
+                              <li><code class="codeph">ORA-20001</code>: Bad input value
+                              </li>
+                              <li><code class="codeph">ORA-20002</code>: Internal or other errors
+                              </li>
+                           </ul>
+                        </div>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-B2281FE8-6A12-4C04-9C19-45EFF578B20C" name="GUID-B2281FE8-6A12-4C04-9C19-45EFF578B20C"></a><h4 id="ARPLS-GUID-B2281FE8-6A12-4C04-9C19-45EFF578B20C" class="sect4"><span class="enumeration_section">121.2.2 </span>GETBUGSFORBUNDLE Procedure
+                  </h4>
+                  <div>
+                     <p>The <code class="codeph">DBMS_OPTIM_BUNDLE</code> subprogram,
+         <code class="codeph">GETBUGSFORBUNDLE</code> procedure displays execution plan bug fixes applied as
+      part of release updates.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B2281FE8-6A12-4C04-9C19-45EFF578B20C__GUID-E23BB97F-AAC7-4A6D-8EE5-5270C467D862">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_OPTIM_BUNDLE.GETBUGSFORBUNDLE ( 
+   bundleid            IN  NUMBER  DEFAULT NULL);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B2281FE8-6A12-4C04-9C19-45EFF578B20C__GUID-DAED4F00-D450-4A8E-90D7-D0A60BA3CCA3">Parameters</p>
+                        <div class="tblformal" id="GUID-B2281FE8-6A12-4C04-9C19-45EFF578B20C__GUID-B5F10809-7A1D-49E1-9093-66975DC5DBCF">
+                           <p class="titleintable">Table 121-3 GETBUGSFORBUNDLE Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="GETBUGSFORBUNDLE Procedure Parameters " summary="This table describes parameters used by the DBMS_OPTIM_BUNDLE.GETBUGSFORBUNDLE&#xA;               subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d697628e1930">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d697628e1933">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d697628e1938" headers="d697628e1930 ">
+                                       <p><code class="codeph">bundleid</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d697628e1938 d697628e1933 ">
+                                       
+                                       <p>The release update ID.</p>
+                                       
+                                       <p>If <code class="codeph">NULL</code>, the execution plan bug fixes from the latest
+                           bundle is displayed. If a bundle ID is specified, then the execution plan
+                           bug fixes up to the specified bundle is displayed.
+                                       </p>
+                                       
+                                       <p>The default value is <code class="codeph">NULL</code>.
+                                       </p>
+                                       
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B2281FE8-6A12-4C04-9C19-45EFF578B20C__GUID-5622A4A6-F8B2-4867-9AC3-6C4C7F1432D0">Examples</p>
+                        <p>To view a listing of the installed but disabled execution plan bug fixes from the
+            most recent release update applied:</p>
+                        <pre class="oac_no_warn" dir="ltr">SQL&gt; set serveroutput on;
+SQL&gt; execute dbms_optim_bundle.getbugsforbundle;
+
+19.8.0.0.200714DBRU:
+   Bug: 29304314, fix_controls: 29304314
+   Bug: 29930457, fix_controls: 29930457</pre>
+                        <p>The above example lists the installed but disabled execution plan bug fixes from the
+               <code class="codeph">19.8.0.0.200714DBRU</code> release.
+                        </p>
+                        
+                        <p>To view a listing of the installed but disabled execution plan bug fixes
+            from release updates up to and including release update 171017:</p>
+                        <pre class="oac_no_warn" dir="ltr">SQL&gt; execute dbms_optim_bundle.getbugsforbundle(171017);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B2281FE8-6A12-4C04-9C19-45EFF578B20C__GUID-FE6BC15E-EDA1-464C-8C81-F47FD24E1EB3">Exceptions</p>
+                        
+                        
+                        <div class="p">The following exceptions are raised by the <code class="codeph">GETBUGSFORBUNDLE
+               Procedure</code>:
+                           <ul style="list-style-type: disc;" id="GUID-B2281FE8-6A12-4C04-9C19-45EFF578B20C__UL_IJ1_5QG_KQB">
+                              <li><code class="codeph">ORA-20001</code>: Bad input value
+                              </li>
+                              <li><code class="codeph">ORA-20002</code>: Internal or other errors
+                              </li>
+                           </ul>
+                        </div>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-56B9D6BA-E7FE-4981-8D48-B7B9842170E1" name="GUID-56B9D6BA-E7FE-4981-8D48-B7B9842170E1"></a><h4 id="ARPLS-GUID-56B9D6BA-E7FE-4981-8D48-B7B9842170E1" class="sect4"><span class="enumeration_section">121.2.3 </span>LISTBUNDLESWITHFCFIXES Procedure
+                  </h4>
+                  <div>
+                     <p>The <code class="codeph">DBMS_OPTIM_BUNDLE</code> subprogram,
+         <code class="codeph">LISTBUNDLESWITHFCFIXES</code>  procedure lists the release update names and
+      release update IDs of release updates with fix control fixes.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-56B9D6BA-E7FE-4981-8D48-B7B9842170E1__GUID-E23BB97F-AAC7-4A6D-8EE5-5270C467D862">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_OPTIM_BUNDLE.LISTBUNDLESWITHFCFIXES ( );</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-56B9D6BA-E7FE-4981-8D48-B7B9842170E1__GUID-5622A4A6-F8B2-4867-9AC3-6C4C7F1432D0">Examples</p>
+                        <p>To view the release update names and release update IDs:</p>
+                        <pre class="oac_no_warn" dir="ltr">SQL&gt; set serveroutput on
+SQL&gt; exec dbms_optim_bundle.listBundlesWithFCFixes;
+   bundleId: 190719, bundleName: 19.4.0.0.190719DBRU
+   bundleId: 191015, bundleName: 19.5.0.0.191015DBRU
+   bundleId: 200414, bundleName: 19.7.0.0.200414DBRU
+   bundleId: 200714, bundleName: 19.8.0.0.200714DBRU
+   bundleId: 201020, bundleName: 19.9.0.0.201020DBRU
+   bundleId: 210119, bundleName: 19.10.0.0.210119DBRU
+   bundleId: 210420, bundleName: 19.11.0.0.210420DBRU
+   bundleId: 210720, bundleName: 19.12.0.0.210720DBRU
+
+   PL/SQL procedure successfully completed.</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-56B9D6BA-E7FE-4981-8D48-B7B9842170E1__GUID-19C6613E-A86D-4BC5-8D14-D95AD95572FC">Exceptions</p>
+                        
+                        
+                        <p>The following exception is raised by the <code class="codeph">LISTBUNDLESWITHFCFIXES
+               Procedure</code>:
+                        </p>
+                        
+                        <p><code class="codeph">ORA-20002</code>: Internal or other errors
+                        </p>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-D9DBDC73-38A2-428A-BC27-7CA8EDC67E8A" name="GUID-D9DBDC73-38A2-428A-BC27-7CA8EDC67E8A"></a><h4 id="ARPLS-GUID-D9DBDC73-38A2-428A-BC27-7CA8EDC67E8A" class="sect4"><span class="enumeration_section">121.2.4 </span>SET_FIX_CONTROLS Procedure
+                  </h4>
+                  <div>
+                     <p>The <code class="codeph">DBMS_OPTIM_BUNDLE</code> subprogram,
+         <code class="codeph">SET_FIX_CONTROLS</code> procedure enables or disables a list of fixes with
+         <code class="codeph">_fix_controls</code>. The fixes can be present in a base version, in a release
+      update, or in a one-off release. This procedure appends the new fix control settings to the
+      existing ones.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D9DBDC73-38A2-428A-BC27-7CA8EDC67E8A__GUID-E23BB97F-AAC7-4A6D-8EE5-5270C467D862">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_OPTIM_BUNDLE.SET_FIX_CONTROLS ( 
+   fix_control_string               IN  VARCHAR2,
+   sid                              IN  VARCHAR2  DEFAULT '*', 
+   scope                            IN  VARCHAR2  DEFAULT 'MEMORY',
+   current_setting_precedence       IN  VARCHAR2  DEFAULT 'YES');</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D9DBDC73-38A2-428A-BC27-7CA8EDC67E8A__GUID-DAED4F00-D450-4A8E-90D7-D0A60BA3CCA3">Parameters</p>
+                        <div class="tblformal" id="GUID-D9DBDC73-38A2-428A-BC27-7CA8EDC67E8A__GUID-B5F10809-7A1D-49E1-9093-66975DC5DBCF">
+                           <p class="titleintable">Table 121-4 SET_FIX_CONTROLS Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="SET_FIX_CONTROLS Procedure Parameters" summary="This table describes parameters used by the DBMS_OPTIM_BUNDLE.SET_FIX_CONTROLS&#xA;               subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d697628e2807">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d697628e2810">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d697628e2815" headers="d697628e2807 ">
+                                       <p><code class="codeph">fix_control_string</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d697628e2815 d697628e2810 ">
+                                       
+                                       <p>Comma separated list of <code class="codeph">fix_control:value</code>
+                           pair. For example: <code class="codeph">'13329748:0,20355502:4,
+                           27060221:1'</code></p>
+                                       
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d697628e2830" headers="d697628e2807 "><code class="codeph">sid</code></td>
+                                    <td align="left" valign="top" width="74%" headers="d697628e2830 d697628e2810 ">
+                                       
+                                       <p>The name of the instance on which <code class="codeph">fix_control</code> setting
+                           need to be made.
+                                       </p>
+                                       
+                                       <p>Acceptable values are <code class="codeph">*</code> or valid
+                              <code class="codeph">instance_name</code> from <code class="codeph">sys.gv$instance</code>.
+                           The default value is <code class="codeph">*</code>.
+                                       </p>
+                                       
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d697628e2857" headers="d697628e2807 "><code class="codeph">scope</code></td>
+                                    <td align="left" valign="top" width="74%" headers="d697628e2857 d697628e2810 ">
+                                       
+                                       <p>The scope of enabling or disabling the installed but
+                           disabled execution plan bug fixes.</p>
+                                       
+                                       <div class="p">The possible values are:
+                                          <ul style="list-style-type: disc;" id="GUID-D9DBDC73-38A2-428A-BC27-7CA8EDC67E8A__UL_KQ2_RFB_3QB">
+                                             <li><code class="codeph">MEMORY</code></li>
+                                             <li><code class="codeph">SPFILE</code></li>
+                                             <li><code class="codeph">BOTH</code></li>
+                                          </ul>
+                                       </div>
+                                       
+                                       <p>The default value is <code class="codeph">MEMORY</code>.
+                                       </p>
+                                       
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d697628e2885" headers="d697628e2807 "><code class="codeph">current_setting_precedence</code></td>
+                                    <td align="left" valign="top" width="74%" headers="d697628e2885 d697628e2810 ">
+                                       
+                                       <p>Precedence of current setting over user supplied setting.</p>
+                                       
+                                       <div class="p">The possible values are:
+                                          <ul style="list-style-type: disc;" id="GUID-D9DBDC73-38A2-428A-BC27-7CA8EDC67E8A__UL_TXP_PHB_3QB">
+                                             <li><code class="codeph">YES</code>&#x2013;the current environment settings
+                                 take precedence in case of conflict
+                                             </li>
+                                             <li><code class="codeph">NO</code>&#x2013;input settings take precedence in
+                                 case of conflict
+                                             </li>
+                                          </ul>
+                                       </div>
+                                       
+                                       <p>The default value is <code class="codeph">YES</code>.
+                                       </p>
+                                       
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D9DBDC73-38A2-428A-BC27-7CA8EDC67E8A__GUID-FE6BC15E-EDA1-464C-8C81-F47FD24E1EB3">Exceptions</p>
+                        
+                        
+                        <div class="p">The following exceptions are raised by the <code class="codeph">SET_FIX_CONTROLS
+               Procedure</code>:
+                           <ul style="list-style-type: disc;" id="GUID-D9DBDC73-38A2-428A-BC27-7CA8EDC67E8A__UL_IJ1_5QG_KQB">
+                              <li><code class="codeph">ORA-20001</code>: Bad input value
+                              </li>
+                              <li><code class="codeph">ORA-20002</code>: Internal or other errors
+                              </li>
+                           </ul>
+                        </div>
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Retrying Transactions After Handling Exceptions">
+      <meta name="DC.subject" content="exception handler, retrying transaction after, transaction, retrying after handling exception">
+      <meta name="keywords" content="exception handler, retrying transaction after, transaction, retrying after handling exception">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-CF7B91D7-215F-48D7-AE83-240012CE8ED6">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Retrying Transactions After Handling Exceptions</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="continuing-execution-handling-exceptions.html" title="Previous" type="text/html">
+      <link rel="next" href="handling-errors-distributed-queries.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Retrying Transactions After Handling Exceptions","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="continuing-execution-handling-exceptions.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="handling-errors-distributed-queries.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-CF7B91D7-215F-48D7-AE83-240012CE8ED6" name="GUID-CF7B91D7-215F-48D7-AE83-240012CE8ED6"></a><a id="LNPLS854"></a><a id="LNPLS853"></a>
+         
+         <h2 id="LNPLS-GUID-CF7B91D7-215F-48D7-AE83-240012CE8ED6" class="sect2"><span class="enumeration_section">11.12 </span>Retrying Transactions After Handling Exceptions
+         </h2>
+         <div class="ind">
+            <div>
+               <div class="section">
+                  <p>To retry a transaction after handling an exception that it raised, use this technique:</p>
+               </div>
+               <ol>
+                  <li class="stepexpand"><span>Enclose the transaction in a sub-block that has an exception-handling part.</span></li>
+                  <li class="stepexpand"><span>In the sub-block, before the transaction starts, mark a savepoint.</span></li>
+                  <li class="stepexpand"><span>In the exception-handling part of the sub-block, put an exception handler that rolls back to the savepoint and then tries to correct the problem.</span></li>
+                  <li class="stepexpand"><span>Put the sub-block inside a <code class="codeph">LOOP</code> statement.</span></li>
+                  <li class="stepexpand"><span>In the sub-block, after the <code class="codeph">COMMIT</code> statement that ends the transaction, put an <code class="codeph">EXIT</code> statement.</span><div>
+                        <p>If the transaction succeeds, the <code class="codeph">COMMIT</code> and <code class="codeph">EXIT</code> statements execute.
+                        </p>
+                        <p>If the transaction fails, control transfers to the exception-handling part of the sub-block, and after the exception handler runs, the loop repeats.</p>
+                     </div>
+                  </li>
+               </ol>
+               <div class="example" id="GUID-CF7B91D7-215F-48D7-AE83-240012CE8ED6__BABGHCEH">
+                  <p class="titleinexample">Example 11-26 Retrying Transaction After Handling Exception</p><pre class="oac_no_warn" dir="ltr">DROP TABLE results;
+CREATE TABLE results (
+  res_name   VARCHAR(20),
+  res_answer VARCHAR2(3)
+);
+ 
+<span class="bold">CREATE UNIQUE INDEX res_name_ix ON results (res_name);</span>
+INSERT INTO results (res_name, res_answer) VALUES ('SMYTHE', 'YES');
+INSERT INTO results (res_name, res_answer) VALUES ('JONES', 'NO');
+ 
+DECLARE
+  name    VARCHAR2(20) := 'SMYTHE';
+  answer  VARCHAR2(3) := 'NO';
+  suffix  NUMBER := 1;
+BEGIN
+  <span class="bold">FOR i IN 1..5 LOOP  -- Try transaction at most 5 times.</span>
+ 
+    DBMS_OUTPUT.PUT('Try #' || i);
+ 
+    <span class="bold">BEGIN  -- sub-block begins</span>
+ 
+       <span class="bold">SAVEPOINT start_transaction;</span>
+ 
+       <span class="bold">-- transaction begins</span>
+ 
+       DELETE FROM results WHERE res_answer = 'NO';
+ 
+       INSERT INTO results (res_name, res_answer) VALUES (name, answer);
+ 
+       <span class="bold">-- Nonunique name raises DUP_VAL_ON_INDEX.</span>
+ 
+       <span class="bold">-- If transaction succeeded:</span>
+ 
+       COMMIT;
+       DBMS_OUTPUT.PUT_LINE(' succeeded.');
+       EXIT;
+ 
+    <span class="bold">EXCEPTION</span>
+      <span class="bold">WHEN DUP_VAL_ON_INDEX THEN</span>
+        DBMS_OUTPUT.PUT_LINE(' failed; trying again.');
+        <span class="bold">ROLLBACK TO start_transaction;</span>    -- Undo changes.
+        suffix := suffix + 1;             -- Try to fix problem.
+        name := name || TO_CHAR(suffix);
+    <span class="bold">END;  -- sub-block ends</span>
+ 
+  <span class="bold">END LOOP;</span>
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">Try #1 failed; trying again.
+Try #2 succeeded.</pre></div>
+               <div class="section">
+                  <p><a href="retrying-transactions-handling-exceptions.html#GUID-CF7B91D7-215F-48D7-AE83-240012CE8ED6__BABGHCEH">Example 11-26</a> uses the preceding technique to retry a transaction whose <code class="codeph">INSERT</code> statement raises the predefined exception <code class="codeph">DUP_VAL_ON_INDEX</code> if the value of <code class="codeph">res_name</code> is not unique.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

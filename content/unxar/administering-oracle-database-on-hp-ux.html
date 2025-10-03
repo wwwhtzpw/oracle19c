@@ -1,0 +1,631 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Administering Oracle Database on HP-UX">
+      <meta name="DC.subject" content="shared memory segments, SCHED_NOAGE, scheduling policy, parameters, enabling, lightweight timer implementation, input/output, asynchronous, asynchronous input/output, MLOCK privilege, implementing asynchronous input/output, verifying, asynchronous flag in SGA, tuning, large memory allocations, Oracle Database tuning and large memory allocations, virtual memory page size, default, recommendations, HP-UX dynamic processor reconfiguration, CPU_COUNT initialization parameter, initialization parameters, CPU_COUNT">
+      <meta name="keywords" content="shared memory segments, SCHED_NOAGE, scheduling policy, parameters, enabling, lightweight timer implementation, input/output, asynchronous, asynchronous input/output, MLOCK privilege, implementing asynchronous input/output, verifying, asynchronous flag in SGA, tuning, large memory allocations, Oracle Database tuning and large memory allocations, virtual memory page size, default, recommendations, HP-UX dynamic processor reconfiguration, CPU_COUNT initialization parameter, initialization parameters, CPU_COUNT">
+      <meta name="DC.Contributor" content="Subhash Chandra">
+      <meta name="DC.Contributor" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Kevin Flood">
+      <meta name="DC.Creator" content="Pat Huey">
+      <meta name="DC.Creator" content="Clara Jaeckel">
+      <meta name="DC.Creator" content="Emily Murphy">
+      <meta name="DC.Creator" content="Terri Winters">
+      <meta name="DC.Creator" content="Subhranshu Banerjee">
+      <meta name="DC.Creator" content="Mark Bauer">
+      <meta name="DC.Creator" content="Robert Chang">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Sudip Datta">
+      <meta name="DC.Creator" content="Thirumaleshwara Hasandka">
+      <meta name="DC.Creator" content="Joel Kallman">
+      <meta name="DC.Creator" content="George Kotsovolos">
+      <meta name="DC.Creator" content="Richard Long">
+      <meta name="DC.Creator" content="Rolly Lv">
+      <meta name="DC.Creator" content="Padmanabhan Manavazhi">
+      <meta name="DC.Creator" content="Matthew Mckerley">
+      <meta name="DC.Creator" content="Krishna Mohan">
+      <meta name="DC.Creator" content="Rajendra Pingte">
+      <meta name="DC.Creator" content="Hanlin Qian">
+      <meta name="DC.Creator" content="Janelle Simmons">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Michael Coulter">
+      <meta name="DC.Creator" content="Robert Achacoso">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="Ramesh Chakravarthula">
+      <meta name="DC.Creator" content="David Price">
+      <meta name="DC.Creator" content="Douglas Williams, Joseph Therrattil Koonen, Binoy Sukumaran, and Sumanta Chatterjee.">
+      <meta name="DC.Creator" content="Binika Kumar">
+      <meta name="DC.Publisher" content="June2023">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-40F9A31B-F8F3-4610-AFE6-88BF48795EF0">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Administering Oracle Database on HP-UX</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Administrator's Reference">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Administrator's Reference for Linux and UNIX System-Based Operating Systems">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="administrators-reference-linux-and-unix-based-operating-systems.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2023-06-24T20:03:20-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2006, 2023">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96356-05">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html" title="Previous" type="text/html">
+      <link rel="next" href="using-oracle-ODBC-driver.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Administrator's Reference for Linux and Unix-Based Operating Systems">
+    <meta name="dcterms.isVersionOf" content="UNXAR">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","name":"Administering Oracle Database on HP-UX","datePublished":"2019-01-10 04:41:10 GMT","dateModified":"2023-06-25 03:08:33 GMT"} </script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="using-oracle-ODBC-driver.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database Administrator's Reference</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem"> Administering Oracle Database on HP-UX</li>
+            </ol>
+            <a id="GUID-40F9A31B-F8F3-4610-AFE6-88BF48795EF0" name="GUID-40F9A31B-F8F3-4610-AFE6-88BF48795EF0"></a>
+            
+            <h2 id="UNXAR-GUID-40F9A31B-F8F3-4610-AFE6-88BF48795EF0" class="sect2"><span class="enumeration_chapter">D </span> Administering Oracle Database on HP-UX
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <div class="section">
+                  <p>This appendix provides information about administering Oracle Database on HP-UX.</p>
+                  <p>It contains the following topics:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="administering-oracle-database-on-hp-ux.html#GUID-63A44CA7-C0AC-41BA-BF00-827C5579CFB3">HP-UX Shared Memory Segments for an Oracle Instance</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-hp-ux.html#GUID-061C002D-44D9-414A-8A95-5B7FDB5EEC0B">HP-UX SCHED_NOAGE Scheduling Policy</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-hp-ux.html#GUID-0C8BF600-6E0D-46FC-A231-0E1DEDAEF294">Lightweight Timer Implementation</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-hp-ux.html#GUID-CB621D0D-EBD8-4613-B606-0495ACECCD61">Asynchronous Input-Output</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-hp-ux.html#GUID-A34D4E82-35F0-4AD0-A202-6347E4BE8483">Large Memory Allocations and Oracle Database Tuning</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-hp-ux.html#GUID-613DA220-1F0D-4A9F-9B7E-A93074504C78">CPU_COUNT Initialization Parameter and HP-UX Dynamic Processor Reconfiguration</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-hp-ux.html#GUID-C29F33DC-E90B-473D-A7E8-DA34AFC7B05F">Network Information Service external naming support</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-hp-ux.html#GUID-25D264BE-D26F-4A9A-8E81-448713939974">Activating and Setting Expanded Host Names and Node Names</a></p>
+                     </li>
+                  </ul>
+               </div>
+               <!-- class="section" -->
+            </div>
+            <div class="props_rev_3"><a id="GUID-63A44CA7-C0AC-41BA-BF00-827C5579CFB3" name="GUID-63A44CA7-C0AC-41BA-BF00-827C5579CFB3"></a><h3 id="UNXAR-GUID-63A44CA7-C0AC-41BA-BF00-827C5579CFB3" class="sect3"><span class="enumeration_section">D.1 </span>HP-UX Shared Memory Segments for an Oracle Instance
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>When an Oracle Database instance starts, it creates memory segments by dividing the shared memory allocated for creating the Oracle System Global Area (SGA) by the value of the HP-UX <code class="codeph">shmmax</code> kernel parameter. For example, if 64 GB of shared memory is allocated for a single Oracle instance and the value of the <code class="codeph">shmmax</code> parameter is 1 GB, then Oracle Database creates 64 shared memory segments for that instance.
+                     </p>
+                     <p>Performance degradation can occur when an Oracle instance creates multiple shared memory segments. This is because each shared memory segment receives a unique protection key when Oracle Database creates the instance. The number of protection keys available on the system architecture for HP-UX Itanium is 14.</p>
+                     <p>If the Oracle instance creates more shared memory segments than the number of protection keys, then the HP-UX operating system displays protection key faults.</p>
+                     <p>Oracle recommends that you set the <code class="codeph">shmmax</code> parameter value to the amount of available physical memory on the system. Doing this ensures that the entire shared memory for a single Oracle instance is assigned to one shared memory segment and the instance requires only one protection key.
+                     </p>
+                     <p>To display the list of active shared memory segments on the system, run the following command:</p><pre class="oac_no_warn" dir="ltr">$ ipcs -m
+</pre><p>If Oracle Database creates more segments for the instance than the number of protection keys, then increase the value of the <code class="codeph">shmmax</code> kernel parameter.
+                     </p>
+                     <div class="infoboxnotealso" id="GUID-63A44CA7-C0AC-41BA-BF00-827C5579CFB3__GUID-AA0B4E01-7C5A-4536-A5F2-E2B1923363F4">
+                        <p class="notep1">See Also:</p>
+                        <p><a href="../install-and-upgrade.html" target="_blank"><span class="italic">Oracle Database Installation Guide</span></a> for more information about the recommended minimum kernel parameter values
+                        </p>
+                     </div>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-061C002D-44D9-414A-8A95-5B7FDB5EEC0B" name="GUID-061C002D-44D9-414A-8A95-5B7FDB5EEC0B"></a><h3 id="UNXAR-GUID-061C002D-44D9-414A-8A95-5B7FDB5EEC0B" class="sect3"><span class="enumeration_section">D.2 </span>HP-UX SCHED_NOAGE Scheduling Policy
+               </h3>
+               <div>
+                  <p>On HP-UX, most processes use a time-sharing scheduling policy. Time sharing can have detrimental effects on Oracle performance by descheduling an Oracle process during critical operations, for example, when it is holding a latch. HP-UX has a modified scheduling policy, referred to as <code class="codeph">SCHED_NOAGE</code>, that specifically addresses this issue. Unlike the normal time-sharing policy, a process scheduled using <code class="codeph">SCHED_NOAGE</code> does not increase or decrease in priority, nor is it preempted.
+                  </p>
+                  <p>This feature is suited to online transaction processing environments because online transaction processing environments can cause competition for critical resources. The use of the <code class="codeph">SCHED_NOAGE</code> policy with Oracle Database can increase performance by 10 percent or more in online transaction processing environments.
+                  </p>
+                  <p>The <code class="codeph">SCHED_NOAGE</code> policy does not provide the same level of performance gains in decision support environments because there is less resource competition. Because each application and server environment is different, you should test and verify that the environment benefits from the <code class="codeph">SCHED_NOAGE</code> policy. When using <code class="codeph">SCHED_NOAGE</code>, Oracle recommends that you exercise caution in assigning highest priority to Oracle processes. Assigning highest <code class="codeph">SCHED_NOAGE</code> priority to Oracle processes can exhaust CPU resources on the system, causing other user processes to stop responding.
+                  </p>
+               </div>
+               <div class="props_rev_3"><a id="GUID-8524F58A-4FCD-4758-9967-1127E71CD648" name="GUID-8524F58A-4FCD-4758-9967-1127E71CD648"></a><h4 id="UNXAR-GUID-8524F58A-4FCD-4758-9967-1127E71CD648" class="sect4"><span class="enumeration_section">D.2.1 </span>Enabling SCHED_NOAGE for Oracle Database
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>To permit Oracle Database to use the <code class="codeph">SCHED_NOAGE</code> scheduling policy, the OSDBA group (typically, the <code class="codeph">dba</code> group) must have the <code class="codeph">RTSCHED</code> and <code class="codeph">RTPRIO</code> privileges to change the scheduling policy and set the priority level for Oracle processes. To give the <code class="codeph">dba</code> group these privileges:
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <ol>
+                        <li class="stepexpand"><span>Log in as the <code class="codeph">root</code> user.</span></li>
+                        <li class="stepexpand"><span>Using any text editor, open the <code class="codeph">/etc/privgroup</code> file, or create it if necessary. <a id="d23148e472" class="indexterm-anchor"></a><a id="d23148e476" class="indexterm-anchor"></a></span></li>
+                        <li class="stepexpand"><span>Add or edit the following line, which begins with the name of the OSDBA group, specifying the privileges <code class="codeph">RTPRIO</code> and <code class="codeph">RTSCHED</code> that you want to grant to this group every time the system restarts: </span><div><pre class="oac_no_warn" dir="ltr">dba RTPRIO RTSCHED
+</pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Save the file, and quit the text editor.</span></li>
+                        <li class="stepexpand"><span>Enter the following command to grant the privileges to the OSDBA group:<a id="d23148e496" class="indexterm-anchor"></a><a id="d23148e500" class="indexterm-anchor"></a></span><div><pre class="oac_no_warn" dir="ltr"># /usr/sbin/setprivgrp -f /etc/privgroup
+</pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Enter the following command to verify that the privileges are set correctly:<a id="d23148e508" class="indexterm-anchor"></a><a id="d23148e512" class="indexterm-anchor"></a></span><div><pre class="oac_no_warn" dir="ltr"># /usr/bin/getprivgrp dba
+</pre></div>
+                        </li>
+                     </ol>
+                     <div class="section">
+                        <p>Add the <code class="codeph">HPUX_SCHED_NOAGE</code> initialization parameter to the parameter file for each instance, setting the parameter to an integer value to specify process priority levels. The supported range of values is 178 to 255. Lower values represent higher priorities. The default value of <code class="codeph">HPUX_SCHED_NOAGE</code> initialization parameter is 178 for all Oracle processes. For LMS processes, this can be changed by setting the initialization parameter <code class="codeph">_os_sched_high_priority</code>. If the parameter <code class="codeph">_os_sched_high_priority</code> is between 31 and 2, LMS processes run with <code class="codeph">SCHED_RR</code> at the set priority. If the parameter value is between 178 and 255, the processes run at the set value with <code class="codeph">SCHED_NOAGE</code>. However, LMS does not run at priority level less than the value of <code class="codeph">HPUX_SCHED_NOAGE</code>.
+                        </p>
+                        <p>If the <code class="codeph">HPUX_SCHED_NOAGE</code> parameter setting is out of range, then Oracle Database automatically sets the parameter to a permissible value and continues with the <code class="codeph">SCHED_NOAGE</code> policy with the new value. It also generates a message in the <code class="codeph">alert_</code><span class="italic"><code class="codeph">sid</code></span><code class="codeph">.log</code> file about the new setting. Whenever the highest priority is assigned to Oracle processes, either by the user or by automatic readjustment, Oracle Database generates a message in the <code class="codeph">alert_</code><span class="italic"><code class="codeph">sid</code></span><code class="codeph">.log</code> file warning about the possibility of exhaustion of CPU resources on the system. Oracle recommends that you set the parameter to assign the priority level you want for Oracle processes.
+                        </p>
+                        <div class="infoboxnotealso" id="GUID-8524F58A-4FCD-4758-9967-1127E71CD648__GUID-413E4843-DA74-4962-A8BA-A1BBC66C85CA">
+                           <p class="notep1">See Also:</p>
+                           <p>The HP-UX documentation, the <code class="codeph">rtsched</code>(1) man page, and the <code class="codeph">rtsched</code>(2) man page for more information about priority policies and priority ranges
+                           </p>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-0C8BF600-6E0D-46FC-A231-0E1DEDAEF294" name="GUID-0C8BF600-6E0D-46FC-A231-0E1DEDAEF294"></a><h3 id="UNXAR-GUID-0C8BF600-6E0D-46FC-A231-0E1DEDAEF294" class="sect3"><span class="enumeration_section">D.3 </span>Lightweight Timer Implementation
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>With Oracle Database 11<span class="italic">g</span>, you can collect run-time statistics always if the dynamic initialization parameter <code class="codeph">STATISTICS_LEVEL</code> is set to <code class="codeph">TYPICAL</code> (default) or <code class="codeph">ALL</code>. This parameter setting implicitly sets the <code class="codeph">TIMED_STATISTICS</code> initialization parameter to <code class="codeph">true</code>. Oracle Database on HP-UX systems uses the <code class="codeph">gethrtime()</code> system library call to calculate elapsed times during the collection of the statistics. The use of this lightweight system library call enables you to collect run-time statistics always while running an Oracle instance, without affecting performance.
+                     </p>
+                     <p>This system library call can provide a performance improvement of up to 10 percent over an Oracle release that does not use the <code class="codeph">gethrtime()</code> system library call when the <code class="codeph">TIMED_STATISTICS</code> initialization parameter is explicitly set to <code class="codeph">true</code>. In addition, there is no negative impact on the online transaction processing performance of an Oracle Database while using the <code class="codeph">gethrtime()</code> system library call to collect run-time statistics always. 
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-CB621D0D-EBD8-4613-B606-0495ACECCD61" name="GUID-CB621D0D-EBD8-4613-B606-0495ACECCD61"></a><h3 id="UNXAR-GUID-CB621D0D-EBD8-4613-B606-0495ACECCD61" class="sect3"><span class="enumeration_section">D.4 </span>Asynchronous Input-Output
+               </h3>
+               <div>
+                  <p>The asynchronous Input-Output pseudo-driver on HP-UX enables Oracle Database to perform Input-Output to raw disk partitions using an asynchronous method, resulting in less Input-Output overhead and higher throughput. You can use the asynchronous Input-Output pseudo-driver on both HP-UX servers and workstations.</p>
+                  <p>This section contains the following topics:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="administering-oracle-database-on-hp-ux.html#GUID-4D78A4F1-C5FA-4839-8493-76497D0061D8">Granting MLOCK Privilege</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-hp-ux.html#GUID-412B7E96-161D-485A-8EDF-34021DDE9DF3">Implementing Asynchronous Input-Output</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-hp-ux.html#GUID-AD554066-8DC3-4C62-B15B-5E8AD95E5F48">Verifying Asynchronous Input-Output</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-hp-ux.html#GUID-934EEC16-A574-49B4-98CD-C18829FBCCCF">Asynchronous Flag in SGA</a></p>
+                     </li>
+                  </ul>
+               </div>
+               <div class="props_rev_3"><a id="GUID-4D78A4F1-C5FA-4839-8493-76497D0061D8" name="GUID-4D78A4F1-C5FA-4839-8493-76497D0061D8"></a><h4 id="UNXAR-GUID-4D78A4F1-C5FA-4839-8493-76497D0061D8" class="sect4"><span class="enumeration_section">D.4.1 </span>Granting MLOCK Privilege
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>To permit Oracle Database to process asynchronous Input-Output operations, the OSDBA group (<code class="codeph">dba</code>) must have the <code class="codeph">MLOCK</code> privilege. To give the <code class="codeph">dba</code> group the <code class="codeph">MLOCK</code> privilege:
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <ol>
+                        <li class="stepexpand"><span>Log in as the <code class="codeph">root</code> user.</span></li>
+                        <li class="stepexpand"><span>Using any text editor, open the <code class="codeph">/etc/privgroup</code> file, or create it if necessary. <a id="d23148e923" class="indexterm-anchor"></a><a id="d23148e927" class="indexterm-anchor"></a></span></li>
+                        <li class="stepexpand"><span>Add or edit the following line, which begins with the name of the OSDBA group, specifying the privilege <code class="codeph">MLOCK</code>: </span><div>
+                              <div class="infoboxnote" id="GUID-4D78A4F1-C5FA-4839-8493-76497D0061D8__GUID-1E4EBB9F-6AF5-4784-BDD8-AA90281D6CA7">
+                                 <p class="notep1">Note:</p>
+                                 <p>You must use only one line to specify the privileges for a particular group in this file. If the file already contains a line for the <code class="codeph">dba</code> group, then add the <code class="codeph">MLOCK</code> privilege on the same line.
+                                 </p>
+                              </div><pre class="oac_no_warn" dir="ltr">dba RTPRIO RTSCHED MLOCK
+</pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Save the file, and quit the text editor.</span></li>
+                        <li class="stepexpand"><span>Enter the following command to grant the privileges to the OSDBA group:<a id="d23148e953" class="indexterm-anchor"></a></span><div><pre class="oac_no_warn" dir="ltr"># /usr/sbin/setprivgrp -f /etc/privgroup
+</pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Enter the following command to verify that the privileges are set correctly:<a id="d23148e961" class="indexterm-anchor"></a></span><div><pre class="oac_no_warn" dir="ltr"># /usr/bin/getprivgrp dba</pre></div>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-412B7E96-161D-485A-8EDF-34021DDE9DF3" name="GUID-412B7E96-161D-485A-8EDF-34021DDE9DF3"></a><h4 id="UNXAR-GUID-412B7E96-161D-485A-8EDF-34021DDE9DF3" class="sect4"><span class="enumeration_section">D.4.2 </span>Implementing Asynchronous Input-Output
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>To use asynchronous Input-Output on HP-UX, you must use an Automatic Storage Management disk group that uses raw partitions as the storage option for database files. </p>
+                        <div class="infoboxnotealso" id="GUID-412B7E96-161D-485A-8EDF-34021DDE9DF3__GUID-88E684B8-75F5-4E92-BA2D-7A1BEF961376">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="../install-and-upgrade.html" target="_blank"><span class="italic">Oracle Database Installation Guide</span></a> for more information about configuring Automatic Storage Management and raw logical volumes on HP-UX systems
+                           </p>
+                        </div>
+                        <p>Before you can implement asynchronous Input-Output with either storage option, you must use the System Administrator Management utility to configure the asynchronous disk driver into the HP-UX kernel.</p>
+                        <div class="infoboxnote" id="GUID-412B7E96-161D-485A-8EDF-34021DDE9DF3__GUID-62059D0D-32DE-4EAB-815B-3D1859F60128">
+                           <p class="notep1">Note:</p>
+                           <p>In Oracle Database 11<span class="italic">g</span> Release 1, you did not have to set <code class="codeph">DISK_ASYNCH_IO</code> parameter to <code class="codeph">FALSE</code> on a file system. However, starting with Oracle Database 11<span class="italic">g</span> Release 2, if database uses file system for storing the database files, then ensure that you set initialization parameter <code class="codeph">DISK_ASYNCH_IO</code> to <code class="codeph">FALSE</code>. By default the value of <code class="codeph">DISK_ASYNCH_IO</code> is <code class="codeph">TRUE</code>.
+                           </p>
+                           <p>The <code class="codeph">DISK_ASYNCH_IO</code> parameter must be set to <code class="codeph">TRUE</code> only when raw partitions are used for storing database files.
+                           </p>
+                        </div>
+                        <p>To add the asynchronous disk driver and configure the kernel by using the System Administrator Management utility:</p>
+                        <ol>
+                           <li>
+                              <p>Run the following command as the <code class="codeph">root</code> user:
+                              </p><pre class="oac_no_warn" dir="ltr"># sam
+</pre></li>
+                           <li>
+                              <p>Select the <span class="bold">Kernel Configuration area</span>.
+                              </p>
+                           </li>
+                           <li>
+                              <p>Select the <span class="bold">Drivers area</span>.
+                              </p>
+                           </li>
+                           <li>
+                              <p>Select the <span class="bold">asynchronous disk driver</span> (<code class="codeph">asyncdsk</code>).
+                              </p>
+                           </li>
+                           <li>
+                              <p>Select <span class="bold">Actions</span>, and then select <span class="bold">Add Driver to Kernel</span>.
+                              </p>
+                           </li>
+                           <li>
+                              <p>Select <span class="bold">List</span>, and then select <span class="bold">Configurable Parameters</span>.
+                              </p>
+                           </li>
+                           <li>
+                              <p>Select the <code class="codeph">MAX_ASYNC_PORTS</code> parameter.
+                              </p>
+                           </li>
+                           <li>
+                              <p>Select <span class="bold">Action</span>, and then select <span class="bold">Modify Configurable Parameter.</span></p>
+                           </li>
+                           <li>
+                              <p>Specify a new value for the parameter, using the following guidelines, and then click <span class="bold">OK</span>.
+                              </p>
+                              <p>The <code class="codeph">MAX_ASYNC_PORTS</code> parameter is a configurable HP-UX kernel parameter that controls the maximum number of processes that can open the <code class="codeph">/dev/async</code> file simultaneously.
+                              </p>
+                              <p>The system displays an error message when a process tries to open the <code class="codeph">/dev/async</code> file after the maximum number of processes have opened the file. This error can reduce performance on systems with a large number of shadow processes or many parallel query slaves performing asynchronous Input-Output. This error is not recorded. To avoid this error, estimate the highest likely number of processes that can access the <code class="codeph">/dev/async</code> file and set the <code class="codeph">MAX_ASYNC_PORTS</code> parameter to this value.
+                              </p>
+                           </li>
+                           <li>
+                              <p>Select <span class="bold">Actions</span>, and then select <span class="bold">Process a New Kernel</span>.
+                              </p>
+                           </li>
+                           <li>
+                              <p>Select one of the following options, and then click <span class="bold">OK</span>: 
+                              </p>
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><span class="bold">Move Kernel Into Place and Shutdown System/Reboot Now</span> 
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <p><span class="bold">Do Not Move Kernel Into Place: Do Not Shutdown/Reboot Now</span> 
+                                    </p>
+                                 </li>
+                              </ul>
+                              <p>If you choose the second option, then the new kernel, <code class="codeph">vmunix_test</code>, and the <code class="codeph">system.SAM</code> configuration file used to create it, are both created in the <code class="codeph">/stand/build</code> directory.
+                              </p>
+                           </li>
+                        </ol>
+                        <p>To enable asynchronous Input-Output operations using the HP-UX asynchronous device driver:</p>
+                     </div>
+                     <!-- class="section" -->
+                     <ol>
+                        <li class="stepexpand"><span>Log in as the <code class="codeph">root</code> user.</span></li>
+                        <li class="stepexpand"><span>If <code class="codeph">/dev/async</code> does not exist, use the following command to create it:</span><div><pre class="oac_no_warn" dir="ltr"># /sbin/mknod /dev/async c 101 0x0
+</pre><p>By default, the minor number is set to 0. The following table describes the various minor numbers for 8-bit that you can use to create a device file:</p>
+                              <div class="tblformal" id="GUID-412B7E96-161D-485A-8EDF-34021DDE9DF3__GUID-B2F39DB5-F7D9-4A48-9458-3C17D8042331">
+                                 <table cellpadding="4" cellspacing="0" class="Formal" title summary="This 2 column table describes the various minor numbers for 8-bit that you can&#xA;                            use to create a device file. Column 1 is the minor number. Column 2 is a&#xA;                            description. " width="90%" frame="hsides" border="1" rules="rows">
+                                    <thead>
+                                       <tr align="left" valign="top">
+                                          <th align="left" valign="bottom" width="20%" id="d23148e1253">Minor number</th>
+                                          <th align="left" valign="bottom" width="80%" id="d23148e1258">Description</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="20%" id="d23148e1263" headers="d23148e1253 ">
+                                             <p>0x0</p>
+                                          </td>
+                                          <td align="left" valign="top" width="80%" headers="d23148e1263 d23148e1258 ">
+                                             <p>This is the HP-UX default value for <code class="codeph">/dev/async</code>.
+                                             </p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="20%" id="d23148e1273" headers="d23148e1253 ">
+                                             <p>0x4</p>
+                                          </td>
+                                          <td align="left" valign="top" width="80%" headers="d23148e1273 d23148e1258 ">
+                                             <p>Enable disc device timeouts to complete with an error code rather than retrying
+                                            forever. This setting is necessary for application-level
+                                            disc mirroring, so as to avoid the situation where the
+                                            application waits forever for a failed disc device to be
+                                            repaired. Oracle RDBMS users should enable this feature
+                                            when Automatic Storage Management mirroring/replication
+                                            (internal redundancy) is used. SGA will be locked in
+                                            memory.</p>
+                                             
+                                             <p>You can tune the timeout value using
+                                                <code class="codeph">asyncdsk_io_timeout</code>, which is a
+                                            private dynamic tunable available on HP-UX 11i v3. The
+                                            default value for <code class="codeph">asyncdsk_io_timeout</code>
+                                            is 30 seconds. The valid value for this tunable ranges
+                                            from 10 to 300. You can invoke
+                                            <code class="codeph">kctune</code>(1M) to change
+                                                <code class="codeph">asyncdsk_io_timeout</code> tunable
+                                            value.
+                                             </p>
+                                             
+                                             <p>For HP-UX Logical Volume Manager (LVM)
+                                            configured volume, this flag is not necessary as the
+                                            timeout is controlled by HP-UX LVM.</p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="20%" id="d23148e1298" headers="d23148e1253 ">
+                                             <p>0x100</p>
+                                          </td>
+                                          <td align="left" valign="top" width="80%" headers="d23148e1298 d23148e1258 ">
+                                             <p>Enable on-demand locking of memory pages by async driver when asyncdsk_open(2) is called. A low-overhead routine is then used to lock a page into memory during I/O operations.</p>
+                                             <p>On-demand locking is critically important when using Oracle's Automatic Memory Management feature (the use of <code class="codeph">MEMORY_TARGET</code> in the <code class="codeph">init.ora</code> file to control memory usage). RDBMS deployments utilizing dynamic nPar or dynamic vPar features should also configure on-demand locking.
+                                             </p>
+                                             <p>More traditional RDBMS deployments can consider on-demand locking in light of its more obvious effects. Generally speaking, RDBMS startup will be quicker because the complete SGA is not locked into memory immediately. However, some instances will experience a slight run-time performance penalty with on-demand locking as memory pages are dynamically locked/unlocked for each I/O request.</p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="20%" id="d23148e1315" headers="d23148e1253 ">
+                                             <p>0x104</p>
+                                          </td>
+                                          <td align="left" valign="top" width="80%" headers="d23148e1315 d23148e1258 ">
+                                             <p>This is a combination of 0x100 and 0x4. Both the features are enabled.</p>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <!-- class="inftblhruleinformal" -->
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Enter the following command to verify that the <code class="codeph">/dev/async</code> device file exists and has the major number 101:</span><div><pre class="oac_no_warn" dir="ltr"># ls -l /dev/async
+</pre><p>The output of this command should look similar to the following:</p><pre class="oac_no_warn" dir="ltr">crw------- 1 oracle   dba     101 0x000000 Oct 28 10:32  /dev/async
+</pre></div>
+                        </li>
+                        <li class="stepexpand"><span>If required, give the device file the operating system owner and permissions consistent with those of the Oracle software owner and OSDBA group.</span><div>
+                              <p>If the Oracle software owner is <code class="codeph">oracle</code> and the OSDBA group is <code class="codeph">dba</code>, then run the following commands:
+                              </p><pre class="oac_no_warn" dir="ltr"># /usr/bin/chown oracle:dba /dev/async
+# /usr/bin/chmod 660 /dev/async</pre></div>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-AD554066-8DC3-4C62-B15B-5E8AD95E5F48" name="GUID-AD554066-8DC3-4C62-B15B-5E8AD95E5F48"></a><h4 id="UNXAR-GUID-AD554066-8DC3-4C62-B15B-5E8AD95E5F48" class="sect4"><span class="enumeration_section">D.4.3 </span>Verifying Asynchronous Input-Output
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>To verify asynchronous Input-Output, first verify that the HP-UX asynchronous driver is configured for Oracle Database, then verify that Oracle Database is executing asynchronous Input-Output through the HP-UX device driver:</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><a href="administering-oracle-database-on-hp-ux.html#GUID-E1B5D0F5-0A7C-445C-9F0A-73FEAB638C36">Verifying That HP-UX Asynchronous Driver is Configured for Oracle Database</a></p>
+                           </li>
+                           <li>
+                              <p><a href="administering-oracle-database-on-hp-ux.html#GUID-6FB29896-6DED-4A9F-8F87-A335675A04F9">Verifying that Oracle Database is Using Asynchronous Input-Output</a></p>
+                           </li>
+                        </ul>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+                  <div class="props_rev_3"><a id="GUID-E1B5D0F5-0A7C-445C-9F0A-73FEAB638C36" name="GUID-E1B5D0F5-0A7C-445C-9F0A-73FEAB638C36"></a><h5 id="UNXAR-GUID-E1B5D0F5-0A7C-445C-9F0A-73FEAB638C36" class="sect5"><span class="enumeration_section">D.4.3.1 </span>Verifying That HP-UX Asynchronous Driver is Configured for Oracle Database
+                     </h5>
+                     <div>
+                        <div class="section">
+                           <p>To verify that the HP-UX asynchronous driver is configured properly for Oracle Database:</p>
+                        </div>
+                        <!-- class="section" -->
+                        <ol>
+                           <li class="stepexpand"><span>Start Oracle Database with a few parallel query slave processes.</span></li>
+                           <li class="stepexpand"><span>Start the GlancePlus/UX utility as follows:</span><div><pre class="oac_no_warn" dir="ltr">$ gpm
+</pre></div>
+                           </li>
+                           <li class="stepexpand"><span>In the main window, click <span class="bold">Reports</span> and then click <span class="bold">Process List</span>.</span></li>
+                           <li class="stepexpand"><span>In the Process List window, select one parallel query slave process, select <span class="bold">Reports</span>, and then select <span class="bold">Process Open Files</span>.</span><div>
+                                 <p>The list of files currently opened by the parallel query slave process is displayed.</p>
+                              </div>
+                           </li>
+                           <li class="stepexpand"><span>In the list of open files, check for the <code class="codeph">/dev/async</code> file or the 101 0x104000 mode.</span><div>
+                                 <p>If either is in the list, then the <code class="codeph">/dev/async</code> file has been opened by the parallel query slave process, and the HP-UX asynchronous device driver is configured properly to enable Oracle processes to run asynchronous Input-Output. Make a note of the file descriptor number for the <code class="codeph">/dev/async</code> file.
+                                 </p>
+                              </div>
+                           </li>
+                        </ol>
+                     </div>
+                  </div>
+                  <div class="props_rev_3"><a id="GUID-6FB29896-6DED-4A9F-8F87-A335675A04F9" name="GUID-6FB29896-6DED-4A9F-8F87-A335675A04F9"></a><h5 id="UNXAR-GUID-6FB29896-6DED-4A9F-8F87-A335675A04F9" class="sect5"><span class="enumeration_section">D.4.3.2 </span>Verifying that Oracle Database is Using Asynchronous Input-Output
+                     </h5>
+                     <div>
+                        <div class="section">
+                           <p>To verify that Oracle Database is using asynchronous Input-Output through the HP-UX asynchronous device driver:</p>
+                        </div>
+                        <!-- class="section" -->
+                        <ol>
+                           <li class="stepexpand"><span>Attach the HP-UX <code class="codeph">tusc</code> utility to the same Oracle parallel query slave that you selected in GlancePlus in the preceding procedure.</span></li>
+                           <li class="stepexpand"><span>Run an Input-Output bound query in the environment.</span></li>
+                           <li class="stepexpand"><span>Check the pattern of read and write calls in the <code class="codeph">tusc</code> output.</span><div>
+                                 <p>You can do this, for example, by entering the following command, where <span class="italic"><code class="codeph">pid</code></span> is the process ID of a parallel query slave supposed to process asynchronous Input-Output:
+                                 </p><pre class="oac_no_warn" dir="ltr">$ tusc -p <span class="italic">pid</span> &gt; tusc.output
+</pre></div>
+                           </li>
+                           <li class="stepexpand"><span>After running the query, press <span class="bold">Ctrl+c</span> to disconnect from the process, and then open the <code class="codeph">tusc.output</code> file.</span><div>
+                                 <p>The following example shows a sample <code class="codeph">tusc.output</code> file:
+                                 </p><pre class="oac_no_warn" dir="ltr">( Attached to process 2052: "ora_p000_tpch" [ 64-bit ])
+................... 
+........................ 
+[2052] read(9, "80\0\001\013  \b\0\0\0\0\0\0\0\0".., 388) .. = 28 
+[2052] write(9, "\0\0\00e\0\0\0\080\0\001\013Ð \0".., 48) .. = 48 
+[2052] read(9, "80\0\001\013¢ 18\0\0\0\0\0\0\0\0".., 388) .. = 28 
+[2052] write(9, "\0\0\00e\0\0\0\080\0\001\01bd4\0".., 48) .. = 48 </pre><pre class="oac_no_warn" dir="ltr"></pre><p>If the <code class="codeph">DISK_ASYNCH_IO</code> initialization parameter is not explicitly set to <code class="codeph">false</code> (set to <code class="codeph">true</code> by default), then the <code class="codeph">tusc.output</code> file shows a pattern of asynchronous read/write calls of the same file descriptor (9 in the preceding example) back to back.
+                                 </p>
+                                 <p>Map the file descriptor number in the <code class="codeph">tusc.output</code> file to that used by <code class="codeph">/dev/async</code> file in GlancePlus. They should match for the particular parallel query slave process. This verifies that Input-Output through the HP-UX asynchronous driver is asynchronous. With synchronous Input-Output, or if the <code class="codeph">DISK_ASYNCH_IO </code>initialization parameter is explicitly set to <code class="codeph">FALSE</code>, you do not see the asynchronous read/write pattern described previously. Instead, you see calls to <code class="codeph">lseek</code> or <code class="codeph">pread</code>/<code class="codeph">pwrite</code>. You also see many different file descriptors (the first argument to read/write) instead of just a single file descriptor.
+                                 </p>
+                              </div>
+                           </li>
+                        </ol>
+                     </div>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-934EEC16-A574-49B4-98CD-C18829FBCCCF" name="GUID-934EEC16-A574-49B4-98CD-C18829FBCCCF"></a><h4 id="UNXAR-GUID-934EEC16-A574-49B4-98CD-C18829FBCCCF" class="sect4"><span class="enumeration_section">D.4.4 </span>Asynchronous Flag in SGA
+                  </h4>
+                  <div>
+                     <p>Oracle Database on HP-UX uses a nonblocking polling facility provided by the HP-UX asynchronous driver to check the status of the Input-Output operations. This polling is performed by checking a flag that is updated by the asynchronous driver based on the status of the Input-Output operations submitted. HP-UX requires that this flag be in shared memory.</p>
+                     <p>Oracle Database configures an asynchronous flag in the SGA for each Oracle process. Oracle Database on HP-UX has a true asynchronous Input-Output mechanism where Input-Output requests can be issued even though some previously issued Input-Output operations are not complete. This helps to enhance performance and ensures good scalability of parallel Input-Output processes.</p>
+                     <p>Releases of Oracle Database earlier than release 8.1.7 were able to run Input-Output operations only from shared memory by using the HP-UX asynchronous driver. Oracle Database 11<span class="italic">g</span> runs Input-Output operations from both shared memory and process-private regions using the new HP-UX asynchronous driver. However, Input-Output operations through the asynchronous driver are not asynchronous in nature. This is because Oracle Database must perform a blocking wait to check the status of Input-Output operations submitted to the asynchronous driver. This causes some Oracle processes, such as the database writer process, to essentially process synchronous Input-Output.
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-A34D4E82-35F0-4AD0-A202-6347E4BE8483" name="GUID-A34D4E82-35F0-4AD0-A202-6347E4BE8483"></a><h3 id="UNXAR-GUID-A34D4E82-35F0-4AD0-A202-6347E4BE8483" class="sect3"><span class="enumeration_section">D.5 </span>Large Memory Allocations and Oracle Database Tuning
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>Applications running on Oracle Database 11<span class="italic">g</span> and later can use significantly more memory than applications running on earlier releases. This is because Oracle Database 11<span class="italic">g</span> changes the default setting for virtual memory data<a id="d23148e1931" class="indexterm-anchor"></a> pages from D (4 KB) to L (4 GB) on HP-UX systems.
+                     </p>
+                     <p>This section contains the following topics:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="administering-oracle-database-on-hp-ux.html#GUID-1C8FDE3E-3C74-4C1B-9537-80F1D495E0B9">Default Large Virtual Memory Page Size</a></p>
+                        </li>
+                        <li>
+                           <p><a href="administering-oracle-database-on-hp-ux.html#GUID-8C972195-BF5B-43BE-808D-8D83B1AC6ACB">Tuning Recommendations</a></p>
+                        </li>
+                        <li>
+                           <p><a href="administering-oracle-database-on-hp-ux.html#GUID-09253359-D4B7-4262-BA6B-DB0BBD71D6D0">Tunable Base Page Size</a></p>
+                        </li>
+                     </ul>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+               <div class="props_rev_3"><a id="GUID-1C8FDE3E-3C74-4C1B-9537-80F1D495E0B9" name="GUID-1C8FDE3E-3C74-4C1B-9537-80F1D495E0B9"></a><h4 id="UNXAR-GUID-1C8FDE3E-3C74-4C1B-9537-80F1D495E0B9" class="sect4"><span class="enumeration_section">D.5.1 </span>Default Large Virtual Memory Page Size
+                  </h4>
+                  <div>
+                     <p>By default, Oracle Database uses the largest virtual memory page size setting available on HP-UX for allocating process-private memory. It is defined by the value <code class="codeph">L</code> (largest.) This value is set as one of the <code class="codeph">LARGE_PAGE_FLAGS</code> options when linking an Oracle executable.
+                     </p>
+                     <p>When the virtual memory page size is set to L, HP-UX allocates the available process-private memory to pages of 1 MB, 4 MB, 16 MB and so on, until it reaches the 1 GB limit, or until it reaches the total amount of allocated memory. If you allocate enough memory to the Oracle PGA for the operating system to be able to allocate memory in larger data page size units, then the operating system allocates the maximum page size at once. For example, if you allocate 48 MB for the Oracle PGA, then the system can have either 3 pages each of 16 MB, or a series of pages in unit sizes with the smaller multiples. For example, four 1 MB pages, three 4 MB pages, and two 16 MB pages. If you allocate 64 MB to the PGA, then the operating system allocates one page of 64 MB, as the data page unit size matches the available memory.</p>
+                     <p>In general, large memory pages yield better application performance by reducing the number of virtual memory translation faults that must be handled by the operating system, freeing more CPU resources for the application. Large pages help to reduce the total number of data pages required to allocate the process-private memory. This reduction decreases the chances of translation lookaside buffer misses at the processor level.</p>
+                     <p>However, if applications are constrained in memory and tend to run a very large number of processes, then this drastic page size increase may lead processes to indicate large memory allocations, followed by an <code class="codeph">Out of memory</code> error message. If this happens, then you must lower the page size to a value between the D (default) size of 4 KB and the <code class="codeph">L</code> (largest) size of 4 GB.
+                     </p>
+                     <p>With the lowest page size setting (4 KB), CPU utilization can be 20 percent higher than that with a larger page size setting. With the highest setting of <code class="codeph">L</code>, the memory utilization can be 50 percent higher than that with a 4 MB setting. In cases where the system shows memory constraints, Oracle recommends that you set the page size to match the requirements of the particular application, within the constraints of available memory resources.
+                     </p>
+                     <p>For example, an application that has problems with the <code class="codeph">L</code> setting may show reasonable performance with a 4 MB virtual memory page setting.
+                     </p>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-8C972195-BF5B-43BE-808D-8D83B1AC6ACB" name="GUID-8C972195-BF5B-43BE-808D-8D83B1AC6ACB"></a><h4 id="UNXAR-GUID-8C972195-BF5B-43BE-808D-8D83B1AC6ACB" class="sect4"><span class="enumeration_section">D.5.2 </span>Tuning Recommendations
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>To address tuning for the increased memory allocation required for persistent private SQL areas and large virtual memory page sizes, Oracle recommends that you decrease the virtual memory data page size for Oracle Database as required. Use the following command to alter the page size setting:</p><pre class="oac_no_warn" dir="ltr"># /usr/bin/chatr +pd <span class="italic">newsize</span> $ORACLE_HOME/bin/oracle
+</pre><p>In the preceding example, <span class="italic"><code class="codeph">newsize</code></span> represents the new value of the virtual memory page size.
+                        </p>
+                        <p>Display the new setting using the <code class="codeph">chatr</code> command as follows:
+                        </p><pre class="oac_no_warn" dir="ltr"># /usr/bin/chatr $ORACLE_HOME/bin/oracle
+</pre></div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-09253359-D4B7-4262-BA6B-DB0BBD71D6D0" name="GUID-09253359-D4B7-4262-BA6B-DB0BBD71D6D0"></a><h4 id="UNXAR-GUID-09253359-D4B7-4262-BA6B-DB0BBD71D6D0" class="sect4"><span class="enumeration_section">D.5.3 </span>Tunable Base Page Size
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>A large base page size enables efficient memory management. The default value for <code class="codeph">base_pagesize</code> is 4 KB. The new feature introduced with HP-UX 11.31 enables to adjust the size of the base page, by invoking <code class="codeph">kctune</code> (1 M) to change the tunable <code class="codeph">base_pagesize</code> and then restart the computer.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-613DA220-1F0D-4A9F-9B7E-A93074504C78" name="GUID-613DA220-1F0D-4A9F-9B7E-A93074504C78"></a><h3 id="UNXAR-GUID-613DA220-1F0D-4A9F-9B7E-A93074504C78" class="sect3"><span class="enumeration_section">D.6 </span>CPU_COUNT Initialization Parameter and HP-UX Dynamic Processor Reconfiguration
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>HP-UX 11<span class="italic">i</span> supports dynamic run-time reconfiguration of processor sets and dynamic reassignment of workload between processor sets by valid users. 
+                     </p>
+                     <p>HP-UX Virtual Partitions enable users to configure their systems in multiple logical partitions where each partition is assigned its own set of processors, memory, and Input-Output resources, and can run a separate instance of the HP-UX operating system. HP-UX processor sets integrated with vPars support dynamic processor migration from one virtual partition to another without requiring a restart of any virtual partition. This helps to provide efficient resource partitioning between applications to minimize interference and guarantees necessary resource allocation to each application running on the HP-UX server.</p>
+                     <div class="infoboxnotealso" id="GUID-613DA220-1F0D-4A9F-9B7E-A93074504C78__GUID-5D38149C-706E-4E8E-9B99-D8295FD465D3">
+                        <p class="notep1">See Also:</p>
+                        <p>Refer to <a href="../cncpt/topics-for-database-administrators-and-developers.html#CNCPT1985" target="_blank"><span><cite>Oracle Database Concepts</cite></span></a> for more information about dynamic resource provisioning
+                        </p>
+                     </div>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-C29F33DC-E90B-473D-A7E8-DA34AFC7B05F" name="GUID-C29F33DC-E90B-473D-A7E8-DA34AFC7B05F"></a><h3 id="UNXAR-GUID-C29F33DC-E90B-473D-A7E8-DA34AFC7B05F" class="sect3"><span class="enumeration_section">D.7 </span>Network Information Service external naming support
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>Network Information Service external naming adapter is supported on HP-UX.</p>
+                     <div class="infoboxnotealso" id="GUID-C29F33DC-E90B-473D-A7E8-DA34AFC7B05F__GUID-38E302CF-CFA7-4934-AE3A-214114A6330D">
+                        <p class="notep1">See Also:</p><a href="../netag/configuring-naming-methods.html#NETAG277" target="_blank"><span><cite>Oracle Database Net Services Administrator's Guide</cite></span></a> to configure and use Network Information Service external naming
+                     </div>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-25D264BE-D26F-4A9A-8E81-448713939974" name="GUID-25D264BE-D26F-4A9A-8E81-448713939974"></a><h3 id="UNXAR-GUID-25D264BE-D26F-4A9A-8E81-448713939974" class="sect3"><span class="enumeration_section">D.8 </span>Activating and Setting Expanded Host Names and Node Names
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>The system node names and host names have default length limits of 8 and 64 bytes. The system administrator can configure the system to expand both these limits to 255 bytes.</p>
+                     <p>A dynamic kernel tunable parameter <code class="codeph">expanded_node_host_names</code>, must be turned on to allow larger names to be set. 
+                     </p>
+                     <p>To turn on the kernel parameter, run the following command:</p><pre class="oac_no_warn" dir="ltr">kctune expanded_node_host_names=1
+</pre><p>To turn off the kernel parameter, run the following command:</p><pre class="oac_no_warn" dir="ltr">kctune expanded_node_host_names=0</pre></div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

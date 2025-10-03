@@ -1,0 +1,302 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Raising Exceptions Explicitly">
+      <meta name="DC.subject" content="exception, raising explicitly, raising exception explicitly, RAISE statement, user-defined exception, raising, with RAISE statement, internally defined exception, predefined exception, reraising exception, reraising, RAISE_APPLICATION_ERROR procedure, with RAISE_APPLICATION_ERROR procedure, EXCEPTION_INIT pragma, for giving error code to user-defined exception, giving error code to">
+      <meta name="keywords" content="exception, raising explicitly, raising exception explicitly, RAISE statement, user-defined exception, raising, with RAISE statement, internally defined exception, predefined exception, reraising exception, reraising, RAISE_APPLICATION_ERROR procedure, with RAISE_APPLICATION_ERROR procedure, EXCEPTION_INIT pragma, for giving error code to user-defined exception, giving error code to">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-66346B68-7A18-438C-951B-A60F970D98B8">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Raising Exceptions Explicitly</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="redeclared-predefined-exceptions.html" title="Previous" type="text/html">
+      <link rel="next" href="exception-propagation.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Raising Exceptions Explicitly","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="redeclared-predefined-exceptions.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="exception-propagation.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-66346B68-7A18-438C-951B-A60F970D98B8" name="GUID-66346B68-7A18-438C-951B-A60F970D98B8"></a><a id="LNPLS734"></a><a id="LNPLS00705"></a>
+         
+         <h2 id="LNPLS-GUID-66346B68-7A18-438C-951B-A60F970D98B8" class="sect2"><span class="enumeration_section">11.7 </span>Raising Exceptions Explicitly
+         </h2>
+         <div class="ind">
+            <div>
+               <div class="section">
+                  <p>To raise an exception explicitly, use either the <code class="codeph">RAISE</code> statement or <code class="codeph">RAISE_APPLICATION_ERROR</code> procedure.
+                  </p>
+               </div>
+               <div class="section">
+                  <p class="subhead1" id="GUID-66346B68-7A18-438C-951B-A60F970D98B8__GUID-0F48BC66-2103-4DF5-9AF5-F63C8684026D">Topics</p>
+               </div>
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="raising-exceptions-explicitly.html#GUID-5C7ADCC4-17D4-4B82-A767-3C7408BD1DF4">RAISE Statement</a></p>
+                     </li>
+                     <li>
+                        <p><a href="raising-exceptions-explicitly.html#GUID-48F88C61-8CE9-4821-91CB-48A8F1BC09E1">RAISE_APPLICATION_ERROR Procedure</a></p>
+                     </li>
+                  </ul>
+               </div>
+            </div><a id="LNPLS735"></a><a id="LNPLS99869"></a><div class="props_rev_3"><a id="GUID-5C7ADCC4-17D4-4B82-A767-3C7408BD1DF4" name="GUID-5C7ADCC4-17D4-4B82-A767-3C7408BD1DF4"></a><h3 id="LNPLS-GUID-5C7ADCC4-17D4-4B82-A767-3C7408BD1DF4" class="sect3"><span class="enumeration_section">11.7.1 </span>RAISE Statement
+               </h3>
+               <div>
+                  <p>The <code class="codeph">RAISE</code> statement explicitly raises an exception. Outside an exception handler, you must specify the exception name. Inside an exception handler, if you omit the exception name, the <code class="codeph">RAISE</code> statement reraises the current exception.
+                  </p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-5C7ADCC4-17D4-4B82-A767-3C7408BD1DF4__GUID-91CFE08A-FA30-487E-B93F-AECEEF98BFFF">Topics</p>
+                  </div>
+                  <div class="section">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="raising-exceptions-explicitly.html#GUID-D51E46A5-AEFD-4346-8236-06E4F15D86DB">Raising User-Defined Exception with RAISE Statement</a></p>
+                        </li>
+                        <li>
+                           <p><a href="raising-exceptions-explicitly.html#GUID-4A73BF41-AA57-4F64-8E4C-265029BEEF39">Raising Internally Defined Exception with RAISE Statement</a></p>
+                        </li>
+                        <li>
+                           <p><a href="raising-exceptions-explicitly.html#GUID-59C4325C-9D2A-4D24-8381-79B676A508A8">Reraising Current Exception with RAISE Statement</a></p>
+                        </li>
+                     </ul>
+                  </div>
+               </div><a id="LNPLS736"></a><a id="LNPLS99866"></a><div class="props_rev_3"><a id="GUID-D51E46A5-AEFD-4346-8236-06E4F15D86DB" name="GUID-D51E46A5-AEFD-4346-8236-06E4F15D86DB"></a><h4 id="LNPLS-GUID-D51E46A5-AEFD-4346-8236-06E4F15D86DB" class="sect4"><span class="enumeration_section">11.7.1.1 </span>Raising User-Defined Exception with RAISE Statement
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>In <a href="raising-exceptions-explicitly.html#GUID-D51E46A5-AEFD-4346-8236-06E4F15D86DB__BABBCBII">Example 11-10</a>, the procedure declares an exception named <code class="codeph">past_due</code>, raises it explicitly with the <code class="codeph">RAISE</code> statement, and handles it with an exception handler.
+                        </p>
+                     </div>
+                     <div class="example" id="GUID-D51E46A5-AEFD-4346-8236-06E4F15D86DB__BABBCBII">
+                        <p class="titleinexample">Example 11-10 Declaring, Raising, and Handling User-Defined Exception</p><pre class="oac_no_warn" dir="ltr">CREATE PROCEDURE account_status (
+  due_date DATE,
+  today    DATE
+) AUTHID DEFINER
+IS
+  <span class="bold">past_due  EXCEPTION;  -- declare exception</span>
+BEGIN
+  IF due_date &lt; today THEN
+    <span class="bold">RAISE past_due;  -- explicitly raise exception</span>
+  END IF;
+EXCEPTION
+  <span class="bold">WHEN past_due THEN  -- handle exception</span>
+    DBMS_OUTPUT.PUT_LINE ('Account past due.');
+END;
+/
+ 
+BEGIN
+  account_status (TO_DATE('01-JUL-2010', 'DD-MON-YYYY'),
+                  TO_DATE('09-JUL-2010', 'DD-MON-YYYY'));
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">Account past due.</pre></div>
+                  </div>
+               </div><a id="LNPLS838"></a><a id="LNPLS99863"></a><div class="props_rev_3"><a id="GUID-4A73BF41-AA57-4F64-8E4C-265029BEEF39" name="GUID-4A73BF41-AA57-4F64-8E4C-265029BEEF39"></a><h4 id="LNPLS-GUID-4A73BF41-AA57-4F64-8E4C-265029BEEF39" class="sect4"><span class="enumeration_section">11.7.1.2 </span>Raising Internally Defined Exception with RAISE Statement
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>Although the runtime system raises internally defined exceptions implicitly, you can raise them explicitly with the <code class="codeph">RAISE</code> statement if they have names. <a href="predefined-exceptions.html#GUID-8C327B4A-71FA-4CFB-8BC9-4550A23734D6__CIHHGGDI" title="This table gives the names and error numbers of the PL/SQL predefined exceptions.">Table 11-3</a> lists the internally defined exceptions that have predefined names. <span class="q">"<a href="internally-defined-exceptions.html#GUID-4F0787E6-ABCA-4860-A28E-435C7FE15154">Internally Defined Exceptions</a>"</span> explains how to give user-declared names to internally defined exceptions.
+                        </p>
+                        <p>An exception handler for a named internally defined exception handles that exception whether it is raised implicitly or explicitly.</p>
+                        <p>In <a href="raising-exceptions-explicitly.html#GUID-4A73BF41-AA57-4F64-8E4C-265029BEEF39__BABHAIAI">Example 11-11</a>, the procedure raises the predefined exception <code class="codeph">INVALID_NUMBER</code> either explicitly or implicitly, and the <code class="codeph">INVALID_NUMBER</code> exception handler always handles it.
+                        </p>
+                     </div>
+                     <div class="example" id="GUID-4A73BF41-AA57-4F64-8E4C-265029BEEF39__BABHAIAI">
+                        <p class="titleinexample">Example 11-11 Explicitly Raising Predefined Exception</p><pre class="oac_no_warn" dir="ltr">DROP TABLE t;
+CREATE TABLE t (c NUMBER);
+ 
+CREATE PROCEDURE p (n NUMBER) AUTHID DEFINER IS
+  default_number NUMBER := 0;
+BEGIN
+  IF n &lt; 0 THEN
+    <span class="bold">RAISE INVALID_NUMBER;  -- raise explicitly</span>
+  ELSE
+    <span class="bold">INSERT INTO t VALUES(TO_NUMBER('100.00', '9G999'));  -- raise implicitly</span>
+  END IF;
+EXCEPTION
+  <span class="bold">WHEN INVALID_NUMBER THEN</span>
+    DBMS_OUTPUT.PUT_LINE('Substituting default value for invalid number.');
+    INSERT INTO t VALUES(default_number);
+END;
+/
+ 
+BEGIN
+  p(-1);
+END;
+/
+ </pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">Substituting default value for invalid number.
+ 
+BEGIN
+  p(1);
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">Substituting default value for invalid number.</pre></div>
+                  </div>
+               </div><a id="LNPLS843"></a><a id="LNPLS00707"></a><div class="props_rev_3"><a id="GUID-59C4325C-9D2A-4D24-8381-79B676A508A8" name="GUID-59C4325C-9D2A-4D24-8381-79B676A508A8"></a><h4 id="LNPLS-GUID-59C4325C-9D2A-4D24-8381-79B676A508A8" class="sect4"><span class="enumeration_section">11.7.1.3 </span>Reraising Current Exception with RAISE Statement
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>In an exception handler, you can use the <code class="codeph">RAISE</code> statement to"reraise" the exception being handled. Reraising the exception passes it to the enclosing block, which can handle it further. (If the enclosing block cannot handle the reraised exception, then the exception propagates—see <span class="q">"<a href="exception-propagation.html#GUID-A99B76C3-44DF-40E1-AB7A-454C6805B9BB">Exception Propagation</a>"</span>.) When reraising the current exception, you need not specify an exception name.
+                        </p>
+                        <p>In <a href="raising-exceptions-explicitly.html#GUID-59C4325C-9D2A-4D24-8381-79B676A508A8__BABJBBHG">Example 11-12</a>, the handling of the exception starts in the inner block and finishes in the outer block. The outer block declares the exception, so the exception name exists in both blocks, and each block has an exception handler specifically for that exception. The inner block raises the exception, and its exception handler does the initial handling and then reraises the exception, passing it to the outer block for further handling.
+                        </p>
+                     </div>
+                     <div class="example" id="GUID-59C4325C-9D2A-4D24-8381-79B676A508A8__BABJBBHG">
+                        <p class="titleinexample">Example 11-12 Reraising Exception</p><pre class="oac_no_warn" dir="ltr">DECLARE
+  <span class="bold">salary_too_high   EXCEPTION;</span>
+  current_salary    NUMBER := 20000;
+  max_salary        NUMBER := 10000;
+  erroneous_salary  NUMBER;
+BEGIN
+
+  BEGIN
+    IF current_salary &gt; max_salary THEN
+      <span class="bold">RAISE salary_too_high;   -- raise exception</span>
+    END IF;
+  EXCEPTION
+    <span class="bold">WHEN salary_too_high THEN  -- start handling exception</span>
+      erroneous_salary := current_salary;
+      DBMS_OUTPUT.PUT_LINE('Salary ' || erroneous_salary ||' is out of range.');
+      DBMS_OUTPUT.PUT_LINE ('Maximum salary is ' || max_salary || '.');
+      <span class="bold">RAISE;  -- reraise current exception (exception name is optional)</span>
+  END;
+
+EXCEPTION
+  <span class="bold">WHEN salary_too_high THEN    -- finish handling exception</span>
+    current_salary := max_salary;
+
+    DBMS_OUTPUT.PUT_LINE (
+      'Revising salary from ' || erroneous_salary ||
+      ' to ' || current_salary || '.'
+    );
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">Salary 20000 is out of range.
+Maximum salary is 10000.
+Revising salary from 20000 to 10000.</pre></div>
+                  </div>
+               </div>
+            </div><a id="LNPLS738"></a><a id="LNPLS99960"></a><div class="props_rev_3"><a id="GUID-48F88C61-8CE9-4821-91CB-48A8F1BC09E1" name="GUID-48F88C61-8CE9-4821-91CB-48A8F1BC09E1"></a><h3 id="LNPLS-GUID-48F88C61-8CE9-4821-91CB-48A8F1BC09E1" class="sect3"><span class="enumeration_section">11.7.2 </span>RAISE_APPLICATION_ERROR Procedure
+               </h3>
+               <div>
+                  <p>You can invoke the <code class="codeph">RAISE_APPLICATION_ERROR</code> procedure (defined in the <code class="codeph">DBMS_STANDARD</code> package) only from a stored subprogram or method. Typically, you invoke this procedure to raise a user-defined exception and return its error code and error message to the invoker.
+                  </p>
+                  <p>To invoke <code class="codeph">RAISE_APPLICATION_ERROR</code>, use this syntax:
+                  </p><pre class="oac_no_warn" dir="ltr">RAISE_APPLICATION_ERROR (<span class="italic">error_code</span>, <span class="italic">message</span>[, {TRUE | FALSE}]);
+</pre><p>You must have assigned <span class="italic"><code class="codeph">error_code</code></span> to the user-defined exception with the <code class="codeph">EXCEPTION_INIT</code> pragma. The syntax is:
+                  </p><pre class="oac_no_warn" dir="ltr">PRAGMA EXCEPTION_INIT (<span class="italic">exception_name</span>, <span class="italic">error_code</span>)
+</pre><p>The <span class="italic"><code class="codeph">error_code</code></span> is an integer in the range -20000..-20999 and the <span class="italic"><code class="codeph">message</code></span> is a character string of at most 2048 bytes.
+                  </p>
+                  <p>For semantic information, see <span class="q">"<a href="EXCEPTION_INIT-pragma.html#GUID-873A087E-A470-4798-9152-16BC673B4940" title="The EXCEPTION_INIT pragma associates a user-defined exception name with an error code.">EXCEPTION_INIT Pragma</a>"</span>.
+                  </p>
+                  <p>The <span class="italic"><code class="codeph">message</code></span> is a character string of at most 2048 bytes.
+                  </p>
+                  <p>If you specify <code class="codeph">TRUE</code>, PL/SQL puts <span class="italic"><code class="codeph">error_code</code></span> on top of the error stack. Otherwise, PL/SQL replaces the error stack with <span class="italic"><code class="codeph">error_code</code></span>.
+                  </p>
+                  <p>In <a href="raising-exceptions-explicitly.html#GUID-48F88C61-8CE9-4821-91CB-48A8F1BC09E1__BABIHIBC">Example 11-13</a>, an anonymous block declares an exception named <code class="codeph">past_due</code>, assigns the error code -20000 to it, and invokes a stored procedure. The stored procedure invokes the <code class="codeph">RAISE_APPLICATION_ERROR</code> procedure with the error code -20000 and a message, whereupon control returns to the anonymous block, which handles the exception. To retrieve the message associated with the exception, the exception handler in the anonymous block invokes the <code class="codeph">SQLERRM</code> function, described in <span class="q">"<a href="retrieving-error-code-and-error-message.html#GUID-7E0CDD98-D31C-4745-B819-B5C5E1DF90A8">Retrieving Error Code and Error Message</a>"</span>.
+                  </p>
+                  <div class="example" id="GUID-48F88C61-8CE9-4821-91CB-48A8F1BC09E1__BABIHIBC">
+                     <p class="titleinexample">Example 11-13 Raising User-Defined Exception with RAISE_APPLICATION_ERROR</p><pre class="oac_no_warn" dir="ltr">CREATE PROCEDURE account_status (
+  due_date DATE,
+  today    DATE
+) AUTHID DEFINER
+IS
+BEGIN
+  IF due_date &lt; today THEN                   <span class="bold">-- explicitly raise exception</span>
+    <span class="bold">RAISE_APPLICATION_ERROR(-20000, 'Account past due.');</span>
+  END IF;
+END;
+/
+ 
+DECLARE
+  <span class="bold">past_due  EXCEPTION;                       -- declare exception</span>
+  <span class="bold">PRAGMA EXCEPTION_INIT (past_due, -20000);  -- assign error code to exception</span>
+BEGIN
+  <span class="bold">account_status (TO_DATE('01-JUL-2010', 'DD-MON-YYYY'),</span>
+                  <span class="bold">TO_DATE('09-JUL-2010', 'DD-MON-YYYY'));   -- invoke procedure</span>
+
+EXCEPTION
+  <span class="bold">WHEN past_due THEN                         -- handle exception</span>
+    DBMS_OUTPUT.PUT_LINE(TO_CHAR(<span class="bold">SQLERRM(-20000)</span>));
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">ORA-20000: Account past due.</pre></div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Back Up Oracle Database Before Upgrading">
+      <meta name="abstract" content="Use this procedure to back up your existing Oracle Database before you attempt an upgrade.">
+      <meta name="description" content="Use this procedure to back up your existing Oracle Database before you attempt an upgrade.">
+      <meta name="DC.subject" content="backing up the database, manual upgrade, Oracle RMAN">
+      <meta name="keywords" content="backing up the database, manual upgrade, Oracle RMAN">
+      <meta name="DC.Relation" scheme="URI" content="tasks-prepare-upgrade-oracle-database.html#GUID-733D2563-A42D-4366-9FCD-DABD25D0E2DF">
+      <meta name="DC.Relation" scheme="URI" content="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/upgrd&amp;id=BRADV-GUID-2CF40BDC-A193-4450-8B10-DEA0E416388C">
+      <meta name="DC.Relation" scheme="URI" content="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/upgrd&amp;id=BRADV-GUID-909BBEEF-389B-443B-8CD7-F3C027AAFFF3">
+      <meta name="DC.Relation" scheme="URI" content="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/upgrd&amp;id=BRADV-GUID-93BAB347-063F-439E-BDF3-109AB8D1F8E7">
+      <meta name="DC.Creator" content="Drew Adams">
+      <meta name="DC.Creator" content="Pablo Sainz Albanez">
+      <meta name="DC.Creator" content="Frederick Alvarez">
+      <meta name="DC.Creator" content="Yasin Baskan">
+      <meta name="DC.Creator" content="Subhransu Basu">
+      <meta name="DC.Creator" content="Rae Burns">
+      <meta name="DC.Creator" content="Rhonda Day">
+      <meta name="DC.Creator" content="Mike Dietrich">
+      <meta name="DC.Creator" content="Joseph Errede">
+      <meta name="DC.Creator" content="Daniel Overby Hansen">
+      <meta name="DC.Creator" content="Yuan Hao">
+      <meta name="DC.Creator" content="Subrahmanyam Kodavaluru">
+      <meta name="DC.Creator" content="Jai Krisnani">
+      <meta name="DC.Creator" content="Cindy Lim">
+      <meta name="DC.Creator" content="Valarie Moore">
+      <meta name="DC.Creator" content="Byron Motta">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Geetha Ravi">
+      <meta name="DC.Creator" content="Carol Tagliaferri">
+      <meta name="DC.Creator" content="Hector Vieyra">
+      <meta name="DC.Creator" content="Douglas Williams">
+      <meta name="DC.Publisher" content="April2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-E3BF972C-26EA-436D-B09B-716B3DB90A23">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Use this procedure to back up your existing Oracle Database before you attempt an upgrade.">
+      <meta name="description" content="Use this procedure to back up your existing Oracle Database before you attempt an upgrade.">
+      <title>Back Up Oracle Database Before Upgrading</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Upgrade Guide">
+      <meta property="og:description" content="Use this procedure to back up your existing Oracle Database before you attempt an upgrade.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Upgrade Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-database-upgrade-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-04-29T15:37:34-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96252-69">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="requirements-upgrading-databases-that-use-oracle-label-security-and-oracle-database-vault.html" title="Previous" type="text/html">
+      <link rel="next" href="using-autoupgrade-oracle-database-upgrades.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Database Upgrade Guide">
+    <meta name="dcterms.isVersionOf" content="UPGRD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Back Up Oracle Database Before Upgrading","description":"Use this procedure to back up your existing Oracle Database before you attempt an upgrade.","datePublished":"2025-04-29 CST","dateModified":"2025-04-29 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="requirements-upgrading-databases-that-use-oracle-label-security-and-oracle-database-vault.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="using-autoupgrade-oracle-database-upgrades.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-E3BF972C-26EA-436D-B09B-716B3DB90A23" name="GUID-E3BF972C-26EA-436D-B09B-716B3DB90A23"></a><a id="UPGRD52858"></a><a id="UPGRD52858"></a>
+         
+         <h2 id="UPGRD-GUID-E3BF972C-26EA-436D-B09B-716B3DB90A23" class="sect2">Back Up Oracle Database Before
+        Upgrading</h2>
+         <div class="ind">
+            <div>
+               <p>Use this procedure to back up your existing Oracle Database before you attempt an upgrade.</p>
+               <div class="section">
+                  
+                  
+                  <div class="infobox-caution" id="GUID-E3BF972C-26EA-436D-B09B-716B3DB90A23__GUID-03E97BC9-E629-440F-9841-C9E71D3A0A6F">
+                     <p class="notep1">Caution:</p>
+                     
+                     <p>Before you make any changes to the Oracle software, Oracle strongly
+                    recommends that you create a backup of the Oracle software and databases. For
+                    Oracle software running on Microsoft Windows operating systems, you must also
+                    take a backup of the Windows registry. On Microsoft Windows, without a registry
+                    backup, you cannot restore the Oracle software to a working state if the upgrade
+                    fails, and you want to revert to the previous software installation.</p>
+                     
+                  </div>
+                  
+                  <p>Before you cleanly shut down the database, you must run AutoUpgrade
+                using the <code class="codeph">preupgrade</code> parameter. To minimize downtime, you can
+                perform an online backup, or create a guaranteed restore point. 
+                  </p>
+                  
+               </div>
+               <div class="section">
+                  
+                  <ol id="GUID-E3BF972C-26EA-436D-B09B-716B3DB90A23__OL_LJV_MKS_QMB">
+                     <li>
+                        
+                        <p>Sign on to Oracle RMAN:</p>
+                        <pre class="pre codeblock"><code>rman "target / nocatalog"
+</code></pre>
+                        </li>
+                     <li>
+                        
+                        <p>Run the following RMAN commands:</p>
+                        <pre class="pre codeblock"><code>RUN 
+{
+    ALLOCATE CHANNEL <span class="variable" translate="no">chan_name</span> TYPE DISK;
+    sql 'ALTER SYSTEM ARCHIVE LOG CURRENT';
+    BACKUP DATABASE FORMAT '/tmp/db%U' TAG before_upgrade 
+    PLUS ARCHIVELOG FORMAT '/tmp/arch%U' TAG before_upgrade;
+    BACKUP CURRENT CONTROLFILE FORMAT '/tmp/ctl%U' TAG before_upgrade;
+}</code></pre>
+                        <div class="infobox-caution" id="GUID-E3BF972C-26EA-436D-B09B-716B3DB90A23__GUID-E3220396-120E-4216-B59A-FCA454399FAA">
+                           <p class="notep1">Caution:</p>You must ensure that no other RMAN backup runs during this
+                        backup. If another RMAN command backs up and removes archive log,  then this
+                        backup could be unrecoverable, because the other RMAN command has removed
+                        the archive logs. 
+                        </div>
+                        
+                     </li>
+                  </ol>
+                  
+               </div>
+            </div>
+            <div>
+               <div class="relinfo">
+                  <p><strong>Related Topics</strong></p>
+                  <ul>
+                     <li><a href="../bradv/rman-backup-concepts.html#BRADV-GUID-2CF40BDC-A193-4450-8B10-DEA0E416388C" target="_blank">About Online Backups and Backup Mode</a></li>
+                     <li><a href="../bradv/using-flasback-database-restore-points.html#BRADV-GUID-909BBEEF-389B-443B-8CD7-F3C027AAFFF3" target="_blank">Using Flashback Database and Restore Points</a></li>
+                     <li><a href="../bradv/backing-up-database.html#BRADV-GUID-93BAB347-063F-439E-BDF3-109AB8D1F8E7" target="_blank">Backing Up the Database</a></li>
+                  </ul>
+               </div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="tasks-prepare-upgrade-oracle-database.html#GUID-733D2563-A42D-4366-9FCD-DABD25D0E2DF" title="Complete preupgrade tasks and checks to assist you with completing a successful upgrade.">Preparing to Upgrade Oracle Database</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

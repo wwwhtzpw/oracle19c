@@ -1,0 +1,140 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Creating a JDBC Data Source in WebLogic Server">
+      <meta name="DC.Relation" scheme="URI" content="creating-oracle-container-data-source.html">
+      <meta name="DC.Creator" content="Chuck Murray">
+      <meta name="DC.Creator" content="Eugene Inseok Chong">
+      <meta name="DC.Creator" content="Souri Das">
+      <meta name="DC.Creator" content="Joao Paiva">
+      <meta name="DC.Creator" content="Matt Perry">
+      <meta name="DC.Creator" content="Jags Srinivasan">
+      <meta name="DC.Creator" content="Seema Sundara">
+      <meta name="DC.Creator" content="Zhe (Alan) Wu">
+      <meta name="DC.Creator" content="Aravind Yalamanchi">
+      <meta name="DC.Creator" content="Lavanya Jayapalan">
+      <meta name="DC.Publisher" content="May2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Creating a JDBC Data Source in WebLogic Server</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="RDF Knowledge Graph Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="RDF Knowledge Graph Developer's Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="spatial-and-graph-rdf-knowledge-graph-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-05-19T02:37:25-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E94798-23">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="creating-oracle-container-data-source.html" title="Previous" type="text/html">
+      <link rel="next" href="creating-jdbc-data-source-tomcat.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Spatial and Graph RDF Knowledge Graph Developer's Guide">
+    <meta name="dcterms.isVersionOf" content="RDFRM">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Creating a JDBC Data Source in WebLogic Server","datePublished":"2025-05-19 CST","dateModified":"2025-05-19 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="creating-oracle-container-data-source.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="creating-jdbc-data-source-tomcat.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411" name="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411"></a>
+         
+         <h2 id="RDFRM-GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411" class="sect2"><span class="enumeration_section">14.3.1.2.1 </span>Creating a JDBC Data Source in WebLogic Server
+         </h2>
+         <div class="ind">
+            <div>
+               <p>To create a JDBC data source in WebLogic Server:</p>
+               <ol id="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411__OL_VBX_KNW_BNB">
+                  <li>
+                     <p>Log in to the <span class="bold">WebLogic administration console</span> as an administrator: <code class="codeph">http://localhost:7101/console</code>.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Click <span class="bold">Services</span>, then <span class="bold">JDBC Data sources</span>.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Click <span class="bold">New</span> and select the <span class="bold">Generic data source</span> menu option to create a JDBC data source.
+                     </p>
+                     <div class="figure" id="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411__FIG_TWW_HH1_PNB">
+                        <p class="titleinfigure">Figure 14-14 Generic Data Source</p><img id="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411__IMAGE_UWW_HH1_PNB" height="388" width="614" src="img/oracle_container_generic_data_source.png" alt="Description of Figure 14-14 follows" title="Description of Figure 14-14 follows" longdesc="img_text/oracle_container_generic_data_source.html"><br><a href="img_text/oracle_container_generic_data_source.html">Description of "Figure 14-14 Generic Data Source"</a></div>
+                  </li>
+                  <li>
+                     <p>Enter the JDBC data source information (name and JNDI name), then click <span class="bold">Next</span>.
+                     </p>
+                     <div class="figure" id="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411__FIG_FPD_MH1_PNB">
+                        <p class="titleinfigure">Figure 14-15 JDBC Data Source and JNDI</p><img id="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411__IMAGE_GPD_MH1_PNB" height="642" width="672" src="img/oracle_container_jndi.png" alt="Description of Figure 14-15 follows" title="Description of Figure 14-15 follows" longdesc="img_text/oracle_container_jndi.html"><br><a href="img_text/oracle_container_jndi.html">Description of "Figure 14-15 JDBC Data Source and JNDI"</a></div>
+                  </li>
+                  <li>
+                     <p>Accept the defaults on the next two pages.</p>
+                  </li>
+                  <li>
+                     <p>Enter the database connection information: <span class="bold">service name</span>, <span class="bold">host</span>, <span class="bold">port</span>, and <span class="bold">user credentials</span>. 
+                     </p>
+                     <div class="figure" id="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411__FIG_H2X_RH1_PNB">
+                        <p class="titleinfigure">Figure 14-16 Create JDBC Data Source</p><img id="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411__IMAGE_I2X_RH1_PNB" height="583" width="672" src="img/oracle_container_jdbc_data_source.png" alt="Description of Figure 14-16 follows" title="Description of Figure 14-16 follows" longdesc="img_text/oracle_container_jdbc_data_source.html"><br><a href="img_text/oracle_container_jdbc_data_source.html">Description of "Figure 14-16 Create JDBC Data Source"</a></div>
+                  </li>
+                  <li>
+                     <p>Click <span class="bold">Next</span> to continue.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Click the <span class="bold">Test Configuration</span> button to validate the connection and click <span class="bold">Next</span> to continue.
+                     </p>
+                     <div class="figure" id="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411__FIG_HXZ_VH1_PNB">
+                        <p class="titleinfigure">Figure 14-17 Validate connection</p><img id="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411__IMAGE_IXZ_VH1_PNB" height="295" width="624" src="img/oracle_container_test_configuration.png" alt="Description of Figure 14-17 follows" title="Description of Figure 14-17 follows" longdesc="img_text/oracle_container_test_configuration.html"><br><a href="img_text/oracle_container_test_configuration.html">Description of "Figure 14-17 Validate connection"</a></div>
+                  </li>
+                  <li>
+                     <p>Select the <span class="bold">server target</span> and click <span class="bold">Finish</span>. 
+                     </p>
+                     <div class="figure" id="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411__FIG_VXT_C31_PNB">
+                        <p class="titleinfigure">Figure 14-18 Create JDBC Data Source</p><img id="GUID-551C3E3D-78EE-4DBD-ACFF-9644ECC33411__IMAGE_WXT_C31_PNB" height="390" width="624" src="img/oracle_container_server_target.png" alt="Description of Figure 14-18 follows" title="Description of Figure 14-18 follows" longdesc="img_text/oracle_container_server_target.html"><br><a href="img_text/oracle_container_server_target.html">Description of "Figure 14-18 Create JDBC Data Source"</a></div>
+                  </li>
+               </ol>
+               <p>The JDBC data gets added to the data source table and the JNDI name is added to the combo box list in the create container dialog.</p>
+            </div>
+            <div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="creating-oracle-container-data-source.html">Creating an Oracle Container Data Source</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

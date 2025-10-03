@@ -1,0 +1,118 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Task 9: Create Oracle Net TNS Aliases for Oracle GoldenGate Database Connections">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Task">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-72C2F029-FF72-42F3-96D7-A3BC3135AF9F">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <title>Task 9: Create Oracle Net TNS Aliases for Oracle GoldenGate Database Connections</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="task-8-configure-oracle-clusterware.html" title="Previous" type="text/html">
+      <link rel="next" href="task-10-configure-oracle-goldengate-processes1.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Task 9: Create Oracle Net TNS Aliases for Oracle GoldenGate Database Connections","description":"","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="task-8-configure-oracle-clusterware.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="task-10-configure-oracle-goldengate-processes1.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-72C2F029-FF72-42F3-96D7-A3BC3135AF9F" name="GUID-72C2F029-FF72-42F3-96D7-A3BC3135AF9F"></a>
+         
+         <h2 id="HAOVW-GUID-72C2F029-FF72-42F3-96D7-A3BC3135AF9F" class="sect2">Task 9: Create Oracle Net TNS Aliases for
+        Oracle GoldenGate Database Connections</h2>
+         <div class="ind">
+            <div>
+               <p></p>
+               <div class="section">
+                  
+                  <p>The same TNS aliases created on the primary cluster for the primary database using
+                the IPC protocol must be created with the <span class="bold">same</span> alias names on each node of
+                the standby cluster, using the IPC communication protocol as specified in <a href="task-9-create-oracle-net-tns-alias-oracle-goldengate-database-connections.html#GUID-3CCD35ED-8159-45D6-87E5-FB62BFA0482E">Task 9: Create Oracle Net TNS Alias for Oracle GoldenGate Database Connections</a>.
+                  </p>
+                  
+                  <p>The location of <code class="codeph">tnsnames.ora</code> used by the Oracle GoldenGate
+                deployment <span class="bold">must</span> be the <span class="bold">same</span> on the standby cluster nodes as it is on
+                the primary cluster.
+                  </p>
+                  
+                  <p>Use the following query REST API call to query the <code class="codeph">TNS_ADMIN</code>
+                location on the primary cluster.
+                  </p>
+                  <pre class="pre codeblock"><code>$ curl -s -u <span class="variable" translate="no">OGG_admin_username</span>
+ https://<span class="variable" translate="no">vip_name</span>/services/v2/deployments/<span class="variable" translate="no">deployment_name</span>
+ -XGET|python -m json.tool|grep TNS_ADMIN -A1</code></pre>
+                  <p>You will be prompted to enter the Oracle GoldenGate Service Manager administrator
+                user password.</p>
+                  
+                  <p>For example:</p>
+                  <pre class="pre codeblock"><code>$ curl -s -u oggadmin https://dc1north01-vip1/services/v2/deployments/ggnorth
+ -XGET|python -m json.tool|grep TNS_ADMIN -A1
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "name": "TNS_ADMIN",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "value": "/u01/goldengate/network/admin"</code></pre>
+                  <p>Make sure the <code class="codeph">tnsnames.ora</code> is located in this
+                    <span class="bold">same</span> directory on <span class="bold">all</span> standby cluster nodes.
+                  </p>
+                  
+                  <p>Example TNS alias for the GoldenGate database:</p>
+                  <pre class="pre codeblock"><code>ggnorth_pdb =
+&nbsp;&nbsp;&nbsp; (DESCRIPTION =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (SDU = 2097152)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (ADDRESS = (PROTOCOL = IPC)(KEY=LISTENER))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (CONNECT_DATA =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (SERVICE_NAME = oggserv_pdb.example.com)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )
+&nbsp;&nbsp;&nbsp; )</code></pre>
+                  </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

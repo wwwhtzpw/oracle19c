@@ -1,0 +1,134 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Configuring for Entity Framework Code First</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="InstallConfigDiff.html" title="Previous" type="text/html">
+      <link rel="next" href="InstallMigrateUDtoMD.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="InstallConfigDiff.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="InstallMigrateUDtoMD.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="install.html" property="item" typeof="WebPage"><span property="name">Installing and Configuring Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Configuring for Entity Framework Code First</li>
+            </ol>
+            <a id="GUID-4681DA4C-9F03-4AC0-A658-F87CB1BE33AB" name="GUID-4681DA4C-9F03-4AC0-A658-F87CB1BE33AB"></a><a id="ODPNT8266"></a>
+            
+            <h2 id="ODPNT-GUID-4681DA4C-9F03-4AC0-A658-F87CB1BE33AB" class="sect2">Configuring for Entity Framework Code First</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Developers must configure applications to use the Oracle Entity Framework functionality. This consists of creating two entries in the <code class="codeph">app.config</code> or <code class="codeph">web.config</code> file and adding an assembly reference:
+               </p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p>Add entries in the .NET config file</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>Connection string</p>
+                           <p>A standard ADO.NET connection string is used rather than the Entity Framework connection string used by Database First or Model First paths. The connection string name should match the application context name. The connection string entry is an element of the <code class="codeph">connectionStrings</code> section in the configuration file.
+                           </p>
+                        </li>
+                        <li>
+                           <p>Provider registration</p>
+                           <p>Entity Framework uses the provider registration to determine the assembly to use for Oracle Entity Framework functionality. The provider registration is an element of the <code class="codeph">providers</code> section within the <code class="codeph">entityFramework</code> section in the application configuration file.
+                           </p>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <p>Add Assembly reference</p>
+                     <p>Add Oracle Entity Framework assembly to the project references.</p>
+                  </li>
+               </ul>
+               <div class="infoboxnote" id="GUID-4681DA4C-9F03-4AC0-A658-F87CB1BE33AB__GUID-2BC5E605-14D5-48AD-B336-E61C237C7C94">
+                  <p class="notep1">Note:</p>
+                  <p>When using the official ODP.NET, NuGet installation, these preceding sections are created automatically, if they do not already exist. After the NuGet install, the ODP.NET connection string will need to be customized to the application's specific settings.</p>
+                  <p>When using the Oracle Universal Installer or xcopy install, the preceding sections must all be configured manually.</p>
+               </div>
+               <p>Examples of connection strings are as follows:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p>ODP.NET, Unmanaged Driver</p><pre class="oac_no_warn" dir="ltr">&lt;add name="TestContext" providerName="Oracle.DataAccess.Client" connectionString="User Id=test;Password=testpassword;Data Source=eftest" /&gt;
+</pre></li>
+                  <li>
+                     <p>ODP.NET, Managed Driver</p><pre class="oac_no_warn" dir="ltr">&lt;add name="TestContext" providerName="Oracle.ManagedDataAccess.Client" connectionString="User Id=test;Password=testpassword;Data Source=eftest" /&gt;
+</pre></li>
+               </ul>
+               <p>Examples of Oracle provider registration are as follows:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p>ODP.NET, Unmanaged Driver</p><pre class="oac_no_warn" dir="ltr">&lt;provider invariantName="Oracle.DataAccess.Client" type="Oracle.DataAccess.EntityFramework.EFOracleProviderServices, Oracle.DataAccess.EntityFramework, Version=6.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342" /&gt;
+</pre></li>
+                  <li>
+                     <p>ODP.NET, Managed Driver</p><pre class="oac_no_warn" dir="ltr">&lt;provider invariantName="Oracle.ManagedDataAccess.Client" type="Oracle.ManagedDataAccess.EntityFramework.EFOracleProviderServices, Oracle.ManagedDataAccess.EntityFramework, Version=6.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342" /&gt;
+</pre></li>
+               </ul>
+            </div><a id="ODPNT8459"></a><div class="props_rev_3"><a id="GUID-C6CC8C80-00E6-404B-8FBE-DAF79E41E77E" name="GUID-C6CC8C80-00E6-404B-8FBE-DAF79E41E77E"></a><h3 id="ODPNT-GUID-C6CC8C80-00E6-404B-8FBE-DAF79E41E77E" class="sect3">Entity Framework 6 Code-Based Registration</h3>
+               <div>
+                  <p>Entity Framework 6 allows an application to register with an Entity Framework provider without using any configuration file. With ODP.NET, Managed Driver, the code will look as follows:</p><pre class="oac_no_warn" dir="ltr">// C#
+using Oracle.ManagedDataAccess.EntityFramework;
+...
+public class ModelConfiguration : DbConfiguration
+{
+   public ModelConfiguration()
+   {
+      SetProviderServices("Oracle.ManagedDataAccess.Client", EFOracleProviderServices.Instance);
+   }
+}
+</pre><p>For ODP.NET, Unmanaged Driver, replace occurrences of <code class="codeph">ManagedDataAccess</code> with <code class="codeph">DataAccess</code> in the preceding code.
+                  </p>
+                  <p>If you are using code-based registration, then the configuration file should not include the registration. The configuration file based registration overrides the code-based registration. </p>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

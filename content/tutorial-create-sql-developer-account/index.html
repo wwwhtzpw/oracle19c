@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Part number: F19259-02 -->
+    <!-- Published date: January 2020 -->
+    <!-- Template date: October 15, 2018 -->
+    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+    <meta name="contentid" content="26772">
+    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+    <!-- Use an imperative verb in the title. -->
+    <title>Create a SQL Developer User Account</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Put the description of the tutorial here.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+  
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+    <meta name="dcterms.created" content="2020-01-27T15:58:50+00:00">
+    <meta name="dcterms.title" content="Create a SQL Developer User Account">
+    <meta name="dcterms.category" content="database">
+    <meta name="dcterms.isVersionOf" content="TUTORIAL-CREATE-SQL-DEVELOPER-ACCOUNT">
+    <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+    <meta name="dcterms.identifier" content="F19259-02">
+    <meta name="dcterms.release" content="Release 19">
+  <script id="ssot-metadata" type="application/json"> {"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}} </script>
+    </head>
+  <body>
+    <header>
+      <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo"> <img src="img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a> </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+      <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+      <!-- Use an imperative verb in the title. -->
+      <h1><img src="img/obe_tag.png" alt="Oracle by Example branding" align="middle">Create
+        a SQL Developer User Account</h1>
+      <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+          <div class="left-nav-tut"><!-- -->
+            <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+            <div id="navbar" class="left-nav-w"><!-- -->
+              <div id="toc" class="tocify"><!-- --></div>
+            </div>
+          </div>
+        </div>
+        <div id="bookContainer">
+          <article>
+            <section>
+              <h2><img src="img/32_begin.png" alt="section 0" class="num_circ" height="32" width="32">Before You Begin</h2>
+              <p>This 15-minute tutorial shows you how to create a Data Miner user account
+                and SQL Developer connection using a pluggable database (PDB).</p>
+              <h3>Background</h3>
+              <p>Oracle SQL Developer is a client to the Oracle Database
+                software. An Oracle SQL Developer user account is required to
+                access Oracle database tables and use Oracle Data Miner.</p>
+              <h3>What Do You Need?</h3>
+              <ul>
+                <li>Oracle Database 19c Enterprise Edition</li>
+                <li><a href="https://www.oracle.com/tools/downloads/sqldev-downloads.html">Oracle SQL Developer version 19.x</a></li>
+              </ul>
+            </section>
+            <!-- ========================================================================================================================= -->
+            <section>
+              <hr>
+              <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" class="num_circ" height="32" width="32">Create
+                a User Account in a Pluggable Database</h2>
+              <p>Your Oracle Database 19c instance should have at least one
+                pluggable database (PDB) instance. You will use an account with
+                the proper permissions to create a user account for your Data
+                Miner user account.</p>
+              <p>Note: If you are using an Oracle Database instance in your
+                corporate environment, you may need to request your DBA to
+                perform these actions.</p>
+              <ol>
+                <li>Open SQL Developer.</li>
+                <li>Right-click your PDB sys user account and select <b>Connect</b>.</li>
+                <li>In the SQL Developer Connections tab, expand the connection.</li>
+                <li>Right-click the Other Users node and select <strong>Create User</strong> from
+                  the pop-up menu.</li>
+                <li>In the Create User window, select the <strong>User</strong>
+                  tab and specify a username, password, default tablespace, and
+                  temporary tablespace for the user account. Use the following
+                  parameters:
+                  <ul>
+                    <li>User Name: <b>DMUSER</b><br>
+                      Note: You must use an upper case user name.<br>
+                    </li>
+                    <li>Password: Create a password of your choice (it must be at least 9 characters and contain two upper case characters.)</li>
+                  </ul>
+                </li>
+                <li>Select the <strong>Granted Roles</strong> tab and click the
+                  check box in the <strong>Granted</strong> Column for CONNECT.
+                </li>
+                <li>Select the <strong>Quotas</strong> tab and click the check box to set the
+                  default USERS Tablespace to <strong>Unlimited</strong>.</li>
+                <li>Click <strong>Apply</strong> to create the account. Then,
+                  click <strong>OK</strong> in the resulting "Successful"
+                  window.</li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" class="num_circ" height="32" width="32">Create
+                a SQL Developer Connection for the Data Miner User</h2>
+              <p>You can create this connection either by using the SQL
+                Developer Connections tab or the Data Miner tab. In either case,
+                the same New / Edit Database Connection dialog box appears. All
+                saved SQL Developer connections appears in both tabs. </p>
+              <ol>
+                <li>In the SQL Developer Connections tab, right-click
+                  Connections and select <strong>New Connection</strong> from
+                  the pop-up menu.</li>
+                <li>In the New / Select Database Connection dialog box, enter
+                  the following parameters:
+                  <ul>
+                    <li>Connection Name: <strong>PDB1-DMUSER</strong></li>
+                    <li>Password: <i>your chosen password</i></li>
+                    <li>Check <b>Save Password</b></li>
+                    <li>Connection Type: <strong>Basic</strong></li>
+                    <li>Hostname: The host name of your database server (<b>localhost
+                    </b>if the database is installed on your PC, or the IP address if it is remote)</li>
+                    <li>Port: Enter the appropriate port number (<strong>1521</strong>
+                      is the default)</li>
+                    <li>Service name: The service name for your PDB, such as <b>orclpdb1.example.com</b></li>
+                  </ul>
+                </li>
+                <li>Click <strong>Test</strong> to test the connection. If the
+                  connection is successful, Status (just above the Help button)
+                  changes to "Success". Then, click <strong>Connect</strong> to
+                  save the connection and to also establish a connection to the
+                  database.
+                  <figure> <img src="img/create-dmuser-connection.png" alt="Description of create-dmuser-connection.png"><figcaption><a href="files/create-dmuser-connection.txt">Description of
+                        the illustration create-dmuser-connection.png</a></figcaption>
+                  </figure>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+                <h2 id="next" role="button" style="text-align: left;"><img src="img/32_next.png" alt="next step" height="32" width="32" class="num_circ">Next Tutorial</h2>
+                <p>In the next tutorial, you'll install the Data Miner sample data repository.</p>
+            </section>
+            <hr> </article>
+        </div>
+        <br class="clearfloat">
+      </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+      <div style="max-width: 994px; padding:10px 0 0 17px;">
+        <footer class="footer-list">
+          <ul>
+            <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                Oracle</a> </li>
+            <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                Notices</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                of Use</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your
+                Privacy Rights</a> </li>
+            <li> <a href="./sp_common/en/cpyr.htm">Copyright
+                © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+          </ul>
+        </footer>
+      </div>
+      <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+      <!-- Modal hdr and body -->
+      <div id="obe_dialog" class="modal-content">
+        <div class="modal-header"> <a href="#" class="close"> <span class="close">×</span>
+          </a>
+          <h1>Associated Learning Paths</h1>
+        </div>
+        <div id="dialog-content"> </div>
+        <div id="dialog-close" class="closeBtn"> <a href="#" class="close2">
+            <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+          </a> </div>
+      </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+  </body>
+</html>

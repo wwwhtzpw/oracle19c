@@ -1,0 +1,118 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Optimizing In-Memory Queries">
+      <meta name="abstract" content="This Part explains how to optimize queries using In-Memory Expressions, join groups, and In-Memory aggregation. It also explains how the IM column store repopulates modified data.">
+      <meta name="description" content="This Part explains how to optimize queries using In-Memory Expressions, join groups, and In-Memory aggregation. It also explains how the IM column store repopulates modified data.">
+      <meta name="DC.Contributor" content="Frederick Kush">
+      <meta name="DC.Contributor" content="Maria Colgan">
+      <meta name="DC.Contributor" content="Vineet Marwah">
+      <meta name="DC.Contributor" content="Andy Rivenes">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Creator" content="Yasin Baskan">
+      <meta name="DC.Creator" content="Nigel Bayliss">
+      <meta name="DC.Creator" content="Eric Belden">
+      <meta name="DC.Creator" content="Larry Carpenter">
+      <meta name="DC.Creator" content="Shasank Chavan">
+      <meta name="DC.Creator" content="William Endress">
+      <meta name="DC.Creator" content="Michael Gleeson">
+      <meta name="DC.Creator" content="Allison Holloway">
+      <meta name="DC.Creator" content="Katsumi Inoue">
+      <meta name="DC.Creator" content="Jesse Kamp">
+      <meta name="DC.Creator" content="Chinmayi Krishnappa">
+      <meta name="DC.Creator" content="Vasudha Krishnaswamy">
+      <meta name="DC.Creator" content="Hariharan Lakshmanan">
+      <meta name="DC.Creator" content="Sue Lee">
+      <meta name="DC.Creator" content="Teck Hua Lee">
+      <meta name="DC.Creator" content="Huagang Li">
+      <meta name="DC.Creator" content="Yunrui Li">
+      <meta name="DC.Creator" content="Yuehua Liu">
+      <meta name="DC.Creator" content="Roger Macnicol">
+      <meta name="DC.Creator" content="Aurosish Mishra">
+      <meta name="DC.Creator" content="Ajit Mylavarapu">
+      <meta name="DC.Creator" content="Khoa Nguyen">
+      <meta name="DC.Creator" content="Jay Patel">
+      <meta name="DC.Creator" content="Kathy Rich">
+      <meta name="DC.Creator" content="Beth Roeser">
+      <meta name="DC.Creator" content="Rich Strohm">
+      <meta name="DC.Creator" content="Dina Thomas">
+      <meta name="DC.Creator" content="Qiuhong Wang">
+      <meta name="DC.Creator" content="Bob Zebian">
+      <meta name="DC.Creator" content="Lance Ashdown">
+      <meta name="DC.Publisher" content="February2024">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-33034151-7BD7-4186-B336-C693FBB27634">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="This Part explains how to optimize queries using In-Memory Expressions, join groups, and In-Memory aggregation. It also explains how the IM column store repopulates modified data.">
+      <meta name="description" content="This Part explains how to optimize queries using In-Memory Expressions, join groups, and In-Memory aggregation. It also explains how the IM column store repopulates modified data.">
+      <title>Optimizing In-Memory Queries</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database In-Memory Guide">
+      <meta property="og:description" content="This Part explains how to optimize queries using In-Memory Expressions, join groups, and In-Memory aggregation. It also explains how the IM column store repopulates modified data.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database In-Memory Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-memory-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2024-02-13T16:12:30-08:00">
+      <meta name="dcterms.title" content="Database In-Memory Guide">
+      <meta name="dcterms.dateCopyrighted" content="2016, 2024">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96137-12">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="configuring-memory-management.html" title="Previous" type="text/html">
+      <link rel="next" href="optimizing-in-memory-expressions.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="INMEM">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","name":"Optimizing In-Memory Queries","description":"This Part explains how to optimize queries using In-Memory Expressions, join groups, and In-Memory aggregation. It also explains how the IM column store repopulates modified data.","datePublished":"2019-01-14 15:13:47 GMT","dateModified":"2024-02-14 00:16:30 GMT"} </script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="configuring-memory-management.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="optimizing-in-memory-expressions.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database In-Memory Guide</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Optimizing In-Memory Queries</li>
+            </ol>
+            <a id="GUID-33034151-7BD7-4186-B336-C693FBB27634" name="GUID-33034151-7BD7-4186-B336-C693FBB27634"></a>
+            
+            <h2 id="INMEM-GUID-33034151-7BD7-4186-B336-C693FBB27634" class="sect2"><span class="enumeration_part">Part III </span>Optimizing In-Memory Queries
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>This Part explains how to optimize queries using In-Memory Expressions, join groups, and In-Memory aggregation. It also explains how the IM column store repopulates modified data.</p>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

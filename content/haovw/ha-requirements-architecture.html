@@ -1,0 +1,611 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="High Availability and Data Protection &#x2013; Getting From Requirements to Architecture">
+      <meta name="DC.subject" content="analysis, determining high availability requirements, high availability, determining requirements, architectures, requirements, recovery time objective (RTO), about, data-loss tolerance, recovery point objective (RPO), about, manageability, total cost of ownership (TCO), return on investment (ROI), reference architrectures, bronze, reference architectures, silver, platinum">
+      <meta name="keywords" content="analysis, determining high availability requirements, high availability, determining requirements, architectures, requirements, recovery time objective (RTO), about, data-loss tolerance, recovery point objective (RPO), about, manageability, total cost of ownership (TCO), return on investment (ROI), reference architrectures, bronze, reference architectures, silver, platinum">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-7EB6D827-A30E-4E76-BAF8-0AF4DDCAD2C2">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>High Availability and Data Protection &#x2013; Getting From Requirements to Architecture</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="overview-of-ha.html" title="Previous" type="text/html">
+      <link rel="next" href="ha-features.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"High Availability and Data Protection &#x2013; Getting From Requirements to Architecture","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="overview-of-ha.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="ha-features.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-7EB6D827-A30E-4E76-BAF8-0AF4DDCAD2C2" name="GUID-7EB6D827-A30E-4E76-BAF8-0AF4DDCAD2C2"></a><a id="HAOVW002"></a>
+         
+         <h2 id="HAOVW-GUID-7EB6D827-A30E-4E76-BAF8-0AF4DDCAD2C2" class="sect2"><span class="enumeration_chapter">2 </span> High Availability and Data Protection &#x2013; Getting From Requirements to Architecture
+         </h2>
+         <div class="ind">
+            <div>
+               <p>See the following topics to learn how Oracle Maximum Availability Architecture
+            provides a framework to effectively evaluate the high availability requirements of an
+            enterprise.</p>
+            </div><a id="HAOVW12026"></a><a id="HAOVW200"></a><div class="props_rev_3"><a id="GUID-6ED61A85-FBD9-4EE0-A62F-9DA25EA60D51" name="GUID-6ED61A85-FBD9-4EE0-A62F-9DA25EA60D51"></a><h3 id="HAOVW-GUID-6ED61A85-FBD9-4EE0-A62F-9DA25EA60D51" class="sect3">High Availability Requirements</h3>
+               <div>
+                  <p>Any effort to design and implement a high availability strategy for Oracle Database
+        begins by performing a thorough business impact analysis to identify the consequences to the
+        enterprise of downtime and data loss, whether caused by unplanned or planned
+        outages.</p>
+                  <p>The term "business impact" is intended to be agnostic of whether the enterprise is a
+            commercial venture, government agency, or not-for-profit institution. In all cases, data
+            loss and downtime can seriously impact the ability of any enterprise to perform its
+            functions. Implementing high availability may involve critical tasks such as:</p>
+                  <ul style="list-style-type: disc;" id="GUID-6ED61A85-FBD9-4EE0-A62F-9DA25EA60D51__UL_DTV_RHK_1KB">
+                     <li>
+                        
+                        <p>Retiring legacy systems</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Investing in more capable and robust systems and facilities</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Redesigning the overall IT architecture and operations to adapt to this high
+                    availability model</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Modifying existing applications to take full advantage of high availability
+                    infrastructures</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Redesigning business processes</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Hiring and training personnel</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Moving parts or an entire application or database into the Oracle Public
+                    Cloud</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Balancing the right level of consolidation, flexibility, and isolation</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Understanding the capabilities and limitations of your existing system and
+                    network infrastructure</p>
+                        
+                     </li>
+                  </ul>
+                  <p>By combining your business analysis with an understanding of the level of investment
+            required to implement different high availability solutions, you can develop a high
+            availability architecture that achieves both business and technical objectives.</p>
+                  <div class="figure" id="GUID-6ED61A85-FBD9-4EE0-A62F-9DA25EA60D51__GUID-063A44EB-E211-42AF-8182-6B7D0935F521">
+                     <p class="titleinfigure">Figure 2-1 Planning and Implementing a Highly Available Enterprise</p><br><div class="imagecenter"><img class="imagecenter" height="375" width="249" src="img/haovw_vm_001.png" alt="Description of Figure 2-1 follows" title="Description of Figure 2-1 follows" longdesc="img_text/haovw_vm_001.html"><br><a href="img_text/haovw_vm_001.html">Description of "Figure 2-1 Planning and Implementing a Highly Available Enterprise"</a></div><br></div>
+               </div>
+            </div><a id="HAOVW201"></a><div class="props_rev_3"><a id="GUID-52141511-C087-4B30-A474-59B0127F2A14" name="GUID-52141511-C087-4B30-A474-59B0127F2A14"></a><h3 id="HAOVW-GUID-52141511-C087-4B30-A474-59B0127F2A14" class="sect3">A Methodology for Documenting High Availability Requirements</h3>
+               <div>
+                  <p>The elements of this analysis framework are:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="ha-requirements-architecture.html#GUID-BF3D6462-081E-48A3-8276-0CBDFC9F8500" title="The business impact analysis categorizes the business processes based on the severity of the impact of IT-related outages.">Business Impact Analysis</a></p>
+                     </li>
+                     <li>
+                        <p><a href="ha-requirements-architecture.html#GUID-6FCF299A-3FA3-498D-AA27-33DC4A9D5DA4" title="A complete business impact analysis provides the insight needed to quantify the cost of unplanned and planned downtime.">Cost of Downtime</a></p>
+                     </li>
+                     <li>
+                        <p><a href="ha-requirements-architecture.html#GUID-AB1CE976-F2A3-4BDC-BB7F-985D9885D39E" title="The business impact analysis determines your tolerance to downtime, also known as the recovery time objective (RTO).">Recovery Time Objective</a></p>
+                     </li>
+                     <li>
+                        <p><a href="ha-requirements-architecture.html#GUID-6E328B84-502D-4569-A88E-14A6F1C77E60" title="The business impact analysis also determines your tolerance to data loss, also known as a recovery point objective (RPO).">Recovery Point Objective</a></p>
+                     </li>
+                     <li>
+                        <p><a href="ha-requirements-architecture.html#GUID-2D7BEC11-B563-43CA-8773-3E3A149C7210" title="A manageability goal is more subjective than either the RPO or the RTO. You must make an objective evaluation of the skill sets, management resources, and tools available in an organization, and the degree to which the organization can successfully manage all elements of a high availability architecture.">Manageability Goal</a></p>
+                     </li>
+                     <li>
+                        <p><a href="ha-requirements-architecture.html#GUID-1DD1B98B-C322-4C21-9AC2-D16BE34A3D85" title="Understanding the total cost of ownership (TCO) and objectives for return on investment (ROI) are essential to selecting a high availability architecture that also achieves the business goals of your organization.">Total Cost of Ownership and Return on Investment</a></p>
+                     </li>
+                  </ul>
+               </div><a id="HAOVW202"></a><div class="props_rev_3"><a id="GUID-BF3D6462-081E-48A3-8276-0CBDFC9F8500" name="GUID-BF3D6462-081E-48A3-8276-0CBDFC9F8500"></a><h4 id="HAOVW-GUID-BF3D6462-081E-48A3-8276-0CBDFC9F8500" class="sect4">Business Impact Analysis</h4>
+                  <div>
+                     <p>The business impact analysis categorizes the business processes based on the severity
+        of the impact of IT-related outages.</p>
+                     <p>A rigorous business impact analysis:</p>
+                     <ul style="list-style-type: disc;" id="GUID-BF3D6462-081E-48A3-8276-0CBDFC9F8500__UL_HS5_ZHK_1KB">
+                        <li>
+                           
+                           <p>Identifies the critical business processes in an organization</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Calculates the quantifiable loss risk for unplanned and planned IT outages
+                    affecting each of these business processes</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Outlines the effects of these outages</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Considers essential business functions, people and system resources, government
+                    regulations, and internal and external business dependencies</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Is based on objective and subjective data gathered from interviews with
+                    knowledgeable and experienced personnel</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Reviews business practice histories, financial reports, IT systems logs, and so
+                    on</p>
+                           
+                        </li>
+                     </ul>
+                     <p>For example, consider a semiconductor manufacturer with chip fabrication plants located
+            worldwide. Semiconductor manufacturing is an intensely competitive business requiring a
+            huge financial investment that is amortized over high production volumes. The human
+            resource applications used by plant administration are unlikely to be considered as
+            mission-critical as the applications that control the manufacturing process in the
+            plant. Failure of the applications that support manufacturing affects production levels
+            and have a direct impact on the financial results of the company.</p>
+                     <p>As another example, an internal knowledge management system is likely to be considered
+            mission-critical for a management consulting firm, because the business of a
+            client-focused company is based on internal research accessibility for its consultants
+            and knowledge workers. The cost of downtime of such a system is extremely high for this
+            business.</p>
+                     <p>Similarly, an e-commerce company is highly dependent on customer traffic to its website
+            to generate revenue. Any disruption in service and loss of availability can dampen
+            customer experience and drive away customers to the competition. Thus, the company needs
+            to ensure that the existing infrastructure can scale and handle spikes in customer
+            traffic. Sometimes, this is not possible using on-premise hardware and by moving the
+            cloud the company can ensure their systems always remain operational.</p>
+                  </div>
+               </div><a id="HAOVW203"></a><div class="props_rev_3"><a id="GUID-6FCF299A-3FA3-498D-AA27-33DC4A9D5DA4" name="GUID-6FCF299A-3FA3-498D-AA27-33DC4A9D5DA4"></a><h4 id="HAOVW-GUID-6FCF299A-3FA3-498D-AA27-33DC4A9D5DA4" class="sect4">Cost of Downtime</h4>
+                  <div>
+                     <p>A complete business impact analysis provides the insight needed to quantify the cost
+        of unplanned and planned downtime.</p>
+                     <p>Understanding this cost is essential because it helps prioritize your high availability
+            investment and directly influences the high availability technologies that you choose to
+            minimize the downtime risk.</p>
+                     <p>Various reports have been published, documenting the costs of downtime in different
+            industries. Examples include costs that range from millions of dollars for each hour of
+            brokerage operations and credit card sales, to tens of thousands of dollars for each
+            hour of package shipping services.</p>
+                     <p>These numbers are staggering. The Internet and Cloud can connect the business directly to
+            millions of customers. Application downtime can disrupt this connection, cutting off a
+            business from its customers. In addition to lost revenue, downtime can negatively affect
+            customer relationships, competitive advantages, legal obligations, industry reputation,
+            and shareholder confidence.</p>
+                  </div>
+               </div><a id="HAOVW204"></a><div class="props_rev_3"><a id="GUID-AB1CE976-F2A3-4BDC-BB7F-985D9885D39E" name="GUID-AB1CE976-F2A3-4BDC-BB7F-985D9885D39E"></a><h4 id="HAOVW-GUID-AB1CE976-F2A3-4BDC-BB7F-985D9885D39E" class="sect4">Recovery Time Objective</h4>
+                  <div>
+                     <p>The business impact analysis determines your tolerance to downtime, also known as the
+        recovery time objective (RTO).</p>
+                     <p>An RTO is defined as the maximum amount of time that an IT-based business process can be
+            down before the organization starts suffering unacceptable consequences (financial
+            losses, customer dissatisfaction, reputation, and so on). RTO indicates the downtime
+            tolerance of a business process or an organization in general.</p>
+                     <p>RTO requirements are driven by the mission-critical nature of the business. Therefore,
+            for a system running a stock exchange, the RTO is zero or near to zero.</p>
+                     <p>An organization is likely to have varying RTO requirements across its various business
+            processes. A high volume e-commerce website, for which there is an expectation of rapid
+            response times, and for which customer switching costs are very low, the web-based
+            customer interaction system that drives e-commerce sales is likely to have an RTO of
+            zero or close to zero. However, the RTO of the systems that support back-end operations,
+            such as shipping and billing, can be higher. If these back-end systems are down, then
+            the business may resort to manual operations temporarily without a significant visible
+            impact.</p>
+                     <p>Some organizations have varying RTOs based on the probability of failures. One simple
+            class separation is local failures (such as single database compute, disk/flash, network
+            failure) as opposed to disasters (such as a complete cluster, database, data
+            corruptions, or a site failure). Typically, business-critical customers have an RTO of
+            less than 1 minute for local failures, and may have a higher RTO of less than 1 hour for
+            disasters. For mission-critical applications the RTOs may indeed be the same for all
+            unplanned outages.</p>
+                  </div>
+               </div><a id="HAOVW205"></a><div class="props_rev_3"><a id="GUID-6E328B84-502D-4569-A88E-14A6F1C77E60" name="GUID-6E328B84-502D-4569-A88E-14A6F1C77E60"></a><h4 id="HAOVW-GUID-6E328B84-502D-4569-A88E-14A6F1C77E60" class="sect4">Recovery Point Objective</h4>
+                  <div>
+                     <p>The business impact analysis also determines your tolerance to data loss, also known
+        as a recovery point objective (RPO).</p>
+                     <p>The RPO is the maximum amount of data that an IT-based business process can lose without
+            harm to the organization. RPO measures the data-loss tolerance of a business process or
+            an organization in general. This data loss is often measured in terms of time, for
+            example, zero, seconds, hours, or days of data loss.</p>
+                     <p>A stock exchange where millions of dollars worth of transactions occur every minute
+            cannot afford to lose any data. Therefore, its RPO must be zero. The web-based sales
+            system in the e-commerce example does not require an RPO of zero, although a low RPO is
+            essential for customer satisfaction. However, its back-end merchandising and inventory
+            update system can have a higher RPO because lost data can be reentered.</p>
+                     <p>An RPO of zero can be challenging for disasters, but I can be accomplished with various
+            Oracle technologies protecting your database, especially Zero Data Loss Recovery
+            Appliance.</p>
+                  </div>
+               </div><a id="HAOVW206"></a><div class="props_rev_3"><a id="GUID-2D7BEC11-B563-43CA-8773-3E3A149C7210" name="GUID-2D7BEC11-B563-43CA-8773-3E3A149C7210"></a><h4 id="HAOVW-GUID-2D7BEC11-B563-43CA-8773-3E3A149C7210" class="sect4">Manageability Goal</h4>
+                  <div>
+                     <p>A manageability goal is more subjective than either the RPO or the RTO. You must make
+        an objective evaluation of the skill sets, management resources, and tools available in an
+        organization, and the degree to which the organization can successfully manage all elements
+        of a high availability architecture.</p>
+                     <p>Just as RPO and RTO measure an organization's tolerance for downtime and data loss, your
+            manageability goal measures the organization's tolerance for complexity in the IT
+            environment. When less complexity is a requirement, simpler methods of achieving high
+            availability are preferred over methods that may be more complex to manage, even if the
+            latter could attain more aggressive RTO and RPO objectives. Understanding manageability
+            goals helps organizations differentiate between what is possible and what is practical
+            to implement.</p>
+                     <p>Moving Oracle databases to Oracle Cloud can reduce manageability cost and complexity
+            significantly, because Oracle Cloud lets you to choose between various Maximum
+            Availability Architecture architectures with built-in configuration and life cycle
+            operations. With Autonomous Database Cloud, database life cycle operations, such as
+            backup and restore, software updates, and key repair operations are automatic.</p>
+                  </div>
+               </div><a id="HAOVW207"></a><div class="props_rev_3"><a id="GUID-1DD1B98B-C322-4C21-9AC2-D16BE34A3D85" name="GUID-1DD1B98B-C322-4C21-9AC2-D16BE34A3D85"></a><h4 id="HAOVW-GUID-1DD1B98B-C322-4C21-9AC2-D16BE34A3D85" class="sect4">Total Cost of Ownership and Return on Investment</h4>
+                  <div>
+                     <p>Understanding the total cost of ownership (TCO) and objectives for return on
+        investment (ROI) are essential to selecting a high availability architecture that also
+        achieves the business goals of your organization.</p>
+                     <p>TCO includes all costs (such as acquisition, implementation, systems, networks,
+            facilities, staff, training, and support) over the useful life of your chosen high
+            availability solution. Likewise, the ROI calculation captures all of the financial
+            benefits that accrue for a given high availability architecture.</p>
+                     <p>For example, consider a high availability architecture in which IT systems and storage at
+            a remote standby site remain idle, with no other business use that can be served by the
+            standby systems. The only return on investment for the standby site is the costs related
+            to downtime avoided by its use in a failover scenario. Contrast this with a different
+            high availability architecture that enables IT systems and storage at the standby site
+            to be used productively while in the standby role (for example, for reports or for
+            off-loading the overhead of user queries or distributing read-write workload from the
+            primary system). The return on investment of such an architecture includes both the cost
+            of downtime avoided and the financial benefits that accrue to its productive use, while
+            also providing high availability and data protection.</p>
+                     <p>Enterprises can also reduce TCO for growing infrastructure needs by moving workloads to
+            the cloud rather than making an upfront capital investment in building a new data
+            center. The major economic appeal is to convert capital expenditures into operational
+            expenditures, and generate a higher ROI.</p>
+                  </div>
+               </div>
+            </div><a id="HAOVW208"></a><div class="props_rev_3"><a id="GUID-57941A46-601F-4021-A8BC-C5610BF11BED" name="GUID-57941A46-601F-4021-A8BC-C5610BF11BED"></a><h3 id="HAOVW-GUID-57941A46-601F-4021-A8BC-C5610BF11BED" class="sect3">Mapping Requirements to Architectures</h3>
+               <div>
+                  <p>The business impact analysis will help you document what is already known. The
+        outcome of the business impact analysis provides the insight you need to group databases
+        having similar RTO and RPO objectives together.</p>
+                  <p>Different applications, and the databases that support them, represent varying degrees of
+            importance to the enterprise. A high level of investment in high availability
+            infrastructure may not make sense for an application that if down, would not have an
+            immediate impact on the enterprise. So where do you start?</p>
+                  <p>Groups of databases by similar RTO and RPO can be mapped to a controlled set of high
+            availability reference architectures that most closely address the required service
+            levels. Note that in the case where there are dependencies between databases, they are
+            grouped with the database having the most stringent high availability requirement.</p>
+               </div><a id="HAOVW12028"></a><a id="HAOVW12027"></a><div class="props_rev_3"><a id="GUID-717276A3-4C03-4F11-A52E-589C92CEBE0A" name="GUID-717276A3-4C03-4F11-A52E-589C92CEBE0A"></a><h4 id="HAOVW-GUID-717276A3-4C03-4F11-A52E-589C92CEBE0A" class="sect4">Oracle MAA Reference Architectures</h4>
+                  <div>
+                     <p>Oracle MAA best practices define high availability reference architectures
+        that address the complete range of availability and data protection required by enterprises
+        of all sizes and lines of business.</p>
+                     <p>The Platinum, Gold, Silver, and Bronze MAA reference architectures, or tiers, are
+            applicable to on-premises, private and public cloud configurations, and hybrid cloud.
+            They deliver the service levels described in the following figure.</p>
+                     <div class="figure" id="GUID-717276A3-4C03-4F11-A52E-589C92CEBE0A__BABFAIGF">
+                        <p class="titleinfigure">Figure 2-2 Oracle MAA Reference Architectures</p><img id="GUID-717276A3-4C03-4F11-A52E-589C92CEBE0A__IMAGE_CMR_WJP_GKB" height="440" width="1494" src="img/haovw_pb_035e.png" alt="Description of Figure 2-2 follows" title="Description of Figure 2-2 follows" longdesc="img_text/haovw_pb_035e.html"><br><a href="img_text/haovw_pb_035e.html">Description of "Figure 2-2 Oracle MAA Reference Architectures"</a></div>
+                     <p>Each tier uses a different MAA reference architecture to deploy the optimal set of Oracle
+            high availability capabilities that reliably achieve a given service level at the lowest
+            cost and complexity. The tiers explicitly address all types of unplanned outages,
+            including data corruption, component failure, and system and site outages, as well as
+            planned outages due to maintenance, migrations, or other purposes.</p>
+                     <p>Container databases (CDBs) using Oracle Multitenant can exist in any tier, Bronze through
+            Platinum, providing higher consolidation density and higher TCO. Typically, the
+            consolidation density is higher with Bronze and Silver tiers, and there is less or zero
+            consolidation when deploying a Platinum tier.</p>
+                     <p>Oracle Database In-Memory can also be leveraged in any of the MAA tiers. Because the
+            In-Memory column store is seamlessly integrated into Oracle Database, all of the high
+            availability benefits that come from the MAA tiers are inherited when implementing
+            Oracle Database In-Memory.</p>
+                     <p>Oracle Engineered Systems can also exist in any of the tiers. Integrating Zero Data Loss
+            Recovery Appliance (Recovery Appliance) as the Oracle Database backup and recovery
+            solution for your entire data center reduces RPO and RTO when restoring from backups.
+            Leveraging Oracle Exadata Database Machine as your database platform in the MAA
+            reference architectures provides the best database platform solution with the lowest RTO
+            and brownout, along with additional Exadata MAA quality of service.</p>
+                     <div class="infoboxnotealso" id="GUID-717276A3-4C03-4F11-A52E-589C92CEBE0A__GUID-4AB90B4A-C4B4-4775-9B50-33A0668E2101">
+                        <p class="notep1">See Also:</p>
+                        <p><a href="https://www.oracle.com/webfolder/technetwork/tutorials/architecture-diagrams/high-availability-overview/high-availability-reference-architectures.html" target="_blank">High Availability Reference
+                Architectures</a></p>
+                        
+                        <p><a href="https://www.oracle.com/a/tech/docs/exadata-maa.pdf" target="_blank">Oracle Exadata Database Machine:
+                    Maximum Availability Architecture</a> and <a href="https://www.oracle.com/a/tech/docs/exadata-maa-wp.pdf" target="_blank">MAA Best Practices for Oracle Exadata Database
+                    Machine</a></p>
+                        <p><a href="http://www.oracle.com/goto/maa" target="_blank">http://www.oracle.com/goto/maa</a> for MAA technical brief
+                “Oracle Database In-Memory High Availability Best Practices”
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="HAOVW12029"></a><div class="props_rev_3"><a id="GUID-D026D4DC-594C-4EFC-B868-C5D286D21129" name="GUID-D026D4DC-594C-4EFC-B868-C5D286D21129"></a><h4 id="HAOVW-GUID-D026D4DC-594C-4EFC-B868-C5D286D21129" class="sect4">Bronze Reference Architecture</h4>
+                  <div>
+                     <p>The Bronze tier is appropriate for databases where simple restart of a failed
+        component (e.g. listener, database instance, or database) or restore from backup is "HA and
+        DR enough."</p>
+                     <p>The Bronze reference architecture is based on a single instance Oracle Database using MAA
+            best practices that implement the many capabilities for data protection and high
+            availability included with every Oracle Enterprise Edition license. Oracle-optimized
+            backups using Oracle Recovery Manager (RMAN) provide data protection, and are used to
+            restore availability should an outage prevent the database from restarting. The Bronze
+            architecture then uses a redundant system infrastructure enhanced by Oracle's
+            technologies, such as Oracle Restart, Recovery Manager (RMAN), Zero Data Loss Recovery
+            Appliance, Flashback technologies, Online Redefinition, Online Patching, Automatic
+            Storage Management (ASM), Oracle Multitenant, and more.</p>
+                  </div>
+               </div><a id="HAOVW12030"></a><div class="props_rev_3"><a id="GUID-87D1F67A-D6B6-480B-A6AC-37017B906870" name="GUID-87D1F67A-D6B6-480B-A6AC-37017B906870"></a><h4 id="HAOVW-GUID-87D1F67A-D6B6-480B-A6AC-37017B906870" class="sect4">Silver Reference Architecture</h4>
+                  <div>
+                     <p>The Silver tier provides an additional level of high availability for databases that
+        require minimal or zero downtime in the event of database instance or server failure, as
+        well as most common planned maintenance events, such as hardware and software
+        updates.</p>
+                     <p>The Silver reference architecture adds a rich set of enterprise capabilities and
+            benefits, including clustering technology using either Oracle RAC or Oracle RAC One
+            Node. Also, Application Continuity provides a reliable replay of in-flight transactions,
+            which masks outages from users and simplifies application failover.</p>
+                  </div>
+               </div><a id="HAOVW12031"></a><div class="props_rev_3"><a id="GUID-1A97082F-A4E4-4D40-BE38-946AA02CA90C" name="GUID-1A97082F-A4E4-4D40-BE38-946AA02CA90C"></a><h4 id="HAOVW-GUID-1A97082F-A4E4-4D40-BE38-946AA02CA90C" class="sect4">Gold Reference Architecture</h4>
+                  <div>
+                     <p>The Gold tier raises the stakes substantially for business-critical applications that
+        cannot tolerate high RTO and RPO for any disasters such as database, cluster, corruptions,
+        or site failures. Additionally, major database upgrades or site migrations can be done in
+        seconds.</p>
+                     <p>The Gold tier also reduces costs while improving your return on investment by actively
+            using all of the replicas at all times.</p>
+                     <p>The Gold reference architecture adds database-aware replication technologies,
+            Oracle Data Guard and Oracle Active Data Guard, which synchronize one or more replicas
+            of the production database to provide real time data protection and availability.
+            Database-aware replication substantially enhances high availability and data protection
+            (corruption protection) beyond what is possible with storage replication technologies.
+            Oracle Active Data Guard Far Sync is used for zero data loss protection at any
+            distance.</p>
+                     <p>See also, <a href="ha-features.html#GUID-F4C51EAE-856F-4564-8C68-F3BD622AABEE" title="Oracle Data Guard provides a number of advantages over traditional solutions.">Oracle Data Guard Advantages Over Traditional Solutions</a>.
+                     </p>
+                  </div>
+               </div><a id="HAOVW12032"></a><div class="props_rev_3"><a id="GUID-8A8BF520-0640-4264-B1B9-EFD1DF4EEB50" name="GUID-8A8BF520-0640-4264-B1B9-EFD1DF4EEB50"></a><h4 id="HAOVW-GUID-8A8BF520-0640-4264-B1B9-EFD1DF4EEB50" class="sect4">Platinum Reference Architecture</h4>
+                  <div>
+                     <p>The Platinum tier introduces several new Oracle Database capabilities, including
+        Oracle GoldenGate for zero-downtime upgrades and migrations.</p>
+                     <p>Edition Based Redefinition lets application developers design for zero-downtime
+            application upgrades. You can alternativly design applications for Oracle Sharding,
+            which provides extreme availability by distributing subsets of a database into highly
+            available shards, while the application can access the entire database as one single
+            logical database.</p>
+                     <p>Each of these technologies requires additional effort to implement, but they deliver
+            substantial value for the most critical applications where downtime is not an
+            option.</p>
+                  </div>
+               </div><a id="HAOVW12034"></a><a id="HAOVW12033"></a><div class="props_rev_3"><a id="GUID-84D6D56D-468B-4848-ACD1-E28ABF487822" name="GUID-84D6D56D-468B-4848-ACD1-E28ABF487822"></a><h4 id="HAOVW-GUID-84D6D56D-468B-4848-ACD1-E28ABF487822" class="sect4">High Availability and Data Protection Attributes by Tier</h4>
+                  <div>
+                     <p>Each MAA reference architecture delivers known and tested levels of
+        downtime and data protection.</p>
+                     <p>The following table summarizes the high availability and data protection attributes
+            inherent to each architecture. Each architecture includes all of the capabilities of the
+            previous architecture, and builds upon it to handle an expanded set of outages. The
+            various components included and the service levels achieved by each architecture are
+            described in other topics.</p>
+                     <div class="tblformal" id="GUID-84D6D56D-468B-4848-ACD1-E28ABF487822__BABHDFGE">
+                        <p class="titleintable">Table 2-1 High Availability and Data Protection
+                Attributes By MAA Reference Architecture</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="High Availability and Data Protection&#xA;                Attributes By MAA Reference Architecture" summary="HA and data protection attributes of each reference architecture" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="15%" id="d6166e592">
+                            MAA Reference Architecture
+                        </th>
+                                 <th align="left" valign="bottom" width="15%" id="d6166e597">
+                            Unplanned Outages (Local Site)
+                        </th>
+                                 <th align="left" valign="bottom" width="15%" id="d6166e602">
+                            Planned Maintenance
+                        </th>
+                                 <th align="left" valign="bottom" width="15%" id="d6166e607">
+                            Data Protection
+                        </th>
+                                 <th align="left" valign="bottom" width="39%" id="d6166e612">
+                            Unrecoverable Local Outages and Disaster Recovery
+                        </th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="15%" id="d6166e619" headers="d6166e592 ">
+                                    
+                                    <p>Bronze</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d6166e619 d6166e597 ">
+                                    
+                                    <p>Single Instance, auto-restart for recoverable instance and server
+                                failures. Redundancy for system infrastructure so that single
+                                component failures such as disk, flash, and network should not
+                                result in downtime.</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d6166e619 d6166e602 ">
+                                    
+                                    <p>Some online, most off-line</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d6166e619 d6166e607 ">
+                                    
+                                    <p>Basic runtime validation combined with manual checks</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="39%" headers="d6166e619 d6166e612 ">
+                                    
+                                    <p>Restore from backup, potential to lose data generated since the last
+                                backup. Using Zero Data Loss Recovery Appliance reduces the
+                                potential to lose data to zero or near zero.</p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="15%" id="d6166e645" headers="d6166e592 ">
+                                    
+                                    <p>Silver</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d6166e645 d6166e597 ">
+                                    
+                                    <p>HA with automatic failover for instance and server failures</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d6166e645 d6166e602 ">
+                                    
+                                    <p>Most rolling, some online, few offline</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d6166e645 d6166e607 ">
+                                    
+                                    <p>Basic runtime validation combined with manual checks</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="39%" headers="d6166e645 d6166e612 ">
+                                    
+                                    <p>Restore from backup, potential to lose data generated since the last
+                                backup. Using Zero Data Loss Recovery Appliance reduces the
+                                potential to lose data to zero or near zero. In-flight transactions
+                                are preserved with Application Continuity.</p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="15%" id="d6166e671" headers="d6166e592 ">
+                                    
+                                    <p>Gold</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d6166e671 d6166e597 ">
+                                    
+                                    <p>Comprehensive high availability and disaster
+                                recovery</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d6166e671 d6166e602 ">
+                                    
+                                    <p>All rolling or online</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d6166e671 d6166e607 ">
+                                    
+                                    <p>Comprehensive runtime validation combined with manual
+                                checks</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="39%" headers="d6166e671 d6166e612 ">
+                                    
+                                    <p>Real-time failover, zero or near-zero data loss</p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="15%" id="d6166e697" headers="d6166e592 ">
+                                    
+                                    <p>Platinum</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d6166e697 d6166e597 ">
+                                    
+                                    <p>Zero application outage for Platinum ready
+                                applications</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d6166e697 d6166e602 ">
+                                    
+                                    <p>Zero application outage</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d6166e697 d6166e607 ">
+                                    
+                                    <p>Comprehensive runtime validation combined with manual
+                                checks</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="39%" headers="d6166e697 d6166e612 ">
+                                    
+                                    <p>Zero application outage for Platinum-ready applications, with zero
+                                data loss. Oracle RAC, Oracle Active Data Guard, and Oracle
+                                GoldenGate complement each other, providing a wide array of
+                                solutions to achieve zero database service downtime for unplanned
+                                outages. Alternatively, use Oracle Sharding for site failure
+                                protection, because impact on the application is only on shards in
+                                failed site rather than the entire database. Each shard can be
+                                configured with real-time failover, zero or near-zero data loss, or
+                                zero application outage for Platinum-ready applications. In-flight
+                                transactions are preserved, with zero data loss.</p>
+                                    
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="infoboxnotealso" id="GUID-84D6D56D-468B-4848-ACD1-E28ABF487822__GUID-9EA64665-B0C4-41AD-9D55-943A2A1146DC">
+                        <p class="notep1">See Also:</p><a href="http://www.oracle.com/goto/maa" target="_blank">http://www.oracle.com/goto/maa</a></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Transaction Processing and Control">
+      <meta name="abstract" content="Transaction processing is an Oracle Database feature that lets multiple users work on the database concurrently, and ensures that each user sees a consistent version of data and that all changes are applied in the right order.">
+      <meta name="description" content="Transaction processing is an Oracle Database feature that lets multiple users work on the database concurrently, and ensures that each user sees a consistent version of data and that all changes are applied in the right order.">
+      <meta name="DC.subject" content="COMMIT statement, transaction, ending, with COMMIT statement, ROLLBACK statement, with ROLLBACK statement, SAVEPOINT statement, implicit ROLLBACK statement, implicit, deadlock, implicit rollback and, SET TRANSACTION statement, read-only transaction, read-only, read-write transaction, read-write, locking, overriding default, LOCK TABLE statement, table, lock mode, mode, lock, SELECT FOR UPDATE statement, result set row, FOR UPDATE cursor, cursor, FOR UPDATE, CURRENT OF clause, FOR UPDATE cursor and, after COMMIT or ROLLBACK, FETCH statement, across COMMIT, ROWID pseudocolumn instead of, ROWID pseudocolumn, instead of CURRENT OF clause">
+      <meta name="keywords" content="COMMIT statement, transaction, ending, with COMMIT statement, ROLLBACK statement, with ROLLBACK statement, SAVEPOINT statement, implicit ROLLBACK statement, implicit, deadlock, implicit rollback and, SET TRANSACTION statement, read-only transaction, read-only, read-write transaction, read-write, locking, overriding default, LOCK TABLE statement, table, lock mode, mode, lock, SELECT FOR UPDATE statement, result set row, FOR UPDATE cursor, cursor, FOR UPDATE, CURRENT OF clause, FOR UPDATE cursor and, after COMMIT or ROLLBACK, FETCH statement, across COMMIT, ROWID pseudocolumn instead of, ROWID pseudocolumn, instead of CURRENT OF clause">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-218080C2-A7C5-42CC-B34E-A08A0C9341C1">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Transaction processing is an Oracle Database feature that lets multiple users work on the database concurrently, and ensures that each user sees a consistent version of data and that all changes are applied in the right order.">
+      <meta name="description" content="Transaction processing is an Oracle Database feature that lets multiple users work on the database concurrently, and ensures that each user sees a consistent version of data and that all changes are applied in the right order.">
+      <title>Transaction Processing and Control</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content="Transaction processing is an Oracle Database feature that lets multiple users work on the database concurrently, and ensures that each user sees a consistent version of data and that all changes are applied in the right order.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="cursor-expressions.html" title="Previous" type="text/html">
+      <link rel="next" href="autonomous-transactions.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Transaction Processing and Control","description":"Transaction processing is an Oracle Database feature that lets multiple users work on the database concurrently, and ensures that each user sees a consistent version of data and that all changes are applied in the right order.","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="cursor-expressions.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="autonomous-transactions.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-218080C2-A7C5-42CC-B34E-A08A0C9341C1" name="GUID-218080C2-A7C5-42CC-B34E-A08A0C9341C1"></a><a id="LNPLS503"></a><a id="LNPLS00608"></a>
+         
+         <h2 id="LNPLS-GUID-218080C2-A7C5-42CC-B34E-A08A0C9341C1" class="sect2"><span class="enumeration_section">6.6 </span>Transaction Processing and Control
+         </h2>
+         <div class="ind">
+            <div>
+               <p><span class="bold">Transaction processing</span> is an Oracle Database feature that lets multiple users work on the database concurrently, and ensures that each user sees a consistent version of data and that all changes are applied in the right order. 
+               </p>
+               <p>A <span class="bold">transaction</span> is a sequence of one or more SQL statements that Oracle Database treats as a unit: either all of the statements are performed, or none of them are. 
+               </p>
+               <p>Different users can write to the same data structures without harming each other's data or coordinating with each other, because Oracle Database locks data structures automatically. To maximize data availability, Oracle Database locks the minimum amount of data for the minimum amount of time.</p>
+               <p>You rarely must write extra code to prevent problems with multiple users accessing data concurrently. However, if you do need this level of control, you can manually override the Oracle Database default locking mechanisms.</p>
+               <div class="section">
+                  <p class="subhead1" id="GUID-218080C2-A7C5-42CC-B34E-A08A0C9341C1__GUID-7B8E02AC-BE21-4252-ADAB-F57FF58B2E0B">Topics</p>
+               </div>
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="transaction-processing-and-control.html#GUID-56EC1B31-CA06-4460-A098-49ABD4706B9C" title="The COMMIT statement ends the current transaction, making its changes permanent and visible to other users.">COMMIT Statement</a></p>
+                     </li>
+                     <li>
+                        <p><a href="transaction-processing-and-control.html#GUID-B1B20D2F-C421-446C-9171-1D03E2D77BF8" title="The ROLLBACK statement ends the current transaction and undoes any changes made during that transaction.">ROLLBACK Statement</a></p>
+                     </li>
+                     <li>
+                        <p><a href="transaction-processing-and-control.html#GUID-68924CF6-130E-497B-9DA8-7B3E4D510FA6" title="The SAVEPOINT statement names and marks the current point in the processing of a transaction.">SAVEPOINT Statement</a></p>
+                     </li>
+                     <li>
+                        <p><a href="transaction-processing-and-control.html#GUID-A0771963-D96F-4AC5-A74A-242D064825DA" title="Before running an INSERT, UPDATE, DELETE, or MERGE statement, the database marks an implicit savepoint (unavailable to you). If the statement fails, the database rolls back to the savepoint.">Implicit Rollbacks</a></p>
+                     </li>
+                     <li>
+                        <p><a href="transaction-processing-and-control.html#GUID-EC9CC8B7-5DDD-4B60-83BF-686A9FD43B3D" title="You use the SET TRANSACTION statement to begin a read-only or read-write transaction, establish an isolation level, or assign your current transaction to a specified rollback segment.">SET TRANSACTION Statement</a></p>
+                     </li>
+                     <li>
+                        <p><a href="transaction-processing-and-control.html#GUID-213C196F-7FE4-425C-93E4-54B9FAFF5030" title="By default, Oracle Database locks data structures automatically, which lets different applications write to the same data structures without harming each other's data or coordinating with each other.">Overriding Default Locking</a></p>
+                     </li>
+                  </ul>
+               </div>
+               <div class="section">
+                  <div class="infoboxnotealso" id="GUID-218080C2-A7C5-42CC-B34E-A08A0C9341C1__GUID-1B6E192B-EA8C-4869-B85F-0D57624C8570">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="../cncpt/introduction-to-oracle-database.html#CNCPT016" target="_blank"><span class="italic">Oracle Database Concepts</span></a> for more information about transactions
+                           </p>
+                        </li>
+                        <li>
+                           <p><a href="../cncpt/transactions.html#CNCPT1118" target="_blank"><span class="italic">Oracle Database Concepts</span></a> for more information about transaction processing
+                           </p>
+                        </li>
+                        <li>
+                           <p><a href="../cncpt/data-concurrency-and-consistency.html#CNCPT1331" target="_blank"><span class="italic">Oracle Database Concepts</span></a> for more information about the Oracle Database locking mechanism
+                           </p>
+                        </li>
+                        <li>
+                           <p> <a href="../cncpt/data-concurrency-and-consistency.html#CNCPT1363" target="_blank"><span class="italic">Oracle Database Concepts</span></a> for more information about manual data locks
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div><a id="LNPLS593"></a><a id="LNPLS592"></a><div class="props_rev_3"><a id="GUID-56EC1B31-CA06-4460-A098-49ABD4706B9C" name="GUID-56EC1B31-CA06-4460-A098-49ABD4706B9C"></a><h3 id="LNPLS-GUID-56EC1B31-CA06-4460-A098-49ABD4706B9C" class="sect3"><span class="enumeration_section">6.6.1 </span>COMMIT Statement
+               </h3>
+               <div>
+                  <p>The <code class="codeph">COMMIT</code> statement ends the current transaction, making its changes permanent and visible to other users.
+                  </p>
+                  <div class="infoboxnote" id="GUID-56EC1B31-CA06-4460-A098-49ABD4706B9C__GUID-F935E073-45EA-4A5D-8D4A-B7E74BF15B1A">
+                     <p class="notep1">Note:</p>
+                     <p>A transaction can span multiple blocks, and a block can contain multiple transactions.</p>
+                  </div>
+                  <p>The <code class="codeph">WRITE</code> clause of the <code class="codeph">COMMIT</code> statement specifies the priority with which Oracle Database writes to the redo log the information that the commit operation generates.
+                  </p>
+                  <div class="infoboxnote" id="GUID-56EC1B31-CA06-4460-A098-49ABD4706B9C__GUID-737F1A89-C919-4A16-9D47-3AD09A1DBE65">
+                     <p class="notep1">Note:</p>
+                     <p>The default PL/SQL commit behavior for nondistributed transactions is <code class="codeph">BATCH</code> <code class="codeph">NOWAIT</code> if the <code class="codeph">COMMIT_LOGGING</code> and <code class="codeph">COMMIT_WAIT</code> database initialization parameters have not been set.
+                     </p>
+                  </div>
+                  <div class="infoboxnotealso" id="GUID-56EC1B31-CA06-4460-A098-49ABD4706B9C__GUID-52B32BCE-69B5-4130-A284-2A9E1A0C9CE6">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="../cncpt/transactions.html#CNCPT1119" target="_blank"><span class="italic">Oracle Database Concepts</span></a> for more information about committing transactions
+                           </p>
+                        </li>
+                        <li>
+                           <p><a href="../cncpt/introduction-to-oracle-database.html#CNCPT016" target="_blank"><span class="italic">Oracle Database Concepts</span></a> for information about distributed transactions
+                           </p>
+                        </li>
+                        <li>
+                           <p><a href="../sqlrf/COMMIT.html#SQLRF01110" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a>for information about the <code class="codeph">COMMIT</code> statement
+                           </p>
+                        </li>
+                        <li>
+                           <p><a href="../sbydb/oracle-data-guard-protection-modes.html#SBYDB02000" target="_blank"><span class="italic">Oracle Data Guard Concepts and Administration</span></a> for information about ensuring no loss of data during a failover to a standby database
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="example" id="GUID-56EC1B31-CA06-4460-A098-49ABD4706B9C__CJAIDJID">
+                     <p class="titleinexample">Example 6-36 COMMIT Statement with COMMENT and WRITE Clauses</p>
+                     <p>In this example, a transaction transfers money from one bank account to another. It is important that the money both leaves one account and enters the other, hence the <code class="codeph">COMMIT</code> <code class="codeph">WRITE</code> <code class="codeph">IMMEDIATE</code> <code class="codeph">NOWAIT</code> statement.
+                     </p><pre class="oac_no_warn" dir="ltr">DROP TABLE accounts;
+CREATE TABLE accounts (
+  account_id  NUMBER(6),
+  balance     NUMBER (10,2)
+);
+ 
+INSERT INTO accounts (account_id, balance)
+VALUES (7715, 6350.00);
+ 
+INSERT INTO accounts (account_id, balance)
+VALUES (7720, 5100.50);
+ 
+CREATE OR REPLACE PROCEDURE transfer (
+  from_acct  NUMBER,
+  to_acct    NUMBER,
+  amount     NUMBER
+) AUTHID CURRENT_USER AS
+BEGIN
+  UPDATE accounts
+  SET balance = balance - amount
+  WHERE account_id = from_acct;
+ 
+  UPDATE accounts
+  SET balance = balance + amount
+  WHERE account_id = to_acct;
+ 
+  COMMIT WRITE IMMEDIATE NOWAIT;
+END;
+/
+</pre><p>Query before transfer:</p><pre class="oac_no_warn" dir="ltr">SELECT * FROM accounts;
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">ACCOUNT_ID    BALANCE
+---------- ----------
+      7715       6350
+      7720     5100.5
+ 
+BEGIN
+  transfer(7715, 7720, 250);
+END;
+/
+ </pre><p>Query after transfer:</p><pre class="oac_no_warn" dir="ltr">SELECT * FROM accounts;
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">ACCOUNT_ID    BALANCE
+---------- ----------
+      7715       6100
+      7720     5350.5</pre></div>
+               </div>
+            </div><a id="LNPLS595"></a><a id="LNPLS594"></a><div class="props_rev_3"><a id="GUID-B1B20D2F-C421-446C-9171-1D03E2D77BF8" name="GUID-B1B20D2F-C421-446C-9171-1D03E2D77BF8"></a><h3 id="LNPLS-GUID-B1B20D2F-C421-446C-9171-1D03E2D77BF8" class="sect3"><span class="enumeration_section">6.6.2 </span>ROLLBACK Statement
+               </h3>
+               <div>
+                  <p>The <code class="codeph">ROLLBACK</code> statement ends the current transaction and undoes any changes made during that transaction. 
+                  </p>
+                  <p>If you make a mistake, such as deleting the wrong row from a table, a rollback restores the original data. If you cannot finish a transaction because a SQL statement fails or PL/SQL raises an exception, a rollback lets you take corrective action and perhaps start over.</p>
+                  <div class="infoboxnotealso" id="GUID-B1B20D2F-C421-446C-9171-1D03E2D77BF8__GUID-F68D2A1D-18A5-4A42-BECB-A1E9B0457C3B">
+                     <p class="notep1">See Also:</p>
+                     <p><a href="../sqlrf/EXPLAIN-PLAN.html#SQLRF01601" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a> for more information about the <code class="codeph">ROLLBACK</code> statement
+                     </p>
+                  </div>
+                  <div class="example" id="GUID-B1B20D2F-C421-446C-9171-1D03E2D77BF8__CJACGAFD">
+                     <p class="titleinexample">Example 6-37 ROLLBACK Statement</p>
+                     <p>This example inserts information about an employee into three different tables. If an <code class="codeph">INSERT</code> statement tries to store a duplicate employee number, PL/SQL raises the predefined exception <code class="codeph">DUP_VAL_ON_INDEX</code>. To ensure that changes to all three tables are undone, the exception handler runs a <code class="codeph">ROLLBACK</code>.
+                     </p><pre class="oac_no_warn" dir="ltr">DROP TABLE emp_name;
+CREATE TABLE emp_name AS 
+  SELECT employee_id, last_name
+  FROM employees;
+ 
+CREATE UNIQUE INDEX empname_ix
+ON emp_name (employee_id);
+ 
+ 
+DROP TABLE emp_sal;
+CREATE TABLE emp_sal AS
+  SELECT employee_id, salary
+  FROM employees;
+ 
+CREATE UNIQUE INDEX empsal_ix
+ON emp_sal (employee_id);
+ 
+ 
+DROP TABLE emp_job;
+CREATE TABLE emp_job AS
+  SELECT employee_id, job_id
+  FROM employees;
+ 
+CREATE UNIQUE INDEX empjobid_ix
+ON emp_job (employee_id);
+ 
+ 
+DECLARE
+  emp_id        NUMBER(6);
+  emp_lastname  VARCHAR2(25);
+  emp_salary    NUMBER(8,2);
+  emp_jobid     VARCHAR2(10);
+BEGIN
+  SELECT employee_id, last_name, salary, job_id
+  INTO emp_id, emp_lastname, emp_salary, emp_jobid
+  FROM employees
+  WHERE employee_id = 120;
+ 
+  INSERT INTO emp_name (employee_id, last_name)
+  VALUES (emp_id, emp_lastname);
+ 
+  INSERT INTO emp_sal (employee_id, salary) 
+  VALUES (emp_id, emp_salary);
+ 
+  INSERT INTO emp_job (employee_id, job_id)
+  VALUES (emp_id, emp_jobid);
+ 
+<span class="bold">EXCEPTION</span>
+  <span class="bold">WHEN DUP_VAL_ON_INDEX THEN</span>
+    <span class="bold">ROLLBACK;</span>
+    DBMS_OUTPUT.PUT_LINE('Inserts were rolled back');
+END;
+/</pre></div>
+               </div>
+            </div><a id="LNPLS596"></a><a id="LNPLS597"></a><a id="LNPLS99976"></a><div class="props_rev_3"><a id="GUID-68924CF6-130E-497B-9DA8-7B3E4D510FA6" name="GUID-68924CF6-130E-497B-9DA8-7B3E4D510FA6"></a><h3 id="LNPLS-GUID-68924CF6-130E-497B-9DA8-7B3E4D510FA6" class="sect3"><span class="enumeration_section">6.6.3 </span>SAVEPOINT Statement
+               </h3>
+               <div>
+                  <p>The <code class="codeph">SAVEPOINT</code> statement names and marks the current point in the processing of a transaction.
+                  </p>
+                  <p> Savepoints let you roll back part of a transaction instead of the whole transaction. The number of active savepoints for each session is unlimited.</p>
+                  <p>When you roll back to a savepoint, any savepoints marked after that savepoint are erased. The savepoint to which you roll back is not erased. A simple rollback or commit erases all savepoints. </p>
+                  <p>If you mark a savepoint in a recursive subprogram, new instances of the <code class="codeph">SAVEPOINT</code> statement run at each level in the recursive descent, but you can only roll back to the most recently marked savepoint. 
+                  </p>
+                  <p>Savepoint names are undeclared identifiers. Reusing a savepoint name in a transaction moves the savepoint from its old position to the current point in the transaction, which means that a rollback to the savepoint affects only the current part of the transaction.</p>
+                  <div class="infoboxnotealso" id="GUID-68924CF6-130E-497B-9DA8-7B3E4D510FA6__GUID-3398D4C6-C6FA-4429-8529-16C6F34CE613">
+                     <p class="notep1">See Also:</p>
+                     <p><a href="../sqlrf/SET-TRANSACTION.html#SQLRF01705" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a> for more information about the <code class="codeph">SET</code> <code class="codeph">TRANSACTION</code> SQL statement
+                     </p>
+                  </div>
+                  <div class="example" id="GUID-68924CF6-130E-497B-9DA8-7B3E4D510FA6__BABGAAIG">
+                     <p class="titleinexample">Example 6-38 SAVEPOINT and ROLLBACK Statements</p>
+                     <p>This example marks a savepoint before doing an insert. If the <code class="codeph">INSERT</code> statement tries to store a duplicate value in the <code class="codeph">employee_id</code> column, PL/SQL raises the predefined exception <code class="codeph">DUP_VAL_ON_INDEX</code> and the transaction rolls back to the savepoint, undoing only the  <code class="codeph">INSERT</code> statement.
+                     </p><pre class="oac_no_warn" dir="ltr">DROP TABLE emp_name;
+CREATE TABLE emp_name AS
+  SELECT employee_id, last_name, salary
+  FROM employees;
+ 
+CREATE UNIQUE INDEX empname_ix
+ON emp_name (employee_id);
+ 
+DECLARE
+  emp_id        employees.employee_id%TYPE;
+  emp_lastname  employees.last_name%TYPE;
+  emp_salary    employees.salary%TYPE;
+ 
+BEGIN
+  SELECT employee_id, last_name, salary
+  INTO emp_id, emp_lastname, emp_salary 
+  FROM employees
+  WHERE employee_id = 120;
+ 
+  UPDATE emp_name
+  SET salary = salary * 1.1
+  WHERE employee_id = emp_id;
+ 
+  DELETE FROM emp_name
+  WHERE employee_id = 130;
+ 
+  <span class="bold">SAVEPOINT do_insert;</span>
+ 
+  INSERT INTO emp_name (employee_id, last_name, salary)
+  VALUES (emp_id, emp_lastname, emp_salary);
+ 
+<span class="bold">EXCEPTION</span>
+  <span class="bold">WHEN DUP_VAL_ON_INDEX THEN</span>
+    <span class="bold">ROLLBACK TO do_insert;</span>
+  DBMS_OUTPUT.PUT_LINE('Insert was rolled back');
+END;
+/
+</pre></div>
+                  <div class="example" id="GUID-68924CF6-130E-497B-9DA8-7B3E4D510FA6__GUID-94B674C0-0259-4A04-9BF5-0A4A0687B82B">
+                     <p class="titleinexample">Example 6-39 Reusing SAVEPOINT with ROLLBACK</p><pre class="oac_no_warn" dir="ltr">DROP TABLE emp_name;
+CREATE TABLE emp_name AS
+  SELECT employee_id, last_name, salary
+  FROM employees;
+ 
+CREATE UNIQUE INDEX empname_ix
+ON emp_name (employee_id);
+ 
+DECLARE
+  emp_id        employees.employee_id%TYPE;
+  emp_lastname  employees.last_name%TYPE;
+  emp_salary    employees.salary%TYPE;
+ 
+BEGIN
+  SELECT employee_id, last_name, salary
+  INTO emp_id, emp_lastname, emp_salary
+  FROM employees
+  WHERE employee_id = 120;
+ 
+  <span class="bold">SAVEPOINT my_savepoint;</span>
+ 
+  UPDATE emp_name
+  SET salary = salary * 1.1
+  WHERE employee_id = emp_id;
+ 
+  DELETE FROM emp_name
+  WHERE employee_id = 130;
+ 
+  <span class="bold">SAVEPOINT my_savepoint;</span>
+ 
+  INSERT INTO emp_name (employee_id, last_name, salary)
+  VALUES (emp_id, emp_lastname, emp_salary);
+ 
+EXCEPTION
+  WHEN DUP_VAL_ON_INDEX THEN
+    <span class="bold">ROLLBACK TO my_savepoint;</span>
+    DBMS_OUTPUT.PUT_LINE('Transaction rolled back.');
+END;
+/</pre></div>
+               </div>
+            </div><a id="LNPLS598"></a><div class="props_rev_3"><a id="GUID-A0771963-D96F-4AC5-A74A-242D064825DA" name="GUID-A0771963-D96F-4AC5-A74A-242D064825DA"></a><h3 id="LNPLS-GUID-A0771963-D96F-4AC5-A74A-242D064825DA" class="sect3"><span class="enumeration_section">6.6.4 </span>Implicit Rollbacks
+               </h3>
+               <div>
+                  <p>Before running an <code class="codeph">INSERT</code>, <code class="codeph">UPDATE</code>, <code class="codeph">DELETE</code>, or <code class="codeph">MERGE</code> statement, the database marks an implicit savepoint (unavailable to you). If the statement fails, the database rolls back to the savepoint. 
+                  </p>
+                  <p>Usually, just the failed SQL statement is rolled back, not the whole transaction. If the statement raises an unhandled exception, the host environment determines what is rolled back.</p>
+                  <p>The database can also roll back single SQL statements to break deadlocks. The database signals an error to a participating transaction and rolls back the current statement in that transaction.</p>
+                  <p>Before running a SQL statement, the database must parse it, that is, examine it to ensure it follows syntax rules and refers to valid schema objects. Errors detected while running a SQL statement cause a rollback, but errors detected while parsing the statement do not.</p>
+                  <p>If you exit a stored subprogram with an unhandled exception, PL/SQL does not assign values to <code class="codeph">OUT</code> parameters, and does not do any rollback.
+                  </p>
+                  <p>For information about handling exceptions, see <a href="plsql-error-handling.html#GUID-0502DC1A-F0A5-4180-A912-6A5CDC855F56">PL/SQL Error Handling</a></p>
+               </div>
+            </div><a id="LNPLS600"></a><a id="LNPLS99975"></a><div class="props_rev_3"><a id="GUID-EC9CC8B7-5DDD-4B60-83BF-686A9FD43B3D" name="GUID-EC9CC8B7-5DDD-4B60-83BF-686A9FD43B3D"></a><h3 id="LNPLS-GUID-EC9CC8B7-5DDD-4B60-83BF-686A9FD43B3D" class="sect3"><span class="enumeration_section">6.6.5 </span>SET TRANSACTION Statement
+               </h3>
+               <div>
+                  <p>You use the <code class="codeph">SET</code> <code class="codeph">TRANSACTION</code> statement to begin a read-only or read-write transaction, establish an isolation level, or assign your current transaction to a specified rollback segment.
+                  </p>
+                  <p> Read-only transactions are useful for running multiple queries while other users update the same tables.</p>
+                  <p>During a read-only transaction, all queries refer to the same snapshot of the database, providing a multi-table, multi-query, read-consistent view. Other users can continue to query or update data as usual. A commit or rollback ends the transaction.</p>
+                  <p>The <code class="codeph">SET</code> <code class="codeph">TRANSACTION</code> statement must be the first SQL statement in a read-only transaction and can appear only once in a transaction. If you set a transaction to <code class="codeph">READ</code> <code class="codeph">ONLY</code>, subsequent queries see only changes committed before the transaction began. The use of <code class="codeph">READ</code> <code class="codeph">ONLY</code> does not affect other users or transactions.
+                  </p>
+                  <p>Only the <code class="codeph">SELECT</code>, <code class="codeph">OPEN</code>, <code class="codeph">FETCH</code>, <code class="codeph">CLOSE</code>, <code class="codeph">LOCK</code> <code class="codeph">TABLE</code>, <code class="codeph">COMMIT</code>, and <code class="codeph">ROLLBACK</code> statements are allowed in a read-only transaction. Queries cannot be <code class="codeph">FOR</code> <code class="codeph">UPDATE</code>.
+                  </p>
+                  <div class="infoboxnotealso" id="GUID-EC9CC8B7-5DDD-4B60-83BF-686A9FD43B3D__GUID-B5DFDC80-BFC2-4091-908A-8C024D8BFAC2">
+                     <p class="notep1">See Also:</p>
+                     <p><a href="../sqlrf/SET-TRANSACTION.html#SQLRF01705" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a> for more information about the SQL statement <code class="codeph">SET</code> <code class="codeph">TRANSACTION</code></p>
+                  </div>
+                  <div class="example" id="GUID-EC9CC8B7-5DDD-4B60-83BF-686A9FD43B3D__BABJIHCC">
+                     <p class="titleinexample">Example 6-40 SET TRANSACTION Statement in Read-Only Transaction</p>
+                     <p>In this example, a read-only transaction gather order totals for the day, the past week, and the past month. The totals are unaffected by other users updating the database during the transaction. The <code class="codeph">orders</code> table is in the sample schema OE.
+                     </p><pre class="oac_no_warn" dir="ltr">DECLARE
+  daily_order_total    NUMBER(12,2);
+  weekly_order_total   NUMBER(12,2); 
+  monthly_order_total  NUMBER(12,2);
+BEGIN
+   COMMIT; -- end previous transaction
+   SET TRANSACTION READ ONLY NAME 'Calculate Order Totals';
+
+   SELECT SUM (order_total)
+   INTO daily_order_total
+   FROM orders
+   WHERE order_date = SYSDATE;
+
+   SELECT SUM (order_total)
+   INTO weekly_order_total
+   FROM orders
+   WHERE order_date = SYSDATE - 7;
+
+   SELECT SUM (order_total)
+   INTO monthly_order_total
+   FROM orders
+   WHERE order_date = SYSDATE - 30;
+
+   COMMIT; -- ends read-only transaction
+END;
+/
+</pre></div>
+               </div>
+            </div><a id="LNPLS504"></a><a id="LNPLS602"></a><div class="props_rev_3"><a id="GUID-213C196F-7FE4-425C-93E4-54B9FAFF5030" name="GUID-213C196F-7FE4-425C-93E4-54B9FAFF5030"></a><h3 id="LNPLS-GUID-213C196F-7FE4-425C-93E4-54B9FAFF5030" class="sect3"><span class="enumeration_section">6.6.6 </span>Overriding Default Locking
+               </h3>
+               <div>
+                  <p>By default, Oracle Database locks data structures automatically, which lets different applications write to the same data structures without harming each other's data or coordinating with each other.</p>
+                  <div class="section">
+                     <p>If you must have exclusive access to data during a transaction, you can override default locking with these SQL statements:</p>
+                  </div>
+                  <div class="section">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><code class="codeph">LOCK</code> <code class="codeph">TABLE</code>, which explicitly locks entire tables.
+                           </p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">SELECT</code> with the <code class="codeph">FOR</code> <code class="codeph">UPDATE</code> clause (<code class="codeph">SELECT</code> <code class="codeph">FOR</code> <code class="codeph">UPDATE</code>), which explicitly locks specific rows of a table.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-213C196F-7FE4-425C-93E4-54B9FAFF5030__GUID-2991ADBF-3AF2-4DDC-B50B-D20E99A6E3D9">Topics</p>
+                  </div>
+                  <div class="section">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="transaction-processing-and-control.html#GUID-4596DC9D-6011-4B4E-B14D-8C232334712F">LOCK TABLE Statement</a></p>
+                        </li>
+                        <li>
+                           <p><a href="transaction-processing-and-control.html#GUID-6A1C2FD9-9476-4F8D-A2E4-2C967D7F8C08">SELECT FOR UPDATE and FOR UPDATE Cursors</a></p>
+                        </li>
+                        <li>
+                           <p><a href="transaction-processing-and-control.html#GUID-E9A9E94A-9E63-42E0-A4DC-F25E9B7A23B9">Simulating CURRENT OF Clause with ROWID Pseudocolumn</a></p>
+                        </li>
+                     </ul>
+                  </div>
+               </div><a id="LNPLS605"></a><div class="props_rev_3"><a id="GUID-4596DC9D-6011-4B4E-B14D-8C232334712F" name="GUID-4596DC9D-6011-4B4E-B14D-8C232334712F"></a><h4 id="LNPLS-GUID-4596DC9D-6011-4B4E-B14D-8C232334712F" class="sect4"><span class="enumeration_section">6.6.6.1 </span>LOCK TABLE Statement
+                  </h4>
+                  <div>
+                     <p>The <code class="codeph">LOCK</code> <code class="codeph">TABLE</code> statement explicitly locks one or more tables in a specified lock mode so that you can share or deny access to them.
+                     </p>
+                     <p>The lock mode determines what other locks can be placed on the table. For example, many users can acquire row share locks on a table at the same time, but only one user at a time can acquire an exclusive lock. While one user has an exclusive lock on a table, no other users can insert, delete, or update rows in that table.</p>
+                     <p>A table lock never prevents other users from querying a table, and a query never acquires a table lock. Only if two different transactions try to modify the same row does one transaction wait for the other to complete. The <code class="codeph">LOCK</code> <code class="codeph">TABLE</code> statement lets you specify how long to wait for another transaction to complete.
+                     </p>
+                     <p>Table locks are released when the transaction that acquired them is either committed or rolled back.</p>
+                     <div class="infoboxnotealso" id="GUID-4596DC9D-6011-4B4E-B14D-8C232334712F__GUID-0FF274D4-3739-4D6D-AC3F-C4E5BDC8B33E">
+                        <p class="notep1">See Also:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><a href="../adfns/sql-processing-for-application-developers.html#ADFNS00203" target="_blank"><span class="italic">Oracle Database Development Guide</span></a> for more information about locking tables explicitly
+                              </p>
+                           </li>
+                           <li>
+                              <p><a href="../sqlrf/LOCK-TABLE.html#SQLRF01605" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a> for more information about the <code class="codeph">LOCK</code> <code class="codeph">TABLE</code> statement
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="LNPLS505"></a><a id="LNPLS506"></a><a id="LNPLS603"></a><div class="props_rev_3"><a id="GUID-6A1C2FD9-9476-4F8D-A2E4-2C967D7F8C08" name="GUID-6A1C2FD9-9476-4F8D-A2E4-2C967D7F8C08"></a><h4 id="LNPLS-GUID-6A1C2FD9-9476-4F8D-A2E4-2C967D7F8C08" class="sect4"><span class="enumeration_section">6.6.6.2 </span>SELECT FOR UPDATE and FOR UPDATE Cursors
+                  </h4>
+                  <div>
+                     <p>The <code class="codeph">SELECT</code> statement with the <code class="codeph">FOR</code> <code class="codeph">UPDATE</code> clause (<code class="codeph">SELECT</code> <code class="codeph">FOR</code> <code class="codeph">UPDATE</code> statement) selects the rows of the result set and locks them. <code class="codeph">SELECT</code> <code class="codeph">FOR</code> <code class="codeph">UPDATE</code> lets you base an update on the existing values in the rows, because it ensures that no other user can change those values before you update them. You can also use <code class="codeph">SELECT</code> <code class="codeph">FOR</code> <code class="codeph">UPDATE</code> to lock rows that you do not want to update, as in <a href="dml-triggers.html#GUID-2DC16B21-35B1-4D09-BD4E-02797AA278EA__BCFGAHIB">Example 9-6</a>.
+                     </p>
+                     <div class="infoboxnote" id="GUID-6A1C2FD9-9476-4F8D-A2E4-2C967D7F8C08__GUID-F0317D70-A128-4F29-A62E-A7A71FA43D76">
+                        <p class="notep1">Note:</p>
+                        <p>In tables compressed with Hybrid Columnar Compression (HCC), DML statements lock compression units rather than rows. HCC, a feature of certain Oracle storage systems, is described in <a href="../cncpt/tables-and-table-clusters.html#CNCPT89198" target="_blank"><span class="italic">Oracle Database Concepts</span></a>.
+                        </p>
+                     </div>
+                     <p>By default, the <code class="codeph">SELECT</code> <code class="codeph">FOR</code> <code class="codeph">UPDATE</code> statement waits until the requested row lock is acquired. To change this behavior, use the <code class="codeph">NOWAIT</code>, <code class="codeph">WAIT</code>, or <code class="codeph">SKIP</code> <code class="codeph">LOCKED</code> clause of the <code class="codeph">SELECT</code> <code class="codeph">FOR</code> <code class="codeph">UPDATE</code> statement. For information about these clauses, see <a href="../sqlrf/SELECT.html#SQLRF01702" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a>.
+                     </p>
+                     <p>When <code class="codeph">SELECT</code> <code class="codeph">FOR</code> <code class="codeph">UPDATE</code> is associated with an explicit cursor, the cursor is called a <span class="bold"><code class="codeph">FOR</code></span> <span class="bold"><code class="codeph">UPDATE</code></span> <span class="bold">cursor</span>. Only a <code class="codeph">FOR</code> <code class="codeph">UPDATE</code> cursor can appear in the <code class="codeph">CURRENT</code> <code class="codeph">OF</code> clause of an <code class="codeph">UPDATE</code> or <code class="codeph">DELETE</code> statement. (The <code class="codeph">CURRENT</code> <code class="codeph">OF</code> clause, a PL/SQL extension to the <code class="codeph">WHERE</code> clause of the SQL statements <code class="codeph">UPDATE</code> and <code class="codeph">DELETE</code>, restricts the statement to the current row of the cursor.)
+                     </p>
+                     <p>When <code class="codeph">SELECT</code> <code class="codeph">FOR</code> <code class="codeph">UPDATE</code> queries multiple tables, it locks only rows whose columns appear in the <code class="codeph">FOR</code> <code class="codeph">UPDATE</code> clause.
+                     </p>
+                  </div>
+               </div><a id="LNPLS507"></a><a id="LNPLS607"></a><a id="LNPLS606"></a><div class="props_rev_3"><a id="GUID-E9A9E94A-9E63-42E0-A4DC-F25E9B7A23B9" name="GUID-E9A9E94A-9E63-42E0-A4DC-F25E9B7A23B9"></a><h4 id="LNPLS-GUID-E9A9E94A-9E63-42E0-A4DC-F25E9B7A23B9" class="sect4"><span class="enumeration_section">6.6.6.3 </span>Simulating CURRENT OF Clause with ROWID Pseudocolumn
+                  </h4>
+                  <div>
+                     <div class="section">
+                        
+                        <p>The rows of the result set are locked when you open a <code class="codeph">FOR</code>
+                           <code class="codeph">UPDATE</code> cursor, not as they are fetched, that is, unless the
+          <code class="codeph">SKIP</code>
+                           <code class="codeph">LOCKED</code> clause is specified by the <code class="codeph">FOR</code>
+                           <code class="codeph">UPDATE</code> cursor, in which case the rows are locked during the
+          <code class="codeph">FETCH</code> phase of the cursor. The rows are unlocked when you commit or roll
+        back the transaction. After the rows are unlocked, you cannot fetch from the
+          <code class="codeph">FOR</code>
+                           <code class="codeph">UPDATE</code> cursor, as <a href="transaction-processing-and-control.html#GUID-E9A9E94A-9E63-42E0-A4DC-F25E9B7A23B9__CHDHIIAI">Example 6-41</a> shows (the result is the same if you substitute
+          <code class="codeph">ROLLBACK</code> for <code class="codeph">COMMIT</code>).
+                        </p>
+                        <p>The workaround is to simulate the <code class="codeph">CURRENT</code> <code class="codeph">OF</code> clause with the <code class="codeph">ROWID</code> pseudocolumn (described in <a href="../sqlrf/ROWID-Pseudocolumn.html#SQLRF00254" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a>). Select the rowid of each row into a <code class="codeph">UROWID</code> variable and use the rowid to identify the current row during subsequent updates and deletes, as in <a href="transaction-processing-and-control.html#GUID-E9A9E94A-9E63-42E0-A4DC-F25E9B7A23B9__CIHIJAAE">Example 6-42</a>. (To print the value of a <code class="codeph">UROWID</code> variable, convert it to <code class="codeph">VARCHAR2</code>, using the <code class="codeph">ROWIDTOCHAR</code> function described in <a href="../sqlrf/ROWIDTOCHAR.html#SQLRF06101" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a>.)
+                        </p>
+                        <div class="infoboxnote" id="GUID-E9A9E94A-9E63-42E0-A4DC-F25E9B7A23B9__GUID-05A0BC49-8B11-4249-8610-E64198D512A4">
+                           <p class="notep1">Note:</p>
+                           <p>When you update a row in a table compressed with Hybrid Columnar Compression (HCC), the <code class="codeph">ROWID</code> of the row changes. HCC, a feature of certain Oracle storage systems, is described in <a href="../cncpt/tables-and-table-clusters.html#CNCPT89198" target="_blank"><span class="italic">Oracle Database Concepts</span></a>.
+                           </p>
+                        </div>
+                        <div class="infobox-caution" id="GUID-E9A9E94A-9E63-42E0-A4DC-F25E9B7A23B9__GUID-F5F3D45B-6DBA-4D89-8273-79D15B9A74E7">
+                           <p class="notep1">Caution:</p>
+                           <p>Because no <code class="codeph">FOR</code> <code class="codeph">UPDATE</code> clause locks the fetched rows, other users might unintentionally overwrite your changes.
+                           </p>
+                        </div>
+                        <div class="infoboxnote" id="GUID-E9A9E94A-9E63-42E0-A4DC-F25E9B7A23B9__GUID-E4E27B50-9407-4F19-A37D-B00F023AEA50">
+                           <p class="notep1">Note:</p>
+                           <p>The extra space needed for read consistency is not released until the cursor is closed, which can slow down processing for large updates.</p>
+                        </div>
+                     </div>
+                     <div class="example" id="GUID-E9A9E94A-9E63-42E0-A4DC-F25E9B7A23B9__CHDHIIAI">
+                        <p class="titleinexample">Example 6-41 FETCH with FOR UPDATE Cursor After COMMIT Statement</p><pre class="oac_no_warn" dir="ltr">DROP TABLE emp;
+CREATE TABLE emp AS SELECT * FROM employees;
+ 
+DECLARE
+  CURSOR c1 IS
+    SELECT * FROM emp
+    <span class="bold">FOR UPDATE OF salary</span>
+    ORDER BY employee_id;
+ 
+  emp_rec  emp%ROWTYPE;
+BEGIN
+  OPEN c1;
+  LOOP
+    <span class="bold">FETCH c1 INTO emp_rec;  -- fails on second iteration</span>
+    EXIT WHEN c1%NOTFOUND;
+    DBMS_OUTPUT.PUT_LINE (
+      'emp_rec.employee_id = ' ||
+      TO_CHAR(emp_rec.employee_id)
+    );
+    
+    UPDATE emp
+    SET salary = salary * 1.05
+    WHERE employee_id = 105;
+ 
+    <span class="bold">COMMIT;  -- releases locks</span>
+  END LOOP;
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">emp_rec.employee_id = 100
+DECLARE
+*
+ERROR at line 1:
+ORA-01002: fetch out of sequence
+ORA-06512: at line 11
+</pre></div>
+                     <div class="example" id="GUID-E9A9E94A-9E63-42E0-A4DC-F25E9B7A23B9__CIHIJAAE">
+                        <p class="titleinexample">Example 6-42 Simulating CURRENT OF Clause with ROWID Pseudocolumn</p><pre class="oac_no_warn" dir="ltr">DROP TABLE emp;
+CREATE TABLE emp AS SELECT * FROM employees;
+ 
+DECLARE
+  CURSOR c1 IS
+    SELECT last_name, job_id, <span class="bold">rowid</span>
+    FROM emp;  <span class="bold">-- no FOR UPDATE clause</span>
+ 
+  my_lastname   employees.last_name%TYPE;
+  my_jobid      employees.job_id%TYPE;
+  <span class="bold">my_rowid      UROWID;</span>
+BEGIN
+  OPEN c1;
+  LOOP
+    FETCH c1 INTO my_lastname, my_jobid, my_rowid;
+    EXIT WHEN c1%NOTFOUND;
+ 
+    UPDATE emp
+    SET salary = salary * 1.02
+    <span class="bold">WHERE rowid = my_rowid;  -- simulates WHERE CURRENT OF c1</span>
+ 
+    COMMIT;
+  END LOOP;
+  CLOSE c1;
+END;
+/</pre></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Configuring Level 2: Prepare Applications for Planned Maintenance">
+      <meta name="abstract" content="Building on Level 1: Basic Application High Availability, application HA Level 2 adds the ability to drain sessions for minimal application impact during planned maintenance.">
+      <meta name="description" content="Building on Level 1: Basic Application High Availability, application HA Level 2 adds the ability to drain sessions for minimal application impact during planned maintenance.">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Task">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-9121F9FF-88E5-4DA2-9874-23A185CB2F82">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Building on Level 1: Basic Application High Availability, application HA Level 2 adds the ability to drain sessions for minimal application impact during planned maintenance.">
+      <meta name="description" content="Building on Level 1: Basic Application High Availability, application HA Level 2 adds the ability to drain sessions for minimal application impact during planned maintenance.">
+      <title>Configuring Level 2: Prepare Applications for Planned Maintenance</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content="Building on Level 1: Basic Application High Availability, application HA Level 2 adds the ability to drain sessions for minimal application impact during planned maintenance.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="configuring-level-1-basic-application-high-availability.html" title="Previous" type="text/html">
+      <link rel="next" href="configuring-level-3-mask-unplanned-and-planned-failovers-applications.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Configuring Level 2: Prepare Applications for Planned Maintenance","description":"Building on Level 1: Basic Application High Availability, application HA Level 2 adds the ability to drain sessions for minimal application impact during planned maintenance.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="configuring-level-1-basic-application-high-availability.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="configuring-level-3-mask-unplanned-and-planned-failovers-applications.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-9121F9FF-88E5-4DA2-9874-23A185CB2F82" name="GUID-9121F9FF-88E5-4DA2-9874-23A185CB2F82"></a>
+         
+         <h2 id="HAOVW-GUID-9121F9FF-88E5-4DA2-9874-23A185CB2F82" class="sect2">Configuring Level 2: Prepare Applications for
+        Planned Maintenance</h2>
+         <div class="ind">
+            <div>
+               <p>Building on Level 1: Basic Application High Availability, application HA
+        Level 2 adds the ability to drain sessions for minimal application impact during planned
+        maintenance.</p>
+               <div class="section">
+                  
+                  <p>After implementing Level 1, you are ready to implement a planned maintenance solution
+                appropriate to your application from one of the choices below. You can use planned
+                operations to relocate or stop services, or to switch over, allowing for graceful
+                completion of the users' work.</p>
+                  
+                  <p>The recommended approach to avoid impacting applications is drain work in an Oracle
+                RAC rolling fashion. Typically a period of time is allocated to perform the
+                draining. Our recommended choice is to use Oracle connection pools that are
+                integrated with FAN to initiate draining.</p>
+                  
+                  <p>If you are unable to drain automatically using the options listed below, an
+                alternative approach is to ensure the application manages to stop and defer work
+                before maintenance starts.</p>
+                  
+               </div>
+               <div class="section">
+                  
+                  <p>Employ the following practices to increase your application high availability to
+                level 2:</p>
+                  
+                  <ul style="list-style-type: disc;" id="GUID-9121F9FF-88E5-4DA2-9874-23A185CB2F82__UL_DPJ_FCK_YXB">
+                     <li>
+                        
+                        <p>Use an Oracle Connection Pool and return your connection to the
+                        pool between requests. See <a href="Chunk721772143.html#GUID-F9428565-46E5-4331-80F7-8978380FC1E3" title="Using a FAN-aware Oracle connection pool is the recommended solution for managing planned maintenance.">Recommended Option: Use an Oracle Connection Pool</a>. 
+                        </p>
+                        
+                        <p>Alternatively, use a third-party connection pool that uses
+                        request boundaries.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>If you cannot use an Oracle connection pool or third-party pool
+                        with request boundaries, you can use the following alternatives with
+                        existing applications:</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-9121F9FF-88E5-4DA2-9874-23A185CB2F82__UL_NGX_JWT_KFC">
+                           <li>
+                              
+                              <p><a href="Chunk721772143.html#GUID-5B1C6482-E017-4AEB-ABE5-102AA2ACD13B">Alternate Option 1: Use Request Boundaries</a></p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><a href="Chunk721772143.html#GUID-CBFCA238-A1B7-475B-9E9E-AF41B0B591AA" title="If you cannot use an Oracle Pool, or do not wish to implement request boundaries, then the Oracle client drivers (19c or later) or Oracle Database (19c or later) can drain the sessions for you.">Alternate Option 2: Use Connection Validation or Tests</a></p>
+                              
+                           </li>
+                        </ul>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Leverage server-side operations for planned maintenance. See
+                            <a href="Chunk721772143.html#GUID-A358087D-8CF0-4EC4-A5D3-FE152BB8FF86" title="Server-side operations are required to manage connections for planned maintenance.">Server-Side Operations for Planned Maintenance</a></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Ensure that sufficient node capacity is available so that the load from one
+                        instance can be spread to other available instances without impacting the
+                        workload during a maintenance period.</p>
+                        
+                     </li>
+                  </ul>
+                  
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-F9428565-46E5-4331-80F7-8978380FC1E3" name="GUID-F9428565-46E5-4331-80F7-8978380FC1E3"></a><h3 id="HAOVW-GUID-F9428565-46E5-4331-80F7-8978380FC1E3" class="sect3">Recommended Option: Use an Oracle Connection
+        Pool</h3>
+               <div>
+                  <p>Using a FAN-aware Oracle connection pool is the recommended solution for
+        managing planned maintenance.</p>
+                  <div class="section">
+                     
+                     <p>Oracle pools provide full lifecycle management: draining, reconnecting, and
+                rebalancing across nodes and sites. When performing rolling maintenance across a
+                cluster, as the maintenance progresses and completes (for each instance or node),
+                sessions are moved and rebalanced across instances. There is no impact to users when
+                your application uses an Oracle Pool with FAN and returns connections to the pool
+                between requests since these connections will drain and move to other instances. </p>
+                     
+                     <p>Supported Oracle Pools include:</p>
+                     
+                     <ul style="list-style-type: disc;" id="GUID-F9428565-46E5-4331-80F7-8978380FC1E3__UL_N4F_32K_YXB">
+                        <li>
+                           
+                           <p>Java; Universal Connection Pool (UCP)</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-F9428565-46E5-4331-80F7-8978380FC1E3__UL_J1S_1XT_KFC">
+                              <li>UCP documentation: <a href="../jjucp/intro.html#JJUCP-GUID-82ACD002-4C5F-4BF7-99FF-46A2A97DD35D" target="_blank">Introduction to UCP</a></li>
+                              <li>Springboot with UCP: <a href="https://medium.com/oracledevs/ucp-best-practices-for-oracle-database-19c-and-spring-boot-fb837f8e195b" target="_blank">UCP Best Practices for Oracle
+                                Database 19c and Spring Boot</a></li>
+                           </ul>
+                           
+                        </li>
+                        <li>Java; WebLogic Active GridLink</li>
+                        <li>Tuxedo</li>
+                        <li>OCI Session Pool</li>
+                        <li>ODP.NET core, managed, and unmanaged providers</li>
+                        <li>Oracle Python driver connection pool</li>
+                        <li>Node.js Oracle driver connection pool</li>
+                        <li>Hikari Connection Pools: <a href="https://medium.com/oracledevs/hikaricp-best-practices-for-oracle-database-and-spring-boot-4d6723621c0b" target="_blank">HikariCP Best Practices for Oracle Database
+                        and Spring Boot — V2</a></li>
+                     </ul>
+                     
+                  </div>
+                  <div class="section">
+                     
+                     <p>When using these pools, no application changes are needed other than ensuring that
+                your connections are returned to the pool between requests.</p>
+                     
+                     <p>It is a best practice that an application obtains a connection only for the time that
+                it needs it, and then returns the connection to the pool as soon as it is finished
+                making its database calls. Holding a connection instead of returning it to the pool
+                prevents the pool from gracefully moving sessions to available instances, and it
+                uses resources inefficiently, requiring many more connections than would otherwise
+                be used. An application should, therefore, obtain a connection and then return that
+                connection immediately after the work is complete. The connections are then
+                available for later use by other threads, or your thread when needed again.
+                Returning connections to a connection pool is a general recommendation regardless of
+                how draining is implemented.</p>
+                     
+                     <div class="infoboxnote" id="GUID-F9428565-46E5-4331-80F7-8978380FC1E3__GUID-5878E82F-911B-4035-8D54-5B41AF448F12">
+                        <p class="notep1">Note:</p>The syntax for obtaining and
+                returning a connection varies by pool implementation. For example, in UCP you use
+                the <code class="codeph">getConnection()</code> method of the <code class="codeph">PoolDataSource</code>
+                object to obtain a connection and mark the beginning of the database request, and
+                the <code class="codeph">close()</code> method to return it, marking the end of the database
+                request after you've done some work in the database.
+                     </div>
+                     
+                     <p>Oracle Connection Pools validate a connection whenever a connection is borrowed to
+                ensure that the connection can be used without any errors.</p>
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-F5268CB6-0D40-4B66-A5F6-44C6FE386E57" name="GUID-F5268CB6-0D40-4B66-A5F6-44C6FE386E57"></a><h3 id="HAOVW-GUID-F5268CB6-0D40-4B66-A5F6-44C6FE386E57" class="sect3">Alternate Options</h3>
+               <div>
+                  <p></p>
+                  <p>Only look at these alternate options if you cannot use the recommended option. The
+            alternate options are listed in priority order.</p>
+               </div>
+               <div class="sect3"><a id="GUID-5B1C6482-E017-4AEB-ABE5-102AA2ACD13B" name="GUID-5B1C6482-E017-4AEB-ABE5-102AA2ACD13B"></a><h4 id="HAOVW-GUID-5B1C6482-E017-4AEB-ABE5-102AA2ACD13B" class="sect4">Alternate Option 1: Use Request
+        Boundaries</h4>
+                  <div>
+                     <p></p>
+                     <div class="section">
+                        
+                        <p>For existing applications, retrofit them by using session/connection pools or by
+                wrapping operations within a <code class="codeph">requestBegin</code> and
+                    <code class="codeph">requestEnd</code> boundary. For example, for the Oracle Call
+                Interface: <code class="codeph">OCIRequestBegin</code> and <code class="codeph">OCIRequestEnd</code>). 
+                        </p>
+                        
+                        <p>Request boundaries are visible to the database, and they enable functionality such as
+                draining for planned maintenance, load balancing, and multiplexing to be isolated at
+                the database layer. Sessions can be re-established with no visible disruption to the
+                application layers above.</p>
+                        
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-CBFCA238-A1B7-475B-9E9E-AF41B0B591AA" name="GUID-CBFCA238-A1B7-475B-9E9E-AF41B0B591AA"></a><h4 id="HAOVW-GUID-CBFCA238-A1B7-475B-9E9E-AF41B0B591AA" class="sect4">Alternate Option 2: Use Connection Validation
+        or Tests</h4>
+                  <div>
+                     <p>If you cannot use an Oracle Pool, or do not wish to implement request
+        boundaries, then the Oracle client drivers (19c or later) or Oracle Database (19c or later)
+        can drain the sessions for you.</p>
+                     <div class="section">
+                        
+                        <p>When services are relocated or stopped, or there is a switchover to a standby site
+                via Oracle Data Guard, the Oracle Database and Oracle client drivers are notified to
+                look for safe places to release connections according to the following:</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-CBFCA238-A1B7-475B-9E9E-AF41B0B591AA__UL_OYK_X3P_YXB">
+                           <li>Standard connection tests for connection validity (for example
+                        <code class="codeph">isValid()</code> in JDBC)
+                           </li>
+                           <li>Custom SQL tests for connection validity</li>
+                        </ul>
+                        
+                     </div>
+                     <div class="section">
+                        
+                        <p>For custom batch applications, test the connection between batches. When the
+                connection test fails, create or borrow another connection.</p>
+                        
+                        <p>For third-party connection pools, enable connection tests offered by the vendor. When
+                the connection test fails, the third-party pool will close the connection and allow
+                you to borrow another one.</p>
+                        
+                        <div class="infoboxnote" id="GUID-CBFCA238-A1B7-475B-9E9E-AF41B0B591AA__GUID-6573A480-65A6-48B6-B2F8-7BEC4646D2E8">
+                           <p class="notep1">Note:</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-CBFCA238-A1B7-475B-9E9E-AF41B0B591AA__UL_IYR_3YW_MZB">
+                              <li>
+                                 
+                                 <p>When you use a connection test, the outcome of the connection test
+                            applies to that session only. Do not use connection tests to make
+                            general decisions about the instance and to make a determination to stop
+                            more than the session to which the test applies.</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>Disable connection pool properties for flushing and destroying the pool
+                            on connection test failure when using Oracle WebLogic Server data
+                            sources.</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>A monitor is functionality that makes a decision about the health of an
+                            instance. With FAN and Runtime Load Balancing such monitors are no
+                            longer needed and not susceptible to incorrect decisions. If you do want
+                            a monitor, SQL in that monitor must NOT be misinterpreted as a
+                            connection test for draining the application. There are a few ways to
+                            avoid this misinterpretation:</p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-CBFCA238-A1B7-475B-9E9E-AF41B0B591AA__UL_JYR_3YW_MZB">
+                                    <li>
+                                       
+                                       <p>Disable a monitor's specific health query using the
+                                        <code class="codeph">dbms_app_cont_admin</code> package:  
+                                       </p>
+                                       <pre class="pre codeblock"><code>dbms_app_cont_admin.disable_connection_test(dbms_app_cont_admin.sql_test,'SELECT COUNT(1) FROM DUAL’);</code></pre>
+                                       <p>Here, the query used by the monitor, <code class="codeph">'SELECT COUNT(1)
+                                        FROM DUAL’</code>, is not considered a connection test. If
+                                    there are any connection tests that also use this query, then
+                                    they would be disabled and a different query would be
+                                    needed.
+                                       </p>
+                                       
+                                    </li>
+                                    <li>
+                                       
+                                       <p>Embed a comment into the monitor query to distinguish it from any
+                                    of the registered connection tests:</p>
+                                       <pre class="pre codeblock"><code>SELECT /* My Health monitor query */ COUNT(1) monitor FROM DUAL</code></pre>
+                                       </li>
+                                 </ul>
+                                 
+                              </li>
+                              <li>You may disable connection tests by using the
+                            <code class="codeph">DBMS_APP_CONT_ADMIN.DISABLE_CONNECTION_TEST</code> procedure.
+                        You can also add, modify, or delete connection tests using the
+                            <code class="codeph">DBMS_APP_CONT_ADMIN</code> package.
+                              </li>
+                           </ul>
+                           
+                        </div>
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-A358087D-8CF0-4EC4-A5D3-FE152BB8FF86" name="GUID-A358087D-8CF0-4EC4-A5D3-FE152BB8FF86"></a><h3 id="HAOVW-GUID-A358087D-8CF0-4EC4-A5D3-FE152BB8FF86" class="sect3">Server-Side Operations for Planned
+        Maintenance</h3>
+               <div>
+                  <p>Server-side operations are required to manage connections for planned
+        maintenance.</p>
+                  <div class="section">
+                     
+                     <p>The server side operations for planned maintenance are implicitly executed If you are
+                using Oracle cloud software automation, or are in a cloud maintenance window that
+                requires restarting the database instance.</p>
+                     
+                     <p>Note that services connected to the Oracle Database are configured with connection
+                tests and a drain timeout specifying how long to allow for draining, and the
+                    <code class="codeph">stopoption</code> (typically <code class="codeph">IMMEDIATE</code>), that applies
+                after the drain timeout expires. The <code class="codeph">stop</code>,
+                    <code class="codeph">relocate</code>, and <code class="codeph">switchover</code> commands managed by
+                SRVCTL include a <code class="codeph">drain_timeout</code> and <code class="codeph">stopoption</code>
+                switch to override values set on the service if needed.
+                     </p>
+                     
+                     <p>Oracle recommends configuring services with the required drain timeout applicable to
+                that service, so they are used automatically during maintenance operations.</p>
+                     
+                     <p>Maintenance commands are similar to the commands described in the
+                examples in <a href="Chunk168718044.html#GUID-ED22DD6B-DAA7-49F0-AC8E-F357E6EA4C02">Server-Side Planned Maintenance Command Examples</a>. You can use these commands to start draining. Include additional options, if
+                needed, as described in My Oracle Support (MOS) Note: Doc ID 1593712.1. Oracle tools, such as
+                Fleet Patching and Provisioning (FPP) use these commands as well.
+                     </p>
+                     
+                     <p>Oracle Clusterware can start instances that are not currently running, but can run a
+                service that requires that instance. Services that cannot be relocated or do not
+                need relocation, are stopped. If a singleton service is defined with no other
+                available instances, then it may incur complete downtime, which is expected
+                behavior. It is better to have preferred instances and at least one available
+                instance always defined.</p>
+                     
+                     <p>After the maintenance is complete and the instance is restarted, no additional SRVCTL
+                action is required because the Oracle Clusterware service attribute automatically
+                determines where services will end up.</p>
+                     
+                  </div>
+                  <div class="section">
+                     
+                     <p><span class="bold">See also:</span></p>
+                     
+                     <p><a href="../racad/ensuring-application-continuity.html#RACAD-GUID-2DD974C8-94C2-446B-B2BD-81B8135A26C3" target="_blank">Server Draining Ahead of Planned Maintenance</a> in
+                    <cite>Oracle Real Application Clusters Administration and Deployment
+                    Guide</cite></p>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

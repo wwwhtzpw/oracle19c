@@ -1,0 +1,157 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Overview of NTFS File System and Windows Registry Permissions">
+      <meta name="abstract" content="Oracle recommends that you configure Oracle Database files, directories, and registry settings to provide full control to authorized database administrators (DBAs).">
+      <meta name="description" content="Oracle recommends that you configure Oracle Database files, directories, and registry settings to provide full control to authorized database administrators (DBAs).">
+      <meta name="DC.subject" content="postinstallation, setting NTFS file system permissions, NTFS file system permission setting">
+      <meta name="keywords" content="postinstallation, setting NTFS file system permissions, NTFS file system permission setting">
+      <meta name="DC.Relation" scheme="URI" content="postinstallation-configuration-tasks-on-windows.html#GUID-ECCA1626-A624-48E4-AB08-3D1F6419709E">
+      <meta name="DC.Relation" scheme="URI" content="about-setting-file-system-acls-manually.html#GUID-ABAD80E1-7B1F-4ED6-A5DF-8CE8A3E744EC">
+      <meta name="DC.Relation" scheme="URI" content="setting-permissions-for-windows-registry-entries.html#GUID-F9A3FF23-D629-4AA4-BE43-BF2F13EC87C8">
+      <meta name="DC.Relation" scheme="URI" content="setting-permissions-for-windows-service-entries.html#GUID-06834C2C-34D5-4D3F-8B53-6521517EC1F3">
+      <meta name="DC.Relation" scheme="URI" content="setting-ntfs-file-system-security.html#GUID-F6914DE1-A1A2-411A-91A9-B571EA276364">
+      <meta name="DC.Relation" scheme="URI" content="setting-windows-registry.html#GUID-7EE3E62A-4E15-42E1-BC2C-F3ECA0D21AD7">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Creator" content="Sunil Surabhi">
+      <meta name="DC.Creator" content="Alexander Keh">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Ricky Chen">
+      <meta name="DC.Creator" content="David Collelo">
+      <meta name="DC.Creator" content="David Friedman">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Mark Bauer">
+      <meta name="DC.Creator" content="Sue K. Lee">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Ravi Thammaiah">
+      <meta name="DC.Creator" content="Michael Verheij">
+      <meta name="DC.Creator" content="Tanaya Bhattacharjee">
+      <meta name="DC.Publisher" content="January2020">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-0F2244F7-51A0-4DD6-833C-BD84ED5CC28C">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Oracle recommends that you configure Oracle Database files, directories, and registry settings to provide full control to authorized database administrators (DBAs).">
+      <meta name="description" content="Oracle recommends that you configure Oracle Database files, directories, and registry settings to provide full control to authorized database administrators (DBAs).">
+      <title>Overview of NTFS File System and Windows Registry Permissions</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Administrator's Reference ">
+      <meta property="og:description" content="Oracle recommends that you configure Oracle Database files, directories, and registry settings to provide full control to authorized database administrators (DBAs).">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Administrator's Reference for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="administrators-reference-guide-microsoft-windows.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2020-01-09T06:34:26-08:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2020">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96296-03">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="about-windows-authenticated-users.html" title="Previous" type="text/html">
+      <link rel="next" href="about-setting-file-system-acls-manually.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Administrator's Reference Guide for Microsoft Windows">
+    <meta name="dcterms.isVersionOf" content="NTQRF">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="about-windows-authenticated-users.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="about-setting-file-system-acls-manually.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database Administrator's Reference </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="postinstallation-configuration-tasks-on-windows.html" property="item" typeof="WebPage"><span property="name">Postinstallation Configuration Tasks on Windows</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Overview of NTFS File System and Windows Registry Permissions</li>
+            </ol>
+            <a id="GUID-0F2244F7-51A0-4DD6-833C-BD84ED5CC28C" name="GUID-0F2244F7-51A0-4DD6-833C-BD84ED5CC28C"></a>
+            
+            <h2 id="NTQRF-GUID-0F2244F7-51A0-4DD6-833C-BD84ED5CC28C" class="sect2">Overview of NTFS File System and Windows Registry Permissions</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Oracle recommends that you configure Oracle Database files, directories, and registry settings to provide full control to authorized database administrators (DBAs).</p>
+               <div class="section">
+                  <p>If you have created a database using Oracle Database Configuration Assistant or upgraded a database using Oracle Database Upgrade Assistant, then no further action is required.</p>
+                  <p>Learn about the permissions automatically set by Oracle Universal Installer, Oracle Database Configuration Assistant, and Oracle Database Upgrade Assistant and the steps to set these permissions manually.</p>
+                  <p>In addition to the various groups listed in Oracle Database software installation creates the following groups for Oracle internal use and sets permissions on files and registry entries for these groups to ensure that the Oracle software functions properly. The group memberships and permissions set for the following groups must not be changed or removed:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><code class="codeph">ORA_INSTALL</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">ORA_GRID_LISTENERS</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">ORA_CLIENT_LISTENERS</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">ORA_</code><span class="italic"><code class="codeph">HOMENAME</code></span><code class="codeph">_SVCSIDS</code></p>
+                     </li>
+                  </ul>
+                  <div class="infoboxnotealso" id="GUID-0F2244F7-51A0-4DD6-833C-BD84ED5CC28C__GUID-EF69BEEB-E94C-4413-BF4E-3252AD4D4337">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>Your operating system documentation for more information about modifying NTFS file system and Windows registry settings</p>
+                        </li>
+                        <li>
+                           <p><a href="../ntdbi/operating-system-groups-created-during-oracle-database-installation.html#NTDBI260" target="_blank"><span class="italic">Oracle Database Installation Guide for Microsoft Windows</span></a></p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <!-- class="section" -->
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="about-setting-file-system-acls-manually.html#GUID-ABAD80E1-7B1F-4ED6-A5DF-8CE8A3E744EC">Setting File Permissions</a><br>Oracle Universal Installer, Oracle Database Configuration Assistant, and Oracle Database Upgrade Assistant set file permissions when you install or upgrade Oracle Database software.
+                  </li>
+                  <li class="ulchildlink"><a href="setting-permissions-for-windows-registry-entries.html#GUID-F9A3FF23-D629-4AA4-BE43-BF2F13EC87C8">Setting Permissions for Windows Registry Entries</a><br>Oracle Universal Installer sets the permissions for Windows registry entries pertaining to Oracle Database software.
+                  </li>
+                  <li class="ulchildlink"><a href="setting-permissions-for-windows-service-entries.html#GUID-06834C2C-34D5-4D3F-8B53-6521517EC1F3">Setting Permissions for Windows Service Entries</a><br>Oracle Universal Installer sets the following permissions to users and user groups for Windows service entries for Oracle Database services.
+                  </li>
+                  <li class="ulchildlink"><a href="setting-ntfs-file-system-security.html#GUID-F6914DE1-A1A2-411A-91A9-B571EA276364">Setting NTFS File System Security</a><br>Use this procedure to set the NTFS file system security.
+                  </li>
+                  <li class="ulchildlink"><a href="setting-windows-registry.html#GUID-7EE3E62A-4E15-42E1-BC2C-F3ECA0D21AD7">Setting Windows Registry Security</a><br>Oracle recommends that you remove write permissions from users who are <span class="italic">not</span> Oracle Database DBAs or system administrators in the <code class="codeph">HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE</code> directory of the Windows registry. 
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="postinstallation-configuration-tasks-on-windows.html#GUID-ECCA1626-A624-48E4-AB08-3D1F6419709E" title="Learn about the configuration tasks that you can perform to increase security, and other configuration tasks before using Oracle Multimedia and other Oracle options.">Postinstallation Configuration Tasks on Windows</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

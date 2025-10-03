@@ -1,0 +1,953 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="DBNEWID Utility">
+      <meta name="abstract" content="DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.">
+      <meta name="description" content="DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.">
+      <meta name="DC.subject" content="DBNEWID utility, effect on global database names, database identifier, changing, changing a database ID, database ID (DBID), DBID (database identifier), databases, changing the database ID, changing the name, database name (DBNAME), changing a database name, DBNAME, troubleshooting a database ID change, syntax, restrictions">
+      <meta name="keywords" content="DBNEWID utility, effect on global database names, database identifier, changing, changing a database ID, database ID (DBID), DBID (database identifier), databases, changing the database ID, changing the name, database name (DBNAME), changing a database name, DBNAME, troubleshooting a database ID change, syntax, restrictions">
+      <meta name="DC.Relation" scheme="URI" content="other-oracle-utilities.html#GUID-FCEA49BD-D3AF-4337-88F1-3A23545F35A6">
+      <meta name="DC.Relation" scheme="URI" content="oracle-dbnewid-utility.html#GUID-24AAE1B4-34DA-4746-ADCB-D068FD7DFD8D">
+      <meta name="DC.Relation" scheme="URI" content="oracle-dbnewid-utility.html#GUID-6FBEA644-277A-460C-A9D5-772C1C35398C">
+      <meta name="DC.Relation" scheme="URI" content="oracle-dbnewid-utility.html#GUID-118038E5-F18E-4557-9A3B-A980503E5EDC">
+      <meta name="DC.Relation" scheme="URI" content="oracle-dbnewid-utility.html#GUID-73D5DDC3-F576-4869-A68F-5091DB961B48">
+      <meta name="DC.Relation" scheme="URI" content="oracle-dbnewid-utility.html#GUID-FA1E0D47-4907-47F5-877C-2DB109B74430">
+      <meta name="DC.Relation" scheme="URI" content="oracle-dbnewid-utility.html#GUID-D7EC3796-8805-459B-86FD-4A4481FFB405">
+      <meta name="DC.Creator" content="William Beauregard">
+      <meta name="DC.Creator" content="Steve DiPirro">
+      <meta name="DC.Creator" content="John Kalogeropoulos">
+      <meta name="DC.Creator" content="Dan Mullen">
+      <meta name="DC.Creator" content="Rod Payne">
+      <meta name="DC.Creator" content="Rich Phillips">
+      <meta name="DC.Creator" content="Mike Sakayeda">
+      <meta name="DC.Creator" content="Jim Stenoish">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Douglas Williams">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-D138A757-6A2A-41A2-B722-A98708C5F5AD">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.">
+      <meta name="description" content="DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.">
+      <title>DBNEWID Utility</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Utilities ">
+      <meta property="og:description" content="DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Utilities">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-database-utilities-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-16T12:44:53-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96081-31">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="oracle-dbverify-utility.html" title="Previous" type="text/html">
+      <link rel="next" href="oracle-logminer-utility.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Database Utilities Guide">
+    <meta name="dcterms.isVersionOf" content="SUTIL">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"DBNEWID Utility","description":"DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.","datePublished":"2025-06-16 CST","dateModified":"2025-06-16 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="oracle-dbverify-utility.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="oracle-logminer-utility.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-D138A757-6A2A-41A2-B722-A98708C5F5AD" name="GUID-D138A757-6A2A-41A2-B722-A98708C5F5AD"></a><a id="SUTIL014"></a>
+         
+         <h2 id="SUTIL-GUID-D138A757-6A2A-41A2-B722-A98708C5F5AD" class="sect2"><span class="enumeration_chapter">22 </span> DBNEWID Utility
+         </h2>
+         <div class="ind">
+            <div>
+               <p>DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.</p>
+               <p>See the following topics:</p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-24AAE1B4-34DA-4746-ADCB-D068FD7DFD8D">What Is the DBNEWID Utility?</a><br>The <code class="codeph">DBNEWID</code> utility enables you to change only the             <code class="codeph">DBID</code>, <code class="codeph">DBNAME</code>, or both the <code class="codeph">DBID</code> and             <code class="codeph">DBNAME</code> of a database.
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-6FBEA644-277A-460C-A9D5-772C1C35398C">Ramifications of Changing the DBID and DBNAME</a><br>Before you change the <code class="codeph">DBID</code> and <code class="codeph">DBNAME</code> of a         database with the DBNEWID utility, review these guidelines.
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-118038E5-F18E-4557-9A3B-A980503E5EDC">Considerations for Global Database Names</a><br>If you are dealing with a database in a distributed database system, then each database should have a unique global database name. 
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-73D5DDC3-F576-4869-A68F-5091DB961B48">Changing Both CDB and PDB DBIDs Using DBNEWID</a><br>The DBNEWID parameter <code class="codeph">PDB</code> enables you to change the             <code class="codeph">DBID</code> on pluggable databases (PDBs).
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-FA1E0D47-4907-47F5-877C-2DB109B74430">Changing the DBID and DBNAME of a Database</a><br>To change either <code class="codeph">DBID</code> or <code class="codeph">DBNAME</code>, or both         the <code class="codeph">DBID</code> and <code class="codeph">DBNAME</code> of your database, select the DBNEWID         procedure that you need. 
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-D7EC3796-8805-459B-86FD-4A4481FFB405">DBNEWID Syntax</a><br>Describes DBNEWID syntax.
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="other-oracle-utilities.html#GUID-FCEA49BD-D3AF-4337-88F1-3A23545F35A6">Other Utilities</a></p>
+                  </div>
+               </div>
+            </div>
+            <a id="SUTIL1540"></a><div class="props_rev_3"><a id="GUID-24AAE1B4-34DA-4746-ADCB-D068FD7DFD8D" name="GUID-24AAE1B4-34DA-4746-ADCB-D068FD7DFD8D"></a><h3 id="SUTIL-GUID-24AAE1B4-34DA-4746-ADCB-D068FD7DFD8D" class="sect3"><span class="enumeration_section">22.1 </span>What Is the DBNEWID Utility?
+               </h3>
+               <div>
+                  <p>The <code class="codeph">DBNEWID</code> utility enables you to change only the
+            <code class="codeph">DBID</code>, <code class="codeph">DBNAME</code>, or both the <code class="codeph">DBID</code> and
+            <code class="codeph">DBNAME</code> of a database.
+                  </p>
+                  <p>Before the introduction of the DBNEWID utility, you could manually create a
+            copy of a database and give it a new database name (<code class="codeph">DBNAME</code>) by
+            recreating the control file. However, you could not give the database a new identifier
+                (<code class="codeph">DBID</code>). The <code class="codeph">DBID</code> is an internal, unique identifier
+            for a database. Because Recovery Manager (RMAN) distinguishes databases by
+                <code class="codeph">DBID</code>, you could not register a seed database and a manually copied
+            database together in the same RMAN repository. The DBNEWID utility solves this problem
+            by enabling you to change any of the following:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>Only the <code class="codeph">DBID</code> of a database
+                     </li>
+                     <li>Only the <code class="codeph">DBNAME</code> of a database
+                     </li>
+                     <li>Both the <code class="codeph">DBNAME</code> and <code class="codeph">DBID</code> of a
+                database
+                     </li>
+                  </ul>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-D138A757-6A2A-41A2-B722-A98708C5F5AD" title="DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.">DBNEWID Utility</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div><a id="SUTIL1541"></a><div class="props_rev_3"><a id="GUID-6FBEA644-277A-460C-A9D5-772C1C35398C" name="GUID-6FBEA644-277A-460C-A9D5-772C1C35398C"></a><h3 id="SUTIL-GUID-6FBEA644-277A-460C-A9D5-772C1C35398C" class="sect3"><span class="enumeration_section">22.2 </span>Ramifications of Changing the DBID and DBNAME
+               </h3>
+               <div>
+                  <p>Before you change the <code class="codeph">DBID</code> and <code class="codeph">DBNAME</code> of a
+        database with the DBNEWID utility, review these guidelines.
+                  </p>
+                  <p>When you change the <code class="codeph">DBID</code>, you should make a backup of the whole database
+            immediately.
+                  </p>
+                  <p>Changing the <code class="codeph">DBID</code> of a database is a serious procedure. When the
+                <code class="codeph">DBID</code> of a database is changed, all previous backups and archived
+            logs of the database become unusable. Changing the <code class="codeph">DBID</code> is similar to
+            creating a database, except that the data is already in the data files. After you change
+            the <code class="codeph">DBID</code>, backups and archive logs that were created before the
+                <code class="codeph">DBID</code> change can no longer be used, because they still have the
+            original <code class="codeph">DBID</code>, which does not match the current <code class="codeph">DBID</code>.
+            You must open the database with the <code class="codeph">RESETLOGS</code> option, which recreates
+            the online redo logs, and resets the redo log sequence to 1. Consequently, 
+                  </p>
+                  <p>When you change <code class="codeph">DBNAME</code> and do not change <code class="codeph">DBID</code>, you must
+            change the <code class="codeph">DBNAME</code> initialization parameter, and follow additional
+            guidelines. 
+                  </p>
+                  <p>Changing the <code class="codeph">DBNAME</code> without changing the <code class="codeph">DBID</code> does
+            not require you to open with the <code class="codeph">RESETLOGS</code> option, so database backups
+            and archived logs are not invalidated. However, changing the <code class="codeph">DBNAME</code>
+            does have consequences. You must change the <code class="codeph">DB_NAME</code> initialization
+            parameter after a database name change to reflect the new name. Also, you may have to
+            recreate the Oracle password file. If you restore an old backup of the control file
+            (before the name change), then you should use the initialization parameter file and
+            password file from before the database name change.
+                  </p>
+                  <div class="infobox-caution" id="GUID-6FBEA644-277A-460C-A9D5-772C1C35398C__GUID-B84DDA8C-6FBB-448B-A1CE-117173D0A9D6">
+                     <p class="notep1">Caution:</p>
+                     
+                     <p>If you are using a capture process to capture changes to the database,
+                then do not change the <code class="codeph">DBID</code> or <code class="codeph">DBNAME</code> of a
+                database . 
+                     </p>
+                     
+                  </div>
+                  <p>For Oracle RAC environments only, you must first detach the database from
+            the cluster before you can run the DBNEWID utility. Use SQL*Plus to enter the following
+            commands to set the initialization parameter value for <code class="codeph">CLUSTER_DATABASE</code>
+            to <code class="codeph">FALSE</code></p>
+                  <ol id="GUID-6FBEA644-277A-460C-A9D5-772C1C35398C__OL_SZX_5V3_MYB">
+                     <li>
+                        <pre class="pre codeblock"><code>ALTER SYSTEM SET CLUSTER_DATABASE=FALSE SCOPE=SPFILE;</code></pre>
+                        <p>Restart the database after changing the <code class="codeph">CLUSTER_DATABASE</code> parameter. 
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Shut down the database.</p>
+                        <pre class="pre codeblock"><code>SHUTDOWN IMMEDIATE
+</code></pre>
+                        </li>
+                  </ol>
+                  <p>You can then run <code class="codeph">STARTUP MOUNT EXCLUSIVE</code>, and change the
+            global database name. If you attempt to use the DBNEWID utility while
+                <code class="codeph">CLUSTER_DATABASE=TRUE</code>, then the command fails with
+                <code class="codeph">NID-00120: Database should be mounted exclusively</code>.
+                  </p>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="https://support.oracle.com/rs?type=doc&amp;id=863800.1" target="_blank">How to Change the DBID, DBNAME Using NID Utility (Doc ID
+                863800.1)</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-D138A757-6A2A-41A2-B722-A98708C5F5AD" title="DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.">DBNEWID Utility</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="SUTIL1542"></a><div class="props_rev_3"><a id="GUID-118038E5-F18E-4557-9A3B-A980503E5EDC" name="GUID-118038E5-F18E-4557-9A3B-A980503E5EDC"></a><h3 id="SUTIL-GUID-118038E5-F18E-4557-9A3B-A980503E5EDC" class="sect3"><span class="enumeration_section">22.3 </span>Considerations for Global Database Names
+               </h3>
+               <div>
+                  <p>If you are dealing with a database in a distributed database system, then each database should have a unique global database name. </p>
+                  <p>The DBNEWID utility does not change global database names. </p>
+                  <p>You can only change a global database name with the SQL
+                                <code class="codeph">ALTER DATABASE</code> statement, for which the syntax is
+                        as follows:
+                  </p><pre class="oac_no_warn" dir="ltr">ALTER DATABASE RENAME GLOBAL_NAME TO <span class="variable" translate="no">newname</span>.<span class="variable" translate="no">domain</span>;
+</pre><p>The global database name is made up of a database name and a domain,
+                        which are determined by the <code class="codeph">DB_NAME</code> and
+                                <code class="codeph">DB_DOMAIN</code> initialization parameters when the
+                        database is first created.
+                  </p>
+                  <p>For example, suppose you use DBNEWID to change a database name to
+                                <code class="codeph">sales</code>. To ensure that you also change the global
+                        database name to <code class="codeph">sales</code> in the domain
+                                <code class="codeph">example.com</code>, you should use <code class="codeph">ALTER DATABASE
+                                RENAME</code> as follows:
+                  </p><pre class="pre codeblock"><code>ALTER DATABASE RENAME GLOBAL_NAME TO sales.example.com
+</code></pre></div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="../admin/managing-a-distributed-database.html#ADMIN-GUID-E22E28D3-4A8D-4468-BC2B-15FCAF236E89" target="_blank">Changing a Global Database Name: Scenario in <span><cite>Oracle Database Administrator’s Guide</cite></span></a></li>
+                     </ul>
+                  </div>
+                  <div class="infoboxnotealso" id="GUID-118038E5-F18E-4557-9A3B-A980503E5EDC__GUID-9959CB46-D3AE-43BD-8376-CD08F52BFF6F">
+                     <p class="notep1">See Also:</p>
+                     
+                     <p>
+                        <span><cite>Oracle Database Administrator’s Guide</cite></span> for more
+                                information about global database names, and My Oracle Support
+                                        <span class="q">"How to Change the DBID, DBNAME Using NID Utility (Doc ID
+                                        863800.1)"</span></p>
+                     
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-D138A757-6A2A-41A2-B722-A98708C5F5AD" title="DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.">DBNEWID Utility</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-73D5DDC3-F576-4869-A68F-5091DB961B48" name="GUID-73D5DDC3-F576-4869-A68F-5091DB961B48"></a><h3 id="SUTIL-GUID-73D5DDC3-F576-4869-A68F-5091DB961B48" class="sect3"><span class="enumeration_section">22.4 </span>Changing Both CDB and PDB DBIDs
+        Using DBNEWID
+               </h3>
+               <div>
+                  <p>The DBNEWID parameter <code class="codeph">PDB</code> enables you to change the
+            <code class="codeph">DBID</code> on pluggable databases (PDBs).
+                  </p>
+                  <p>By default, when you run the DBNEWID utility on a container database (CDB), the
+            utility only changes the <code class="codeph">DBID</code> of the CDB. The <code class="codeph">DBID</code>
+            values for each of the pluggable databases (PDBs) plugged into the CDB remain the same.
+            In some cases, you can find that this default behavior causes problems with duplicate
+            DBID values for PDBs. For example, you can encounter this issue when a CDB is
+            cloned.
+                  </p>
+                  <p>With Oracle Database 12c Release 2 (12.2) and later releases, you can use the
+            DBNEWID utility PDB parameter in multitenant databases to change the DBID values for
+            PDBs. You cannot specify a particular PDB; either all of them or none of them are
+            assigned new <code class="codeph">DBID</code> values.
+            The
+                <code class="codeph">PDB</code> parameter has the following format:
+                  </p><pre class="oac_no_warn" dir="ltr">PDB=[ALL | NONE]</pre><ul style="list-style-type: disc;">
+                     <li>
+                        <p>If you specify <code class="codeph">ALL</code>, then in addition to the <code class="codeph">DBID</code>
+                    for the CDB changing, the <code class="codeph">DBID</code> values for all PDBs plugged into
+                    the CDB are also changed. 
+                        </p>
+                     </li>
+                     <li>
+                        <p>Specifying <code class="codeph">NONE</code> (the default) leaves the PDB <code class="codeph">DBID</code>s
+                    the same, even if the CDB <code class="codeph">DBID</code> is changed.
+                        </p>
+                     </li>
+                  </ul>
+                  <p>Oracle recommends that you use <code class="codeph">PDB=ALL</code>. For backward compatibility,
+            the default is <code class="codeph">PDB=NONE</code>.
+                  </p>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-D138A757-6A2A-41A2-B722-A98708C5F5AD" title="DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.">DBNEWID Utility</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div><a id="SUTIL1543"></a><div class="props_rev_3"><a id="GUID-FA1E0D47-4907-47F5-877C-2DB109B74430" name="GUID-FA1E0D47-4907-47F5-877C-2DB109B74430"></a><h3 id="SUTIL-GUID-FA1E0D47-4907-47F5-877C-2DB109B74430" class="sect3"><span class="enumeration_section">22.5 </span>Changing the DBID and DBNAME of a Database
+               </h3>
+               <div>
+                  <p>To change either <code class="codeph">DBID</code> or <code class="codeph">DBNAME</code>, or both
+        the <code class="codeph">DBID</code> and <code class="codeph">DBNAME</code> of your database, select the DBNEWID
+        procedure that you need. 
+                  </p>
+               </div>
+               <div>
+                  <ul class="ullinks">
+                     <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-05B4733C-9EAA-438F-A2A4-4E84EB1E1E65">Changing the DBID and Database Name</a><br>To change the <code class="codeph">DBID</code> of a database, or both the             <code class="codeph">DBID</code> and <code class="codeph">DBNAME</code> of a database with DBNEWID, use this         procedure.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-07A37F43-C6BC-4245-BA49-5660E4281277">Changing Only the Database ID</a><br>To change the database ID (<code class="codeph">DBID</code>) without changing the         database name, use this DBNEWID procedure.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-6CC9CA73-8C0C-4750-8D0E-ADFDB047E4AE">Changing Only the Database Name</a><br>To change the database name (<code class="codeph">DBNAME</code>) without changing the             <code class="codeph">DBID</code>, use this DBNEWID procedure.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-97E160FC-7882-4840-A7ED-7E40FE7AA9AC">Troubleshooting DBNEWID</a><br>If you encounter an error when using DBNEWID to change a database ID, then         refer to these troubleshooting hints. 
+                     </li>
+                  </ul>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-D138A757-6A2A-41A2-B722-A98708C5F5AD" title="DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.">DBNEWID Utility</a></p>
+                     </div>
+                  </div>
+               </div>
+               <a id="SUTIL1544"></a><div class="props_rev_3"><a id="GUID-05B4733C-9EAA-438F-A2A4-4E84EB1E1E65" name="GUID-05B4733C-9EAA-438F-A2A4-4E84EB1E1E65"></a><h4 id="SUTIL-GUID-05B4733C-9EAA-438F-A2A4-4E84EB1E1E65" class="sect4"><span class="enumeration_section">22.5.1 </span>Changing the DBID and Database Name
+                  </h4>
+                  <div>
+                     <p>To change the <code class="codeph">DBID</code> of a database, or both the
+            <code class="codeph">DBID</code> and <code class="codeph">DBNAME</code> of a database with DBNEWID, use this
+        procedure.
+                     </p>
+                     <div class="section">The following steps describe how to change the <code class="codeph">DBID</code> of a
+            database. You also have the option to change the database name as well. Suppose you want
+            to change the ID and name for the database <code class="codeph">PROD</code> to
+                <code class="codeph">TEST_DB</code>. 
+                     </div>
+                     <ol>
+                        <li class="stepexpand"><span>Ensure that you have a recoverable whole database backup of the target
+                    database.</span></li>
+                        <li class="stepexpand"><span>Ensure that the target database is mounted but not open, and that it was shut
+                    down consistently before mounting:</span><div>
+                              <pre class="oac_no_warn" dir="ltr">SHUTDOWN IMMEDIATE
+STARTUP MOUNT
+</pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Start the DBNEWID utility on the command line, specifying a valid user
+                        (<code class="codeph">TARGET</code>) that has the <code class="codeph">SYSDBA</code> privilege
+                    (you will be prompted for a password). For example: </span><div>
+                              <pre class="oac_no_warn" dir="ltr">% nid TARGET=SYS
+</pre>
+                              <p>To change the database name in addition to the DBID, also specify
+                        the <code class="codeph">DBNAME</code> parameter on the command line (you will be
+                        prompted for a password). The following example changes the database ID,
+                        andf also changes the database name from <code class="codeph">PROD</code> to
+                            <code class="codeph">TEST_DB</code>:
+                              </p>
+                              
+                              <pre class="oac_no_warn" dir="ltr">% nid TARGET=SYS DBNAME=test_db
+.
+.
+.
+Change database ID and database name PROD to TEST_DB? (Y/[N]) =&gt; Y</pre>
+                              <p>The DBNEWID utility performs validations in the headers of the
+                        data files and control files before attempting to modify the files. If
+                        validation is successful, then DBNEWID prompts you to confirm the operation
+                        (unless you specify a log file, in which case it does not prompt), changes
+                        the <code class="codeph">DBID</code> (and the <code class="codeph">DBNAME</code>, if specified, as
+                        in this example) for each data file, including offline normal and read-only
+                        data files, shuts down the database, and then exits. The following is an
+                        example of what the output for this would look like:
+                              </p>
+                              <pre class="nocopybutton" dir="ltr">.
+.
+.
+Connected to database PROD (DBID=86997811)
+.
+.
+.
+Control Files in database:
+    /oracle/TEST_DB/data/cf1.dbf
+    /oracle/TEST_DB/data/cf2.dbf
+
+The following datafiles are offline clean:
+    /oracle/TEST_DB/data/tbs_61.dbf (23)
+    /oracle/TEST_DB/data/tbs_62.dbf (24)
+    /oracle/TEST_DB/data/temp3.dbf (3)
+These files must be writable by this utility.
+
+The following datafiles are read-only:
+    /oracle/TEST_DB/data/tbs_51.dbf (15)
+    /oracle/TEST_DB/data/tbs_52.dbf (16)
+    /oracle/TEST_DB/data/tbs_53.dbf (22)
+These files must be writable by this utility.
+
+Changing database ID from 86997811 to 1250654267
+Changing database name from PROD to TEST_DB
+    Control File /oracle/TEST_DB/data/cf1.dbf - modified
+    Control File /oracle/TEST_DB/data/cf2.dbf - modified
+    Datafile /oracle/TEST_DB/data/tbs_01.dbf - dbid changed, wrote new name
+    Datafile /oracle/TEST_DB/data/tbs_ax1.dbf - dbid changed, wrote new name
+    Datafile /oracle/TEST_DB/data/tbs_02.dbf - dbid changed, wrote new name
+    Datafile /oracle/TEST_DB/data/tbs_11.dbf - dbid changed, wrote new name
+    Datafile /oracle/TEST_DB/data/tbs_12.dbf - dbid changed, wrote new name
+    Datafile /oracle/TEST_DB/data/temp1.dbf - dbid changed, wrote new name
+    Control File /oracle/TEST_DB/data/cf1.dbf - dbid changed, wrote new name
+    Control File /oracle/TEST_DB/data/cf2.dbf - dbid changed, wrote new name
+    Instance shut down
+
+Database name changed to TEST_DB.
+Modify parameter file and generate a new password file before restarting.
+Database ID for database TEST_DB changed to 1250654267.
+All previous backups and archived redo logs for this database are unusable.
+Database has been shutdown, open database with RESETLOGS option.
+Successfully changed database name and ID.
+DBNEWID - Completed successfully.
+</pre>
+                              <p>If validation is not successful, then DBNEWID terminates, and
+                        leaves the target database intact, as shown in the following example output.
+                        You can open the database, fix the error, and then either resume the DBNEWID
+                        operation, or continue using the database without changing its
+                            <code class="codeph">DBID</code>. 
+                              </p>
+                              <pre class="nocopybutton" dir="ltr">.
+.
+.
+Connected to database PROD (DBID=86997811)
+.
+.
+.  
+Control Files in database:
+    /oracle/TEST_DB/data/cf1.dbf
+    /oracle/TEST_DB/data/cf2.dbf
+ 
+The following datafiles are offline clean:
+    /oracle/TEST_DB/data/tbs_61.dbf (23)
+    /oracle/TEST_DB/data/tbs_62.dbf (24)
+    /oracle/TEST_DB/data/temp3.dbf (3)
+These files must be writable by this utility.
+ 
+The following datafiles are read-only:
+    /oracle/TEST_DB/data/tbs_51.dbf (15)
+    /oracle/TEST_DB/data/tbs_52.dbf (16)
+    /oracle/TEST_DB/data/tbs_53.dbf (22)
+These files must be writable by this utility.
+ 
+The following datafiles are offline immediate:
+    /oracle/TEST_DB/data/tbs_71.dbf (25)
+    /oracle/TEST_DB/data/tbs_72.dbf (26)
+ 
+NID-00122: Database should have no offline immediate datafiles
+  
+Change of database name failed during validation - database is intact.
+DBNEWID - Completed with validation errors.
+</pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Mount the database. For example:</span><div>
+                              <pre class="oac_no_warn" dir="ltr">STARTUP MOUNT
+</pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Open the database in <code class="codeph">RESETLOGS</code> mode, and resume normal use.
+                    For example:</span><div>
+                              <pre class="oac_no_warn" dir="ltr">ALTER DATABASE OPEN RESETLOGS;
+</pre>
+                              </div>
+                        </li>
+                     </ol>
+                     <div class="section">After you reset the logs, create a new database backup. Because you
+            reset the online redo logs, the old backups and archived logs are no longer usable in
+            the current incarnation of the database. New control files also must be created. </div>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="../admin/managing-control-files.html#GUID-553F209C-EE30-4637-8344-BB26FE3AA088" target="_blank">When to Create New Control Files in <span><cite>Oracle Database Concepts</cite></span></a></li>
+                        </ul>
+                     </div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-FA1E0D47-4907-47F5-877C-2DB109B74430" title="To change either DBID or DBNAME, or both the DBID and DBNAME of your database, select the DBNEWID procedure that you need.">Changing the DBID and DBNAME of a Database</a></p>
+                        </div>
+                     </div>
+                  </div>
+               </div><a id="SUTIL1545"></a><div class="props_rev_3"><a id="GUID-07A37F43-C6BC-4245-BA49-5660E4281277" name="GUID-07A37F43-C6BC-4245-BA49-5660E4281277"></a><h4 id="SUTIL-GUID-07A37F43-C6BC-4245-BA49-5660E4281277" class="sect4"><span class="enumeration_section">22.5.2 </span>Changing Only the Database ID
+                  </h4>
+                  <div>
+                     <p>To change the database ID (<code class="codeph">DBID</code>) without changing the
+        database name, use this DBNEWID procedure.
+                     </p>
+                     <div class="section">
+                        
+                        <p>Follow the steps in <a href="oracle-dbnewid-utility.html#GUID-05B4733C-9EAA-438F-A2A4-4E84EB1E1E65" title="To change the DBID of a database, or both the DBID and DBNAME of a database with DBNEWID, use this procedure.">Changing the DBID
+                    and Database Name</a>, but in Step 3 do not specify the optional database
+                name (<code class="codeph">DBNAME</code>). The following is an example of the type of output
+                that is generated when only the database ID is changed.
+                        </p>
+                        
+                     </div>
+                     <div class="example" id="GUID-07A37F43-C6BC-4245-BA49-5660E4281277__GUID-A5B53931-A58E-4EC5-AE24-53704D9C5ABC">
+                        <pre class="nocopybutton" dir="ltr">.
+.
+.
+Connected to database PROD (DBID=86997811)
+.
+.
+.  
+Control Files in database:
+    /oracle/TEST_DB/data/cf1.dbf
+    /oracle/TEST_DB/data/cf2.dbf
+ 
+The following datafiles are offline clean:
+    /oracle/TEST_DB/data/tbs_61.dbf (23)
+    /oracle/TEST_DB/data/tbs_62.dbf (24)
+    /oracle/TEST_DB/data/temp3.dbf (3)
+These files must be writable by this utility.
+ 
+The following datafiles are read-only:
+    /oracle/TEST_DB/data/tbs_51.dbf (15)
+    /oracle/TEST_DB/data/tbs_52.dbf (16)
+    /oracle/TEST_DB/data/tbs_53.dbf (22)
+These files must be writable by this utility.
+ 
+Changing database ID from 86997811 to 4004383693
+    Control File /oracle/TEST_DB/data/cf1.dbf - modified
+    Control File /oracle/TEST_DB/data/cf2.dbf - modified
+    Datafile /oracle/TEST_DB/data/tbs_01.dbf - dbid changed
+    Datafile /oracle/TEST_DB/data/tbs_ax1.dbf - dbid changed
+    Datafile /oracle/TEST_DB/data/tbs_02.dbf - dbid changed
+    Datafile /oracle/TEST_DB/data/tbs_11.dbf - dbid changed
+    Datafile /oracle/TEST_DB/data/tbs_12.dbf - dbid changed
+    Datafile /oracle/TEST_DB/data/temp1.dbf - dbid changed
+    Control File /oracle/TEST_DB/data/cf1.dbf - dbid changed
+    Control File /oracle/TEST_DB/data/cf2.dbf - dbid changed
+    Instance shut down
+ 
+Database ID for database TEST_DB changed to 4004383693.
+All previous backups and archived redo logs for this database are unusable.
+Database has been shutdown, open database with RESETLOGS option.
+Succesfully changed database ID.
+DBNEWID - Completed succesfully.</pre>
+                        </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-FA1E0D47-4907-47F5-877C-2DB109B74430" title="To change either DBID or DBNAME, or both the DBID and DBNAME of your database, select the DBNEWID procedure that you need.">Changing the DBID and DBNAME of a Database</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL1546"></a><div class="props_rev_3"><a id="GUID-6CC9CA73-8C0C-4750-8D0E-ADFDB047E4AE" name="GUID-6CC9CA73-8C0C-4750-8D0E-ADFDB047E4AE"></a><h4 id="SUTIL-GUID-6CC9CA73-8C0C-4750-8D0E-ADFDB047E4AE" class="sect4"><span class="enumeration_section">22.5.3 </span>Changing Only the Database Name
+                  </h4>
+                  <div>
+                     <p>To change the database name (<code class="codeph">DBNAME</code>) without changing the
+            <code class="codeph">DBID</code>, use this DBNEWID procedure.
+                     </p>
+                     <div class="section">
+                        
+                        <p>Complete the following steps:</p>
+                        
+                     </div>
+                     <ol>
+                        <li class="stepexpand"><span>Ensure that you have a recoverable whole database backup. </span></li>
+                        <li class="stepexpand"><span>Ensure that the target database is mounted but not open, and that it was shut down consistently before mounting. For example:</span><div>
+                              <pre class="oac_no_warn" dir="ltr">SHUTDOWN IMMEDIATE
+STARTUP MOUNT
+</pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Start the utility on the command line, specifying a valid user with the <code class="codeph">SYSDBA</code> privilege (you will be prompted for a password). You must specify both the <code class="codeph">DBNAME</code> and <code class="codeph">SETNAME</code> parameters. This example changes the name to <code class="codeph">test_db</code>:</span><div>
+                              <pre class="oac_no_warn" dir="ltr">% nid TARGET=SYS DBNAME=test_db SETNAME=YES
+</pre>
+                              <p>DBNEWID performs validations in the headers of the control files
+                        (not the data files) before attempting I/O to the files. If validation is
+                        successful, then DBNEWID prompts for confirmation, changes the database name
+                        in the control files, shuts down the database and exits. The following is an
+                        example of what the output for this would look like:</p>
+                              <pre class="oac_no_warn" dir="ltr">.
+.
+.
+Control Files in database:
+    /oracle/TEST_DB/data/cf1.dbf
+    /oracle/TEST_DB/data/cf2.dbf
+
+The following datafiles are offline clean:
+    /oracle/TEST_DB/data/tbs_61.dbf (23)
+    /oracle/TEST_DB/data/tbs_62.dbf (24)
+    /oracle/TEST_DB/data/temp3.dbf (3)
+These files must be writable by this utility.
+
+The following datafiles are read-only:
+    /oracle/TEST_DB/data/tbs_51.dbf (15)
+    /oracle/TEST_DB/data/tbs_52.dbf (16)
+    /oracle/TEST_DB/data/tbs_53.dbf (22)
+These files must be writable by this utility.
+
+Changing database name from PROD to TEST_DB
+    Control File /oracle/TEST_DB/data/cf1.dbf - modified
+    Control File /oracle/TEST_DB/data/cf2.dbf - modified
+    Datafile /oracle/TEST_DB/data/tbs_01.dbf - wrote new name
+    Datafile /oracle/TEST_DB/data/tbs_ax1.dbf - wrote new name
+    Datafile /oracle/TEST_DB/data/tbs_02.dbf - wrote new name
+    Datafile /oracle/TEST_DB/data/tbs_11.dbf - wrote new name
+    Datafile /oracle/TEST_DB/data/tbs_12.dbf - wrote new name
+    Datafile /oracle/TEST_DB/data/temp1.dbf - wrote new name
+    Control File /oracle/TEST_DB/data/cf1.dbf - wrote new name
+    Control File /oracle/TEST_DB/data/cf2.dbf - wrote new name
+    Instance shut down
+
+Database name changed to TEST_DB.
+Modify parameter file and generate a new password file before restarting.
+Successfully changed database name.
+DBNEWID - Completed successfully.
+</pre>
+                              </div>
+                           <div>
+                              
+                              <p>If validation is not successful, then DBNEWID terminates and
+                        leaves the target database intact. You can open the database, fix the error,
+                        and then either resume the DBNEWID operation or continue using the database
+                        without changing the database name. (For an example of what the output looks
+                        like for an unsuccessful validation, see Step 3 in <a href="oracle-dbnewid-utility.html#GUID-05B4733C-9EAA-438F-A2A4-4E84EB1E1E65" title="To change the DBID of a database, or both the DBID and DBNAME of a database with DBNEWID, use this procedure.">Changing the DBID and Database Name</a>.)
+                              </p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Set the <code class="codeph">DB_NAME</code> initialization parameter in the initialization parameter file (PFILE) to the new database name.</span><div>
+                              <div class="infoboxnote" id="GUID-6CC9CA73-8C0C-4750-8D0E-ADFDB047E4AE__GUID-D99A7F3E-9859-458F-B3EB-B54A2349E0F3">
+                                 <p class="notep1">Note:</p>
+                                 <p>The DBNEWID utility does not change the server parameter file (<code class="codeph">SPFILE</code>). Therefore, if you use <code class="codeph">SPFILE</code> to start your Oracle database, then you must re-create the initialization parameter file from the server parameter file, remove the server parameter file, change the <code class="codeph">DB_NAME</code> in the initialization parameter file, and then re-create the server parameter file.
+                                 </p>
+                              </div>
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Create a new password file.</span></li>
+                        <li class="stepexpand"><span>Start up the database and resume normal use. For example:</span><div>
+                              <pre class="oac_no_warn" dir="ltr">STARTUP
+</pre>
+                              <p>Because you have changed only the database name, and not the
+                        database ID, it is not necessary to use the <code class="codeph">RESETLOGS</code>
+                        option when you open the database. All previous backups are still
+                        usable.
+                              </p>
+                              
+                           </div>
+                        </li>
+                     </ol>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-FA1E0D47-4907-47F5-877C-2DB109B74430" title="To change either DBID or DBNAME, or both the DBID and DBNAME of your database, select the DBNEWID procedure that you need.">Changing the DBID and DBNAME of a Database</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL1547"></a><div class="props_rev_3"><a id="GUID-97E160FC-7882-4840-A7ED-7E40FE7AA9AC" name="GUID-97E160FC-7882-4840-A7ED-7E40FE7AA9AC"></a><h4 id="SUTIL-GUID-97E160FC-7882-4840-A7ED-7E40FE7AA9AC" class="sect4"><span class="enumeration_section">22.5.4 </span>Troubleshooting DBNEWID
+                  </h4>
+                  <div>
+                     <p>If you encounter an error when using DBNEWID to change a database ID, then
+        refer to these troubleshooting hints. </p>
+                     <p>If the DBNEWID utility succeeds in its validation stage, but detects an error
+            while performing the requested change, then the utility stops and leaves the database in
+            the middle of the change. In this case, you cannot open the database until the DBNEWID
+            operation is either completed, or it is reverted. DBNEWID displays messages indicating
+            the status of the operation.</p>
+                     <p>Before continuing or reverting, fix the underlying cause of the error.
+            Sometimes the only solution is to restore the whole database from a recent backup and
+            perform recovery to the point in time before DBNEWID was started. This scenario
+            underscores the importance of having a recent backup available before you DBNEWID.</p>
+                     <p>If you choose to continue with the change, then rerun your original command.
+            The DBNEWID utility resumes, and attempts to continue the change until all data files
+            and control files have the new value or values. At this point, the database is shut
+            down. You should mount it before opening it with the <code class="codeph">RESETLOGS</code> option. 
+                     </p>
+                     <p>If you choose to revert a DBNEWID operation, and if the reversion succeeds,
+            then DBNEWID reverts all performed changes and leaves the database in a mounted state. </p>
+                     <p>If DBNEWID is run against Oracle Database 10g Release 1 (10.1) or a later
+            release Oracle Database, then a summary of the operation is written to the alert file. </p>
+                     <div class="example" id="GUID-97E160FC-7882-4840-A7ED-7E40FE7AA9AC__GUID-45DFA401-10A6-4296-848F-466279877353">
+                        <p class="titleinexample">Example 22-1 Alert Files for a Database Name and Database ID Change</p>
+                        
+                        
+                        <p>Suppose you start up the database in MOUNT, and changed a database name
+                and database ID, as described in <span class="q">"Changing the DBID and Database Name"</span>:
+                        </p>
+                        <pre class="pre codeblock"><code>% nid TARGET=SYS DBNAME=TEST_DB
+</code></pre>
+                        <p>. In the alert file, you see something similar to the following:</p>
+                        <pre class="nocopybutton"><code>*** DBNEWID utility started ***
+DBID will be changed from 86997811 to new DBID of 1250452230 for
+database PROD
+DBNAME will be changed from PROD to new DBNAME of TEST_DB
+Starting datafile conversion
+Setting recovery target incarnation to 1
+Datafile conversion complete
+Database name changed to TEST_DB.
+Modify parameter file and generate a new password file before restarting.
+Database ID for database TEST_DB changed to 1250452230.
+All previous backups and archived redo logs for this database are unusable.
+Database has been shutdown, open with RESETLOGS option.
+Successfully changed database name and ID.
+*** DBNEWID utility finished successfully ***
+</code></pre>
+                        <p>For a change of just the database name, the alert file might show
+                something similar to the following:</p>
+                        <pre class="nocopybutton"><code>*** DBNEWID utility started ***
+DBNAME will be changed from PROD to new DBNAME of TEST_DB
+Starting datafile conversion
+Datafile conversion complete
+Database name changed to TEST_DB.
+Modify parameter file and generate a new password file before restarting.
+Successfully changed database name.
+*** DBNEWID utility finished successfully ***
+ 
+In case of failure during DBNEWID the alert will also log the failure:
+*** DBNEWID utility started ***
+DBID will be changed from 86997811 to new DBID of 86966847 for database
+AV3
+Change of database ID failed.
+Must finish change or REVERT changes before attempting any database
+operation.
+*** DBNEWID utility finished with errors ***</code></pre>
+                        </div>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="oracle-dbnewid-utility.html#SUTIL-GUID-05B4733C-9EAA-438F-A2A4-4E84EB1E1E65" target="_blank">Changing the DBID and Database Name</a></li>
+                           <li><a href="../admin/managing-control-files.html#GUID-553F209C-EE30-4637-8344-BB26FE3AA088" target="_blank">When to Create New Control Files</a></li>
+                        </ul>
+                     </div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-FA1E0D47-4907-47F5-877C-2DB109B74430" title="To change either DBID or DBNAME, or both the DBID and DBNAME of your database, select the DBNEWID procedure that you need.">Changing the DBID and DBNAME of a Database</a></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="SUTIL1548"></a><div class="props_rev_3"><a id="GUID-D7EC3796-8805-459B-86FD-4A4481FFB405" name="GUID-D7EC3796-8805-459B-86FD-4A4481FFB405"></a><h3 id="SUTIL-GUID-D7EC3796-8805-459B-86FD-4A4481FFB405" class="sect3"><span class="enumeration_section">22.6 </span>DBNEWID Syntax
+               </h3>
+               <div>
+                  <p>Describes DBNEWID syntax.</p>
+                  <div class="section">
+                     <p>The following diagrams show the syntax for the DBNEWID utility.</p>
+                     <div class="figure" id="GUID-D7EC3796-8805-459B-86FD-4A4481FFB405__GUID-673204B7-B557-47DA-9570-50B77F3B9153"><img height="535" width="535" src="img/nid.gif" alt="Description of nid.eps follows" title="Description of nid.eps follows" longdesc="img_text/nid.html"><br><a href="img_text/nid.html">Description of the illustration nid.eps</a></div>
+                  </div>
+               </div>
+               <div>
+                  <ul class="ullinks">
+                     <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-29E20615-2FD2-4F84-AF91-AD7B32C19D3D">DBNEWID Parameters</a><br>Describes the parameters for DBNEWID.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-6FED9AB9-7077-4D79-B936-816A5D717669">Restrictions and Usage Notes</a><br>Describes restrictions for the DBNEWID utility.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-dbnewid-utility.html#GUID-C68B0E7D-538E-4F21-BB4F-34359D386DD9">Additional Restrictions for Releases Earlier Than Oracle Database 10g</a><br>Describes additional restrictions if the DBNEWID utility is run against an Oracle Database release earlier than 10.1.
+                     </li>
+                  </ul>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-D138A757-6A2A-41A2-B722-A98708C5F5AD" title="DBNEWID is a database utility that can change the internal database identifier (DBID) and the database name (DBNAME) for an operational database.">DBNEWID Utility</a></p>
+                     </div>
+                  </div>
+               </div>
+               <a id="SUTIL3612"></a><a id="SUTIL1549"></a><div class="props_rev_3"><a id="GUID-29E20615-2FD2-4F84-AF91-AD7B32C19D3D" name="GUID-29E20615-2FD2-4F84-AF91-AD7B32C19D3D"></a><h4 id="SUTIL-GUID-29E20615-2FD2-4F84-AF91-AD7B32C19D3D" class="sect4"><span class="enumeration_section">22.6.1 </span>DBNEWID Parameters
+                  </h4>
+                  <div>
+                     <p>Describes the parameters for DBNEWID.</p>
+                     <div class="section">
+                        <p>The following table describes the parameters in the DBNEWID syntax.</p>
+                     </div>
+                     <div class="tblformalwide" id="GUID-29E20615-2FD2-4F84-AF91-AD7B32C19D3D__G1008264">
+                        <p class="titleintable">Table 22-1 Parameters for the DBNEWID Utility</p>
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title="Parameters for the DBNEWID Utility" summary="Descriptions of parameters for the DBNEWID utility" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="25%" id="d157513e1485">Parameter</th>
+                                 <th align="left" valign="bottom" width="75%" id="d157513e1488">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="25%" id="d157513e1493" headers="d157513e1485 ">
+                                    <p><code class="codeph">TARGET</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="75%" headers="d157513e1493 d157513e1488 ">
+                                    <p>Specifies the username and password used to connect to the database. The user must have the <code class="codeph">SYSDBA</code> privilege. If you are using operating system authentication, then you can connect with the slash (<code class="codeph">/</code>). If the <code class="codeph">$ORACLE_HOME</code> and <code class="codeph">$ORACLE_SID</code> variables are not set correctly in the environment, then you can specify a secure (IPC or BEQ) service to connect to the target database. A target database must be specified in all invocations of the DBNEWID utility.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="25%" id="d157513e1513" headers="d157513e1485 ">
+                                    <p><code class="codeph">REVERT</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="75%" headers="d157513e1513 d157513e1488 ">
+                                    <p>Specify <code class="codeph">YES</code> to indicate that a failed change of DBID should be reverted (default is <code class="codeph">NO</code>). The utility signals an error if no change DBID operation is in progress on the target database. A successfully completed change of DBID cannot be reverted. <code class="codeph">REVERT=YES</code> is valid only when a DBID change failed.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="25%" id="d157513e1530" headers="d157513e1485 ">
+                                    <p><code class="codeph">DBNAME=</code><span class="italic"><code class="codeph">new_db_name</code></span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="75%" headers="d157513e1530 d157513e1488 ">
+                                    <p>Changes the database name of the database. You can change the DBID and the DBNAME of a database at the same time. To change only the DBNAME, also specify the <code class="codeph">SETNAME</code> parameter.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="25%" id="d157513e1544" headers="d157513e1485 ">
+                                    <p><code class="codeph">SETNAME</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="75%" headers="d157513e1544 d157513e1488 ">
+                                    <p>Specify <code class="codeph">YES</code> to indicate that DBNEWID should change the database name of the database but should not change the DBID (default is <code class="codeph">NO</code>). When you specify <code class="codeph">SETNAME=YES</code>, the utility writes only to the target database control files.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="25%" id="d157513e1561" headers="d157513e1485 "><code class="codeph">PDB</code></td>
+                                 <td align="left" valign="top" width="75%" headers="d157513e1561 d157513e1488 ">Changes the DBID on either all or none of the pluggable databases (PDBs) in a multitenant container database (CDB). (By default, when you run the DBNEWID utility on a container database (CDB) it changes the DBID of only the CDB; the DBIDs of the pluggable databases (PDBs) comprising the CDB remain the same.) The <code class="codeph">PDB</code> parameter is applicable only in a CDB environment.
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="25%" id="d157513e1570" headers="d157513e1485 ">
+                                    <p><code class="codeph">LOGFILE=</code><span class="italic"><code class="codeph">logfile</code></span></p>
+                                 </td>
+                                 <td align="left" valign="top" width="75%" headers="d157513e1570 d157513e1488 ">
+                                    <p>Specifies that DBNEWID should write its messages to the specified file. By default the utility overwrites the previous log. If you specify a log file, then DBNEWID does not prompt for confirmation.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="25%" id="d157513e1581" headers="d157513e1485 ">
+                                    <p><code class="codeph">APPEND</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="75%" headers="d157513e1581 d157513e1488 ">
+                                    <p>Specify <code class="codeph">YES</code> to append log output to the existing log file (default is <code class="codeph">NO</code>).
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="25%" id="d157513e1595" headers="d157513e1485 ">
+                                    <p><code class="codeph">HELP</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="75%" headers="d157513e1595 d157513e1488 ">
+                                    <p>Specify <code class="codeph">YES</code> to print a list of the DBNEWID syntax options (default is <code class="codeph">NO</code>).
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-D7EC3796-8805-459B-86FD-4A4481FFB405" title="Describes DBNEWID syntax.">DBNEWID Syntax</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL1550"></a><div class="props_rev_3"><a id="GUID-6FED9AB9-7077-4D79-B936-816A5D717669" name="GUID-6FED9AB9-7077-4D79-B936-816A5D717669"></a><h4 id="SUTIL-GUID-6FED9AB9-7077-4D79-B936-816A5D717669" class="sect4"><span class="enumeration_section">22.6.2 </span>Restrictions and Usage Notes
+                  </h4>
+                  <div>
+                     <p>Describes restrictions for the DBNEWID utility.</p>
+                     <div class="section">
+                        <p>For example:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>To change the DBID of a database, the database must be mounted and must have been shut down consistently before mounting. In the case of an Oracle Real Application Clusters database, the database must be mounted in <code class="codeph">NOPARALLEL</code> mode.
+                              </p>
+                           </li>
+                           <li>
+                              <p>You must open the database with the <code class="codeph">RESETLOGS</code> option after changing the DBID. However, you do not have to open with the <code class="codeph">RESETLOGS</code> option after changing only the database name.
+                              </p>
+                           </li>
+                           <li>
+                              <p>No other process should be running against the database when DBNEWID is executing. If another session shuts down and starts the database, then DBNEWID terminates unsuccessfully.</p>
+                           </li>
+                           <li>
+                              <p>All online data files should be consistent without needing recovery. </p>
+                           </li>
+                           <li>
+                              <p>Normal offline data files should be accessible and writable. If this is not the case, then you must drop these files before invoking the DBNEWID utility.</p>
+                           </li>
+                           <li>
+                              <p>All read-only tablespaces must be accessible and made writable at the operating system level before invoking DBNEWID. If these tablespaces cannot be made writable (for example, they are on a CD-ROM), then you must unplug the tablespaces using the transportable tablespace feature and then plug them back in the database before invoking the DBNEWID utility.</p>
+                           </li>
+                           <li>
+                              <p>The DBNEWID utility does not change global database names. See <a href="oracle-dbnewid-utility.html#GUID-118038E5-F18E-4557-9A3B-A980503E5EDC" title="If you are dealing with a database in a distributed database system, then each database should have a unique global database name.">Considerations for Global Database Names</a>.
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-D7EC3796-8805-459B-86FD-4A4481FFB405" title="Describes DBNEWID syntax.">DBNEWID Syntax</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL1551"></a><div class="props_rev_3"><a id="GUID-C68B0E7D-538E-4F21-BB4F-34359D386DD9" name="GUID-C68B0E7D-538E-4F21-BB4F-34359D386DD9"></a><h4 id="SUTIL-GUID-C68B0E7D-538E-4F21-BB4F-34359D386DD9" class="sect4"><span class="enumeration_section">22.6.3 </span>Additional Restrictions for Releases Earlier Than Oracle Database 10<span class="italic">g</span></h4>
+                  <div>
+                     <p>Describes additional restrictions if the DBNEWID utility is run against an Oracle Database release earlier than 10.1.</p>
+                     <div class="section">
+                        <p>For example:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>The <code class="codeph">nid</code> executable file should be owned and run by the Oracle owner because it needs direct access to the data files and control files. If another user runs the utility, then set the user ID to the owner of the data files and control files.
+                              </p>
+                           </li>
+                           <li>
+                              <p>The DBNEWID utility must access the data files of the database directly through a local connection. Although DBNEWID can accept a net service name, it cannot change the DBID of a nonlocal database.</p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbnewid-utility.html#GUID-D7EC3796-8805-459B-86FD-4A4481FFB405" title="Describes DBNEWID syntax.">DBNEWID Syntax</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

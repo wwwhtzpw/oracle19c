@@ -1,0 +1,727 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Code First</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="entityMigrate.html" title="Previous" type="text/html">
+      <link rel="next" href="entityUnsupported.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="entityMigrate.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="entityUnsupported.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="entity_framework.html" property="item" typeof="WebPage"><span property="name">ADO.NET Entity Framework and LINQ to Entities</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Code First</li>
+            </ol>
+            <a id="GUID-F8587AB2-DFD8-4B05-9520-52B32C9E143B" name="GUID-F8587AB2-DFD8-4B05-9520-52B32C9E143B"></a><a id="ODPNT8309"></a>
+            
+            <h2 id="ODPNT-GUID-F8587AB2-DFD8-4B05-9520-52B32C9E143B" class="sect2">Code First</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Using the Entity Framework Code First modeling path, developers define the application domain model using source code rather than working directly with a designer or an XML-based configuration file. The classes defined within the source code become the model. The Code First model path offers an alternative to the existing Entity Framework Database First and Model First paths. Within Code First, the classes defined in code that comprise the model are known as Plain Old CLR Objects (POCOs). This name derives from the fact that these classes have no dependency upon Entity Framework itself and are independent of it.</p>
+               <p>Oracle's support for the Code First modeling path enables .NET developers to take advantage of Oracle Database benefits.</p>
+               <div class="infoboxnotealso" id="GUID-F8587AB2-DFD8-4B05-9520-52B32C9E143B__GUID-6B911C6C-2F6A-4AC0-A1E8-B93F048E0C08">
+                  <p class="notep1">See Also:</p>
+                  <p><a href="InstallEntityConfig.html#GUID-4681DA4C-9F03-4AC0-A658-F87CB1BE33AB">Configuring for Entity Framework Code First</a></p>
+               </div>
+            </div><a id="ODPNT8311"></a><a id="ODPNT8310"></a><div class="props_rev_3"><a id="GUID-250305B6-59D0-403F-BE62-4024C8B5F3F3" name="GUID-250305B6-59D0-403F-BE62-4024C8B5F3F3"></a><h3 id="ODPNT-GUID-250305B6-59D0-403F-BE62-4024C8B5F3F3" class="sect3">Mapping of .NET Types to Oracle Types</h3>
+               <div>
+                  <p>When using the Code First path, the model is defined by the application's classes and properties. The property data types need to be mapped to the Oracle Database table data types. The following table lists the default mapping of supported .NET types to Oracle types as well as how to map a String property to non-default Oracle types:</p>
+                  <div class="tblformal" id="GUID-250305B6-59D0-403F-BE62-4024C8B5F3F3__GUID-185EBF6B-565C-4999-972D-C644A1DEE3E8">
+                     <p class="titleintable">Table 4-24 Mapping of .NET Data Types to Oracle Data Types</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Mapping of .NET Data Types to Oracle Data Types" summary="The columns list .NET Data Type, Oracle Data Type, and their corresponding Mapping Method mapping" width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" id="d122694e38">.NET Data Type</th>
+                              <th align="left" valign="bottom" id="d122694e41">Oracle Data Type</th>
+                              <th align="left" valign="bottom" id="d122694e44">Mapping Method</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e49" headers="d122694e38 ">
+                                 <p><code class="codeph">Boolean</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e49 d122694e41 ">
+                                 <p><code class="codeph">number(1, 0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e49 d122694e44 ">
+                                 <p>Use EDM Mapping</p>
+                                 <p>Note: Requires use of EDM Mapping configuration. Reference the EDM Mapping sections in the documentation for additional information.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e63" headers="d122694e38 ">
+                                 <p><code class="codeph">Byte</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e63 d122694e41 ">
+                                 <p><code class="codeph">number(3, 0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e63 d122694e44 ">
+                                 <p>Use EDM Mapping</p>
+                                 <p>Note: Requires use of EDM Mapping configuration. Reference the EDM Mapping sections in the documentation for additional information.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e77" headers="d122694e38 ">
+                                 <p><code class="codeph">Byte[]</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e77 d122694e41 ">
+                                 <p><code class="codeph">blob</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e77 d122694e44 ">
+                                 <p>Default</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e89" headers="d122694e38 ">
+                                 <p><code class="codeph">Int16</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e89 d122694e41 ">
+                                 <p><code class="codeph">number(5, 0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e89 d122694e44 ">
+                                 <p>Default</p>
+                                 <p>Note: The default mapping of integer types may be specified in the EDM Mapping configuration. Reference the EDM Mapping sections in the documentation for additional information.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e103" headers="d122694e38 ">
+                                 <p><code class="codeph">Int32</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e103 d122694e41 ">
+                                 <p><code class="codeph">number(10, 0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e103 d122694e44 ">
+                                 <p>Default</p>
+                                 <p>Note: The default mapping of integer types may be specified in the EDM Mapping configuration. Reference the EDM Mapping sections in the documentation for additional information.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e117" headers="d122694e38 ">
+                                 <p><code class="codeph">Int64</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e117 d122694e41 ">
+                                 <p><code class="codeph">number(19, 0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e117 d122694e44 ">
+                                 <p>Default</p>
+                                 <p>Note: The default mapping of integer types may be specified in the EDM Mapping configuration. Reference the EDM Mapping sections in the documentation for additional information.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e131" headers="d122694e38 ">
+                                 <p><code class="codeph">Decimal</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e131 d122694e41 ">
+                                 <p><code class="codeph">number(18, 2)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e131 d122694e44 ">
+                                 <p>Default</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e143" headers="d122694e38 ">
+                                 <p><code class="codeph">Single</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e143 d122694e41 ">
+                                 <p><code class="codeph">binary_float</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e143 d122694e44 ">
+                                 <p>Default</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e155" headers="d122694e38 ">
+                                 <p><code class="codeph">Double</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e155 d122694e41 ">
+                                 <p><code class="codeph">binary_double</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e155 d122694e44 ">
+                                 <p>Default</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e167" headers="d122694e38 ">
+                                 <p><code class="codeph">Guid</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e167 d122694e41 ">
+                                 <p><code class="codeph">raw(16)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e167 d122694e44 ">
+                                 <p>Default</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e179" headers="d122694e38 ">
+                                 <p><code class="codeph">DateTime</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e179 d122694e41 ">
+                                 <p><code class="codeph">date</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e179 d122694e44 ">
+                                 <p>Default</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e192" headers="d122694e38 ">
+                                 <p><code class="codeph">DateTimeOffset</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e192 d122694e41 ">
+                                 <p>t<code class="codeph">imestamp with time zone</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e192 d122694e44 ">
+                                 <p>Default</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e205" headers="d122694e38 ">
+                                 <p><code class="codeph">String</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e205 d122694e41 ">
+                                 <p><code class="codeph">nclob</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e205 d122694e44 ">
+                                 <p>Default</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e217" headers="d122694e38 ">
+                                 <p><code class="codeph">String</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e217 d122694e41 ">
+                                 <p><code class="codeph">clob</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e217 d122694e44 ">
+                                 <p>Set Unicode to false using <code class="codeph">IsUnicode()</code> fluent API
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e232" headers="d122694e38 ">
+                                 <p><code class="codeph">String</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e232 d122694e41 ">
+                                 <p><code class="codeph">nvarchar2</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e232 d122694e44 ">
+                                 <p>Set Max Length to <code class="codeph">&lt;= 2000</code> using <code class="codeph">HasMaxLength()</code> fluent API or <code class="codeph">MaxLength</code> data annotation
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e253" headers="d122694e38 ">
+                                 <p><code class="codeph">String</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e253 d122694e41 ">
+                                 <p><code class="codeph">varchar2</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e253 d122694e44 ">
+                                 <p>Set Max Length to <code class="codeph">&lt;= 4000</code> using <code class="codeph">HasMaxLength()</code> fluent API or <code class="codeph">MaxLength</code> data annotation and set Unicode to false using <code class="codeph">IsUnicode()</code> fluent API
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e277" headers="d122694e38 ">
+                                 <p><code class="codeph">String</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e277 d122694e41 ">
+                                 <p><code class="codeph">nchar</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e277 d122694e44 ">
+                                 <p>Set Max Length to <code class="codeph">&lt;= 1000</code> using HasMaxLength() fluent API or MaxLength annotation and Set Column Type to <code class="codeph">NCHAR</code> using HasColumnType() fluent API or Column data annotation
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e295" headers="d122694e38 ">
+                                 <p><code class="codeph">String</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e295 d122694e41 ">
+                                 <p><code class="codeph">char</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e295 d122694e44 ">
+                                 <p>Set Max Length to <code class="codeph">&lt;= 2000 </code>using <code class="codeph">HasMaxLength()</code> fluent API or <code class="codeph">MaxLength</code> annotation and Set Column Type to <code class="codeph">CHAR</code> using <code class="codeph">HasColumnType()</code> fluent API or <code class="codeph">Column</code> data annotation
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e326" headers="d122694e38 ">
+                                 <p><code class="codeph">String</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e326 d122694e41 ">
+                                 <p><code class="codeph">Long</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e326 d122694e44 ">
+                                 <p>Set Column Type to <code class="codeph">LONG</code> using <code class="codeph">HasColumnType()</code> fluent API or <code class="codeph">Column</code> data annotation
+                                 </p>
+                                 <p>Note: The long data type is deprecated and not recommended.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e349" headers="d122694e38 ">
+                                 <p>String</p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e349 d122694e41 ">
+                                 <p>rowid</p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e349 d122694e44 ">
+                                 <p>Set Column Type to <code class="codeph">ROWID</code> using <code class="codeph">HasColumnType()</code> fluent API or <code class="codeph">Column</code> data annotation
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d122694e368" headers="d122694e38 ">
+                                 <p>String</p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e368 d122694e41 ">
+                                 <p>urowid</p>
+                              </td>
+                              <td align="left" valign="top" headers="d122694e368 d122694e44 ">
+                                 <p>Set Column Type to <code class="codeph">UROWID</code> using <code class="codeph">HasColumnType()</code> fluent API or <code class="codeph">Column</code> data annotation
+                                 </p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <!-- class="inftblhruleinformal" -->
+                  <div class="infoboxnote" id="GUID-250305B6-59D0-403F-BE62-4024C8B5F3F3__GUID-F7312DC2-0915-4260-A23C-C959BA878D80">
+                     <p class="notep1">Note:</p>
+                     <p>The character based columns, namely, <code class="codeph">CHAR</code>, <code class="codeph">NCHAR</code>, <code class="codeph">VARCHAR2</code>, <code class="codeph">NVARCHAR2</code> will be created using character semantics to be able to store the specified <code class="codeph">Max Length</code> amount of characters. However, due to the Oracle database limit, these columns can store only up to <code class="codeph">4000</code> bytes. As such, these columns may not be able to store <code class="codeph">4000</code> characters even if <code class="codeph">Max Length</code> is set to <code class="codeph">4000</code> characters since one character may require multiple number of bytes of storage, depending on the data and the database character set. If the character data can be longer than <code class="codeph">4000</code> bytes, it may be more appropriate to use <code class="codeph">CLOB</code> or <code class="codeph">NCLOB</code> column.
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-250305B6-59D0-403F-BE62-4024C8B5F3F3__GUID-51BBF881-9FC1-4480-A2E1-4AF9216C3D81">Influencing the Oracle Data Type Characteristics</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>The type mappings listed in the previous table represent the mappings that occur by default or what is known as convention in Entity Framework. As illustrated with the <code class="codeph">String</code> type, you can influence the resulting Oracle Data Type for a property as well as characteristics of that data type. There are two Entity Framework methods to influence the resulting Oracle Data Type: Data Annotations and the Code First Fluent API. Data Annotations permit you to explicitly mark a class property with one or more attributes, whereas the Code First Fluent API permits you to use code rather than attributes to achieve the same goal. For additional information regarding the use of Data Annotations and the Code First Fluent API refer to the MSDN Entity Framework documentation.
+                     </p>
+                     <p>The following table illustrates the available functionality:</p>
+                     <div class="tblformal" id="GUID-250305B6-59D0-403F-BE62-4024C8B5F3F3__GUID-DCA4F993-05B0-464B-B6EC-7897FF527305">
+                        <p class="titleintable">Table 4-25 Mapping of Data Annotations and the Code First Fluent APIs</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Mapping of Data Annotations and the Code First Fluent APIs" summary="The columns list Data Annotation, Fluent API, Purpose, and Applies To mapping" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d122694e450">Data Annotation</th>
+                                 <th align="left" valign="bottom" id="d122694e453">Fluent API</th>
+                                 <th align="left" valign="bottom" id="d122694e456">Purpose</th>
+                                 <th align="left" valign="bottom" id="d122694e459">Applies To</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d122694e464" headers="d122694e450 ">
+                                    <p><code class="codeph">Key</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e464 d122694e453 ">
+                                    <p><code class="codeph">HasKey</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e464 d122694e456 ">
+                                    <p>Set a property as the Primary Key.</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e464 d122694e459 ">
+                                    <p>All Scalar Types</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d122694e479" headers="d122694e450 ">
+                                    <p><code class="codeph">Required</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e479 d122694e453 ">
+                                    <p><code class="codeph">IsRequired</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e479 d122694e456 ">
+                                    <p>Set the database column as <code class="codeph">NOT NULL</code>.
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e479 d122694e459 ">
+                                    <p>All</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d122694e497" headers="d122694e450 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e497 d122694e453 ">
+                                    <p><code class="codeph">HasMaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e497 d122694e456 ">
+                                    <p>Specifies the maximum length of the property.</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e497 d122694e459 ">
+                                    <p><code class="codeph">String</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d122694e513" headers="d122694e450 ">
+                                    <p><code class="codeph">NotMapped</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e513 d122694e453 ">
+                                    <p><code class="codeph">Ignore</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e513 d122694e456 ">
+                                    <p>Indicates the property is not mapped to a database column.</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e513 d122694e459 ">
+                                    <p>All</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d122694e528" headers="d122694e450 ">
+                                    <p><code class="codeph">ConcurrencyCheck</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e528 d122694e453 ">
+                                    <p><code class="codeph">IsConcurrencyToken</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e528 d122694e456 ">
+                                    <p>Indicates the column should be used for optimistic concurrency checking.</p>
+                                    <p>Note: Do not use with an unbounded (no maximum length specified) string property as this will create a LOB column. Use of a LOB column in the concurrency check will result in an <code class="codeph">ORA-00932: inconsistent datatypes</code> error. 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e528 d122694e459 ">
+                                    <p>All</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d122694e548" headers="d122694e450 ">
+                                    <p><code class="codeph">TimeStamp</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e548 d122694e453 ">
+                                    <p><code class="codeph">IsRowVersion</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e548 d122694e456 ">
+                                    <p>Indicates to create the column as a <code class="codeph">rowversion</code> column.
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e548 d122694e459 ">
+                                    <p>Not Supported</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d122694e566" headers="d122694e450 ">
+                                    <p><code class="codeph">Column</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e566 d122694e453 ">
+                                    <p><code class="codeph">HasColumnType</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e566 d122694e456 ">
+                                    <p>Indicates the provider-specific type to use for the database column.</p>
+                                    <p>Note: Must be a legal compatible type. For example a <code class="codeph">Date</code> property is not legal to map to a number column. Use the <code class="codeph">TypeName</code> property with the <code class="codeph">Column</code> Data Annotation to specify the type.
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e566 d122694e459 ">
+                                    <p>All</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d122694e592" headers="d122694e450 ">
+                                    <p>N/A</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e592 d122694e453 ">
+                                    <p><code class="codeph">IsUnicode</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e592 d122694e456 ">
+                                    <p>Indicates to create the column as an N-type, that is, <code class="codeph">nvarchar2</code> or <code class="codeph">nclob</code>. Default is true.
+                                    </p>
+                                    <p>Note: There is no Data Annotation equivalent for <code class="codeph">IsUnicode</code>.
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e592 d122694e459 ">
+                                    <p><code class="codeph">String</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d122694e618" headers="d122694e450 ">
+                                    <p>N/A</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e618 d122694e453 ">
+                                    <p><code class="codeph">HasPrecision</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e618 d122694e456 ">
+                                    <p>Indicates the precision and scale for a decimal property.</p>
+                                    <p>Note: There is no Data Annotation equivalent for <code class="codeph">HasPrecision</code>.
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d122694e618 d122694e459 ">
+                                    <p><code class="codeph">Decimal</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT8312"></a><div class="props_rev_3"><a id="GUID-714374BC-F14B-483C-B14A-BCD5217C4FD4" name="GUID-714374BC-F14B-483C-B14A-BCD5217C4FD4"></a><h3 id="ODPNT-GUID-714374BC-F14B-483C-B14A-BCD5217C4FD4" class="sect3">Code First Migrations</h3>
+               <div>
+                  <p>The Oracle Data Provider for .NET supports Code First Migrations functionality. The use of Code First Migrations with Oracle Database is supported through the Package Manager Console window migrations commands. For information on these commands, refer to the MSDN Code First Migrations documentation:</p>
+                  <p><a href="https://www.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/odpnt&amp;id=msdn_ef_codefirst_migration" target="_blank"><code class="codeph">http://msdn.microsoft.com/en-us/data/jj591621.aspx</code></a></p>
+                  <p>Code First Migrations utilizes a table known as the Migration History table for tracking migration operations as well as model changes. ODP.NET creates this table, by default, in the user schema specified in the context connection string. This table is named <span class="bold">__MigrationHistory</span>.
+                  </p>
+                  <p>This table can be created in another user schema besides the user specified in the context connection string. This is accomplished through a process known as Migration History Table Customization, which is described in the following MSDN documentation.</p>
+                  <p><a href="https://www.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/odpnt&amp;id=msdn_migrationshistory" target="_blank"><code class="codeph">http://msdn.microsoft.com/en-us/data/dn456841</code></a></p>
+                  <div class="infoboxnote" id="GUID-714374BC-F14B-483C-B14A-BCD5217C4FD4__GUID-A5F0E772-B533-44EE-B442-1C14120FE860">
+                     <p class="notep1">Note:</p>
+                     <p></p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>Changing the user schema for the table is the only supported customization. </p>
+                        </li>
+                        <li>
+                           <p>Code First Automatic Migrations is limited to working with the <code class="codeph">dbo</code> schema only. Due to this limitation it is recommended to use code-based migrations, that is, add explicit migrations through the Add-Migration command.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div><a id="ODPNT8472"></a><div class="props_rev_3"><a id="GUID-852AAB41-AFFA-4BDD-AC05-B5C771B3FCFE" name="GUID-852AAB41-AFFA-4BDD-AC05-B5C771B3FCFE"></a><h4 id="ODPNT-GUID-852AAB41-AFFA-4BDD-AC05-B5C771B3FCFE" class="sect4">Code First Migrations With No Supporting Code Migration File </h4>
+                  <div>
+                     <p>When using Code First Migrations with ODP.NET, the migration history table may be dropped if no supporting code migration file existed prior to updating the database. Developers should ensure the supporting code migration file has been added prior to updating the database. </p>
+                     <p>The following steps can remove the migration history table:</p>
+                     <ol>
+                        <li>
+                           <p>Execute application to create database objects</p>
+                        </li>
+                        <li>
+                           <p><span class="bold">Enable-Migrations</span> in the Package Manager Console
+                           </p>
+                        </li>
+                        <li>
+                           <p>Make code change to POCO</p>
+                        </li>
+                        <li>
+                           <p><span class="bold">Update-Database</span> in the Package Manager Console
+                           </p>
+                        </li>
+                     </ol>
+                     <p>The following steps ensure the code migration file is created:</p>
+                     <ol>
+                        <li>
+                           <p>Execute application to create database objects</p>
+                        </li>
+                        <li>
+                           <p><span class="bold">Enable-Migrations </span>in the Package Manager Console
+                           </p>
+                        </li>
+                        <li>
+                           <p>Make code change to POCO</p>
+                        </li>
+                        <li>
+                           <p><span class="bold">Add-Migration </span>in the Package Manager Console. This step will create the necessary code migration file.
+                           </p>
+                        </li>
+                        <li>
+                           <p><span class="bold">Update-Database</span> in the Package Manager Console
+                           </p>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+            </div><a id="ODPNT8313"></a><div class="props_rev_3"><a id="GUID-7AFE3197-4BD1-4073-9DA0-863FC3914849" name="GUID-7AFE3197-4BD1-4073-9DA0-863FC3914849"></a><h3 id="ODPNT-GUID-7AFE3197-4BD1-4073-9DA0-863FC3914849" class="sect3">Code First Database Initialization</h3>
+               <div>
+                  <p>ODP.NET supports the following Code First Database Initializer methods:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><code class="codeph">CreateDatabaseIfNotExists</code> (default if none specified)
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">DropCreateDatabaseAlways</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">DropCreateDatabaseIfModelChanges</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">NullDatabaseInitializer</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">MigrateDatabaseToLatestVersion</code></p>
+                     </li>
+                  </ul>
+                  <p>These methods are documented on MSDN.</p>
+                  <p>Due to differences in how Oracle and SQL Server define a database, database initialization actions work on all of the Oracle objects in the model. An Oracle Database is not created or dropped, rather the objects that compose the model are considered to be the database for these operations.</p>
+               </div>
+            </div><a id="ODPNT8315"></a><a id="ODPNT8316"></a><a id="ODPNT8314"></a><div class="props_rev_3"><a id="GUID-B3C91FD1-0049-491D-9BAB-5A01B6901B7F" name="GUID-B3C91FD1-0049-491D-9BAB-5A01B6901B7F"></a><h3 id="ODPNT-GUID-B3C91FD1-0049-491D-9BAB-5A01B6901B7F" class="sect3">Oracle Database Object Creation</h3>
+               <div>
+                  <p>In order to support the client application, ODP.NET will create and maintain the required database objects. The following are the database objects created and maintained by the provider:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Table</p>
+                     </li>
+                     <li>
+                        <p>Table Column</p>
+                     </li>
+                     <li>
+                        <p>Primary Key</p>
+                     </li>
+                     <li>
+                        <p>Foreign Key</p>
+                     </li>
+                     <li>
+                        <p>Index</p>
+                     </li>
+                     <li>
+                        <p>Sequence</p>
+                     </li>
+                     <li>
+                        <p>Trigger</p>
+                     </li>
+                  </ul>
+                  <div class="infoboxnote" id="GUID-B3C91FD1-0049-491D-9BAB-5A01B6901B7F__GUID-3F893356-1EBF-4AC8-86E2-5641A74C5431">
+                     <p class="notep1">Note:</p>
+                     <p>Sequences and triggers may be created in Oracle Database 11<span class="italic">g</span> Release 2 and earlier databases to support identity columns.
+                     </p>
+                  </div>
+                  <p>For objects which directly relate to a client application object, namely, a table which represents an application class and a table column which represents a class property, the object names used are those provided by the client. These object names must conform to the object identifier length limits for Oracle Database. For example, if a class name length exceeds the valid object identifier length in Oracle Database then the <code class="codeph">ORA-00972: identifier is too long</code> exception will be raised at object creation time.
+                  </p>
+                  <p>For the remaining objects, ODP.NET utilizes a name generation algorithm if the supplied name length exceeds the database identifier length limit. If the supplied name length does not exceed the database limit the name is used as-is. In all cases, the object name is created as a quoted identifier in order to preserve case and any special characters which may be part of the identifier.</p>
+                  <p>In cases where the provider generates a name to comply with database identifier length limits, the name is composed of the following underscore separated elements:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>A substring of the original name (from the first character)</p>
+                     </li>
+                     <li>
+                        <p>A numeric suffix value calculated from the original name</p>
+                     </li>
+                  </ul>
+                  <p>The following example illustrates the results of the name generation algorithm using a simple POCO in the client application:</p><pre class="oac_no_warn" dir="ltr">public class LongSamplePocoTestClassName
+{
+  [Key]
+  public int Id { get; set; }
+ 
+  [MaxLength(64)]
+  public string Name { get; set; }
+}
+</pre><p>The default name for the Primary Key for the resulting table will be:</p><pre class="oac_no_warn" dir="ltr">PK_LongSamplePocoTestClassNames
+</pre><p>As this name contains 31 characters (single byte per character), it violates the database identifier restrictions. The rewritten Primary Key name will resemble the following value:</p><pre class="oac_no_warn" dir="ltr">PK_LongSamplePocoTes_730795129
+</pre><p>The algorithm is designed to utilize as many characters as possible from the original name such that the new name does not violate the identifier length restrictions.</p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-B3C91FD1-0049-491D-9BAB-5A01B6901B7F__GUID-BA97474C-B490-41F0-B8BF-11121F3658BF">Controlling Table Name and Owner</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>Through the use of Data Annotations or the Entity Framework Fluent API you may control the table name, as well as the table owner. For example, you may choose to explicitly set the table name to conform to your organization's naming standards or if you do not wish to, use the name Entity Framework provides. The <code class="codeph">Table</code> Data Annotation is used to control both the table name and the owner. When using the Fluent API, the <code class="codeph">ToTable</code> method is used to control the table name and the owner within the <code class="codeph">OnModelCreating</code> override in your class which derives from <code class="codeph">DbContext</code>.
+                     </p>
+                     <p>The following examples use an incomplete class definition to illustrate these actions.</p>
+                     <p>Setting the table name using a Data Annotation:</p><pre class="oac_no_warn" dir="ltr">[Table("Employee")]
+public class Employee
+</pre><p>Setting the table name using the Fluent API:</p><pre class="oac_no_warn" dir="ltr">protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+  modelBuilder.Entity&lt;Employee&gt;().ToTable("Employee");
+}
+</pre><p>Setting the table name and the owner using a Data Annotation:</p><pre class="oac_no_warn" dir="ltr">[Table("Employee ", Schema="TESTUSER")]
+public class Employee
+</pre><p>Setting the table name and the owner using the Fluent API:</p><pre class="oac_no_warn" dir="ltr">protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+  modelBuilder.Entity&lt;Employee&gt;().ToTable("Employee", "TESTUSER");
+}
+</pre><div class="infoboxnote" id="GUID-B3C91FD1-0049-491D-9BAB-5A01B6901B7F__GUID-25FDE98C-CEBE-437C-AD1A-645346949B4B">
+                        <p class="notep1">Note:</p>
+                        <p>When using Data Annotations or the Fluent API as above to set the owner, it is required to also set the name.</p>
+                     </div>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-B3C91FD1-0049-491D-9BAB-5A01B6901B7F__GUID-690577E8-5E28-4EC8-A1E8-EE48FE0DD04F">Setting the Default Table Owner</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>Rather than set the table owner for each user table, Entity Framework 6 and higher allows you to set the default owner to be used. This is done by invoking the <code class="codeph">HasDefaultSchema</code> method within the <code class="codeph">OnModelCreating</code> override in your class, which derives from <code class="codeph">DbContext</code>.
+                     </p>
+                     <p>For example, the following code will cause all user tables to be created within the <code class="codeph">TESTUSER</code> schema by default:
+                     </p><pre class="oac_no_warn" dir="ltr">protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+  modelBuilder.HasDefaultSchema("TESTUSER");
+}
+</pre><div class="infoboxnote" id="GUID-B3C91FD1-0049-491D-9BAB-5A01B6901B7F__GUID-9EC21D3C-F3CA-4B32-96F4-886E38327304">
+                        <p class="notep1">Note:</p>
+                        <p>The owner name is case-sensitive.</p>
+                     </div>
+                     <div class="infoboxnotealso" id="GUID-B3C91FD1-0049-491D-9BAB-5A01B6901B7F__GUID-EDEA9B1F-0BB1-404D-8B32-37D76C1753D8">
+                        <p class="notep1">See Also:</p>
+                        <p><a href="../admin/creating-and-configuring-an-oracle-database.html#ADMIN002" target="_blank"><span><cite>Oracle Database Administrator’s Guide</cite></span></a>.
+                        </p>
+                     </div>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT8473"></a><div class="props_rev_3"><a id="GUID-F9BF7E39-F44B-4353-9AC3-3A3B67247278" name="GUID-F9BF7E39-F44B-4353-9AC3-3A3B67247278"></a><h3 id="ODPNT-GUID-F9BF7E39-F44B-4353-9AC3-3A3B67247278" class="sect3">Using the Default Connection Factory</h3>
+               <div>
+                  <p>The default connection factory allows ODP.NET connections to be created by providing an Oracle connection string to the <code class="codeph">DbContext</code> constructor. For example, the following entry could be used to configure the ODP.NET, Managed Driver default connection factory:
+                  </p><pre class="oac_no_warn" dir="ltr">&lt;defaultConnectionFactory type="Oracle.ManagedDataAccess.EntityFramework.OracleConnectionFactory,
+Oracle.ManagedDataAccess.EntityFramework,
+Version=6.121.2.0,
+Culture=neutral,
+PublicKeyToken=89b483f429c47342" /&gt;
+</pre><p>When using the default connection factory, the application supplies an Oracle connection string to the <code class="codeph">DbContext</code> base constructor as follows:
+                  </p><pre class="oac_no_warn" dir="ltr">public class TestContext : DbContext
+{
+  public TestContext()
+    : base("&lt;connection string&gt;")
+  {
+  }
+}
+</pre><p>Where <code class="codeph">&lt;connection string&gt;</code> is the ODP.NET connection string. This allows the application to connect to the database using code similar to the following:
+                  </p><pre class="oac_no_warn" dir="ltr">using (var ctx = new TestContext())
+{
+  ...
+}
+</pre><p>For additional information please see the MSDN documentation for the <code class="codeph">IDbConnectionFactory</code> interface:
+                  </p>
+                  <p><a href="https://www.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/odpnt&amp;id=msdn_idbconnection" target="_blank"><code class="codeph">http://msdn.microsoft.com/en-us/library/system.data.entity.infrastructure.idbconnectionfactory%28v=vs.113%29.aspx</code></a></p>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

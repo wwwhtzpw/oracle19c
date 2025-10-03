@@ -1,0 +1,650 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Administering Oracle Database on IBM AIX on POWER Systems (64-Bit)">
+      <meta name="DC.subject" content=", paging, allocating sufficient, controlling, database block size, setting, archive buffers, tuning, I/O buffers and SQL*Loader, parameters, BUFFER, BUFFER parameter, Import utility, utilities, Import, Journaled file system, raw logical volumes, direct input/output, concurrent input/output, JFS2 considerations, JFSconsiderations, GPFS, considerations for using, input/output, asynchronous, disk input/output, slaves, DB_FILE_MULTIBLOCK_READ_COUNT parameter, DB_FILE_MULTIBLOCK_READ_COUNT, pacing, resilvering, with Oracle Database, CPU scheduling, environment variables, AIXTHREAD_SCOPE, AIXTHREAD_SCOPE environment variable">
+      <meta name="keywords" content=", paging, allocating sufficient, controlling, database block size, setting, archive buffers, tuning, I/O buffers and SQL*Loader, parameters, BUFFER, BUFFER parameter, Import utility, utilities, Import, Journaled file system, raw logical volumes, direct input/output, concurrent input/output, JFS2 considerations, JFSconsiderations, GPFS, considerations for using, input/output, asynchronous, disk input/output, slaves, DB_FILE_MULTIBLOCK_READ_COUNT parameter, DB_FILE_MULTIBLOCK_READ_COUNT, pacing, resilvering, with Oracle Database, CPU scheduling, environment variables, AIXTHREAD_SCOPE, AIXTHREAD_SCOPE environment variable">
+      <meta name="DC.Contributor" content="Subhash Chandra">
+      <meta name="DC.Contributor" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Kevin Flood">
+      <meta name="DC.Creator" content="Pat Huey">
+      <meta name="DC.Creator" content="Clara Jaeckel">
+      <meta name="DC.Creator" content="Emily Murphy">
+      <meta name="DC.Creator" content="Terri Winters">
+      <meta name="DC.Creator" content="Subhranshu Banerjee">
+      <meta name="DC.Creator" content="Mark Bauer">
+      <meta name="DC.Creator" content="Robert Chang">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Sudip Datta">
+      <meta name="DC.Creator" content="Thirumaleshwara Hasandka">
+      <meta name="DC.Creator" content="Joel Kallman">
+      <meta name="DC.Creator" content="George Kotsovolos">
+      <meta name="DC.Creator" content="Richard Long">
+      <meta name="DC.Creator" content="Rolly Lv">
+      <meta name="DC.Creator" content="Padmanabhan Manavazhi">
+      <meta name="DC.Creator" content="Matthew Mckerley">
+      <meta name="DC.Creator" content="Krishna Mohan">
+      <meta name="DC.Creator" content="Rajendra Pingte">
+      <meta name="DC.Creator" content="Hanlin Qian">
+      <meta name="DC.Creator" content="Janelle Simmons">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Michael Coulter">
+      <meta name="DC.Creator" content="Robert Achacoso">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="Ramesh Chakravarthula">
+      <meta name="DC.Creator" content="David Price">
+      <meta name="DC.Creator" content="Douglas Williams, Joseph Therrattil Koonen, Binoy Sukumaran, and Sumanta Chatterjee.">
+      <meta name="DC.Creator" content="Binika Kumar">
+      <meta name="DC.Publisher" content="June2023">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-004866DB-9FC9-49FC-B73D-E56817769426">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Administering Oracle Database on IBM AIX on POWER Systems (64-Bit)</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Administrator's Reference">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Administrator's Reference for Linux and UNIX System-Based Operating Systems">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="administrators-reference-linux-and-unix-based-operating-systems.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2023-06-24T20:03:20-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2006, 2023">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96356-05">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="administering-oracle-database-on-oracle-solaris.html" title="Previous" type="text/html">
+      <link rel="next" href="administering-oracle-database-on-hp-ux.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Administrator's Reference for Linux and Unix-Based Operating Systems">
+    <meta name="dcterms.isVersionOf" content="UNXAR">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","name":"Administering Oracle Database on IBM AIX on POWER Systems (64-Bit)","datePublished":"2019-01-10 04:41:10 GMT","dateModified":"2023-06-25 03:08:33 GMT"} </script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="administering-oracle-database-on-oracle-solaris.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="administering-oracle-database-on-hp-ux.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database Administrator's Reference</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem"> Administering Oracle Database on IBM AIX on POWER Systems (64-Bit)</li>
+            </ol>
+            <a id="GUID-004866DB-9FC9-49FC-B73D-E56817769426" name="GUID-004866DB-9FC9-49FC-B73D-E56817769426"></a>
+            
+            <h2 id="UNXAR-GUID-004866DB-9FC9-49FC-B73D-E56817769426" class="sect2"><span class="enumeration_chapter">C </span> Administering Oracle Database on IBM AIX on POWER Systems (64-Bit)
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>This appendix contains information about administering Oracle Database on IBM AIX on POWER Systems (64-bit). </p>
+               <p>It includes the following topics:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-BF92C68F-0851-4D2A-BB7C-29C133D6A590">Memory and Paging</a></p>
+                  </li>
+                  <li>
+                     <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-47ED7460-D734-4BF4-BCED-BA8ADD322711">Disk Input-Output Issues</a></p>
+                  </li>
+                  <li>
+                     <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-FAE7BABF-E633-4121-AB53-AA77F767204E">CPU Scheduling and Process Priorities</a></p>
+                  </li>
+                  <li>
+                     <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-0C5311D7-61B7-4084-AE2F-920434441F92">AIXTHREAD_SCOPE Environment Variable</a></p>
+                  </li>
+                  <li>
+                     <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-A828FA77-1539-4962-940B-05819AB7E244">Network Information Service external naming support</a></p>
+                  </li>
+                  <li>
+                     <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-4E7AFC7D-9C20-4163-8C9C-7B45E19FB387">Configuring IBM Java Secure Socket Extension Provider with Oracle JDBC Thin Driver</a></p>
+                  </li>
+               </ul>
+            </div>
+            <div class="props_rev_3"><a id="GUID-BF92C68F-0851-4D2A-BB7C-29C133D6A590" name="GUID-BF92C68F-0851-4D2A-BB7C-29C133D6A590"></a><h3 id="UNXAR-GUID-BF92C68F-0851-4D2A-BB7C-29C133D6A590" class="sect3"><span class="enumeration_section">C.1 </span>Memory and Paging
+               </h3>
+               <div>
+                  <p><a id="d21207e193" class="indexterm-anchor"></a>Memory contention occurs when processes require more memory than is available. To cope with the shortage, the system pages the programs and data between memory and disks.
+                  </p>
+                  <p>This section contains the following topics:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-1286F403-7960-4C5C-ABDA-CD7F7EF40599">Kernel Parameters</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-F9B09DD1-8CD2-4BD3-AB6C-B9AE0CEBDDAC">Allocating Sufficient Paging Space</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-4FE8B777-B94D-4D47-9317-0734E54140BC">Controlling Paging</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-C80A9D93-EE0D-472D-81CF-F4808FF9212F">Setting the Database Block Size</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-C3A484AA-18B1-4C9E-85AB-873CDA9F81FC">Tuning the Log Archive Buffers</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-ECF3FA34-7816-43C9-B9E0-840AD8C78493">Input-Output Buffers and SQL*Loader</a></p>
+                     </li>
+                  </ul>
+               </div>
+               <div class="sect3"><a id="GUID-1286F403-7960-4C5C-ABDA-CD7F7EF40599" name="GUID-1286F403-7960-4C5C-ABDA-CD7F7EF40599"></a><h4 id="UNXAR-GUID-1286F403-7960-4C5C-ABDA-CD7F7EF40599" class="sect4"><span class="enumeration_section">C.1.1 </span>Kernel Parameters
+                  </h4>
+                  <div>
+                     <p></p>
+                     <p>Oracle recommends to use the default AIX kernel settings. You must adjust the kernel settings as appropriately recommended by IBM support only.</p>
+                     <div class="infoboxnote" id="GUID-1286F403-7960-4C5C-ABDA-CD7F7EF40599__GUID-203C8010-6C57-40BF-B526-FDC64EB3528C">
+                        <p class="notep1">Note:</p>Adjusting the Restricted Tunables parameter without the guidance from IBM support can have an undesirable impact on the system stability and performance.
+                     </div>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-F9B09DD1-8CD2-4BD3-AB6C-B9AE0CEBDDAC" name="GUID-F9B09DD1-8CD2-4BD3-AB6C-B9AE0CEBDDAC"></a><h4 id="UNXAR-GUID-F9B09DD1-8CD2-4BD3-AB6C-B9AE0CEBDDAC" class="sect4"><span class="enumeration_section">C.1.2 </span>Allocating Sufficient Paging Space
+                  </h4>
+                  <div>
+                     <p>Inadequate paging space (swap space) usually causes the system to stop responding or show very slow response times. On IBM AIX on POWER Systems (64-bit), you can dynamically add paging space on raw disk partitions. The amount of paging space you should configure depends on the amount of physical memory present and the paging space requirements of the applications. Use the <code class="codeph">lsps</code> command to monitor paging space use and the <code class="codeph">vmstat</code> command to monitor system paging activities. To increase the paging space, use the <code class="codeph">smit pgsp</code> command.
+                     </p>
+                     <p>If paging space is preallocated, then Oracle recommends that you set the paging space to a value larger than the amount of RAM. But on IBM AIX on POWER Systems (64-bit), paging space is not allocated until required. The system uses swap space only if it runs out of real memory. If the memory is sized correctly, then there is no paging and the page space can be small. Workloads where the demand for pages does not fluctuate significantly perform well with a small paging space. Workloads likely to have peak periods of increased paging require enough paging space to handle the peak number of pages.</p>
+                     <p>As a general rule, an initial setting for the paging space is half the size of RAM plus 4 GB, up to the size of a single internal disk. Monitor the paging space use with the <code class="codeph">lsps -a</code> command, and monitor the system paging activities using the <code class="codeph">vmstat</code> command. The metric percent used in the output of <code class="codeph">lsps -a</code> is typically less than 25 percent on a healthy system. A properly sized deployment requires very little paging space because an excessive amount of swapping severely impacts performance. Excessive use of paging space and swapping indicates that the RAM on the system may be undersized.
+                     </p>
+                     <div class="infobox-caution" id="GUID-F9B09DD1-8CD2-4BD3-AB6C-B9AE0CEBDDAC__GUID-02F6E007-7579-4A60-B593-36FDF6CEF119">
+                        <p class="notep1">Caution:</p>
+                        <p>Do not undersize the paging space. If you do, then the system terminates active processes when it runs out of space. However, oversizing the paging space has little or no negative impact.</p>
+                     </div>
+                     <p>Oracle documentation suggests the following values as a starting point for an Oracle Database:</p>
+                     <div class="tblformal" id="GUID-F9B09DD1-8CD2-4BD3-AB6C-B9AE0CEBDDAC__GUID-6064C23D-EEA8-4AD9-A194-942535CC2230">
+                        <table cellpadding="4" cellspacing="0" class="Formal" title summary="The table lists the RAM and the corresponding swap space for an Oracle Database." width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d21207e441">RAM</th>
+                                 <th align="left" valign="bottom" id="d21207e443">Swap Space</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d21207e447" headers="d21207e441 ">Between 1 GB and 2 GB</td>
+                                 <td align="left" valign="top" headers="d21207e447 d21207e443 ">1.5 times the size of RAM</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d21207e452" headers="d21207e441 ">Between 2 GB and 16 GB</td>
+                                 <td align="left" valign="top" headers="d21207e452 d21207e443 ">Equal to the size of RAM</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d21207e457" headers="d21207e441 ">More than 16 GB</td>
+                                 <td align="left" valign="top" headers="d21207e457 d21207e443 ">16 GB</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                     <p>The RAM and swap space values for Oracle Grid Infrastructure are as follows:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>Between 4 GB RAM and 16 GB RAM, the swap space must be equal to the size of RAM.</p>
+                        </li>
+                        <li>
+                           <p>For more than 16 GB RAM, the swap space must be equal to 16 GB.</p>
+                        </li>
+                     </ul>
+                     <p>Because the individual server environment varies, some additional memory may be warranted in an Oracle Database 19c environment, based on the increased 19c memory footprint and increasing page size from 4 KB to 64 KB. The workload may need to be rebalanced to reduce paging, which impacts system performance.</p>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-4FE8B777-B94D-4D47-9317-0734E54140BC" name="GUID-4FE8B777-B94D-4D47-9317-0734E54140BC"></a><h4 id="UNXAR-GUID-4FE8B777-B94D-4D47-9317-0734E54140BC" class="sect4"><span class="enumeration_section">C.1.3 </span>Controlling Paging
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>Constant and excessive paging indicates that the real memory is over-committed. In general, you should:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>Avoid constant paging unless the system is equipped with very fast expanded storage that makes paging between memory and expanded storage much faster than Oracle Database can read and write data between the SGA and disks.</p>
+                           </li>
+                           <li>
+                              <p>Allocate limited memory resource to where it is most beneficial to system performance. It is sometimes a recursive process of balancing the memory resource requirements and trade-offs.</p>
+                           </li>
+                           <li>
+                              <p>If memory is not adequate, then build a prioritized list of memory-requiring processes and elements of the system. Assign memory to where the performance gains are the greatest. A prioritized list may look like the following:</p>
+                              <ol>
+                                 <li>
+                                    <p>Operating System and RDBMS kernels (to include SGA and its components, buffer cache, and shared pool)</p>
+                                 </li>
+                                 <li>
+                                    <p>User and application processes</p>
+                                 </li>
+                              </ol>
+                           </li>
+                        </ul>
+                        <p>For example, suppose you query Oracle Database dynamic performance tables and views and find that both the shared pool and database buffer cache require more memory. Then, assigning the limited spare memory to the shared pool may be more beneficial than assigning it to the database block buffer caches. These choices depend on the nature or shape of the database load.</p>
+                        <p>The following IBM AIX on POWER Systems (64-bit) commands provide paging status and statistics:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">vmstat -s </code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">vmstat </code><span class="italic"><code class="codeph">interval</code></span><code class="codeph"> [</code><span class="italic"><code class="codeph">repeats</code></span><code class="codeph">]</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">sar -r </code><span class="italic"><code class="codeph">interval</code></span><code class="codeph"> [</code><span class="italic"><code class="codeph">repeats</code></span><code class="codeph">]</code></p>
+                           </li>
+                        </ul>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-C80A9D93-EE0D-472D-81CF-F4808FF9212F" name="GUID-C80A9D93-EE0D-472D-81CF-F4808FF9212F"></a><h4 id="UNXAR-GUID-C80A9D93-EE0D-472D-81CF-F4808FF9212F" class="sect4"><span class="enumeration_section">C.1.4 </span>Setting the Database Block Size
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>You can configure Oracle <a id="d21207e703" class="indexterm-anchor"></a>Database <a id="d21207e708" class="indexterm-anchor"></a>block size for better Input-Output throughput. On IBM AIX on POWER Systems (64-bit), you can set the value of the <code class="codeph">DB_BLOCK_SIZE</code> initialization parameter to between 2 KB and 32 KB, with a default of 4 KB. If Oracle Database is installed on a journaled file system, then the block size should be a multiple of the file system block size (4 KB on JFS, 16 KB to 1 MB on IBM Spectrum Scale (GPFS)). For databases on raw partitions, Oracle Database block size is a multiple of the operating system physical block size (512 bytes on IBM AIX on POWER Systems (64-bit)).
+                        </p>
+                        <p>Oracle recommends smaller Oracle Database block sizes (2 KB or 4 KB) for online transaction processing or mixed workload environments and larger block sizes (8 KB, 16 KB, or 32 KB) for decision support system workload environments.</p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-C3A484AA-18B1-4C9E-85AB-873CDA9F81FC" name="GUID-C3A484AA-18B1-4C9E-85AB-873CDA9F81FC"></a><h4 id="UNXAR-GUID-C3A484AA-18B1-4C9E-85AB-873CDA9F81FC" class="sect4"><span class="enumeration_section">C.1.5 </span>Tuning the Log Archive Buffers
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>By increasing the <code class="codeph">LOG_BUFFER</code> size, you may be able to improve the speed of archiving the database, particularly if transactions are long or numerous. Monitor the log file Input-Output activity and system throughput to determine the optimum <code class="codeph">LOG_BUFFER</code> size. Tune the <code class="codeph">LOG_BUFFER</code> parameter carefully to ensure that the overall performance of normal database activity does not degrade.
+                        </p>
+                        <p>For improved performance, create separate file systems for redo logs and control files (or a single file system for both), with an <code class="codeph">agblksize</code> of 512 bytes rather than the default of 4 KB.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-ECF3FA34-7816-43C9-B9E0-840AD8C78493" name="GUID-ECF3FA34-7816-43C9-B9E0-840AD8C78493"></a><h4 id="UNXAR-GUID-ECF3FA34-7816-43C9-B9E0-840AD8C78493" class="sect4"><span class="enumeration_section">C.1.6 </span>Input-Output Buffers and SQL*Loader
+                  </h4>
+                  <div>
+                     <p>For high-speed data loading, such as using the <a id="d21207e916" class="indexterm-anchor"></a>SQL*Loader direct path option in addition to loading data in parallel, the CPU spends most of its time waiting for Input-Output to complete. By increasing the number of buffers, you can maximize CPU usage, and by doing this, increase overall throughput.
+                     </p>
+                     <p>The number of buffers (set by the SQL*Loader <code class="codeph">BUFFERS</code> parameter) you choose depends on the amount of available memory and how much you want to maximize CPU usage.
+                     </p>
+                     <p>The performance gains depend on CPU usage and the degree of parallelism that you use when loading data.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-47ED7460-D734-4BF4-BCED-BA8ADD322711" name="GUID-47ED7460-D734-4BF4-BCED-BA8ADD322711"></a><h3 id="UNXAR-GUID-47ED7460-D734-4BF4-BCED-BA8ADD322711" class="sect3"><span class="enumeration_section">C.2 </span>Disk Input-Output Issues
+               </h3>
+               <div>
+                  <p>Disk Input-Output contention can result from poor memory management (with subsequent paging and swapping), or poor distribution of tablespaces and files across disks.</p>
+                  <p>Ensure that the Input-Output activity is distributed evenly across multiple disk drives by using IBM AIX on POWER Systems (64-bit) utilities such as <code class="codeph">filemon</code>, <code class="codeph">sar</code>, <code class="codeph">iostat</code>, and other performance tools to identify disks with high Input-Output activity.
+                  </p>
+                  <p>This section contains the following topics:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-11A23506-1FEA-4808-9422-0F17B4510454">IBM AIX on POWER Systems (64-Bit) Logical Volume Manager</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-00D25A51-30B7-408A-AD6F-7DC3B775EC2B">Using Journaled File Systems Compared to Raw Logical Volumes</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-83834E64-8A57-405B-82B1-AE0B2113909B">Using Asynchronous Input-Output</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-2DE2943C-00B9-4F48-8761-625363979E7D">Input-Output Slaves</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-59CF8E2D-B610-404E-96F3-EEAEA73EA273">Using the DB_FILE_MULTIBLOCK_READ_COUNT Parameter</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-9B188411-B1B7-43A6-9282-AF45FC1B3F0E">Tuning Disk Input-Output Pacing</a></p>
+                     </li>
+                     <li>
+                        <p><a href="administering-oracle-database-on-ibm-aix-on-power-systems-64-Bit.html#GUID-A16247F9-8BF6-4FF0-B6CA-1EFDBCA5E173">Resilvering with Oracle Database</a></p>
+                     </li>
+                  </ul>
+               </div>
+               <div class="props_rev_3"><a id="GUID-11A23506-1FEA-4808-9422-0F17B4510454" name="GUID-11A23506-1FEA-4808-9422-0F17B4510454"></a><h4 id="UNXAR-GUID-11A23506-1FEA-4808-9422-0F17B4510454" class="sect4"><span class="enumeration_section">C.2.1 </span>IBM AIX on POWER Systems (64-Bit) Logical Volume Manager
+                  </h4>
+                  <div>
+                     <p>The IBM AIX on POWER Systems (64-bit) Logical Volume Manager can stripe data across multiple disks to reduce disk contention. The primary objective of striping is to achieve high performance when reading and writing large sequential files. With improved storage subsystems, it is no longer recommended to use LVM striping. Oracle recommends to use the default striping by the storage subsystems. The operating system is no longer aware about where the data resides physically as the LUNs presented to an AIX partition are logical and not physical.</p>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-00D25A51-30B7-408A-AD6F-7DC3B775EC2B" name="GUID-00D25A51-30B7-408A-AD6F-7DC3B775EC2B"></a><h4 id="UNXAR-GUID-00D25A51-30B7-408A-AD6F-7DC3B775EC2B" class="sect4"><span class="enumeration_section">C.2.2 </span>Using Journaled File Systems Compared to Raw Logical Volumes
+                  </h4>
+                  <div>
+                     <p>Address the following considerations when deciding whether to use journaled file systems or raw logical volumes:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>File systems are continually being improved, as are various file system implementations. </p>
+                        </li>
+                        <li>
+                           <p>Different vendors implement the file system layer in different ways to capitalize on the strengths of different disks. This makes it difficult to compare file systems across platforms.</p>
+                        </li>
+                        <li>
+                           <p>The Direct Input-Output and Concurrent Input-Output features included in IBM AIX on POWER Systems (64-bit) improve file system performance to a level comparable to raw logical volumes.</p>
+                        </li>
+                        <li>
+                           <p>In earlier versions of IBM AIX on POWER Systems (64-bit), file systems supported only buffered read and write and added extra contention because of imperfect inode locking. These two issues are solved by the JFS2 Concurrent Input-Output feature and the Spectrum Scale (GPFS)Direct Input-Output feature.</p>
+                        </li>
+                        <li>
+                           <p>The introduction of more powerful Logical Volume Manager interfaces substantially reduces the tasks of configuring and backing up logical disks based on raw logical volumes.</p>
+                        </li>
+                        <li>
+                           <p>Oracle ASM works best when you add raw disk devices to disk groups. If you are using Oracle ASM, then do not use Logical Volume Manager for striping. Oracle ASM implements striping and mirroring.</p>
+                        </li>
+                     </ul>
+                     <div class="infoboxnote" id="GUID-00D25A51-30B7-408A-AD6F-7DC3B775EC2B__GUID-7D5D5B7E-7B7B-4119-8483-0C21E9805DDC">
+                        <p class="notep1">Note:</p>
+                        <p>To use the Oracle RAC option, you must place data files on an Oracle ASM disk group or on a Spectrum Scale (GPFS) file system. You cannot use JFS or JFS2. Direct Input-Output is implicitly enabled when you use Spectrum Scale (GPFS).</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-00D25A51-30B7-408A-AD6F-7DC3B775EC2B__GUID-E29EA2C2-5C10-4EA1-B352-A476EB92EF69">File System Options</p>
+                     </div>
+                     <!-- class="section" -->
+                     <p>IBM AIX on POWER Systems (64-bit) includes Direct Input-Output and Concurrent Input-Output support. Direct Input-Output and Concurrent Input-Output support enables database files to exist on file systems while bypassing the operating system buffer cache and removing inode locking operations that are redundant with the features provided by Oracle Database.</p>
+                     <p>The following table lists file systems available on IBM AIX on POWER Systems (64-bit) and the recommended setting:</p>
+                     <div class="tblformal" id="GUID-00D25A51-30B7-408A-AD6F-7DC3B775EC2B__GUID-CBA66B16-FD43-4A06-808B-33D8E2020760">
+                        <table cellpadding="4" cellspacing="0" class="Formal" title summary="This 3 column table lists file system I/O options on AIX. Column 1 is the file system. Column 2 is the option. Column 3 is a description. ." width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="20%" id="d21207e1282">File System</th>
+                                 <th align="left" valign="bottom" width="20%" id="d21207e1285">Option</th>
+                                 <th align="left" valign="bottom" width="60%" id="d21207e1288">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d21207e1293" headers="d21207e1282 ">
+                                    <p>JFS</p>
+                                 </td>
+                                 <td align="left" valign="top" width="20%" headers="d21207e1293 d21207e1285 ">
+                                    <p>dio</p>
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d21207e1293 d21207e1288 ">
+                                    <p>Concurrent Input-Output is not available on JFS. Direct Input-Output is available, but performance is degraded compared to JFS2 with Concurrent Input-Output.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d21207e1303" headers="d21207e1282 ">
+                                    <p>JFS large file</p>
+                                 </td>
+                                 <td align="left" valign="top" width="20%" headers="d21207e1303 d21207e1285 ">
+                                    <p>none</p>
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d21207e1303 d21207e1288 ">
+                                    <p>Oracle does not recommend using JFS large file for Oracle Database because its 128 KB alignment constraint prevents you from using Direct Input-Output.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d21207e1313" headers="d21207e1282 ">
+                                    <p>JFS2</p>
+                                 </td>
+                                 <td align="left" valign="top" width="20%" headers="d21207e1313 d21207e1285 ">
+                                    <p>cio</p>
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d21207e1313 d21207e1288 ">
+                                    <p>Concurrent Input-Output is a better setting than Direct Input-Output on JFS2, because it provides support for multiple concurrent readers and writers on the same file. However, due to IBM AIX on POWER Systems (64-bit) restrictions on JFS2/CIO, Concurrent Input-Output is intended to be used only with Oracle data files, control files, and log files. It should be applied only to file systems that are dedicated to such a purpose. For the same reason, the Oracle home directory is not supported on a JFS2 file system mounted with the <code class="codeph">CIO</code> option. For example, during installation, if you inadvertently specify that the Oracle home directory is on a JFS2 file system mounted with the <code class="codeph">CIO</code> option, then while trying to relink Oracle, you may encounter the following error:
+                                    </p>
+                                    <p><code class="codeph">"ld: 0711-866 INTERNAL ERROR: Output symbol table size miscalculated"</code></p>
+                                    <p><span class="bold">Note</span>: For Oracle Database 11<span class="italic">g</span> Release 2 (11.2.0.2) and later, on IBM AIX on POWER Systems (64-bit) 6.1 systems and newer, Oracle recommends that you do not use the <code class="codeph">CIO</code> mount option on a JFS2 file system. For the latest Oracle Database releases, it is not necessary to use the <code class="codeph">CIO</code> mount option because, Oracle opens the filesystem with the <code class="codeph">O_CIOR</code> option internally. This gives the benefits of <code class="codeph">CIO</code> while allowing other applications to open the Oracle data files in read only mode without the <code class="codeph">O_CIO</code> option.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="20%" id="d21207e1355" headers="d21207e1282 ">
+                                    <p>Spectrum Scale (GPFS)</p>
+                                 </td>
+                                 <td align="left" valign="top" width="20%" headers="d21207e1355 d21207e1285 ">
+                                    <p>NA</p>
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d21207e1355 d21207e1288 ">
+                                    <p>Oracle Database silently enables Direct Input-Output on Spectrum Scale for optimum performance. Spectrum Scale Direct Input-Output already supports multiple readers and writers on multiple nodes. Therefore, Direct Input-Output and Concurrent Input-Output are the same thing on Spectrum Scale.</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-00D25A51-30B7-408A-AD6F-7DC3B775EC2B__GUID-DAE42538-EC53-41FD-9FD9-A5A7D20FD25C">Considerations for JFS and JFS2</p>
+                     </div>
+                     <!-- class="section" -->
+                     <p>If you are placing Oracle Database logs on a JFS2 file system, then the optimal configuration is to create the file system using the <code class="codeph">agblksize=512</code> option and to mount it with the <code class="codeph">CIO</code> option. 
+                     </p>
+                     <p>Before Oracle Database 12<span class="italic">c</span>, Direct Input-Output and Concurrent Input-Output could not be enabled at the file level on JFS/JFS2. Therefore, the Oracle home directory and data files had to be placed in separate file systems for optimal performance. The Oracle home directory was placed on a file system mounted with default options, with the data files and logs on file systems mounted using the <code class="codeph">DIO</code> or <code class="codeph">CIO</code> options.
+                     </p>
+                     <p>With Oracle Database 12<span class="italic">c</span>, you can enable Direct Input-Output and Concurrent Input-Output on JFS/JFS2 at the file level. You can do this by setting the <code class="codeph">FILESYSTEMIO_OPTIONS</code> parameter in the server parameter file to <code class="codeph">SETALL</code> or <code class="codeph">DIRECTIO</code>. This enables Concurrent Input-Output on JFS2 and Direct Input-Output on JFS for all data file Input-Output. Because the <code class="codeph">DIRECTIO</code> setting disables asynchronous Input-Output it should normally not be used. As a result of this 12<span class="italic">c</span> feature, you can place data files on the same JFS/JFS2 file system as the Oracle home directory and still use Direct Input-Output or Concurrent Input-Output for improved performance. As mentioned earlier, you should still place Oracle Database logs on a separate JFS2 file system for optimal performance.
+                     </p>
+                     <div class="infoboxnotealso" id="GUID-00D25A51-30B7-408A-AD6F-7DC3B775EC2B__GUID-70256DD5-933C-40F7-99C0-587DAE742D1D">
+                        <p class="notep1">See Also:</p><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/unxar&amp;id=oracle_architecture_and_tuning_on_aix" target="_blank"><span class="italic">Oracle Architecture and Tuning on AIX v2.30</span></a> for more information
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-00D25A51-30B7-408A-AD6F-7DC3B775EC2B__GUID-25B5836B-EB8E-46ED-883F-1FF40D062521">Considerations for Spectrum Scale</p>
+                     </div>
+                     <!-- class="section" -->
+                     <p>If you are using Spectrum Scale (GPFS), then you can use the same file system for all purposes. This includes using it for the Oracle home directory and for storing data files and logs. For optimal performance, you should use a large Spectrum Scale block size (typically, at least 512 KB). Spectrum Scale is designed for scalability, and there is no requirement to create multiple Spectrum Scale file systems as long as the amount of data fits in a single Spectrum Scale file system.</p>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-83834E64-8A57-405B-82B1-AE0B2113909B" name="GUID-83834E64-8A57-405B-82B1-AE0B2113909B"></a><h4 id="UNXAR-GUID-83834E64-8A57-405B-82B1-AE0B2113909B" class="sect4"><span class="enumeration_section">C.2.3 </span>Using Asynchronous Input-Output
+                  </h4>
+                  <div>
+                     <p>Oracle Database takes full advantage of asynchronous Input-Output provided by IBM AIX on POWER Systems (64-bit), resulting in faster database access.</p>
+                     <p>IBM AIX on POWER Systems (64-bit) support asynchronous Input-Output for database files created on file system partitions. When using asynchronous Input-Output on file systems, the kernel database processes (<code class="codeph">aioserver</code>) control each request from the time a request is taken off the queue to the time it is completed. The number of <code class="codeph">aioserver</code> servers determines the number of asynchronous Input-Output requests that can be processed in the system concurrently. There is no need to adjust the AIO tunables as the defaults for AIO tunables have been significantly increased.
+                     </p>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-2DE2943C-00B9-4F48-8761-625363979E7D" name="GUID-2DE2943C-00B9-4F48-8761-625363979E7D"></a><h4 id="UNXAR-GUID-2DE2943C-00B9-4F48-8761-625363979E7D" class="sect4"><span class="enumeration_section">C.2.4 </span>Input-Output Slaves
+                  </h4>
+                  <div>
+                     <p>Input-Output Slaves are specialized Oracle processes that perform only Input-Output. They are rarely used on IBM AIX on POWER Systems (64-bit), because asynchronous Input-Output is the default and recommended way for Oracle to perform Input-Output operations on IBM AIX on POWER Systems (64-bit). Input-Output Slaves are allocated from shared memory buffers. Input-Output Slaves use the initialization parameters listed in the following table:</p>
+                     <div class="tblformal" id="GUID-2DE2943C-00B9-4F48-8761-625363979E7D__GUID-16928726-74C9-450A-B760-1333B1352509">
+                        <table cellpadding="4" cellspacing="0" class="Formal" title summary="This 3 column table lists the I/O slave parameters, and their range and default value. Column 1 is the parameter. Column 2 is a range of values. Column 3 is the default value. " width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="41%" id="d21207e1617">Parameter</th>
+                                 <th align="left" valign="bottom" width="31%" id="d21207e1620">Range of Values</th>
+                                 <th align="left" valign="bottom" width="28%" id="d21207e1623">Default Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d21207e1628" headers="d21207e1617 ">
+                                    <p><code class="codeph">DISK_ASYNCH_IO</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="31%" headers="d21207e1628 d21207e1620 ">
+                                    <p><code class="codeph">true</code>/<code class="codeph">false</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d21207e1628 d21207e1623 ">
+                                    <p><code class="codeph">true</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d21207e1644" headers="d21207e1617 ">
+                                    <p><code class="codeph">TAPE_ASYNCH_IO</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="31%" headers="d21207e1644 d21207e1620 ">
+                                    <p><code class="codeph">true</code>/<code class="codeph">false</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d21207e1644 d21207e1623 ">
+                                    <p><code class="codeph">true</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d21207e1660" headers="d21207e1617 ">
+                                    <p><code class="codeph">BACKUP_TAPE_IO_SLAVES</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="31%" headers="d21207e1660 d21207e1620 ">
+                                    <p><code class="codeph">true</code>/<code class="codeph">false</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d21207e1660 d21207e1623 ">
+                                    <p><code class="codeph">false</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d21207e1676" headers="d21207e1617 ">
+                                    <p><code class="codeph">DBWR_IO_SLAVES</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="31%" headers="d21207e1676 d21207e1620 ">
+                                    <p>0 - 999</p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d21207e1676 d21207e1623 ">
+                                    <p>0</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d21207e1687" headers="d21207e1617 ">
+                                    <p><code class="codeph">DB_WRITER_PROCESSES</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="31%" headers="d21207e1687 d21207e1620 ">
+                                    <p>1-20</p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d21207e1687 d21207e1623 ">
+                                    <p>1</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                     <p>Generally, you do not adjust the parameters in the preceding table. However, on large workloads, the database writer may become a bottleneck. If it does, then increase the value of <code class="codeph">DB_WRITER_PROCESSES</code>. As a general rule, do not increase the number of database writer processes above one for each pair of CPUs in the system or partition.
+                     </p>
+                     <p>There are times when you must turn off asynchronous I/O. For example, if instructed to do so by Oracle Support for debugging. You can use the <code class="codeph">DISK_ASYNCH_IO</code> and <code class="codeph">TAPE_ASYNCH_IO</code> parameters to switch off asynchronous I/O for disk or tape devices. <code class="codeph">TAPE_ASYNCH_IO</code> support is only available when the Media Manager software supports it and for Recovery Manager, if <code class="codeph">BACKUP_TAPE_IO_SLAVES</code> is true.
+                     </p>
+                     <p>Set the <code class="codeph">DBWR_IO_SLAVES</code> parameter to greater than 0 only if the <code class="codeph">DISK_ASYNCH_IO</code>  parameter is set to <code class="codeph">false</code>. Otherwise, the database writer process becomes a bottleneck. In this case, the optimal value on IBM AIX on POWER Systems (64-bit) for the <code class="codeph">DBWR_IO_SLAVES</code> parameter is 4.
+                     </p>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-59CF8E2D-B610-404E-96F3-EEAEA73EA273" name="GUID-59CF8E2D-B610-404E-96F3-EEAEA73EA273"></a><h4 id="UNXAR-GUID-59CF8E2D-B610-404E-96F3-EEAEA73EA273" class="sect4"><span class="enumeration_section">C.2.5 </span>Using the DB_FILE_MULTIBLOCK_READ_COUNT Parameter
+                  </h4>
+                  <div>
+                     <p>When using Direct Input-Output or Concurrent Input-Output with Oracle Database 19c, the IBM AIX on POWER Systems (64-bit) file system does not perform any read-ahead on sequential scans. For this reason the <code class="codeph">DB_FILE_MULTIBLOCK_READ_COUNT</code> value in the server parameter file should be increased when Direct Input-Output or Concurrent Input-Output is enabled on Oracle data files. The read ahead is performed by Oracle Database as specified by the <code class="codeph">DB_FILE_MULTIBLOCK_READ_COUNT</code> initialization parameter.
+                     </p>
+                     <p>Setting a large value for the <code class="codeph">DB_FILE_MULTIBLOCK_READ_COUNT</code> initialization parameter usually yields better Input-Output throughput on sequential scans. On IBM AIX on POWER Systems (64-bit), this parameter ranges from 1 to 512, but using a value higher than 16 usually does not provide additional performance gain.
+                     </p>
+                     <p>Set this parameter so that its value when multiplied by the value of the <code class="codeph">DB_BLOCK_SIZE</code> parameter produces a number larger than the Logical Volume Manager stripe size. Such a setting causes more disks to be used.
+                     </p>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-9B188411-B1B7-43A6-9282-AF45FC1B3F0E" name="GUID-9B188411-B1B7-43A6-9282-AF45FC1B3F0E"></a><h4 id="UNXAR-GUID-9B188411-B1B7-43A6-9282-AF45FC1B3F0E" class="sect4"><span class="enumeration_section">C.2.6 </span>Tuning Disk Input-Output Pacing
+                  </h4>
+                  <div>
+                     <p>Disk Input-Output pacing is an IBM AIX on POWER Systems (64-bit) mechanism that enables the system administrator to limit the number of pending Input-Output requests to a file. This prevents disk Input-Output intensive processes from saturating the CPU. Therefore, the response time of interactive and CPU-intensive processes does not deteriorate.</p>
+                     <p>You can achieve disk Input-Output pacing by adjusting two system parameters: the high-water mark and the low-water mark. When a process writes to a file that already has a pending high-water mark Input-Output request, the process is put to sleep. The process wakes up when the number of outstanding Input-Output requests falls lower than or equals the low-water mark.</p>
+                     <div class="p">Starting from IBM AIX 6.1 version, the file systems and AIX I/O subsystem are modified to accommodate large surges of file system I/O. In addition to these changes, the default values for I/O pacing have been modified. The default values for IBM AIX 6.1 version and earlier was 0 to no I/O pacing. The default values for IBM AIX 6.1 version and later are as follows:
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">minpout</code>=4096
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">maxpout</code>=8193
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-A16247F9-8BF6-4FF0-B6CA-1EFDBCA5E173" name="GUID-A16247F9-8BF6-4FF0-B6CA-1EFDBCA5E173"></a><h4 id="UNXAR-GUID-A16247F9-8BF6-4FF0-B6CA-1EFDBCA5E173" class="sect4"><span class="enumeration_section">C.2.7 </span>Resilvering with Oracle Database
+                  </h4>
+                  <div>
+                     <p>If you disable mirror write consistency for an Oracle data file allocated on a raw logical volume, then the Oracle Database crash recovery process uses resilvering to recover after a system failure. This resilvering process prevents database inconsistencies or corruption.</p>
+                     <p>During crash recovery, if a data file is allocated on a logical volume with multiple copies, then the resilvering process performs a checksum on the data blocks of all the copies. It then performs one of the following:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>If the data blocks in a copy have valid checksums, then the resilvering process uses that copy to update the copies that have invalid checksums.</p>
+                        </li>
+                        <li>
+                           <p>If all copies have blocks with invalid checksums, then the resilvering process rebuilds the blocks using information from the redo log file. It then writes the data file to the logical volume and updates all the copies.</p>
+                        </li>
+                     </ul>
+                     <p>On IBM AIX on POWER Systems (64-bit), the resilvering process works only for data files allocated on raw logical volumes for which mirror write consistency is disabled. Resilvering is not required for data files on mirrored logical volumes with mirror write consistency enabled, because mirror write consistency ensures that all copies are synchronized.</p>
+                     <p>If the system fails while you are upgrading an earlier release of Oracle Database that used data files on logical volumes for which mirror write consistency was disabled, then run the <code class="codeph">syncvg</code> command to synchronize the mirrored logical volume before starting Oracle Database. If you do not synchronize the mirrored logical volume before starting the database, then Oracle Database may read incorrect data from a logical volume copy.
+                     </p>
+                     <div class="infoboxnote" id="GUID-A16247F9-8BF6-4FF0-B6CA-1EFDBCA5E173__GUID-98A101E7-A33A-4BA4-981A-CE84FCCCF209">
+                        <p class="notep1">Note:</p>
+                        <p>If a disk drive fails, then resilvering does not occur. You must run the <code class="codeph">syncvg</code> command before you can reactivate the logical volume.
+                        </p>
+                     </div>
+                     <div class="infobox-caution" id="GUID-A16247F9-8BF6-4FF0-B6CA-1EFDBCA5E173__GUID-607ED48A-EB38-49BF-97AB-4A084963059B">
+                        <p class="notep1">Caution:</p>
+                        <p>Oracle supports resilvering for data files only. Do not disable mirror write consistency for redo log files.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-FAE7BABF-E633-4121-AB53-AA77F767204E" name="GUID-FAE7BABF-E633-4121-AB53-AA77F767204E"></a><h3 id="UNXAR-GUID-FAE7BABF-E633-4121-AB53-AA77F767204E" class="sect3"><span class="enumeration_section">C.3 </span>CPU Scheduling and Process Priorities
+               </h3>
+               <div>
+                  <p>The CPU is another system component for which processes may contend. Although the IBM AIX on POWER Systems (64-bit) kernel allocates CPU effectively most of the time, many processes compete for CPU cycles. If the system has multiple CPU (SMP), then there may be different levels of contention on each CPU.</p>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-0C5311D7-61B7-4084-AE2F-920434441F92" name="GUID-0C5311D7-61B7-4084-AE2F-920434441F92"></a><h3 id="UNXAR-GUID-0C5311D7-61B7-4084-AE2F-920434441F92" class="sect3"><span class="enumeration_section">C.4 </span>AIXTHREAD_SCOPE Environment Variable
+               </h3>
+               <div>
+                  <p>Oracle recommends using IBM AIX 7.1 version and IBM AIX 6.1 default (system wide scope) setting of the <code class="codeph">AIXTHREAD_SCOPE</code> environment variable to <code class="codeph">S (1:1)</code>.
+                  </p>
+                  <div class="infoboxnotealso" id="GUID-0C5311D7-61B7-4084-AE2F-920434441F92__GUID-F66443C5-4212-406B-9B73-868F84C69E55">
+                     <p class="notep1">See Also:</p><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/unxar&amp;id=aix_thread_tuning" target="_blank"><span class="italic">Thread tuning</span></a> for additional information about thread tuning
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-A828FA77-1539-4962-940B-05819AB7E244" name="GUID-A828FA77-1539-4962-940B-05819AB7E244"></a><h3 id="UNXAR-GUID-A828FA77-1539-4962-940B-05819AB7E244" class="sect3"><span class="enumeration_section">C.5 </span>Network Information Service external naming support
+               </h3>
+               <div>
+                  <p>Network Information Service external naming adapter is supported on IBM AIX on POWER Systems (64-bit). To configure and use Network Information Service external naming, refer to <a href="../netag/configuring-naming-methods.html#NETAG277" target="_blank"><span><cite>Oracle Database Net Services Administrator's Guide</cite></span></a>.
+                  </p>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-4E7AFC7D-9C20-4163-8C9C-7B45E19FB387" name="GUID-4E7AFC7D-9C20-4163-8C9C-7B45E19FB387"></a><h3 id="UNXAR-GUID-4E7AFC7D-9C20-4163-8C9C-7B45E19FB387" class="sect3"><span class="enumeration_section">C.6 </span>Configuring IBM Java Secure Socket Extension Provider with Oracle JDBC Thin Driver
+               </h3>
+               <div>
+                  <p>IBM Java 1.6 SR 16 is shipped with Oracle Database 12<span class="italic">c</span> Release 1 (12.1). If you want to configure SSL on IBM JDK, then you may face the following issues:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>IBM JSSE does not support <code class="codeph">SSLv2Hello</code> SSL protocol. However, it accepts the <code class="codeph">SSLv2Hello</code> message from the client encapsulating
+                        </p> <code class="codeph">SSLv3</code> or <code class="codeph">TLS1.0</code> hello message.
+                        <p>For SSL clients using Thin JDBC connectors, you must set <code class="codeph">oracle.net.ss1_version</code> system property to select <code class="codeph">TLSv1</code> SSL protocol or <code class="codeph">SSLv3</code> SSL protocol since <code class="codeph">SSLv3</code> is not recommended anymore after the <code class="codeph">POODLE</code> security issue. System property recommendation is to set <code class="codeph">TLSV1.0</code>, <code class="codeph">TLSV1.1</code>, and <code class="codeph">TLSV1.2</code> on recommending <code class="codeph">SSLv3</code>, or the connection will fail.
+                        </p>
+                     </li>
+                     <li>
+                        <p>IBM JSSE does not allow anonymous ciphers</p>
+                        <p>For SSL clients using anonymous ciphers, you must replace the Default Trust Manager with a Custom Trust Manager that accepts anonymous ciphers.</p>
+                     </li>
+                  </ul>
+                  <div class="infoboxnotealso" id="GUID-4E7AFC7D-9C20-4163-8C9C-7B45E19FB387__GUID-61E11215-46C3-45E5-8171-4A46CCA39B9F">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/unxar&amp;id=poodle_security_vulnerability" target="_blank"><span class="italic">Padding Oracle On Downgraded Legacy Encryption (POODLE) security vulnerability</span></a> for more information
+                           </p>
+                        </li>
+                        <li>
+                           <p>IBM JSSE documentation for more information about creating and installing Custom Trust Manager</p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

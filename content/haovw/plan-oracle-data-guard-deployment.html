@@ -1,0 +1,1236 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Plan an Oracle Data Guard Deployment">
+      <meta name="abstract" content="Analyze your specific requirements, including both the technical and operational aspects of your IT systems and business processes, understand the availability impact for the Oracle Data Guard architecture options, and consider the impact of your application and network.">
+      <meta name="description" content="Analyze your specific requirements, including both the technical and operational aspects of your IT systems and business processes, understand the availability impact for the Oracle Data Guard architecture options, and consider the impact of your application and network.">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-9A616956-9053-4502-895A-724773D6F84F">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Analyze your specific requirements, including both the technical and operational aspects of your IT systems and business processes, understand the availability impact for the Oracle Data Guard architecture options, and consider the impact of your application and network.">
+      <meta name="description" content="Analyze your specific requirements, including both the technical and operational aspects of your IT systems and business processes, understand the availability impact for the Oracle Data Guard architecture options, and consider the impact of your application and network.">
+      <title>Plan an Oracle Data Guard Deployment</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content="Analyze your specific requirements, including both the technical and operational aspects of your IT systems and business processes, understand the availability impact for the Oracle Data Guard architecture options, and consider the impact of your application and network.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="overview-maa-best-practices-oracle-data-guard.html" title="Previous" type="text/html">
+      <link rel="next" href="configure-and-deploy-oracle-data-guard.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Plan an Oracle Data Guard Deployment","description":"Analyze your specific requirements, including both the technical and operational aspects of your IT systems and business processes, understand the availability impact for the Oracle Data Guard architecture options, and consider the impact of your application and network.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="overview-maa-best-practices-oracle-data-guard.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="configure-and-deploy-oracle-data-guard.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-9A616956-9053-4502-895A-724773D6F84F" name="GUID-9A616956-9053-4502-895A-724773D6F84F"></a>
+         
+         <h2 id="HAOVW-GUID-9A616956-9053-4502-895A-724773D6F84F" class="sect2"><span class="enumeration_chapter">14 </span>Plan an Oracle Data Guard
+        Deployment
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Analyze your specific requirements, including both the technical and
+        operational aspects of your IT systems and business processes, understand the availability
+        impact for the Oracle Data Guard architecture options, and consider the impact of your
+        application and network.</p>
+            </div>
+            <div class="sect2"><a id="GUID-101603B1-C89C-4E82-A20A-1F39B6E17CAC" name="GUID-101603B1-C89C-4E82-A20A-1F39B6E17CAC"></a><h3 id="HAOVW-GUID-101603B1-C89C-4E82-A20A-1F39B6E17CAC" class="sect3">Oracle Data Guard
+        Architectures</h3>
+               <div>
+                  <p>The Gold MAA reference architecture provides you with four architecture
+        patterns, using Oracle Active Data Guard to eliminate single point of failure. The patterns
+        vary from a single remote active standby with Fast Start Failover and HA Obeserver, to
+        including far sync instances, multiple standbys, and reader farms.</p>
+                  <p>When planning your Gold MAA Reference Architecture, see <a href="https://www.oracle.com/webfolder/technetwork/tutorials/architecture-diagrams/high-availability-overview/high-availability-reference-architectures.html" target="_blank">High Availability Reference Architectures</a> for
+            an overview of each Gold architecture pattern, and choose the elements to incorporate
+            based on your requirements.
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-9C5795B2-720C-4472-B46E-E4E03F039ABD" name="GUID-9C5795B2-720C-4472-B46E-E4E03F039ABD"></a><h3 id="HAOVW-GUID-9C5795B2-720C-4472-B46E-E4E03F039ABD" class="sect3">Application Considerations for
+        Oracle Data Guard Deployments</h3>
+               <div>
+                  <p>As part of planning your Oracle Data Guard deployment, consider the
+        resources required and application availability requirements in a fail over
+        scenario.</p>
+               </div>
+               <div class="sect3"><a id="GUID-FFD98E4D-BE2A-4E93-909A-EBB26ECAA827" name="GUID-FFD98E4D-BE2A-4E93-909A-EBB26ECAA827"></a><h4 id="HAOVW-GUID-FFD98E4D-BE2A-4E93-909A-EBB26ECAA827" class="sect4">Deciding Between Full Site
+        Failover or Seamless Connection Failover</h4>
+                  <div>
+                     <p>The first step is to evaluate which failover option best meets your business
+        and application requirements when your primary database or primary site is inaccessible or
+        lost due to a disaster.</p>
+                     <p>The following table describes various conditions for each outage type and recommends a
+            failover option in each scenario.</p>
+                     <div class="tblformal" id="GUID-FFD98E4D-BE2A-4E93-909A-EBB26ECAA827__TABLE_HTK_25Q_JNB">
+                        <p class="titleintable">Table 14-1 Recommended Failover Options for Different Outage Scenarios</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Recommended Failover Options for Different Outage Scenarios" summary="describes various conditions for each outage type and recommends a failover option&#xA;                in each scenario" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="0%" id="d29605e86">Outage Type</th>
+                                 <th align="left" valign="bottom" width="0%" id="d29605e88">Condition</th>
+                                 <th align="left" valign="bottom" width="0%" id="d29605e90">Recommended Failover Option</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d29605e94" headers="d29605e86 ">Primary Site Failure (including all application
+                            servers)</td>
+                                 <td align="left" valign="top" width="0%" headers="d29605e94 d29605e88 ">Primary site contains all existing application servers (or mid-tier
+                            servers) that were connected to the failed primary database.</td>
+                                 <td align="left" valign="top" width="0%" headers="d29605e94 d29605e90 ">Full site failover is required</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d29605e101" headers="d29605e86 ">Primary Site Failure (with some application servers
+                            surviving)</td>
+                                 <td align="left" valign="top" width="0%" headers="d29605e101 d29605e88 ">
+                                    
+                                    <p>Some or all application servers are not impacted and the surviving
+                                application servers can reconnect to new primary database in a
+                                secondary disaster recovery site.</p>
+                                    
+                                    <p>Application performance and throughput is still acceptable with
+                                different network latency between application servers and new
+                                primary database in a secondary disaster recovery site.</p>
+                                    
+                                    <p>Typically analytical or reporting applications can tolerate higher
+                                network latency between client and database without any noticeable
+                                performance impact, while OLTP applications performance may suffer
+                                more significantly if there is an increase in network latency
+                                between the application server and database.</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="0%" headers="d29605e101 d29605e90 ">Seamless connection failover is recommended to minimize downtime and
+                            enable automatic application and database failover.</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d29605e117" headers="d29605e86 ">Complete Primary Database or Primary Server Failure</td>
+                                 <td align="left" valign="top" width="0%" headers="d29605e117 d29605e88 ">
+                                    
+                                    <p>Application servers are not impacted and users can reconnect to new
+                                primary database in a secondary disaster recovery site.</p>
+                                    
+                                    <p>Application performance and throughput is still acceptable with
+                                different network latency between application servers and new
+                                primary database in a secondary disaster recovery site.</p>
+                                    
+                                    <p>Typically analytical or reporting applications can tolerate higher
+                                network latency between client and database without any noticeable
+                                performance impact, while OLTP applications performance may suffer
+                                more significantly if there is an increase in network latency
+                                between the application server and database.</p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="0%" headers="d29605e117 d29605e90 ">
+                                    
+                                    <p>If performance is acceptable, seamless connection failover is
+                                recommended to minimize downtime and enable automatic application
+                                and database failover.</p>
+                                    
+                                    <p>Otherwise, full site failover is required.</p>
+                                    
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-9C057704-5CCF-4CA8-BF67-C04B6BD35691" name="GUID-9C057704-5CCF-4CA8-BF67-C04B6BD35691"></a><h4 id="HAOVW-GUID-9C057704-5CCF-4CA8-BF67-C04B6BD35691" class="sect4">Full Site Failover Best
+        Practices</h4>
+                  <div>
+                     <p>A <strong class="term">full site failover</strong> means that the complete site fails over to
+        another site with a new set of application tiers and a new primary database.
+                     </p>
+                     <p>Complete site failure results in both the application and database tiers becoming
+            unavailable. To maintain availability, application users must be redirected to a
+            secondary site that hosts a redundant application tier and a synchronized copy of the
+            production database.</p>
+                     <p>Consider the two figures below. The first figure shows the network routes before
+            failover. Client or application requests enter the Primary site at the client tier, and
+            are routed to the application server and database server tiers on the primary site.</p>
+                     <div class="figure" id="GUID-9C057704-5CCF-4CA8-BF67-C04B6BD35691__FIG_RQN_GXQ_JNB">
+                        <p class="titleinfigure">Figure 14-1 Network Routes Before Site Failover</p><img id="GUID-9C057704-5CCF-4CA8-BF67-C04B6BD35691__IMAGE_SQN_GXQ_JNB" src="img/habpt005.gif" alt="Description of Figure 14-1 follows" title="Description of Figure 14-1 follows" longdesc="img_text/habpt005.html"><br><a href="img_text/habpt005.html">Description of "Figure 14-1 Network Routes Before Site Failover"</a></div>
+                     <p>The second figure, below, illustrates the network routes after a complete site failover.
+            Client or application requests enter the Secondary site at the client tier and follow
+            the same path on the secondary site that they followed on the primary site.</p>
+                     <div class="figure" id="GUID-9C057704-5CCF-4CA8-BF67-C04B6BD35691__FIG_QY4_LXQ_JNB">
+                        <p class="titleinfigure">Figure 14-2 Network Routes After Site Failover</p><img id="GUID-9C057704-5CCF-4CA8-BF67-C04B6BD35691__IMAGE_RY4_LXQ_JNB" src="img/habpt014.gif" alt="Description of Figure 14-2 follows" title="Description of Figure 14-2 follows" longdesc="img_text/habpt014.html"><br><a href="img_text/habpt014.html">Description of "Figure 14-2 Network Routes After Site Failover"</a></div>
+                     <p>MAA best practice is to maintain a running application tier at the standby
+            site to avoid incurring start-up time, and to use Oracle Data Guard to maintain a
+            synchronized copy of the production database. Upon site failure, a WAN traffic manager
+            is used to perform a DNS failover (either manually or automatically) to redirect all
+            users to the application tier at standby site while a Data Guard failover transitions
+            the standby database to the primary production role. </p>
+                     <p>Use Oracle Active Data Guard Fast-Start Failover to automate the database failover.
+            Application server and non-database failovers can be automated and coordinated by using
+            Oracle Site Guard. Oracle Site Guard orchestrates and automates any operations, such as
+            starting up application servers on the secondary site, resynchronizing non-database meta
+            data as Data Guard fails over automatically.</p>
+                     <p>For more information about Oracle Site Guard, see the <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/haovw&id=GUARD-GUID-8C2FADF5-11F1-420C-B968-05714F276A1F" target="_blank">Oracle Site Guard Administrator's Guide</a>.
+                     </p>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-C516424F-3E39-44CF-8644-8505F5443B9E" name="GUID-C516424F-3E39-44CF-8644-8505F5443B9E"></a><h4 id="HAOVW-GUID-C516424F-3E39-44CF-8644-8505F5443B9E" class="sect4">Configuring Seamless Connection
+        Failover</h4>
+                  <div>
+                     <p>Automating seamless client failover in an Oracle Data Guard configuration
+        includes relocating database services to the new primary database as part of a Data Guard
+        failover, notifying clients that a failure has occurred to break them out of TCP timeout,
+        and redirecting clients to the new primary database.</p>
+                     <p>In the following figure, a database request is interrupted by an outage or timeout (1),
+            so the session reconnects to the Oracle RAC cluster (2) (or standby) (2), the database
+            request replays automatically on the alternate node (3), and the result from the
+            database request is returned to the user (4).</p>
+                     <div class="figure" id="GUID-C516424F-3E39-44CF-8644-8505F5443B9E__FIG_SCC_SBR_JNB">
+                        <p class="titleinfigure">Figure 14-3 Seamless Connection Failover</p><img id="GUID-C516424F-3E39-44CF-8644-8505F5443B9E__IMAGE_TCC_SBR_JNB" height="848" width="1647" src="img/seamless_failover.png" alt="Description of Figure 14-3 follows" title="Description of Figure 14-3 follows" longdesc="img_text/seamless_failover.html"><br><a href="img_text/seamless_failover.html">Description of "Figure 14-3 Seamless Connection Failover"</a></div>
+                     <p>To achieve seamless connection failover, refer to <a href="Chunk964113041.html#GUID-5EBF37EA-48AB-4508-A14E-86A2583A24BF" title="Ensure that your applications are configured to quickly and automatically shift workload to available Oracle RAC instances or standby databases during planned maintenance and unplanned outages.">Configuring Continuous Availability for Applications</a>.
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-40FAFC49-09BE-41D0-80EF-4C62DBB515D1" name="GUID-40FAFC49-09BE-41D0-80EF-4C62DBB515D1"></a><h3 id="HAOVW-GUID-40FAFC49-09BE-41D0-80EF-4C62DBB515D1" class="sect3">Assessing and Optimizing Network
+        Performance</h3>
+               <div>
+                  <p>Oracle Data Guard relies on the underlying network to send redo from the
+        primary database to standby databases. Ensuring that the network is healthy and capable of
+        supporting peak redo generation rates helps avoid future transport lags.</p>
+                  <p>A transport lag forms when the primary database cannot ship redo to the standby faster
+            than primary instance's redo generation rate. A transport lag can lead to potential data
+            loss if a primary database failure occurs.</p>
+                  <p>Network assessment consists of evaluating</p>
+                  <ul style="list-style-type: disc;" id="GUID-40FAFC49-09BE-41D0-80EF-4C62DBB515D1__UL_WM1_HDR_JNB">
+                     <li>
+                        
+                        <p>Network reliability</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Network bandwidth to accommodate peak redo generation rates</p>
+                        
+                     </li>
+                  </ul>
+                  <div class="infoboxnote" id="GUID-40FAFC49-09BE-41D0-80EF-4C62DBB515D1__GUID-0DC839E5-82DE-4C8E-8F90-0705A6EAF255">
+                     <p class="notep1">Note:</p>Each instance of the primary database instance generates its own redo and ships redo
+            to the standby database in a single network stream. Therefore, maximizing single process
+            network throughput for each node is critical for redo transport.
+                  </div>
+                  <p>Historically there are areas that can reduce network and redo transport throughput
+            resulting in potential transport lags:</p>
+                  <ol id="GUID-40FAFC49-09BE-41D0-80EF-4C62DBB515D1__OL_EVG_CLG_XVB">
+                     <li>
+                        
+                        <p>Network firewalls or network encryption</p>
+                        
+                        <p>Network firewalls and network (not Oracle Net) encryption can reduce overall
+                    throughput significantly. Verify throughput with the oratcp tool (described
+                    below), with and without encryption, and tune accordingly.</p>
+                        
+                        <p>At times reducing the encryption level can increase throughput significantly. A
+                    balance is required to meet security needs with your performance and data loss
+                    requirements.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Redo transport compression</p>
+                        
+                        <p>When database initialization parameter has <code class="codeph">LOG_ARCHIVE_DEST_N</code>
+                    attribute <code class="codeph">COMPRESSION=ENABLE</code>, Oracle background processes have
+                    to compress the redo before sending network message, and uncompress the redo
+                    before processing the redo. This reduces the overall redo and network
+                    throughput. Compression is only recommended if network bandwidth is insufficient
+                    between the primary and standby destinations.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Oracle Net encryption</p>
+                        
+                        <p>Depending on the Oracle Net encryption level, this will have varying redo
+                    throughput impact, because Oracle Net messages containing redo have to be
+                    encrypted before sending and then unencrypted before redo processing.</p>
+                        
+                        <p>Note that if database encryption is already enabled with Transparent Data
+                    Encryption (TDE), redo is already encrypted, although Oracle Net encryption can
+                    also encrypt the message headers.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Untuned network for redo transport</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-40FAFC49-09BE-41D0-80EF-4C62DBB515D1__UL_IZN_PCV_XVB">
+                           <li>
+                              
+                              <p>Increasing maximum operating system socket buffer size can increase
+                            single process throughput by 2-8 times. Test with different socket
+                            buffer sizes to see what value yields positive results, and ensure
+                            throughput is greater than the peak redo throughput.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Compare performance with various MTU settings.</p>
+                              
+                              <p>If average redo write size is less than 1500 bytes, then try various MTU
+                            settings including MTU=9000 (for example, Jumbo Frames) for network
+                            interface that sends or receives redo on your system. This may reduce
+                            some unnecessary network round trips which will increase overall
+                            throughput. </p>
+                              
+                              <p>Also note that for SYNC transport, Oracle's average redo write size (for
+                            example, Oracle message send) increases significantly as determined by
+                            v$sysstats or AWR statistics "redo size / redo writes".</p>
+                              
+                              <p>When sending redo across geographical regions, experiments have shown
+                            that using MTU=9000 can also benefit in some network topologies. Conduct
+                            performance tests with oratcp and compare the results with default MTU
+                            and MTU=9000 settings.</p>
+                              
+                           </li>
+                        </ul>
+                        
+                     </li>
+                  </ol>
+               </div>
+               <div class="sect3"><a id="GUID-3104E405-331F-452A-A224-CCB455E3398C" name="GUID-3104E405-331F-452A-A224-CCB455E3398C"></a><h4 id="HAOVW-GUID-3104E405-331F-452A-A224-CCB455E3398C" class="sect4"><span class="bold">Gather Topology Information</span></h4>
+                  <div>
+                     <p>Understanding the topology of the Oracle Data Guard configuration, and its
+        relevance to Data Guard performance, helps eliminate infrastructure weaknesses that are
+        often incorrectly attributed to the Data Guard architecture.</p>
+                     <p>Oracle recommends that you outline the following high-level architecture
+            information.</p>
+                     <ul style="list-style-type: disc;" id="GUID-3104E405-331F-452A-A224-CCB455E3398C__UL_GRS_1PR_55B">
+                        <li>
+                           
+                           <p>Describe the primary and standby database system (number of nodes in
+                    Oracle RAC cluster, CPUs and memory per database node, storage I/O system)</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Describe network topology connecting the primary and standby
+                    systems</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-3104E405-331F-452A-A224-CCB455E3398C__UL_HRS_1PR_55B">
+                              <li>
+                                 
+                                 <p>Network switches and firewalls in between primary and
+                            standby</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>Network bandwidth and latency</p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </li>
+                     </ul>
+                     <p>For standby databases with symmetric hardware and configuration, and with a
+            well tuned network configuration that can support peak redo generation rates, the
+            transport lag should be less than 1 second. </p>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-9734F6A9-4C5F-4F05-854E-DA9D02996E0B" name="GUID-9734F6A9-4C5F-4F05-854E-DA9D02996E0B"></a><h4 id="HAOVW-GUID-9734F6A9-4C5F-4F05-854E-DA9D02996E0B" class="sect4">Understanding Network Usage of Data
+        Guard</h4>
+                  <div>
+                     <p>The phases of the Data Guard life cycle which use the network most heavily
+            are:</p>
+                     <ul style="list-style-type: disc;" id="GUID-9734F6A9-4C5F-4F05-854E-DA9D02996E0B__UL_D4F_2PR_55B">
+                        <li>
+                           
+                           <p>Instantiation - During this phase of standby database creation,
+                    files can be copied using parallelism from any host. Determining the degree of
+                    parallelism which maximizes throughput between nodes helps to optimize the
+                    standby instantiation process.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Redo Transport (Steady State)- Under normal Data Guard operation the
+                    primary database ships redo to the standby which is then applied. Each RAC
+                    instance of a primary database ships redo in a single stream from the host on
+                    which it is running. Understanding the requirements of each primary database
+                    instance and ensuring a single process can achieve the throughput requirements
+                    is critical to a standby database staying current with the primary database.</p>
+                           
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-DA8BE0CE-DB6F-4C16-AAC4-BE66F6AFBA6E" name="GUID-DA8BE0CE-DB6F-4C16-AAC4-BE66F6AFBA6E"></a><h4 id="HAOVW-GUID-DA8BE0CE-DB6F-4C16-AAC4-BE66F6AFBA6E" class="sect4">Understanding Targets and Goals for
+        Instantiation</h4>
+                  <div>
+                     <p>Instantiation for large databases can take hours, or in extreme cases days.
+            To allow for planning of an instantiation and also maximize throughput between the
+            primary and standby system to complete the instantiation is as timely a manner as
+            possible, first determine the goal for instantiation time. Then follow the process
+            defined below to maximize per process throughput and identify the optimal degree of
+            parallelism between the primary and standby nodes.</p>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-7354549E-C8CC-437B-BF52-F0F76522F432" name="GUID-7354549E-C8CC-437B-BF52-F0F76522F432"></a><h4 id="HAOVW-GUID-7354549E-C8CC-437B-BF52-F0F76522F432" class="sect4"><span class="bold">Understanding Throughput Requirements and
+            Average Redo Write Size for Redo Transport</span></h4>
+                  <div>
+                     <p>Required network bandwidth of a given Data Guard configuration is determined
+        by the redo generate rate of the primary database. </p>
+                     <div class="infoboxnote" id="GUID-7354549E-C8CC-437B-BF52-F0F76522F432__GUID-1DD5FE97-BF9D-4FEA-BB3D-3E9A2621C25A">
+                        <p class="notep1">Note:</p>In cases where the primary database is
+            pre-existing, a baseline for the required network bandwidth can be established. If there
+            is no existing primary database, skip this step and future references to the data
+            further in the process.
+                     </div>
+                     <p>While the Automatic Workload Repository (AWR) tool can be used to determine
+            the redo generation rate, the snapshots are often 30 or 60 minutes apart which can
+            dilute the peak rate. Since peak rates often occur for shorter periods of time, it is
+            more accurate to use the following query which calculates the redo generation rate for
+            each log when run on an existing database. (change the timestamps as appropriate)</p><pre class="pre codeblock"><code>SQL&gt; SELECT THREAD#, SEQUENCE#, BLOCKS*BLOCK_SIZE/1024/1024 MB,
+(NEXT_TIME-FIRST_TIME)*86400 SEC,
+ (BLOCKS*BLOCK_SIZE/1024/1024)/((NEXT_TIME-FIRST_TIME)*86400) "MB/S"
+FROM V$ARCHIVED_LOG
+WHERE ((NEXT_TIME-FIRST_TIME)*86400&lt;&gt;0)
+AND FIRST_TIME BETWEEN TO_DATE('2022/01/15 08:00:00','YYYY/MM/DD HH24:MI:SS')
+ AND TO_DATE('2022/01/15 11:00:00','YYYY/MM/DD HH24:MI:SS')
+AND DEST_ID=1 ORDER BY FIRST_TIME;</code></pre><p>Example output:</p><pre class="pre codeblock"><code>THREAD# SEQUENCE# MB         SEC        MB/s
+------- --------- ---------- ---------- ----------
+      2      2291 29366.1963        831  35.338383
+      1      2565 29365.6553        781 37.6000708
+      2      2292 29359.3403        537  54.672887
+      1      2566 29407.8296        813 36.1719921
+      2      2293 29389.7012        678 43.3476418
+      2      2294 29325.2217       1236 23.7259075
+      1      2567 11407.3379       2658 4.29169973
+      2      2295 24682.4648        477 51.7452093
+      2      2296 29359.4458        954 30.7751004
+      2      2297 29311.3638        586 50.0193921
+      1      2568 3867.44092       5510 .701894903</code></pre><div class="infoboxnote" id="GUID-7354549E-C8CC-437B-BF52-F0F76522F432__GUID-16663E13-BB14-4FBB-A350-64C6C4CCDC47">
+                        <p class="notep1">Note:</p>To find the peak redo rate, choose
+            times during the highest level of processing, such as peak OLTP periods, End of Quarter
+            batch processing or End of Year batch processing.
+                     </div>
+                     <p>In this short example the highest rate was about 52MB/s. Ideally the network
+            will support the maximum rate plus 30% or 68MB/s for this application.</p>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-ABFD237D-80E4-44EA-8CEF-95E0A95668A5" name="GUID-ABFD237D-80E4-44EA-8CEF-95E0A95668A5"></a><h4 id="HAOVW-GUID-ABFD237D-80E4-44EA-8CEF-95E0A95668A5" class="sect4">Verify Average Redo Write Size</h4>
+                  <div>
+                     <p>Using <code class="codeph">v$sysstats</code> or looking at your AWR reports for various
+            workload and peak intervals, record the average redo write size based on
+                     </p>
+                     <p>Average Redo Write Size = "REDO SIZE" / "REDO WRITES"</p>
+                     <p>Use this average redo write size in your <code class="codeph">oratcp</code> experiments.
+            If the average redo write size &gt; 1500 bytes, experiment with various MTU
+            settings.
+                     </p>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-CEC2DC1E-4134-4F9C-B0F0-3D9F0D7C5D46" name="GUID-CEC2DC1E-4134-4F9C-B0F0-3D9F0D7C5D46"></a><h4 id="HAOVW-GUID-CEC2DC1E-4134-4F9C-B0F0-3D9F0D7C5D46" class="sect4">Understand Current Network Throughput</h4>
+                  <div>
+                     <p>The Oracle utility oratcptest is a general-purpose tool for measuring
+            network bandwidth and latency similar to iperf/qperf which can be run by any OS
+            user.</p>
+                     <p>The oratcptest utility provides options for controlling the network load
+            such as:</p>
+                     <ul style="list-style-type: disc;" id="GUID-CEC2DC1E-4134-4F9C-B0F0-3D9F0D7C5D46__UL_DZJ_5PR_55B">
+                        <li>Network message size</li>
+                        <li>Delay time between messages</li>
+                        <li>Parallel streams</li>
+                        <li>Whether or not the oratcptest server should write messages on disk.</li>
+                        <li>Simulating Data Guard SYNC transport by waiting for acknowledgment (ACK)
+                of a packet or ASYNC transport by not waiting for the ACK.</li>
+                     </ul>
+                     <div class="infoboxnote" id="GUID-CEC2DC1E-4134-4F9C-B0F0-3D9F0D7C5D46__GUID-223A1C40-5B76-413A-A925-1C93827D82E0">
+                        <p class="notep1">Note:</p>This tool, like any Oracle network
+            streaming transport, can simulate efficient network packet transfers from the source
+            host to target host similar to Data Guard transport. Throughput can saturate the
+            available network bandwidth between source and target servers. Therefore, Oracle
+            recommends that short duration tests are performed and that consideration is given for
+            any other critical applications sharing the same network.
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-CEC2DC1E-4134-4F9C-B0F0-3D9F0D7C5D46__GUID-4EBFBC44-519B-4E16-A51B-7EFB7E81A12F">Measure the Existing Throughput of
+                One and Many Processes</p>
+                        
+                        
+                        <p>Do the following tasks to measure the existing throughput.</p>
+                        
+                        <p>Task 1: Install oratcptest</p>
+                        
+                        <ol id="GUID-CEC2DC1E-4134-4F9C-B0F0-3D9F0D7C5D46__OL_Y2H_DQR_55B">
+                           <li>
+                              
+                              <p>Download the oratcptest.jar file from MOS note 2064368.1</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Copy the JAR file onto both client (primary) and server
+                        (standby)</p>
+                              
+                              <div class="infoboxnote" id="GUID-CEC2DC1E-4134-4F9C-B0F0-3D9F0D7C5D46__GUID-C0450221-1DFB-45B0-AD84-1B03BAF43B97">
+                                 <p class="notep1">Note:</p>oratcptest requires JRE 6
+                        or later
+                              </div>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Verify that the host has JRE 6 or later</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>On all primary and standby hosts, verify that the JVM can run the
+                        JAR file by displaying the help</p>
+                              <pre class="pre codeblock"><code># java -jar oratcptest.jar -help</code></pre>
+                              </li>
+                        </ol>
+                        
+                        <p>Task 2: Determine the Existing Throughput for a Single Process</p>
+                        
+                        <p>Data Guard asynchronous redo transport (ASYNC) uses a streaming protocol
+                which does not wait for packet acknowledgment and therefore achieves higher rates
+                than SYNC transport. </p>
+                        
+                        <ol id="GUID-CEC2DC1E-4134-4F9C-B0F0-3D9F0D7C5D46__OL_USL_LQR_55B">
+                           <li>
+                              
+                              <p>Start the test server on the receiving (standby) side.</p>
+                              <pre class="pre codeblock"><code>java -jar oratcptest.jar -server [IP of standby host or VIP in RAC
+ configurations] -port=&lt;any available port number&gt;</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p>Run the test client. (Change the server address and port number
+                        to match that of your server started in step 4.)</p>
+                              <pre class="pre codeblock"><code>$ java -jar oratcptest.jar [IP of standby host or VIP in RAC configurations]
+ -port=&lt;port number&gt; -mode=async -duration=120 -interval=20s
+
+[Requesting a test]
+        Message payload        = 1 Mbyte
+        Payload content type   = RANDOM
+        Delay between messages = NO
+        Number of connections  = 1
+        Socket send buffer     = (system default)
+        Transport mode         = ASYNC
+        Disk write             = NO
+        Statistics interval    = 20 seconds
+        Test duration          = 2 minutes
+        Test frequency         = NO
+        Network Timeout        = NO
+        (1 Mbyte = 1024x1024 bytes)
+
+(17:54:44) The server is ready.
+                    Throughput
+(17:55:04)     20.919 Mbytes/s
+(17:55:24)     12.883 Mbytes/s
+(17:55:44)     10.457 Mbytes/s
+(17:56:04)     10.408 Mbytes/s
+(17:56:24)     12.423 Mbytes/s
+(17:56:44)     13.701 Mbytes/s
+(17:56:44) Test finished.
+               Socket send buffer = 2 Mbytes
+                  Avg. throughput = 13.466 Mbytes/s</code></pre>
+                              </li>
+                        </ol>
+                        
+                        <p>In this example the average throughput between these two nodes was about
+                13 MB/s which does not meet the requirements of 68 MB/s from the query.</p>
+                        
+                        <div class="infoboxnote" id="GUID-CEC2DC1E-4134-4F9C-B0F0-3D9F0D7C5D46__GUID-93C61225-08AC-4A4B-8EE1-0679B000C92C">
+                           <p class="notep1">Note:</p>This process can be scheduled to
+                run at a given frequency using the <code class="codeph">-freq</code> option to determine if the
+                bandwidth varies at different times of the day. For instance setting
+                    <code class="codeph">-freq=1h/24h</code> will repeat the test every hour for 24
+                hours.
+                        </div>
+                        
+                        <p>Task 3: Determine Existing Throughput for Multiple Processes</p>
+                        
+                        <ol id="GUID-CEC2DC1E-4134-4F9C-B0F0-3D9F0D7C5D46__OL_NBR_1RR_55B">
+                           <li>
+                              
+                              <p>Repeat the previous test with two (2) connections (using num_conn
+                        parameter). </p>
+                              <pre class="pre codeblock"><code>$ java -jar oratcptest.jar &lt;target IP address&gt; -port=&lt;port number&gt;
+ -duration=60s -interval=10s -mode=async [-output=&lt;results file&gt;] -num_conn=2
+
+[Requesting a test]
+        Message payload        = 1 Mbyte
+        Payload content type   = RANDOM
+        Delay between messages = NO
+        Number of connections  = 2
+        Socket send buffer     = (system default)
+        Transport mode         = ASYNC
+        Disk write             = NO
+        Statistics interval    = 20 seconds
+        Test duration          = 2 minutes
+        Test frequency         = NO
+        Network Timeout        = NO
+        (1 Mbyte = 1024x1024 bytes)
+
+(18:08:02) The server is ready.
+                    Throughput
+(18:08:22)     44.894 Mbytes/s
+(18:08:42)     23.949 Mbytes/s
+(18:09:02)     25.206 Mbytes/s
+(18:09:22)     23.051 Mbytes/s
+(18:09:42)     24.978 Mbytes/s
+(18:10:02)     22.647 Mbytes/s
+(18:10:02) Test finished.
+          Avg. socket send buffer = 2097152
+        Avg. aggregate throughput = 27.454 Mbytes/s</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p>Re-run step 1 Iteratively and increase the value of num_conn by
+                        two each time until the aggregate throughput does not increase for three
+                        consecutive values. For example if the aggregate throughput is approximately
+                        the same for 10, 12 and 14 connections, stop.</p>
+                              
+                              <div class="infoboxnote" id="GUID-CEC2DC1E-4134-4F9C-B0F0-3D9F0D7C5D46__GUID-9B61C052-6EDF-4EAA-9E6E-83531182208D">
+                                 <p class="notep1">Note:</p>RMAN can utilize all nodes
+                        in the cluster for instantiation. To find the total aggregate throughput,
+                        see My Oracle Support <a href="https://support.oracle.com/rs?type=doc&amp;id=2283978.1" target="_blank">Creating a Physical Standby database
+                            using RMAN restore database from service (Doc ID
+                        2283978.1)</a>.
+                              </div>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Run the same test with all nodes in all clusters to find the current total
+                        aggregate throughput. Node 1 of primary to node 1 of standby, node 2 to node
+                        2, etc. Sum the throughput found for all nodes.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Reverse the roles and repeat the tests.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Note the number of connections which achieved the best aggregate
+                        throughput.</p>
+                              
+                           </li>
+                        </ol>
+                        
+                        <p>Use the total size of the database and total aggregate throughput to
+                estimate the amount of time it will take to complete the copy of the database. A
+                full instantiation also needs to apply the redo generated during the copy. Some
+                additional percentage (0%-50%) should be added to this estimated time based on how
+                active the database is.</p>
+                        
+                        <p>If the estimated time meets the goal, no additional tuning is required
+                for instantiation.</p>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50" name="GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50"></a><h4 id="HAOVW-GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50" class="sect4">Optimizing Redo Transport with One and Many
+        Processes</h4>
+                  <div>
+                     <p>If throughput from the prior single and multiple process tests meet the
+        targets, no additional tuning is required. If higher throughput is required, setting the
+        maximum TCP socket buffers size to a larger value is the primary method to potentially
+        increase throughput.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50__GUID-3CF8D1AC-161C-445F-9C1B-53AA958FCFE9">Setting TCP Socket Buffer Size</p>
+                        
+                        
+                        <p>The TCP socket buffers are system memory buffers which temporarily store
+                incoming and outgoing data. Outgoing data is stored on the write buffers while
+                incoming data is stored on the read buffers. Read and write socket buffers are
+                allocated separately. When a buffer, generally the read buffer, fills up (often do
+                to the application not pulling data out of the buffer fast enough), a message is
+                sent to the sender to slow down or stop sending data. Allocating a larger buffer
+                often improves redo transport by giving the application time to pull data off the
+                wire without stopping the sender.</p>
+                        
+                        <p>Tuning TCP socket buffer size is the primary approach to improving ASYNC
+                transport and can improve SYNC transport as well in some cases.</p>
+                        
+                        <div class="infoboxnote" id="GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50__GUID-03F564D5-3D09-40E3-AAA6-78A34F02D82D">
+                           <p class="notep1">Note:</p>With larger socket buffer sizes, TCP selective acknowledgment (SACK) is strongly
+                recommended. Often times this is enabled by default but refer to your operating
+                system documentation for details on confirming or enabling TCP selective
+                acknowledgment.
+                        </div>
+                        
+                        <p>To set TCP Socket Buffer Size do the following tasks.</p>
+                        
+                        <p><span class="bold">Task 1: Determine Optimal Maximum Socket Buffer Size</span></p>
+                        
+                        <p>Find the optimal maximum socket buffer size for a single process on the
+                target network link by running a series of tests.</p>
+                        
+                        <div class="infoboxnote" id="GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50__GUID-F0105171-6DDD-49DF-83F8-CE686B76B3B1">
+                           <p class="notep1">Note:</p>Bandwidth Delay Product is the product of the network link capacity of a channel
+                and the round time, or latency. The minimum recommended value for socket buffer
+                sizes is 3*BDP, especially for a high-latency, high-bandwidth network. Use
+                oratcptest to tune the socket buffer sizes.
+                        </div>
+                        
+                        <p><span class="bold">Task 2: Set Maximum Socket Buffer Size Temporarily</span></p>
+                        
+                        <p>On the primary and standby systems follow these steps to set the maximum
+                socket buffer size for requests. This will be done in memory and will not persist if
+                the server is restarted for any reason.</p>
+                        
+                        <p>Do the following steps as root.</p>
+                        
+                        <ol id="GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50__OL_BWL_XRR_55B">
+                           <li>
+                              
+                              <p>First find the current size of the kernel parameters
+                        net.ipv4.tcp_rmem and net.ipv4.tcp_wmem. The values returned are the
+                        minimum, default and maximum size for socket buffers which TCP dynamically
+                        allocates. If a process requires more than the default given when a socket
+                        is created, more buffers will be dynamically allocated up to the maximum
+                        value.</p>
+                              <pre class="pre codeblock"><code># cat /proc/sys/net/ipv4/tcp_rmem
+4096    87380   6291456
+
+# cat /proc/sys/net/ipv4/tcp_wmem
+4096    16384   4194304</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p>Change the values to 16MB or whatever 3*BDP was calculated to
+                        be</p>
+                              <pre class="pre codeblock"><code># sysctl -w net.ipv4.tcp_rmem='4096 87380 16777216';
+
+# sysctl -w net.ipv4.tcp_wmem='4096 16384 16777216';</code></pre>
+                              </li>
+                        </ol>
+                        
+                        <div class="infoboxnote" id="GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50__GUID-E4AE4FFD-BE75-4DB9-9E5D-9DE73C2ADED0">
+                           <p class="notep1">Note:</p>Increasing these values can
+                increase system memory usage of any network socket on the system.
+                        </div>
+                        
+                        <div class="infoboxnote" id="GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50__GUID-486D9166-EC2B-49DD-9B4F-65245B43C299">
+                           <p class="notep1">Note:</p>Changes made with sysctl are not
+                permanent. Update the /etc/sysctl.conf file to persist these changes through machine
+                restarts. There will be a step to change the configuration file at the end of this
+                process once the proper setting is determined.
+                        </div>
+                        
+                        <p><span class="bold">Task 3: Test Throughput of a Single Process</span></p>
+                        
+                        <p>Re-run the previous tests allowing the socket buffers to dynamically grow
+                to the new maximum set in the previous step</p>
+                        
+                        <p>(as oracle)</p>
+                        
+                        <p>Server (standby):</p>
+                        <pre class="pre codeblock"><code>$ java -jar oratcptest.jar -server [IP of standby host or VIP in RAC configurations]
+ -port=&lt;port number&gt; </code></pre>
+                        <p>Client (primary):</p>
+                        <pre class="pre codeblock"><code>$ java -jar oratcptest.jar &lt;IP of standby host or VIP in RAC configurations&gt;
+ -port=&lt;port number&gt; -mode=async -duration=120s -interval=20s</code></pre>
+                        <div class="infoboxnote" id="GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50__GUID-9BBE435A-922B-4400-8D40-851F82B896C7">
+                           <p class="notep1">Note:</p>Do not use the oratcptest
+                    <code class="codeph">sockbuf</code> parameter because the kernel parameters which govern
+                explicit requests for socket buffer size are different than those set for this
+                test.
+                        </div>
+                        
+                        <p>After the test completes the results from the client and server show the
+                value for socket buffers during that test. At the time of this writing, that value
+                is half of the actual socket buffer size and should be doubled to find the actual
+                size used.</p>
+                        
+                        <p><span class="underline">Client</span></p>
+                        <pre class="pre codeblock"><code>[Requesting a test]
+        Message payload = 1 Mbyte 
+        Payload content type = RANDOM 
+        Delay between messages = NO 
+        Number of connections = 1 
+        Socket send buffer = 2 Mbytes 
+        Transport mode = ASYNC
+        Disk write = NO
+        Statistics interval = 20 seconds 
+        Test duration = 2 minutes
+        Test frequency = NO 
+        Network Timeout = NO
+        (1 Mbyte = 1024x1024 bytes) 
+(11:39:16) The server is ready.
+                Throughput 
+(11:39:36) 71.322 Mbytes/s
+(11:39:56) 71.376 Mbytes/s
+(11:40:16) 72.104 Mbytes/s
+(11:40:36) 79.332 Mbytes/s
+(11:40:56) 76.426 Mbytes/s
+(11:41:16) 68.713 Mbytes/s
+(11:41:16) Test finished.
+
+          Socket send buffer = 8388608  
+            Avg. throughput = 73.209 Mbytes/s</code></pre>
+                        <p><span class="underline">Server</span></p>
+                        <pre class="pre codeblock"><code>The test terminated. The socket receive buffer was 8 Mbytes.</code></pre>
+                        <div class="infoboxnote" id="GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50__GUID-7819811C-449D-4122-8251-01CEFA6A8327">
+                           <p class="notep1">Note:</p>oratcptest is reporting half of the
+                buffers allocated to the socket. Double the number reported for the actual socket
+                buffer size used during the test.
+                        </div>
+                        
+                        <p><span class="bold">Task 4: Test Throughput of Multiple Processes</span></p>
+                        
+                        <p>Now repeat the test using the num_conn value determined in the first
+                tests. for example,. if the peak aggregate throughput was reached with 10 processes
+                set num_conn=10.</p>
+                        
+                        <p><span class="underline">Client</span></p>
+                        <pre class="pre codeblock"><code>$ java -jar oratcptest.jar &lt;IP of standby host or VIP in RAC configurations&gt;
+ -port=&lt;port number&gt; -mode=async -duration=120s -interval=20s -num_conn=10
+
+[Requesting a test]
+        Message payload        = 1 Mbyte
+        Payload content type   = RANDOM
+        Delay between messages = NO
+        Number of connections  = 10
+        Socket send buffer     = (system default)
+        Transport mode         = ASYNC
+        Disk write             = NO
+        Statistics interval    = 20 seconds
+        Test duration          = 2 minutes
+        Test frequency         = NO
+        Network Timeout        = NO
+        (1 Mbyte = 1024x1024 bytes)
+
+(19:01:38) The server is ready.
+                    Throughput
+(19:01:58)    266.077 Mbytes/s
+(19:02:18)    242.035 Mbytes/s
+(19:02:38)    179.574 Mbytes/s
+(19:02:58)    189.578 Mbytes/s
+(19:03:18)    218.856 Mbytes/s
+(19:03:38)    209.130 Mbytes/s
+(19:03:38) Test finished.
+          Avg. socket send buffer = 8 Mbytes 
+        Avg. aggregate throughput = 217.537 Mbytes/s</code></pre>
+                        <div class="infoboxnote" id="GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50__GUID-D8642698-F4AB-4F8B-8442-A5955D8C1254">
+                           <p class="notep1">Note:</p>oratcptest is reporting half of the
+                buffers allocated to the socket. Double the number reported for the actual socket
+                buffer size used during the test.
+                        </div>
+                        
+                        <p><span class="underline">Server</span> (Each connection will have the receive buffer printed.
+                Double the socket buffer size in each instance)
+                        </p>
+                        <pre class="pre codeblock"><code>The test terminated. The socket receive buffer was 8 Mbytes. 
+
+The test terminated. The socket receive buffer was 8 Mbytes. 
+ 
+The test terminated. The socket receive buffer was 8 Mbytes.
+
+The test terminated. The socket receive buffer was 8 Mbytes.
+
+The test terminated. The socket receive buffer was 8 Mbytes.
+
+The test terminated. The socket receive buffer was 8 Mbytes.
+ 
+The test terminated. The socket receive buffer was 8 Mbytes.
+
+The test terminated. The socket receive buffer was 8 Mbytes.
+
+The test terminated. The socket receive buffer was 8 Mbytes.
+
+The test terminated. The socket receive buffer was 8 Mbytes.</code></pre>
+                        <p>Use the total size of the database and total aggregate throughput to
+                estimate the amount of time it will take to complete the copy of the database. A
+                full instantiation also needs to apply the redo generated during the copy. Some
+                additional percentage (0%-50%) should be added to this estimated time based on how
+                active the database is.</p>
+                        
+                        <p><span class="bold">Task 5: Repeat the Tests</span></p>
+                        
+                        <p>Repeat the previous two tests with higher values for tcp_rmem and
+                tcp_wmem if more throughput is needed. Understand that these higher values are
+                available for other sockets as well but will be dynamically allocated only if
+                needed. The table shows sample data tracking the different throughput results for
+                different socket buffer sizes.</p>
+                        
+                        <div class="tblformal" id="GUID-8B35E191-38E8-4E7F-B405-FA3AE0291C50__TABLE_ZTX_CTR_55B">
+                           <table cellpadding="4" cellspacing="0" class="Formal" title summary="sample data tracking the different throughput results for&#xA;                    different socket buffer sizes" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="0%" id="d29605e814">tcp_rmem maximum</th>
+                                    <th align="left" valign="bottom" width="0%" id="d29605e816">tcp_wmem maximum</th>
+                                    <th align="left" valign="bottom" width="0%" id="d29605e818">Single Process Throughput</th>
+                                    <th align="left" valign="bottom" width="0%" id="d29605e820">Single Node Multi-Process Maximum Aggregate
+                                Throughput</th>
+                                    <th align="left" valign="bottom" width="0%" id="d29605e822">Single Node Multi-Process Parallelism</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="0%" id="d29605e826" headers="d29605e814 ">6291456</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e826 d29605e816 ">4194304</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e826 d29605e818 ">13.5 MB/s</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e826 d29605e820 ">203 MB/s</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e826 d29605e822 ">16</td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="0%" id="d29605e837" headers="d29605e814 ">8388608</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e837 d29605e816 ">8388608</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e837 d29605e818 ">48 MB/s</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e837 d29605e820 ">523 MB/s</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e837 d29605e822 ">14</td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="0%" id="d29605e848" headers="d29605e814 ">16777216</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e848 d29605e816 ">16777216</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e848 d29605e818 ">73 MB/s</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e848 d29605e820 ">700 MB/s</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e848 d29605e822 ">14</td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="0%" id="d29605e859" headers="d29605e814 ">33554432</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e859 d29605e816 ">33554432</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e859 d29605e818 ">132 MB/s</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e859 d29605e820 ">823 MB/s</td>
+                                    <td align="left" valign="top" width="0%" headers="d29605e859 d29605e822 ">14</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        
+                        <p><span class="bold">Task 6: Set Parameters Permanently</span></p>
+                        
+                        <p>Changes using sysctl modify the values in memory which do not persist
+                through a reboot of the host. Once the optimal size for socket buffers is
+                determined, set the kernel parameters so they persist through server restarts by
+                editing the /etc/sysctl.conf file.</p>
+                        
+                        <p>This must be done on all nodes of the primary and standby systems.</p>
+                        
+                        <p>To make these changes persistent, edit the /etc/sysctl.conf either
+                modifying the existing values or adding these values to the file if they are
+                absent.</p>
+                        <pre class="pre codeblock"><code>net.ipv4.tcp_rmem='4096 87380 16777216'
+
+net.ipv4.tcp_wmem='4096 16384 16777216'</code></pre>
+                        <p><span class="bold">Task 7: Evaluate Larger MTU </span></p>
+                        
+                        <p>Determine the network interfaces that are used by the Data Guard transport. </p>
+                        
+                        <p>If Average Redo Write Size &gt; current MTU setting (for example, typically the default
+                1500), evaluate if jumbo frames (for example, MTU=9000) can reduce the network RTT
+                for these large network packets and improve overall redo throughput. </p>
+                        
+                        <p>Shown here is an example of changing the MTU for Data Guard transport
+                network interface for testing purposes on Linux. </p>
+                        <pre class="pre codeblock"><code>ifconfig bondeth0 mtu 9000 up</code></pre>
+                        <p>Repeat the same <code class="codeph">oratcp</code> performance methodology as described above
+                with the higher MTU size to see if greater throughput is achieved.
+                        </p>
+                        
+                        <p>If performance gains are noticed, work with system and network engineers to change
+                MTU size for DG transport for both primary and standby databases.</p>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-4772A08C-8A07-4417-BBAF-3154FAEE7382" name="GUID-4772A08C-8A07-4417-BBAF-3154FAEE7382"></a><h4 id="HAOVW-GUID-4772A08C-8A07-4417-BBAF-3154FAEE7382" class="sect4">Using This Data</h4>
+                  <div>
+                     <p>The throughput numbers can be used to determine throughput to aid in Redo
+        Transport and Instantiation situations. </p>
+                     <p><span class="bold">Redo Transport</span></p>
+                     <p>If the single process throughput does not exceed the single instance redo
+            generation rate for a primary database, the standby will not stay current with the
+            primary during these times. Further evaluation and network tuning by the network
+            engineering team may be required in these cases.</p>
+                     <p><span class="bold">Instantiation</span></p>
+                     <p>Once the maximum aggregate throughput of all nodes is understood, a rough
+            estimate for instantiation can be developed. As an example, if there is a 100 TB
+            database on a 2-node RAC to be instantiated and each node can achieve 300 MB/s it should
+            take about 50 hours to copy the data files. Additional work to instantiate will add some
+            percentage to that number (~30%).</p><pre class="pre codeblock"><code>300 MB/s * 60 seconds/minute * 60 minutes/hour * 2 nodes = ~2 TB/hr aggregate for both nodes
+100TB / 2TB/hr = ~50 hours</code></pre><p>The steps to instantiate a database using large database optimizations such
+            as using multiple nodes is described in <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?id=2283978.1" target="_blank">Creating a Physical Standby database
+                using RMAN restore database from service (Doc ID 2283978.1)</a>.
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-BB3CFF83-74D4-4455-AFB2-5DBC3F1A3CB7" name="GUID-BB3CFF83-74D4-4455-AFB2-5DBC3F1A3CB7"></a><h3 id="HAOVW-GUID-BB3CFF83-74D4-4455-AFB2-5DBC3F1A3CB7" class="sect3">Determining Oracle Data Guard
+        Protection Mode</h3>
+               <div>
+                  <p>Oracle Data Guard can run in three different protection modes, which cater
+        to different performance, availability, and data loss requirements. Use this guide to
+        determine which protection mode fits your business requirements and your potential
+        environmental constraints.</p>
+                  <p><span class="bold">Maximum Protection mode</span> guarantees that no data loss will occur if the primary
+            database fails, even in the case of multiple failures (for example, the network between
+            the primary and standby fails, and then at a later time, the primary fails). This policy
+            is enforced by never signaling commit success for a primary database transaction until
+            at least one synchronous Data Guard standby has acknowledged that redo has been hardened
+            to disk. Without such an acknowledgment the primary database will stall and eventually
+            shut down rather than allow unprotected transactions to commit. 
+                  </p>
+                  <p>To maintain availability in cases where the primary database is operational but the
+            standby database is not, the best practice is to always have a minimum of<span class="bold"> two
+                synchronous standby databases</span> in a Maximum Protection configuration. Primary
+            database availability is not impacted if it receives acknowledgment from at least one
+            synchronous standby database. 
+                  </p>
+                  <p>Choose this protection mode if zero data loss is more important than database
+            availability. Workload impact analysis is recommended to measure whether any overhead is
+            acceptable when enabling <code class="codeph">SYNC</code> transport.
+                  </p>
+                  <p><span class="bold">Maximum Availability mode</span> guarantees that no data loss will occur in cases where
+            the primary database experiences the first failure to impact the configuration. Unlike
+            the Maximum Protection mode, Maximum Availability will wait a maximum of
+                <code class="codeph">NET_TIMEOUT</code> seconds for an acknowledgment from any of the standby
+            databases, after which it will signal commit success to the application and move to the
+            next transaction. Primary database availability (thus the name of the mode) is not
+            impacted by an inability to communicate with the standby (for example, due to standby or
+            network outages). Data Guard will continue to ping the standby and automatically
+            re-establish connection and resynchronize the standby database when possible, but during
+            the period when primary and standby have diverged there will be data loss should a
+            second failure impact the primary database.
+                  </p>
+                  <p>For this reason, it is a best practice to monitor protection level, which is simplest
+            using Enterprise Manager Grid Control, and quickly resolve any disruption in
+            communication between the primary and standby before a second failure can occur. This is
+            the most common zero data loss database protection mode. </p>
+                  <p>Choose this protection mode if zero data loss is very important but you want the primary
+            database to continue to be available even with the unlikely case that all standby
+            databases are not reachable. You can complement this solution by integrating multiple
+            standby databases or using Far Sync instances to implement a zero data loss standby
+            solution across a WAN. Workload impact analysis is recommended to measure whether any
+            overhead is acceptable when enabling <code class="codeph">SYNC</code> transport. 
+                  </p>
+                  <p><span class="bold">Maximum Performance mode</span> is the default Data Guard mode, and it provides the
+            highest level of data protection that is possible without affecting the performance or
+            the availability of the primary database. This is accomplished by allowing a transaction
+            to commit as soon as the redo data needed to recover that transaction is written to the
+            local online redo log at the primary database (the same behavior as if there were no
+            standby database). Data Guard transmits redo concurrently to 1) the standby database
+            directly from the primary log buffer and 2) to the local online redo log write
+            asynchronously enabling a very low potential data loss if the primary site is lost.
+            There is never any wait for standby acknowledgment but the potential data loss for this
+            data protection mode can still be near zero.. 
+                  </p>
+                  <p>Similar to Maximum Availability mode, it is a best practice to monitor the protection
+            level using Enterprise Manager Grid Control, and quickly resolve any disruption in
+            communication between primary and standby before a second failure can occur. </p>
+                  <p>Choose this mode if minimum data loss is acceptable and zero performance impact on the
+            primary is required.</p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-2655689E-5564-47A3-9732-365B3437C5C5" name="GUID-2655689E-5564-47A3-9732-365B3437C5C5"></a><h3 id="HAOVW-GUID-2655689E-5564-47A3-9732-365B3437C5C5" class="sect3">Offloading Queries to a Read-Only
+        Standby Database</h3>
+               <div>
+                  <p>Offloading queries and reporting workloads to read-only standby databases
+        can free up your primary database system resources, giving you the ability to add more
+        users, workloads, or even databases.</p>
+                  <p>When you leverage both primary and standby database resources, your business
+            and your applications benefit with higher total system usage, and potentially higher
+            application throughput.</p>
+                  <p>Offload appropriate workloads by following these steps.</p>
+                  <ol id="GUID-2655689E-5564-47A3-9732-365B3437C5C5__OL_ISX_SZX_3PB">
+                     <li>
+                        
+                        <p>Identify which application modules are read-only or read-mostly.</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-2655689E-5564-47A3-9732-365B3437C5C5__UL_GV3_SZX_3PB">
+                           <li>
+                              
+                              <p>Evaluate whether you have application services or modules that are
+                            read-only.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Small and short read-only queries are good candidates to offload to the
+                            standby database. </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Short DMLs, especially those that are response-time sensitive, should not
+                            be offloaded to the standby.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Large reports or analytic reports are good candidates to offload.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Reports that are primarily reads, and that may have an infrequent DML,
+                            typically at the start or end of a report, may be good candidates to
+                            offload.</p>
+                              
+                              <p>To enable DML Redirection, see <a href="../refrn/ADG_REDIRECT_DML.html#REFRN-GUID-AC98F026-33BE-41FE-8F2F-EFA296723AD8" target="_blank">ADG_REDIRECT_DML</a>.
+                              </p>
+                              
+                           </li>
+                        </ul>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Gather information about the expected application performance,
+                    throughput, response time, or elapsed time service levels for each offload
+                    candidate.</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-2655689E-5564-47A3-9732-365B3437C5C5__UL_HV3_SZX_3PB">
+                           <li>
+                              
+                              <p>Once you have determined which queries and reports are good candidates to
+                            offload, find out the required expected and maximum response time or
+                            elapsed time for each of them. For example some large analytic reports
+                            must complete within a 2 hour time span.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>For short queries, determine the expected response time and throughput
+                            expectations.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>These requirements are sometimes referred to as application performance
+                            Service Level Agreements, which you need for the next step.</p>
+                              
+                           </li>
+                        </ul>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Test the performance of each candidate on the standby, and determine
+                    whether it meets your requirements.</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-2655689E-5564-47A3-9732-365B3437C5C5__UL_IV3_SZX_3PB">
+                           <li>
+                              
+                              <p>Even though the primary and standby databases have essentially identical
+                            data, they are independent databases, independent machines, independent
+                            configurations, and have different workloads. For example, an Active
+                            Data Guard read-only standby database has a redo apply workload plus the
+                            queries that are offloaded, while the primary database may have OLTP,
+                            batch, and query workloads.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Reported elapsed times, query response time, and workload performance may
+                            vary between the primary and standby due to these system, configuration,
+                            and workload differences.</p>
+                              
+                           </li>
+                           <li>Tuning requires that you understand system resources, SQL
+                        plans, and individual query CPU and wait profile. The tuning recommendations
+                        are applicable for both primary and standby databases. See <a href="../tgdba/part-II-diagnosing-and-tuning-database-performance.html#TGDBA-GUID-E0EEBB00-000C-48EA-9F81-6BD867B78405" target="_blank">Diagnosing and Tuning
+                            Database Performance </a>.
+                           </li>
+                        </ul>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Offload a subset of the queries that meet your performance
+                    requirements, freeing up resources on the primary database for additional
+                    processing capacity.</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-2655689E-5564-47A3-9732-365B3437C5C5__UL_JV3_SZX_3PB">
+                           <li>Once you have determined which queries and reports can be offloaded, and the
+                        performance of those activities are acceptable, then slowly offload some of
+                        the workload and monitor it.</li>
+                           <li>Do not oversubscribe and offload too much workload to the
+                        standby such that redo apply cannot keep pace after tuning. If the standby
+                        falls behind. then you lose that standby as a viable role transition target,
+                        and in most cases a standby that lags cannot be used to offload
+                        queries.</li>
+                        </ul>
+                        
+                     </li>
+                  </ol>
+                  <p><span class="bold">What if a specific query does not meet your requirements?</span></p>
+                  <ol id="GUID-2655689E-5564-47A3-9732-365B3437C5C5__OL_QJ2_1VD_JPB">
+                     <li>
+                        
+                        <p>Consult with a performance engineer and follow the recommendations in <a href="../tgdba/part-I-database-performance-fundamentals.html#TGDBA-GUID-DD122227-0E55-49DB-8DF0-0F321D03800F" target="_blank">Database Performance Tuning Guide</a>.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>A particular query response time or throughput or report elapsed time is not
+                    guaranteed to be the same on the standby system as it was on the primary.
+                    Analyze the system resources, SQL plans, overall CPU work time and wait times. </p>
+                        
+                        <p>For example, you may see <code class="codeph">standby query scn advance wait</code> is
+                    contributing to a much longer elapsed time in one of your short queries. This
+                    wait increase is attributed to Active Data Guard redo apply. If a query sees a
+                    certain row in a data block and needs to roll it back because the transaction
+                    has not committed as of the query System Commit Number (SCN), it needs to apply
+                    corresponding undo to get a consistent read for that query. If the redo for the
+                    corresponding undo change has not been applied by redo apply yet, the query
+                    needs to wait. The presence of such wait is itself not an issue, and typically
+                    may be a couple of milliseconds, but it will vary by workload and may be higher
+                    in Real Application Cluster database systems.
+                        </p>
+                        
+                     </li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

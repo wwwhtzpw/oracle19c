@@ -1,0 +1,279 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Tuning Microsoft Transaction Server Performance</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="services-microsoft-transaction-server-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:08:58-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96617-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="program.html" title="Previous" type="text/html">
+      <link rel="next" href="troubleshooting.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Services for Microsoft Transaction Server Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="NTMTS">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="program.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="troubleshooting.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem"> Tuning Microsoft Transaction Server Performance </li>
+            </ol>
+            <a id="GUID-EE278EAC-2B82-4A36-923E-C47E7B5E592E" name="GUID-EE278EAC-2B82-4A36-923E-C47E7B5E592E"></a><a id="NTMTS006"></a>
+            
+            <h2 id="NTMTS-GUID-EE278EAC-2B82-4A36-923E-C47E7B5E592E" class="sect2"><span class="enumeration_chapter">5 </span> Tuning Microsoft Transaction Server Performance 
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>These topics provide <a href="glossary.html#GUID-10C5A220-53B1-4AE6-AD1F-12B8C90EDB91"><span class="xrefglossterm">Microsoft Transaction Server</span></a> performance tuning information.
+               </p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="perf-tuning.html#GUID-6B14BAC2-85FA-4201-9FF7-075366719DFE">Improving Microsoft Transaction Server Application Performance</a></p>
+                  </li>
+                  <li>
+                     <p><a href="perf-tuning.html#GUID-A9139527-AC5A-4C1D-A366-996C8CDC0B75">Managing Microsoft Transaction Server Connections</a></p>
+                  </li>
+                  <li>
+                     <p><a href="perf-tuning.html#GUID-8CE98309-3D86-491E-89E3-964D70D008CD">Increasing the Transaction Timeout Parameter </a></p>
+                  </li>
+                  <li>
+                     <p><a href="perf-tuning.html#GUID-297D29FF-CB1C-4CB4-9449-DD7BFD4E263C">Changing Initialization Parameter Settings</a></p>
+                  </li>
+                  <li>
+                     <p><a href="perf-tuning.html#GUID-1BB644BD-8A7F-4ABE-A643-2419CA4AE1C4">Additional Parameters</a></p>
+                  </li>
+                  <li>
+                     <p><a href="perf-tuning.html#GUID-2EC0572F-60D0-4C63-A95E-3DEE451736F0">Starting MSDTC</a></p>
+                  </li>
+               </ul>
+            </div><a id="NTMTS243"></a><div class="props_rev_3"><a id="GUID-6B14BAC2-85FA-4201-9FF7-075366719DFE" name="GUID-6B14BAC2-85FA-4201-9FF7-075366719DFE"></a><h3 id="NTMTS-GUID-6B14BAC2-85FA-4201-9FF7-075366719DFE" class="sect3">Improving Microsoft Transaction Server Application Performance</h3>
+               <div>
+                  <p>Optimizing the programming methods of your application improves its performance. For example, <a id="d9315e115" class="indexterm-anchor"></a>placing all code for a given transaction into one <a href="glossary.html#GUID-4C7B0CCF-32BE-41EE-884A-A23E0E40D23A"><span class="xrefglossterm">component object model (COM)</span></a> component means you do not mark that component as transactional. This eliminates the overhead of going through Microsoft Transaction Server. You can subsequently use the Oracle commit or rollback functions to control that transaction in the component. If you are using the <a href="glossary.html#GUID-5F4766B7-BFBF-44D2-901B-2BB62EDBB694"><span class="xrefglossterm">Oracle Call Interface (OCI)</span></a>, you can still use <code class="codeph">ORAMTSSvcGet()</code>, but you can also use the <code class="codeph">ORAMTS_CFLG_NOIMPLICIT</code> flag. If you are updating across two or more Oracle Database instances, use database links and connect to one database from the COM component. 
+                  </p>
+                  <div class="infoboxnotealso" id="GUID-6B14BAC2-85FA-4201-9FF7-075366719DFE__GUID-72B00AAE-13AD-4CBB-BF3D-3E24EA757BD5">
+                     <p class="notep1">See Also:</p>
+                     <p><span class="q">"<a href="program.html#GUID-DB43712F-BD4E-404B-8F3D-67628B127735">OCI Integration with Microsoft Transaction Server</a>"</span> for more information on using <code class="codeph">ORAMTSSvcGet()</code></p>
+                  </div>
+               </div>
+            </div><a id="NTMTS244"></a><div class="props_rev_3"><a id="GUID-A9139527-AC5A-4C1D-A366-996C8CDC0B75" name="GUID-A9139527-AC5A-4C1D-A366-996C8CDC0B75"></a><h3 id="NTMTS-GUID-A9139527-AC5A-4C1D-A366-996C8CDC0B75" class="sect3">Managing Microsoft Transaction Server Connections</h3>
+               <div>
+                  <p>When a .NET or COM component ends a session with the Oracle Database, the connection does not immediately terminate. Instead, it remains idle in a connection pool, where it is available for reuse by another component attempting a new connection to the Oracle Database.</p>
+               </div><a id="NTMTS246"></a><a id="NTMTS247"></a><a id="NTMTS248"></a><a id="NTMTS249"></a><a id="NTMTS250"></a><a id="NTMTS245"></a><div class="props_rev_3"><a id="GUID-666CEF20-89ED-43DD-97AE-796CBA0E7E83" name="GUID-666CEF20-89ED-43DD-97AE-796CBA0E7E83"></a><h4 id="NTMTS-GUID-666CEF20-89ED-43DD-97AE-796CBA0E7E83" class="sect4">Connection Pooling Registry Parameters</h4>
+                  <div>
+                     <p>The idle period during which a connection is reusable reduces the resource costs associated with opening a new connection. The amount of time that the connection remains idle and available in the connection pool is determined by several registry parameter settings. You can modify these parameters on the computers on which the client Microsoft Transaction Server components are installed, in the file <code class="codeph">HKEY_</code><span class="italic"><code class="codeph">LOCAL_MACHINE</code></span><code class="codeph">\SOFTWARE\ORACLE\</code><span class="italic"><code class="codeph">HOMEID</code></span>:
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-666CEF20-89ED-43DD-97AE-796CBA0E7E83__GUID-AB3E72E8-78BD-4445-BCEE-582D00D4F3E1">ORAMTS_CONN_POOL_TIMEOUT</p>
+                        <p>The time, in seconds, that the connection remains idle and available for reuse in the client side connection pool, before timing out and being released. The default value of this parameter is <code class="codeph">120</code> seconds.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-666CEF20-89ED-43DD-97AE-796CBA0E7E83__GUID-31E6113C-1ADD-4C04-B8BF-FDEB319200BC">ORAMTS_SESS_TXNTIMETOLIVE</p>
+                        <p>The time, in seconds, that the connection established using <code class="codeph">OraMTSSvcGet()</code> remains alive in the client side connection pool after being released by an <code class="codeph">OraMTSSvcRel()</code> call. The sum of the <code class="codeph">ORAMTS_CONN_POOL_TIMEOUT</code> and <code class="codeph">ORAMTS_NET_CACHE_TIMEOUT</code> values determines the actual time before a connection terminates completely. The default value of this parameter is <code class="codeph">120</code> seconds.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section"></div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-666CEF20-89ED-43DD-97AE-796CBA0E7E83__GUID-66C9712E-A55D-4E08-9ED8-F521E5821DE6">ORAMTS_NET_CACHE_TIMEOUT</p>
+                        <p>The resource dispenser implemented inside Oracle Services for Microsoft Transaction Server establishes pooled connections to Oracle databases. When these connections are no longer in use, the user sessions are disconnected after the timeout specified by <code class="codeph">ORAMTS_CONN_POOL_TIMEOUT</code>. However, the underlying Oracle Net connections are cached for the period specified by this parameter. After this time, expressed in milliseconds, a cached Oracle Net connection to the database will be terminated. The default value of this parameter is 120000 milliseconds. Oracle recommends setting this parameter to a higher value than the value for <code class="codeph">ORAMTS_CONN_POOL_TIMEOUT</code>. The sum of the time periods specified for <code class="codeph">ORAMTS_CONN_POOL_TIMEOUT</code> and <code class="codeph">ORAMTS_NET_CACHE_TIMEOUT</code> determines the actual time before a connection terminates completely.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-666CEF20-89ED-43DD-97AE-796CBA0E7E83__GUID-CC6FCB76-23F4-48CF-B7F9-3804EFE54C92">ORAMTS_NET_CACHE_MAXFREE</p>
+                        <p>The maximum number of free server connections that should be maintained in the client-side connection pool at a given time. The default value of this parameter is <code class="codeph">5</code>.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-666CEF20-89ED-43DD-97AE-796CBA0E7E83__GUID-386659F4-CB64-449D-BDB0-5E476D64CB8D">ORAMTS_OSCREDS_MATCH_LEVEL</p>
+                        <p>The level of Windows security checking implemented when the <code class="codeph">OS_ROLES</code> initialization parameter in the <code class="codeph">init.ora</code> file is <code class="codeph">true</code>.
+                        </p>
+                        <p>When a user establishes a connection to the Oracle Database using the <code class="codeph">CONNECT</code> command, the Windows username is associated with specific database roles and privileges. When the user disconnects, this connection becomes idle and available in the pool. When another user enters the <code class="codeph">CONNECT</code> command, if the Windows username is identical to the one used by the first user, the second user can receive the same database roles and privileges as the first user. This is a considerable security concern, especially if the second user possesses only the <code class="codeph">CREATE SESSION</code> and <code class="codeph">RESOURCE</code> database roles but receives the <code class="codeph">DBA</code> privileges of the first user.
+                        </p>
+                        <p>By default, the <code class="codeph">ORAMTS_OSCREDS_MATCH_LEVEL</code> parameter value is <code class="codeph">OS_AUTH_LOGIN</code>, and Windows security checking is performed only if the username and password are <code class="codeph">NULL</code>.
+                        </p>
+                        <p>The most secure setting for this parameter is <code class="codeph">ALWAYS</code>, which ensures that Windows security checking is performed in all cases, and takes care of possible security breaches due to identical non-null Window usernames.
+                        </p>
+                        <p>Because Windows security checking is a resource-intensive operation, you may wish to set the value of this parameter to <code class="codeph">NEVER</code>. However, if you know that <code class="codeph">OS_ROLES</code> is <code class="codeph">true</code>, or if you use operating system-authenticated connections, you should avoid this option.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div><a id="NTMTS251"></a><div class="props_rev_3"><a id="GUID-8CE98309-3D86-491E-89E3-964D70D008CD" name="GUID-8CE98309-3D86-491E-89E3-964D70D008CD"></a><h3 id="NTMTS-GUID-8CE98309-3D86-491E-89E3-964D70D008CD" class="sect3">Increasing the Transaction Timeout Parameter </h3>
+               <div>
+                  <div class="section">
+                     <p>If transaction requests are timing out before completing, the transaction timeout parameter may be set too low. Increase the transaction timeout parameter to ensure that transactions have enough time to complete.</p>
+                     <p>To increase the transaction timeout parameter:</p>
+                  </div>
+                  <!-- class="section" -->
+                  <ol>
+                     <li class="stepexpand"><span>Go to the Windows computer on which Microsoft Transaction Server is installed.</span></li>
+                     <li class="stepexpand"><span>From the <span class="bold">Start</span> menu, select <span class="bold">Programs</span>, then <span class="bold">Administrative Tools</span>, then <span class="bold">Component Services</span>. </span><div>
+                           <p>The Component Services window appears.</p>
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Double-click <span class="bold">Console Root</span> in the <span class="bold">Component Services</span> window so its tree structure expands.</span></li>
+                     <li class="stepexpand"><span>Double-click <span class="bold">Component Services</span>.</span></li>
+                     <li class="stepexpand"><span>Double-click <span class="bold">Computers</span>.</span></li>
+                     <li class="stepexpand"><span>Right-click <span class="bold">My Computer</span>.</span><div>
+                           <p>A menu appears with several options.</p>
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Choose <span class="bold">Properties</span>.</span><div>
+                           <p>The My Computer Properties dialog box appears.</p>
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Choose the <span class="bold">Options</span> tab.</span></li>
+                     <li class="stepexpand"><span>Enter a value in the <span class="bold">Transaction Timeout</span> field and click <span class="bold">OK</span>.</span><div>
+                           <p>The transaction timeout value is increased. For most environments, <code class="codeph">60</code> seconds may be enough. However, if the transaction is competing with numerous concurrent transactions, this value may be too low.
+                           </p>
+                        </div>
+                     </li>
+                  </ol>
+               </div>
+            </div><a id="NTMTS252"></a><div class="props_rev_3"><a id="GUID-297D29FF-CB1C-4CB4-9449-DD7BFD4E263C" name="GUID-297D29FF-CB1C-4CB4-9449-DD7BFD4E263C"></a><h3 id="NTMTS-GUID-297D29FF-CB1C-4CB4-9449-DD7BFD4E263C" class="sect3">Changing Initialization Parameter Settings</h3>
+               <div>
+                  <div class="section">
+                     <p>You may need to modify several initialization parameters to use the Oracle Database with Microsoft Transaction Server. The values you should set these parameters to are based on the database workload environment. </p>
+                     <p>To verify initialization parameter file values, follow these steps:</p>
+                  </div>
+                  <!-- class="section" -->
+                  <ol>
+                     <li class="stepexpand"><span>Ensure that you have <code class="codeph">SYSDBA</code> privileges.</span></li>
+                     <li class="stepexpand"><span>Go to the computer on which the Oracle Database is installed.</span></li>
+                     <li class="stepexpand"><span>Start SQL*Plus:</span><div><pre class="oac_no_warn" dir="ltr">C:\&gt; sqlplus /NOLOG
+</pre></div>
+                     </li>
+                     <li class="stepexpand"><span>Connect to the database as <code class="codeph">SYSDBA</code>:</span><div><pre class="oac_no_warn" dir="ltr">SQL&gt; CONNECT / AS SYSDBA
+</pre></div>
+                     </li>
+                     <li class="stepexpand"><span>Check the value for the <code class="codeph">SESSIONS</code> parameter:</span><div><pre class="oac_no_warn" dir="ltr">SQL&gt; SHOW PARAMETER SESSIONS
+</pre></div>
+                     </li>
+                     <li class="stepexpand"><span>Check the value for the <code class="codeph">PROCESSES</code> parameter:</span><div><pre class="oac_no_warn" dir="ltr">SQL&gt; SHOW PARAMETER PROCESSES
+</pre><p>The current settings for both <code class="codeph">SESSIONS</code> and <code class="codeph">PROCESS</code> parameters are typically appropriate for running the Microsoft application demo. For creating and deploying .NET or COM-based applications, the values for these parameters depend on the database environment's anticipated workload. For example, if you anticipate <code class="codeph">100</code> concurrent connections to the Oracle Database, consider setting both values to <code class="codeph">200</code> to accommodate a possible system overload. Ensure that you do not set these parameters too high, because they are resource-intensive. 
+                           </p>
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Set the following initialization parameters to at least these values:</span><div>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><code class="codeph">SESSIONS</code> = <code class="codeph">200</code> (or larger if anticipating heavier loads)
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph">PROCESSES</code> = <code class="codeph">200</code> (or larger if anticipating heavier loads)
+                                 </p>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Shut down the Oracle Database:</span><div><pre class="oac_no_warn" dir="ltr">SQL&gt; SHUTDOWN
+</pre></div>
+                     </li>
+                     <li class="stepexpand"><span>Restart the Oracle Database:</span><div><pre class="oac_no_warn" dir="ltr">SQL&gt; STARTUP
+</pre></div>
+                     </li>
+                     <li class="stepexpand"><span>Exit SQL*Plus:</span><div><pre class="oac_no_warn" dir="ltr">SQL&gt; EXIT</pre><div class="infoboxnotealso" id="GUID-297D29FF-CB1C-4CB4-9449-DD7BFD4E263C__GUID-D9871110-6E83-4EE1-A8C9-ACD678A90C3D">
+                              <p class="notep1">See Also:</p>
+                              <p> <a href="../refrn/initialization-parameters-2.html#REFRN-GUID-FD266F6F-D047-4EBB-8D96-B51B1DCA2D61" target="_blank"><span><cite>Oracle Database Reference</cite></span></a> for information about these parameters.
+                              </p>
+                           </div>
+                        </div>
+                     </li>
+                  </ol>
+               </div>
+            </div><a id="NTMTS307"></a><div class="props_rev_3"><a id="GUID-1BB644BD-8A7F-4ABE-A643-2419CA4AE1C4" name="GUID-1BB644BD-8A7F-4ABE-A643-2419CA4AE1C4"></a><h3 id="NTMTS-GUID-1BB644BD-8A7F-4ABE-A643-2419CA4AE1C4" class="sect3">Additional Parameters</h3>
+               <div>
+                  <p>Use the registry variable <code class="codeph">ORAMTS_ABORT_MODE</code> to control whether a new connection always performs an abort or whether the originally enlisted connection can be used to perform the abort, that is, whether the abort is synchronous or asynchronous.
+                  </p>
+                  <p>By default, the originally enlisted connection performs transaction aborts (whenever possible). </p>
+                  <p><span class="bold">Registry variable: </span><code class="codeph">ORAMTS_ABORT_MODE</code></p>
+                  <p><span class="bold">Values:</span> 
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><code class="codeph">ORAMTS_ABORT_MODE_NEW_CONN_ONLY:</code> Results in asynchronous aborts. A new connection to the database is opened for performing transaction aborts. 
+                        </p>
+                     </li>
+                     <li>
+                        <p>Any other value implies the default behavior. </p>
+                     </li>
+                  </ul>
+               </div>
+            </div><a id="NTMTS253"></a><div class="props_rev_3"><a id="GUID-2EC0572F-60D0-4C63-A95E-3DEE451736F0" name="GUID-2EC0572F-60D0-4C63-A95E-3DEE451736F0"></a><h3 id="NTMTS-GUID-2EC0572F-60D0-4C63-A95E-3DEE451736F0" class="sect3">Starting MSDTC</h3>
+               <div>
+                  <div class="section">
+                     <p>The <a href="glossary.html#GUID-37C64380-2031-4103-8965-394C4A30A352"><span class="xrefglossterm">Microsoft Distributed Transaction Coordinator (MS DTC)</span></a> must be running to enable communication with Oracle Services for Microsoft Transaction Server.
+                     </p>
+                     <p>To start MS DTC, follow these steps:</p>
+                  </div>
+                  <!-- class="section" -->
+                  <ol>
+                     <li class="stepexpand"><span>On the computer where Microsoft Transaction Server is installed, from the <span class="bold">Start</span> menu, choose <span class="bold">Programs</span>, then <span class="bold">Administrative Tools</span>, then <span class="bold">Component Services</span>.</span><div>
+                           <p>The Component Services window appears.</p>
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>In the Component Services Window, expand <span class="bold">Component Services</span> under the Console Root.</span></li>
+                     <li class="stepexpand"><span>Expand <span class="bold">Computers</span> under Component Services.</span></li>
+                     <li class="stepexpand"><span>Right-click My Computer.</span><div>
+                           <p>A menu with several options appears.</p>
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Choose <span class="bold">Start</span> <span class="bold">MSDTC</span>.</span><div>
+                           <p>MS DTC starts.</p>
+                        </div>
+                     </li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

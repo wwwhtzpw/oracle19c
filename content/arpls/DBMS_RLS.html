@@ -1,0 +1,1993 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="DBMS_RLS">
+      <meta name="abstract" content="The DBMS_RLS package contains the fine-grained access control administrative interface, which is used to implement Virtual Private Database (VPD).">
+      <meta name="description" content="The DBMS_RLS package contains the fine-grained access control administrative interface, which is used to implement Virtual Private Database (VPD).">
+      <meta name="DC.subject" content="VPD use of DBMS_RLS, Virtual Private Database. See VPD, DBMS_RLS package, fine-grained access control, ADD_GROUPED_POLICY Procedure, ADD_POLICY Procedure, ORA-28104 error, ADD_POLICY_CONTEXT Procedure, ALTER_POLICY Procedure, ALTER_GROUPED_POLICY Procedure, CREATE_POLICY_GROUP Procedure, DELETE_POLICY_GROUP Procedure, DISABLE_GROUPED_POLICY Procedure, DROP_GROUPED_POLICY Procedure, DROP_POLICY Procedure, DROP_POLICY_CONTEXT Procedure, ENABLE_GROUPED_POLICY Procedure, ENABLE_POLICY Procedure, REFRESH_GROUPED_POLICY Procedure, REFRESH_POLICY Procedure">
+      <meta name="keywords" content="VPD use of DBMS_RLS, Virtual Private Database. See VPD, DBMS_RLS package, fine-grained access control, ADD_GROUPED_POLICY Procedure, ADD_POLICY Procedure, ORA-28104 error, ADD_POLICY_CONTEXT Procedure, ALTER_POLICY Procedure, ALTER_GROUPED_POLICY Procedure, CREATE_POLICY_GROUP Procedure, DELETE_POLICY_GROUP Procedure, DISABLE_GROUPED_POLICY Procedure, DROP_GROUPED_POLICY Procedure, DROP_POLICY Procedure, DROP_POLICY_CONTEXT Procedure, ENABLE_GROUPED_POLICY Procedure, ENABLE_POLICY Procedure, REFRESH_GROUPED_POLICY Procedure, REFRESH_POLICY Procedure">
+      <meta name="DC.Creator" content="Gunjan Jain">
+      <meta name="DC.Contributor" content="Prashant Kannan">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Denis Raphaely">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Contributor" content="Drue Baker">
+      <meta name="DC.Contributor" content="Donna Carver">
+      <meta name="DC.Contributor" content="Maitreyee Chaliha">
+      <meta name="DC.Contributor" content="Beethoven Cheng">
+      <meta name="DC.Contributor" content="Rhonda Day">
+      <meta name="DC.Contributor" content="Steve Fogel">
+      <meta name="DC.Contributor" content="Bryn Llewellyn">
+      <meta name="DC.Contributor" content="Paul Lane">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Tony Morales">
+      <meta name="DC.Contributor" content="Anne Murphy">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Sue Pelski">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Antonio Romero">
+      <meta name="DC.Contributor" content="Vivian Schupmann">
+      <meta name="DC.Contributor" content="Cathy Shea">
+      <meta name="DC.Contributor" content="Margaret Taft">
+      <meta name="DC.Contributor" content="Kathy Taylor">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Contributor" content="Pat Huey">
+      <meta name="DC.Contributor" content="Drew Adams">
+      <meta name="DC.Contributor" content="Sarika Surumpudi">
+      <meta name="DC.Contributor" content="Rodney Ward">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Tanmay Choudhury">
+      <meta name="DC.Contributor" content="Roopesh Ashok Kumar">
+      <meta name="DC.Contributor" content="Atif Chaudhry">
+      <meta name="DC.Creator" content="Gunjan Jain">
+      <meta name="DC.Contributor" content="Prashant Kannan">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Denis Raphaely">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Contributor" content="Drue Baker">
+      <meta name="DC.Contributor" content="Donna Carver">
+      <meta name="DC.Contributor" content="Maitreyee Chaliha">
+      <meta name="DC.Contributor" content="Beethoven Cheng">
+      <meta name="DC.Contributor" content="Rhonda Day">
+      <meta name="DC.Contributor" content="Steve Fogel">
+      <meta name="DC.Contributor" content="Bryn Llewellyn">
+      <meta name="DC.Contributor" content="Paul Lane">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Tony Morales">
+      <meta name="DC.Contributor" content="Anne Murphy">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Sue Pelski">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Antonio Romero">
+      <meta name="DC.Contributor" content="Vivian Schupmann">
+      <meta name="DC.Contributor" content="Cathy Shea">
+      <meta name="DC.Contributor" content="Margaret Taft">
+      <meta name="DC.Contributor" content="Kathy Taylor">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Contributor" content="Pat Huey">
+      <meta name="DC.Contributor" content="Drew Adams">
+      <meta name="DC.Contributor" content="Sarika Surumpudi">
+      <meta name="DC.Contributor" content="Rodney Ward">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Tanmay Choudhury">
+      <meta name="DC.Contributor" content="Roopesh Ashok Kumar">
+      <meta name="DC.Contributor" content="Atif Chaudhry">
+      <meta name="DC.Contributor" content="Prashant Kannan">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Denis Raphaely">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Contributor" content="Drue Baker">
+      <meta name="DC.Contributor" content="Donna Carver">
+      <meta name="DC.Contributor" content="Maitreyee Chaliha">
+      <meta name="DC.Contributor" content="Beethoven Cheng">
+      <meta name="DC.Contributor" content="Rhonda Day">
+      <meta name="DC.Contributor" content="Steve Fogel">
+      <meta name="DC.Contributor" content="Bryn Llewellyn">
+      <meta name="DC.Contributor" content="Paul Lane">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Tony Morales">
+      <meta name="DC.Contributor" content="Anne Murphy">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Sue Pelski">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Antonio Romero">
+      <meta name="DC.Contributor" content="Vivian Schupmann">
+      <meta name="DC.Contributor" content="Cathy Shea">
+      <meta name="DC.Contributor" content="Margaret Taft">
+      <meta name="DC.Contributor" content="Kathy Taylor">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Contributor" content="Pat Huey">
+      <meta name="DC.Contributor" content="Drew Adams">
+      <meta name="DC.Contributor" content="Sarika Surumpudi">
+      <meta name="DC.Contributor" content="Rodney Ward">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Tanmay Choudhury">
+      <meta name="DC.Contributor" content="Roopesh Ashok Kumar">
+      <meta name="DC.Contributor" content="Atif Chaudhry">
+      <meta name="DC.Creator" content="Gunjan Jain">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-27507923-FF74-4193-B55D-6ECB11B58FCC">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The DBMS_RLS package contains the fine-grained access control administrative interface, which is used to implement Virtual Private Database (VPD).">
+      <meta name="description" content="The DBMS_RLS package contains the fine-grained access control administrative interface, which is used to implement Virtual Private Database (VPD).">
+      <title>DBMS_RLS</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="PL/SQL Packages and Types Reference">
+      <meta property="og:description" content="The DBMS_RLS package contains the fine-grained access control administrative interface, which is used to implement Virtual Private Database (VPD).">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="PL/SQL Packages and Types Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-packages-and-types-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-17T01:44:29-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96430-32">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="DBMS_RESUMABLE.html" title="Previous" type="text/html">
+      <link rel="next" href="DBMS_ROLLING.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database PL/SQL Packages and Types Reference">
+    <meta name="dcterms.isVersionOf" content="ARPLS">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"DBMS_RLS","description":"The DBMS_RLS package contains the fine-grained access control administrative interface, which is used to implement Virtual Private Database (VPD).","datePublished":"2025-07-17 CST","dateModified":"2025-07-17 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="DBMS_RESUMABLE.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="DBMS_ROLLING.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-27507923-FF74-4193-B55D-6ECB11B58FCC" name="GUID-27507923-FF74-4193-B55D-6ECB11B58FCC"></a><a id="ARPLS052"></a><a id="ARPLS052"></a><a id="ARPLS052"></a>
+         
+         <h2 id="ARPLS-GUID-27507923-FF74-4193-B55D-6ECB11B58FCC" class="sect2"><span class="enumeration_chapter">149 </span> DBMS_RLS
+         </h2>
+         <div class="ind">
+            <div>
+               <p>The <code class="codeph">DBMS_RLS</code> package contains the fine-grained access control administrative interface, which is used to implement Virtual Private Database (VPD). 
+               </p>
+               <p><code class="codeph">DBMS_RLS</code> is available with the Enterprise Edition only.
+               </p>
+               <div class="infoboxnotealso" id="GUID-27507923-FF74-4193-B55D-6ECB11B58FCC__GUID-AFB18C3E-7A23-4742-A6D7-5CEF6B160667">
+                  <p class="notep1">See Also:</p>
+                  <p><a href="../dbseg/using-oracle-vpd-to-control-data-access.html#DBSEG-GUID-06022729-9210-4895-BF04-6177713C65A7" target="_blank"><span><cite>Oracle Database Security Guide</cite></span></a>for usage information about <code class="codeph">DBMS_RLS</code></p>
+               </div>
+               <p>This chapter contains the following topics:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="DBMS_RLS.html#GUID-DF820496-D34E-4ACE-93C1-F9523D8893C8" title="The functionality to support fine-grained access control is based on dynamic predicates, where security rules are not embedded in views, but are acquired at the statement parse time, when the base table or view is referenced in a DML statement.">Overview</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_RLS.html#GUID-2A81A140-1D9B-45E3-8E24-37A5F1CF5F93" title="A security check is performed when the transient view is created with a subquery. The schema owning the policy function, which generates the dynamic predicate, is the transient view's definer for security check and object lookup.">Security Model</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_RLS.html#GUID-69E7FBAD-4B76-41F0-9ECC-D83CD104184B" title="The DBMS_RLS package includes constants that can be used for specifying parameter values.">Constants</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_RLS.html#GUID-BE5BB465-B48F-4486-B374-73068D2B1D88" title="The DBMS_RLS procedures cause current DML transactions, if any, to commit before the operation. However, the procedures do not cause a commit first if they are inside a DDL event trigger. With DDL transactions, the DBMS_RLS procedures are part of the DDL transaction.">Operational Notes</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_RLS.html#GUID-A7C4E1AA-8FBB-4469-BEE9-7B8BE85235E8" title="Using long identifiers is supported for VPD. The maximum length for arguments such as object_schema, object_name, and policy_name, which apply to objects (table names, policy names, and subprogram names) and views is 128 bytes.">Rules and Limits</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_RLS.html#GUID-DF0B030C-6381-49C0-BD88-0A1FB52EDC7B" title="This table lists and briefly describes the subprograms available in DBMS_RLS.">Summary of DBMS_RLS Subprograms</a></p>
+                  </li>
+               </ul>
+            </div><a id="ARPLS67714"></a><a id="ARPLS67714"></a><a id="ARPLS67714"></a><div class="props_rev_3"><a id="GUID-DF820496-D34E-4ACE-93C1-F9523D8893C8" name="GUID-DF820496-D34E-4ACE-93C1-F9523D8893C8"></a><h3 id="ARPLS-GUID-DF820496-D34E-4ACE-93C1-F9523D8893C8" class="sect3"><span class="enumeration_section">149.1 </span>DBMS_RLS Overview
+               </h3>
+               <div>
+                  <p>The functionality to support fine-grained access control is based on dynamic predicates, where security rules are not embedded in views, but are acquired at the statement parse time, when the base table or view is referenced in a DML statement. </p>
+                  <div class="section">
+                     <p>A dynamic predicate for a table, view, or synonym is generated by a PL/SQL function, which is associated with a security policy through a PL/SQL interface. For example: </p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.ADD_POLICY (
+   'hr', 'employees', 'emp_policy', 'hr', 'emp_sec', 'select', 'user_ctx', 'time');
+</pre><p>Whenever the <code class="codeph">EMPLOYEES</code> table, under the <code class="codeph">HR</code> schema, is referenced in a query or subquery (<code class="codeph">SELECT</code>), the server calls the <code class="codeph">EMP_SEC</code> function (under the <code class="codeph">HR</code> schema). This function returns a predicate specific to the current schema for the <code class="codeph">EMP_POLICY</code> policy. The policy function may generate the predicates based on the session environment variables available during the function call. These variables usually appear in the form of application contexts. The policy can specify any combination of security-relevant columns and of these statement types: <code class="codeph">INDEX</code>, <code class="codeph">SELECT</code>, <code class="codeph">INSERT</code>, <code class="codeph">UPDATE</code>, or <code class="codeph">DELETE</code>.
+                     </p>
+                     <p>The server then produces a transient view with the text:</p><pre class="oac_no_warn" dir="ltr">SELECT * FROM hr.employees WHERE P1
+</pre><p>Here, <code class="codeph">P1</code> (for example, where <code class="codeph">SAL</code> &gt; 10000, or even a subquery) is the predicate returned from the <code class="codeph">EMP_SEC</code> function. The server treats the <code class="codeph">EMPLOYEES</code> table as a view and does the view expansion just like the ordinary view, except that the view text is taken from the transient view instead of the data dictionary. 
+                     </p>
+                     <p>If the predicate contains subqueries, then the owner (definer) of the policy function is used to resolve objects within the subqueries and checks security for those objects. In other words, users who have access privilege to the policy-protected objects do not need to know anything about the policy. They do not need to be granted object privileges for any underlying security policy. Furthermore, the users do not require <code class="codeph">EXECUTE</code> privilege on the policy function, because the server makes the call with the function definer's right. 
+                     </p>
+                     <div class="infoboxnote" id="GUID-DF820496-D34E-4ACE-93C1-F9523D8893C8__GUID-2EECB829-5B2C-4871-BC9C-E9CDB552FD7B">
+                        <p class="notep1">Note:</p>
+                        <p>The transient view can preserve the updatability of the parent object because it is derived from a single table or view with predicate only; that is, no <code class="codeph">JOIN</code>, <code class="codeph">ORDER</code> <code class="codeph">BY</code>, <code class="codeph">GROUP</code> <code class="codeph">BY</code>, and so on. 
+                        </p>
+                     </div>
+                     <p><code class="codeph">DBMS_RLS</code> also provides the interface to drop or enable security policies. For example, you can drop or enable the <code class="codeph">EMP_POLICY</code> with the following PL/SQL statements: 
+                     </p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.DROP_POLICY('hr', 'employees', 'emp_policy'); 
+DBMS_RLS.ENABLE_POLICY('hr', 'employees', 'emp_policy', TRUE);</pre></div>
+               </div>
+            </div><a id="ARPLS67715"></a><a id="ARPLS67715"></a><a id="ARPLS67715"></a><div class="props_rev_3"><a id="GUID-2A81A140-1D9B-45E3-8E24-37A5F1CF5F93" name="GUID-2A81A140-1D9B-45E3-8E24-37A5F1CF5F93"></a><h3 id="ARPLS-GUID-2A81A140-1D9B-45E3-8E24-37A5F1CF5F93" class="sect3"><span class="enumeration_section">149.2 </span>DBMS_RLS Security Model
+               </h3>
+               <div>
+                  <p>A security check is performed when the transient view is created with a subquery. The schema owning the policy function, which generates the dynamic predicate, is the transient view's definer for security check and object lookup.</p>
+               </div>
+            </div><a id="ARPLS74596"></a><a id="ARPLS74597"></a><a id="ARPLS74597"></a><a id="ARPLS74596"></a><a id="ARPLS74597"></a><a id="ARPLS74596"></a><div class="props_rev_3"><a id="GUID-69E7FBAD-4B76-41F0-9ECC-D83CD104184B" name="GUID-69E7FBAD-4B76-41F0-9ECC-D83CD104184B"></a><h3 id="ARPLS-GUID-69E7FBAD-4B76-41F0-9ECC-D83CD104184B" class="sect3"><span class="enumeration_section">149.3 </span>DBMS_RLS Constants
+               </h3>
+               <div>
+                  <p>The <code class="codeph">DBMS_RLS</code> package includes constants that can be used for specifying parameter values.
+                  </p>
+                  <div class="tblformal" id="GUID-69E7FBAD-4B76-41F0-9ECC-D83CD104184B__GUID-00E53A0A-3251-456C-9CAF-10494C7BEE8E">
+                     <p class="titleintable">Table 149-1 DBMS_RLS Constants</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="DBMS_RLS Constants" summary="DBMS_RLS Constants" width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="31%" id="d795139e1352">Constant</th>
+                              <th align="left" valign="bottom" width="14%" id="d795139e1355">Type</th>
+                              <th align="left" valign="bottom" width="16%" id="d795139e1358">Value</th>
+                              <th align="left" valign="bottom" width="39%" id="d795139e1361">Description</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="31%" id="d795139e1366" headers="d795139e1352 ">
+                                 <p><code class="codeph">ADD_ATTRIBUTE_ASSOCIATION</code></p>
+                              </td>
+                              <td align="left" valign="top" width="14%" headers="d795139e1366 d795139e1355 ">
+                                 <p><code class="codeph">BINARY_INTEGER</code></p>
+                              </td>
+                              <td align="left" valign="top" width="16%" headers="d795139e1366 d795139e1358 ">
+                                 <p>1</p>
+                              </td>
+                              <td align="left" valign="top" width="39%" headers="d795139e1366 d795139e1361 ">
+                                 <p>Used with <code class="codeph">DBMS_RLS.ALTER_POLICY</code> and <code class="codeph">DBMS_RLS_ALTER_GROUPED_POLICY</code>: adds the specified namespace and attribute to the policy or grouped policy
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="31%" id="d795139e1387" headers="d795139e1352 ">
+                                 <p><code class="codeph">REMOVE_ATTRIBUTE_ASSOCIATION</code></p>
+                              </td>
+                              <td align="left" valign="top" width="14%" headers="d795139e1387 d795139e1355 ">
+                                 <p><code class="codeph">BINARY_INTEGER</code></p>
+                              </td>
+                              <td align="left" valign="top" width="16%" headers="d795139e1387 d795139e1358 ">
+                                 <p>2</p>
+                              </td>
+                              <td align="left" valign="top" width="39%" headers="d795139e1387 d795139e1361 ">
+                                 <p>Used with <code class="codeph">DBMS_RLS.ALTER_POLICY </code>and <code class="codeph">DBMS_RLS.ALTER_GROUPED_POLICY</code>: removes the specified namespace and attribute to the policy or grouped policy.
+                                 </p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div><a id="ARPLS67716"></a><a id="ARPLS67716"></a><a id="ARPLS67716"></a><div class="props_rev_3"><a id="GUID-BE5BB465-B48F-4486-B374-73068D2B1D88" name="GUID-BE5BB465-B48F-4486-B374-73068D2B1D88"></a><h3 id="ARPLS-GUID-BE5BB465-B48F-4486-B374-73068D2B1D88" class="sect3"><span class="enumeration_section">149.4 </span>DBMS_RLS Operational Notes
+               </h3>
+               <div>
+                  <p>The <code class="codeph">DBMS_RLS</code> procedures cause current DML transactions, if any, to commit before the operation. However, the procedures do not cause a commit first if they are inside a DDL event trigger. With DDL transactions, the <code class="codeph">DBMS_RLS</code> procedures are part of the DDL transaction. 
+                  </p>
+                  <div class="section">
+                     <p>For example, you may create a trigger for <code class="codeph">CREATE</code> <code class="codeph">TABLE</code>. Inside the trigger, you may add a column through <code class="codeph">ALTER</code> <code class="codeph">TABLE</code>, and you can add a policy through <code class="codeph">DBMS_RLS</code>. All these operations are in the same transaction as <code class="codeph">CREATE</code> <code class="codeph">TABLE</code>, even though each one is a DDL statement. The <code class="codeph">CREATE</code> <code class="codeph">TABLE</code> succeeds only if the trigger is completed successfully.
+                     </p>
+                     <p><a id="d795139e1748" class="indexterm-anchor"></a>Views of current cursors and corresponding predicates are available from <a id="d795139e1753" class="indexterm-anchor"></a><code class="codeph">V$VPD_POLICIES</code>. 
+                     </p>
+                     <p>A synonym can reference only a view or a table.</p>
+                  </div>
+               </div>
+            </div><a id="ARPLS74598"></a><a id="ARPLS74598"></a><a id="ARPLS74598"></a><div class="props_rev_3"><a id="GUID-A7C4E1AA-8FBB-4469-BEE9-7B8BE85235E8" name="GUID-A7C4E1AA-8FBB-4469-BEE9-7B8BE85235E8"></a><h3 id="ARPLS-GUID-A7C4E1AA-8FBB-4469-BEE9-7B8BE85235E8" class="sect3"><span class="enumeration_section">149.5 </span>DBMS_RLS Rules and Limits
+               </h3>
+               <div>
+                  <p>Using long identifiers is supported for VPD. The maximum length for arguments such as <code class="codeph">object_schema</code>, <code class="codeph">object_name</code>, and <code class="codeph">policy_name</code>, which apply to objects (table names, policy names, and subprogram names) and views is 128 bytes. 
+                  </p>
+               </div>
+            </div><a id="ARPLS67717"></a><a id="ARPLS67718"></a><a id="ARPLS67718"></a><a id="ARPLS67717"></a><a id="ARPLS67718"></a><a id="ARPLS67717"></a><div class="props_rev_3"><a id="GUID-DF0B030C-6381-49C0-BD88-0A1FB52EDC7B" name="GUID-DF0B030C-6381-49C0-BD88-0A1FB52EDC7B"></a><h3 id="ARPLS-GUID-DF0B030C-6381-49C0-BD88-0A1FB52EDC7B" class="sect3"><span class="enumeration_section">149.6 </span>Summary of DBMS_RLS Subprograms
+               </h3>
+               <div>
+                  <p>This table lists and briefly describes the subprograms available in <code class="codeph">DBMS_RLS</code>.
+                  </p>
+                  <div class="tblformal" id="GUID-DF0B030C-6381-49C0-BD88-0A1FB52EDC7B__GUID-48F953A5-2088-4FC9-BA83-6DEEBED7EA44">
+                     <p class="titleintable">Table 149-2 DBMS_RLS Package Subprograms</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="DBMS_RLS Package Subprograms" summary="This table lists the subprograms available in DBMS_RLS in alphabetical order, giving for each one a link and a brief description." width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="43%" id="d795139e2392">Subprogram</th>
+                              <th align="left" valign="bottom" width="57%" id="d795139e2395">Description</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2400" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-32340B07-AA4D-4D37-B6F3-2608AFB251E7" title="This procedure adds a policy associated with a policy group.">ADD_GROUPED_POLICY Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2400 d795139e2395 ">
+                                 <p>Adds a policy associated with a policy group</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2412" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-1E528A51-DE53-4961-8770-C53924E427CC" title="This procedure adds a fine-grained access control policy to a table, view, or synonym.">ADD_POLICY Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2412 d795139e2395 ">
+                                 <p>Adds a fine-grained access control policy to a table, view, or synonym</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2424" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-8680A996-885B-48B4-81B6-8C587F127C9A" title="This procedure adds the context for the active application.">ADD_POLICY_CONTEXT Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2424 d795139e2395 ">
+                                 <p>Adds the context for the active application</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2436" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-57F1649B-47D4-46D4-BF56-4B1A837245A5" title="This procedure associates an application context attribute with VPD policies.">ALTER_POLICY Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2436 d795139e2395 ">
+                                 <p>Associates an application context attribute with VPD policies</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2448" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-96DE2C1A-4F75-458E-816D-55211746CC4C" title="This procedure adds application context related changes.">ALTER_GROUPED_POLICY Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2448 d795139e2395 ">
+                                 <p>Adds application context related changes</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2460" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-BB213E90-65C0-466F-B529-A384D07A181A" title="This procedure creates a policy group.">CREATE_POLICY_GROUP Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2460 d795139e2395 ">
+                                 <p>Creates a policy group</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2472" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-A3F945EB-B4F6-4010-978C-9A9576739413" title="This procedure deletes a policy group.">DELETE_POLICY_GROUP Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2472 d795139e2395 ">
+                                 <p>Deletes a policy group</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2484" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-F2E53333-626B-4AF1-9A1C-C60A9F127290" title="This procedure disables a row-level group security policy.">DISABLE_GROUPED_POLICY Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2484 d795139e2395 ">
+                                 <p>Disables a row-level group security policy</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2496" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-6E3A5D29-1901-4FA3-AC57-E94DF5DF50CD" title="This procedure drops a policy associated with a policy group.">DROP_GROUPED_POLICY Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2496 d795139e2395 ">
+                                 <p>Drops a policy associated with a policy group</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2508" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-EA6C2DDF-1BF2-4937-91BD-9FDAC012C7C9" title="This procedure drops a fine-grained access control policy from a table, view, or synonym.">DROP_POLICY Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2508 d795139e2395 ">
+                                 <p>Drops a fine-grained access control policy from a table, view, or synonym</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2520" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-E5884B1D-1779-4018-9C43-52CD72B1B02E" title="This procedure drops a driving context from the object so that it will have one less driving context.">DROP_POLICY_CONTEXT Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2520 d795139e2395 ">
+                                 <p>Drops a driving context from the object so that it will have one less driving context</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2533" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-1F65BB26-9424-44BA-9EE1-71335D8D0F49" title="This procedure enables or disables a row-level group security policy.">ENABLE_GROUPED_POLICY Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2533 d795139e2395 ">
+                                 <p>Enables or disables a row-level group security policy</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2545" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-0237CEA7-1BCB-4F09-8399-806BE9E68C12" title="This procedure enables or disables a fine-grained access control policy. A policy is enabled when it is created.">ENABLE_POLICY Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2545 d795139e2395 ">
+                                 <p>Enables or disables a fine-grained access control policy</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2557" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-7D596EBE-9F23-47BA-A675-6D63587DB0E1" title="This procedure reparses the SQL statements associated with a refreshed policy.">REFRESH_GROUPED_POLICY Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2557 d795139e2395 ">
+                                 <p>Reparses the SQL statements associated with a refreshed policy</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="43%" id="d795139e2569" headers="d795139e2392 ">
+                                 <p><a href="DBMS_RLS.html#GUID-24C42EA6-8945-414D-9B59-3213161B1DB1" title="This procedure causes all the cached statements associated with the policy to be reparsed. This guarantees that the latest change to this policy will have immediate effect after the procedure is executed.">REFRESH_POLICY Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="57%" headers="d795139e2569 d795139e2395 ">
+                                 <p>Causes all the cached statements associated with the policy to be reparsed</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div><a id="ARPLS67719"></a><a id="ARPLS67720"></a><a id="ARPLS67720"></a><a id="ARPLS67719"></a><a id="ARPLS67720"></a><a id="ARPLS67719"></a><div class="props_rev_3"><a id="GUID-32340B07-AA4D-4D37-B6F3-2608AFB251E7" name="GUID-32340B07-AA4D-4D37-B6F3-2608AFB251E7"></a><h4 id="ARPLS-GUID-32340B07-AA4D-4D37-B6F3-2608AFB251E7" class="sect4"><span class="enumeration_section">149.6.1 </span>ADD_GROUPED_POLICY Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure adds a policy associated with a policy group.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-32340B07-AA4D-4D37-B6F3-2608AFB251E7__GUID-A9CF090B-69D7-4D52-8924-F523C549C751">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.ADD_GROUPED_POLICY(
+   object_schema            IN  VARCHAR2        DEFAULT NULL,
+   object_name              IN  VARCHAR2,
+   policy_group             IN  VARCHAR2        DEFAULT 'SYS_DEFAULT',
+   policy_name              IN  VARCHAR2,
+   function_schema          IN  VARCHAR2        DEFAULT NULL,
+   policy_function          IN  VARCHAR2,
+   statement_types          IN  VARCHAR2        DEFAULT NULL,
+   update_check             IN  BOOLEAN         DEFAULT FALSE,
+   enable                   IN  BOOLEAN         DEFAULT TRUE,
+   static_policy            IN  BOOLEAN         DEFAULT FALSE,
+   policy_type              IN  BINARY_INTEGER  DEFAULT NULL,
+   long_predicate           IN  BOOLEAN         DEFAULT FALSE,
+   sec_relevant_cols        IN  VARCHAR2,
+   sec_relevant_cols_opt    IN  BINARY_INTEGER  DEFAULT NULL,
+   namespace                IN  VARCHAR2        DEFAULT NULL,
+   attribute                IN  VARCHAR2        DEFAULT NULL);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-32340B07-AA4D-4D37-B6F3-2608AFB251E7__GUID-58A95CB3-5C3F-4AEE-9D6B-99B3EA89840A">Parameters</p>
+                        <div class="tblformal" id="GUID-32340B07-AA4D-4D37-B6F3-2608AFB251E7__GUID-C3F3F9FE-43FB-42E0-888C-88350E5A48FB">
+                           <p class="titleintable">Table 149-3 ADD_GROUPED_POLICY Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="ADD_GROUPED_POLICY Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.ADD_GROUPED_POLICY subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e2977">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e2980">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e2985" headers="d795139e2977 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e2985 d795139e2980 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e2999" headers="d795139e2977 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e2999 d795139e2980 ">
+                                       <p>Name of the table, view, or synonym to which the policy is added</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3007" headers="d795139e2977 ">
+                                       <p><code class="codeph">policy_group</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3007 d795139e2980 ">
+                                       <p>Name of the policy group to which the policy belongs </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3015" headers="d795139e2977 ">
+                                       <p><code class="codeph">policy_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3015 d795139e2980 ">
+                                       <p>Name of the policy; must be unique for the same table or view</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3023" headers="d795139e2977 ">
+                                       <p><code class="codeph">function_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3023 d795139e2980 ">
+                                       <p>Schema owning the policy function. If no <code class="codeph">function_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3037" headers="d795139e2977 ">
+                                       <p><code class="codeph">policy_function</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3037 d795139e2980 ">
+                                       <p>Name of the function that generates a predicate for the policy. If the function is defined within a package, the name of the package must be present.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3045" headers="d795139e2977 ">
+                                       <p><code class="codeph">statement_types</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3045 d795139e2980 ">
+                                       <p>Statement types to which the policy applies. It can be any combination of <code class="codeph">INDEX,</code> <code class="codeph">SELECT</code>, <code class="codeph">UPDATE</code>, or <code class="codeph">DELETE</code>. The default is to apply to all of these types except <code class="codeph">INSERT</code> and <code class="codeph">INDEX</code>.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3072" headers="d795139e2977 ">
+                                       <p><code class="codeph">update_check</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3072 d795139e2980 ">
+                                       <p>For <code class="codeph">INSERT</code> and <code class="codeph">UPDATE</code> statements only, setting <code class="codeph">update_check</code> to <code class="codeph">TRUE</code> causes the server to check the policy against the value after <code class="codeph">INSERT</code> or <code class="codeph">UPDATE.</code></p>
+                                       <p>The check applies only to the security relevant columns that are included in the policy definition. In other words, the <code class="codeph">INSERT</code> or <code class="codeph">UPDATE</code> operation will fail only if the security relevant column that is defined in the policy is added or updated in the <code class="codeph">INSERT</code> or <code class="codeph">UPDATE</code> statement.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3112" headers="d795139e2977 ">
+                                       <p><code class="codeph">enable</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3112 d795139e2980 ">
+                                       <p>Indicates if the policy is enable when it is added. The default is <code class="codeph">TRUE</code>. 
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3123" headers="d795139e2977 ">
+                                       <p><code class="codeph">static_policy</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3123 d795139e2980 ">
+                                       <p>Default is <code class="codeph">FALSE</code>. If it is set to <code class="codeph">TRUE</code>, the server assumes that the policy function for the static policy produces the same predicate string for anyone accessing the object, except for <code class="codeph">SYS</code> or the privilege user who has the <code class="codeph">EXEMPT ACCESS POLICY</code> privilege. 
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3143" headers="d795139e2977 ">
+                                       <p><code class="codeph">policy_type </code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3143 d795139e2980 ">
+                                       <p>Default is <code class="codeph">NULL</code>, which means <code class="codeph">policy_type</code> is decided by the value of <code class="codeph">static_policy</code>. The available policy types are listed in <a href="DBMS_RLS.html#GUID-1E528A51-DE53-4961-8770-C53924E427CC__BABDFFAD" title="This table describes DBMS_RLS.ADD_POLICY Policy Types.">Table 149-5</a>. Specifying any of these policy types overrides the value of <code class="codeph">static_policy</code>.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3169" headers="d795139e2977 ">
+                                       <p><code class="codeph">long_predicate</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3169 d795139e2980 ">
+                                       <p>Default is <code class="codeph">FALSE</code>, which means the policy function can return a predicate with a length of up to 4000 bytes. <code class="codeph">TRUE</code> means the predicate text string length can be up to 32K bytes.Policies existing prior to the availability of this parameter retain a 32K limit.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3183" headers="d795139e2977 ">
+                                       <p><code class="codeph">sec_relevant_cols</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3183 d795139e2980 ">
+                                       <p>Enables column-level Virtual Private Database (VPD), which enforces security policies when a column containing sensitive information is referenced in a query. Applies to tables and views, but not to synonyms. Specify a list of comma- or space-separated valid column names of the policy-protected object. The policy is enforced only if a specified column is referenced (or, for an abstract datatype column, its attributes are referenced) in the user SQL statement or its underlying view definition. Default is all the user-defined columns for the object.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3191" headers="d795139e2977 ">
+                                       <p><code class="codeph">namespace</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3191 d795139e2980 ">
+                                       <p>Name which determines the application context namespace</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3199" headers="d795139e2977 ">
+                                       <p><code class="codeph">attribute</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3199 d795139e2980 ">
+                                       <p>Attribute which determines the application context attribute name</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-32340B07-AA4D-4D37-B6F3-2608AFB251E7__GUID-608035FC-CE2A-4101-ACFC-4C0B37C14BE2">Usage Notes</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>This procedure adds a policy to the specified table, view, or synonym and associates the policy with the specified policy group.</p>
+                           </li>
+                           <li>
+                              <p>The policy group must have been created by using the <a href="DBMS_RLS.html#GUID-BB213E90-65C0-466F-B529-A384D07A181A" title="This procedure creates a policy group.">CREATE_POLICY_GROUP Procedure</a>.
+                              </p>
+                           </li>
+                           <li>
+                              <p>The policy name must be unique within a policy group for a specific object.</p>
+                           </li>
+                           <li>
+                              <p>Policies from the default policy group, <code class="codeph">SYS_DEFAULT</code>, are always executed regardless of the active policy group; however, fine-grained access control policies do not apply to users with <code class="codeph">EXEMPT ACCESS POLICY</code> system privilege.
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="ARPLS67721"></a><a id="ARPLS67722"></a><a id="ARPLS67723"></a><a id="ARPLS67722"></a><a id="ARPLS67723"></a><a id="ARPLS67721"></a><a id="ARPLS67722"></a><a id="ARPLS67723"></a><a id="ARPLS67721"></a><div class="props_rev_3"><a id="GUID-1E528A51-DE53-4961-8770-C53924E427CC" name="GUID-1E528A51-DE53-4961-8770-C53924E427CC"></a><h4 id="ARPLS-GUID-1E528A51-DE53-4961-8770-C53924E427CC" class="sect4"><span class="enumeration_section">149.6.2 </span>ADD_POLICY Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure adds a fine-grained access control policy to a table, view, or synonym.</p>
+                     <div class="section">
+                        <p>The procedure causes the current transaction, if any, to commit before the operation is carried out. However, this does not cause a commit first if it is inside a DDL event trigger. </p>
+                        <div class="infoboxnotealso" id="GUID-1E528A51-DE53-4961-8770-C53924E427CC__GUID-71F62189-C953-4982-88A1-B33FF359C7D9">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_RLS.html#GUID-BE5BB465-B48F-4486-B374-73068D2B1D88" title="The DBMS_RLS procedures cause current DML transactions, if any, to commit before the operation. However, the procedures do not cause a commit first if they are inside a DDL event trigger. With DDL transactions, the DBMS_RLS procedures are part of the DDL transaction.">Operational Notes</a></p>
+                        </div>
+                        <p>A <code class="codeph">COMMIT</code> is also performed at the end of the operation. 
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-1E528A51-DE53-4961-8770-C53924E427CC__GUID-E5D69DCA-5060-47A8-B117-87158D26EB1C">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.ADD_POLICY ( 
+   object_schema            IN  VARCHAR2       DEFAULT NULL,
+   object_name              IN  VARCHAR2,
+   policy_name              IN  VARCHAR2,
+   function_schema          IN  VARCHAR2       DEFAULT NULL,
+   policy_function          IN  VARCHAR2,
+   statement_types          IN  VARCHAR2       DEFAULT NULL,
+   update_check             IN  BOOLEAN        DEFAULT FALSE,
+   enable                   IN  BOOLEAN        DEFAULT TRUE,
+   static_policy            IN  BOOLEAN        DEFAULT FALSE,
+   policy_type              IN  BINARY_INTEGER DEFAULT NULL,
+   long_predicate           IN  BOOLEAN        DEFAULT FALSE,
+   sec_relevant_cols        IN  VARCHAR2       DEFAULT NULL,
+   sec_relevant_cols_opt    IN  BINARY_INTEGER DEFAULT NULL,
+   namespace                IN  VARCHAR2       DEFAULT NULL,
+   attribute                IN  VARCHAR2       DEFAULT NULL); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-1E528A51-DE53-4961-8770-C53924E427CC__GUID-792F93A7-66C9-4A26-9858-C11392B521C7">Parameters</p>
+                        <div class="tblformal" id="GUID-1E528A51-DE53-4961-8770-C53924E427CC__GUID-CD6E4D79-DAE8-40EB-9699-7A30E1936013">
+                           <p class="titleintable">Table 149-4 ADD_POLICY Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="ADD_POLICY Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.ADD_POLICY subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e3660">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e3663">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3668" headers="d795139e3660 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3668 d795139e3663 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3682" headers="d795139e3660 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3682 d795139e3663 ">
+                                       <p>Name of table, view, or synonym to which the policy is added.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3690" headers="d795139e3660 ">
+                                       <p><code class="codeph">policy_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3690 d795139e3663 ">
+                                       <p>Name of policy to be added. It must be unique for the same table or view. Do not enter special characters such as spaces or commas. If you want to use special characters for the policy name, then enclose the name in quotation marks.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3698" headers="d795139e3660 ">
+                                       <p><code class="codeph">function_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3698 d795139e3663 ">
+                                       <p>Schema owning the policy function. If no <code class="codeph">function_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3712" headers="d795139e3660 ">
+                                       <p><code class="codeph">policy_function</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3712 d795139e3663 ">
+                                       <p>Name of a function which generates a predicate for the policy. If the function is defined within a package, then the name of the package must be present.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3720" headers="d795139e3660 ">
+                                       <p><code class="codeph">statement_types</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3720 d795139e3663 ">
+                                       <p>Statement types to which the policy applies. It can be any combination of <code class="codeph">INDEX,</code> <code class="codeph">SELECT</code>, <code class="codeph">UPDATE</code>, or <code class="codeph">DELETE</code>. The default is to apply to all of these types except <code class="codeph">INSERT</code> and <code class="codeph">INDEX</code> .
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3747" headers="d795139e3660 ">
+                                       <p><code class="codeph">update_check</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3747 d795139e3663 ">
+                                       <p>Optional argument for the <code class="codeph">INSERT</code> or <code class="codeph">UPDATE</code> statement type. The default is <code class="codeph">FALSE</code>. If you plan to use the <code class="codeph">INSERT</code> statement type, then you must set <code class="codeph">update_check</code> to <code class="codeph">TRUE</code>. Otherwise, an <code class="codeph">ORA-28104 input value for string is not valid</code> error is generated. 
+                                       </p>
+                                       <p>The check applies only to the security relevant columns that are included in the policy definition. In other words, the <code class="codeph">INSERT</code> or <code class="codeph">UPDATE</code> operation will fail only if the security relevant column that is defined in the policy is added or updated in the <code class="codeph">INSERT</code> or <code class="codeph">UPDATE</code> statement.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3791" headers="d795139e3660 ">
+                                       <p><code class="codeph">enable</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3791 d795139e3663 ">
+                                       <p>Indicates if the policy is enabled when it is added. The default is <code class="codeph">TRUE.</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3801" headers="d795139e3660 ">
+                                       <p><code class="codeph">static_policy</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3801 d795139e3663 ">
+                                       <p>The default is <code class="codeph">FALSE</code>. If it is set to <code class="codeph">TRUE</code>, the server assumes that the policy function for the static policy produces the same predicate string for anyone accessing the object, except for <code class="codeph">SYS</code> or the privileged user who has the <code class="codeph">EXEMPT</code> <code class="codeph">ACCESS</code> <code class="codeph">POLICY</code> privilege. 
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3828" headers="d795139e3660 ">
+                                       <p><code class="codeph">policy_type </code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3828 d795139e3663 ">
+                                       <p>Default is <code class="codeph">NULL</code>, which means <code class="codeph">policy_type</code> is decided by the value of <code class="codeph">static_policy</code>. The available policy types are listed in <a href="DBMS_RLS.html#GUID-1E528A51-DE53-4961-8770-C53924E427CC__BABDFFAD" title="This table describes DBMS_RLS.ADD_POLICY Policy Types.">Table 149-5</a>. Specifying any of these policy types overrides the value of <code class="codeph">static_policy</code>.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3853" headers="d795139e3660 ">
+                                       <p><code class="codeph">long_predicate</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3853 d795139e3663 ">
+                                       <p>Default is <code class="codeph">FALSE</code>, which means the policy function can return a predicate with a length of up to 4000 bytes. <code class="codeph">TRUE</code> means the predicate text string length can be up to 32K bytes.Policies existing prior to the availability of this parameter retain a 32K limit.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3868" headers="d795139e3660 ">
+                                       <p><code class="codeph">sec_relevant_cols</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3868 d795139e3663 ">
+                                       <p>Enables column-level Virtual Private Database (VPD), which enforces security policies when a column containing sensitive information is referenced in a query. Applies to tables and views, but not to synonyms. Specify a list of comma- or space-separated valid column names of the policy-protected object. The policy is enforced only if a specified column is referenced (or, for an abstract datatype column, its attributes are referenced) in the user SQL statement or its underlying view definition. Default is all the user-defined columns for the object.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3876" headers="d795139e3660 ">
+                                       <p><code class="codeph">sec_relevant_cols_opt</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3876 d795139e3663 ">
+                                       <p>Use with <code class="codeph">sec_relevant_cols</code> to display all rows for column-level VPD filtered queries (<code class="codeph">SELECT</code> only), but where sensitive columns appear as <code class="codeph">NULL</code>. Default is set to <code class="codeph">NULL</code>, which allows the filtering defined with <code class="codeph">sec_relevant_cols</code> to take effect. Set to <code class="codeph">dbms_rls.ALL_ROWS</code> to display all rows, but with sensitive column values, which are filtered by <code class="codeph">sec_relevant_cols</code>, displayed as <code class="codeph">NULL</code>. See <a href="DBMS_RLS.html#GUID-1E528A51-DE53-4961-8770-C53924E427CC__I1005326">Usage Notes</a> for restrictions and additional information about this option.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3912" headers="d795139e3660 ">
+                                       <p><code class="codeph">namespace</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3912 d795139e3663 ">
+                                       <p>Name which determines the application context namespace</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e3920" headers="d795139e3660 ">
+                                       <p><code class="codeph">attribute</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e3920 d795139e3663 ">
+                                       <p>Attribute which determines the application context attribute name</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <div class="tblformalwide" id="GUID-1E528A51-DE53-4961-8770-C53924E427CC__BABDFFAD">
+                           <p class="titleintable">Table 149-5 DBMS_RLS.ADD_POLICY Policy Types</p>
+                           <table cellpadding="4" cellspacing="0" class="FormalWide" title="DBMS_RLS.ADD_POLICY Policy Types" summary="This table describes DBMS_RLS.ADD_POLICY Policy Types." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="33%" id="d795139e3937">Policy Type</th>
+                                    <th align="left" valign="bottom" width="67%" id="d795139e3940">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="33%" id="d795139e3945" headers="d795139e3937 ">
+                                       <p><code class="codeph">STATIC</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="67%" headers="d795139e3945 d795139e3940 ">
+                                       <p>Predicate is assumed to be the same regardless of the runtime environment. Static policy functions are executed once and then cached in SGA. Statements accessing the same object do not reexecute the policy function. However, each execution of the same cursor could produce a different row set even for the same predicate because the predicate may filter the data differently based on attributes such as <code class="codeph">SYS_CONTEXT</code> or <code class="codeph">SYSDATE</code>. Applies to only one object.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="33%" id="d795139e3959" headers="d795139e3937 ">
+                                       <p><code class="codeph">SHARED_STATIC</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="67%" headers="d795139e3959 d795139e3940 ">
+                                       <p>Same as <code class="codeph">STATIC</code> except that the server first looks for a cached predicate generated by the same policy function of the same policy type. Shared across multiple objects.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="33%" id="d795139e3970" headers="d795139e3937 ">
+                                       <p><code class="codeph">CONTEXT_SENSITIVE</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="67%" headers="d795139e3970 d795139e3940 ">
+                                       <p>Server re-evaluates the policy function at statement execution time if it detects context changes since the last use of the cursor. For session pooling where multiple clients share a database session, the middle tier must reset context during client switches. Note that the server does not cache the value returned by the function for this policy type; it always executes the policy function on statement parsing. Applies to only one object.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="33%" id="d795139e3978" headers="d795139e3937 ">
+                                       <p><code class="codeph">SHARED_CONTEXT_SENSITIVE</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="67%" headers="d795139e3978 d795139e3940 ">
+                                       <p>Same as <code class="codeph">CONTEXT_SENSITIVE</code> except that the server first looks for a cached predicate generated by the same policy function of the same policy type within the same database session. If the predicate is found in the session memory, the policy function is not reexecuted and the cached value is valid until session private application context changes occur. Shared across multiple objects.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="33%" id="d795139e3989" headers="d795139e3937 ">
+                                       <p><code class="codeph">DYNAMIC</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="67%" headers="d795139e3989 d795139e3940 ">
+                                       <p>The default policy type. Server assumes the predicate may be affected by any system or session environment at any time, and so always reexecutes the policy function upon each statement parsing and execution. Applies to only one object.</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section" id="GUID-1E528A51-DE53-4961-8770-C53924E427CC__I1005326">
+                        <p class="subhead3" id="GUID-1E528A51-DE53-4961-8770-C53924E427CC__GUID-50187863-F5EA-43B8-A134-D9F014AE05A9">Usage Notes</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">SYS</code> is free of any security policy. 
+                              </p>
+                           </li>
+                           <li>
+                              <p>The policy functions are called by the server. Following is the interface for the function: </p>
+                           </li>
+                        </ul><pre class="oac_no_warn" dir="ltr">    FUNCTION policy_function (object_schema IN VARCHAR2, object_name VARCHAR2) 
+        RETURN VARCHAR2 
+    --- object_schema is the schema owning the table or view.
+    --- object_name is the name of table, view, or synonym to which the policy applies. 
+</pre><ul style="list-style-type: disc;">
+                           <li>
+                              <p>The policy functions must have the purity level of <code class="codeph">WNDS</code> (write no database state). 
+                              </p>
+                              <div class="infoboxnotealso" id="GUID-1E528A51-DE53-4961-8770-C53924E427CC__GUID-9AB5A1DA-A96D-46A0-AA5B-911D28ED5522">
+                                 <p class="notep1">See Also:</p>
+                                 <p>The <a href="../adfns/coding-subprograms-and-packages.html#ADFNS-GUID-2FBBF442-399F-4A03-B66E-0C1E5C6A9736" target="_blank"><span class="italic">Oracle Database Development Guide</span></a> has more details about the <code class="codeph">RESTRICT_REFERENCES</code> pragma. 
+                                 </p>
+                              </div>
+                           </li>
+                           <li>
+                              <p>Predicates generated from different VPD policies for the same object have the combined effect of a conjunction (<code class="codeph">AND</code>ed) of all the predicates. 
+                              </p>
+                           </li>
+                           <li>
+                              <p>The security check and object lookup are performed against the owner of the policy function for objects in the subqueries of the dynamic predicates. </p>
+                           </li>
+                           <li>
+                              <p>If the function returns a zero length predicate, then it is interpreted as no restriction being applied to the current user for the policy. </p>
+                           </li>
+                           <li>
+                              <p>When a table alias is required (for example, parent object is a type table) in the predicate, the name of the table or view itself must be used as the name of the alias. The server constructs the transient view as something like </p><pre class="oac_no_warn" dir="ltr">"select c1, c2, ... from tab tab where &lt;predicate&gt;"
+ </pre></li>
+                           <li>
+                              <p>Validity of the function is checked at runtime for ease of installation and other dependency issues during import and export.</p>
+                           </li>
+                           <li>
+                              <p>Column-level VPD column masking behavior (specified with <code class="codeph">sec_relevant_cols_opt =&gt; dbms_rls.ALL_ROWS</code>) is fundamentally different from all other VPD policies, which return only a subset of rows. Instead the column masking behavior returns all rows specified by the user's query, but the sensitive column values display as <code class="codeph">NULL</code>. The restrictions for this option are as follows:
+                              </p>
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p>Only applies to <code class="codeph">SELECT</code> statements
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <p>Unlike regular VPD predicates, the masking condition that is generated by the policy function must be a simple boolean expression.</p>
+                                 </li>
+                                 <li>
+                                    <p>If your application performs calculations, or does not expect <code class="codeph">NULL</code> values, then you should use the default behavior of column-level VPD, which is specified with the <code class="codeph">sec_relevant_cols</code> parameter.
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <p>If you use <code class="codeph">UPDATE AS SELECT</code> with this option, then only the values in the columns you are allowed to see will be updated.
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <p>This option may prevent some rows from displaying. For example:</p><pre class="oac_no_warn" dir="ltr">SELECT * FROM employees
+WHERE salary = 10
+</pre><p>This query may not return rows if the <code class="codeph">salary</code> column returns a <code class="codeph">NULL</code> value because the column masking option has been set.
+                                    </p>
+                                 </li>
+                              </ul>
+                           </li>
+                           <li>
+                              <p>When you add a VPD policy to a synonym, it causes all the dependent objects of the synonym, including policy functions that reference the synonym, to be marked <code class="codeph">INVALID</code>. 
+                              </p>
+                           </li>
+                           <li>
+                              <p>You cannot associate a global application context with a context sensitive policy or a context shared sensitive policy.</p>
+                           </li>
+                           <li>
+                              <p>The maximum number of policies that can be created for a single object is 255. </p>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-1E528A51-DE53-4961-8770-C53924E427CC__GUID-D06BD7DB-B6C1-4D19-BBDB-C858388931A8">Examples</p>
+                        <p>As the first of two examples, the following creates a policy that applies to the <code class="codeph">hr.employee</code> table. This is a column-level VPD policy that will be enforced only if a <code class="codeph">SELECT</code> or an <code class="codeph">INDEX</code> statement refers to the <code class="codeph">salary</code>, <code class="codeph">birthdate</code>, or <code class="codeph">SSN</code> columns of the table explicitly, or implicitly through a view. It is also a <code class="codeph">CONTEXT_SENSITIVE</code> policy, so the server will invoke the policy function <code class="codeph">hr.hrfun</code> at parse time. The namespace and attribute application context parameters restrict the policy evaluation only when the application context values change. During execution, it will only invoke the function if there has been any session private context change since the last use of the statement cursor. The predicate generated by the policy function must not exceed 4000 bytes, the default length limit, since the <code class="codeph">long_predicate</code> parameter is omitted from the call.
+                        </p><pre class="oac_no_warn" dir="ltr">BEGIN
+   DBMS_RLS.ADD_POLICY(
+      object_schema      =&gt; 'hr',
+      object_name        =&gt; 'employee',
+      policy_name        =&gt; 'hr_policy',
+      function_schema    =&gt; 'hr',
+      policy_function    =&gt; 'hrfun',
+      statement_types    =&gt; 'select,index',
+      policy_type        =&gt; DBMS_RLS.CONTEXT_SENSITIVE,
+      sec_relevant_cols  =&gt; 'salary,birthdate,ssn',
+      namespace          =&gt; 'empno_ctx',
+      attribute          =&gt; 'emp_id');
+END;
+</pre><p>As the second example, the following command creates another policy that applies to the same object for hosting, so users can access only data based on their subscriber ID. Since it is defined as a <code class="codeph">SHARED_STATIC</code> policy type, the server will first try to find the predicate in the SGA cache. The server will only invoke the policy function, <code class="codeph">subfun</code>, if that search fails.
+                        </p><pre class="oac_no_warn" dir="ltr">BEGIN
+   DBMS_RLS.ADD_POLICY(
+      object_schema      =&gt; 'hr',
+      object_name        =&gt; 'employee',
+      policy_name        =&gt; 'hosting_policy',
+      function_schema    =&gt; 'hr',
+      policy_function    =&gt; 'subfun',
+      policy_type        =&gt; dbms_rls.SHARED_STATIC);
+END;</pre></div>
+                  </div>
+               </div><a id="ARPLS67724"></a><a id="ARPLS67725"></a><a id="ARPLS67725"></a><a id="ARPLS67724"></a><a id="ARPLS67725"></a><a id="ARPLS67724"></a><div class="props_rev_3"><a id="GUID-8680A996-885B-48B4-81B6-8C587F127C9A" name="GUID-8680A996-885B-48B4-81B6-8C587F127C9A"></a><h4 id="ARPLS-GUID-8680A996-885B-48B4-81B6-8C587F127C9A" class="sect4"><span class="enumeration_section">149.6.3 </span>ADD_POLICY_CONTEXT Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure adds the context for the active application.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-8680A996-885B-48B4-81B6-8C587F127C9A__GUID-472C9E31-5EB8-4321-98B7-0A11BFA2C14B">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.ADD_POLICY_CONTEXT (
+   object_schema   IN VARCHAR2 NULL,
+   object_name     IN VARCHAR2,
+   namespace       IN VARCHAR2,
+   attribute       IN VARCHAR2); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-8680A996-885B-48B4-81B6-8C587F127C9A__GUID-C1877D36-AF73-4BE0-84B8-D0C15AB2A55B">Parameters</p>
+                        <div class="tblformal" id="GUID-8680A996-885B-48B4-81B6-8C587F127C9A__GUID-33B0BA89-65DE-4DA2-860F-0595FE30ED24">
+                           <p class="titleintable">Table 149-6 ADD_POLICY_CONTEXT Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="ADD_POLICY_CONTEXT Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.ADD_POLICY_CONTEXT subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e4549">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e4552">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e4557" headers="d795139e4549 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e4557 d795139e4552 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e4571" headers="d795139e4549 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e4571 d795139e4552 ">
+                                       <p>Name of the table, view, or synonym to which the policy is added.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e4579" headers="d795139e4549 ">
+                                       <p><code class="codeph">namespace</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e4579 d795139e4552 ">
+                                       <p>Name which determines the application context namespace</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e4587" headers="d795139e4549 ">
+                                       <p><code class="codeph">attribute</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e4587 d795139e4552 ">
+                                       <p>Attribute which determines the application context attribute name</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-8680A996-885B-48B4-81B6-8C587F127C9A__GUID-204CEF39-C842-475B-9950-550AD61477CA">Usage Notes</p>
+                        <p>Note the following:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>This procedure indicates the application context that drives the enforcement of policies; this is the context that determines which application is running.</p>
+                           </li>
+                           <li>
+                              <p>The driving context can be session or global. </p>
+                           </li>
+                           <li>
+                              <p>At execution time, the server retrieves the name of the active policy group from the value of this context.</p>
+                           </li>
+                           <li>
+                              <p>There must be at least one driving context defined for each object that has fine-grained access control policies; otherwise, all policies for the object will be executed.</p>
+                           </li>
+                           <li>
+                              <p>Adding multiple context to the same object will cause policies from multiple policy groups to be enforced.</p>
+                           </li>
+                           <li>
+                              <p>If the driving context is <code class="codeph">NULL,</code> policies from all policy groups are used.
+                              </p>
+                           </li>
+                           <li>
+                              <p>If the driving context is a policy group with policies, all enabled policies from that policy group will be applied, along with all policies from the <code class="codeph">SYS_DEFAULT</code> policy group.
+                              </p>
+                           </li>
+                           <li>
+                              <p>To add a policy to table <code class="codeph">HR.EMPLOYEES</code> in group <code class="codeph">access_control_group,</code> the following command is issued:
+                              </p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.ADD_GROUPED_POLICY('hr','employees','access_control_group','policy1','SYS', 'HR.ACCESS');</pre></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="ARPLS74599"></a><a id="ARPLS74600"></a><a id="ARPLS74600"></a><a id="ARPLS74599"></a><a id="ARPLS74600"></a><a id="ARPLS74599"></a><div class="props_rev_3"><a id="GUID-57F1649B-47D4-46D4-BF56-4B1A837245A5" name="GUID-57F1649B-47D4-46D4-BF56-4B1A837245A5"></a><h4 id="ARPLS-GUID-57F1649B-47D4-46D4-BF56-4B1A837245A5" class="sect4"><span class="enumeration_section">149.6.4 </span>ALTER_POLICY Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure associates an application context attribute with VPD policies.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-57F1649B-47D4-46D4-BF56-4B1A837245A5__GUID-A6F3FD0B-4125-417D-9EEA-117ECE42EA31">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.ALTER_POLICY (
+   object_schema    IN VARCHAR2 DEFAULT NULL,
+   object_name      IN VARCHAR2,
+   policy_name      IN VARCHAR2,
+   alter_option     IN NUMBER,
+   namespace        IN VARCHAR2 DEFAULT NULL,
+   attribute        IN VARCHAR2 DEFAULT NULL); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-57F1649B-47D4-46D4-BF56-4B1A837245A5__GUID-0189BFA1-B1F8-4E77-A320-97E0F7612735">Parameters</p>
+                        <div class="tblformal" id="GUID-57F1649B-47D4-46D4-BF56-4B1A837245A5__GUID-91E460F1-A09E-4781-BF50-6FAE26DC3E19">
+                           <p class="titleintable">Table 149-7 ALTER_POLICY Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="ALTER_POLICY Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.ALTER_POLICY subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e5035">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e5038">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5043" headers="d795139e5035 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5043 d795139e5038 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5057" headers="d795139e5035 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5057 d795139e5038 ">
+                                       <p>Name of the table, view, or synonym to which the policy is added</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5065" headers="d795139e5035 ">
+                                       <p><code class="codeph">policy_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5065 d795139e5038 ">
+                                       <p>Name of the policy, unique for the same table or view</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5073" headers="d795139e5035 ">
+                                       <p><code class="codeph">alter_option</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5073 d795139e5038 ">
+                                       <p>Used to determine whether the application context is being added or removed from an Oracle Virtual Private Database policy</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5081" headers="d795139e5035 ">
+                                       <p><code class="codeph">namespace</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5081 d795139e5038 ">
+                                       <p>Name which determines the application context namespace</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5089" headers="d795139e5035 ">
+                                       <p><code class="codeph">attribute</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5089 d795139e5038 ">
+                                       <p>Attribute which determines the application context attribute name</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-57F1649B-47D4-46D4-BF56-4B1A837245A5__GUID-3F7B776C-951D-43C0-9F70-248E3748C193">Usage Notes</p>
+                        <p>Note the following:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>This procedure associates an application context namespace and application context attribute to context sensitive and shared context sensitive policies only. Specifying application context namespace and application context attribute for <code class="codeph">DYNAMIC</code>, <code class="codeph">STATIC</code> or <code class="codeph">SHARED_STATIC</code> policies will result in an error. If <code class="codeph">namespace</code> is specified, <code class="codeph">attribute</code> should also be specified for the procedure call.
+                              </p>
+                           </li>
+                           <li>
+                              <p>You cannot associate a global application context with a context sensitive policy or a context shared sensitive policy. </p>
+                           </li>
+                           <li>
+                              <p>Invocations of <code class="codeph">ALTER_POLICY</code> which modify a shared context sensitive VPD policy have an effect on all shared context sensitive VPD policies that have the same VPD policy function.
+                              </p>
+                           </li>
+                           <li>
+                              <p>The driving context can be session or global. </p>
+                           </li>
+                           <li>
+                              <p>At execution time, the server retrieves the name of the active policy group from the value of this context.</p>
+                           </li>
+                           <li>
+                              <p>There must be at least one driving context defined for each object that has fine-grained access control policies; otherwise, all policies for the object will be executed.</p>
+                           </li>
+                           <li>
+                              <p>Adding multiple context to the same object will cause policies from multiple policy groups to be enforced.</p>
+                           </li>
+                           <li>
+                              <p>If the driving context is <code class="codeph">NULL,</code> policies from all policy groups are used.
+                              </p>
+                           </li>
+                           <li>
+                              <p>If the driving context is a policy group with policies, all enabled policies from that policy group will be applied, along with all policies from the <code class="codeph">SYS_DEFAULT</code> policy group.
+                              </p>
+                           </li>
+                           <li>
+                              <p>To add a policy to table <code class="codeph">hr.employees</code> in group <code class="codeph">access_control_group,</code> the following command is issued:
+                              </p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.ADD_GROUPED_POLICY(
+   'hr','employees','access_control_group','policy1','SYS', 'HR.ACCESS');</pre></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="ARPLS74601"></a><a id="ARPLS74602"></a><a id="ARPLS74602"></a><a id="ARPLS74601"></a><a id="ARPLS74602"></a><a id="ARPLS74601"></a><div class="props_rev_3"><a id="GUID-96DE2C1A-4F75-458E-816D-55211746CC4C" name="GUID-96DE2C1A-4F75-458E-816D-55211746CC4C"></a><h4 id="ARPLS-GUID-96DE2C1A-4F75-458E-816D-55211746CC4C" class="sect4"><span class="enumeration_section">149.6.5 </span>ALTER_GROUPED_POLICY Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure adds application context related changes.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-96DE2C1A-4F75-458E-816D-55211746CC4C__GUID-12DD8DB1-34B8-4AF0-84D9-4FD1AD518F9D">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.ALTER_GROUPED_POLICY (
+   object_schema    IN VARCHAR2 DEFAULT NULL,
+   object_name      IN VARCHAR2,
+   policy_group     IN VARCHAR2 DEFAULT SYS_DEFAULT,
+   policy_name      IN VARCHAR2,
+   alter_option     IN NUMBER,
+   namespace        IN VARCHAR2 DEFAULT NULL,
+   attribute        IN VARCHAR2 DEFAULT NULL); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-96DE2C1A-4F75-458E-816D-55211746CC4C__GUID-5BCB9416-4F7A-4F0D-9A55-7C4A6298DBEE">Parameters</p>
+                        <div class="tblformal" id="GUID-96DE2C1A-4F75-458E-816D-55211746CC4C__GUID-8520F7C0-0816-4909-9262-CA0CF917106F">
+                           <p class="titleintable">Table 149-8 ALTER_GROUPED_POLICY Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="ALTER_GROUPED_POLICY Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.ALTER_GROUPED_POLICY subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e5562">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e5565">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5570" headers="d795139e5562 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5570 d795139e5565 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5584" headers="d795139e5562 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5584 d795139e5565 ">
+                                       <p>Name of the table, view, or synonym to which the policy is added</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5592" headers="d795139e5562 ">
+                                       <p><code class="codeph">policy_group</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5592 d795139e5565 ">
+                                       <p>Name of the policy group to which this policy belongs; must be unique for the same table or view</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5600" headers="d795139e5562 ">
+                                       <p><code class="codeph">policy_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5600 d795139e5565 ">
+                                       <p>Name of the policy, unique for the same table or view</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5608" headers="d795139e5562 ">
+                                       <p><code class="codeph">alter_option</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5608 d795139e5565 ">
+                                       <p>Used to determine whether the application context is being added or removed from the Oracle Virtual Private Database policy</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5616" headers="d795139e5562 ">
+                                       <p><code class="codeph">namespace</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5616 d795139e5565 ">
+                                       <p>Name that determines the application context namespace</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e5624" headers="d795139e5562 ">
+                                       <p><code class="codeph">attribute</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e5624 d795139e5565 ">
+                                       <p>Attribute determines the application context attribute name</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-96DE2C1A-4F75-458E-816D-55211746CC4C__GUID-26081AA0-7685-4E23-9B23-C0638F8A5E93">Usage Notes</p>
+                        <p>Note the following:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>This procedure will associate an application context namespace and application context attribute to context sensitive and shared context sensitive policies only. Specifying application context namespace and application context attribute for <code class="codeph">DYNAMIC</code>, <code class="codeph">STATIC</code> or <code class="codeph">SHARED_STATIC</code> policies will result in an error. If <code class="codeph">namespace</code> is specified, <code class="codeph">attribute</code> should also be specified for the procedure call.
+                              </p>
+                           </li>
+                           <li>
+                              <p>You cannot associate a global application context with a context sensitive policy or a context shared sensitive policy. </p>
+                           </li>
+                           <li>
+                              <p>Invocations of <code class="codeph">ALTER_GROUPED_POLICY</code> which modify a shared context sensitive VPD policy have an effect on all shared context sensitive VPD policies that have the same VPD policy function.
+                              </p>
+                           </li>
+                           <li>
+                              <p>The driving context can be session or global. </p>
+                           </li>
+                           <li>
+                              <p>At execution time, the server retrieves the name of the active policy group from the value of this context.</p>
+                           </li>
+                           <li>
+                              <p>There must be at least one driving context defined for each object that has fine-grained access control policies; otherwise, all policies for the object will be executed.</p>
+                           </li>
+                           <li>
+                              <p>Adding multiple context to the same object will cause policies from multiple policy groups to be enforced.</p>
+                           </li>
+                           <li>
+                              <p>If the driving context is <code class="codeph">NULL,</code> policies from all policy groups are used.
+                              </p>
+                           </li>
+                           <li>
+                              <p>If the driving context is a policy group with policies, all enabled policies from that policy group will be applied, along with all policies from the <code class="codeph">SYS_DEFAULT</code> policy group.
+                              </p>
+                           </li>
+                           <li>
+                              <p>To add a policy to table <code class="codeph">hr.employees</code> in group <code class="codeph">access_control_group,</code> the following command is issued:
+                              </p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.ADD_GROUPED_POLICY (
+   'hr','employees','access_control_group','policy1','SYS', 'HR.ACCESS');</pre></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="ARPLS67726"></a><a id="ARPLS67727"></a><a id="ARPLS67727"></a><a id="ARPLS67726"></a><a id="ARPLS67727"></a><a id="ARPLS67726"></a><div class="props_rev_3"><a id="GUID-BB213E90-65C0-466F-B529-A384D07A181A" name="GUID-BB213E90-65C0-466F-B529-A384D07A181A"></a><h4 id="ARPLS-GUID-BB213E90-65C0-466F-B529-A384D07A181A" class="sect4"><span class="enumeration_section">149.6.6 </span>CREATE_POLICY_GROUP Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure creates a policy group.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-BB213E90-65C0-466F-B529-A384D07A181A__GUID-AE7B60C1-474B-4392-8ECC-F164DAF4B847">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.CREATE_POLICY_GROUP (
+   object_schema   IN VARCHAR2 NULL,
+   object_name     IN VARCHAR2,
+   policy_group    IN VARCHAR2); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-BB213E90-65C0-466F-B529-A384D07A181A__GUID-DD0D1EDD-BD4B-40D9-85B2-3997F7C04731">Parameters</p>
+                        <div class="tblformal" id="GUID-BB213E90-65C0-466F-B529-A384D07A181A__GUID-9C1887BA-C92B-4DE0-92DA-0C7C247A9157">
+                           <p class="titleintable">Table 149-9 CREATE_POLICY_GROUP Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="CREATE_POLICY_GROUP Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.CREATE_POLICY_GROUP subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e6096">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e6099">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e6104" headers="d795139e6096 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e6104 d795139e6099 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e6118" headers="d795139e6096 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e6118 d795139e6099 ">
+                                       <p>Name of the table, view, or synonym to which the policy is added</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e6126" headers="d795139e6096 ">
+                                       <p><code class="codeph">policy_group</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e6126 d795139e6099 ">
+                                       <p>Name of the policy group that the policy belongs to</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-BB213E90-65C0-466F-B529-A384D07A181A__GUID-2B075C5A-A518-47B3-B8B8-141CE660D4B8">Usage Notes</p>
+                        <p>The group must be unique for each table or view.</p>
+                     </div>
+                  </div>
+               </div><a id="ARPLS67728"></a><a id="ARPLS67729"></a><a id="ARPLS67729"></a><a id="ARPLS67728"></a><a id="ARPLS67729"></a><a id="ARPLS67728"></a><div class="props_rev_3"><a id="GUID-A3F945EB-B4F6-4010-978C-9A9576739413" name="GUID-A3F945EB-B4F6-4010-978C-9A9576739413"></a><h4 id="ARPLS-GUID-A3F945EB-B4F6-4010-978C-9A9576739413" class="sect4"><span class="enumeration_section">149.6.7 </span>DELETE_POLICY_GROUP Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure deletes a policy group.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A3F945EB-B4F6-4010-978C-9A9576739413__GUID-A837F6CC-7E0F-422E-805C-6503D1CA546E">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.DELETE_POLICY_GROUP (
+  object_schema   IN VARCHAR2 NULL,
+  object_name     IN VARCHAR2,
+  policy_group    IN VARCHAR2); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A3F945EB-B4F6-4010-978C-9A9576739413__GUID-3CDA57D2-7C75-4705-9035-31C1797B9333">Parameters</p>
+                        <div class="tblformal" id="GUID-A3F945EB-B4F6-4010-978C-9A9576739413__GUID-7AE66D2E-5B7B-4C5C-8F7E-9F46C57D49D1">
+                           <p class="titleintable">Table 149-10 DELETE_POLICY_GROUP Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="DELETE_POLICY_GROUP Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.DELETE_POLICY_GROUP subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="35%" id="d795139e6535">Parameter</th>
+                                    <th align="left" valign="bottom" width="65%" id="d795139e6538">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="35%" id="d795139e6543" headers="d795139e6535 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="65%" headers="d795139e6543 d795139e6538 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="35%" id="d795139e6557" headers="d795139e6535 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="65%" headers="d795139e6557 d795139e6538 ">
+                                       <p>Name of the table, view, or synonym to which the policy is added</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="35%" id="d795139e6565" headers="d795139e6535 ">
+                                       <p><code class="codeph">policy_group</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="65%" headers="d795139e6565 d795139e6538 ">
+                                       <p>Name of the policy group that the policy belongs to</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A3F945EB-B4F6-4010-978C-9A9576739413__GUID-69B4E4BC-7028-418F-8F48-B8EDE48AE3A0">Usage Notes</p>
+                        <p>Note the following:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>This procedure deletes a policy group for the specified table, view, or synonym.</p>
+                           </li>
+                           <li>
+                              <p>No policy can be in the policy group.</p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="ARPLS67730"></a><a id="ARPLS67731"></a><a id="ARPLS67731"></a><a id="ARPLS67730"></a><a id="ARPLS67731"></a><a id="ARPLS67730"></a><div class="props_rev_3"><a id="GUID-F2E53333-626B-4AF1-9A1C-C60A9F127290" name="GUID-F2E53333-626B-4AF1-9A1C-C60A9F127290"></a><h4 id="ARPLS-GUID-F2E53333-626B-4AF1-9A1C-C60A9F127290" class="sect4"><span class="enumeration_section">149.6.8 </span>DISABLE_GROUPED_POLICY Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure disables a row-level group security policy.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-F2E53333-626B-4AF1-9A1C-C60A9F127290__GUID-E75B3693-7DB8-4117-B066-99CA34D28D2A">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.DISABLE_GROUPED_POLICY (
+   object_schema   IN VARCHAR2 NULL,
+   object_name     IN VARCHAR2,
+   group_name      IN VARCHAR2,
+   policy_name     IN VARCHAR2); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-F2E53333-626B-4AF1-9A1C-C60A9F127290__GUID-88678B2D-EBC9-4D2D-9959-BD146E9C7FD4">Parameters</p>
+                        <div class="tblformal" id="GUID-F2E53333-626B-4AF1-9A1C-C60A9F127290__GUID-211DE929-FD9D-4479-A596-4D7C8BE6DAC0">
+                           <p class="titleintable">Table 149-11 DISABLE_GROUPED_POLICY Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="DISABLE_GROUPED_POLICY Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.DISABLE_GROUPED_POLICY subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e6982">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e6985">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e6990" headers="d795139e6982 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e6990 d795139e6985 ">
+                                       <p>Schema containing the table, view, or synonym</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e6998" headers="d795139e6982 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e6998 d795139e6985 ">
+                                       <p>Name of the table, view, or synonym with which the policy is associated</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e7006" headers="d795139e6982 ">
+                                       <p><code class="codeph">group_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e7006 d795139e6985 ">
+                                       <p>Name of the group of the policy</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e7014" headers="d795139e6982 ">
+                                       <p><code class="codeph">policy_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e7014 d795139e6985 ">
+                                       <p>Name of the policy to be enabled or disabled</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-F2E53333-626B-4AF1-9A1C-C60A9F127290__GUID-106FA7A3-496F-441F-9DF2-35E087466188">Usage Notes</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>The procedure causes the current transaction, if any, to commit before the operation is carried out. </p>
+                           </li>
+                           <li>
+                              <p>A commit is performed at the end of the operation.</p>
+                           </li>
+                           <li>
+                              <p>A policy is disabled when this procedure is executed or when the <code class="codeph">ENABLE_GROUPED_POLICY</code> procedure is executed with "enable" set to <code class="codeph">FALSE</code>.
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="ARPLS67732"></a><a id="ARPLS67733"></a><a id="ARPLS67733"></a><a id="ARPLS67732"></a><a id="ARPLS67733"></a><a id="ARPLS67732"></a><div class="props_rev_3"><a id="GUID-6E3A5D29-1901-4FA3-AC57-E94DF5DF50CD" name="GUID-6E3A5D29-1901-4FA3-AC57-E94DF5DF50CD"></a><h4 id="ARPLS-GUID-6E3A5D29-1901-4FA3-AC57-E94DF5DF50CD" class="sect4"><span class="enumeration_section">149.6.9 </span>DROP_GROUPED_POLICY Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure drops a policy associated with a policy group.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-6E3A5D29-1901-4FA3-AC57-E94DF5DF50CD__GUID-BAA3B590-0636-4693-8D19-112260E94A31">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.DROP_GROUPED_POLICY (
+   object_schema   IN VARCHAR2 NULL,
+   object_name     IN VARCHAR2,
+   policy_group    IN VARCHAR2 'SYS_DEFAULT',
+   policy_name     IN VARCHAR2); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-6E3A5D29-1901-4FA3-AC57-E94DF5DF50CD__GUID-49370186-E7FC-43EE-9477-EF80DED8B2A8">Parameters</p>
+                        <div class="tblformal" id="GUID-6E3A5D29-1901-4FA3-AC57-E94DF5DF50CD__GUID-3A060E1B-F88F-44E6-ADCC-11FD8EAF74D3">
+                           <p class="titleintable">Table 149-12 DROP_GROUPED_POLICY Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="DROP_GROUPED_POLICY Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.DROP_GROUPED_POLICY subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e7437">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e7440">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e7445" headers="d795139e7437 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e7445 d795139e7440 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e7459" headers="d795139e7437 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e7459 d795139e7440 ">
+                                       <p>Name of the table, view, or synonym to which the policy is dropped</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e7467" headers="d795139e7437 ">
+                                       <p><code class="codeph">policy_group</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e7467 d795139e7440 ">
+                                       <p>Name of the policy group to which the policy belongs</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e7475" headers="d795139e7437 ">
+                                       <p><code class="codeph">policy_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e7475 d795139e7440 ">
+                                       <p>Name of the policy</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div><a id="ARPLS67734"></a><a id="ARPLS67735"></a><a id="ARPLS67735"></a><a id="ARPLS67734"></a><a id="ARPLS67735"></a><a id="ARPLS67734"></a><div class="props_rev_3"><a id="GUID-EA6C2DDF-1BF2-4937-91BD-9FDAC012C7C9" name="GUID-EA6C2DDF-1BF2-4937-91BD-9FDAC012C7C9"></a><h4 id="ARPLS-GUID-EA6C2DDF-1BF2-4937-91BD-9FDAC012C7C9" class="sect4"><span class="enumeration_section">149.6.10 </span>DROP_POLICY Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure drops a fine-grained access control policy from a table, view, or synonym.</p>
+                     <div class="section">
+                        <p>The procedure causes the current transaction, if any, to commit before the operation is carried out. However, this does not cause a commit first if it is inside a DDL event trigger. </p>
+                        <div class="infoboxnotealso" id="GUID-EA6C2DDF-1BF2-4937-91BD-9FDAC012C7C9__GUID-9BD8DD81-DB7C-4BE4-9F9C-01F9D13FA136">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_RLS.html#GUID-BE5BB465-B48F-4486-B374-73068D2B1D88" title="The DBMS_RLS procedures cause current DML transactions, if any, to commit before the operation. However, the procedures do not cause a commit first if they are inside a DDL event trigger. With DDL transactions, the DBMS_RLS procedures are part of the DDL transaction.">Operational Notes</a></p>
+                        </div>
+                        <p>A COMMIT is also performed at the end of the operation.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-EA6C2DDF-1BF2-4937-91BD-9FDAC012C7C9__GUID-475EF281-F2BC-4574-B4D3-A281390E556B">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.DROP_POLICY (
+   object_schema   IN VARCHAR2 NULL,
+   object_name     IN VARCHAR2,
+   policy_name     IN VARCHAR2); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-EA6C2DDF-1BF2-4937-91BD-9FDAC012C7C9__GUID-F0B95047-0446-451C-A875-D4F244BA91F7">Parameters</p>
+                        <div class="tblformal" id="GUID-EA6C2DDF-1BF2-4937-91BD-9FDAC012C7C9__GUID-C128B7AC-30D5-41C8-9FA1-AD032A7089E3">
+                           <p class="titleintable">Table 149-13 DROP_POLICY Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="DROP_POLICY Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.DROP_POLICY subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e7898">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e7901">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e7906" headers="d795139e7898 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e7906 d795139e7901 ">
+                                       <p>Schema containing the table, view or synonym. If no <code class="codeph">object_schema</code> is specified, or <code class="codeph">NULL</code> is provided, then the current user's schema is assumed.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e7920" headers="d795139e7898 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e7920 d795139e7901 ">
+                                       <p>Name of the table, view, or synonym for which the policy is dropped</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e7928" headers="d795139e7898 ">
+                                       <p><code class="codeph">policy_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e7928 d795139e7901 ">
+                                       <p>Name of policy to be dropped from table, view, or synonym</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-EA6C2DDF-1BF2-4937-91BD-9FDAC012C7C9__GUID-18995F45-4DEC-4B83-97A7-7DA17B038BDC">Usage Notes</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>When you drop a VPD policy from a synonym, it causes all the dependent objects of the synonym, including policy functions that reference the synonym, to be marked <code class="codeph">INVALID</code>. 
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="ARPLS67736"></a><a id="ARPLS67737"></a><a id="ARPLS67737"></a><a id="ARPLS67736"></a><a id="ARPLS67737"></a><a id="ARPLS67736"></a><div class="props_rev_3"><a id="GUID-E5884B1D-1779-4018-9C43-52CD72B1B02E" name="GUID-E5884B1D-1779-4018-9C43-52CD72B1B02E"></a><h4 id="ARPLS-GUID-E5884B1D-1779-4018-9C43-52CD72B1B02E" class="sect4"><span class="enumeration_section">149.6.11 </span>DROP_POLICY_CONTEXT Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure drops a driving context from the object so that it will have one less driving context.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-E5884B1D-1779-4018-9C43-52CD72B1B02E__GUID-8DB4908B-E2BC-4AE2-AB9C-A55E65CF6EB1">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.DROP_POLICY_CONTEXT (
+   object_schema   IN VARCHAR2 NULL,
+   object_name     IN VARCHAR2,
+   namespace       IN VARCHAR2,
+   attribute       IN VARCHAR2); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-E5884B1D-1779-4018-9C43-52CD72B1B02E__GUID-4A198AFD-7E4F-4CA2-AF3C-B3B6B493BB94">Parameters</p>
+                        <div class="tblformal" id="GUID-E5884B1D-1779-4018-9C43-52CD72B1B02E__GUID-3882BF13-BBEC-4FBA-B545-C3653C4A2E24">
+                           <p class="titleintable">Table 149-14 DROP_POLICY_CONTEXT Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="DROP_POLICY_CONTEXT Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.DROP_POLICY_CONTEXT subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e8343">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e8346">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e8351" headers="d795139e8343 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e8351 d795139e8346 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e8365" headers="d795139e8343 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e8365 d795139e8346 ">
+                                       <p>Name of the table, view, or synonym to which the policy is dropped</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e8373" headers="d795139e8343 ">
+                                       <p><code class="codeph">namespace</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e8373 d795139e8346 ">
+                                       <p>Namespace of the driving context</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e8381" headers="d795139e8343 ">
+                                       <p><code class="codeph">attribute</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e8381 d795139e8346 ">
+                                       <p>Attribute of the driving context</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div><a id="ARPLS67738"></a><a id="ARPLS67739"></a><a id="ARPLS67739"></a><a id="ARPLS67738"></a><a id="ARPLS67739"></a><a id="ARPLS67738"></a><div class="props_rev_3"><a id="GUID-1F65BB26-9424-44BA-9EE1-71335D8D0F49" name="GUID-1F65BB26-9424-44BA-9EE1-71335D8D0F49"></a><h4 id="ARPLS-GUID-1F65BB26-9424-44BA-9EE1-71335D8D0F49" class="sect4"><span class="enumeration_section">149.6.12 </span>ENABLE_GROUPED_POLICY Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure enables or disables a row-level group security policy.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-1F65BB26-9424-44BA-9EE1-71335D8D0F49__GUID-3A004039-4FB0-433A-BB00-548F43610710">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.ENABLE_GROUPED_POLICY (
+   object_schema   IN VARCHAR2 NULL,
+   object_name     IN VARCHAR2,
+   group_name      IN VARCHAR2,
+   policy_name     IN VARCHAR2,
+   enable          IN BOOLEAN TRUE); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-1F65BB26-9424-44BA-9EE1-71335D8D0F49__GUID-CE82944C-B030-499E-BBC3-FE9FDD252B3D">Parameters</p>
+                        <div class="tblformal" id="GUID-1F65BB26-9424-44BA-9EE1-71335D8D0F49__GUID-226F53FC-7EA5-4F95-A1BF-D4DDB8317EAD">
+                           <p class="titleintable">Table 149-15 ENABLE_GROUPED_POLICY Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="ENABLE_GROUPED_POLICY Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.ENABLE_GROUPED_POLICY subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e8785">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e8788">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e8793" headers="d795139e8785 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e8793 d795139e8788 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e8807" headers="d795139e8785 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e8807 d795139e8788 ">
+                                       <p>Name of the table, view, or synonym with which the policy is associated</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e8815" headers="d795139e8785 ">
+                                       <p><code class="codeph">group_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e8815 d795139e8788 ">
+                                       <p>Name of the group of the policy</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e8823" headers="d795139e8785 ">
+                                       <p><code class="codeph">policy_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e8823 d795139e8788 ">
+                                       <p>Name of the policy to be enabled or disabled</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e8831" headers="d795139e8785 ">
+                                       <p><code class="codeph">enable</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e8831 d795139e8788 ">
+                                       <p><code class="codeph">TRUE</code> enables the policy; <code class="codeph">FALSE</code> disables the policy
+                                       </p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-1F65BB26-9424-44BA-9EE1-71335D8D0F49__GUID-306A2E3F-0798-4AD5-8C2B-DEB1E6779B51">Usage Notes</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>The procedure causes the current transaction, if any, to commit before the operation is carried out. </p>
+                           </li>
+                           <li>
+                              <p>A commit is performed at the end of the operation.</p>
+                           </li>
+                           <li>
+                              <p>A policy is enabled when it is created.</p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="ARPLS67740"></a><a id="ARPLS67741"></a><a id="ARPLS67741"></a><a id="ARPLS67740"></a><a id="ARPLS67741"></a><a id="ARPLS67740"></a><div class="props_rev_3"><a id="GUID-0237CEA7-1BCB-4F09-8399-806BE9E68C12" name="GUID-0237CEA7-1BCB-4F09-8399-806BE9E68C12"></a><h4 id="ARPLS-GUID-0237CEA7-1BCB-4F09-8399-806BE9E68C12" class="sect4"><span class="enumeration_section">149.6.13 </span>ENABLE_POLICY Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure enables or disables a fine-grained access control policy. A policy is enabled when it is created.</p>
+                     <div class="section">
+                        <p>The procedure causes the current transaction, if any, to commit before the operation is carried out. However, this does not cause a commit first if it is inside a DDL event trigger. </p>
+                        <div class="infoboxnotealso" id="GUID-0237CEA7-1BCB-4F09-8399-806BE9E68C12__GUID-5FD5EB9C-86CC-420D-896A-9FEB96C8AAA2">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_RLS.html#GUID-BE5BB465-B48F-4486-B374-73068D2B1D88" title="The DBMS_RLS procedures cause current DML transactions, if any, to commit before the operation. However, the procedures do not cause a commit first if they are inside a DDL event trigger. With DDL transactions, the DBMS_RLS procedures are part of the DDL transaction.">Operational Notes</a></p>
+                        </div>
+                        <p>A <code class="codeph">COMMIT</code> is also performed at the end of the operation. 
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-0237CEA7-1BCB-4F09-8399-806BE9E68C12__GUID-E7C197B8-5D00-4372-8DF8-2A18938A2B14">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.ENABLE_POLICY (
+   object_schema IN VARCHAR2 NULL,
+   object_name   IN VARCHAR2,
+   policy_name   IN VARCHAR2,
+   enable        IN BOOLEAN TRUE);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-0237CEA7-1BCB-4F09-8399-806BE9E68C12__GUID-59027973-3E37-402A-B9B4-6CEF9CBDFD0D">Parameters</p>
+                        <div class="tblformal" id="GUID-0237CEA7-1BCB-4F09-8399-806BE9E68C12__GUID-2B7ECDBF-6674-4D92-9A72-04948F861579">
+                           <p class="titleintable">Table 149-16 ENABLE_POLICY Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="ENABLE_POLICY Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.ENABLE_POLICY subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e9275">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e9278">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e9283" headers="d795139e9275 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e9283 d795139e9278 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e9297" headers="d795139e9275 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e9297 d795139e9278 ">
+                                       <p>Name of table, view, or synonym with which the policy is associated</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e9305" headers="d795139e9275 ">
+                                       <p><code class="codeph">policy_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e9305 d795139e9278 ">
+                                       <p>Name of policy to be enabled or disabled</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e9313" headers="d795139e9275 ">
+                                       <p><code class="codeph">enable</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e9313 d795139e9278 ">
+                                       <p><code class="codeph">TRUE</code> to enable the policy, <code class="codeph">FALSE</code> to disable the policy
+                                       </p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div><a id="ARPLS67742"></a><a id="ARPLS67743"></a><a id="ARPLS67743"></a><a id="ARPLS67742"></a><a id="ARPLS67743"></a><a id="ARPLS67742"></a><div class="props_rev_3"><a id="GUID-7D596EBE-9F23-47BA-A675-6D63587DB0E1" name="GUID-7D596EBE-9F23-47BA-A675-6D63587DB0E1"></a><h4 id="ARPLS-GUID-7D596EBE-9F23-47BA-A675-6D63587DB0E1" class="sect4"><span class="enumeration_section">149.6.14 </span>REFRESH_GROUPED_POLICY Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure reparses the SQL statements associated with a refreshed policy. </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-7D596EBE-9F23-47BA-A675-6D63587DB0E1__GUID-480E9E4E-7532-4A16-A7F8-B904DBE733FA">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.REFRESH_GROUPED_POLICY (
+   object_schema   IN VARCHAR2 NULL,
+   object_name     IN VARCHAR2 NULL,
+   group_name      IN VARCHAR2 NULL,
+   policy_name     IN VARCHAR2 NULL); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-7D596EBE-9F23-47BA-A675-6D63587DB0E1__GUID-CEA4F8C7-0FFD-4409-93AC-E2F4D2AD4EB2">Parameters</p>
+                        <div class="tblformal" id="GUID-7D596EBE-9F23-47BA-A675-6D63587DB0E1__GUID-A168E790-CF02-444D-8328-8082AE966721">
+                           <p class="titleintable">Table 149-17 REFRESH_GROUPED_POLICY Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="REFRESH_GROUPED_POLICY Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.REFRESH_GROUPED_POLICY subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e9723">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e9726">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e9731" headers="d795139e9723 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e9731 d795139e9726 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e9745" headers="d795139e9723 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e9745 d795139e9726 ">
+                                       <p>Name of the table, view, or synonym with which the policy is associated</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e9753" headers="d795139e9723 ">
+                                       <p><code class="codeph">group_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e9753 d795139e9726 ">
+                                       <p>Name of the group of the policy</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e9761" headers="d795139e9723 ">
+                                       <p><code class="codeph">policy_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e9761 d795139e9726 ">
+                                       <p>Name of the policy</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-7D596EBE-9F23-47BA-A675-6D63587DB0E1__GUID-77F1DF77-15B1-47C9-A321-30CBBA7FD74A">Usage Notes</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>This procedure causes all the cached statements associated with the policy to be reparsed. This guarantees that the latest change to the policy has immediate effect after the procedure is executed.</p>
+                           </li>
+                           <li>
+                              <p>The procedure causes the current transaction, if any, to commit before the operation is carried out. </p>
+                           </li>
+                           <li>
+                              <p>A commit is performed at the end of the operation.</p>
+                           </li>
+                           <li>
+                              <p>The procedure returns an error if it tries to refresh a disabled policy.</p>
+                           </li>
+                           <li>
+                              <p>The procedure removes the cached results of context and shared sensitive VPD policies.</p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="ARPLS67744"></a><a id="ARPLS67745"></a><a id="ARPLS67745"></a><a id="ARPLS67744"></a><a id="ARPLS67745"></a><a id="ARPLS67744"></a><div class="props_rev_3"><a id="GUID-24C42EA6-8945-414D-9B59-3213161B1DB1" name="GUID-24C42EA6-8945-414D-9B59-3213161B1DB1"></a><h4 id="ARPLS-GUID-24C42EA6-8945-414D-9B59-3213161B1DB1" class="sect4"><span class="enumeration_section">149.6.15 </span>REFRESH_POLICY Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure causes all the cached statements associated with the policy to be reparsed. This guarantees that the latest change to this policy will have immediate effect after the procedure is executed.</p>
+                     <div class="section">
+                        <p>The procedure causes the current transaction, if any, to commit before the operation is carried out. However, this does not cause a commit first if it is inside a DDL event trigger. </p>
+                        <div class="infoboxnotealso" id="GUID-24C42EA6-8945-414D-9B59-3213161B1DB1__GUID-82E1D7A2-344D-4B3C-80AE-2F80DD612696">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_RLS.html#GUID-BE5BB465-B48F-4486-B374-73068D2B1D88" title="The DBMS_RLS procedures cause current DML transactions, if any, to commit before the operation. However, the procedures do not cause a commit first if they are inside a DDL event trigger. With DDL transactions, the DBMS_RLS procedures are part of the DDL transaction.">Operational Notes</a></p>
+                        </div>
+                        <p>A <code class="codeph">COMMIT</code> is also performed at the end of the operation. 
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-24C42EA6-8945-414D-9B59-3213161B1DB1__GUID-384F71C9-AA4B-45F4-8314-E28C759A2B92">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_RLS.REFRESH_POLICY (
+   object_schema IN VARCHAR2 NULL,
+   object_name   IN VARCHAR2 NULL,
+   policy_name   IN VARCHAR2 NULL); </pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-24C42EA6-8945-414D-9B59-3213161B1DB1__GUID-775F5639-14D5-4FE2-9DA9-3D74AFC6716D">Parameters</p>
+                        <div class="tblformal" id="GUID-24C42EA6-8945-414D-9B59-3213161B1DB1__GUID-00EECB3D-AF41-4BE3-A0DF-2A41791EE213">
+                           <p class="titleintable">Table 149-18 REFRESH_POLICY Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="REFRESH_POLICY Procedure Parameters " summary="This table describes Parameters used by the DBMS_RLS.REFRESH_POLICY subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="26%" id="d795139e10206">Parameter</th>
+                                    <th align="left" valign="bottom" width="74%" id="d795139e10209">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e10214" headers="d795139e10206 ">
+                                       <p><code class="codeph">object_schema</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e10214 d795139e10209 ">
+                                       <p>Schema containing the table, view, or synonym. If no <code class="codeph">object_schema</code> is specified or is <code class="codeph">NULL</code>, then the current schema is used.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e10228" headers="d795139e10206 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e10228 d795139e10209 ">
+                                       <p>Name of table, view, or synonym with which the policy is associated</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="26%" id="d795139e10236" headers="d795139e10206 ">
+                                       <p><code class="codeph">policy_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="74%" headers="d795139e10236 d795139e10209 ">
+                                       <p>Name of policy to be refreshed </p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-24C42EA6-8945-414D-9B59-3213161B1DB1__GUID-2166CE83-266B-4C68-A4E9-1BC4D72F1709">Usage Notes</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>The procedure returns an error if it tries to refresh a disabled policy.</p>
+                           </li>
+                           <li>
+                              <p>The procedure removes the cached results of context and shared sensitive VPD policies.</p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

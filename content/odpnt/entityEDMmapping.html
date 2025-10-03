@@ -1,0 +1,1803 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Mapping Oracle Data Types to EDM Types</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="entityLang.html" title="Previous" type="text/html">
+      <link rel="next" href="entityDataTypeMapping.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="entityLang.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="entityDataTypeMapping.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="entity_framework.html" property="item" typeof="WebPage"><span property="name">ADO.NET Entity Framework and LINQ to Entities</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Mapping Oracle Data Types to EDM Types</li>
+            </ol>
+            <a id="GUID-47AB0154-D89E-4CA0-AB6C-F5BF3D57CE5F" name="GUID-47AB0154-D89E-4CA0-AB6C-F5BF3D57CE5F"></a><a id="ODPNT8276"></a><a id="ODPNT8275"></a>
+            
+            <h2 id="ODPNT-GUID-47AB0154-D89E-4CA0-AB6C-F5BF3D57CE5F" class="sect2">Mapping Oracle Data Types to EDM Types</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>The ODP.NET manifest file describes the primitive types, such as <code class="codeph">VARCHAR2</code> and <code class="codeph">Number</code>, and the Entity Data Model (EDM) types, such as <code class="codeph">string</code> and <code class="codeph">Int32</code>, that they map to. It also includes the facets for each EDM type.
+               </p>
+               <p>ODP.NET does not support Time literals and canonical functions related to the Time type.</p>
+               <p>Oracle considers both <code class="codeph">NULL</code> and empty strings to be <code class="codeph">NULL</code> strings and are considered to be equal. Operations, such as <code class="codeph">Equals(), Length(),</code> and <code class="codeph">Trim() </code>on such strings will result in a <code class="codeph">NULL</code> string.
+               </p>
+               <p><a href="entityEDMmapping.html#GUID-47AB0154-D89E-4CA0-AB6C-F5BF3D57CE5F__CIHJBFJG" title="Mapping of Oracle Data Types and EDM Types">Table 4-1</a> maps the Oracle data types to their corresponding EDM types. The table also includes details about provider type attributes and the EDM type facets associated with each Oracle data type.
+               </p>
+               <div class="tblformal" id="GUID-47AB0154-D89E-4CA0-AB6C-F5BF3D57CE5F__CIHJBFJG">
+                  <p class="titleintable">Table 4-1 Mapping of Oracle Data Types and EDM Types</p>
+                  <table cellpadding="4" cellspacing="0" class="Formal" title="Mapping of Oracle Data Types and EDM Types" summary="Mapping of Oracle Data Types and EDM Types" width="100%" frame="hsides" border="1" rules="rows">
+                     <thead>
+                        <tr align="left" valign="top">
+                           <th align="left" valign="bottom" width="21%" id="d112667e73">Oracle Data Types</th>
+                           <th align="left" valign="bottom" width="24%" id="d112667e76">EDM Types(Primitive-TypeKind)</th>
+                           <th align="left" valign="bottom" width="32%" id="d112667e81">Provider Type Attributes: Name and Value</th>
+                           <th align="left" valign="bottom" width="23%" id="d112667e84">EDM Type Facets</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e89" headers="d112667e73 ">
+                              <p><code class="codeph">Bfile</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e89 d112667e76 ">
+                              <p><code class="codeph">Binary</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e89 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: False</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: False</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e89 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHDJGHB">EDM Type Facets for Bfile</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e112" headers="d112667e73 ">
+                              <p><code class="codeph">Binary_Double</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e112 d112667e76 ">
+                              <p><code class="codeph">Double</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e112 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e112 d112667e84 ">
+                              <p>Not Applicable</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e134" headers="d112667e73 ">
+                              <p><code class="codeph">Binary_Float</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e134 d112667e76 ">
+                              <p><code class="codeph">Single</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e134 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e134 d112667e84 ">
+                              <p>Not Applicable</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e156" headers="d112667e73 ">
+                              <p><code class="codeph">Binary_Integer</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e156 d112667e76 ">
+                              <p><code class="codeph">Int32</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e156 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e156 d112667e84 ">
+                              <p>Not Applicable</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e178" headers="d112667e73 ">
+                              <p><code class="codeph">Blob</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e178 d112667e76 ">
+                              <p><code class="codeph">Binary</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e178 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: False</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: False</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e178 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHEIGBG">EDM Type Facets for Blob</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e201" headers="d112667e73 ">
+                              <p><code class="codeph">Char</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e201 d112667e76 ">
+                              <p><code class="codeph">String</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e201 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e201 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHFIIGF">EDM Type Facets for Char</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e224" headers="d112667e73 ">
+                              <p><code class="codeph">Clob</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e224 d112667e76 ">
+                              <p><code class="codeph">String</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e224 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: False</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: False</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e224 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHCGFFG">EDM Type Facets for Clob</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e247" headers="d112667e73 ">
+                              <p><code class="codeph">Date</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e247 d112667e76 ">
+                              <p><code class="codeph">DateTime</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e247 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e247 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHJHDDC">EDM Type Facets for Date</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e270" headers="d112667e73 ">
+                              <p><code class="codeph">Float</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e270 d112667e76 ">
+                              <p><code class="codeph">Decimal</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e270 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e270 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHICCEE">EDM Type Facets for Float</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e293" headers="d112667e73 ">
+                              <p><code class="codeph">Int</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e293 d112667e76 ">
+                              <p><code class="codeph">Int32</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e293 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e293 d112667e84 ">
+                              <p>Not Applicable</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e315" headers="d112667e73 ">
+                              <p><code class="codeph">Interval Day To Second</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e315 d112667e76 ">
+                              <p><code class="codeph">Decimal</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e315 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e315 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHHHCIB">EDM Type Facets for Interval Day To Second</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e339" headers="d112667e73 ">
+                              <p><code class="codeph">Interval Year To Month</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e339 d112667e76 ">
+                              <p><code class="codeph">Decimal</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e339 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e339 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHDBBBA">EDM Type Facets for Interval Year To Month</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e362" headers="d112667e73 ">
+                              <p><code class="codeph">Long</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e362 d112667e76 ">
+                              <p><code class="codeph">String</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e362 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: False</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: False</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e362 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHDAEDH">EDM Type Facets for Long</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e385" headers="d112667e73 ">
+                              <p><code class="codeph">Long Raw</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e385 d112667e76 ">
+                              <p><code class="codeph">Binary</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e385 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: False</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: False</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e385 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHEBJFA">EDM Type Facets for Long Raw</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e408" headers="d112667e73 ">
+                              <p><code class="codeph">NChar</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e408 d112667e76 ">
+                              <p><code class="codeph">String</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e408 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e408 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHJEFJJ">EDM Type Facets for NChar</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e431" headers="d112667e73 ">
+                              <p><code class="codeph">NClob</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e431 d112667e76 ">
+                              <p><code class="codeph">String</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e431 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: False</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: False</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e431 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHEAAEF">EDM Type Facets for NClob</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e454" headers="d112667e73 ">
+                              <p><code class="codeph">Nested Table</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e454 d112667e76 ">
+                              <p></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e454 d112667e81 ">
+                              <p>Not Applicable</p>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e454 d112667e84 ">
+                              <p>Not Applicable and Not Supported</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e467" headers="d112667e73 ">
+                              <p><code class="codeph">Number(1,0)</code></p>
+                              <p><code class="codeph">Number(2,0)</code></p>
+                              <p><code class="codeph">Number(3,0)</code></p>
+                              <p><code class="codeph">Number(4,0)</code></p>
+                              <p><code class="codeph">Number(5,0)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e467 d112667e76 ">
+                              <p><code class="codeph">Int16</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e467 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e467 d112667e84 ">
+                              <p>Not Applicable</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e501" headers="d112667e73 ">
+                              <p><code class="codeph">Number(6,0)</code></p>
+                              <p><code class="codeph">Number(7,0)</code></p>
+                              <p><code class="codeph">Number(8,0)</code></p>
+                              <p><code class="codeph">Number(9,0)</code></p>
+                              <p><code class="codeph">Number(10,0)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e501 d112667e76 ">
+                              <p><code class="codeph">Int32</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e501 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e501 d112667e84 ">
+                              <p>Not Applicable</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e535" headers="d112667e73 ">
+                              <p><code class="codeph">Number(11,0)</code></p>
+                              <p><code class="codeph">Number(12,0)</code></p>
+                              <p><code class="codeph">Number(13,0)</code></p>
+                              <p><code class="codeph">Number(14,0)</code></p>
+                              <p><code class="codeph">Number(15,0)</code></p>
+                              <p><code class="codeph">Number(16,0)</code></p>
+                              <p><code class="codeph">Number(17,0)</code></p>
+                              <p><code class="codeph">Number(18,0)</code></p>
+                              <p><code class="codeph">Number(19,0)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e535 d112667e76 ">
+                              <p><code class="codeph">Int64</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e535 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e535 d112667e84 ">
+                              <p>Not Applicable</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e581" headers="d112667e73 ">
+                              <p><code class="codeph">Number</code> 
+                              </p>
+                              <p>(all other cases)</p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e581 d112667e76 ">
+                              <p><code class="codeph">Decimal</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e581 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e581 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHHCBGB">EDM Type Facets for Number</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e607" headers="d112667e73 ">
+                              <p><code class="codeph">NVarchar2</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e607 d112667e76 ">
+                              <p><code class="codeph">String</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e607 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e607 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHFFHGJ">EDM Type Facets for NVarchar2</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e631" headers="d112667e73 ">
+                              <p><code class="codeph">Object</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e631 d112667e76 ">
+                              <p></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e631 d112667e81 ">
+                              <p>Not Applicable</p>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e631 d112667e84 ">
+                              <p>Not Applicable and Not Supported</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e644" headers="d112667e73 ">
+                              <p><code class="codeph">Raw</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e644 d112667e76 ">
+                              <p><code class="codeph">Binary</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e644 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e644 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHDGCHB">EDM Type Facets for Raw</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e667" headers="d112667e73 ">
+                              <p><code class="codeph">Raw(16)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e667 d112667e76 ">
+                              <p><code class="codeph">Guid</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e667 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e667 d112667e84 ">
+                              <p>Not Applicable</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e689" headers="d112667e73 ">
+                              <p><code class="codeph">Ref</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e689 d112667e76 ">
+                              <p></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e689 d112667e81 ">
+                              <p>Not Applicable</p>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e689 d112667e84 ">
+                              <p>Not Applicable and Not Supported</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e702" headers="d112667e73 ">
+                              <p><code class="codeph">ROWID</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e702 d112667e76 ">
+                              <p><code class="codeph">String</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e702 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e702 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHHECHJ">EDM Type Facets for ROWID</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e725" headers="d112667e73 ">
+                              <p><code class="codeph">Smallint</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e725 d112667e76 ">
+                              <p><code class="codeph">Int16</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e725 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e725 d112667e84 ">
+                              <p>Not Applicable</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e747" headers="d112667e73 ">
+                              <p><code class="codeph">Timestamp</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e747 d112667e76 ">
+                              <p><code class="codeph">DateTime</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e747 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e747 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHDGCDH">EDM Type Facets for Timestamp</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e770" headers="d112667e73 ">
+                              <p><code class="codeph">Timestamp with</code></p>
+                              <p><code class="codeph">Local Time Zone</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e770 d112667e76 ">
+                              <p><code class="codeph">DateTime</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e770 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e770 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHGGGJI">EDM Type Facets for Timestamp with Local Time Zone</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e796" headers="d112667e73 ">
+                              <p><code class="codeph">Timestamp with</code></p>
+                              <p><code class="codeph">Time Zone</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e796 d112667e76 ">
+                              <p><code class="codeph">DateTimeOffset</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e796 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e796 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHCBBCA">EDM Type Facets for Timestamp with Time Zone</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e822" headers="d112667e73 ">
+                              <p><code class="codeph">UROWID</code></p>
+                              <p>(size)</p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e822 d112667e76 ">
+                              <p><code class="codeph">Binary</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e822 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e822 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHJEADJ">EDM Type Facets for UROWID</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e847" headers="d112667e73 ">
+                              <p><code class="codeph">Varchar2</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e847 d112667e76 ">
+                              <p><code class="codeph">String</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e847 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: True</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: True</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e847 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHEDJGG">EDM Type Facets for Varchar2</a></p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e871" headers="d112667e73 ">
+                              <p><code class="codeph">VArray</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e871 d112667e76 ">
+                              <p></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e871 d112667e81 ">
+                              <p>Not Applicable</p>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e871 d112667e84 ">
+                              <p>Not Applicable and Not Supported</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="21%" id="d112667e884" headers="d112667e73 ">
+                              <p><code class="codeph">XMLType</code></p>
+                           </td>
+                           <td align="left" valign="top" width="24%" headers="d112667e884 d112667e76 ">
+                              <p><code class="codeph">String</code></p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d112667e884 d112667e81 ">
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">Equal Comparable: False</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">Order Comparable: False</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                           <td align="left" valign="top" width="23%" headers="d112667e884 d112667e84 ">
+                              <p><a href="entityEDMmapping.html#GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHFCIGI">EDM Type Facets for XMLType</a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <!-- class="inftblhruleinformal" -->
+            </div><a id="ODPNT8278"></a><a id="ODPNT8279"></a><a id="ODPNT8280"></a><a id="ODPNT8281"></a><a id="ODPNT8282"></a><a id="ODPNT8283"></a><a id="ODPNT8284"></a><a id="ODPNT8285"></a><a id="ODPNT8286"></a><a id="ODPNT8287"></a><a id="ODPNT8288"></a><a id="ODPNT8289"></a><a id="ODPNT8290"></a><a id="ODPNT8291"></a><a id="ODPNT8292"></a><a id="ODPNT8293"></a><a id="ODPNT8294"></a><a id="ODPNT8295"></a><a id="ODPNT8296"></a><a id="ODPNT8297"></a><a id="ODPNT8298"></a><a id="ODPNT8299"></a><a id="ODPNT8277"></a><div class="props_rev_3"><a id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA" name="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA"></a><h3 id="ODPNT-GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA" class="sect3">EDM Type Facets</h3>
+               <div>
+                  <p>The following sections enumerate the EDM type facets for the preceding Oracle data types. The first column of each table displays the  EDM type facet names for the Oracle data type. Subsequent columns list the facet attribute names and displays their respective values.</p>
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHDJGHB">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-A6427404-6FAC-4B7B-AB48-1636FE099C29">EDM Type Facets for Bfile</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-58588D27-0BAC-4459-81B8-D42A608B926C">
+                        <p class="titleintable">Table 4-2 EDM Type Facets for Bfile</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Bfile" summary="EDM Type Facets for Bfile and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e959">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e962">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e967" headers="d112667e959 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e967 d112667e962 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">2147483648</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e985" headers="d112667e959 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e985 d112667e962 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHEIGBG">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-E31B5A89-2B41-45BA-967B-417E3E3927BC">EDM Type Facets for Blob</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-FCDC14BC-CB75-488B-BF3D-9E1EBCC81AF9">
+                        <p class="titleintable">Table 4-3 EDM Type Facets for Blob</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Blob" summary="EDM Type Facets for Blob and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1017">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e1020">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1025" headers="d112667e1017 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1025 d112667e1020 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">2147483648</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1043" headers="d112667e1017 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1043 d112667e1020 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHFIIGF">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-1B98974E-2B27-4C0E-891B-B2D2EC69B99F">EDM Type Facets for Char</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-11C030B3-A5C1-4399-AA05-6A170F34E768">
+                        <p class="titleintable">Table 4-4 EDM Type Facets for Char</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Char" summary="EDM Type Facets for Char and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1075">Facet Name</th>
+                                 <th align="left" valign="bottom" id="d112667e1078">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1083" headers="d112667e1075 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1083 d112667e1078 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">1</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">2000</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">2000</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1113" headers="d112667e1075 ">
+                                    <p><code class="codeph">Unicode</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1113 d112667e1078 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1131" headers="d112667e1075 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1131 d112667e1078 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">True</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHCGFFG">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-7629C024-001F-4446-8D05-1BE90D36D7F8">EDM Type Facets for Clob</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-E4793A1B-D84D-4411-9E9D-A891A5F7BD1D">
+                        <p class="titleintable">Table 4-5 EDM Type Facets for Clob</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Clob" summary="EDM Type Facets for Clob and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1163">Facet Name</th>
+                                 <th align="left" valign="bottom" id="d112667e1166">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1171" headers="d112667e1163 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1171 d112667e1166 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">2147483647</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1189" headers="d112667e1163 ">
+                                    <p><code class="codeph">Unicode</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1189 d112667e1166 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1207" headers="d112667e1163 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1207 d112667e1166 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHJHDDC">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-3553670D-2BA3-48E0-854B-0099DDA43D34">EDM Type Facets for Date</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-F92876E9-0FFF-403D-92EB-F6E00CD4F415">
+                        <p class="titleintable">Table 4-6 EDM Type Facets for Date</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Date" summary="EDM Type Facets for Date and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1239">Facet Name</th>
+                                 <th align="left" valign="bottom" id="d112667e1242">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1247" headers="d112667e1239 ">
+                                    <p><code class="codeph">Precision</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1247 d112667e1242 ">
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">0</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHICCEE">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-6D41A592-C829-4F87-B971-A2B552E64CF4">EDM Type Facets for Float</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-184CFCCA-DD12-423A-A153-E7DEC8A9E9D4">
+                        <p class="titleintable">Table 4-7 EDM Type Facets for Float</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Float" summary="EDM Type Facets for Float and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1280">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e1283">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1288" headers="d112667e1280 ">
+                                    <p><code class="codeph">Precision</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1288 d112667e1283 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">126</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1318" headers="d112667e1280 ">
+                                    <p><code class="codeph">Scale</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1318 d112667e1283 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">38</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHHHCIB">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-85D43022-51C2-4D5F-9792-DA55E64FF42B">EDM Type Facets for Interval Day To Second</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-EC43426A-D0F5-4D74-A6A3-C653BF59D56C">
+                        <p class="titleintable">Table 4-8 EDM Type Facets for Interval Day To Second</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Interval Day To Second" summary="EDM Type Facets for Interval Day To Second and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1362">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e1365">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1370" headers="d112667e1362 ">
+                                    <p><code class="codeph">Precision</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1370 d112667e1365 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">1</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">251</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">251</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1400" headers="d112667e1362 ">
+                                    <p><code class="codeph">Scale</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1400 d112667e1365 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">9</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                     <div class="infoboxnote" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-C4F2682C-760C-41EB-9A64-2B7DB9EF9B09">
+                        <p class="notep1">Note:</p>
+                        <p>EDM types do not support <code class="codeph">TimeSpan</code>.
+                        </p>
+                        <p>Use <code class="codeph">Decimal</code> to represent the total number of seconds. An application can obtain a <code class="codeph">TimeSpan</code> by using the <code class="codeph">TimeSpan.FromSeconds</code> static method.
+                        </p>
+                     </div>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHDBBBA">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-CB5DB3DC-0940-464F-AFC6-B81DDDA6BE36">EDM Type Facets for Interval Year To Month</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-B174360D-5253-4842-983C-AA1514F319E0">
+                        <p class="titleintable">Table 4-9 EDM Type Facets for Interval Year To Month</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Interval Year To Month" summary="EDM Type Facets for Interval Year To Month and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1461">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e1464">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1469" headers="d112667e1461 ">
+                                    <p><code class="codeph">Precision</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1469 d112667e1464 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">1</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">250</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">250</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1499" headers="d112667e1461 ">
+                                    <p><code class="codeph">Scale</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1499 d112667e1464 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">9</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHDAEDH">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-5CD6A68F-7AC8-4A37-9C60-2115B7C89BEF">EDM Type Facets for Long</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-8CD5B886-F093-42BB-BB77-5B9292D75E3D">
+                        <p class="titleintable">Table 4-10 EDM Type Facets for Long</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Long" summary="EDM Type Facets for Long and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1543">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e1546">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1551" headers="d112667e1543 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1551 d112667e1546 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">2147483647</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1569" headers="d112667e1543 ">
+                                    <p><code class="codeph">Unicode</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1569 d112667e1546 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1587" headers="d112667e1543 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1587 d112667e1546 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHEBJFA">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-4F36C161-2ECC-412C-BA30-A13159F55FF6">EDM Type Facets for Long Raw</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-428CB492-222C-4EEA-9780-242B1207AA21">
+                        <p class="titleintable">Table 4-11 EDM Type Facets for Long Raw</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Long Raw" summary="EDM Type Facets for Long Raw and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1619">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e1622">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1627" headers="d112667e1619 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1627 d112667e1622 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">2147483647</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1645" headers="d112667e1619 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1645 d112667e1622 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHJEFJJ">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-C9B63CBE-B173-4529-8FBA-30450791FAD8">EDM Type Facets for NChar</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-87247907-5A81-432E-AFB3-1CC9C0B37D98">
+                        <p class="titleintable">Table 4-12 EDM Type Facets for NChar</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for NChar" summary="EDM Type Facets for NChar and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1678">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e1681">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1686" headers="d112667e1678 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1686 d112667e1681 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">1</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">1000</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">1000</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1716" headers="d112667e1678 ">
+                                    <p><code class="codeph">Unicode</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1716 d112667e1681 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">True</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1734" headers="d112667e1678 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1734 d112667e1681 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">True</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                     <div class="infoboxnote" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-79607CD5-1788-4A82-A8FD-84A34718E681">
+                        <p class="notep1">Note:</p>
+                        <p>For <code class="codeph">NChar,</code> the actual data is subject to the maximum byte limit of 2000. 
+                        </p>
+                        <p>The value of 1000 for <code class="codeph">Maximum</code> and <code class="codeph">DefaultValue</code> allows the EDM wizard to display columns of <code class="codeph">NCHAR(1000)</code>, where 1000 is the maximum number of characters allowed in DDL.
+                        </p>
+                     </div>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHEAAEF">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-608EFD57-F94C-4ABE-9ADA-5084FBB53819">EDM Type Facets for NClob</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-F4CB6263-A951-41AD-9828-ACE1FBD323F9">
+                        <p class="titleintable">Table 4-13 EDM Type Facets for NClob</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for NClob" summary="EDM Type Facets for NClob and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1783">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e1786">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1791" headers="d112667e1783 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1791 d112667e1786 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">2147483647</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1809" headers="d112667e1783 ">
+                                    <p><code class="codeph">Unicode</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1809 d112667e1786 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">True</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1827" headers="d112667e1783 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1827 d112667e1786 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHHCBGB">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-F894F9C8-D947-4ACA-98F9-6A439250930C">EDM Type Facets for Number</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-7A26A7AF-24A9-43FE-9168-759AFF9922BA">
+                        <p class="titleintable">Table 4-14 EDM Type Facets for Number</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Number" summary="EDM Type Facets for Number and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1859">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e1862">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1867" headers="d112667e1859 ">
+                                    <p><code class="codeph">Precision</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1867 d112667e1862 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">1</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">38</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">38</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1897" headers="d112667e1859 ">
+                                    <p><code class="codeph">Scale</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1897 d112667e1862 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">38</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHFFHGJ">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-6B02DBFC-F70E-41E9-A9D1-EC352A18B27A">EDM Type Facets for NVarchar2</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-81ECE447-0EF9-4CE1-B8D4-CDF1A3C7D0E2">
+                        <p class="titleintable">Table 4-15 EDM Type Facets for NVarchar2</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for NVarchar2" summary="EDM Type Facets for NVarchar2 and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e1941">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e1944">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1949" headers="d112667e1941 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1949 d112667e1944 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">1</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">2000</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">2000</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1979" headers="d112667e1941 ">
+                                    <p><code class="codeph">Unicode</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1979 d112667e1944 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">True</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e1997" headers="d112667e1941 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e1997 d112667e1944 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                     <div class="infoboxnote" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-BCD2EBAC-8FF5-4CCC-8215-7229683EFDA3">
+                        <p class="notep1">Note:</p>
+                        <p>For <code class="codeph">NVARCHAR2,</code> the actual data is subject to the maximum byte limit of 4000. 
+                        </p>
+                        <p>The value of 2000 for <code class="codeph">Maximum</code> and <code class="codeph">DefaultValue</code> allows the EDM wizard to display columns of <code class="codeph">NVARCHAR2(2000)</code>, where 2000 is the maximum number of characters allowed in DDL.
+                        </p>
+                     </div>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHDGCHB">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-97C21FF4-92F7-4893-BF80-118F3DAFE62A">EDM Type Facets for Raw</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-12BF55F3-2CBD-41B7-B575-FC191CF5CBFF">
+                        <p class="titleintable">Table 4-16 EDM Type Facets for Raw</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Raw" summary="EDM Type Facets for Raw and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e2046">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e2049">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2054" headers="d112667e2046 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2054 d112667e2049 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">1</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">2000</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2078" headers="d112667e2046 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2078 d112667e2049 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHHECHJ">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-D31F22AA-ED96-4456-82B4-72D3FC80A584">EDM Type Facets for ROWID</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-F0FF10BE-0699-4DFE-B293-C28C5C931BD4">
+                        <p class="titleintable">Table 4-17 EDM Type Facets for ROWID</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for ROWID" summary="EDM Type Facets for ROWID and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e2110">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e2113">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2118" headers="d112667e2110 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2118 d112667e2113 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">18</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2136" headers="d112667e2110 ">
+                                    <p><code class="codeph">Unicode</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2136 d112667e2113 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2154" headers="d112667e2110 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2154 d112667e2113 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">True</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHDGCDH">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-0EC0EE26-2504-40B0-ABAC-989147E4171A">EDM Type Facets for Timestamp</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-523764C2-4A4D-4C93-AE1A-80F73F62C761">
+                        <p class="titleintable">Table 4-18 EDM Type Facets for Timestamp</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Timestamp" summary="EDM Type Facets for Timestamp and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e2187">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e2190">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2195" headers="d112667e2187 ">
+                                    <p><code class="codeph">Precision</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2195 d112667e2190 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">9</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">6</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHGGGJI">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-395859BB-D23F-47B3-93E2-5B988F784911">EDM Type Facets for Timestamp with Local Time Zone</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-C10DCAFC-7B36-4EBE-9A4C-CBA8A492DFE7">
+                        <p class="titleintable">Table 4-19 EDM Type Facets for Timestamp with Local Time Zone</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Timestamp with Local Time Zone" summary="EDM Type Facets for Timestamp with Local Time Zone and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e2239">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e2242">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2247" headers="d112667e2239 ">
+                                    <p><code class="codeph">Precision</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2247 d112667e2242 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">9</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">6</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHCBBCA">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-7F053851-BB1D-444A-B8CD-16E1AFF0AC47">EDM Type Facets for Timestamp with Time Zone</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-413F21B7-D1C2-49D8-8716-AB2DC6B0F214">
+                        <p class="titleintable">Table 4-20 EDM Type Facets for Timestamp with Time Zone</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Timestamp with Time Zone" summary="EDM Type Facets for Timestamp with Time Zone and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e2291">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e2294">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2299" headers="d112667e2291 ">
+                                    <p><code class="codeph">Precision</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2299 d112667e2294 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">0</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">9</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">6</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHJEADJ">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-C80AB916-53AF-44E8-8CD3-0DA4D98704A7">EDM Type Facets for UROWID</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-97A523EC-8A45-4BAA-B8B8-5D8948686D2C">
+                        <p class="titleintable">Table 4-21 EDM Type Facets for UROWID</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for UROWID" summary="EDM Type Facets for UROWID and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e2343">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e2346">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2351" headers="d112667e2343 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2351 d112667e2346 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">4000</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2369" headers="d112667e2343 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2369 d112667e2346 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">True</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHEDJGG">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-EF536FE9-8361-435F-AC0E-CA0CC16E002D">EDM Type Facets for Varchar2</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-04B63907-FEAA-4192-BAF4-5418CC0DA99C">
+                        <p class="titleintable">Table 4-22 EDM Type Facets for Varchar2</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for Varchar2" summary="EDM Type Facets for Varchar2 and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e2401">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e2404">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2409" headers="d112667e2401 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2409 d112667e2404 ">
+                                    <p><code class="codeph">Minimum</code>: <code class="codeph">1</code></p>
+                                    <p><code class="codeph">Maximum</code>: <code class="codeph">4000</code></p>
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">4000</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">False</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2439" headers="d112667e2401 ">
+                                    <p><code class="codeph">Unicode</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2439 d112667e2404 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2457" headers="d112667e2401 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2457 d112667e2404 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__CIHFCIGI">
+                     <p class="subhead2" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-0F6CC3A0-3E3C-4FB8-BB10-8F395F97513F">EDM Type Facets for XMLType</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p></p>
+                     <div class="tblformal" id="GUID-A7A3F1A1-A630-48E4-85C9-888D4ABA1BBA__GUID-C89FFF38-D04B-45A7-A594-225953B790A2">
+                        <p class="titleintable">Table 4-23 EDM Type Facets for XMLType</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="EDM Type Facets for XMLType" summary="EDM Type Facets for XMLType and its attributes with their values" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d112667e2490">Facet name</th>
+                                 <th align="left" valign="bottom" id="d112667e2493">Attributes Name and Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2498" headers="d112667e2490 ">
+                                    <p><code class="codeph">MaxLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2498 d112667e2493 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">2147483647</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2516" headers="d112667e2490 ">
+                                    <p><code class="codeph">Unicode</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2516 d112667e2493 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">True</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d112667e2534" headers="d112667e2490 ">
+                                    <p><code class="codeph">FixedLength</code></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d112667e2534 d112667e2493 ">
+                                    <p><code class="codeph">DefaultValue</code>: <code class="codeph">False</code></p>
+                                    <p><code class="codeph">Constant</code>: <code class="codeph">True</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

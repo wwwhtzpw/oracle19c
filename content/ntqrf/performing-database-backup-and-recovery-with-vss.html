@@ -1,0 +1,123 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Performing Database Backup and Recovery with VSS">
+      <meta name="DC.Relation" scheme="URI" content="overview-of-database-backup-and-recovery-with-vss.html#GUID-A979281C-2013-4E61-AF47-B5307714C0A3">
+      <meta name="DC.Relation" scheme="URI" content="basic-concepts-of-database-backup-and-recovery-with-vss.html#GUID-C085101B-237F-4773-A2BF-1C8FD040C701">
+      <meta name="DC.Relation" scheme="URI" content="basic-steps-of-backup-and-recovery-with-vss.html#GUID-E33C7DFA-8CB4-46A7-811A-5A0B034FE316">
+      <meta name="DC.Relation" scheme="URI" content="about-installing-and-uninstalling-the-oracle-vss-writer-service.html#GUID-45CA7F20-685B-4B69-B3A3-2C3702E74941">
+      <meta name="DC.Relation" scheme="URI" content="about-backing-up-a-database.html#GUID-A0C9B31A-5B89-4A93-8C7E-0C1E04700F8F">
+      <meta name="DC.Relation" scheme="URI" content="about-restoring-and-recovering-a-database.html#GUID-DB879F99-B37D-4E3B-9B82-49BCEC44DA07">
+      <meta name="DC.Relation" scheme="URI" content="about-integrating-vss-with-third-party-requester-applications.html#GUID-EAF7335D-CFF6-4FBF-B489-790F8349DF58">
+      <meta name="DC.Relation" scheme="URI" content="about-duplicating-a-database.html#GUID-104F28DE-3C9D-4FB4-892A-DE2DF1EEC0FA">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Creator" content="Sunil Surabhi">
+      <meta name="DC.Creator" content="Alexander Keh">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Ricky Chen">
+      <meta name="DC.Creator" content="David Collelo">
+      <meta name="DC.Creator" content="David Friedman">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Mark Bauer">
+      <meta name="DC.Creator" content="Sue K. Lee">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Ravi Thammaiah">
+      <meta name="DC.Creator" content="Michael Verheij">
+      <meta name="DC.Creator" content="Tanaya Bhattacharjee">
+      <meta name="DC.Publisher" content="January2020">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-B97FED01-7746-4C7A-9F9E-3EE2C147E4AF">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Performing Database Backup and Recovery with VSS</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Administrator's Reference ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Administrator's Reference for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="administrators-reference-guide-microsoft-windows.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2020-01-09T06:34:26-08:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2020">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96296-03">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="closing-all-unnecessary-foreground-applications.html" title="Previous" type="text/html">
+      <link rel="next" href="overview-of-database-backup-and-recovery-with-vss.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Administrator's Reference Guide for Microsoft Windows">
+    <meta name="dcterms.isVersionOf" content="NTQRF">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="closing-all-unnecessary-foreground-applications.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="overview-of-database-backup-and-recovery-with-vss.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database Administrator's Reference </span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Performing Database Backup and Recovery with VSS </li>
+            </ol>
+            <a id="GUID-B97FED01-7746-4C7A-9F9E-3EE2C147E4AF" name="GUID-B97FED01-7746-4C7A-9F9E-3EE2C147E4AF"></a><a id="NTQRF280"></a>
+            
+            <h2 id="NTQRF-GUID-B97FED01-7746-4C7A-9F9E-3EE2C147E4AF" class="sect2"><span class="enumeration_chapter">9 </span>Performing Database Backup and Recovery with VSS 
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Learn how to use Volume Shadow Copy Service (VSS) applications to back up and recover an Oracle Database. </p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="overview-of-database-backup-and-recovery-with-vss.html#GUID-A979281C-2013-4E61-AF47-B5307714C0A3">Overview of Database Backup and Recovery with VSS</a><br>Learn about the basic concepts and tasks involved in backup and recovery with component-based shadow copies.
+                  </li>
+                  <li class="ulchildlink"><a href="basic-concepts-of-database-backup-and-recovery-with-vss.html#GUID-C085101B-237F-4773-A2BF-1C8FD040C701">Basic Concepts of Database Backup and Recovery with VSS</a><br>VSS is an infrastructure on Windows server platforms that enables applications to create shadow copies.
+                  </li>
+                  <li class="ulchildlink"><a href="basic-steps-of-backup-and-recovery-with-vss.html#GUID-E33C7DFA-8CB4-46A7-811A-5A0B034FE316">Basic Steps of Backup and Recovery with VSS</a><br>Learn how to perform the basic steps of backup and recovery with VSS.
+                  </li>
+                  <li class="ulchildlink"><a href="about-installing-and-uninstalling-the-oracle-vss-writer-service.html#GUID-45CA7F20-685B-4B69-B3A3-2C3702E74941">About Installing and Uninstalling the Oracle VSS Writer Service</a><br>The Oracle VSS writer runs separately from the Oracle database instance. From the perspective of the database, the VSS writer is simply an OCI client.
+                  </li>
+                  <li class="ulchildlink"><a href="about-backing-up-a-database.html#GUID-A0C9B31A-5B89-4A93-8C7E-0C1E04700F8F">About Backing Up a Database</a><br>The technique for backing up a database depends on the archiving mode of the database and whether you are making a component-based or a volume-based backup.
+                  </li>
+                  <li class="ulchildlink"><a href="about-restoring-and-recovering-a-database.html#GUID-DB879F99-B37D-4E3B-9B82-49BCEC44DA07">About Restoring and Recovering a Database</a><br>Learn how to restore and recover VSS snapshots. As in the case of backups, the procedure depends on the archiving mode of the database and the type of snapshot that you are restoring.
+                  </li>
+                  <li class="ulchildlink"><a href="about-integrating-vss-with-third-party-requester-applications.html#GUID-EAF7335D-CFF6-4FBF-B489-790F8349DF58">About Integrating VSS with Third-Party Requester Applications</a><br>Oracle VSS writer allows third-party requester applications to control the behavior of recovery and backup sessions.
+                  </li>
+                  <li class="ulchildlink"><a href="about-duplicating-a-database.html#GUID-104F28DE-3C9D-4FB4-892A-DE2DF1EEC0FA">About Duplicating a Database</a><br>If your VSS shadow copies are transportable, then you can use these shadow copies to duplicate the primary database.
+                  </li>
+               </ul>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

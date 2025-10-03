@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Part number: F19265-02 -->
+    <!-- Published date: February 2020 -->
+    <!-- Template date: October 15, 2018 -->
+    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+    <meta name="contentid" content="26786">
+    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+    <!-- Use an imperative verb in the title. -->
+    <title>Build An Expectation Maximization Model</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Put the description of the tutorial here.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+  
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+    <meta name="dcterms.created" content="2020-02-03T18:52:40+00:00">
+    <meta name="dcterms.title" content="Build An Expectation Maximization Clustering Model">
+    <meta name="dcterms.category" content="database">
+    <meta name="dcterms.isVersionOf" content="TUTORIAL-BUILD-EM-CLUSTERING">
+    <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+    <meta name="dcterms.identifier" content="F19265-03">
+    <meta name="dcterms.release" content="Release 19">
+  <script id="ssot-metadata" type="application/json"> {"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}} </script>
+    </head>
+  <body>
+    <header>
+      <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo"> <img src="img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a> </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+      <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+      <!-- Use an imperative verb in the title. -->
+      <h1><img src="img/obe_tag.png" alt="Oracle by Example branding" align="middle">Build
+        An Expectation Maximization Clustering Model</h1>
+      <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+          <div class="left-nav-tut"><!-- -->
+            <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+            <div id="navbar" class="left-nav-w"><!-- -->
+              <div id="toc" class="tocify"><!-- --></div>
+            </div>
+          </div>
+        </div>
+        <div id="bookContainer">
+          <article>
+            <section>
+              <h2><img src="img/32_begin.png" alt="section 0" class="num_circ" height="32" width="32">Before You Begin</h2>
+              <p>This 15-minute tutorial shows you how to build an expectation
+                maximization (EM) clustering model using a text-based data
+                source.</p>
+              <h3>Background</h3>
+              <p>In addition to the existing k-Means and O-Cluster algorithms,
+                Oracle Data Mining now supports Expectation Maximization, a
+                clustering algorithm that creates a density model of the data.
+                The density model allows for an improved approach to combining
+                data originating in different domains. For example, EM enables
+                combination of structured data (such as sales transactions and
+                customer demographics) with unstructured data, such as text
+                data.</p>
+              <h3>What Do You Need?</h3>
+              <ul>
+                <li>Oracle Database 19c Enterprise Edition</li>
+                <li><a href="https://www.oracle.com/tools/downloads/sqldev-downloads.html">Oracle SQL Developer version 19.x</a></li>
+                <li>Oracle Data Miner User Account</li>
+                <li>Data Miner Workflow for Text Mining</li>
+              </ul>
+            </section>
+            <!-- ========================================================================================================================= -->
+            <section>
+              <hr>
+              <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" class="num_circ" height="32" width="32">Build
+                the Model and View the Results</h2>
+              <ol>
+                <li>Right-click the Clust Build node and select <strong>Run</strong> from the
+                  pop-up menu.
+                  <figure><img src="img/build-model.jpg" alt="Description of build-model.jpg follows">
+                    <figcaption><a href="files/build-model.txt">Description of
+                        the illustration build-model.jpg</a></figcaption> </figure>
+                  <p> When the build is complete, all nodes contain a green
+                    check mark in the node border </p>
+                </li>
+                <li>Right-click the clustering build node again, and select <strong>View
+                    Models &gt; CLUS_EM_1_3</strong> (Note: The automatically
+                  generated name of your Clustering model may be different than
+                  shown here.)
+                  <p> The Edit Classification Build Node window automatically
+                    appears. </p>
+                </li>
+                <li>Select<strong> Cluster 2</strong>, which represents the
+                  slightly larger cluster after the split.
+                  <figure><img src="img/cluster3-tree.png" alt="Description of cluster3-tree.png follows">
+                    <figcaption><a href="files/cluster3-tree.txt">Description of
+                        the illustration cluster3-tree.png</a></figcaption> </figure>
+                  <p> The bottom pane contains three tabs: Centroid, Rule, and
+                    Components. The Centroid tab displays a list of the
+                    attribute values that best define the selected cluster,
+                    ranked by importance. </p>
+                </li>
+                <li>Select the <strong>Component</strong> tab.
+                  <figure><img src="img/component-tab.png" alt="Description of component-tab.png follows">
+                    <figcaption><a href="files/component-tab.txt">Description of
+                        the illustration component-tab.png</a></figcaption> </figure>
+                  <p>The Component tab includes distribution plots of the ranked
+                    text mining results. In this tab, the bottom pane provides
+                    two tabs: (A) The Chart tab provides a larger view of the
+                    selected attribute’s distribution chart. (B) The Projections
+                    tab (shown in the example) provides a list of the Attribute
+                    Sub Name values that best describe the selected attribute.
+                    Here, we sorted the list in descending order by Coefficient
+                    value.</p>
+                </li>
+                <li>Select the <strong>Cluster</strong> tab.
+                  <figure><img src="img/cluster-tab.png" alt="Description of cluster-tab.png follows">
+                    <figcaption><a href="files/cluster-tab.txt">Description of
+                        the illustration cluster-tab.png</a></figcaption> </figure>
+                  <p> In this example, Cluster 3 is selected. This is the same
+                    cluster that we selected in the Tree viewer. The Cluster tab
+                    shows a list of contributing attributes, ranked by
+                    Confidence %. A histogram of the selected attribute is shown
+                    in the bottom pane. </p>
+                </li>
+                <li>Select the <strong>Compare</strong> tab.
+                  <figure><img src="img/compare-tab.png" alt="Description of compare-tab.png follows">
+                    <figcaption><a href="files/compare-tab.txt">Description of
+                        the illustration compare-tab.png</a></figcaption> </figure>
+                  <p> The Compare tab shows a list of contributing attributes
+                    for the selected clusters, sorted by Rank of importance. In
+                    this example, Clusters 2 and 3 are compared. A distribution
+                    histogram of the selected attribute is shown in the bottom
+                    pane </p>
+                </li>
+                <li>Dismiss the model viewer window. </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" class="num_circ" height="32" width="32">Apply
+                the Model to Make Predictions</h2>
+              <ol>
+                <li>Add a new Data Source node in the workflow:
+                  <ul>
+                    <li>From the Data group in the Components tab, drag and drop a
+                      <strong>Data Source</strong> node to the workflow pane, as
+                      shown below. The Define Data Source wizard opens
+                      automatically.</li>
+                    <li>Select the <strong>MINING_DATA_TEXT_APPLY_V</strong> view
+                      in Step 1 of the wizard.</li>
+                    <li>Click <strong>Finish</strong> to save the data source
+                      definition.</li>
+                  </ul>
+                </li>
+                <li>Expand the Model Operations category in the Components tab
+                  and drag an <strong>Apply</strong> node to the workflow
+                  canvas.</li>
+                <li>Connect the Clust Build node to the Apply node, and then
+                  connect the MINING_DATA_TEXT_APPLY_V node to the Apply node.</li>
+                <li>Add the customer id to the output:
+                  <ul>
+                    <li>Right-click the Apply Model node and select <strong>Edit</strong>.</li>
+                    <li>In the Predictions tab of the Edit Apply Node window,
+                      select <strong>CUST_ID</strong> as the Case ID.</li>
+                  </ul>
+                </li>
+                <li>Click <strong>OK</strong> in the Edit Apply Node window to
+                  save your changes.</li>
+                <li>Right-click the Apply Model node and select <strong>Run</strong>
+                  from the menu.
+                  <figure><img src="img/run-em-model.jpg" alt="Description of run-em-model.jpg follows">
+                    <figcaption><a href="files/run-em-model.txt">Description of
+                        the illustration run-em-model.jpg</a></figcaption> </figure>
+                  <p> When the process is complete, green check mark icons are
+                    displayed in the border of all workflow nodes to indicate
+                    that the server process completed successfully. </p>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" class="num_circ" height="32" width="32">View
+                the Results</h2>
+              <ol>
+                <li>Right-click the Apply Model node and select <strong>View
+                    Data</strong> from the Menu.</li>
+                <li>Click the <strong>Sort</strong> button, and specify a sort
+                  using the prediction probability, in descending order.</li>
+                <li>Click <strong>Apply Sort</strong> to view the results.
+                  <figure><img src="img/apply-model-results.png" alt="Description of apply-model-results.png follows">
+                    <figcaption><a href="files/apply-model-results.txt">Description
+                        of the illustration apply-model-results.png</a></figcaption>
+                  </figure>
+                </li>
+                <li>You can enter a Where clause in the Filter box to narrow the
+                  output results.
+                  <ul>
+                    <li>Enter the following Where clause:
+                      <pre><code> CLUS_EM_1_2_CLID = 3 and CLUS_EM_1_2_PROB &gt; .997</code></pre>
+                    </li>
+                    <li>Press <strong>Enter</strong>.
+                      <figure><img src="img/apply-model-filter.png" alt="Description of apply-model-filter.png follows">
+                        <figcaption><a href="files/apply-model-filter.txt">Description
+                            of the illustration apply-model-filter.png</a></figcaption>
+                      </figure>
+                      <p> The results should show records for those customers who
+                        are predicted to be in Cluster 3, with a probability
+                        greater than 99.7%. </p>
+                      <p> Each time you run an Apply node, Oracle Data Miner may
+                        take a different sample of the data to display. With each
+                        Apply, both the data and the order in which it is
+                        displayed may change. Therefore, the sample in your table
+                        may be different from the sample shown here. This is
+                        particularly evident when only a small pool of data is
+                        available, which is the case in the schema for this
+                        lesson. </p>
+                    </li>
+                  </ul>
+                </li>
+                <li>When you are done viewing the results, dismiss the Apply
+                  Model window, and click <strong>Save All</strong>. </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+                <h2 id="more_info" role="button" style="text-align: left;"><img src="img/32_more.png" alt="more information" height="32" width="32" class="num_circ">Want to Learn More?</h2>
+                <ul>
+                    <li><a href="https://docs.oracle.com/en/database/oracle/sql-developer/19.4/dmrug/oracle-data-miner.html" target="_blank">Oracle Data Miner User's Guide</a></li>
+                    <li><a href="https://www.oracle.com/database/technologies/advanced-analytics/odm.html" target="_blank">Oracle Data Miner product page</a></li>
+                </ul>
+            </section>
+            <hr> </article>
+        </div>
+        <br class="clearfloat">
+      </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+      <div style="max-width: 994px; padding:10px 0 0 17px;">
+        <footer class="footer-list">
+          <ul>
+            <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                Oracle</a> </li>
+            <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                Notices</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                of Use</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your
+                Privacy Rights</a> </li>
+            <li> <a href="./sp_common/en/cpyr.htm">Copyright
+                © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+          </ul>
+        </footer>
+      </div>
+      <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+      <!-- Modal hdr and body -->
+      <div id="obe_dialog" class="modal-content">
+        <div class="modal-header"> <a href="#" class="close"> <span class="close">×</span>
+          </a>
+          <h1>Associated Learning Paths</h1>
+        </div>
+        <div id="dialog-content"> </div>
+        <div id="dialog-close" class="closeBtn"> <a href="#" class="close2">
+            <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+          </a> </div>
+      </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+  </body>
+</html>

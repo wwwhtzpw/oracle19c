@@ -1,0 +1,532 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Autonomous Transactions">
+      <meta name="abstract" content="An autonomous transaction is an independent transaction started by another transaction, the main transaction.">
+      <meta name="description" content="An autonomous transaction is an independent transaction started by another transaction, the main transaction.">
+      <meta name="DC.subject" content="autonomous transaction, transaction, autonomous, independent transaction, autonomous routine, nested transaction, nested, context of transaction, context of, visibility, of transaction, visibility of, isolation level of transaction, isolation level of, declaring, AUTONOMOUS_TRANSACTION pragma, controlling, COMMIT statement, in autonomous transaction, ROLLBACK statement, SAVEPOINT statement, deadlock, autonomous transaction and, TRANSACTIONS initialization parameter, concurrent transactions, PIPE ROW statement, in autonomous routine, autonomous trigger, trigger, TCL statement, in trigger, TCL statement in, DDL statement, DDL statement in, data definition language statement">
+      <meta name="keywords" content="autonomous transaction, transaction, autonomous, independent transaction, autonomous routine, nested transaction, nested, context of transaction, context of, visibility, of transaction, visibility of, isolation level of transaction, isolation level of, declaring, AUTONOMOUS_TRANSACTION pragma, controlling, COMMIT statement, in autonomous transaction, ROLLBACK statement, SAVEPOINT statement, deadlock, autonomous transaction and, TRANSACTIONS initialization parameter, concurrent transactions, PIPE ROW statement, in autonomous routine, autonomous trigger, trigger, TCL statement, in trigger, TCL statement in, DDL statement, DDL statement in, data definition language statement">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-BC564905-51F4-4ADB-B300-9F15B1AC3099">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="An autonomous transaction is an independent transaction started by another transaction, the main transaction.">
+      <meta name="description" content="An autonomous transaction is an independent transaction started by another transaction, the main transaction.">
+      <title>Autonomous Transactions</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content="An autonomous transaction is an independent transaction started by another transaction, the main transaction.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="transaction-processing-and-control.html" title="Previous" type="text/html">
+      <link rel="next" href="dynamic-sql.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Autonomous Transactions","description":"An autonomous transaction is an independent transaction started by another transaction, the main transaction.","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="transaction-processing-and-control.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="dynamic-sql.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-BC564905-51F4-4ADB-B300-9F15B1AC3099" name="GUID-BC564905-51F4-4ADB-B300-9F15B1AC3099"></a><a id="LNPLS608"></a><a id="LNPLS508"></a><a id="LNPLS00609"></a>
+         
+         <h2 id="LNPLS-GUID-BC564905-51F4-4ADB-B300-9F15B1AC3099" class="sect2"><span class="enumeration_section">6.7 </span>Autonomous Transactions
+         </h2>
+         <div class="ind">
+            <div>
+               <p>An <span class="bold">autonomous transaction</span> is an independent transaction started by another transaction, the main transaction. 
+               </p>
+               <p>Autonomous transactions do SQL operations and commit or roll back, without committing or rolling back the main transaction.</p>
+               <p><a href="autonomous-transactions.html#GUID-BC564905-51F4-4ADB-B300-9F15B1AC3099__I28274">Figure 6-1</a> shows how control flows from the main transaction (MT) to an autonomous routine (<code class="codeph">proc2</code>) and back again. The autonomous routine commits two autonomous transactions (AT1 and AT2).
+               </p>
+               <div class="figure" id="GUID-BC564905-51F4-4ADB-B300-9F15B1AC3099__I28274">
+                  <p class="titleinfigure">Figure 6-1 Transaction Control Flow</p><img height="233" width="513" src="img/lnpls028.gif" alt="Description of Figure 6-1 follows" title="Description of Figure 6-1 follows" longdesc="img_text/lnpls028.html"><br><a href="img_text/lnpls028.html">Description of "Figure 6-1 Transaction Control Flow"</a></div>
+               <div class="infoboxnote" id="GUID-BC564905-51F4-4ADB-B300-9F15B1AC3099__GUID-6BBCB951-D541-4057-8B9D-9C80C7BA20BF">
+                  <p class="notep1">Note:</p>
+                  <p>Although an autonomous transaction is started by another transaction, it is not a nested transaction, because:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>It does not share transactional resources (such as locks) with the main transaction.</p>
+                     </li>
+                     <li>
+                        <p>It does not depend on the main transaction.</p>
+                        <p>For example, if the main transaction rolls back, nested transactions roll back, but autonomous transactions do not.</p>
+                     </li>
+                     <li>
+                        <p>Its committed changes are visible to other transactions immediately.</p>
+                        <p>A nested transaction's committed changes are not visible to other transactions until the main transaction commits.</p>
+                     </li>
+                     <li>
+                        <p>Exceptions raised in an autonomous transaction cause a transaction-level rollback, not a statement-level rollback.</p>
+                     </li>
+                  </ul>
+               </div>
+               <div class="section">
+                  <p class="subhead1" id="GUID-BC564905-51F4-4ADB-B300-9F15B1AC3099__GUID-DFDB7567-AEB0-4671-8DD4-CB24412E0A6C">Topics</p>
+               </div>
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="autonomous-transactions.html#GUID-4B7E30F5-61CB-4A94-B198-09E2706C4CA5">Advantages of Autonomous Transactions</a></p>
+                     </li>
+                     <li>
+                        <p><a href="autonomous-transactions.html#GUID-E6F6EE1A-5BEB-426A-9EBC-A3C1FFD3A237">Transaction Context</a></p>
+                     </li>
+                     <li>
+                        <p><a href="autonomous-transactions.html#GUID-F8D52E78-230A-4DCE-ACC6-823C214C0C4E">Transaction Visibility</a></p>
+                     </li>
+                     <li>
+                        <p><a href="autonomous-transactions.html#GUID-FBD2040A-9047-44DB-8C82-5F6D08990227" title="To declare an autonomous routine, use the AUTONOMOUS_TRANSACTION pragma.">Declaring Autonomous Routines</a></p>
+                     </li>
+                     <li>
+                        <p><a href="autonomous-transactions.html#GUID-F3D2490E-09A3-4EC4-9E31-45402099E23F">Controlling Autonomous Transactions</a></p>
+                     </li>
+                     <li>
+                        <p><a href="autonomous-transactions.html#GUID-DD6F0BF4-A958-4EE2-8616-C7AE08910908" title="A trigger must be autonomous to run TCL or DDL statements.">Autonomous Triggers</a></p>
+                     </li>
+                     <li>
+                        <p><a href="autonomous-transactions.html#GUID-D80328F0-79E5-4F8F-87E4-ED302A0752BE" title="A function invoked from SQL statements must obey rules meant to control side effects.">Invoking Autonomous Functions from SQL</a></p>
+                     </li>
+                  </ul>
+                  <div class="infoboxnotealso" id="GUID-BC564905-51F4-4ADB-B300-9F15B1AC3099__GUID-F810458A-DFF7-46D1-9361-64EE39C976DB">
+                     <p class="notep1">See Also:</p>
+                     <p><a href="../adfns/sql-processing-for-application-developers.html#ADFNS00205" target="_blank"><span class="italic">Oracle Database Development Guide</span></a> for more information about autonomous transactions
+                     </p>
+                  </div>
+               </div>
+            </div><a id="LNPLS509"></a><div class="props_rev_3"><a id="GUID-4B7E30F5-61CB-4A94-B198-09E2706C4CA5" name="GUID-4B7E30F5-61CB-4A94-B198-09E2706C4CA5"></a><h3 id="LNPLS-GUID-4B7E30F5-61CB-4A94-B198-09E2706C4CA5" class="sect3"><span class="enumeration_section">6.7.1 </span>Advantages of Autonomous Transactions
+               </h3>
+               <div>
+                  <p>After starting, an autonomous transaction is fully independent. It shares no locks, resources, or commit-dependencies with the main transaction. You can log events, increment retry counters, and so on, even if the main transaction rolls back.</p>
+                  <p>Autonomous transactions help you build modular, reusable software components. You can encapsulate autonomous transactions in stored subprograms. An invoking application needs not know whether operations done by that stored subprogram succeeded or failed.</p>
+               </div>
+            </div><a id="LNPLS616"></a><div class="props_rev_3"><a id="GUID-E6F6EE1A-5BEB-426A-9EBC-A3C1FFD3A237" name="GUID-E6F6EE1A-5BEB-426A-9EBC-A3C1FFD3A237"></a><h3 id="LNPLS-GUID-E6F6EE1A-5BEB-426A-9EBC-A3C1FFD3A237" class="sect3"><span class="enumeration_section">6.7.2 </span>Transaction Context
+               </h3>
+               <div>
+                  <p>The main transaction shares its context with nested routines, but not with autonomous transactions. When one autonomous routine invokes another (or itself, recursively), the routines share no transaction context. When an autonomous routine invokes a nonautonomous routine, the routines share the same transaction context.</p>
+               </div>
+            </div><a id="LNPLS617"></a><div class="props_rev_3"><a id="GUID-F8D52E78-230A-4DCE-ACC6-823C214C0C4E" name="GUID-F8D52E78-230A-4DCE-ACC6-823C214C0C4E"></a><h3 id="LNPLS-GUID-F8D52E78-230A-4DCE-ACC6-823C214C0C4E" class="sect3"><span class="enumeration_section">6.7.3 </span>Transaction Visibility
+               </h3>
+               <div>
+                  <p>Changes made by an autonomous transaction become visible to other transactions when the autonomous transaction commits. These changes become visible to the main transaction when it resumes, if its isolation level is set to <code class="codeph">READ</code> <code class="codeph">COMMITTED</code> (the default).
+                  </p>
+                  <p>If you set the isolation level of the main transaction to <code class="codeph">SERIALIZABLE</code>, changes made by its autonomous transactions are <span class="italic">not</span> visible to the main transaction when it resumes:
+                  </p><pre class="oac_no_warn" dir="ltr">SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;</pre><div class="infoboxnote" id="GUID-F8D52E78-230A-4DCE-ACC6-823C214C0C4E__GUID-6BF7A85D-6C03-444B-86F2-07CD00B71AA3">
+                     <p class="notep1">Note:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>Transaction properties apply only to the transaction in which they are set.</p>
+                        </li>
+                        <li>
+                           <p>Cursor attributes are not affected by autonomous transactions.</p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div><a id="LNPLS611"></a><a id="LNPLS612"></a><a id="LNPLS613"></a><a id="LNPLS610"></a><div class="props_rev_3"><a id="GUID-FBD2040A-9047-44DB-8C82-5F6D08990227" name="GUID-FBD2040A-9047-44DB-8C82-5F6D08990227"></a><h3 id="LNPLS-GUID-FBD2040A-9047-44DB-8C82-5F6D08990227" class="sect3"><span class="enumeration_section">6.7.4 </span>Declaring Autonomous Routines
+               </h3>
+               <div>
+                  <p>To declare an autonomous routine, use the <code class="codeph">AUTONOMOUS_TRANSACTION</code> pragma.
+                  </p>
+                  <div class="section">
+                     <p> For information about this pragma, see <span class="q">"<a href="AUTONOMOUS_TRANSACTION-pragma.html#GUID-AD33D949-081B-4CD3-A240-C29773E908C3" title="The AUTONOMOUS_TRANSACTION pragma marks a routine as autonomous; that is, independent of the main transaction.">AUTONOMOUS_TRANSACTION Pragma</a>"</span>.
+                     </p>
+                     <div class="infobox-tip" id="GUID-FBD2040A-9047-44DB-8C82-5F6D08990227__GUID-49741028-4EE8-4AF6-898F-E5B757B2F340">
+                        <p class="notep1">Tip:</p>
+                        <p>For readability, put the <code class="codeph">AUTONOMOUS_TRANSACTION</code> pragma at the top of the declarative section. (The pragma is allowed anywhere in the declarative section.)
+                        </p>
+                     </div>
+                     <p>You cannot apply the <code class="codeph">AUTONOMOUS_TRANSACTION</code> pragma to an entire package or ADT, but you can apply it to each subprogram in a package or each method of an ADT.
+                     </p>
+                  </div>
+                  <div class="example" id="GUID-FBD2040A-9047-44DB-8C82-5F6D08990227__BABIIHBJ">
+                     <p class="titleinexample">Example 6-43 Declaring Autonomous Function in Package</p>
+                     <p>This example marks a package function as autonomous.</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE PACKAGE emp_actions AUTHID DEFINER AS  -- <span class="bold">package specification</span>
+  <span class="bold">FUNCTION raise_salary</span> (emp_id NUMBER, sal_raise NUMBER)
+  RETURN NUMBER;
+END emp_actions;
+/
+CREATE OR REPLACE PACKAGE BODY emp_actions AS  -- <span class="bold">package body</span>
+  -- code for function raise_salary
+  <span class="bold">FUNCTION raise_salary</span> (emp_id NUMBER, sal_raise NUMBER)
+  RETURN NUMBER IS
+    <span class="bold">PRAGMA AUTONOMOUS_TRANSACTION</span>;
+    new_sal NUMBER(8,2);
+  BEGIN
+    UPDATE employees SET salary =
+      salary + sal_raise WHERE employee_id = emp_id;
+    COMMIT;
+    SELECT salary INTO new_sal FROM employees
+      WHERE employee_id = emp_id;
+    RETURN new_sal;
+  END raise_salary;
+END emp_actions;
+/
+</pre></div>
+                  <div class="example" id="GUID-FBD2040A-9047-44DB-8C82-5F6D08990227__BABEECAF">
+                     <p class="titleinexample">Example 6-44 Declaring Autonomous Standalone Procedure</p>
+                     <p>This example marks a standalone subprogram as autonomous.</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE PROCEDURE lower_salary
+  (emp_id NUMBER, amount NUMBER)
+AUTHID DEFINER AS
+  <span class="bold">PRAGMA AUTONOMOUS_TRANSACTION</span>;
+BEGIN
+  UPDATE employees
+  SET salary =  salary - amount
+  WHERE employee_id = emp_id;
+
+  COMMIT;
+END lower_salary;
+/
+</pre></div>
+                  <div class="example" id="GUID-FBD2040A-9047-44DB-8C82-5F6D08990227__BABIJEID">
+                     <p class="titleinexample">Example 6-45 Declaring Autonomous PL/SQL Block</p>
+                     <p>This example marks a schema-level PL/SQL block as autonomous. (A nested PL/SQL block cannot be autonomous.)</p><pre class="oac_no_warn" dir="ltr">DROP TABLE emp;
+CREATE TABLE emp AS SELECT * FROM employees;
+ 
+DECLARE
+  <span class="bold">PRAGMA AUTONOMOUS_TRANSACTION;</span>
+  emp_id NUMBER(6)   := 200;
+  amount NUMBER(6,2) := 200;
+BEGIN
+  UPDATE employees
+  SET salary =  salary - amount
+  WHERE employee_id = emp_id;
+ 
+  COMMIT;
+END;
+/</pre></div>
+               </div>
+            </div><a id="LNPLS510"></a><a id="LNPLS99982"></a><div class="props_rev_3"><a id="GUID-F3D2490E-09A3-4EC4-9E31-45402099E23F" name="GUID-F3D2490E-09A3-4EC4-9E31-45402099E23F"></a><h3 id="LNPLS-GUID-F3D2490E-09A3-4EC4-9E31-45402099E23F" class="sect3"><span class="enumeration_section">6.7.5 </span>Controlling Autonomous Transactions
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>The first SQL statement in an autonomous routine begins a transaction. When one transaction ends, the next SQL statement begins another transaction. All SQL statements run since the last commit or rollback comprise the current transaction. To control autonomous transactions, use these statements, which apply only to the current (active) transaction:</p>
+                  </div>
+                  <div class="section">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><code class="codeph">COMMIT</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">ROLLBACK</code> [<code class="codeph">TO</code> <span class="italic"><code class="codeph">savepoint_name</code></span>]
+                           </p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">SAVEPOINT</code> <span class="italic"><code class="codeph">savepoint_name</code></span></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">SET</code> <code class="codeph">TRANSACTION</code></p>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-F3D2490E-09A3-4EC4-9E31-45402099E23F__GUID-F7DCA9D8-78E1-4A5F-94F6-CAB3D7F0139B">Topics</p>
+                  </div>
+                  <div class="section">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="autonomous-transactions.html#GUID-B3C2CC11-3554-4E96-8544-C5FA4A6163A9">Entering and Exiting Autonomous Routines</a></p>
+                        </li>
+                        <li>
+                           <p><a href="autonomous-transactions.html#GUID-9D2A3D88-8454-486F-919D-34CB27935EE3">Committing and Rolling Back Autonomous Transactions</a></p>
+                        </li>
+                        <li>
+                           <p><a href="autonomous-transactions.html#GUID-68AF5B28-83ED-4D1B-AB8E-4A7EFEBCE5CB">Savepoints</a></p>
+                        </li>
+                        <li>
+                           <p><a href="autonomous-transactions.html#GUID-CD2A248B-A1F7-474D-A1A9-73743A318B52">Avoiding Errors with Autonomous Transactions</a></p>
+                        </li>
+                     </ul>
+                  </div>
+               </div><a id="LNPLS618"></a><div class="props_rev_3"><a id="GUID-B3C2CC11-3554-4E96-8544-C5FA4A6163A9" name="GUID-B3C2CC11-3554-4E96-8544-C5FA4A6163A9"></a><h4 id="LNPLS-GUID-B3C2CC11-3554-4E96-8544-C5FA4A6163A9" class="sect4"><span class="enumeration_section">6.7.5.1 </span>Entering and Exiting Autonomous Routines
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>When you enter the executable section of an autonomous routine, the main transaction suspends. When you exit the routine, the main transaction resumes.</p>
+                        <p>If you try to exit an active autonomous transaction without committing or rolling back, the database raises an exception. If the exception is unhandled, or if the transaction ends because of some other unhandled exception, then the transaction rolls back.</p>
+                        <p>To exit normally, the routine must explicitly commit or roll back all autonomous transactions. If the routine (or any routine invoked by it) has pending transactions, then PL/SQL raises an exception and the pending transactions roll back.</p>
+                     </div>
+                  </div>
+               </div><a id="LNPLS619"></a><div class="props_rev_3"><a id="GUID-9D2A3D88-8454-486F-919D-34CB27935EE3" name="GUID-9D2A3D88-8454-486F-919D-34CB27935EE3"></a><h4 id="LNPLS-GUID-9D2A3D88-8454-486F-919D-34CB27935EE3" class="sect4"><span class="enumeration_section">6.7.5.2 </span>Committing and Rolling Back Autonomous Transactions
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p><code class="codeph">COMMIT</code> and <code class="codeph">ROLLBACK</code> end the active autonomous transaction but do not exit the autonomous routine. When one transaction ends, the next SQL statement begins another transaction. A single autonomous routine can contain several autonomous transactions, if it issues several <code class="codeph">COMMIT</code> statements.
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="LNPLS620"></a><div class="props_rev_3"><a id="GUID-68AF5B28-83ED-4D1B-AB8E-4A7EFEBCE5CB" name="GUID-68AF5B28-83ED-4D1B-AB8E-4A7EFEBCE5CB"></a><h4 id="LNPLS-GUID-68AF5B28-83ED-4D1B-AB8E-4A7EFEBCE5CB" class="sect4"><span class="enumeration_section">6.7.5.3 </span>Savepoints
+                  </h4>
+                  <div>
+                     <p>The scope of a savepoint is the transaction in which it is defined. Savepoints defined in the main transaction are unrelated to savepoints defined in its autonomous transactions. In fact, the main transaction and an autonomous transaction can use the same savepoint names. </p>
+                     <p>You can roll back only to savepoints marked in the current transaction. In an autonomous transaction, you cannot roll back to a savepoint marked in the main transaction. To do so, you must resume the main transaction by exiting the autonomous routine.</p>
+                     <p>When in the main transaction, rolling back to a savepoint marked before you started an autonomous transaction does <span class="italic">not</span> roll back the autonomous transaction. Remember, autonomous transactions are fully independent of the main transaction.
+                     </p>
+                  </div>
+               </div><a id="LNPLS621"></a><div class="props_rev_3"><a id="GUID-CD2A248B-A1F7-474D-A1A9-73743A318B52" name="GUID-CD2A248B-A1F7-474D-A1A9-73743A318B52"></a><h4 id="LNPLS-GUID-CD2A248B-A1F7-474D-A1A9-73743A318B52" class="sect4"><span class="enumeration_section">6.7.5.4 </span>Avoiding Errors with Autonomous Transactions
+                  </h4>
+                  <div>
+                     <p>To avoid some common errors, remember:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>If an autonomous transaction tries to access a resource held by the main transaction, a deadlock can occur. The database raises an exception in the autonomous transaction, which rolls back if the exception is unhandled.</p>
+                        </li>
+                        <li>
+                           <p>The database initialization parameter <code class="codeph">TRANSACTIONS</code> specifies the maximum number of concurrent transactions. That number might be exceeded because an autonomous transaction runs concurrently with the main transaction.
+                           </p>
+                        </li>
+                        <li>
+                           <p>If you try to exit an active autonomous transaction without committing or rolling back, the database raises an exception. If the exception is unhandled, the transaction rolls back.</p>
+                        </li>
+                        <li>
+                           <p>You cannot run a <code class="codeph">PIPE</code> <code class="codeph">ROW</code> statement in an autonomous routine while an autonomous transaction is open. You must close the autonomous transaction before running the <code class="codeph">PIPE</code> <code class="codeph">ROW</code> statement. This is normally accomplished by committing or rolling back the autonomous transaction before running the <code class="codeph">PIPE</code> <code class="codeph">ROW</code> statement.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div><a id="LNPLS623"></a><a id="LNPLS511"></a><a id="LNPLS622"></a><div class="props_rev_3"><a id="GUID-DD6F0BF4-A958-4EE2-8616-C7AE08910908" name="GUID-DD6F0BF4-A958-4EE2-8616-C7AE08910908"></a><h3 id="LNPLS-GUID-DD6F0BF4-A958-4EE2-8616-C7AE08910908" class="sect3"><span class="enumeration_section">6.7.6 </span>Autonomous Triggers
+               </h3>
+               <div>
+                  <p>A trigger must be autonomous to run TCL or DDL statements. </p>
+                  <p>To run DDL statements, the trigger must use native dynamic SQL.</p>
+                  <div class="infoboxnotealso" id="GUID-DD6F0BF4-A958-4EE2-8616-C7AE08910908__GUID-4DA66B6D-2367-47E1-B6A3-6DA87E2464B3">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="plsql-triggers.html#GUID-217E8B13-29EF-45F3-8D0F-2384F9F1D231" title="A trigger is like a stored procedure that Oracle Database invokes automatically whenever a specified event occurs.">PL/SQL Triggers</a>, for general information about triggers
+                           </p>
+                        </li>
+                        <li>
+                           <p><span class="q">"<a href="description-static-sql.html#GUID-54ABD9E3-EA4D-4C60-A84A-021925501C0C" title="Static SQL has the same syntax as SQL, except as noted.">Description of Static SQL</a>"</span> for general information about TCL statements
+                           </p>
+                        </li>
+                        <li>
+                           <p><a href="../sqlrf/Types-of-SQL-Statements.html#SQLRF30041" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a> for information about DDL statements
+                           </p>
+                        </li>
+                        <li>
+                           <p><span class="q">"<a href="native-dynamic-sql.html#GUID-D2613968-6660-4AA2-9057-28E425A3040D" title="Native dynamic SQL processes most dynamic SQL statements with the EXECUTE IMMEDIATE statement.">Native Dynamic SQL</a>"</span> for information about native dynamic SQL
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <p>One use of triggers is to log events transparently—for example, to log all inserts into a table, even those that roll back.</p>
+                  <div class="example" id="GUID-DD6F0BF4-A958-4EE2-8616-C7AE08910908__CJAICEDA">
+                     <p class="titleinexample">Example 6-46 Autonomous Trigger Logs INSERT Statements</p>
+                     <p> In this example, whenever a row is inserted into the <code class="codeph">EMPLOYEES</code> table, a trigger inserts the same row into a log table. Because the trigger is autonomous, it can commit changes to the log table regardless of whether they are committed to the main table.
+                     </p><pre class="oac_no_warn" dir="ltr">DROP TABLE emp;
+CREATE TABLE emp AS SELECT * FROM employees;
+ 
+-- Log table:
+ 
+DROP TABLE log;
+CREATE TABLE log (
+  log_id   NUMBER(6),
+  up_date  DATE,
+  new_sal  NUMBER(8,2),
+  old_sal  NUMBER(8,2)
+);
+ 
+-- Autonomous trigger on emp table:
+ 
+CREATE OR REPLACE <span class="bold">TRIGGER log_sal</span>
+  BEFORE UPDATE OF salary ON emp FOR EACH ROW
+DECLARE
+  <span class="bold">PRAGMA AUTONOMOUS_TRANSACTION;</span>
+BEGIN
+  INSERT INTO log (
+    log_id,
+    up_date,
+    new_sal,
+    old_sal
+  )
+  VALUES (
+    :old.employee_id,
+    SYSDATE,
+    :new.salary,
+    :old.salary
+  );
+  <span class="bold">COMMIT;</span>
+END;
+/
+UPDATE emp
+SET salary = salary * 1.05
+WHERE employee_id = 115;
+ 
+<span class="bold">COMMIT;</span>
+ 
+UPDATE emp
+SET salary = salary * 1.05
+WHERE employee_id = 116;
+ 
+<span class="bold">ROLLBACK;</span>
+ 
+-- Show that both committed and rolled-back updates
+-- add rows to log table
+ 
+<span class="bold">SELECT * FROM log</span>
+<span class="bold">WHERE log_id = 115 OR log_id = 116;</span>
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">    LOG_ID UP_DATE      NEW_SAL    OLD_SAL
+---------- --------- ---------- ----------
+       115 02-OCT-12    3255          3100
+       116 02-OCT-12    3045          2900
+ 
+2 rows selected.
+</pre></div>
+                  <div class="example" id="GUID-DD6F0BF4-A958-4EE2-8616-C7AE08910908__CHDFJBDA">
+                     <p class="titleinexample">Example 6-47 Autonomous Trigger Uses Native Dynamic SQL for DDL</p>
+                     <p>In this example, an autonomous trigger uses native dynamic SQL (an <code class="codeph">EXECUTE</code> <code class="codeph">IMMEDIATE</code> statement) to drop a temporary table after a row is inserted into the table <code class="codeph">log</code>.
+                     </p><pre class="oac_no_warn" dir="ltr">DROP TABLE temp;
+CREATE TABLE temp (
+  temp_id NUMBER(6),
+  up_date DATE
+);
+
+CREATE OR REPLACE <span class="bold">TRIGGER drop_temp_table</span>
+  AFTER INSERT ON log
+DECLARE 
+  <span class="bold">PRAGMA</span> <span class="bold">AUTONOMOUS_TRANSACTION</span>;
+BEGIN
+  <span class="bold">EXECUTE IMMEDIATE 'DROP TABLE temp';</span>
+  COMMIT;
+END;
+/
+-- Show how trigger works
+<span class="bold">SELECT * FROM temp;</span>
+ </pre><p>Result:</p><pre class="oac_no_warn" dir="ltr"><span class="bold">no rows selected</span>
+
+INSERT INTO log (log_id, up_date, new_sal, old_sal)
+VALUES (999, SYSDATE, 5000, 4500);
+ 
+1 row created.
+ 
+<span class="bold">SELECT * FROM temp;</span>
+ </pre><p>Result:</p><pre class="oac_no_warn" dir="ltr"><span class="bold">SELECT * FROM temp</span>
+              <span class="bold">*</span>
+<span class="bold">ERROR at line 1:</span>
+<span class="bold">ORA-00942: table or view does not exist</span></pre></div>
+               </div>
+            </div><a id="LNPLS625"></a><a id="LNPLS624"></a><div class="props_rev_3"><a id="GUID-D80328F0-79E5-4F8F-87E4-ED302A0752BE" name="GUID-D80328F0-79E5-4F8F-87E4-ED302A0752BE"></a><h3 id="LNPLS-GUID-D80328F0-79E5-4F8F-87E4-ED302A0752BE" class="sect3"><span class="enumeration_section">6.7.7 </span>Invoking Autonomous Functions from SQL
+               </h3>
+               <div>
+                  <p>A function invoked from SQL statements must obey rules meant to control side effects.</p>
+                  <div class="section">
+                     <p>By definition, an autonomous routine never reads or writes database state (that is, it neither queries nor modifies any database table).</p>
+                     <div class="infoboxnotealso" id="GUID-D80328F0-79E5-4F8F-87E4-ED302A0752BE__GUID-F1DC804B-7EB8-40B4-BA64-B636FD3A8C65">
+                        <p class="notep1">See Also:</p>
+                        <p><span class="q">"<a href="subprogram-side-effects.html#GUID-6C6A828F-8FA0-4278-97D2-6D5649A66A9A">Subprogram Side Effects</a>"</span> for more information
+                        </p>
+                     </div>
+                  </div>
+                  <div class="example" id="GUID-D80328F0-79E5-4F8F-87E4-ED302A0752BE__CJAIGCJF">
+                     <p class="titleinexample">Example 6-48 Invoking Autonomous Function</p>
+                     <p>The package function <code class="codeph">log_msg</code> is autonomous. Therefore, when the query invokes the function, the function inserts a message into database table <code class="codeph">debug_output</code> without violating the rule against writing database state (modifying database tables).
+                     </p><pre class="oac_no_warn" dir="ltr">DROP TABLE debug_output;
+CREATE TABLE debug_output (message VARCHAR2(200));
+ 
+CREATE OR REPLACE PACKAGE debugging AUTHID DEFINER AS
+  FUNCTION log_msg (msg VARCHAR2) RETURN VARCHAR2;
+END debugging;
+/
+CREATE OR REPLACE PACKAGE BODY debugging AS
+  FUNCTION log_msg (msg VARCHAR2) RETURN VARCHAR2 IS
+    <span class="bold">PRAGMA AUTONOMOUS_TRANSACTION;</span>
+  BEGIN
+    INSERT INTO debug_output (message) VALUES (msg);
+    COMMIT;
+    RETURN msg;
+  END;
+END debugging;
+/
+-- Invoke package function from query
+DECLARE
+  my_emp_id    NUMBER(6);
+  my_last_name VARCHAR2(25);
+  my_count     NUMBER;
+BEGIN
+  my_emp_id := 120;
+ 
+  SELECT <span class="bold">debugging.log_msg(last_name)</span>
+  INTO my_last_name
+  FROM employees
+  WHERE employee_id = my_emp_id;
+ 
+  /* Even if you roll back in this scope,
+     the insert into 'debug_output' remains committed,
+     because it is part of an autonomous transaction. */
+ 
+  ROLLBACK;
+END;
+/</pre></div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

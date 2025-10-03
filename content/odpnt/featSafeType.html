@@ -1,0 +1,405 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>OracleDataAdapter Safe Type Mapping</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="featChange.html" title="Previous" type="text/html">
+      <link rel="next" href="featRequery.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="featChange.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="featRequery.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="features.html" property="item" typeof="WebPage"><span property="name">Features of Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">OracleDataAdapter Safe Type Mapping</li>
+            </ol>
+            <a id="GUID-AEAA0FB6-123B-49DF-97C1-F71FAC35D60B" name="GUID-AEAA0FB6-123B-49DF-97C1-F71FAC35D60B"></a><a id="ODPNT419"></a>
+            
+            <h2 id="ODPNT-GUID-AEAA0FB6-123B-49DF-97C1-F71FAC35D60B" class="sect2">OracleDataAdapter Safe Type Mapping</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>The ODP.NET <code class="codeph">OracleDataAdapter</code> class provides the Safe Type Mapping feature to ensure that the following Oracle data types do not lose data when converted to their closely related .NET types in the <code class="codeph">DataSet</code>:
+               </p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><code class="codeph">NUMBER</code></p>
+                  </li>
+                  <li>
+                     <p><code class="codeph">DATE</code></p>
+                  </li>
+                  <li>
+                     <p><code class="codeph">TimeStamp</code> (refers to all <code class="codeph">TimeStamp</code> objects)
+                     </p>
+                  </li>
+                  <li>
+                     <p><code class="codeph">INTERVAL</code> <code class="codeph">DAY</code> <code class="codeph">TO</code> <code class="codeph">SECOND</code></p>
+                  </li>
+               </ul>
+               <div class="infoboxnote" id="GUID-AEAA0FB6-123B-49DF-97C1-F71FAC35D60B__GUID-60CDE86A-707A-41CD-92B4-861418CF046D">
+                  <p class="notep1">Note:</p>
+                  <p>ODP.NET, Managed Driver and ODP.NET do not support Safe Type Mapping.</p>
+               </div>
+               <p>This section includes the following topics:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="featSafeType.html#GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519">Comparison Between Oracle Data Types and .NET Types</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featSafeType.html#GUID-A5600A8D-273A-4BAE-9591-193A43E7E2C6">SafeMapping Property</a></p>
+                  </li>
+               </ul>
+            </div><a id="ODPNT421"></a><a id="ODPNT422"></a><a id="ODPNT423"></a><a id="ODPNT424"></a><a id="ODPNT425"></a><a id="ODPNT426"></a><a id="ODPNT427"></a><a id="ODPNT428"></a><a id="ODPNT420"></a><div class="props_rev_3"><a id="GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519" name="GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519"></a><h3 id="ODPNT-GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519" class="sect3">Comparison Between Oracle Data Types and .NET Types</h3>
+               <div>
+                  <p>The following sections provide more details about the differences between the Oracle data types and the corresponding .NET types. In general, the Oracle data types allow a greater degree of precision than the .NET types do.</p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519__GUID-F306D6E1-57BD-4880-BA57-BBD8E6AF1DDD">Oracle NUMBER Type to .NET Decimal Type</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>The Oracle data type <code class="codeph">NUMBER</code> can hold up to 38 precision, and the .NET <code class="codeph">Decimal</code> type can hold up to 28 precision. If a <code class="codeph">NUMBER</code> data type that has more than 28 precision is retrieved into a .NET <code class="codeph">Decimal</code> type, it loses precision.
+                     </p>
+                     <p><a href="featSafeType.html#GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519__G1025521" title="first column: maximum or minimum, second column: Oracle NUMBER, third column:.NET Decimal">Table 3-28</a> lists the maximum and minimum values for Oracle <code class="codeph">NUMBER</code> and .NET <code class="codeph">Decimal</code> types.
+                     </p>
+                     <div class="tblformal" id="GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519__G1025521">
+                        <p class="titleintable">Table 3-28 Oracle NUMBER to .NET Decimal Comparisons </p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Oracle NUMBER to .NET Decimal Comparisons " summary="first column: maximum or minimum, second column: Oracle NUMBER, third column:.NET Decimal" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="13%" id="d109621e131">Value Limits</th>
+                                 <th align="left" valign="bottom" width="45%" id="d109621e134">Oracle NUMBER </th>
+                                 <th align="left" valign="bottom" width="42%" id="d109621e137">.NET Decimal</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="13%" id="d109621e142" headers="d109621e131 ">
+                                    <p>Maximum</p>
+                                 </td>
+                                 <td align="left" valign="top" width="45%" headers="d109621e142 d109621e134 ">
+                                    <p>9.9999999999999999999999999999999999999 e125</p>
+                                 </td>
+                                 <td align="left" valign="top" width="42%" headers="d109621e142 d109621e137 ">
+                                    <p>79,228,162,514,264,337,593,543,950,335</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="13%" id="d109621e152" headers="d109621e131 ">
+                                    <p>Minimum</p>
+                                 </td>
+                                 <td align="left" valign="top" width="45%" headers="d109621e152 d109621e134 ">
+                                    <p>-9.9999999999999999999999999999999999999 e125</p>
+                                 </td>
+                                 <td align="left" valign="top" width="42%" headers="d109621e152 d109621e137 ">
+                                    <p>-79,228,162,514,264,337,593,543,950,335</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519__GUID-AA8160A2-642A-4B39-BC35-8AD77A770805">Oracle Date Type to .NET DateTime Type</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>The Oracle data type <code class="codeph">DATE</code> can represent dates in BC whereas the .NET <code class="codeph">DateTime</code> type cannot. If a <code class="codeph">DATE</code> that goes to BC get retrieved into a .NET <code class="codeph">DateTime</code> type, it loses data.
+                     </p>
+                     <p><a href="featSafeType.html#GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519__G1025537" title="first column: maximum or minimum, second column: Oracle DATE, third column:.NET DateTime">Table 3-29</a> lists the maximum and minimum values for Oracle <code class="codeph">Date</code> and .NET <code class="codeph">DateTime</code> types.
+                     </p>
+                     <div class="tblformal" id="GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519__G1025537">
+                        <p class="titleintable">Table 3-29 Oracle Date to .NET DateTime Comparisons </p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Oracle Date to .NET DateTime Comparisons " summary="first column: maximum or minimum, second column: Oracle DATE, third column:.NET DateTime" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="13%" id="d109621e202">Value Limits</th>
+                                 <th align="left" valign="bottom" width="45%" id="d109621e205">Oracle Date</th>
+                                 <th align="left" valign="bottom" width="42%" id="d109621e208">.NET DateTime</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="13%" id="d109621e213" headers="d109621e202 ">
+                                    <p>Maximum</p>
+                                 </td>
+                                 <td align="left" valign="top" width="45%" headers="d109621e213 d109621e205 ">
+                                    <p>Dec 31, 9999 AD</p>
+                                 </td>
+                                 <td align="left" valign="top" width="42%" headers="d109621e213 d109621e208 ">
+                                    <p>Dec 31, 9999 AD 23:59:59.9999999</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="13%" id="d109621e223" headers="d109621e202 ">
+                                    <p>Minimum </p>
+                                 </td>
+                                 <td align="left" valign="top" width="45%" headers="d109621e223 d109621e205 ">
+                                    <p>Jan 1, 4712 BC</p>
+                                 </td>
+                                 <td align="left" valign="top" width="42%" headers="d109621e223 d109621e208 ">
+                                    <p>Jan 1, 0001 AD 00:00:00.0000000</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519__GUID-1BACE956-B9FA-43FC-8075-EA4FF0EE3B77">Oracle TimeStamp Type to .NET DateTime Type </p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>Similar to the <code class="codeph">DATE</code> data type, the Oracle <code class="codeph">TimeStamp</code> data type can represent a date in BC, and a .NET <code class="codeph">DateTime</code> type cannot. If a <code class="codeph">TimeStamp</code> that goes to BC is retrieved into a.NET <code class="codeph">DateTime</code> type, it loses data. The Oracle <code class="codeph">TimeStamp</code> type can represent values in units of e-9; the .NET <code class="codeph">DateTime</code> type can represent only values in units of e-7. The Oracle <code class="codeph">TimeStamp</code> with time zone data type can store time zone information, and the .NET <code class="codeph">DateTime</code> type cannot.
+                     </p>
+                     <p><a href="featSafeType.html#GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519__G1025553" title="first column: maximum or minimum, second column: OracleTimeStamp, third column:.NET DateTime">Table 3-30</a> lists the maximum and minimum values for Oracle <code class="codeph">TimeStamp</code> and .NET <code class="codeph">DateTime</code> types.
+                     </p>
+                     <div class="tblformal" id="GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519__G1025553">
+                        <p class="titleintable">Table 3-30 Oracle TimeStamp to .NET DateTime Comparisons </p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Oracle TimeStamp to .NET DateTime Comparisons " summary="first column: maximum or minimum, second column: OracleTimeStamp, third column:.NET DateTime" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="13%" id="d109621e289">Value Limits</th>
+                                 <th align="left" valign="bottom" width="45%" id="d109621e292">Oracle TimeStamp </th>
+                                 <th align="left" valign="bottom" width="42%" id="d109621e295">.NET DateTime</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="13%" id="d109621e300" headers="d109621e289 ">
+                                    <p>Maximum</p>
+                                 </td>
+                                 <td align="left" valign="top" width="45%" headers="d109621e300 d109621e292 ">
+                                    <p>Dec 31, 9999 AD 23:59:59.999999999</p>
+                                 </td>
+                                 <td align="left" valign="top" width="42%" headers="d109621e300 d109621e295 ">
+                                    <p>Dec 31, 9999 AD 23:59:59.9999999</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="13%" id="d109621e310" headers="d109621e289 ">
+                                    <p>Minimum</p>
+                                 </td>
+                                 <td align="left" valign="top" width="45%" headers="d109621e310 d109621e292 ">
+                                    <p>Jan 1, 4712 BC 00:00:00.000000000</p>
+                                 </td>
+                                 <td align="left" valign="top" width="42%" headers="d109621e310 d109621e295 ">
+                                    <p>Jan 1, 0001 AD 00:00:00.0000000</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519__GUID-46840945-4600-43B4-A345-B1DFCBA77D0F">Oracle INTERVAL DAY TO SECOND to .NET TimeSpan</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>The Oracle data type <code class="codeph">INTERVAL</code> <code class="codeph">DAY</code> <code class="codeph">TO</code> <code class="codeph">SECOND</code> can hold up to 9 precision, and the .NET TimeSpan type can hold up to 7 precision. If an <code class="codeph">INTERVAL</code> <code class="codeph">DAY</code> <code class="codeph">TO</code> <code class="codeph">SECOND</code> data type that has more than 7 precision is retrieved into a .NET TimeSpan type, it loses precision. The Oracle <code class="codeph">INTERVAL</code> <code class="codeph">DAY</code> <code class="codeph">TO</code> <code class="codeph">SECOND</code> type can represent values in units of e-9, and the .NET <code class="codeph">TimeSpan</code> type can represent only values in units of e-7.
+                     </p>
+                     <p><a href="featSafeType.html#GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519__G1025569" title="first column: maximum or minimum, second column: Oracle INTERVAL DAY TO SECOND, third column:.NET TimeSpan">Table 3-31</a> lists the maximum and minimum values for Oracle <code class="codeph">INTERVAL</code> <code class="codeph">DAY</code> <code class="codeph">TO</code> <code class="codeph">SECOND</code> and .NET <code class="codeph">DateTime</code> types.
+                     </p>
+                     <div class="tblformal" id="GUID-2DCB0AC0-F1FD-4018-905A-AD49050BF519__G1025569">
+                        <p class="titleintable">Table 3-31 Oracle INTERVAL DAY TO SECOND to .NET TimeSpan Comparisons </p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Oracle INTERVAL DAY TO SECOND to .NET TimeSpan Comparisons " summary="first column: maximum or minimum, second column: Oracle INTERVAL DAY TO SECOND, third column:.NET TimeSpan" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="13%" id="d109621e398">Value Limits</th>
+                                 <th align="left" valign="bottom" width="45%" id="d109621e401">Oracle INTERVAL DAY TO SECOND </th>
+                                 <th align="left" valign="bottom" width="42%" id="d109621e404">.NET TmeSpan</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="13%" id="d109621e409" headers="d109621e398 ">
+                                    <p>Maximum</p>
+                                 </td>
+                                 <td align="left" valign="top" width="45%" headers="d109621e409 d109621e401 ">
+                                    <p>+999999999 23:59:59.999999999</p>
+                                 </td>
+                                 <td align="left" valign="top" width="42%" headers="d109621e409 d109621e404 ">
+                                    <p> +10675199 02:48:05.4775807</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="13%" id="d109621e419" headers="d109621e398 ">
+                                    <p>Minimum</p>
+                                 </td>
+                                 <td align="left" valign="top" width="45%" headers="d109621e419 d109621e401 ">
+                                    <p>-999999999 23:59:59.999999999</p>
+                                 </td>
+                                 <td align="left" valign="top" width="42%" headers="d109621e419 d109621e404 ">
+                                    <p>-10675199 02:48:05.4775808</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT429"></a><div class="props_rev_3"><a id="GUID-A5600A8D-273A-4BAE-9591-193A43E7E2C6" name="GUID-A5600A8D-273A-4BAE-9591-193A43E7E2C6"></a><h3 id="ODPNT-GUID-A5600A8D-273A-4BAE-9591-193A43E7E2C6" class="sect3">SafeMapping Property</h3>
+               <div>
+                  <p>The <code class="codeph">OracleDataAdapter</code> Safe Type Mapping feature prevents data loss when populating Oracle data for any of these types into a .NET <code class="codeph">DataSet</code>. By setting the <code class="codeph">SafeMapping</code> property appropriately, these types can be safely represented in the <code class="codeph">DataSet</code>, as either of the following:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>.NET <code class="codeph">byte[]</code> in Oracle format
+                        </p>
+                     </li>
+                     <li>
+                        <p>.NET <code class="codeph">String</code></p>
+                     </li>
+                  </ul>
+                  <p>By default, Safe Type Mapping is disabled. </p>
+               </div><a id="ODPNT431"></a><a id="ODPNT430"></a><div class="props_rev_3"><a id="GUID-66E7E229-DCE7-4727-99DD-E4C4E904AFFC" name="GUID-66E7E229-DCE7-4727-99DD-E4C4E904AFFC"></a><h4 id="ODPNT-GUID-66E7E229-DCE7-4727-99DD-E4C4E904AFFC" class="sect4">Using Safe Type Mapping</h4>
+                  <div>
+                     <div class="section">
+                        <p>To use the Safe Type Mapping feature, the <code class="codeph">OracleDataAdapter</code>.<code class="codeph">SafeMapping</code> property must be set with a hash table of key-value pairs. The key-value pairs must map database table column names (of type <code class="codeph">string</code>) to a .NET type (of type <code class="codeph">Type</code>). ODP.NET supports Safe Type Mapping to <code class="codeph">byte[]</code> and <code class="codeph">String</code> types. Any other type mapping causes an exception. 
+                        </p>
+                        <p>In situations where the column names are not known at design time, an asterisk ("*") can be used to map all occurrences of database types to a safe .NET type. If both the valid column name and the asterisk are present, the column name is used.</p>
+                        <div class="infoboxnote" id="GUID-66E7E229-DCE7-4727-99DD-E4C4E904AFFC__GUID-634B95E1-CDD0-4AB5-9616-F36F17BFCA3B">
+                           <p class="notep1">Note:</p>
+                           <p></p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>Database table column names are case-sensitive.</p>
+                              </li>
+                              <li>
+                                 <p>Column names in the hash table that correspond to invalid column names are ignored.</p>
+                              </li>
+                           </ul>
+                        </div>
+                        <p>Safe Type Mapping as a string is more readable without further conversion. Converting certain Oracle data types to a string requires extra conversion, which can be slower than converting it to a <code class="codeph">byte[]</code>. Conversion of .NET strings back to ODP.NET types relies on the formatting information of the session.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-66E7E229-DCE7-4727-99DD-E4C4E904AFFC__GUID-B9B38D61-FD07-4AC2-BE89-D984CDD09C81">SafeTyping Example</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section"><pre class="oac_no_warn" dir="ltr">// C#
+ 
+using System;
+using System.Data;
+using Oracle.DataAccess.Client; 
+ 
+class SafeMappingSample
+{
+  static void Main()
+  {
+    string constr = "User Id=scott;Password=tiger;Data Source=oracle";
+ 
+    // In this SELECT statement, EMPNO, HIREDATE and SALARY must be
+    // preserved using safe type mapping.
+    string cmdstr = "SELECT EMPNO, ENAME, HIREDATE, SAL FROM EMP";
+ 
+    // Create the adapter with the selectCommand txt and the connection string
+    OracleDataAdapter adapter = new OracleDataAdapter(cmdstr, constr);
+ 
+    // Get the connection from the adapter
+    OracleConnection connection = adapter.SelectCommand.Connection;
+ 
+    // Create the safe type mapping for the adapter
+    // which can safely map column data to byte arrays, where
+    // applicable. By executing the following statement, EMPNO, HIREDATE AND
+    // SALARY columns will be mapped to byte[]
+    adapter.SafeMapping.Add("*", typeof(byte[]));
+ 
+    // Map HIREDATE to a string
+    // If the column name in the EMP table is case-sensitive,
+    // the safe type mapping column name must be case-sensitive.
+    adapter.SafeMapping.Add("HIREDATE", typeof(string));
+ 
+    // Map EMPNO to a string
+    // If the column name in the EMP table is case-sensitive,
+    // the safe type mapping column name must also be case-sensitive.
+    adapter.SafeMapping.Add("EMPNO", typeof(string));
+    adapter.SafeMapping.Add("SAL", typeof(string));
+ 
+    // Create and fill the DataSet using the EMP
+    DataSet dataset = new DataSet();
+    adapter.Fill(dataset, "EMP");
+ 
+    // Get the EMP table from the dataset
+    DataTable table = dataset.Tables["EMP"];
+ 
+    // Get the first row from the EMP table
+    DataRow row = table.Rows[0];
+ 
+    // Print out the row info
+    Console.WriteLine("EMPNO Column: type = " + row["EMPNO"].GetType() +
+      "; value = " + row["EMPNO"]);
+    Console.WriteLine("ENAME Column: type = " + row["ENAME"].GetType() +
+      "; value = " + row["ENAME"]);
+    Console.WriteLine("HIREDATE Column: type = " + row["HIREDATE"].GetType()+
+      "; value = " + row["HIREDATE"]);
+    Console.WriteLine("SAL Column: type = " + row["SAL"].GetType() +
+      "; value = " + row["SAL"]);
+  }
+}</pre><div class="infoboxnotealso" id="GUID-66E7E229-DCE7-4727-99DD-E4C4E904AFFC__GUID-7C16AEE7-BF3A-49DF-AE83-8F4E5276A6C0">
+                           <p class="notep1">See Also:</p>
+                           <p><span class="q">"<a href="DataAdapterSafeMapping.html#GUID-2A06C705-ADF2-4DEA-93F4-96ACFCC37A16">SafeMapping</a>"</span></p>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

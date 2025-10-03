@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Part number: F11839-01 -->
+    <!-- Published date: January 2019 -->
+    <!-- See this link for directions on getting a part number: https://confluence.oraclecorp.com/confluence/display/DLPP/Archive+an+OBE -->
+    <!-- Template date: October 15, 2018 -->
+    <meta name="contentid" content="26693">
+    <title>Clone PDBs using DBCA in Silent Mode</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Learn how to clone PDBs using DBCA in silent mode.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+  
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+    <meta name="dcterms.created" content="2019-05-13T09:57:19+00:00">
+    <meta name="dcterms.title" content="Clone PDBs using DBCA in Silent Mode">
+    <meta name="dcterms.category" content="database">
+    <meta name="dcterms.isVersionOf" content="CLONE-PDBS-USING-DBCA-SILENT-MODE">
+    <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+    <meta name="dcterms.identifier" content="F11839-01">
+    <meta name="dcterms.release" content="Release 19">
+  <script id="ssot-metadata" type="application/json"> {"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}} </script>
+    </head>
+  <body>
+    <header>
+      <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo"> <img src="./img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a> </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+      <h1><img src="./img/obe_tag.png" alt="Oracle by Example branding" align="middle">Clone
+        PDBs using DBCA in Silent Mode</h1>
+      <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+          <div class="left-nav-tut"><!-- -->
+            <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+            <div id="navbar" class="left-nav-w"><!-- -->
+              <div id="toc" class="tocify"><!-- --></div>
+            </div>
+          </div>
+        </div>
+        <div id="bookContainer">
+          <article>
+            <section>
+              <h2><img src="./img/32_begin.png" alt="section 0" class="num_circ" height="32" width="32"> Before You Begin</h2>
+              <p>This 15-minute tutorial shows you how to use Database
+                Configuration Assistant (DBCA) to clone a remote pluggable
+                database (PDB) into a container database (CDB). </p>
+              <h3>Background</h3>
+              <p>In Oracle Database 18c, cloning a remote PDB requires several
+                commands to be executed.</p>
+              <h3>What Do You Need?</h3>
+              <ul>
+                <li>Oracle Database 19c installed</li>
+                <li>Two&nbsp;CDBs: <code> ORCL </code>with <code> PDB1 </code>
+                  and <code> CDB19</code>, both in archivelog mode. You can use
+                  the <a href="files/dbca.sh" target="_blank">dbca.sh </a>
+                  shell script to create <code>CDB19</code>. Download the shell
+                  script to the labs directory created on your server <code>/home/oracle/labs</code>.
+                  Replace the password in the shell script by your own complex
+                  password. PDB relocation PDB and remote PDB clone operations
+                  with DBCA do not support Oracle Managed Files (OMF) enabled
+                  CDB. Verify that the PDB to be cloned does not use OMF.</li>
+                <li><code>HR </code> schema installed in <code> PDB1 </code>
+                  as an example of application tables. If you want to use the <code>
+                    HR.EMPLOYEES </code> table, use the <a href="files/hr.sql" target="_blank"> hr.sql. </a> Download the SQL script to
+                  the labs directory created on your server <code>
+                    /home/oracle/labs. </code> In the script, update the
+                  password of the user connected to the database.</li>
+              </ul>
+            </section>
+            <!-- ========================================================================================================================= -->
+            <section>
+              <hr>
+              <h2 id="section_1" style="text-align: left;"><img src="./img/32_1.png" alt="section 1" class="num_circ" height="32" width="32">Prepare
+the
+                PDB Before Cloning</h2>
+              <ol>
+                <li>Log in to <code> PDB1 </code> in <code> ORCL</code> as <code>
+                    SYSTEM</code>.
+                  <pre>sqlplus system@PDB1<br>Enter password: <em>password</em>
+</pre></li>
+                <li>Use the <a href="files/hr.sql" target="_blank"> hr.sql </a>
+                  script to create the <code>HR </code> user and <code>EMPLOYEES</code>
+                  table in <code>PDB1</code>.
+                  <pre><code>@/home/oracle/labs/hr.sql</code>
+</pre></li>
+                <li>Verify that <code>PDB1 </code> contains the <code>HR.EMPLOYEES
+                    </code>table.
+                  <pre>SELECT count(*) FROM hr.employees;<br> <br>  COUNT(*)
+----------
+       107
+</pre></li>
+                <li>Connect to <code>ORCL</code> as <code>SYSTEM</code>.
+                  <pre>CONNECT system@ORCL
+Enter password: <em>password</em></pre>
+                </li>
+                <li>Create a common user in <code>ORCL</code>, used in the
+                  database link automatically created in <code>CDB19</code> to
+                  connect to <code>ORCL</code> during the cloning operation.
+                  <pre>CREATE USER c##remote_user IDENTIFIED BY <em>password</em> CONTAINER=ALL;</pre>
+                </li>
+                <li>Grant the privileges.
+                  <pre>GRANT create session, create pluggable database TO c##remote_user CONTAINER=ALL;</pre>
+                </li>
+                <li>Quit the session.
+                  <pre>EXIT</pre>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_2" role="button" style="text-align: left;"><img src="./img/32_2.png" alt="section 2" class="num_circ" height="32" width="32">Use
+                DBCA to Clone a Remote PDB</h2>
+              <p>In this section, you use DBCA in silent mode to clone <code>PDB1</code>
+                from <code>ORCL</code> as <code>PDB19</code> in <code>CDB19</code>.</p>
+              <ol>
+                <li>If <code>CDB19</code> does not exist, launch the <code>/home/oracle/labs/dbca.sh</code>
+                  shell script. The script creates the CDB with no PDB. <code></code>
+                  In the script, update the password of the user connected to
+                  the database.
+                  <pre>/home/oracle/labs/dbca.sh</pre>
+                </li>
+                <li>Launch DBCA in silent mode to clone <code>PDB1</code> from
+                  <code>ORCL</code> as <code>PDB19</code> in <code>CDB19</code>.
+                  <pre>dbca -silent -createPluggableDatabase -createFromRemotePDB -remotePDBName PDB1 -remoteDBConnString ORCL -remoteDBSYSDBAUserName SYS -remoteDBSYSDBAUserPassword <em>password</em> -sysDBAUserName sys -sysDBAPassword <em>password</em> -dbLinkUsername c##remote_user -dbLinkUserPassword <em>password</em> -sourceDB CDB19 -pdbName PDB19
+</pre>
+                  <pre>Prepare for db operation 
+50% complete
+Create pluggable database using remote clone operation
+100% complete
+Pluggable database "PDB19" plugged successfully.
+Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/CDB19/PDB19/CDB19.log" for further details.</pre>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_3" role="button" style="text-align: left;"><img src="./img/32_3.png" alt="section 3" class="num_circ" height="32" width="32">Check
+                that the PDB Is Cloned</h2>
+              <ol>
+                <li>Connect to <code>CDB19</code> as <code>SYS</code>.
+                  <pre>sqlplus sys@CDB19 AS SYSDBA
+Enter password: <em>password</em></pre>
+                  <pre>SHOW PDBS<br><br>    CON_ID CON_NAME                       OPEN MODE  RESTRICTED
+---------- ------------------------------ ---------- ----------
+         2 PDB$SEED                       READ ONLY  NO
+         3 PDB19                          READ WRITE NO</pre>
+                </li>
+                <li>Check that <code>PDB19 </code> contains the <code>HR.EMPLOYEES
+                    </code> table as in <code>PDB1</code>.
+                  <pre>CONNECT hr@PDB19
+Enter password: <em>password</em></pre>
+                  <pre>SELECT count(*) FROM employees;<br><br>  COUNT(*)
+----------
+       107</pre>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_4" role="button" style="text-align: left;"><img src="./img/32_4.png" alt="section 4" class="num_circ" height="32" width="32">Clean
+                Up the PDB Cloned</h2>
+              <ol>
+                <li>Connect to <code>CDB19</code> as <code>SYS</code>.
+                  <pre>CONNECT sys@CDB19 AS SYSDBA
+Enter password: <em>password</em></pre>
+                </li>
+                <li>Close <code>PDB19</code>.
+                  <pre>ALTER PLUGGABLE DATABASE pdb19 CLOSE;
+</pre></li>
+                <li>Drop <code>PDB19</code>.
+                  <pre>DROP PLUGGABLE DATABASE pdb19 INCLUDING DATAFILES;
+</pre></li>
+                <li>Quit the session.
+                  <pre>EXIT</pre>
+                </li>
+              </ol>
+            </section>
+          </article>
+        </div>
+      </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+      <div style="max-width: 994px; padding:10px 0 0 17px;">
+        <footer class="footer-list">
+          <ul>
+            <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                Oracle</a> </li>
+            <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                Notices</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                of Use</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your
+                Privacy Rights</a> </li>
+            <li><a href="./sp_common/en/cpyr.htm">Copyright
+                © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>
+          </ul>
+        </footer>
+      </div>
+      <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+      <!-- Modal hdr and body -->
+      <div id="obe_dialog" class="modal-content">
+        <div class="modal-header"> <a href="#" class="close"> <span class="close">×</span>
+          </a>
+          <h1>Associated Learning Paths</h1>
+        </div>
+        <div id="dialog-content"> </div>
+        <div id="dialog-close" class="closeBtn"> <a href="#" class="close2">
+            <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+          </a> </div>
+      </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+  </body>
+</html>

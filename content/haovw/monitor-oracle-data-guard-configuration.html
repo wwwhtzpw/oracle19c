@@ -1,0 +1,671 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Monitor an Oracle Data Guard Configuration">
+      <meta name="abstract" content="Use the following Oracle MAA best practice recommendations to monitor an Oracle Data Guard configuration.">
+      <meta name="description" content="Use the following Oracle MAA best practice recommendations to monitor an Oracle Data Guard configuration.">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-0B4778F0-EE81-46A7-9E0C-BB32CDF690B9">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Use the following Oracle MAA best practice recommendations to monitor an Oracle Data Guard configuration.">
+      <meta name="description" content="Use the following Oracle MAA best practice recommendations to monitor an Oracle Data Guard configuration.">
+      <title>Monitor an Oracle Data Guard Configuration</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content="Use the following Oracle MAA best practice recommendations to monitor an Oracle Data Guard configuration.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="tune-and-troubleshoot-oracle-data-guard.html" title="Previous" type="text/html">
+      <link rel="next" href="optimizing-automatic-failover-common-scenarios-minimize-downtime1.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Monitor an Oracle Data Guard Configuration","description":"Use the following Oracle MAA best practice recommendations to monitor an Oracle Data Guard configuration.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="tune-and-troubleshoot-oracle-data-guard.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="optimizing-automatic-failover-common-scenarios-minimize-downtime1.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-0B4778F0-EE81-46A7-9E0C-BB32CDF690B9" name="GUID-0B4778F0-EE81-46A7-9E0C-BB32CDF690B9"></a>
+         
+         <h2 id="HAOVW-GUID-0B4778F0-EE81-46A7-9E0C-BB32CDF690B9" class="sect2"><span class="enumeration_chapter">17 </span>Monitor an Oracle Data Guard
+                                Configuration
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Use the following Oracle MAA best practice recommendations to monitor an
+                                Oracle Data Guard configuration.</p>
+            </div>
+            <div class="sect2"><a id="GUID-8D8C4054-7140-4025-A1CF-B9E10267B8CE" name="GUID-8D8C4054-7140-4025-A1CF-B9E10267B8CE"></a><h3 id="HAOVW-GUID-8D8C4054-7140-4025-A1CF-B9E10267B8CE" class="sect3">Monitoring Oracle Data Guard
+        Configuration Health Using the Broker</h3>
+               <div>
+                  <p>The Oracle data Guard broker issues a health check once a minute and updates
+        the configuration status. To force a health check to occur immediately, run the command
+            <code class="codeph">show configuration verbose</code>.
+                  </p>
+                  <p>On a primary database, the health check determines if the following conditions are
+            met.</p>
+                  <ul style="list-style-type: disc;" id="GUID-8D8C4054-7140-4025-A1CF-B9E10267B8CE__UL_UTD_QDF_JPB">
+                     <li>Database is in the state specified by the user, as recorded in the broker
+                configuration file</li>
+                     <li>Database is in the correct data protection mode</li>
+                     <li>Database is using a server parameter file(<code class="codeph">SPFILE</code>)
+                     </li>
+                     <li>Database is in the <code class="codeph">ARCHIVELOG</code> mode
+                     </li>
+                     <li>Redo transport services do not have any errors</li>
+                     <li>Database settings match those specified by the broker configurable properties</li>
+                     <li>Redo transport settings match those specified by the redo transport-related
+                properties of the standby databases</li>
+                     <li>Current data protection level is consistent with configured data protection
+                mode</li>
+                     <li>Primary database is able to resolve all gaps for all standby databases</li>
+                  </ul>
+                  <p>On a standby database, the health check determines whether the following conditions are
+            met.</p>
+                  <ul style="list-style-type: disc;" id="GUID-8D8C4054-7140-4025-A1CF-B9E10267B8CE__UL_VTD_QDF_JPB">
+                     <li>Database is in the state specified by the user, as recorded in the broker
+                configuration file</li>
+                     <li>Database is using a server parameter file (<code class="codeph">SPFILE</code>)
+                     </li>
+                     <li>Database settings match those specified by the broker configurable properties</li>
+                     <li>Primary and target standby databases are synchronized or within lag limits if
+                fast-start failover is enabled</li>
+                  </ul>
+                  <p>To identify any warnings on the overall configuration, show the status using the
+                <code class="codeph">SHOW CONFIGURATION</code> command.
+                  </p><pre class="pre codeblock"><code>DGMGRL&gt; show configuration;
+
+Configuration &#x2013; dg
+
+  Protection Mode: MaxPerformance
+  Members:
+  tin - Primary database
+    can - Physical standby database 
+
+Fast-Start Failover: DISABLED
+
+Configuration Status:
+SUCCESS   (status updated 18 seconds ago)</code></pre><p>If the configuration status is <code class="codeph">SUCCESS</code>, everything in the broker
+            configuration is working properly.
+                  </p>
+                  <p>However, if you see a status of <code class="codeph">WARNING</code> or <code class="codeph">ERROR</code>, then
+            something is wrong in the configuration. Additional error messages will accompany the
+                <code class="codeph">WARNING</code> or <code class="codeph">ERROR</code> status that should be used to
+            identify current issues.
+                  </p>
+                  <p>The next step is to examine each database in the configuration to narrow down what the
+            specific error is related to.</p>
+                  <p>To identify the warnings on the primary database, get its status using the <code class="codeph">SHOW
+                DATABASE</code> command.
+                  </p><pre class="pre codeblock"><code>DGMGRL&gt; show database tin
+
+Database &#x2013; tin
+
+  Role:               PRIMARY
+  Intended State:     TRANSPORT-ON
+  Instance(s):
+    tin1
+    tin2
+
+Database Status:
+SUCCESS</code></pre><p>If the database status is <code class="codeph">SUCCESS</code> then the database is working
+            properly.
+                  </p>
+                  <p>However, if you see a status of <code class="codeph">WARNING</code> or <code class="codeph">ERROR</code>, then
+            something is wrong in the database. Additional error messages will accompany the
+                <code class="codeph">WARNING</code> or <code class="codeph">ERROR</code> status that should be used to
+            identify current issues.
+                  </p>
+                  <p>Repeat the same <code class="codeph">SHOW DATABASE</code> command on the standby database and assess
+            any error messages.
+                  </p>
+                  <p>In addition to the above commands, the broker features a <code class="codeph">VALIDATE
+                DATABASE</code> command.
+                  </p><pre class="pre codeblock"><code>DGMGRL&gt; validate database tin
+
+  Database Role:    Primary database
+  Ready for Switchover:  Yes
+
+DGMGRL&gt; validate database can;
+
+  Database Role:     Physical standby database
+  Primary Database:  tin
+
+  Ready for Switchover:  No
+  Ready for Failover:    Yes (Primary Running)
+
+  Capacity Information:
+    Database  Instances        Threads        
+    tin       2                2              
+    can       1                2              
+    Warning: the target standby has fewer instances than the
+    primary database, this may impact application performance
+
+  Standby Apply-Related Information:
+    Apply State:      Not Running
+    Apply Lag:        Unknown
+    Apply Delay:      0 minutes</code></pre><p>The <code class="codeph">VALIDATE DATABASE</code> does not provide a <code class="codeph">SUCCESS</code> or
+                <code class="codeph">WARNING</code> status and must be examined to determine if any action
+            needs to be taken.
+                  </p>
+                  <p>It is recommended that you run the <code class="codeph">VALIDATE DATABASE</code> command after
+            creating the broker configuration, and before and after any role transition
+            operation.
+                  </p>
+                  <p>The <code class="codeph">VALIDATE DATABASE</code> command performs the following checks.
+                  </p>
+                  <ul style="list-style-type: disc;" id="GUID-8D8C4054-7140-4025-A1CF-B9E10267B8CE__UL_GGD_BFF_JPB">
+                     <li>Whether there is missing redo data on a standby database</li>
+                     <li>Whether flashback is enabled</li>
+                     <li>The number of temporary tablespace files configured</li>
+                     <li>Whether an online data file move is in progress</li>
+                     <li>Whether online redo logs are cleared for a physical standby database</li>
+                     <li>Whether standby redo logs are cleared for a primary database</li>
+                     <li>The online log file configuration</li>
+                     <li>The standby log file configuration</li>
+                     <li>Apply-related property settings</li>
+                     <li>Transport-related property settings</li>
+                     <li>Whether there are any errors in the Automatic Diagnostic Repository (for example,
+                control file corruptions, system data file problems, user data file problems)</li>
+                  </ul>
+               </div>
+               <div class="sect3"><a id="GUID-51E71BB5-EE63-434A-976B-AE89C807A405" name="GUID-51E71BB5-EE63-434A-976B-AE89C807A405"></a><h4 id="HAOVW-GUID-51E71BB5-EE63-434A-976B-AE89C807A405" class="sect4">Detecting Transport or Apply Lag
+        Using the Oracle Data Guard Broker</h4>
+                  <div>
+                     <p>Given enough resources, in particular network bandwidth, an Oracle Data
+        Guard standby can maintain pace with very high workloads. In cases where resources are
+        constrained, the standby can begin to fall behind, resulting in a transport or apply
+        lag.</p>
+                     <p>A <strong class="term">transport lag</strong> is the amount of data, measured in time, that the standby
+            has not received from the primary. 
+                     </p>
+                     <p>An <strong class="term">apply lag</strong> is the difference, in elapsed time, between when the last
+            applied change became visible on the standby and when that same change was first visible
+            on the primary.
+                     </p>
+                     <p>When using the Data Guard broker, the transport or apply lag can be viewed by using the
+                <code class="codeph">SHOW DATABASE</code> command and referencing the standby database, as
+            shown here.
+                     </p><pre class="pre codeblock"><code>DGMGRL&gt; show database orclsb
+
+Database &#x2013; orclsb
+
+  Role:               PHYSICAL STANDBY
+  Intended State:     APPLY-ON
+  Transport Lag:      0 seconds (computed 0 seconds ago)
+  Apply Lag:          0 seconds (computed 1 second ago)
+  Average Apply Rate: 792.00 KByte/s
+  Real Time Query:    ON
+  Instance(s):
+    orclsb1 (apply instance)
+    orclsb2
+
+Database Status:
+SUCCESS</code></pre><p>The broker <code class="codeph">TransportDisconnectedThreshold</code> database property (default of
+            0 in Oracle Database 11.2, and 30 seconds for Oracle Database 12.1 and later releases)
+            can be used to generate a warning status for a standby when the last communication from
+            the primary database exceeds the value specified by the property. The property value is
+            expressed in seconds. 
+                     </p>
+                     <p>The following is an example of the warning when a disconnection has occurred.</p><pre class="pre codeblock"><code>DGMGRL&gt; show database orclsb;
+
+Database &#x2013; orclsb
+
+  Role:               PHYSICAL STANDBY
+  Intended State:     APPLY-ON
+  Transport Lag:      0 seconds (computed 981 seconds ago)
+  Apply Lag:          0 seconds (computed 981 seconds ago)
+  Average Apply Rate: 12.00 KByte/s
+  Real Time Query:    OFF
+  Instance(s):
+    orclsb1 (apply instance)
+    orclsb2
+
+  Database Warning(s):
+    ORA-16857: member disconnected from redo source for longer than specified threshold</code></pre><p>The broker also has the following configurable database properties that you can use to
+            generate warnings when a transport or apply lag exceed a user defined value.</p>
+                     <ul style="list-style-type: disc;" id="GUID-51E71BB5-EE63-434A-976B-AE89C807A405__UL_V5L_1HF_JPB">
+                        <li>
+                           
+                           <p>The <code class="codeph">ApplyLagThreshold</code> property generates a warning status for a
+                    logical or physical standby when the database's apply lag exceeds the value
+                    specified by the property. 
+                           </p>
+                           
+                           <p>The property value is expressed in seconds. A value of 0 seconds results in no
+                    warnings being generated when an apply lag exists. As a best practice, Oracle
+                    recommends setting <code class="codeph">ApplyLagThreshold</code> to at least 15
+                    minutes.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>The <code class="codeph">TransportLagThreshold</code> property can be used to generate a
+                    warning status for a logical, physical, or snapshot standby when the database's
+                    transport lag exceeds the value specified by the property.
+                           </p>
+                           
+                           <p>The property value is expressed in seconds. A value of 0 seconds results in no
+                    warnings being generated when a transport lag exists. As a best practice, Oracle
+                    recommends setting <code class="codeph">TransportLagThreshold</code> to at least 15
+                    minutes.
+                           </p>
+                           
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-41809D11-DDB1-4018-B300-221334CCC911" name="GUID-41809D11-DDB1-4018-B300-221334CCC911"></a><h3 id="HAOVW-GUID-41809D11-DDB1-4018-B300-221334CCC911" class="sect3">Monitoring Oracle Data Guard
+        Configuration Health Using SQL</h3>
+               <div>
+                  <p>You can use the queries in the following tables to assess the overall Data
+        Guard configuration health on the primary database and the standby database.</p>
+                  <div class="tblformal" id="GUID-41809D11-DDB1-4018-B300-221334CCC911__TABLE_NRQ_X1K_JPB">
+                     <p class="titleintable">Table 17-1 Primary Database Queries</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Primary Database Queries" summary="queries to monitor data guard heath" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d45718e290">Goal</th>
+                              <th align="left" valign="bottom" width="0%" id="d45718e292">Query</th>
+                              <th align="left" valign="bottom" width="0%" id="d45718e294">Expected Results</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d45718e298" headers="d45718e290 ">
+                                 
+                                 <p>Check if any remote standby archive destination is getting errors</p>
+                                 
+                                 <p>Check if all remote standby archive destinations is enabled or
+                                    <code class="codeph">VALID</code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e298 d45718e292 ">
+                                 <pre class="pre codeblock"><code>select sysdate,status,error
+ from gv$archive_dest_status
+ where type='PHYSICAL'
+ and status!='VALID'
+ or error is not null;</code></pre>
+                                 </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e298 d45718e294 ">
+                                 
+                                 <p>Good health = no rows returned</p>
+                                 
+                                 <p>If the query returns rows, then raise an alert with the returned
+                                data.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d45718e322" headers="d45718e290 ">
+                                 
+                                 <p>Check if any <code class="codeph">NOLOGGING</code> activity occurred on the
+                                primary database in the last day
+                                 </p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e322 d45718e292 ">
+                                 <pre class="pre codeblock"><code>select file#, name, unrecoverable_change#, unrecoverable_time
+ from v$datafile
+ where unrecoverable_time &gt; (sysdate - 1);</code></pre>
+                                 </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e322 d45718e294 ">
+                                 
+                                 <p>Good health = no rows returned</p>
+                                 
+                                 <p>If the query returns rows, then the standby database is vulnerable,
+                                and the files listed in the output must be refreshed on the standby.
+                            </p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d45718e344" headers="d45718e290 ">
+                                 
+                                 <p>Detect gaps on the standby  database</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e344 d45718e292 ">
+                                 <pre class="pre codeblock"><code>select sysdate,database_mode,recovery_mode, gap_status
+ from v$archive_dest_status
+ where type='PHYSICAL'
+ and gap_status !='NO GAP'; </code></pre>
+                                 </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e344 d45718e294 ">
+                                 
+                                 <p>Good health = no rows returned</p>
+                                 
+                                 <p>If the query returns rows, then there's an existing gap between the
+                                primary and the standby database, and you must run the same query on
+                                the standby database.</p>
+                                 
+                                 <p>If the output from the primary and standby is identical, then no
+                                action is required.</p>
+                                 
+                                 <p>If the output on the standby does not match the output from the
+                                primary, then the datafile on the standby should be refreshed.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d45718e369" headers="d45718e290 ">
+                                 
+                                 <p>Assess whether any severe Data Guard event occurred in the last
+                                day</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e369 d45718e292 ">
+                                 <pre class="pre codeblock"><code>select *
+ from v$dataguard_status
+ where severity in ('Error','Fatal')
+ and timestamp &gt; (sysdate -1);</code></pre>
+                                 </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e369 d45718e294 ">
+                                 
+                                 <p>Good health = no rows returned</p>
+                                 
+                                 <p>If the query returns rows, then raise an alert with the returned
+                                output.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d45718e388" headers="d45718e290 ">
+                                 
+                                 <p>FOR SYNC ENVIRONMENTS ONLY:</p>
+                                 
+                                 <p>Assess if running in Maximum Availability mode and configuration is
+                                in sync</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e388 d45718e292 ">
+                                 <pre class="pre codeblock"><code>select sysdate,protection_mode, synchronized, synchronization_status
+ from v$archive_dest_status
+ where type='PHYSICAL'
+ and synchronization_status !='OK';</code></pre>
+                                 </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e388 d45718e294 ">
+                                 
+                                 <p>Good health = no rows returned</p>
+                                 
+                                 <p>If the query returns rows, then raise an alert with the returned
+                                output.</p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="tblformalwide" id="GUID-41809D11-DDB1-4018-B300-221334CCC911__TABLE_DHT_5DK_JPB">
+                     <p class="titleintable">Table 17-2 Physical Standby Database Queries</p>
+                     <table cellpadding="4" cellspacing="0" class="FormalWide" title="Physical Standby Database Queries" summary="queries to monitor the health of a physical standby database" width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d45718e420">Goal</th>
+                              <th align="left" valign="bottom" width="0%" id="d45718e422">Query</th>
+                              <th align="left" valign="bottom" width="0%" id="d45718e424">Expected Results</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d45718e428" headers="d45718e420 ">
+                                 
+                                 <p>Determine if there is a transport lag</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e428 d45718e422 ">
+                                 <pre class="pre codeblock"><code>select name,value,time_computed,datum_time
+ from v$dataguard_stats
+ where name='transport lag'
+ and value &gt; '+00 00:01:00';</code></pre>
+                                 </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e428 d45718e424 ">
+                                 
+                                 <p>Good health = no rows returned</p>
+                                 
+                                 <p>If no rows are returned, then this implies that there is no transport
+                                lag</p>
+                                 
+                                 <p> </p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d45718e450" headers="d45718e420 ">
+                                 
+                                 <p>Determine if there is an apply lag</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e450 d45718e422 ">
+                                 <pre class="pre codeblock"><code>select name,value,time_computed,datum_time
+ from v$dataguard_stats
+ where name='apply lag'
+ and value &gt; '+00 00:01:00';</code></pre>
+                                 </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e450 d45718e424 ">
+                                 
+                                 <p>Good health = no rows returned</p>
+                                 
+                                 <p>If no rows are returned, then this implies that there is no apply
+                                lag</p>
+                                 
+                                 <p> </p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d45718e472" headers="d45718e420 ">
+                                 
+                                 <p>Standby data file check (offline files or files that are not
+                                accessible)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e472 d45718e422 ">
+                                 <pre class="pre codeblock"><code>select *
+ from v$datafile_header
+ where status ='OFFLINE'
+ or ERROR is not null;</code></pre>
+                                 </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e472 d45718e424 ">
+                                 
+                                 <p>Good health = no rows returned</p>
+                                 
+                                 <p>Any rows returned list the files that have I/O or recovery issues</p>
+                                 
+                                 <p> </p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d45718e494" headers="d45718e420 ">
+                                 
+                                 <p>Verify that the Media Recovery Process is currently running</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e494 d45718e422 ">
+                                 <pre class="pre codeblock"><code>select *
+ from v$managed_standby
+ where process like 'MRP%';</code></pre>
+                                 </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e494 d45718e424 ">
+                                 
+                                 <p>Good health = rows returned</p>
+                                 
+                                 <p>If no rows are returned, then the MRP process is not running</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d45718e513" headers="d45718e420 ">
+                                 
+                                 <p>Assess whether any severe Data Guard event occurred in the last
+                                day</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e513 d45718e422 ">
+                                 <pre class="pre codeblock"><code>select *
+ from v$dataguard_status
+ where severity in ('Error','Fatal')
+ and timestamp &gt; (sysdate -1);</code></pre>
+                                 </td>
+                              <td align="left" valign="top" width="0%" headers="d45718e513 d45718e424 ">
+                                 
+                                 <p>Good health = no rows returned</p>
+                                 
+                                 <p>If the query returns rows, then raise an alert with the returned
+                                output</p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-DC8E1070-D668-4F2D-9A98-316E7ED43829" name="GUID-DC8E1070-D668-4F2D-9A98-316E7ED43829"></a><h3 id="HAOVW-GUID-DC8E1070-D668-4F2D-9A98-316E7ED43829" class="sect3">Oracle Data Guard Broker
+        Diagnostic Information</h3>
+               <div>
+                  <p>The Oracle Data Guard broker provides information about its activities in
+        several forms.</p>
+                  <ul style="list-style-type: disc;" id="GUID-DC8E1070-D668-4F2D-9A98-316E7ED43829__UL_C3T_JFK_JPB">
+                     <li>
+                        
+                        <p>Database status information</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Oracle alert log files </p>
+                        
+                        <p>The broker records key information in the alert log file for each instance of
+                    each database in a broker configuration.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Oracle Data Guard broker log files</p>
+                        
+                        <p>For each instance of each database in a broker configuration, the broker DMON
+                    process records important behavior and status information in a broker log file,
+                    which are useful for diagnosing Oracle Data Guard failures. The Set the
+                        <code class="codeph">TraceLevel</code> configuration property to specify the level of
+                    diagnostic information reported in the broker log files. The broker log file is
+                    created in the same directory as the alert log and is named
+                        <code class="codeph">drc&lt;$ORACLE_SID&gt;.log</code>.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Oracle Data Guard command line (DGMGRL) <code class="codeph">logfile</code> option
+                        </p>
+                        
+                        <p>If the DGMGRL command-line interface was started with the
+                        <code class="codeph">-logfile</code> optional parameter, then the resulting log file
+                    may contain a useful record of past operations and error conditions.
+                        </p>
+                        
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-005CBF7F-929F-4260-822C-9460F2A5B2BC" name="GUID-005CBF7F-929F-4260-822C-9460F2A5B2BC"></a><h3 id="HAOVW-GUID-005CBF7F-929F-4260-822C-9460F2A5B2BC" class="sect3">Detecting and Monitoring Data
+        Corruption</h3>
+               <div>
+                  <p>If corrupt data is written to disk, or if a component failure causes good
+        data to become corrupt after it is written, then it is critical that you detect the
+        corrupted blocks as soon as possible.</p>
+                  <p>To monitor the database for errors and alerts:</p>
+                  <ul style="list-style-type: disc;" id="GUID-005CBF7F-929F-4260-822C-9460F2A5B2BC__UL_IJ5_1GK_JPB">
+                     <li>
+                        
+                        <p>Query the <code class="codeph">V$DATABASE_BLOCK_CORRUPTION</code> view that is automatically
+                    updated when block corruption is detected or repaired.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Configure Data Recovery Advisor to automatically diagnose data failures,
+                    determine and present appropriate repair options, and perform repair operations
+                    at your request.</p>
+                        
+                        <p>Note that Data Recovery Advisor integrates with the Oracle Enterprise Manager
+                    Support Workbench (Support Workbench), the Health Monitor, and RMAN.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Use Data Guard to detect physical corruptions and to detect lost writes.</p>
+                        
+                        <p>Data Guard can detect physical corruptions when the apply process stops due to a
+                    corrupted block in the redo steam or when it detects a lost write.</p>
+                        
+                        <p>Use Enterprise Manager to manage and monitor your Data Guard configuration.</p>
+                        
+                        <p>By taking advantage of Automatic Block Media Recovery, a corrupt block found on
+                    either a primary database or a physical standby database can be fixed
+                    automatically when the Active Data Guard option is used.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Use SQL*Plus to detect data file corruptions and inter-block corruptions.</p>
+                        
+                        <p>Run this SQL*Plus statement:</p>
+                        <pre class="pre codeblock"><code>sqlplus&gt; ANALYZE TABLE <span class="variable" translate="no">table_name</span> VALIDATE STRUCTURE CASCADE;</code></pre>
+                        <p>After finding the corruptions, the table can be re-created or another action can
+                    be taken.</p>
+                        
+                     </li>
+                     <li>An Recovery Manager (RMAN) backup and recovery strategy can detect physical block
+                    corruptions.
+                        <p>A more intensive RMAN check using the following command can
+                    detect logical block
+                corruptions.</p><pre class="pre codeblock"><code>RMAN&gt; BACKUP VALIDATE CHECK LOGICAL;</code></pre></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Upgrading Oracle Providers for ASP.NET</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="providers-asp-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:08:38-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2007, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96614-02">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="IntroInstallation.html" title="Previous" type="text/html">
+      <link rel="next" href="IntroFileLocations.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Providers for ASP.NET Developer's Guide">
+    <meta name="dcterms.isVersionOf" content="ASPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="IntroInstallation.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="IntroFileLocations.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="Intro.html" property="item" typeof="WebPage"><span property="name"> Introduction to Oracle Providers for ASP.NET </span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Upgrading Oracle Providers for ASP.NET</li>
+            </ol>
+            <a id="GUID-E71BF201-DB99-4BC1-BA08-C3C0BEA13AE6" name="GUID-E71BF201-DB99-4BC1-BA08-C3C0BEA13AE6"></a><a id="ASPNT124"></a>
+            
+            <h2 id="ASPNT-GUID-E71BF201-DB99-4BC1-BA08-C3C0BEA13AE6" class="sect2">Upgrading Oracle Providers for ASP.NET</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <div class="section">
+                  <p>Administrators who wish to upgrade an older instance of Oracle Providers for ASP.NET to a newer version must upgrade both the Oracle Client and database schema. Oracle does not support using one Oracle Providers for ASP.NET client version, say 11.2, with another Oracle Providers for ASP.NET database schema version, say 12.1. The database version itself does not need to be upgraded, only the ASP.NET provider schema does. Both the schema and client providers must be the same version. </p>
+                  <p>The following list discusses upgrading the client and database schema:</p>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Oracle Client Upgrade:</p>
+                        <p>When installing the latest Oracle Providers for ASP.NET version, the <code class="codeph">machine.config</code> file is no longer automatically updated by default so that Web applications are directed to use the recently installed version. If there are applications that use the newly installed Oracle ASP.NET providers, then administrators must update the appropriate .NET configuration file.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Database Schema Upgrade:</p>
+                        <p>Administrators need to execute the new version's Oracle Providers for ASP.NET SQL scripts on the same schema where the older Oracle Providers for ASP.NET schema exists. The scripts are designed to upgrade older schemas or create the schema if none exists. The scripts preserve existing Oracle Providers for ASP.NET data such that no data is lost. </p>
+                     </li>
+                  </ul>
+                  <p>If the database server itself is being upgraded, then administrators can use standard Oracle upgrade procedures with Oracle Providers for ASP.NET data. Data is preserved when performing the upgrade. Encrypted data remains encrypted and usable after the upgrade.</p>
+               </div>
+               <!-- class="section" -->
+            </div><a id="ASPNT125"></a><div class="props_rev_3"><a id="GUID-FE584E7A-94A8-4EFE-9DEC-71AF7DC5B3D9" name="GUID-FE584E7A-94A8-4EFE-9DEC-71AF7DC5B3D9"></a><h3 id="ASPNT-GUID-FE584E7A-94A8-4EFE-9DEC-71AF7DC5B3D9" class="sect3">Coexistence of Multiple Oracle Providers for ASP.NET Versions</h3>
+               <div>
+                  <p>If there are multiple ASP.NET applications using a single Web server or a single Oracle Database, then it is not necessary for all of them to use the same Oracle Providers for ASP.NET version. For example, some of the applications may use Oracle Providers for ASP.NET 12.1, and other applications may use the 11.2 version. Individual <code class="codeph">web.config</code> files are used to determine as to which Oracle Providers for ASP.NET version to use for each application.
+                  </p>
+                  <p>Each Oracle Providers for ASP.NET version must have a database schema specific to its version.  For example, all Oracle Providers for ASP.NET 11.2 applications must be able to access at least one schema built using the 11.2 SQL scripts.  These 11.2 provider applications can all share one schema, but they cannot use an 12.1 schema. When using multiple Oracle Providers for ASP.NET versions to access the same database, administrators can create separate schemas for each Oracle Providers for ASP.NET version.</p>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

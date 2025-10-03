@@ -1,0 +1,198 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Troubleshooting Common Errors</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Extensions for .NET Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Extensions for .NET Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-extensions-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:07:46-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96616-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="datatype-conversion.html" title="Previous" type="text/html">
+      <link rel="next" href="glossary.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database Extensions for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="CLRNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="datatype-conversion.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="glossary.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Extensions for .NET Developer's Guide </span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem"> Troubleshooting Common Errors</li>
+            </ol>
+            <a id="GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823" name="GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823"></a><a id="CLRNT0006"></a>
+            
+            <h2 id="CLRNT-GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823" class="sect2"><span class="enumeration_appendix">B </span> Troubleshooting Common Errors
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <div class="section">
+                  <p><a id="d15445e34" class="indexterm-anchor"></a><a id="d15445e38" class="indexterm-anchor"></a>This appendix discusses common errors.
+                  </p>
+                  <p>Users may encounter various errors while running the PL/SQL wrapper. Causes and recommended actions for such errors are listed below. </p>
+                  <dl>
+                     <dt class="dlterm"><a name="GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823__GUID-6539AEA9-3D1F-445F-9A96-41EFAFAC5F8A">
+                           <!-- --></a>ORA-03113: end-of-file on communication channel
+                     </dt>
+                     <dd>
+                        <p><span class="keyword">Cause:</span> The connection between Client and Server process was broken. It may also happen if the external agent <code class="codeph">extproc</code> crashes for some reason.
+                        </p>
+                     </dd>
+                     <dd class="ddexpand">
+                        <p><span class="keyword">Action:</span> There was a communication error that requires further investigation. First, check for network problems and review the SQL*Net setup. Also, look in the <code class="codeph">alert.log</code> file for any errors. Finally, test to see whether the server process is dead and whether a trace file was generated at failure time. There may be some system calls in the .NET function which might terminate the process. Remove such calls.
+                        </p>
+                     </dd>
+                     <dt class="dlterm"><a name="GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823__GUID-A87253A4-100D-4836-B4F1-F040FD7F9998">
+                           <!-- --></a>ORA-03114: not connected to ORACLE
+                     </dt>
+                     <dd>
+                        <p><span class="keyword">Cause:</span> The connection between Client and Server process was broken. This may also happen if the external agent <code class="codeph">extproc</code> crashes for some reason.
+                        </p>
+                     </dd>
+                     <dd class="ddexpand">
+                        <p><span class="keyword">Action:</span> There was a communication error which requires further investigation. First, check for network problems and review the SQL*Net setup. Also, look in the <code class="codeph">alert.log</code> file for any errors. Finally, test to see whether the server process is dead and whether a trace file was generated at failure time. There may be some system calls in the .NET function which might terminate the process. Remove such calls.
+                        </p>
+                     </dd>
+                     <dt class="dlterm"><a name="GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823__GUID-94730027-7079-40E0-B775-1752E746C897">
+                           <!-- --></a>ORA-20100: System.BadImageFormatException. The format of the file is invalid.
+                     </dt>
+                     <dd>
+                        <p><span class="keyword">Cause:</span> The .NET Assembly is not in the proper format. 
+                        </p>
+                     </dd>
+                     <dd class="ddexpand">
+                        <p><span class="keyword">Action:</span> Fix the .NET assembly format that contains the .NET stored procedures or functions. You need to recompile the .NET assembly.
+                        </p>
+                     </dd>
+                     <dt class="dlterm"><a name="GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823__GUID-A5895FB2-F926-4BA6-BC1C-B24530E351CF">
+                           <!-- --></a>ORA-20100: System.IO.FileNotFoundException. File or assembly name &lt;assemblyname&gt;.dll, or one of its dependencies, was not found.
+                     </dt>
+                     <dd>
+                        <p><span class="keyword">Cause:</span> The .NET Assembly or one of its dependent assemblies is not available in <span class="italic"><code class="codeph">ORACLE_BASE\\ORACLE_HOME</code></span><code class="codeph">\bin\clr</code> or in one of the subdirectories as specified during the creation of the library object by the wizard.
+                        </p>
+                     </dd>
+                     <dd class="ddexpand">
+                        <p><span class="keyword">Action:</span> Copy the .NET assembly and all its dependent assemblies to <span class="italic"><code class="codeph">ORACLE_BASE\\ORACLE_HOME</code></span><code class="codeph">\bin\clr</code> or to one of its subdirectories as appropriate. 
+                        </p>
+                     </dd>
+                     <dt class="dlterm"><a name="GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823__GUID-42C0EF30-4072-48E6-B1CB-8528B7907CAD">
+                           <!-- --></a>ORA-20100: System.MissingMethodException
+                     </dt>
+                     <dd>
+                        <p><span class="keyword">Cause:</span> <code class="codeph">MissingMethodException</code> is thrown for many possible reasons including:
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>The stored procedure or function name does not match the actual stored procedure or function name defined in the .NET assembly.</p>
+                           </li>
+                           <li>
+                              <p>The number, sequence, and type of parameters passed do not match the actual parameters in the .NET stored procedure.</p>
+                           </li>
+                        </ul>
+                     </dd>
+                     <dd class="ddexpand">
+                        <p><span class="keyword">Action:</span> Check the name of the called stored procedure or function for spelling mistakes or case mismatch (upper or lower). Check the number of parameters and check that the type and sequence of the parameters match those of the stored procedure or function defined in the .NET assembly.
+                        </p>
+                     </dd>
+                     <dt class="dlterm"><a name="GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823__GUID-6149F945-8BD2-4CAA-B521-55A12D6F4C77">
+                           <!-- --></a>ORA-20100: System.Reflection.TargetException. &lt;typename&gt; type not found
+                     </dt>
+                     <dd>
+                        <p><span class="keyword">Cause:</span> The namespace and/or the class name used in the PL/SQL wrapper is not defined in the .NET Assembly.
+                        </p>
+                     </dd>
+                     <dd class="ddexpand">
+                        <p><span class="keyword">Action:</span> Check the class name for spelling mistakes or case mismatch. Check the .NET assembly code for the type.
+                        </p>
+                     </dd>
+                     <dt class="dlterm"><a name="GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823__GUID-B09A27B5-5265-40B5-937A-D04C6EA9BBAC">
+                           <!-- --></a>ORA-20100: System.Security.SecurityException
+                     </dt>
+                     <dd>
+                        <p><span class="keyword">Cause:</span> .NET stored procedure or function could not be executed with current security level.
+                        </p>
+                     </dd>
+                     <dd class="ddexpand">
+                        <p><span class="keyword">Action:</span> Use the appropriate security level. For example, if the .NET stored procedure or function requires file system access, then it should be created with EXTERNAL security level.
+                        </p>
+                     </dd>
+                     <dt class="dlterm"><a name="GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823__GUID-040241FF-B962-4B6F-B7F4-5A6E69DCDC18">
+                           <!-- --></a>ORA-28575: unable to open RPC connection to external procedure agent
+                     </dt>
+                     <dd>
+                        <p><span class="keyword">Cause:</span> Initialization of a network connection to the <code class="codeph">extproc</code> agent did not succeed. This problem can be caused by network problems, incorrect listener configuration, or incorrect transfer code.
+                        </p>
+                     </dd>
+                     <dd class="ddexpand">
+                        <p><span class="keyword">Action:</span> Check listener configuration in <code class="codeph">LISTENER.ORA</code> and <code class="codeph">TNSNAMES.ORA</code>, or check Oracle Names Server. Verify that the multithreaded <code class="codeph">extproc</code> configuration entries are correct.
+                        </p>
+                     </dd>
+                     <dt class="dlterm"><a name="GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823__GUID-834330F8-3D9F-4EE5-8647-468D42FDE97F">
+                           <!-- --></a>ORA-28578: protocol error during callback from an external procedure
+                     </dt>
+                     <dd>
+                        <p><span class="keyword">Cause:</span> An internal protocol error occurred. This could be due to some registration issue during creation of PL/SQL wrapper.
+                        </p>
+                     </dd>
+                     <dd class="ddexpand">
+                        <p><span class="keyword">Action:</span> Recreate the PL/SQL wrapper using the wizard.
+                        </p>
+                     </dd>
+                     <dt class="dlterm"><a name="GUID-B4A2724F-D9E2-4AA6-8662-D83C25A4D823__GUID-4A7C0A75-937A-4E31-8275-C8A3F58FD6C8">
+                           <!-- --></a>PLS-00201: identifier 'DBMS_CLR' must be declared
+                     </dt>
+                     <dd>
+                        <p><span class="keyword">Cause:</span> Either Oracle Database Extensions for .NET is not installed and configured properly or the .NET stored procedure has not been deployed correctly using the Oracle Deployment Wizard for .NET. 
+                        </p>
+                     </dd>
+                     <dd class="ddexpand">
+                        <p><span class="keyword">Action:</span> Use the Database Configuration Assistant to configure Oracle Database Extensions for .NET, if it has not been installed already. Deploy the .NET stored procedure using the Oracle Deployment Wizard for .NET. 
+                        </p>
+                     </dd>
+                  </dl>
+               </div>
+               <!-- class="section" -->
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

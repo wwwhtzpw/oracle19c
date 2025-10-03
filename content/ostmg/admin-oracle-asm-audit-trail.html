@@ -1,0 +1,402 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Administering Oracle ASM audit trail">
+      <meta name="DC.Contributor" content="Jerry Abraham">
+      <meta name="DC.Contributor" content="Prasad Bagal">
+      <meta name="DC.Contributor" content="Mark Bauer">
+      <meta name="DC.Contributor" content="Don Bolinger">
+      <meta name="DC.Contributor" content="Bill Bridge">
+      <meta name="DC.Contributor" content="Chan Chan">
+      <meta name="DC.Contributor" content="Xiaobin Chen">
+      <meta name="DC.Contributor" content="Jonathan Creighton">
+      <meta name="DC.Contributor" content="Yanfei Fan">
+      <meta name="DC.Contributor" content="Dave Friedman">
+      <meta name="DC.Contributor" content="Barb Glover">
+      <meta name="DC.Contributor" content="Fred Glover">
+      <meta name="DC.Contributor" content="Ricardo Gonzalez">
+      <meta name="DC.Contributor" content="Allan Graves">
+      <meta name="DC.Contributor" content="Cesar Gray">
+      <meta name="DC.Contributor" content="Shie-rei Huang">
+      <meta name="DC.Contributor" content="Rekha Iyer">
+      <meta name="DC.Contributor" content="Sameer Joshi">
+      <meta name="DC.Contributor" content="Ankur Kemkar">
+      <meta name="DC.Contributor" content="Diane Lebel">
+      <meta name="DC.Contributor" content="Rich Long">
+      <meta name="DC.Contributor" content="Colin McGregor">
+      <meta name="DC.Contributor" content="Gregory Mengel">
+      <meta name="DC.Contributor" content="Harendra Mishra">
+      <meta name="DC.Contributor" content="Valarie Moore">
+      <meta name="DC.Contributor" content="Nitin Munjal">
+      <meta name="DC.Contributor" content="Darshan Nagarajappa">
+      <meta name="DC.Contributor" content="Harish Nandyala">
+      <meta name="DC.Contributor" content="Bob Nelson">
+      <meta name="DC.Contributor" content="Balaji Pagadala">
+      <meta name="DC.Contributor" content="Satish Panchumarthy">
+      <meta name="DC.Contributor" content="Hemanth Pikkili">
+      <meta name="DC.Contributor" content="Soma Prasad">
+      <meta name="DC.Contributor" content="Hanlin Qian">
+      <meta name="DC.Contributor" content="Mounica Reddy">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Charles Rusman">
+      <meta name="DC.Contributor" content="Francisco Sanchez">
+      <meta name="DC.Contributor" content="Santhosh Selvaraj">
+      <meta name="DC.Contributor" content="Duane Smith">
+      <meta name="DC.Contributor" content="Joshua Smith">
+      <meta name="DC.Contributor" content="Laura Solis">
+      <meta name="DC.Contributor" content="Malai Stalin">
+      <meta name="DC.Contributor" content="Emily Su">
+      <meta name="DC.Contributor" content="Amar Subba">
+      <meta name="DC.Contributor" content="Yaser Suleiman">
+      <meta name="DC.Contributor" content="Elisabeth Thibault">
+      <meta name="DC.Contributor" content="Michael Timpanaro-Perrotta">
+      <meta name="DC.Contributor" content="Samarjeet Tomar">
+      <meta name="DC.Contributor" content="Brian Tsao">
+      <meta name="DC.Contributor" content="P Venkatraman">
+      <meta name="DC.Contributor" content="Anton Verhulst">
+      <meta name="DC.Contributor" content="Ric Werme">
+      <meta name="DC.Contributor" content="Rajiv Wickremesinghe">
+      <meta name="DC.Contributor" content="Jim A. Williams">
+      <meta name="DC.Contributor" content="Sivakumar Yarlagadda">
+      <meta name="DC.Contributor" content="Song Ye">
+      <meta name="DC.Creator" content="Eric Belden">
+      <meta name="DC.Publisher" content="July2022">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-D9DEB164-5D2A-4D3B-9F17-D931043FD189">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Administering Oracle ASM audit trail</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Administrator's Guide">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Administrator's Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="automatic-storage-management-administrators-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2022-08-02T07:02:29-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2007, 2022">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F34287-06">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="migrate-db-to-asm.html" title="Previous" type="text/html">
+      <link rel="next" href="admin-asm-diskgroups.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Automatic Storage Management Administrator's Guide">
+    <meta name="dcterms.isVersionOf" content="OSTMG">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","name":"Administering Oracle ASM audit trail","datePublished":"2019-01-11 23:28:30 GMT","dateModified":"2022-08-02 14:17:03 GMT"} </script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="migrate-db-to-asm.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="admin-asm-diskgroups.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Administrator's Guide</span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="part-instance-diskgroup.html" property="item" typeof="WebPage"><span property="name">Oracle ASM Instances and Disk Groups</span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="asm-instance.html" property="item" typeof="WebPage"><span property="name">Administering Oracle ASM Instances</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Administering Oracle ASM audit
+        trail</li>
+            </ol>
+            <a id="GUID-D9DEB164-5D2A-4D3B-9F17-D931043FD189" name="GUID-D9DEB164-5D2A-4D3B-9F17-D931043FD189"></a>
+            
+            <h2 id="OSTMG-GUID-D9DEB164-5D2A-4D3B-9F17-D931043FD189" class="sect2">Administering Oracle ASM audit
+        trail</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>This document explains how to manage the audit trail records in Oracle ASM
+            instances.</p>
+            </div>
+            <div class="sect2"><a id="GUID-1B7EB521-A1E6-434F-BF7A-13A1467FA925" name="GUID-1B7EB521-A1E6-434F-BF7A-13A1467FA925"></a><h3 id="OSTMG-GUID-1B7EB521-A1E6-434F-BF7A-13A1467FA925" class="sect3">Oracle ASM audit records with Syslog</h3>
+               <div>
+                  <ul style="list-style-type: disc;" id="GUID-1B7EB521-A1E6-434F-BF7A-13A1467FA925__UL_KTM_X1S_CNB">
+                     <li>
+                        
+                        <p>Oracle ASM audit trail records are redirected to the Syslog
+                    facility.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>With this facility, the Oracle ASM audit trail records are written
+                    to <span class="italic">/var/log/oraasmaudit.log</span> file. 
+                        </p>
+                        
+                     </li>
+                     <li>Log rotation is configured for Oracle ASM audit trail records in
+                    <span class="italic">/etc/logrotate.d/oraasmaudit</span> configuration file. Audit logs are rotated
+                once every four weeks and will be compressed after they are rotated.
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-7F1163A2-3CC3-4779-A48A-065EF2540DF5" name="GUID-7F1163A2-3CC3-4779-A48A-065EF2540DF5"></a><h3 id="OSTMG-GUID-7F1163A2-3CC3-4779-A48A-065EF2540DF5" class="sect3">Managing Oracle ASM audit records in Operating
+        system audit trail</h3>
+               <div class="sect3"><a id="GUID-7C2E42F0-F3F5-4FE4-A756-3DABE378905E" name="GUID-7C2E42F0-F3F5-4FE4-A756-3DABE378905E"></a><h4 id="OSTMG-GUID-7C2E42F0-F3F5-4FE4-A756-3DABE378905E" class="sect4">Operating system audit trail</h4>
+                  <div>
+                     <p><span class="italic">Enabling Operating system audit trail</span></p>
+                     <p>To disable syslog auditing and enable Operating system audit trail, set
+                <code class="codeph">AUDIT_SYSLOG_LEVEL</code> initialization parameter to
+                <code class="codeph">NULL</code> and <code class="codeph">AUDIT_TRAIL</code> initialization parameter to
+            ‘OS’.
+                     </p>
+                     <div class="infoboxnotealso" id="GUID-7C2E42F0-F3F5-4FE4-A756-3DABE378905E__GUID-D2C22B1B-E971-4FE4-82B7-5FC3E8A498CB">
+                        <p class="notep1">See Also:</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-7C2E42F0-F3F5-4FE4-A756-3DABE378905E__UL_U5H_RCS_CNB">
+                           <li>
+                              
+                              <p><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=refrn-GUID-82C7E258-EEF7-48D2-B06B-7F949686E54B" target="_blank">AUDIT_FILE_DEST
+                            initialization parameter</a></p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=refrn-GUID-BD86F593-B606-4367-9FB6-8DAB2E47E7FA" target="_blank">AUDIT_TRAIL initialization
+                            parameter</a></p>
+                              
+                           </li>
+                        </ul>
+                        
+                     </div>
+                     <p><span class="italic">Purging Operating system audit trail files</span></p>
+                     <ul style="list-style-type: disc;" id="GUID-7C2E42F0-F3F5-4FE4-A756-3DABE378905E__UL_WCZ_KDS_CNB">
+                        <li>
+                           
+                           <p>See <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=dbseg-GUID-9F298B8A-6196-4206-A889-A7CEB0924CF1" target="_blank">Oracle Database Security Guide</a> for more
+                    information on purging audit trail files.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=ostmg-GUID-95231568-96AE-47F4-9E61-A46D47E7E634" target="_blank">ASMCMD Audit Files Management
+                        Commands</a> provides detailed information about ASMCMD commands to
+                    manage Oracle ASM audit trail files.
+                           </p>
+                           
+                           <div class="infoboxnotealso" id="GUID-7C2E42F0-F3F5-4FE4-A756-3DABE378905E__GUID-5787A4B1-12A9-4CFE-BCFF-972E87159E85">
+                              <p class="notep1">See Also:</p>
+                              
+                              <ul style="list-style-type: disc;" id="GUID-7C2E42F0-F3F5-4FE4-A756-3DABE378905E__UL_NXB_5DS_CNB">
+                                 <li>
+                                    
+                                    <p><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=ostmg-GUID-B8ADA15C-2A32-4A56-8AB3-5297339F9061" target="_blank">audcreatejob ASMCMD
+                                    command</a></p>
+                                    
+                                 </li>
+                                 <li>
+                                    
+                                    <p><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=ostmg-GUID-EF7A7759-98CC-47B3-87F4-E54F0D482FA5" target="_blank">audsettimestamp
+                                    ASMCMD command</a></p>
+                                    
+                                 </li>
+                                 <li>
+                                    
+                                    <p><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=ostmg-GUID-B0BF59C0-D8E6-417C-99FD-294BC2E309FE" target="_blank">audcleanaudittrail
+                                    ASMCMD command</a></p>
+                                    
+                                 </li>
+                              </ul>
+                              
+                           </div>
+                           
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-FD789428-44AD-4CA0-AD29-B2B3DDDEF8B0" name="GUID-FD789428-44AD-4CA0-AD29-B2B3DDDEF8B0"></a><h3 id="OSTMG-GUID-FD789428-44AD-4CA0-AD29-B2B3DDDEF8B0" class="sect3">Managing Oracle ASM audit records in Unified
+        audit trail</h3>
+               <div>
+                  <p>Unified audit trail</p>
+                  <ul style="list-style-type: disc;" id="GUID-FD789428-44AD-4CA0-AD29-B2B3DDDEF8B0__UL_EV5_CFS_CNB">
+                     <li>See <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=dbseg-GUID-16E8E421-CFCE-4584-B09B-88F01D51B152" target="_blank">Oracle Database Security
+                    Guide</a> for more information about unified auditing.
+                     </li>
+                     <li>Unified audit trail records are available through
+                        <ul style="list-style-type: disc;" id="GUID-FD789428-44AD-4CA0-AD29-B2B3DDDEF8B0__UL_V1F_FFS_CNB">
+                           <li><code class="codeph">GV$UNIFIED_AUDIT_TRAIL</code> view for Oracle ASM RAC
+                        instances.
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+                  <p><span class="italic">Enabling Unified audit trail</span></p>
+                  <ul style="list-style-type: disc;" id="GUID-FD789428-44AD-4CA0-AD29-B2B3DDDEF8B0__UL_CGN_HFS_CNB">
+                     <li>See <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=dbseg-GUID-AE3A5133-D90F-4447-822C-CF186247EDDC" target="_blank">Oracle Database Security Guide</a>
+                for more details on enabling unified audit trail.
+                     </li>
+                  </ul>
+                  <p><span class="italic">Purging Unified audit trail files</span></p>
+                  <ul style="list-style-type: disc;" id="GUID-FD789428-44AD-4CA0-AD29-B2B3DDDEF8B0__UL_WTC_MFS_CNB">
+                     <li>See <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=dbseg-GUID-9B891A44-3DF4-4B52-98D4-A931DBFAEC1D" target="_blank">Oracle Database Security
+                    Guide</a> for more information on purging audit trail files.
+                     </li>
+                     <li><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=ostmg-GUID-95231568-96AE-47F4-9E61-A46D47E7E634" target="_blank">ASMCMD Audit Files Management
+                    Commands</a> provides detailed information about ASMCMD commands to manage
+                Oracle ASM audit trail files.
+                        <div class="infoboxnotealso" id="GUID-FD789428-44AD-4CA0-AD29-B2B3DDDEF8B0__GUID-D2C22B1B-E971-4FE4-82B7-5FC3E8A498CB">
+                           <p class="notep1">See Also:</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-FD789428-44AD-4CA0-AD29-B2B3DDDEF8B0__UL_OYB_RFS_CNB">
+                              <li>
+                                 
+                                 <p><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=ostmg-GUID-B8ADA15C-2A32-4A56-8AB3-5297339F9061" target="_blank">audcreatejob ASMCMD
+                                    command</a></p>
+                                 
+                              </li>
+                              <li><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=ostmg-GUID-EF7A7759-98CC-47B3-87F4-E54F0D482FA5" target="_blank">audsettimestamp ASMCMD
+                                command</a></li>
+                              <li><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=ostmg-GUID-B0BF59C0-D8E6-417C-99FD-294BC2E309FE" target="_blank">audcleanaudittrail ASMCMD
+                                command</a></li>
+                           </ul>
+                           
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-EA3574AB-EC14-499C-A826-CC26330B76C0" name="GUID-EA3574AB-EC14-499C-A826-CC26330B76C0"></a><h3 id="OSTMG-GUID-EA3574AB-EC14-499C-A826-CC26330B76C0" class="sect3">Audit Trail Properties in Operating System and Unified Audit Trail</h3>
+               <div>
+                  <div class="tblformal" id="GUID-EA3574AB-EC14-499C-A826-CC26330B76C0__TABLE_DBC_PZW_GNB">
+                     <p class="titleintable">Table 3-3 Audit Trail Size and Age Properties</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Audit Trail Size and Age Properties" summary="Audit trail properties, showing property name and description." frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d18326e986">Property Name</th>
+                              <th align="left" valign="bottom" width="0%" id="d18326e988">Description</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d18326e992" headers="d18326e986 ">
+                                 
+                                 <p><span class="bold">Audit file max size</span></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d18326e992 d18326e988 ">
+                                 
+                                 <div class="p">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-EA3574AB-EC14-499C-A826-CC26330B76C0__UL_BCN_SZW_GNB">
+                                       <li>Audit file max size can have a minimum value of
+                                        1 KB and maximum value of 2000000 KB. The default value is
+                                        10000 KB.</li>
+                                       <li>Oracle ASM instance will stop writing audit
+                                        records to the audit files upon reaching the file max size
+                                        limit. The files are renamed and a new file will be created
+                                        for subsequent audit records.</li>
+                                       <li> See <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=ostmg-GUID-06F84E5F-7A56-43BA-83FC-90F639FA3BBA" target="_blank">ASMCMD Audit
+                                            Files Management Commands</a> to set the audit file
+                                        max property.
+                                       </li>
+                                    </ul>
+                                    
+                                 </div>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d18326e1016" headers="d18326e986 ">
+                                 
+                                 <p><span class="bold">Audit file max age</span></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d18326e1016 d18326e988 ">
+                                 
+                                 <div class="p">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-EA3574AB-EC14-499C-A826-CC26330B76C0__UL_MBG_5ZW_GNB">
+                                       <li>Audit file max age can have a minimum value of
+                                        1 day and maximum value of 497 days. The default value is 5
+                                        days.</li>
+                                       <li>Oracle ASM instance will stop writing audit
+                                        records to the audit files upon reaching the file max age
+                                        limit. The files are renamed and a new file will be created
+                                        for subsequent audit records.</li>
+                                       <li>See <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=ostmg-GUID-06F84E5F-7A56-43BA-83FC-90F639FA3BBA" target="_blank">ASMCMD Audit
+                                            Files Management Commands</a> to set the audit file
+                                        max age.
+                                       </li>
+                                    </ul>
+                                    
+                                 </div>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d18326e1040" headers="d18326e986 ">
+                                 
+                                 <p><span class="bold">Audit purge job interval</span></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d18326e1040 d18326e988 ">
+                                 
+                                 <div class="p">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-EA3574AB-EC14-499C-A826-CC26330B76C0__UL_L4J_WZW_GNB">
+                                       <li>Audit purge job interval can have a minimum
+                                        value of 1 hour and maximum value of 999 hours. </li>
+                                       <li> See <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=ostmg-GUID-A053693F-A4C0-4A0F-BC2C-8B3B2A2F3F20" target="_blank">ASMCMD Audit
+                                            Files Management Commands</a> to set the audit purge
+                                        job interval.
+                                       </li>
+                                    </ul>
+                                    
+                                 </div>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <!-- class="inftblhruleinformal" -->
+                  <div class="infoboxnotealso" id="GUID-EA3574AB-EC14-499C-A826-CC26330B76C0__GUID-AE1A618C-0DC4-489A-98F5-8D2AE85705E0">
+                     <p class="notep1">See Also:</p>
+                     
+                     <ul style="list-style-type: disc;" id="GUID-EA3574AB-EC14-499C-A826-CC26330B76C0__UL_NRP_NZW_CNB">
+                        <li><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=ostmg-GUID-B9B0FFB9-C3DF-43A6-ACDD-4DC39A812F8B" target="_blank">audclearproperty ASMCMD
+                        command</a></li>
+                        <li><a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ostmg&amp;id=arpls-GUID-835445FD-845E-48C2-B2C0-F8CC2249E9F2" target="_blank">Oracle Database PL/SQL Packages
+                        and Types Reference</a> for more details about audit trail
+                    properties.
+                        </li>
+                     </ul>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

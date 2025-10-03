@@ -1,0 +1,804 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="General Considerations of Using&nbsp;Transparent&nbsp;Data Encryption">
+      <meta name="abstract" content="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">
+      <meta name="description" content="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">
+      <meta name="DC.subject" content="TDE columns, migrating from release 11g, TDE tablespaces, Transparent Data Encryption (TDE), compression of encrypted data, data deduplication of encrypted data, data deduplication of Transparent Data Encryption data, compression of Transparent Data Encryption data, security considerations, general advice, column encryption, platintext fragments, tablespace encryption, security considerations for plaintext fragments, performance overheads, about, performance, Transparent Data Encryption, performance overhead, storage overhead, data storage, applications, modifying to use Transparent Data Encryption, modifying applications for use with, orapki utility, how compares with ADMINISTER KEY MANAGEMENT statement, ALTER SYSTEM statement, external files, loading data to tables with encrypted columns, encrypted columns, data loads from external files, data loads from external file, external tables, encrypting columns in, ORACLE_LOADER, ORACLE_DATPUMP, keystores, database close operations">
+      <meta name="keywords" content="TDE columns, migrating from release 11g, TDE tablespaces, Transparent Data Encryption (TDE), compression of encrypted data, data deduplication of encrypted data, data deduplication of Transparent Data Encryption data, compression of Transparent Data Encryption data, security considerations, general advice, column encryption, platintext fragments, tablespace encryption, security considerations for plaintext fragments, performance overheads, about, performance, Transparent Data Encryption, performance overhead, storage overhead, data storage, applications, modifying to use Transparent Data Encryption, modifying applications for use with, orapki utility, how compares with ADMINISTER KEY MANAGEMENT statement, ALTER SYSTEM statement, external files, loading data to tables with encrypted columns, encrypted columns, data loads from external files, data loads from external file, external tables, encrypting columns in, ORACLE_LOADER, ORACLE_DATPUMP, keystores, database close operations">
+      <meta name="DC.Relation" scheme="URI" content="asopart1.html">
+      <meta name="DC.Relation" scheme="URI" content="general-considerations-of-using-transparent-data-encryption.html#GUID-0DA31445-6EF6-4794-A983-7D03A497977A">
+      <meta name="DC.Relation" scheme="URI" content="general-considerations-of-using-transparent-data-encryption.html#GUID-2A7F5371-3F24-4956-8F51-3568DEF885EB">
+      <meta name="DC.Relation" scheme="URI" content="general-considerations-of-using-transparent-data-encryption.html#GUID-0D1A22F0-8F5F-4EB6-8E37-84A6055A1D5F">
+      <meta name="DC.Relation" scheme="URI" content="general-considerations-of-using-transparent-data-encryption.html#GUID-2B082CD7-EDDA-4705-9B61-1B1015AB287B">
+      <meta name="DC.Relation" scheme="URI" content="general-considerations-of-using-transparent-data-encryption.html#GUID-401720E6-463B-4473-ACE8-AF1B6127821F">
+      <meta name="DC.Relation" scheme="URI" content="general-considerations-of-using-transparent-data-encryption.html#GUID-AE301545-A8FF-4FDD-B493-F4D5ADF42245">
+      <meta name="DC.Relation" scheme="URI" content="general-considerations-of-using-transparent-data-encryption.html#GUID-A29FA261-ECDB-4B99-A864-8FFD95568813">
+      <meta name="DC.Relation" scheme="URI" content="general-considerations-of-using-transparent-data-encryption.html#GUID-A637AB50-2A54-4248-8DC2-F50729C38B97">
+      <meta name="DC.Creator" content="Sudha Duraiswamy">
+      <meta name="DC.Creator" content="Michael Hwa">
+      <meta name="DC.Creator" content="Sudha Iyer">
+      <meta name="DC.Creator" content="Supriya Kalyanasundaram">
+      <meta name="DC.Creator" content="Lakshmi Kethana">
+      <meta name="DC.Creator" content="Peter Knaggs">
+      <meta name="DC.Creator" content="Andrew Koyfman">
+      <meta name="DC.Creator" content="Dah-Yoh Lim">
+      <meta name="DC.Creator" content="Adam Lee">
+      <meta name="DC.Creator" content="Adam Lindsey">
+      <meta name="DC.Creator" content="Rahil Mir">
+      <meta name="DC.Creator" content="Gopal Mulagund">
+      <meta name="DC.Creator" content="Andy Philips">
+      <meta name="DC.Creator" content="Preetam Ramakrishna">
+      <meta name="DC.Creator" content="Saikat Saha">
+      <meta name="DC.Creator" content="Philip Thornton">
+      <meta name="DC.Creator" content="Peter Wahl">
+      <meta name="DC.Creator" content="Lixia Yuan">
+      <meta name="DC.Creator" content="Paul Youn">
+      <meta name="DC.Creator" content="Patricia Huey">
+      <meta name="DC.Publisher" content="May2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-F02C9CBF-0374-408B-8655-F7531B681D41">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">
+      <meta name="description" content="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">
+      <title>General Considerations of Using&nbsp;Transparent&nbsp;Data Encryption</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Advanced Security Guide ">
+      <meta property="og:description" content="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Advanced Security Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="advanced-security-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-05-21T13:04:43-07:00">
+      <meta name="dcterms.title" content="Advanced Security Guide ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96301-22">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="managing-keystores-encryption-keys-in-isolated-mode.html" title="Previous" type="text/html">
+      <link rel="next" href="using-transparent-data-encryption-with-other-oracle-features.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="ASOAG">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"General Considerations of Using&nbsp;Transparent&nbsp;Data Encryption","description":"When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.","datePublished":"2025-05-21 CST","dateModified":"2025-05-21 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="managing-keystores-encryption-keys-in-isolated-mode.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="using-transparent-data-encryption-with-other-oracle-features.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-F02C9CBF-0374-408B-8655-F7531B681D41" name="GUID-F02C9CBF-0374-408B-8655-F7531B681D41"></a><a id="ASOAG10478"></a>
+         
+         <h2 id="ASOAG-GUID-F02C9CBF-0374-408B-8655-F7531B681D41" class="sect2"><span class="enumeration_chapter">8 </span>General Considerations of Using&nbsp;Transparent&nbsp;Data Encryption
+         </h2>
+         <div class="ind">
+            <div>
+               <p>When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.</p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-0DA31445-6EF6-4794-A983-7D03A497977A">Migrating Encrypted TDE Columns or Tablespaces after a Database Upgrade from Release 11g</a><br>If you are upgrading from Oracle Database release 11g, then you must manually convert the typed master encryption keys to united mode master encryption keys. 
+                  </li>
+                  <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-2A7F5371-3F24-4956-8F51-3568DEF885EB">Compression and Data Deduplication of Encrypted Data</a><br>When you use Oracle's compression products and options with Transparent Data Encryption (TDE) tablespace encryption, Oracle Database automatically applies compression before performing the encryption.
+                  </li>
+                  <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-0D1A22F0-8F5F-4EB6-8E37-84A6055A1D5F">Security Considerations for Transparent Data Encryption</a><br>As with all Oracle Database features, you should consider security when you create TDE policies.
+                  </li>
+                  <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-2B082CD7-EDDA-4705-9B61-1B1015AB287B">Performance and Storage Overhead of Transparent Data Encryption</a><br>The performance of Transparent Data Encryption can vary. 
+                  </li>
+                  <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-401720E6-463B-4473-ACE8-AF1B6127821F">Modifying Your Applications for Use with Transparent Data Encryption</a><br>You can modify your applications to use Transparent Data Encryption.
+                  </li>
+                  <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-AE301545-A8FF-4FDD-B493-F4D5ADF42245">How ALTER SYSTEM and orapki Map to ADMINISTER KEY MANAGEMENT</a><br>Many of the clauses from the <code class="codeph">ALTER SYSTEM</code> statement correspond to the <code class="codeph">ADMINISTER KEY MANAGEMENT</code> statement. 
+                  </li>
+                  <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-A29FA261-ECDB-4B99-A864-8FFD95568813">Data Loads from External Files to Tables with Encrypted Columns</a><br>You can use SQL*Loader to perform data loads from files to tables that have encrypted columns.
+                  </li>
+                  <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-A637AB50-2A54-4248-8DC2-F50729C38B97">Transparent Data Encryption and Database Close Operations</a><br>You should ensure that the software or external keystore is open before you close the database.
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="asopart1.html" title="Part I describes how to use Transparent Data Encryption.">Using Transparent Data Encryption</a></p>
+                  </div>
+               </div>
+            </div>
+            
+            <div class="props_rev_3"><a id="GUID-0DA31445-6EF6-4794-A983-7D03A497977A" name="GUID-0DA31445-6EF6-4794-A983-7D03A497977A"></a><h3 id="ASOAG-GUID-0DA31445-6EF6-4794-A983-7D03A497977A" class="sect3"><span class="enumeration_section">8.1 </span>Migrating Encrypted TDE Columns or Tablespaces after a Database Upgrade from Release 11g
+               </h3>
+               <div>
+                  <p>If you are upgrading from Oracle Database release 11g, then you must manually convert the typed master encryption keys to united mode master encryption keys. </p>
+                  <div class="section">You must perform this task for master encryption keys in both column encryption and tablespace encryption configurations. </div>
+                  <ol id="GUID-0DA31445-6EF6-4794-A983-7D03A497977A__STEPS_L1P_C3S_BZB">
+                     <li class="stepexpand"><span>Navigate to directory that has the TDE password-based keystore <code class="codeph">ewallet.p12</code>.</span></li>
+                     <li class="stepexpand"><span>Check the keystore contents and look for typed keys (that is, identifiers starting with <code class="codeph">ORACLE.SECURITY.TS.ENCRYPTION.B</code> as follows).</span><div><pre class="pre codeblock"><code>mkstore -wrl ewallet.p12 -list
+Enter wallet password: <span class="italic">wallet_password</span></code></pre><p>Output similar to the following appears. The entries with <span class="bold">TS</span> are the typed keys that must be converted.
+                           </p><pre class="pre codeblock"><code>Oracle Secret Store entries:
+ORACLE.SECURITY.DB.ENCRYPTION.AYTGHzMNxU9kv77shWptsxkAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ORACLE.SECURITY.DB.ENCRYPTION.ARjWMYe05E9Bv4KULq1no8UAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ORACLE.SECURITY.DB.ENCRYPTION.ASoO2D5jtk/jv9FPW6rhhGcAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ORACLE.SECURITY.DB.ENCRYPTION.MASTERKEY<span class="bold">
+ORACLE.SECURITY.TS.ENCRYPTION.BW8QuLUTgOpV0PtEt/lR028CAwAAAAAAAAAAAAAAAAAAAAAAAAAA
+ORACLE.SECURITY.TS.ENCRYPTION.BWNFXbAc38AZMdFdi2kuWV0CAwAAAAAAAAAAAAAAAAAAAAAAAAAA</span></code></pre></div>
+                     </li>
+                     <li class="stepexpand"><span>Back up the keystore. </span><div>For example:<pre class="pre codeblock"><code>cp ewallet.p12 ewallet_<span class="italic">ddddmmyy</span>.p12</code></pre></div>
+                     </li>
+                     <li class="stepexpand"><span>Create a united key for each typed key that you found in the keystore.</span><div>To accomplish this, you must modify the identifier name (Key ID) to have <span class="bold">DB</span> instead of <span class="bold">TS</span> and the first letter from <span class="bold">B</span> to <span class="bold">A</span>. For this you must add a new entry to the keystore. The following example shows how to convert the first typed key in the list that was shown in the preceding steps. 
+                        </div>
+                        <ol type="a" id="GUID-0DA31445-6EF6-4794-A983-7D03A497977A__SUBSTEPS_FQ5_VJS_BZB">
+                           <li class="substepexpand"><span>List the value for identifier to double-check it. The bold text indicates the two changes to be made.</span><div>For example:<pre class="pre codeblock"><code>ORACLE.SECURITY.<span class="bold">TS</span>.ENCRYPTION.<span class="bold">B</span>W8QuLUTgOpV0PtEt/lR028CAwAAAAAAAAAAAAAAAAA</code></pre><p>This example must be changed as follows:</p><pre class="pre codeblock"><code>ORACLE.SECURITY.<span class="bold">DB</span>.ENCRYPTION.<span class="bold">A</span>W8QuLUTgOpV0PtEt/lR028CAwAAAAAAAAAAAAAAAAA</code></pre></div>
+                           </li>
+                           <li class="substepexpand"><span>Using this updated entry, add a new entry to the keystore. </span><div>For example:<pre class="pre codeblock"><code>mkstore -wrl <span class="italic">wallet_location</span> -viewEntry
+ORACLE.SECURITY.TS.ENCRYPTION.BW8QuLUTgOpV0PtEt/lR028CAwAAAAAAAAAAAAAAAAAAAAAAAAAA</code></pre><p>The <code class="codeph">-viewEntry</code> option of this command displays the identifier value for the TS encryption, which you must include in the next command when you create the keystore entry:
+                                 </p><pre class="pre codeblock"><code>mkstore -wrl <span class="italic">wallet_location</span> -
+createEntry ORACLE.SECURITY.DB.ENCRYPTION.AW8QuLUTgOpV0PtEt/lR028CAwAAAAAAAAAAAAAAAA
+AAAAAAAAAA <span class="italic">value_for_ts_encryption_identifier</span></code></pre></div>
+                           </li>
+                           <li class="substepexpand"><span>For an auto-login keystore, rename the old auto-login keystore and then create a new one.</span><div>
+                                 <ol type="i" id="GUID-0DA31445-6EF6-4794-A983-7D03A497977A__OL_RHD_Y4S_BZB">
+                                    <li>Back up the master encryption key. For example:<pre class="pre codeblock"><code>mv cwallet.sso cwallet_<span class="italic">ddddmmyy</span>.sso</code></pre></li>
+                                    <li>Use the <code class="codeph">ADMINISTER KEY MANAGEMENT</code> command to create the auto-login keystore. 
+                                    </li>
+                                 </ol>
+                              </div>
+                           </li>
+                        </ol>
+                     </li>
+                  </ol>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="configuring-transparent-data-encryption.html#GUID-98BA94DA-571B-429C-8E7A-B6A1020E9420" title="As an alternative to password-protected keystores, you can create either an auto-login or local auto-login software keystore.">Creating an Auto-Login or a Local Auto-Login Software Keystore</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-F02C9CBF-0374-408B-8655-F7531B681D41" title="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">General Considerations of Using&nbsp;Transparent&nbsp;Data Encryption</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="ASOAG10358"></a><div class="props_rev_3"><a id="GUID-2A7F5371-3F24-4956-8F51-3568DEF885EB" name="GUID-2A7F5371-3F24-4956-8F51-3568DEF885EB"></a><h3 id="ASOAG-GUID-2A7F5371-3F24-4956-8F51-3568DEF885EB" class="sect3"><span class="enumeration_section">8.2 </span>Compression and Data Deduplication of Encrypted Data
+               </h3>
+               <div>
+                  <p>When you use Oracle's compression products and options with Transparent Data Encryption (TDE) tablespace encryption, Oracle Database automatically applies compression before performing the encryption.</p>
+                  <p>The compression products include the following: Oracle Recovery Manager (Oracle RMAN) compression, Oracle Advanced Compression, Exadata Hybrid Columnar Compression (EHCC), and so on.</p>
+                  <p>This ensures that you receive the maximum space and performance benefits from compression, while also receiving the security of encryption at rest. In the <code class="codeph">CREATE TABLESPACE</code> SQL statement, include both the <code class="codeph">COMPRESS</code> and <code class="codeph">ENCRYPT</code> clauses. 
+                  </p>
+                  <p>With column encryption, Oracle Database compresses the data after it encrypts the column. This means that compression will have minimal effectiveness on encrypted columns. There is one notable exception: if the column is a SecureFiles LOB, and the encryption is implemented with SecureFiles LOB Encryption, and the compression (and possibly deduplication) are implemented with SecureFiles LOB Compression &amp; Deduplication, then compression is performed before encryption. Similar to the <code class="codeph">CREATE TABLESPACE</code> statement for tablespace encryption, include both the <code class="codeph">COMPRESS</code> and <code class="codeph">ENCRYPT</code> clauses.
+                  </p>
+                  <div class="infoboxnote" id="GUID-2A7F5371-3F24-4956-8F51-3568DEF885EB__GUID-8E499191-DAEA-4B0A-AB72-603AAA170F02">
+                     <p class="notep1">Note:</p>The type of compression that you can use depends on the licensing that you have for Advanced Compression. See <a href="../dblic/Licensing-Information.html#DBLIC-GUID-0F9EB85D-4610-4EDF-89C2-4916A0E7AC87" target="_blank"><span><cite>Oracle Database Licensing Information User Manual</cite></span></a>.
+                  </div>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="../bradv/configuring-rman-client-advanced.html#BRADV-GUID-0AA6DB13-ABA9-4BFB-9E42-38DADB9A0B45" target="_blank"><span><cite>Oracle Database Backup and Recovery User’s Guide</cite></span></a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-F02C9CBF-0374-408B-8655-F7531B681D41" title="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">General Considerations of Using&nbsp;Transparent&nbsp;Data Encryption</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="ASOAG9552"></a><div class="props_rev_3"><a id="GUID-0D1A22F0-8F5F-4EB6-8E37-84A6055A1D5F" name="GUID-0D1A22F0-8F5F-4EB6-8E37-84A6055A1D5F"></a><h3 id="ASOAG-GUID-0D1A22F0-8F5F-4EB6-8E37-84A6055A1D5F" class="sect3"><span class="enumeration_section">8.3 </span>Security Considerations for Transparent Data Encryption
+               </h3>
+               <div>
+                  <p>As with all Oracle Database features, you should consider security when you create TDE policies.</p>
+               </div>
+               <div>
+                  <ul class="ullinks">
+                     <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-ED481093-51B0-42F2-BADB-E5E55889AD47">Transparent Data Encryption General Security Advice</a><br>Security considerations for Transparent Data Encryption (TDE) operate within the broader area of total system security. 
+                     </li>
+                     <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-9E283E61-E4CA-4E3A-A99C-4F31ABE0787F">Transparent Data Encryption Column Encryption-Specific Advice</a><br>Additional security considerations apply to normal database and network operations when using TDE. 
+                     </li>
+                     <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-8DBBE636-3166-4828-92C1-12C93194C17D">Managing Security for Plaintext Fragments</a><br>You should remove old plaintext fragments that can appear over time.
+                     </li>
+                  </ul>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-F02C9CBF-0374-408B-8655-F7531B681D41" title="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">General Considerations of Using&nbsp;Transparent&nbsp;Data Encryption</a></p>
+                     </div>
+                  </div>
+               </div>
+               <a id="ASOAG10359"></a><div class="sect3"><a id="GUID-ED481093-51B0-42F2-BADB-E5E55889AD47" name="GUID-ED481093-51B0-42F2-BADB-E5E55889AD47"></a><h4 id="ASOAG-GUID-ED481093-51B0-42F2-BADB-E5E55889AD47" class="sect4"><span class="enumeration_section">8.3.1 </span>Transparent Data Encryption General Security Advice
+                  </h4>
+                  <div>
+                     <p>Security considerations for Transparent Data Encryption (TDE) operate within the broader area of total system security. </p>
+                     <p>Follow these general guidelines:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>Identify the degrees of sensitivity of data in your database, the protection that they need, and the levels of risk to be addressed. For example, highly sensitive data requiring stronger protection can be encrypted with the AES256 algorithm. A database that is not as sensitive can be protected with no <a href="glossary.html#GUID-6803F75B-7883-4D0B-B1FF-0084AD65E001"><span class="xrefglossterm">salt</span></a> or the <code class="codeph">nomac</code> option to enable performance benefits.
+                           </p>
+                        </li>
+                        <li>
+                           <p>Evaluate the costs and benefits that are acceptable to data and keystore protection. Protection of keys determines the type of keystore to be used: auto-login TDE wallets, password-based TDE wallets, or external keystores.</p>
+                        </li>
+                        <li>
+                           <p>Consider having separate security administrators for TDE and for the database. </p>
+                        </li>
+                        <li>
+                           <p>Consider having a separate and exclusive keystore for TDE. </p>
+                        </li>
+                        <li>
+                           <p>Implement protected back-up procedures for your encrypted data.</p>
+                        </li>
+                     </ul>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-0D1A22F0-8F5F-4EB6-8E37-84A6055A1D5F" title="As with all Oracle Database features, you should consider security when you create TDE policies.">Security Considerations for Transparent Data Encryption</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="ASOAG10360"></a><div class="props_rev_3"><a id="GUID-9E283E61-E4CA-4E3A-A99C-4F31ABE0787F" name="GUID-9E283E61-E4CA-4E3A-A99C-4F31ABE0787F"></a><h4 id="ASOAG-GUID-9E283E61-E4CA-4E3A-A99C-4F31ABE0787F" class="sect4"><span class="enumeration_section">8.3.2 </span>Transparent Data Encryption Column Encryption-Specific Advice
+                  </h4>
+                  <div>
+                     <p>Additional security considerations apply to normal database and network operations when using TDE. </p>
+                     <p>Encrypted column data stays encrypted in the data files, undo logs, redo logs, and the buffer cache of the system global area (SGA). However, data is decrypted during expression evaluation, making it possible for decrypted data to appear in the swap file on the disk. Privileged operating system users can potentially view this data.</p>
+                     <p>Column values encrypted using TDE are stored in the data files in encrypted form. However, these data files may still contain some <a href="glossary.html#GUID-268B0C3E-D1AD-482D-939C-A9A6522A8E8D"><span class="xrefglossterm">plaintext</span></a> fragments, called ghost copies, left over by past data operations on the table. This is similar to finding data on the disk after a file was deleted by the operating system.
+                     </p>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-0D1A22F0-8F5F-4EB6-8E37-84A6055A1D5F" title="As with all Oracle Database features, you should consider security when you create TDE policies.">Security Considerations for Transparent Data Encryption</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="ASOAG10361"></a><div class="props_rev_3"><a id="GUID-8DBBE636-3166-4828-92C1-12C93194C17D" name="GUID-8DBBE636-3166-4828-92C1-12C93194C17D"></a><h4 id="ASOAG-GUID-8DBBE636-3166-4828-92C1-12C93194C17D" class="sect4"><span class="enumeration_section">8.3.3 </span>Managing Security for Plaintext Fragments
+                  </h4>
+                  <div>
+                     <p>You should remove old plaintext fragments that can appear over time.</p>
+                     <div class="section">
+                        <p>Old <a href="glossary.html#GUID-268B0C3E-D1AD-482D-939C-A9A6522A8E8D"><span class="xrefglossterm">plaintext</span></a> fragments may be present for some time until the database overwrites the blocks containing such values. If privileged operating system users bypass the access controls of the database, then they might be able to directly access these values in the data file holding the tablespace. 
+                        </p>
+                        <p>To minimize this risk:</p>
+                     </div>
+                     <div class="section">
+                        <ol>
+                           <li>
+                              <p>Create a new tablespace in a new data file. </p>
+                              <p>You can use the <code class="codeph">CREATE TABLESPACE</code> statement to create this tablespace.
+                              </p>
+                           </li>
+                           <li>
+                              <p>Move the table containing encrypted columns to the new tablespace. You can use the <code class="codeph">ALTER TABLE.....MOVE</code> statement. 
+                              </p>
+                              <p>Repeat this step for all of the objects in the original tablespace.</p>
+                           </li>
+                           <li>
+                              <p>Drop the original tablespace. </p>
+                              <p>You can use the <code class="codeph">DROP TABLESPACE </code><span class="italic"><code class="codeph">tablespace</code></span> <code class="codeph">INCLUDING CONTENTS KEEP DATAFILES</code> statement. Oracle recommends that you securely delete data files using platform-specific utilities.
+                              </p>
+                           </li>
+                           <li>
+                              <p>Use platform-specific and file system-specific utilities to securely delete the old data file. Examples of such utilities include <code class="codeph">shred</code> (on Linux) and <code class="codeph">sdelete</code> (on Windows).
+                              </p>
+                           </li>
+                        </ol>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-0D1A22F0-8F5F-4EB6-8E37-84A6055A1D5F" title="As with all Oracle Database features, you should consider security when you create TDE policies.">Security Considerations for Transparent Data Encryption</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div>
+            </div><a id="ASOAG9549"></a><div class="props_rev_3"><a id="GUID-2B082CD7-EDDA-4705-9B61-1B1015AB287B" name="GUID-2B082CD7-EDDA-4705-9B61-1B1015AB287B"></a><h3 id="ASOAG-GUID-2B082CD7-EDDA-4705-9B61-1B1015AB287B" class="sect3"><span class="enumeration_section">8.4 </span>Performance and Storage Overhead of Transparent Data Encryption
+               </h3>
+               <div>
+                  <p>The performance of Transparent Data Encryption can vary. </p>
+               </div>
+               <div>
+                  <ul class="ullinks">
+                     <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-13FCC847-A665-4BE4-AF3F-AD9F455D6295">Performance Overhead of Transparent Data Encryption</a><br>Transparent Data Encryption tablespace encryption has small associated performance overhead. 
+                     </li>
+                     <li class="ulchildlink"><a href="general-considerations-of-using-transparent-data-encryption.html#GUID-24F03ED5-D3E1-4868-879F-834A4440B94B">Storage Overhead of Transparent Data Encryption</a><br>TDE tablespace encryption has no storage overhead, but TDE column encryption has some associated storage overhead. 
+                     </li>
+                  </ul>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-F02C9CBF-0374-408B-8655-F7531B681D41" title="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">General Considerations of Using&nbsp;Transparent&nbsp;Data Encryption</a></p>
+                     </div>
+                  </div>
+               </div>
+               <a id="ASOAG9550"></a><div class="props_rev_3"><a id="GUID-13FCC847-A665-4BE4-AF3F-AD9F455D6295" name="GUID-13FCC847-A665-4BE4-AF3F-AD9F455D6295"></a><h4 id="ASOAG-GUID-13FCC847-A665-4BE4-AF3F-AD9F455D6295" class="sect4"><span class="enumeration_section">8.4.1 </span>Performance Overhead of Transparent Data Encryption
+                  </h4>
+                  <div>
+                     <p>Transparent Data Encryption tablespace encryption has small associated performance overhead. </p>
+                     <p>The actual performance impact on applications can vary. TDE column encryption affects performance only when data is retrieved from or inserted into an encrypted column. No reduction in performance occurs for operations involving unencrypted columns, even if these columns are in a table containing encrypted columns. Accessing data in encrypted columns involves small performance overhead, and the exact overhead you observe can vary.</p>
+                     <p>The total performance overhead depends on the number of encrypted columns and their frequency of access. The columns most appropriate for encryption are those containing the most sensitive data.</p>
+                     <p>Enabling encryption on an existing table results in a full table update like any other <code class="codeph">ALTER TABLE</code> operation that modifies table characteristics. Keep in mind the potential performance and redo log impact on the database server before enabling encryption on a large existing table.
+                     </p>
+                     <p>A table can temporarily become inaccessible for write operations while encryption is being enabled, <a href="glossary.html#GUID-78CFC3BC-9BDD-406E-A6E2-2374AC636269"><span class="xrefglossterm">TDE table key</span></a>s are being rekeyed, or the encryption algorithm is being changed. You can use online table redefinition to ensure that the table is available for write operations during such procedures. 
+                     </p>
+                     <p>If you enable TDE column encryption on a very large table, then you may need to increase the redo log size to accommodate the operation.</p>
+                     <p>Encrypting an indexed column takes more time than encrypting a column without indexes. If you must encrypt a column that has an index built on it, you can try dropping the index, encrypting the column with <code class="codeph">NO SALT</code>, and then re-creating the index.
+                     </p>
+                     <p>If you index an encrypted column, then the index is created on the encrypted values. When you query for a value in the encrypted column, Oracle Database transparently encrypts the value used in the SQL query. It then performs an index lookup using the encrypted value. </p>
+                     <div class="infoboxnote" id="GUID-13FCC847-A665-4BE4-AF3F-AD9F455D6295__GUID-715968D0-7652-411E-94AD-A42AB225191D">
+                        <p class="notep1">Note:</p>
+                        <p>If you must perform range scans over indexed, encrypted columns, then use TDE tablespace encryption in place of TDE column encryption. </p>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="infoboxnotealso" id="GUID-13FCC847-A665-4BE4-AF3F-AD9F455D6295__GUID-B4D8DE68-23D0-4843-B996-1438FE7B8382">
+                        <p class="notep1">See Also:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><a href="configuring-transparent-data-encryption.html#GUID-936CC3D2-8102-454C-AC49-D0126929D738" title="The external table feature enables you to access data in external sources as if the data were in a database table.">Creating an Encrypted Column in an External Table</a></p>
+                           </li>
+                           <li>
+                              <p><a href="../admin/managing-tables.html#ADMIN01514" target="_blank"><span><cite>Oracle Database Administrator’s Guide</cite></span></a> for information about redefining tables online
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-2B082CD7-EDDA-4705-9B61-1B1015AB287B" title="The performance of Transparent Data Encryption can vary.">Performance and Storage Overhead of Transparent Data Encryption</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="ASOAG9551"></a><div class="props_rev_3"><a id="GUID-24F03ED5-D3E1-4868-879F-834A4440B94B" name="GUID-24F03ED5-D3E1-4868-879F-834A4440B94B"></a><h4 id="ASOAG-GUID-24F03ED5-D3E1-4868-879F-834A4440B94B" class="sect4"><span class="enumeration_section">8.4.2 </span>Storage Overhead of Transparent Data Encryption
+                  </h4>
+                  <div>
+                     <p>TDE tablespace encryption has no storage overhead, but TDE column encryption has some associated storage overhead. </p>
+                     <p>Encrypted column data must have more storage space than <a href="glossary.html#GUID-268B0C3E-D1AD-482D-939C-A9A6522A8E8D"><span class="xrefglossterm">plaintext</span></a> data. In addition, TDE pads out encrypted values to multiples of 16 bytes. This means that if a credit card number requires nine bytes for storage, then an encrypted credit card value will require an additional seven bytes.
+                     </p>
+                     <p>Each encrypted value is also associated with a 20-byte integrity check. This does not apply if you have encrypted columns using the <code class="codeph">NOMAC</code> parameter. If data was encrypted with <a href="glossary.html#GUID-6803F75B-7883-4D0B-B1FF-0084AD65E001"><span class="xrefglossterm">salt</span></a>, then each encrypted value requires an additional 16 bytes of storage.
+                     </p>
+                     <p>The maximum storage overhead for each encrypted value is from one to 52 bytes.</p>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="configuring-transparent-data-encryption.html#GUID-936CC3D2-8102-454C-AC49-D0126929D738" title="The external table feature enables you to access data in external sources as if the data were in a database table.">Creating an Encrypted Column in an External Table</a></li>
+                        </ul>
+                     </div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-2B082CD7-EDDA-4705-9B61-1B1015AB287B" title="The performance of Transparent Data Encryption can vary.">Performance and Storage Overhead of Transparent Data Encryption</a></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="ASOAG10342"></a><div class="props_rev_3"><a id="GUID-401720E6-463B-4473-ACE8-AF1B6127821F" name="GUID-401720E6-463B-4473-ACE8-AF1B6127821F"></a><h3 id="ASOAG-GUID-401720E6-463B-4473-ACE8-AF1B6127821F" class="sect3"><span class="enumeration_section">8.5 </span>Modifying Your Applications for Use with Transparent Data Encryption
+               </h3>
+               <div>
+                  <p>You can modify your applications to use Transparent Data Encryption.</p>
+                  <div class="section">
+                     <ol>
+                        <li>
+                           <p>Configure the software or external keystore for TDE, and then set the master encryption key. </p>
+                           <p>See the following sections for more information:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><a href="configuring-transparent-data-encryption.html#GUID-1FA85E9E-5666-4CF3-A3C7-1F8A9230B0C9" title="A TDE wallet is a container for the master encryption key, and it resides in the software file system.">Configuring a TDE Wallet</a></p>
+                              </li>
+                              <li>
+                                 <p><a href="configuring-transparent-data-encryption.html#GUID-753C4808-CC51-4DA1-A5C3-980417FDAB14" title="There are two types of external keystores that Oracle Database supports: Oracle Key Vault keystores and OCI Vault - Key Management keystores.">Configuring an External Keystore</a></p>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <p>Verify that the master encryption key was created by querying the <code class="codeph">KEY_ID</code> column of the <code class="codeph">V$ENCRYPTION_KEYS</code> view.
+                           </p>
+                        </li>
+                        <li>
+                           <p>Identify the sensitive columns (such as those containing credit card data) that require Transparent Data Encryption protection.</p>
+                        </li>
+                        <li>
+                           <p>Decide whether to use TDE column encryption or TDE tablespace encryption. </p>
+                           <p>See the following sections for more information: </p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><a href="introduction-to-transparent-data-encryption.html#GUID-547EA215-9576-4C61-A414-3DA3287692A4" title="Transparent Data Encryption (TDE) column encryption protects confidential data, such as credit card and Social Security numbers, that is stored in table columns.">How Transparent Data Encryption Column Encryption Works</a></p>
+                              </li>
+                              <li>
+                                 <p><a href="introduction-to-transparent-data-encryption.html#GUID-688B2CA5-EB00-4BEE-9486-9046670CCA70" title="Transparent Data Encryption (TDE) tablespace encryption enables you to encrypt an entire tablespace.">How Transparent Data Encryption Tablespace Encryption Works</a></p>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <p>Open the keystore. </p>
+                           <p>See the following sections for more information: </p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><a href="configuring-transparent-data-encryption.html#GUID-37296947-18DB-4CFA-A112-794A55E942E2" title="Depending on the type of keystore you create, you must manually open the TDE wallet before you can use it.">Step 3: Open the TDE Wallet</a></p>
+                              </li>
+                              <li>
+                                 <p><a href="managing-keystores-encryption-keys-in-united-mode.html#GUID-4FBC5088-A045-4306-88C0-FEBC07CA18AC" title="After you have configured the database to use Oracle Key Vault for TDE key management, you must open the connection to Oracle Key Vault before you can use it.">Step 2: Open the Connection to Oracle Key Vault</a></p>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <p>Encrypt the columns or tablespaces.</p>
+                           <p>See the following sections for more information: </p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><a href="configuring-transparent-data-encryption.html#GUID-A0E2C279-10F6-48D9-AB92-C547529C06EE" title="You can use Transparent Data Encryption to encrypt individual columns in database tables.">Encrypting Columns in Tables</a></p>
+                              </li>
+                              <li>
+                                 <p><a href="configuring-transparent-data-encryption.html#GUID-1CA947A5-164A-4AA9-AD75-F7D9D4F6FFF8" title="You can perform encryption operations on both offline and online tablespaces and databases.">Encryption Conversions for Tablespaces and Databases</a></p>
+                              </li>
+                           </ul>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-F02C9CBF-0374-408B-8655-F7531B681D41" title="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">General Considerations of Using&nbsp;Transparent&nbsp;Data Encryption</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div><a id="ASOAG10467"></a><a id="ASOAG10408"></a><div class="props_rev_3"><a id="GUID-AE301545-A8FF-4FDD-B493-F4D5ADF42245" name="GUID-AE301545-A8FF-4FDD-B493-F4D5ADF42245"></a><h3 id="ASOAG-GUID-AE301545-A8FF-4FDD-B493-F4D5ADF42245" class="sect3"><span class="enumeration_section">8.6 </span>How ALTER SYSTEM and orapki Map to ADMINISTER KEY MANAGEMENT
+               </h3>
+               <div>
+                  <p>Many of the clauses from the <code class="codeph">ALTER SYSTEM</code> statement correspond to the <code class="codeph">ADMINISTER KEY MANAGEMENT</code> statement. 
+                  </p>
+                  <p><a href="using-transparent-data-encryption-with-other-oracle-features.html#GUID-AE301545-A8FF-4FDD-B493-F4D5ADF42245__CIHHJJCC" title="How ALTER SYSTEM Maps to ADMINISTER KEY MANAGEMENT">Table 9-1</a> compares the Transparent Data Encryption usage of the <code class="codeph">ALTER SYSTEM</code> statement and the <code class="codeph">orapki</code> utility from previous releases with the <code class="codeph">ADMINISTER KEY MANAGEMENT</code> statement. 
+                  </p>
+                  <div class="tblformalwide" id="GUID-AE301545-A8FF-4FDD-B493-F4D5ADF42245__CIHHJJCC">
+                     <p class="titleintable">Table 8-1 How ALTER SYSTEM and orapki Map to ADMINISTER KEY MANAGEMENT</p>
+                     <table cellpadding="4" cellspacing="0" class="FormalWide" title="How ALTER SYSTEM and orapki Map to ADMINISTER KEY MANAGEMENT" summary="How ALTER SYSTEM Maps to ADMINISTER KEY MANAGEMENT" width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="22%" id="d45988e1537">Behavior&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                              <th align="left" valign="bottom" width="33%" id="d45988e1540">ALTER SYSTEM or orapki&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                              <th align="left" valign="bottom" width="45%" id="d45988e1543">ADMINISTER KEY MANAGEMENT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1548" headers="d45988e1537 ">
+                                 <p>Creating a keystore</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1548 d45988e1540 ">
+                                 <p>For TDE wallets:</p><pre class="oac_no_warn" dir="ltr">ALTER SYSTEM SET ENCRYPTION KEY
+["<span class="italic">certificate_ID</span>"] IDENTIFIED
+BY <span class="italic">keystore_password</span>;</pre><p>For external keystores, the keystore is available after you configure the external keystore.</p>
+                              </td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1548 d45988e1543 ">
+                                 <p>For TDE wallets:</p><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT CREATE KEYSTORE
+IDENTIFIED BY <span class="italic">TDE_wallet_password</span></pre><p>For external keystores, the keystore is available after you configure the external keystore. </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1574" headers="d45988e1537 ">
+                                 <p>Creating an auto-login keystore</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1574 d45988e1540 "><pre class="oac_no_warn" dir="ltr">orapki wallet create -wallet
+<span class="italic">wallet_location</span> 
+-auto_login [-pwd <span class="italic">password</span>]</pre></td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1574 d45988e1543 ">
+                                 <p>For TDE wallets:</p><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT CREATE [LOCAL]
+AUTO_LOGIN KEYSTORE FROM KEYSTORE
+IDENTIFIED BY <span class="italic">TDE_wallet_password</span>;</pre><p>This type of keystore applies to TDE wallets only. </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1597" headers="d45988e1537 ">
+                                 <p>Opening a keystore</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1597 d45988e1540 "><pre class="oac_no_warn" dir="ltr">ALTER SYSTEM SET [ENCRYPTION]
+WALLET OPEN IDENTIFIED BY
+<span class="italic">keystore_password</span>;</pre></td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1597 d45988e1543 "><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT SET KEYSTORE 
+OPEN [FORCE KEYSTORE] 
+IDENTIFIED BY <span class="italic">keystore_password</span> | EXTERNAL STORE
+[CONTAINER = ALL | CURRENT];</pre></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1613" headers="d45988e1537 ">
+                                 <p>Closing a keystore</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1613 d45988e1540 "><pre class="oac_no_warn" dir="ltr">ALTER SYSTEM SET [ENCRYPTION]
+WALLET CLOSE IDENTIFIED BY
+<span class="italic">keystore_password</span>;</pre></td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1613 d45988e1543 ">
+                                 <p>For both software and external keystores:</p><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT SET KEYSTORE 
+CLOSE [IDENTIFIED BY <span class="italic">keystore_password</span>]
+[CONTAINER = ALL | CURRENT];</pre></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1631" headers="d45988e1537 ">
+                                 <p>Migrating from an external keystore to a TDE wallet</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1631 d45988e1540 "><pre class="pre codeblock"><code>ALTER SYSTEM SET [ENCRYPTION] KEY 
+IDENTIFIED BY <span class="italic">wallet_password</span> 
+REVERSE MIGRATE USING "<span class="italic">external_key_manager_password</span>" 
+WITH BACKUP;</code></pre></td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1631 d45988e1543 "><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT SET [ENCRYPTION]
+KEY IDENTIFIED BY
+<span class="italic">keystore_password</span>
+REVERSE MIGRATE USING "<span class="italic">external_key_manager_password</span>"
+WITH BACKUP [USING '<span class="italic">backup_identifier</span>'];</pre></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1656" headers="d45988e1537 ">
+                                 <p>Migrating from a TDE wallet to Oracle Key Vault or Oracle Cloud Interface (OCI) Key Management Service (KMS)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1656 d45988e1540 "><pre class="oac_no_warn" dir="ltr">ALTER SYSTEM SET [ENCRYPTION] KEY
+IDENTIFIED BY "<span class="italic">Oracle_Key_Vault_password</span>" 
+MIGRATE USING <span class="italic">wallet_password</span>;</pre></td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1656 d45988e1543 "><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT SET [ENCRYPTION]
+KEY IDENTIFIED BY "<span class="italic">Oracle_Key_Vault_password</span>"
+MIGRATE USING <span class="italic">wallet_password</span>;</pre></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1678" headers="d45988e1537 ">
+                                 <p>Changing a keystore password</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1678 d45988e1540 "><pre class="oac_no_warn" dir="ltr">orapki wallet change_pwd
+-wallet <span class="italic">wallet_location</span>
+[-oldpwd <span class="italic">password</span> ] 
+[-newpwd <span class="italic">password</span>]</pre></td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1678 d45988e1543 ">
+                                 <p>For password-based TDE wallets:</p><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT ALTER KEYSTORE
+PASSWORD IDENTIFIED BY
+<span class="italic">TDE_wallet_old_password</span> 
+SET <span class="italic">TDE_wallet_new_password</span>
+[WITH BACKUP [USING '<span class="italic">backup_identifier</span>']];</pre><p>For external keystores, you close the keystore, change it in the external key manager interface, and then reopen the keystore.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1710" headers="d45988e1537 ">
+                                 <p>Backing up a password-based TDE wallet</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1710 d45988e1540 ">
+                                 <p>No <code class="codeph">ALTER SYSTEM</code> or <code class="codeph">orapki</code> equivalent for this functionality
+                                 </p>
+                              </td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1710 d45988e1543 "><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT BACKUP KEYSTORE
+[USING '<span class="italic">backup_identifier</span>'] IDENTIFIED BY
+<span class="italic">TDE_wallet_password</span> 
+[TO '<span class="italic">TDE_wallet_location</span>'];</pre></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1735" headers="d45988e1537 ">
+                                 <p>Merging two TDE wallets into a third new keystore</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1735 d45988e1540 ">
+                                 <p>No <code class="codeph">ALTER SYSTEM</code> or <code class="codeph">orapki</code> equivalent for this functionality
+                                 </p>
+                              </td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1735 d45988e1543 "><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT MERGE KEYSTORE
+'<span class="italic">TDE_wallet1_location</span>' [IDENTIFIED BY
+<span class="italic">TDE_wallet1_password</span>] 
+AND KEYSTORE '<span class="italic">TDE_wallet2_location</span>'
+[IDENTIFIED BY <span class="italic">TDE_wallet2_password</span>]
+INTO NEW KEYSTORE '<span class="italic">TDE_wallet3_location</span>'
+IDENTIFIED BY <span class="italic">TDE_wallet3_password</span>;</pre></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1770" headers="d45988e1537 ">
+                                 <p>Merging one TDE wallet into another existing keystore</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1770 d45988e1540 ">
+                                 <p>No <code class="codeph">ALTER SYSTEM</code> or <code class="codeph">orapki</code> equivalent for this functionality
+                                 </p>
+                              </td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1770 d45988e1543 "><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT MERGE KEYSTORE
+'<span class="italic">TDE_wallet1_location</span>' [IDENTIFIED BY
+<span class="italic">TDE_wallet1_password</span>] 
+INTO EXISTNG KEYSTORE '<span class="italic">TDE_wallet2_location</span>'
+IDENTIFIED BY <span class="italic">TDE_wallet2_password</span>
+[WITH BACKUP [USING '<span class="italic">backup_identifier</span>']];</pre></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1801" headers="d45988e1537 ">
+                                 <p>Setting or rekeying the master encryption key</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1801 d45988e1540 "><pre class="oac_no_warn" dir="ltr">ALTER SYSTEM SET [ENCRYPTION] KEY
+IDENTIFIED BY <span class="italic">keystore_password</span>;</pre><p><span class="bold">Note:</span> The <code class="codeph">ALTER SYSTEM SET ENCRYPTION KEY</code> statement does not update the <code class="codeph">V$ENCRYPTION_KEYS</code> dynamic view after you rekey the encryption key.
+                                 </p>
+                              </td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1801 d45988e1543 "><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT 
+SET ENCRYPTION KEY [USING TAG '<span class="italic">tag</span>']
+IDENTIFIED BY <span class="italic">keystore_password</span> 
+WITH BACKUP [USING '<span class="italic">backup_identifier</span>'] 
+[CONTAINER = ALL | CURRENT];</pre><p>After you rekey the encryption key, the <code class="codeph">V$ENCRYPTION_KEYS</code> dynamic view is updated.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1839" headers="d45988e1537 ">
+                                 <p>Creating a master encryption key for later user</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1839 d45988e1540 ">
+                                 <p>No <code class="codeph">ALTER SYSTEM</code> or <code class="codeph">orapki</code> equivalent for this functionality
+                                 </p>
+                              </td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1839 d45988e1543 "><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT CREATE KEY 
+[USING TAG '<span class="italic">tag</span>'] 
+IDENTIFIED BY <span class="italic">keystore_password</span> 
+[WITH BACKUP [USING '<span class="italic">backup_identifier</span>']]
+[CONTAINER = (ALL|CURRENT)];</pre></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1864" headers="d45988e1537 ">
+                                 <p>Activating a master encryption key</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1864 d45988e1540 ">
+                                 <p>No <code class="codeph">ALTER SYSTEM</code> or <code class="codeph">orapki</code> equivalent for this functionality
+                                 </p>
+                              </td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1864 d45988e1543 "><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT USE KEY
+'<span class="italic">key_identifier</span>' [USING TAG '<span class="italic">tag</span>'] 
+IDENTIFIED BY <span class="italic">keystore_password</span> 
+[WITH BACKUP [USING '<span class="italic">backup_identifier</span>']];</pre></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1892" headers="d45988e1537 ">
+                                 <p>Creating custom tags for master encryption keys</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1892 d45988e1540 ">
+                                 <p>No <code class="codeph">ALTER SYSTEM</code> or <code class="codeph">orapki</code> equivalent for this functionality
+                                 </p>
+                              </td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1892 d45988e1543 "><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT SET TAG '<span class="italic">tag</span>' 
+FOR '<span class="italic">master_key_identifier</span>' 
+IDENTIFIED BY <span class="italic">keystore_password</span> 
+[WITH BACKUP [USING '<span class="italic">backup_identifier</span>']];</pre></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1920" headers="d45988e1537 ">
+                                 <p>Exporting a master encryption key</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1920 d45988e1540 ">
+                                 <p>No <code class="codeph">ALTER SYSTEM</code> or <code class="codeph">orapki</code> equivalent for this functionality
+                                 </p>
+                              </td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1920 d45988e1543 "><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT 
+EXPORT [ENCRYPTION] KEYS 
+WITH SECRET "<span class="italic">export_secret</span>" 
+TO '<span class="italic">file_path</span>' 
+IDENTIFIED BY <span class="italic">keystoe_password</span>
+[WITH IDENTIFIER IN 
+'<span class="italic">key_id1</span>', '<span class="italic">key_id2</span>', '<span class="italic">key_idn</span>' | 
+(<span class="italic">SQL_query</span>)]</pre></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1958" headers="d45988e1537 ">
+                                 <p>Importing a master encryption key</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1958 d45988e1540 ">
+                                 <p>No <code class="codeph">ALTER SYSTEM</code> or <code class="codeph">orapki</code> equivalent for this functionality
+                                 </p>
+                              </td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1958 d45988e1543 "><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT 
+IMPORT [ENCRYPTION] KEYS 
+WITH SECRET "<span class="italic">import_secret</span>" |  
+FROM '<span class="italic">file_name</span>' 
+IDENTIFIED BY <span class="italic">keystore_password</span>
+[WITH BACKUP [USING '<span class="italic">backup_identifier</span>']];</pre></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="22%" id="d45988e1986" headers="d45988e1537 ">
+                                 <p>Storing Oracle Database secrets in a keystore</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d45988e1986 d45988e1540 ">
+                                 <p>No <code class="codeph">ALTER SYSTEM</code> or <code class="codeph">orapki</code> equivalent for this functionality
+                                 </p>
+                              </td>
+                              <td align="left" valign="top" width="45%" headers="d45988e1986 d45988e1543 ">
+                                 <p>For TDE wallets:</p><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT
+ADD SECRET|UPDATE SECRET|DELETE SECRET
+"<span class="italic">secret</span>" FOR CLIENT '<span class="italic">client_identifier</span>' 
+[USING TAG'<span class="italic">tag</span>'] 
+IDENTIFIED BY <span class="italic">keystore_password</span> 
+[WITH BACKUP [USING '<span class="italic">backup_identifier</span>'];
+</pre><p>For external keystores:</p><pre class="oac_no_warn" dir="ltr">ADMINISTER KEY MANAGEMENT
+ADD SECRET|UPDATE SECRET|DELETE SECRET
+"<span class="italic">secret</span>" FOR CLIENT '<span class="italic">client_identifier</span>' 
+[USING TAG '<span class="italic">tag</span>'] 
+IDENTIFIED BY "<span class="italic">external_key_manager_password</span>";</pre></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-F02C9CBF-0374-408B-8655-F7531B681D41" title="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">General Considerations of Using&nbsp;Transparent&nbsp;Data Encryption</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="sect2"><a id="GUID-A29FA261-ECDB-4B99-A864-8FFD95568813" name="GUID-A29FA261-ECDB-4B99-A864-8FFD95568813"></a><h3 id="ASOAG-GUID-A29FA261-ECDB-4B99-A864-8FFD95568813" class="sect3"><span class="enumeration_section">8.7 </span>Data Loads from External Files to Tables with Encrypted Columns
+               </h3>
+               <div>
+                  <p>You can use SQL*Loader to perform data loads from files to tables that have encrypted columns.</p>
+                  <p>Be aware that with SQL*Loader, you cannot include the <code class="codeph">ENCRYPT</code> clause in the column definition of an external table of the type <code class="codeph">ORACLE_LOADER</code>, but you can include it in the column definitions of external tables of type <code class="codeph">ORACLE_DATAPUMP</code>.
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>External tables of type <code class="codeph">ORACLE_LOADER</code></p>
+                        <p>The reason that you cannot include the <code class="codeph">ENCRYPT</code> clause in the column definitions of external tables of the type <code class="codeph">ORACLE_LOADER</code> is because the contents of an external table with the <code class="codeph">ORACLE_LOADER</code> type must come from a user-specified plaintext "backing file," and such plaintext files cannot contain any TDE encrypted data.
+                        </p>
+                        <p>If you use the <code class="codeph">ENCRYPT</code> clause in the definition of an external  table of type <code class="codeph">ORACLE_LOADER</code>, then when you query the TDE-encrypted column in this external table, the query fails. This is because TDE expects the external  data to have been encrypted, and automatically tries to decrypt it on  load. This action fails because the "backing file" only contains plaintext.
+                        </p>
+                     </li>
+                     <li>
+                        <p>External tables of type <code class="codeph">ORACLE_DATAPUMP</code></p>
+                        <p>You can use TDE column encryption with external tables of type <code class="codeph">ORACLE_DATAPUMP</code>.  This is because for external tables of <code class="codeph">ORACLE_DATAPUMP</code> type, the "backing file" is always created by Oracle Database(during an unload operation) and thus does have support  for being populated with encrypted data.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-F02C9CBF-0374-408B-8655-F7531B681D41" title="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">General Considerations of Using&nbsp;Transparent&nbsp;Data Encryption</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="sect2"><a id="GUID-A637AB50-2A54-4248-8DC2-F50729C38B97" name="GUID-A637AB50-2A54-4248-8DC2-F50729C38B97"></a><h3 id="ASOAG-GUID-A637AB50-2A54-4248-8DC2-F50729C38B97" class="sect3"><span class="enumeration_section">8.8 </span>Transparent Data Encryption and Database Close Operations
+               </h3>
+               <div>
+                  <p>You should ensure that the software or external keystore is open before you close the database.</p>
+                  <p>The master encryption keys may be required during the database close operation. The database close operation automatically closes the software or external keystore.</p>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="configuring-transparent-data-encryption.html#GUID-37296947-18DB-4CFA-A112-794A55E942E2" title="Depending on the type of keystore you create, you must manually open the TDE wallet before you can use it.">Step 3: Open the TDE Wallet</a></li>
+                        <li><a href="managing-keystores-encryption-keys-in-united-mode.html#GUID-4FBC5088-A045-4306-88C0-FEBC07CA18AC" title="After you have configured the database to use Oracle Key Vault for TDE key management, you must open the connection to Oracle Key Vault before you can use it.">Step 2: Open the Connection to Oracle Key Vault</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="general-considerations-of-using-transparent-data-encryption.html#GUID-F02C9CBF-0374-408B-8655-F7531B681D41" title="When you use Transparent Data Encryption, you should consider factors such as security, performance, and storage overheads.">General Considerations of Using&nbsp;Transparent&nbsp;Data Encryption</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

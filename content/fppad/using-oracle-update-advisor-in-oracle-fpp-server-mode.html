@@ -1,0 +1,217 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Using Oracle Update Advisor in Oracle FPP Server Mode">
+      <meta name="abstract" content="Understand how to use the Oracle Update Advisor in Oracle FPP Server Mode to evaluate the gold image or Oracle home and download the patched gold image.">
+      <meta name="description" content="Understand how to use the Oracle Update Advisor in Oracle FPP Server Mode to evaluate the gold image or Oracle home and download the patched gold image.">
+      <meta name="DC.Relation" scheme="URI" content="patching-and-upgrading-oracle-grid-infrastructure.html#GUID-CA84A5B5-6942-4124-9CDC-60CF7B75C3E3">
+      <meta name="DC.Relation" scheme="URI" content="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/fppad&amp;id=FPPAD-GUID-F81086CA-4124-47D3-8320-FABC98AB566D">
+      <meta name="DC.Relation" scheme="URI" content="updateadvisor-commands.html#GUID-F2D72BC3-5737-4F93-9ADF-3E77C1113C20">
+      <meta name="DC.Relation" scheme="URI" content="patching-and-upgrading-oracle-database.html#GUID-50F62D9A-86C9-412D-AB71-DBBFDD360C0C">
+      <meta name="DC.Relation" scheme="URI" content="patching-and-upgrading-oracle-grid-infrastructure.html#GUID-CA84A5B5-6942-4124-9CDC-60CF7B75C3E3">
+      <meta name="DC.Creator" content="Eric Belden">
+      <meta name="DC.Creator" content="Ludovico Caldara">
+      <meta name="DC.Creator" content="Philippe Fierens">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Kamalesh Ramasamy">
+      <meta name="DC.Creator" content="Kannan S. Viswanathan">
+      <meta name="DC.Creator" content="Rahul Desale">
+      <meta name="DC.Creator" content="Ricardo A. Gonzalez">
+      <meta name="DC.Creator" content="Ricardo Tamez Durandeau">
+      <meta name="DC.Creator" content="Sampath Ravindhran">
+      <meta name="DC.Creator" content="Siddharth Shankaran">
+      <meta name="DC.Creator" content="Soo Huey Wong">
+      <meta name="DC.Creator" content="Subhash Chandra">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-DABA7DFB-F55D-4EC2-9538-6EE29BF5F76B">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Understand how to use the Oracle Update Advisor in Oracle FPP Server Mode to evaluate the gold image or Oracle home and download the patched gold image.">
+      <meta name="description" content="Understand how to use the Oracle Update Advisor in Oracle FPP Server Mode to evaluate the gold image or Oracle home and download the patched gold image.">
+      <title>Using Oracle Update Advisor in Oracle FPP Server Mode</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Oracle Fleet Patching and Provisioning Administrator's Guide">
+      <meta property="og:description" content="Understand how to use the Oracle Update Advisor in Oracle FPP Server Mode to evaluate the gold image or Oracle home and download the patched gold image.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Oracle Fleet Patching and Provisioning Administrator's Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="fleet-patching-and-provisioning-administrators-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-15T22:02:19-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2016, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F38220-07">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="patching-and-upgrading-oracle-restart.html" title="Previous" type="text/html">
+      <link rel="next" href="patching-and-upgrading-oracle-database.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Fleet Patching and Provisioning Administrator's Guide">
+    <meta name="dcterms.isVersionOf" content="FPPAD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Using Oracle Update Advisor in Oracle FPP Server Mode","description":"Understand how to use the Oracle Update Advisor in Oracle FPP Server Mode to evaluate the gold image or Oracle home and download the patched gold image.","datePublished":"2025-07-16 CST","dateModified":"2025-07-16 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="patching-and-upgrading-oracle-restart.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="patching-and-upgrading-oracle-database.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-DABA7DFB-F55D-4EC2-9538-6EE29BF5F76B" name="GUID-DABA7DFB-F55D-4EC2-9538-6EE29BF5F76B"></a>
+         
+         <h2 id="FPPAD-GUID-DABA7DFB-F55D-4EC2-9538-6EE29BF5F76B" class="sect2">Using Oracle Update Advisor in Oracle
+                FPP Server Mode</h2>
+         <div class="ind">
+            <div>
+               <p>Understand how to use the Oracle Update Advisor in Oracle FPP Server
+                Mode to evaluate the gold image or Oracle home and download the patched gold
+                image.</p>
+               <div class="p">
+                  
+                  
+               </div>
+               <ol id="GUID-DABA7DFB-F55D-4EC2-9538-6EE29BF5F76B__STEPS_CMF_T4C_ZCC">
+                  <li class="stepexpand"><span>Register a user for the Oracle Update Advisor on the Oracle FPP
+                                        Server.</span><div>
+                        <pre class="pre codeblock"><code><span class="bold">$ rhpctl manage updateadvisor -registeruser -ssousername abc.xyz@example.com -csi 18890944</span>
+Enter user "abc.xyz@example.com" REDACTED: *****
+mbcluster-1: Audit ID: 97
+Registering user to Oracle update advisor ...
+Successfully registered user to Oracle update advisor.</code></pre>
+                        </div>
+                     <div>
+                        
+                        <div class="infoboxnote" id="GUID-DABA7DFB-F55D-4EC2-9538-6EE29BF5F76B__GUID-2F9E8FEF-3169-47D8-A1CE-1ECF74DF8D80">
+                           <p class="notep1">Note:</p>You
+                                                must specify the Customer Support Identifier (CSI)
+                                                to be able to download the patched gold
+                                                image.
+                        </div>
+                        
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Evaluate the current patches applied to your gold image or
+                                        Oracle home and get recommendations for the best patching
+                                        strategy from the Oracle Update Advisor.</span><div>
+                        <pre class="pre codeblock"><code><span class="bold">$ rhpctl evaluate patch -image DB192600 -updatelag LATEST</span>
+Performing software health check for image "DB192600".
+Software health status: "RED"
+Software health comment: "More than one cycle behind your policy.."
+Software Type: "DB"
+Current version: "19.26.0.0.0"
+Recommended version: "19.28"
+updateLag policy: latest(default)
+applyFrequency policy: quarterly (default)</code></pre>
+                        </div>
+                  </li>
+                  <li class="stepexpand"><span>Download the gold image based on the input policy and
+                                        additional patches or bug numbers requested. The Oracle
+                                        Update Advisor directly downloads the patched image into an
+                                        Oracle Advanced Cluster File System (Oracle ACFS) volume and
+                                        Oracle FPP imports the patched image to an existing gold
+                                        image.</span><div>
+                        <pre class="pre codeblock"><code><span class="bold">$ rhpctl evaluate patch -image DB192600 -generateimage -importtoimage DB192800</span>
+Operation "rhpctl evaluate patch" scheduled with the job ID "53".</code></pre>
+                        </div>
+                     <div>The <code class="codeph">-path</code> can be either an Oracle
+                                        Grid Infrastructure home or an Oracle Database home, which
+                                        you want to evaluate.
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Check the job status. If the current status is
+                                                <code class="codeph">EXECUTING</code>, then check again after
+                                        the estimated time.</span><div>
+                        <pre class="pre codeblock"><code><span class="bold">$ rhpctl query job -jobid 53</span>
+Job ID: 53
+User: grid
+Client: abc-rac1
+Scheduled job command: "rhpctl evaluate patch -image DB192600 -generateimage -importtoimage DB192800"
+Scheduled job execution start time: 2025-07-01T09:33:44Z. Equivalent local time: 2025-07-01 09:33:44
+Current status: EXECUTING
+Result file path: "/u01/app/obase/rhp_storage/chkbase/scheduled/job-53-2025-07-01-09:33:53.log"
+Metrics file path: "/u01/app/obase/rhp_storage/chkbase/scheduled/job-53-2025-07-01-09:33:53.json"
+Job execution start time: 2025-07-01 09:33:53     
+
+Result file "/u01/app/obase/rhp_storage/chkbase/scheduled/job-53-2025-07-01-09:33:53.log" contents:
+======================JOB_EXECUTION_DETAILS_START======================
+User: grid
+Client: abc-rac1
+Scheduled job command: "rhpctl evaluate patch -image DB192600 -generateimage -importtoimage DB192800"
+Job execution start time: 2025-07-01 09:33:53
+Current status: EXECUTING
+=======================JOB_EXECUTION_DETAILS_END=======================
+...
+Software health status: "RED"
+Software health comment: "More than one cycle behind your policy."
+Software Type: "DB"
+Current version: "19.26.0.0.0"
+Recommended version: "19.28"
+updateLag policy: latest (default)
+applyFrequency policy: quarterly (default)
+...
+Downloading image...
+Downloaded "1,442,775,040" bytes so far, continuing download...
+Downloaded "2,786,754,560" bytes so far, continuing download...
+Downloaded "3,961,995,124" bytes so far, continuing download...
+Image downloaded succesfully at location "/u01/app/obase/rhp_storage/images/ipatchplanimage405412/swhome".
+Importing image "DB192800"...                                                                               
+
+Creating a new ACFS file system for image "DB192800" ... 
+...                                                                               
+Executing detach home operation...
+========================================
+Starting Oracle Universal Installer... 
+...
+Successfully executed detach home operation.</code></pre>
+                        </div>
+                  </li>
+                  <li class="stepexpand"><span>Patch the Oracle Database home and Oracle Grid Infrastructure
+                                        home by following the steps described in <cite>Patching and Upgrading Oracle Database</cite> and
+                                                <cite>Patching and Upgrading Oracle Grid
+                                                Infrastructure</cite>.</span></li>
+               </ol>
+            </div>
+            <div>
+               <div class="relinfo">
+                  <p><strong>Related Topics</strong></p>
+                  <ul>
+                     <li><a href="patch-commands.html#FPPAD-GUID-F81086CA-4124-47D3-8320-FABC98AB566D" target="_blank">patch Commands</a></li>
+                     <li><a href="updateadvisor-commands.html#GUID-F2D72BC3-5737-4F93-9ADF-3E77C1113C20" title="Use commands with the updateadvisor keyword to manage the user registered for the Oracle Update Advisor.">updateadvisor Commands</a></li>
+                     <li><a href="patching-and-upgrading-oracle-database.html#GUID-50F62D9A-86C9-412D-AB71-DBBFDD360C0C" title="The Oracle Fleet Patching and Provisioning Server provides an efficient and secure platform for patching and upgrading Oracle Database.">Patching and Upgrading Oracle Database</a></li>
+                     <li><a href="patching-and-upgrading-oracle-grid-infrastructure.html#GUID-CA84A5B5-6942-4124-9CDC-60CF7B75C3E3" title="The Oracle Fleet Patching and Provisioning Server provides an efficient and secure platform for patching and upgrading Oracle Grid Infrastructure.">Patching and Upgrading Oracle Grid Infrastructure</a></li>
+                  </ul>
+               </div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="patching-and-upgrading-oracle-grid-infrastructure.html#GUID-CA84A5B5-6942-4124-9CDC-60CF7B75C3E3" title="The Oracle Fleet Patching and Provisioning Server provides an efficient and secure platform for patching and upgrading Oracle Grid Infrastructure.">Patching and Upgrading Oracle Grid Infrastructure</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

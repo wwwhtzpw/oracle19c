@@ -1,0 +1,280 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Oracle GoldenGate Active-Active Guidance for Developers and Administrators">
+      <meta name="abstract" content="Oracle MAA provides guidance for developers and administrators when designing an active-active distributed database architecture using Oracle GoldenGate architecture, where data conflicts may occur between GoldenGate replicas.">
+      <meta name="description" content="Oracle MAA provides guidance for developers and administrators when designing an active-active distributed database architecture using Oracle GoldenGate architecture, where data conflicts may occur between GoldenGate replicas.">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Orientation">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-F8636C43-FD18-467A-8106-B9EB3F9E1E83">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Oracle MAA provides guidance for developers and administrators when designing an active-active distributed database architecture using Oracle GoldenGate architecture, where data conflicts may occur between GoldenGate replicas.">
+      <meta name="description" content="Oracle MAA provides guidance for developers and administrators when designing an active-active distributed database architecture using Oracle GoldenGate architecture, where data conflicts may occur between GoldenGate replicas.">
+      <title>Oracle GoldenGate Active-Active Guidance for Developers and Administrators</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content="Oracle MAA provides guidance for developers and administrators when designing an active-active distributed database architecture using Oracle GoldenGate architecture, where data conflicts may occur between GoldenGate replicas.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="managing-unplanned-outages.html" title="Previous" type="text/html">
+      <link rel="next" href="ogg-troubleshooting1.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Oracle GoldenGate Active-Active Guidance for Developers and Administrators","description":"Oracle MAA provides guidance for developers and administrators when designing an active-active distributed database architecture using Oracle GoldenGate architecture, where data conflicts may occur between GoldenGate replicas.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="managing-unplanned-outages.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="ogg-troubleshooting1.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-F8636C43-FD18-467A-8106-B9EB3F9E1E83" name="GUID-F8636C43-FD18-467A-8106-B9EB3F9E1E83"></a>
+         
+         <h2 id="HAOVW-GUID-F8636C43-FD18-467A-8106-B9EB3F9E1E83" class="sect2"><span class="enumeration_chapter">29 </span>Oracle GoldenGate Active-Active
+        Guidance for Developers and Administrators
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Oracle MAA provides guidance for developers and administrators when
+        designing an active-active distributed database architecture using Oracle GoldenGate
+        architecture, where data conflicts may occur between GoldenGate replicas. </p>
+               <p>For these Oracle GoldenGate or MAA Platinum architectures, active-active
+            replication requires conflict detection and resolution, which includes Automatic
+            Conflict Detection and Resolution (Auto-CDR), or the manual method of conflict detection
+            and resolution using the GoldenGate parameters <code class="codeph">COMPARECOLS</code> and
+                <code class="codeph">RESOLVECONFLICT</code> (referred to as the
+                <code class="codeph">COMPARECOLS</code>/<code class="codeph">RESOLVECONFLICTS</code> method in this
+            topic). Also see <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/middleware/goldengate/core/23/coredoc&id=GGABB-GUID-BBCE680A-BFCA-44DC-8597-B206CB965EF4" target="_blank">Automatic Conflict Detection and
+                Resolution</a> and <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/middleware/goldengate/core/23/coredoc&id=GGABB-GUID-13CEA748-94F4-4B80-9F1B-B6FDB93FF5C5" target="_blank">Manual Conflict Detection and
+                Resolution</a> in Oracle GoldenGate documentation. 
+               </p>
+               <p>For more information about GoldenGate in general, refer to <a href="https://docs.oracle.com/en/middleware/goldengate/core/index.html" target="_blank">Oracle GoldenGate documentation</a>.
+            These instructions are specific for Oracle-to-Oracle replication. For
+            non-Oracle/heterogeneous active-active refer to <code class="codeph">COMPARECOLS</code> and
+                <code class="codeph">RESOLVECONFLICT</code> parameters in the <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/middleware/goldengate/core/23/coredoc&id=GWURF-GUID-C2356234-3780-48EE-9E7A-F21DC352638C" target="_blank">Oracle GoldenGate Parameters and
+                Functions Reference Guide</a>.
+               </p>
+            </div>
+            <div class="sect2"><a id="GUID-4040CEAF-17AE-4476-B02F-6C7749A4A2D4" name="GUID-4040CEAF-17AE-4476-B02F-6C7749A4A2D4"></a><h3 id="HAOVW-GUID-4040CEAF-17AE-4476-B02F-6C7749A4A2D4" class="sect3">Preparing for Conflict Resolution</h3>
+               <div>
+                  <p>Active-active replication requires tighter integration between Oracle
+        Database and Oracle GoldenGate, and there are some additional requirements that must be met
+        from an application and database structure perspective to ensure a smooth
+        experience.</p>
+                  <div class="section">
+                     
+                     <p>These requirements only pertain to tables that could have a conflict. If there are
+                tables in the application that will be updated on one server only (for example, a
+                lookup table that contains zip codes to city relationships that is updated once a
+                year as part of a batch process) then those tables do not need to meet these
+                requirements. </p>
+                     
+                     <p>To understand why these requirements exist, here's a quick refresher on how a
+                conflict is detected and how it’s resolved: </p>
+                     
+                     <p>To detect a conflict, Oracle GoldenGate constructs an <code class="codeph">UPDATE</code> or
+                    <code class="codeph">DELETE</code> DML statement with a <code class="codeph">WHERE</code> clause that
+                includes the <span class="italic">before</span> image of every column that the GoldenGate Replicat can
+                use in a <code class="codeph">WHERE</code> clause. If that DML operation returns a “row not
+                found” exception, that means that there is a conflict, and additional steps are then
+                taken by the Replicat to determine if some other value in that row was changed, or
+                if the row was deleted. This determination is done by querying the target table to
+                see if the row with that primary key exists or not. The resolution portion will
+                provide eventual consistency so that the two rows are the same between two distinct
+                databases. This resolution typically involves ignoring the current DML operation the
+                Replicat is applying, or overwriting the existing data in the target row. 
+                     </p>
+                     
+                     <p>The Oracle GoldenGate documentation covers the different ways to resolve conflicts
+                for both Auto-CDR and <code class="codeph">COMPARECOLS</code>/<code class="codeph">RESOLVECONFLICTS</code>
+                methods as well as examples on how each of them work. See <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/middleware/goldengate/core/23/coredoc&id=GGABB-GUID-BBCE680A-BFCA-44DC-8597-B206CB965EF4" target="_blank">Automatic Conflict Detection and
+                    Resolution</a> and <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/middleware/goldengate/core/23/coredoc&id=GGABB-GUID-13CEA748-94F4-4B80-9F1B-B6FDB93FF5C5" target="_blank">Manual Conflict Detection and Resolution</a>
+                for details.
+                     </p>
+                     
+                  </div>
+                  <div class="section">
+                     
+                     <p><span class="bold">Requirements</span></p>
+                     
+                     <ul style="list-style-type: disc;" id="GUID-4040CEAF-17AE-4476-B02F-6C7749A4A2D4__UL_V1F_KCZ_R2C">
+                        <li>Primary key requirements
+                           <ul style="list-style-type: disc;" id="GUID-4040CEAF-17AE-4476-B02F-6C7749A4A2D4__UL_W1F_KCZ_R2C">
+                              <li>The table must have a primary key that is made up of one or more
+                            columns.</li>
+                              <li>The uniqueness of a primary key must be generated so that they are
+                            unique across all databases. In two-way active-active, you could have
+                            sequences assigned to the primary key that are odd (1,3,5,…) in one
+                            database and even (2,4,6,…) in the other. This could guarantee that two
+                            databases don’t have the same primary key for different rows and you’ll
+                            never have an insert conflict.</li>
+                           </ul>
+                        </li>
+                        <li>
+                           
+                           <p>Table structure requirements</p>
+                           
+                           <div class="p">
+                              
+                              <ul style="list-style-type: disc;" id="GUID-4040CEAF-17AE-4476-B02F-6C7749A4A2D4__UL_X1F_KCZ_R2C">
+                                 <li>If you are using manual conflict detection and resolution and
+                                defining your own
+                                    <code class="codeph">COMPARECOLS</code>/<code class="codeph">RESOLVECONFLICTS</code>,
+                                which is time-stamp-based resolution, the table must have a time
+                                stamp column that uses the same time zone across all databases.
+                                Auto-CDR does not require a time stamp column on the existing
+                                table.
+                                 </li>
+                                 <li>Conflicts within Large Objects (JSON, BLOB, CLOB, for example) and
+                                user-defined objects (Abstract data types, collections, arrays)
+                                cannot be detected by Oracle GoldenGate, because these columns are
+                                not used in the <code class="codeph">WHERE</code> clause by Oracle
+                                GoldenGate.
+                                 </li>
+                                 <li>If there is a requirement for uniqueness in non-primary key columns
+                                this must be enforced using a trigger on the table or through the
+                                application.</li>
+                                 <li>Supplemental logging of all columns is required for tables that you
+                                are replicating, and will result in higher redo log generation for
+                                those targeted table changes. </li>
+                              </ul>
+                              
+                           </div>
+                           
+                        </li>
+                        <li>Required GoldenGate settings
+                           <ul style="list-style-type: disc;" id="GUID-4040CEAF-17AE-4476-B02F-6C7749A4A2D4__UL_Y1F_KCZ_R2C">
+                              <li>For Auto-CDR you must include <code class="codeph">MAPINVISIBLECOLUMNS</code> and
+                                <code class="codeph">LOGALLSUPCOLS</code> in the Extract. The Replicat must be
+                            integrated Replicat or parallel Replicat in integrated mode.
+                              </li>
+                              <li>For <code class="codeph">COMPARECOLS</code>/<code class="codeph">RESOLVECONFLICTS</code>, you
+                            must use <code class="codeph">LOGALLSUPCOLS</code> in the Extract.
+                              </li>
+                           </ul>
+                        </li>
+                     </ul>
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-9C00E720-471E-418C-8B5D-BA08586016FA" name="GUID-9C00E720-471E-418C-8B5D-BA08586016FA"></a><h3 id="HAOVW-GUID-9C00E720-471E-418C-8B5D-BA08586016FA" class="sect3">Best Practices for Active-Active
+        Oracle GoldenGate Architecture</h3>
+               <div>
+                  <p>To ensure that your active-active configuration runs smoothly these are some
+        best-practice recommendations to consider.</p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-9C00E720-471E-418C-8B5D-BA08586016FA__GUID-2D496BC0-A55E-4CAE-8C1B-55F25DE45489">Application Recommendations</p>
+                     
+                     
+                     <ul style="list-style-type: disc;" id="GUID-9C00E720-471E-418C-8B5D-BA08586016FA__UL_YWZ_SDZ_R2C">
+                        <li>If conflicts can be avoided, do so. This could include splitting users by
+                    geographical region, like routing users East of the Mississippi to use the
+                    server in Ashburn, VA, and routing users West of the Mississippi to use the
+                    server located in Phoenix, AZ. This geographical split can often avoid conflicts
+                    where two users would be modifying the same row. Users could also be split by
+                    account numbers (even on one server, odd on another), or names (A-M or N-Z). </li>
+                        <li>Connection stickiness or geographical affinity is also important. If you are
+                    using a load balancer to route traffic to the databases, it should include some
+                    type of connection persistence, so that if a user’s connection is lost and they
+                    reconnect very quickly they are sent to the same server as before. This prevents
+                    situations where a user makes changes on server A, disconnects, and then
+                    reconnects. If the user is connected to server B before the data is replicated
+                    to it, that could cause a poor user experience. </li>
+                        <li>While Auto-CDR does support the conflict detection and resolution of primary key
+                    updates (which it does through the use of the tombstone table), the
+                        <code class="codeph">COMPARECOLS</code>/<code class="codeph">RESOLVECONFLICTS</code> method does
+                    not. So if you are using the
+                        <code class="codeph">COMPARECOLS</code>/<code class="codeph">RESOLVECONFLICTS</code> method,
+                    ensure that primary key updates are performed in a manner that would prevent
+                    conflicts from occurring.
+                        </li>
+                        <li>In some cases, it may be necessary to communicate back to a user that something
+                    they did in the database was reversed or overwritten due to the conflict
+                    resolution policies in place. Auto-CDR has a view
+                        (<code class="codeph">DBA_APPLY_ERROR_MESSAGES</code>) that can be used to track when a
+                    conflict has occurred and what resolution was performed. Monitor this table on
+                    all databases.
+                        </li>
+                     </ul>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-9C00E720-471E-418C-8B5D-BA08586016FA__GUID-3E9B157B-E258-4C23-A021-ECC97D3E1424">Database Recommendations</p>
+                     
+                     
+                     <ul style="list-style-type: disc;" id="GUID-9C00E720-471E-418C-8B5D-BA08586016FA__UL_SX5_XDZ_R2C">
+                        <li>Edition Based Redefinition can be used to help ensure zero downtime for schema
+                    changes, and in Oracle Database 23ai, DDL operations on tables with supplemental
+                    logging no longer require an exclusive lock on the table. In Oracle Database
+                    19c, Edition Based Redefinition was not leveraged with active GoldenGate
+                    replication because of this exclusive lock requirement.</li>
+                        <li>DDL should only be performed on one node at a time, and only replicated
+                    uni-directionally. GoldenGate doesn’t provide support for conflicts within DDL
+                    operations.</li>
+                     </ul>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-9C00E720-471E-418C-8B5D-BA08586016FA__GUID-492A510C-51C0-4CA8-96BD-A89745C08A50">Oracle GoldenGate Recommendations</p>
+                     
+                     
+                     <ul style="list-style-type: disc;" id="GUID-9C00E720-471E-418C-8B5D-BA08586016FA__UL_CR1_F2Z_R2C">
+                        <li>Procedural replication should be enabled, so that when you use the
+                        <code class="codeph">DBMS_GOLDENGATE_ADM</code> calls to enable or disable Auto-CDR on
+                    a table, that command is replicated to the target database
+                            automatically.
+                           <p><code class="codeph">TRANLOGOPTIONS INTEGRATEDPARAMS
+                            (ENABLE_PROCEDURAL_REPLICATION Y)</code></p>
+                        </li>
+                        <li>Oracle recommends using Integrated Parallel Replicat. Auto-CDR is not supported
+                    with Parallel non-integrated Replicat, Classic Replicat, or Coordinated
+                    Replicat. </li>
+                        <li>DDL replication should be enabled for all tables in replication (syntax
+                        <code class="codeph">DDL INCLUDE ALL</code>) in both the Extract and Replicat parameter
+                    files. 
+                        </li>
+                     </ul>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

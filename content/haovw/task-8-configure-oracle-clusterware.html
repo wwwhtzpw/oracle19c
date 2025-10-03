@@ -1,0 +1,177 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Task 8: Configure Oracle Clusterware">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Task">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-18911229-B8AA-431A-BDD6-2CF3B89248F8">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <title>Task 8: Configure Oracle Clusterware</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="task-7-configure-standby-nginx-reverse-proxy.html" title="Previous" type="text/html">
+      <link rel="next" href="task-9-create-oracle-net-tns-aliases-oracle-goldengate-database-connections.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Task 8: Configure Oracle Clusterware","description":"","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="task-7-configure-standby-nginx-reverse-proxy.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="task-9-create-oracle-net-tns-aliases-oracle-goldengate-database-connections.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-18911229-B8AA-431A-BDD6-2CF3B89248F8" name="GUID-18911229-B8AA-431A-BDD6-2CF3B89248F8"></a>
+         
+         <h2 id="HAOVW-GUID-18911229-B8AA-431A-BDD6-2CF3B89248F8" class="sect2">Task 8: Configure Oracle Clusterware</h2>
+         <div class="ind">
+            <div>
+               <p></p>
+               <ol>
+                  <li class="stepexpand"><span>Modify the primary cluster XAG GoldenGate instance.</span><div>
+                        
+                        <p>The Oracle Grid Infrastructure Standalone Agent (XAG) GoldenGate instance on
+                        the primary cluster must be modified as the root user, to identify that it
+                        is part of an Oracle Data Guard configuration using the following example
+                        command.</p>
+                        <pre class="pre codeblock"><code># agctl modify goldengate <span class="variable" translate="no">instance_name</span> --dataguard_autostart yes</code></pre>
+                        </div>
+                  </li>
+                  <li class="stepexpand"><span>On the standby cluster, follow the instructions in <a href="task-7-oracle-clusterware-configuration.html#GUID-F6E51DFD-6017-4165-9646-922084019EDA" title="The following procedure shows you how to configure Oracle Clusterware to manage Oracle GoldenGate using the Oracle Grid Infrastructure Standalone Agent (XAG).">Task 7: Oracle Clusterware Configuration</a> to do steps 3-5 below.</span></li>
+                  <li class="stepexpand"><span>Install the XAG software on each standby cluster node.</span><div>
+                        
+                        <p>It is recommended that you install the XAG software into the same directory
+                        as the primary cluster.</p>
+                        
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Prepare for the XAG application VIP creation.</span><div>
+                        
+                        <p>It is assumed that the VIP and VIP name will be different from that of the
+                        primary cluster, so the VIP address will need to be allocated by your
+                        systems administrator for the standby cluster.</p>
+                        
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Register Oracle GoldenGate Microservices with XAG.</span><div>
+                        
+                        <p>The parameters used to register Oracle GoldenGate Microservices with XAG are
+                        similar to those used when registering with the primary cluster.</p>
+                        
+                        <ol type="a" id="GUID-18911229-B8AA-431A-BDD6-2CF3B89248F8__OL_C2K_JRW_HZB">
+                           <li>
+                              
+                              <p>Determine the current parameters in the primary cluster using the
+                                following command:</p>
+                              <pre class="pre codeblock"><code>$ agctl config goldengate <span class="variable" translate="no">GoldenGate_instance_name</span>
+
+Instance name: <span class="variable" translate="no">GoldenGate_instance_name</span>
+Application GoldenGate location is: /u01/oracle/goldengate/gg21c_MS
+Goldengate MicroServices Architecture environment: yes
+Goldengate Service Manager configuration directory:
+ /mnt/dbfs/goldengate/deployments/ggnorth_sm/etc/conf
+Goldengate Service Manager var directory:
+ /mnt/dbfs/goldengate//deployments/ggnorth_sm/var
+Service Manager Port: 9100
+Goldengate Administration User: oggadmin
+Autostart on DataGuard role transition to PRIMARY: yes
+Configured to run on Nodes: dc1north01,dc1north02
+ORACLE_HOME location is: /u01/oracle/goldengate/gg21c_MS/lib/instantclient
+Database Services needed: ora.ggdg.oggserv_cdb.svc,ora.ggdg.oggserv_pdb.svc
+File System resources needed: dbfsgg,nginx
+VIP name: gg_vip_prmy</code></pre>
+                              <p>In addition, the XAG parameter <code class="codeph">--filesystem_verify
+                                    no</code> must be specified to prevent XAG from checking the
+                                existence of the DBFS deployment directory when registering the
+                                GoldenGate instance. Without setting this parameter, the XAG
+                                registration will fail, because DBFS is not mounted on the standby
+                                cluster.
+                              </p>
+                              
+                              <div class="infoboxnote" id="GUID-18911229-B8AA-431A-BDD6-2CF3B89248F8__GUID-5E25F32C-2AA7-404C-B90A-B6462F37A77E">
+                                 <p class="notep1">Note:</p>It is recommended that you use the same GoldenGate instance name
+                                when registering GoldenGate with XAG as was used in the primary
+                                cluster.
+                              </div>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Register GoldenGate with XAG on the standby cluster, as the
+                                    <code class="codeph">root</code> user:
+                              </p>
+                              <pre class="pre codeblock"><code># agctl add goldengate <span class="variable" translate="no">GoldenGate_instance_name</span> \
+--gg_home /u01/oracle/goldengate/gg21c_MS \
+--service_manager \
+--config_home /mnt/dbfs/goldengate/deployments/ggnorth_sm/etc/conf \
+--var_home /mnt/dbfs/goldengate/deployments/ggnorth_sm/var \
+--port 9100 \
+--oracle_home /u01/goldengate/gg21c_MS/lib/instantclient \
+--adminuser oggadmin \
+--user oracle \
+--group oinstall \
+--vip_name gg_vip_stby \
+--filesystems dbfsgg,nginx \
+--db_services ora.ggdgs.oggserv_cdb.svc,ora.ggdgs.oggserv_pdb.svc \
+--use_local_services \
+--nodes dc2north01,dc2north02 \
+--filesystem_verify no \
+--dataguard_autostart yes</code></pre>
+                              </li>
+                        </ol>
+                        
+                     </div>
+                  </li>
+               </ol>
+               <div class="section">
+                  
+                  <p>For more information about the Oracle Grid Infrastructure Bundled Agent, see <a href="http://www.oracle.com/technetwork/database/database-technologies/clusterware/downloads/xag-agents-downloads-3636484.html" target="_blank">http://www.oracle.com/technetwork/database/database-technologies/clusterware/downloads/xag-agents-downloads-3636484.html</a></p>
+                  
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

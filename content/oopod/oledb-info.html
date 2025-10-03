@@ -1,0 +1,2408 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Provider-Specific OLE DB Information</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="olap-provider-ole-db-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:07:02-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2018, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96618-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="core-provider.html" title="Previous" type="text/html">
+      <link rel="next" href="ado-md-info.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="OLAP Provider for OLE DB Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="OOPOD">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="core-provider.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="ado-md-info.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem"> Provider-Specific OLE DB Information</li>
+            </ol>
+            <a id="GUID-8F78C745-6321-47AA-9B57-8D88203E1624" name="GUID-8F78C745-6321-47AA-9B57-8D88203E1624"></a><a id="OOPOD004"></a>
+            
+            <h2 id="OOPOD-GUID-8F78C745-6321-47AA-9B57-8D88203E1624" class="sect2"><span class="enumeration_appendix">B </span> Provider-Specific OLE DB Information
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Topics:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="oledb-info.html#GUID-547A9467-0A7E-47FE-BA53-4D540CBD3777">Datatype Mappings</a></p>
+                  </li>
+                  <li>
+                     <p><a href="oledb-info.html#GUID-0BDD8369-A0F5-441D-9E00-B18C959643B6">Objects</a></p>
+                  </li>
+                  <li>
+                     <p><a href="oledb-info.html#GUID-006C941B-A4B3-4CB7-BFD4-CA8D0312322B">Interfaces</a></p>
+                  </li>
+                  <li>
+                     <p><a href="oledb-info.html#GUID-B0D15603-E58F-4313-AB76-C41D5EED5990">Properties</a></p>
+                  </li>
+                  <li>
+                     <p><a href="oledb-info.html#GUID-D0A4DC54-D063-47D6-8462-7F6438482CEE">Provider-Specific Properties</a></p>
+                  </li>
+               </ul>
+            </div><a id="OOPOD188"></a><a id="OOPOD187"></a><div class="props_rev_3"><a id="GUID-547A9467-0A7E-47FE-BA53-4D540CBD3777" name="GUID-547A9467-0A7E-47FE-BA53-4D540CBD3777"></a><h3 id="OOPOD-GUID-547A9467-0A7E-47FE-BA53-4D540CBD3777" class="sect3">Datatype Mappings</h3>
+               <div>
+                  <div class="section">
+                     <p>This section lists the datatype mappings between Oracle datatypes and OLE DB datatypes. Oracle OLAP Provider for OLE DB represents Oracle datatypes by using certain OLE DB datatypes. Each Oracle datatype is mapped to a specific OLE DB datatype. This correspondence is used when data is retrieved from Oracle Databases.</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="tblformal" id="GUID-547A9467-0A7E-47FE-BA53-4D540CBD3777__BABEBCBB">
+                     <p class="titleintable">Table B-1 Datatype Mappings</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Datatype Mappings" summary="Rows are datatypes. The first column is a row number. The second column is Oracle Datatype, and the third column is OLE DB Datatypes. " width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="19%" id="d8288e104">Mapping</th>
+                              <th align="left" valign="bottom" width="41%" id="d8288e106">Oracle Datatype</th>
+                              <th align="left" valign="bottom" width="40%" id="d8288e109">OLE DB Datatype</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="19%" id="d8288e114" headers="d8288e104 ">
+                                 <p>1</p>
+                              </td>
+                              <td align="left" valign="top" width="41%" headers="d8288e114 d8288e106 ">
+                                 <p><code class="codeph">BINARY_DOUBLE</code></p>
+                              </td>
+                              <td align="left" valign="top" width="40%" headers="d8288e114 d8288e109 ">
+                                 <p><code class="codeph">DBTYPE_R8</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="19%" id="d8288e126" headers="d8288e104 ">
+                                 <p>2</p>
+                              </td>
+                              <td align="left" valign="top" width="41%" headers="d8288e126 d8288e106 ">
+                                 <p><code class="codeph">BINARY_FLOAT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="40%" headers="d8288e126 d8288e109 ">
+                                 <p><code class="codeph">DBTYPE_R4</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="19%" id="d8288e138" headers="d8288e104 ">
+                                 <p>3</p>
+                              </td>
+                              <td align="left" valign="top" width="41%" headers="d8288e138 d8288e106 ">
+                                 <p><code class="codeph">CHAR</code></p>
+                              </td>
+                              <td align="left" valign="top" width="40%" headers="d8288e138 d8288e109 ">
+                                 <p><code class="codeph">DBTYPE_WSTR</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="19%" id="d8288e150" headers="d8288e104 ">
+                                 <p>4</p>
+                              </td>
+                              <td align="left" valign="top" width="41%" headers="d8288e150 d8288e106 ">
+                                 <p><code class="codeph">DATE</code></p>
+                              </td>
+                              <td align="left" valign="top" width="40%" headers="d8288e150 d8288e109 ">
+                                 <p><code class="codeph">DBTYPE_DBTIMESTAMP</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="19%" id="d8288e162" headers="d8288e104 ">
+                                 <p>5</p>
+                              </td>
+                              <td align="left" valign="top" width="41%" headers="d8288e162 d8288e106 ">
+                                 <p><code class="codeph">FLOAT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="40%" headers="d8288e162 d8288e109 ">
+                                 <p><code class="codeph">DBTYPE_R8</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="19%" id="d8288e174" headers="d8288e104 ">
+                                 <p>6</p>
+                              </td>
+                              <td align="left" valign="top" width="41%" headers="d8288e174 d8288e106 ">
+                                 <p><code class="codeph">NCHAR</code></p>
+                              </td>
+                              <td align="left" valign="top" width="40%" headers="d8288e174 d8288e109 ">
+                                 <p><code class="codeph">DBTYPE_WSTR</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="19%" id="d8288e186" headers="d8288e104 ">
+                                 <p>7</p>
+                              </td>
+                              <td align="left" valign="top" width="41%" headers="d8288e186 d8288e106 ">
+                                 <p><code class="codeph">NUMBER</code></p>
+                              </td>
+                              <td align="left" valign="top" width="40%" headers="d8288e186 d8288e109 ">
+                                 <p><code class="codeph">DBTYPE_VARNUMERIC</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="19%" id="d8288e198" headers="d8288e104 ">
+                                 <p>8</p>
+                              </td>
+                              <td align="left" valign="top" width="41%" headers="d8288e198 d8288e106 ">
+                                 <p><code class="codeph">NUMBER</code> (p, s)
+                                 </p>
+                              </td>
+                              <td align="left" valign="top" width="40%" headers="d8288e198 d8288e109 ">
+                                 <p><code class="codeph">DBTYPE_NUMERIC</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="19%" id="d8288e211" headers="d8288e104 ">
+                                 <p>9</p>
+                              </td>
+                              <td align="left" valign="top" width="41%" headers="d8288e211 d8288e106 ">
+                                 <p><code class="codeph">NVARCHAR2</code></p>
+                              </td>
+                              <td align="left" valign="top" width="40%" headers="d8288e211 d8288e109 ">
+                                 <p><code class="codeph">DBTYPE_WSTR</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="19%" id="d8288e223" headers="d8288e104 ">
+                                 <p>10</p>
+                              </td>
+                              <td align="left" valign="top" width="41%" headers="d8288e223 d8288e106 ">
+                                 <p><code class="codeph">VARCHAR</code></p>
+                              </td>
+                              <td align="left" valign="top" width="40%" headers="d8288e223 d8288e109 ">
+                                 <p><code class="codeph">DBTYPE_WSTR</code></p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <!-- class="inftblhruleinformal" -->
+               </div>
+            </div><a id="OOPOD189"></a><div class="props_rev_3"><a id="GUID-0BDD8369-A0F5-441D-9E00-B18C959643B6" name="GUID-0BDD8369-A0F5-441D-9E00-B18C959643B6"></a><h3 id="OOPOD-GUID-0BDD8369-A0F5-441D-9E00-B18C959643B6" class="sect3">Objects</h3>
+               <div>
+                  <div class="section">
+                     <p>The provider exposes OLAP-specific as well as OLE DB core interfaces. This section identifies the objects that the Oracle OLAP Provider for OLE DB exposes:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>Data Source</p>
+                        </li>
+                        <li>
+                           <p>Session</p>
+                        </li>
+                        <li>
+                           <p>Command</p>
+                        </li>
+                        <li>
+                           <p>Rowset</p>
+                        </li>
+                        <li>
+                           <p>Dataset</p>
+                        </li>
+                        <li>
+                           <p>Errors</p>
+                        </li>
+                        <li>
+                           <p>Error Records</p>
+                        </li>
+                     </ul>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="OOPOD190"></a><div class="props_rev_3"><a id="GUID-006C941B-A4B3-4CB7-BFD4-CA8D0312322B" name="GUID-006C941B-A4B3-4CB7-BFD4-CA8D0312322B"></a><h3 id="OOPOD-GUID-006C941B-A4B3-4CB7-BFD4-CA8D0312322B" class="sect3">Interfaces</h3>
+               <div>
+                  <p>The provider exposes the following OLE DB and OLE DB for OLAP interfaces.</p>
+               </div><a id="OOPOD191"></a><div class="props_rev_3"><a id="GUID-839B19A5-80BF-4BAB-81BB-B990E13153A9" name="GUID-839B19A5-80BF-4BAB-81BB-B990E13153A9"></a><h4 id="OOPOD-GUID-839B19A5-80BF-4BAB-81BB-B990E13153A9" class="sect4">Data Source Object Interfaces</h4>
+                  <div>
+                     <div class="section"><pre class="oac_no_warn" dir="ltr"> CoType TDataSource {
+       interface IDBCreateSession;
+       interface IDBInitialize;
+       interface IDBProperties;
+       interface IPersist;
+       interface IDBInfo;
+       interface ISupportErrorInfo;
+    }</pre></div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="OOPOD192"></a><div class="props_rev_3"><a id="GUID-22BAE4F9-CC35-4CC3-9B23-09DAF4140CD9" name="GUID-22BAE4F9-CC35-4CC3-9B23-09DAF4140CD9"></a><h4 id="OOPOD-GUID-22BAE4F9-CC35-4CC3-9B23-09DAF4140CD9" class="sect4">Session Object Interfaces</h4>
+                  <div>
+                     <div class="section"><pre class="oac_no_warn" dir="ltr">    CoType TSession {
+       interface IGetDataSource;
+       interface IDBCreateCommand;
+       interface ISessionProperties;
+       interface IDBSchemaRowset;
+       interface ISupportErrorInfo;
+    }</pre></div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="OOPOD193"></a><div class="props_rev_3"><a id="GUID-D62CCBD2-3AAC-4114-898C-9651A42C24A0" name="GUID-D62CCBD2-3AAC-4114-898C-9651A42C24A0"></a><h4 id="OOPOD-GUID-D62CCBD2-3AAC-4114-898C-9651A42C24A0" class="sect4">Command Object Interface</h4>
+                  <div>
+                     <div class="section"><pre class="oac_no_warn" dir="ltr"> CoType TCommand {
+       interface IAccessor;
+       interface IColumnsInfo;
+       interface ICommand;
+       interface ICommandProperties;
+       interface ICommandText;
+       interface IConvertType;
+       interface ISupportErrorInfo;
+    }</pre></div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="OOPOD194"></a><div class="props_rev_3"><a id="GUID-20F0C205-19DF-48CE-869E-906EBDE39DC7" name="GUID-20F0C205-19DF-48CE-869E-906EBDE39DC7"></a><h4 id="OOPOD-GUID-20F0C205-19DF-48CE-869E-906EBDE39DC7" class="sect4">Rowset Object interfaces</h4>
+                  <div>
+                     <div class="section"><pre class="oac_no_warn" dir="ltr">  CoType TRowset {
+       interface IAccessor;
+       interface IColumnsInfo;
+       interface IConvertType;
+       interface IRowset;
+       interface IRowsetInfo;
+       interface IConnectionPointContainer;
+       interface IRowsetLocate;
+       interface IRowsetScroll;
+       interface ISupportErrorInfo;
+    }
+ </pre></div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="OOPOD195"></a><div class="props_rev_3"><a id="GUID-6C4097A8-6CA4-44A7-BA3E-F1AE2CE3128F" name="GUID-6C4097A8-6CA4-44A7-BA3E-F1AE2CE3128F"></a><h4 id="OOPOD-GUID-6C4097A8-6CA4-44A7-BA3E-F1AE2CE3128F" class="sect4">DataSet Object Interface</h4>
+                  <div>
+                     <div class="section"><pre class="oac_no_warn" dir="ltr">   CoType TDataset {
+       interface IAccessor;
+       interface IConvertType;
+       interface IColumnsInfo;
+       interface IMDDataset;
+       interface ISupportErrorInfo;
+    }</pre></div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="OOPOD196"></a><div class="props_rev_3"><a id="GUID-4F64B062-D7FF-4955-9F85-569D5AAEC67B" name="GUID-4F64B062-D7FF-4955-9F85-569D5AAEC67B"></a><h4 id="OOPOD-GUID-4F64B062-D7FF-4955-9F85-569D5AAEC67B" class="sect4">Error Object Interfaces</h4>
+                  <div>
+                     <div class="section"><pre class="oac_no_warn" dir="ltr">    CoType TErrorObject {
+       interface IErrorRecords;
+    }</pre></div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="OOPOD197"></a><div class="props_rev_3"><a id="GUID-B1E709F7-0721-4796-AD67-947831466A6E" name="GUID-B1E709F7-0721-4796-AD67-947831466A6E"></a><h4 id="OOPOD-GUID-B1E709F7-0721-4796-AD67-947831466A6E" class="sect4">Error Records Interfaces</h4>
+                  <div>
+                     <div class="section"><pre class="oac_no_warn" dir="ltr">CoType TErrorRecord {
+       interface IErrorInfo;
+    }</pre></div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div><a id="OOPOD198"></a><div class="props_rev_3"><a id="GUID-B0D15603-E58F-4313-AB76-C41D5EED5990" name="GUID-B0D15603-E58F-4313-AB76-C41D5EED5990"></a><h3 id="OOPOD-GUID-B0D15603-E58F-4313-AB76-C41D5EED5990" class="sect3">Properties</h3>
+               <div>
+                  <p>This section lists the properties supported by the provider. R/W indicates read, or write or both. </p>
+                  <p>For details on the definition (including the type, and equivalent ADO MD property name) of the listed properties in this section, read the Microsoft OLE DB and OLE DB for OLAP documentation .</p>
+                  <div class="infoboxnotealso" id="GUID-B0D15603-E58F-4313-AB76-C41D5EED5990__GUID-824D48F5-D1D8-49A3-9485-F420D61C1B43">
+                     <p class="notep1">See Also:</p><pre class="oac_no_warn" dir="ltr"><a href="https://www.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/oopod&amp;id=msdn_microsoft" target="_blank">Microsoft Developer Network</a>
+</pre></div>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="oledb-info.html#GUID-62ACB3CF-250E-44DE-A916-275604C72FF6">Data Source Properties</a></p>
+                     </li>
+                     <li>
+                        <p><a href="oledb-info.html#GUID-04466864-F808-4452-8BE7-0A6619E9D596">Data Source Info Properties</a></p>
+                     </li>
+                     <li>
+                        <p><a href="oledb-info.html#GUID-A939BC8C-4D5C-4C15-9B54-D31C53728A79">Initialization and Authorization Properties</a></p>
+                     </li>
+                     <li>
+                        <p><a href="oledb-info.html#GUID-E0475BAA-4E28-4B1E-A8AD-811CB5DB5EFC">Rowset Properties</a></p>
+                     </li>
+                     <li>
+                        <p><a href="oledb-info.html#GUID-FA48E790-AF76-4599-9C91-C0AD9991FB4B">Session Properties</a></p>
+                     </li>
+                  </ul>
+               </div><a id="OOPOD200"></a><a id="OOPOD199"></a><div class="props_rev_3"><a id="GUID-62ACB3CF-250E-44DE-A916-275604C72FF6" name="GUID-62ACB3CF-250E-44DE-A916-275604C72FF6"></a><h4 id="OOPOD-GUID-62ACB3CF-250E-44DE-A916-275604C72FF6" class="sect4">Data Source Properties</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="oledb-info.html#GUID-62ACB3CF-250E-44DE-A916-275604C72FF6__BABEBABH" title="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value">Table B-2</a> lists the data source properties that the provider supports, with their default values.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformal" id="GUID-62ACB3CF-250E-44DE-A916-275604C72FF6__BABEBABH">
+                        <p class="titleintable">Table B-2 DBPROPSET_DATASOURCE</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="DBPROPSET_DATASOURCE" summary="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="46%" id="d8288e755">Property</th>
+                                 <th align="left" valign="bottom" width="9%" id="d8288e758"> R/W</th>
+                                 <th align="left" valign="bottom" width="46%" id="d8288e761">Default Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d8288e766" headers="d8288e755 ">
+                                    <p><code class="codeph">DBPROP_CURRENTCATALOG</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e766 d8288e758 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="46%" headers="d8288e766 d8288e761 ">
+                                    <p><code class="codeph">""</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d8288e778" headers="d8288e755 ">
+                                    <p><code class="codeph">DBPROP_MULTIPLECONNECTIONS</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e778 d8288e758 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="46%" headers="d8288e778 d8288e761 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div><a id="OOPOD202"></a><a id="OOPOD201"></a><div class="props_rev_3"><a id="GUID-04466864-F808-4452-8BE7-0A6619E9D596" name="GUID-04466864-F808-4452-8BE7-0A6619E9D596"></a><h4 id="OOPOD-GUID-04466864-F808-4452-8BE7-0A6619E9D596" class="sect4">Data Source Info Properties</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="oledb-info.html#GUID-04466864-F808-4452-8BE7-0A6619E9D596__BABHDEBB" title="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value">Table B-3</a> lists the data source info properties that the provider supports, with their default values.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformal" id="GUID-04466864-F808-4452-8BE7-0A6619E9D596__BABHDEBB">
+                        <p class="titleintable">Table B-3 DBPROPSET_DATASOURCEINFO</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="DBPROPSET_DATASOURCEINFO" summary="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="41%" id="d8288e848">Property </th>
+                                 <th align="left" valign="bottom" width="9%" id="d8288e851">R/W</th>
+                                 <th align="left" valign="bottom" width="50%" id="d8288e854">Default Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e859" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_ACTIVESESSIONS</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e859 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e859 d8288e854 ">
+                                    <p><code class="codeph">0</code> (unlimited)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e872" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_BYREFACCESSORS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e872 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e872 d8288e854 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e884" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_CATALOGLOCATION</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e884 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e884 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e897" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_CATALOGTERM </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e897 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e897 d8288e854 ">
+                                    <p><code class="codeph">""</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e909" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_CATALOGUSAGE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e909 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e909 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e922" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_COLUMNDEFINITION</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e922 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e922 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e935" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_CONCATNULLBEHAVIOR</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e935 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e935 d8288e854 ">
+                                    <p><code class="codeph">DBPROPVAL_CB_NON_NULL </code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e947" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_CONNECTIONSTATUS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e947 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e947 d8288e854 ">
+                                    <p>Dynamically set to status of connection</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e958" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_DATASOURCENAME </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e958 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e958 d8288e854 ">
+                                    <p>Dynamically set to <code class="codeph">tns</code> <code class="codeph">alias</code> string
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e975" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_DATASOURCEREADONLY</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e975 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e975 d8288e854 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e987" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_DATASOURCE_TYPE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e987 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e987 d8288e854 ">
+                                    <p><code class="codeph">DBPROPVAL_DST_MDP</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1000" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_DBMSNAME </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1000 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1000 d8288e854 ">
+                                    <p><code class="codeph">"Oracle"</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1012" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_DBMSVER</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1012 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1012 d8288e854 ">
+                                    <p>Dynamically set to version # string</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1023" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_DSOTHREADMODEL </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1023 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1023 d8288e854 ">
+                                    <p><code class="codeph">DBPROPVAL_RT_FREETHREAD</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1035" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_GROUPBY </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1035 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1035 d8288e854 ">
+                                    <p><code class="codeph">DBPROPVAL_GB_CONTAINS_SELECT </code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1047" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_HETEROGENEOUSTABLES</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1047 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1047 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1060" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_IDENTIFIERCASE</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1060 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1060 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1074" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_MAXINDEXSIZE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1074 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1074 d8288e854 ">
+                                    <p>0 (unlimited)</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1085" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_MAXOPENCHAPTERS</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1085 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1085 d8288e854 ">
+                                    <p>0 (not supported)</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1096" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_MAXROWSIZE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1096 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1096 d8288e854 ">
+                                    <p>0 (unlimited)</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1107" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_MAXROWSIZEINCLUDESBLOB</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1107 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1107 d8288e854 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1119" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_MAXTABLESINSELECT</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1119 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1119 d8288e854 ">
+                                    <p>0 (unlimited, unknown, or not applicable)</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1131" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_MULTIPLEPARAMSETS</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1131 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1131 d8288e854 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1143" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_MULTIPLERESULTS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1143 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1143 d8288e854 ">
+                                    <p><code class="codeph">DBPROPVAL_MR_NOTSUPPORTED</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1155" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_MULTITABLEUPDATE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1155 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1155 d8288e854 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1167" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_NULLCOLLATION</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1167 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1167 d8288e854 ">
+                                    <p><code class="codeph">DBPROPVAL_NC_HIGH</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1179" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_OLEOBJECTS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1179 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1179 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1192" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_ORDERBYCOLUMNSINSELECT</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1192 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1192 d8288e854 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1204" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_OUTPUTPARAMETERAVAILABILITY </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1204 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1204 d8288e854 ">
+                                    <p><code class="codeph">DBPROPVAL_OA_NOTSUPPRTED</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1216" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_PERSISTENTIDTYPE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1216 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1216 d8288e854 ">
+                                    <p><code class="codeph">DBPROPVAL_PT_NAME</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1228" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_PREPAREABORTBEHAVIOR</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1228 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1228 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1241" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_PREPARECOMMITBEHAVIOR </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1241 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1241 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1254" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_PROCEDURETERM </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1254 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1254 d8288e854 ">
+                                    <p><code class="codeph">"Calculated member"</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1267" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_PROVIDERFRIENDLYNAME </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1267 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1267 d8288e854 ">
+                                    <p><code class="codeph">"Oracle OLAP Provider for OLE DB"</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1279" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_PROVIDERMEMORY </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1279 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1279 d8288e854 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1291" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_PROVIDERFILENAME </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1291 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1291 d8288e854 ">
+                                    <p><code class="codeph">"OraOLEDBOLAP10.dll"</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1303" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_PROVIDEROLEDBVER </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1303 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1303 d8288e854 ">
+                                    <p><code class="codeph">"2.7"</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1315" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_PROVIDERVER </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1315 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1315 d8288e854 ">
+                                    <p>"10.1.0.2.0"</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1326" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_QUOTEDIDENTIFIERCASE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1326 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1326 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1339" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_ROWSETCONVERSIONSONCOMMAND </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1339 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1339 d8288e854 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1351" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_SCHEMATERM </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1351 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1351 d8288e854 ">
+                                    <p><code class="codeph">"Schema"</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1363" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_SCHEMAUSAGE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1363 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1363 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1376" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_SERVERNAME </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1376 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1376 d8288e854 ">
+                                    <p><code class="codeph">"Oracle"</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1388" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_SQLSUPPORT </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1388 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1388 d8288e854 ">
+                                    <p><code class="codeph">DBPROPVAL_SQL_NONE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1401" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_STRUCTUREDSTORAGE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1401 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1401 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1414" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_SUBQUERIES </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1414 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1414 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1427" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_SUPPORTEDTXNDDL </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1427 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1427 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1440" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_SUPPORTEDTXNISOLEVELS</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1440 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1440 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1453" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_SUPPORTEDTXNISORETAIN </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1453 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1453 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1466" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_TABLETERM </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1466 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1466 d8288e854 ">
+                                    <p><code class="codeph">"Cube"</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1478" headers="d8288e848 ">
+                                    <p><code class="codeph">DBPROP_USERNAME</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1478 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1478 d8288e854 ">
+                                    <p>Dynamically set to <code class="codeph">user</code> <code class="codeph">id</code> string
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1495" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_AGGREGATECELL_UPDATE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1495 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1495 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_AU_UNSUPPORTED</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1507" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_AXES </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1507 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1507 d8288e854 ">
+                                    <p>0 (no limit)</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1518" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_FLATTENING_SUPPORT </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1518 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1518 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_FS_NO_SUPPORT</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1530" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_MDX_CASESUPPORT </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1530 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1530 d8288e854 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1544" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_MDX_DESCFLAGS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1544 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1544 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_MD_BEFORE | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MD_AFTER | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MD_SELF</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1562" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_MDX_FORMULAS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1562 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1562 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_MF_WITH_NAMEDSETS |  </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MF_CREATE_CALCMEMBERS |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MF_CREATE_NAMEDSETS | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MF_SCOPE_SESSION</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1583" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_MDX_JOINCUBES </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1583 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1583 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_MJC_SINGLECUBE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1595" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_MDX_MEMBER_FUNCTIONS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1595 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1595 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_MMF_COUSIN | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MMF_PARALLELPERIOD | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MMF_OPENINGPERIOD | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MMF_CLOSINGPERIOD</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1616" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_MDX_NONMEASURE_EXPRESSIONS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1616 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1616 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_NME_ALLDIMENSIONS</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1628" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_MDX_NUMERIC_FUNCTIONS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1628 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1628 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_MNF_MEDIAN | </code></p>
+                                    <p> <code class="codeph">MDPROPVAL_MNF_VAR |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MNF_STDDEV</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1647" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_MDX_OBJQUALIFICATION </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1647 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1647 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_MOQ_CUBE_DIM |</code> 
+                                    </p>
+                                    <p><code class="codeph">MDPROPVAL_MOQ_DIM_HIER | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MOQ_DIMHIER_LEVEL | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MOQ_DIMHIER_MEMBER |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MOQ_LEVEL_MEMBER</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1672" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_MDX_QUERYBYPROPERTY </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1672 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1672 d8288e854 ">
+                                    <p><code class="codeph">VARIANT TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1684" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_MDX_SET_FUNCTIONS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1684 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1684 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_MSF_TOPPERCENT |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_BOTTOMPERCENT |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_TOPSUM |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_BOTTOMSUM |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_DRILLDOWNMEMBER |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_DRILLDOWNMEMBERTOP|</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_DRILLDOWNMEMBERBOTTOM | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_DRILLDOWNLEVELTOP | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_DRILLDOWNLEVELBOTTOM | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_DRILLUPMEMBER |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_DRILLUPLEVEL | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_DRILLDOWNLEVEL | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_PERIODSTODATE |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_LASTPERIODS |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_YTD |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_QTD |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_MTD |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSF_WTD</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1748" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_MDX_SLICER</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1748 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1748 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_MS_SINGLETUPLE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1760" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_MDX_STRING_COMPOP </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1760 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1760 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_MSC_LESSTHAN | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSC_GREATERTHAN | </code></p>
+                                    <p> <code class="codeph">MDPROPVAL_MSC_LESSTHANEQUAL |</code></p>
+                                    <p><code class="codeph">MDPROPVAL_MSC_GREATERTHANEQUAL</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1783" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_NAMED_LEVELS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1783 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1783 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_NL_NAMEDLEVELS | </code></p>
+                                    <p><code class="codeph">MDPROPVAL_NL_NUMBEREDLEVELS</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1798" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_RANGEROWSET </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1798 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1798 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_RR_NORANGEROWSET</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="41%" id="d8288e1810" headers="d8288e848 ">
+                                    <p><code class="codeph">MDPROP_VISUALMODE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1810 d8288e851 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d8288e1810 d8288e854 ">
+                                    <p><code class="codeph">MDPROPVAL_VISUAL_MODE_VISUALOFF</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div><a id="OOPOD204"></a><a id="OOPOD203"></a><div class="props_rev_3"><a id="GUID-A939BC8C-4D5C-4C15-9B54-D31C53728A79" name="GUID-A939BC8C-4D5C-4C15-9B54-D31C53728A79"></a><h4 id="OOPOD-GUID-A939BC8C-4D5C-4C15-9B54-D31C53728A79" class="sect4">Initialization and Authorization Properties</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="oledb-info.html#GUID-A939BC8C-4D5C-4C15-9B54-D31C53728A79__BABGFJFE" title="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value">Table B-4</a> lists the initialization and authorization properties that the provider supports, with their default values.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformal" id="GUID-A939BC8C-4D5C-4C15-9B54-D31C53728A79__BABGFJFE">
+                        <p class="titleintable">Table B-4 DBPROPSET_DBINIT</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="DBPROPSET_DBINIT" summary="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="63%" id="d8288e1887">Property </th>
+                                 <th align="left" valign="bottom" width="9%" id="d8288e1890">R/W</th>
+                                 <th align="left" valign="bottom" width="28%" id="d8288e1893">Default Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="63%" id="d8288e1898" headers="d8288e1887 ">
+                                    <p><code class="codeph">DBPROP_AUTH_PASSWORD</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1898 d8288e1890 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d8288e1898 d8288e1893 ">
+                                    <p>Dynamically set to <code class="codeph">password</code> string
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="63%" id="d8288e1912" headers="d8288e1887 ">
+                                    <p><code class="codeph">DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1912 d8288e1890 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d8288e1912 d8288e1893 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="63%" id="d8288e1925" headers="d8288e1887 ">
+                                    <p><code class="codeph">DBPROP_AUTH_USERID</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1925 d8288e1890 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d8288e1925 d8288e1893 ">
+                                    <p>Dynamically set to <code class="codeph">user</code> <code class="codeph">id</code> string
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="63%" id="d8288e1942" headers="d8288e1887 ">
+                                    <p><code class="codeph">DBPROP_INIT_DATASOURCE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1942 d8288e1890 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d8288e1942 d8288e1893 ">
+                                    <p>Dynamically set to <code class="codeph">tns</code> <code class="codeph">alias</code> string
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="63%" id="d8288e1959" headers="d8288e1887 ">
+                                    <p><code class="codeph">DBPROP_INIT_HWND </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1959 d8288e1890 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d8288e1959 d8288e1893 ">
+                                    <p><code class="codeph">0</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="63%" id="d8288e1971" headers="d8288e1887 ">
+                                    <p><code class="codeph">DBPROP_INIT_LCID </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1971 d8288e1890 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d8288e1971 d8288e1893 ">
+                                    <p>Dynamically set to System LCID</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="63%" id="d8288e1982" headers="d8288e1887 ">
+                                    <p><code class="codeph">DBPROP_INIT_OLEDBSERVICES </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1982 d8288e1890 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d8288e1982 d8288e1893 ">
+                                    <p><code class="codeph">DBPROPVAL_OS_ENABLEALL</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="63%" id="d8288e1994" headers="d8288e1887 ">
+                                    <p><code class="codeph">DBPROP_INIT_PROMPT </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e1994 d8288e1890 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d8288e1994 d8288e1893 ">
+                                    <p><code class="codeph">DBPROMPT_NOPROMPT</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="63%" id="d8288e2006" headers="d8288e1887 ">
+                                    <p><code class="codeph">DBPROP_INIT_PROVIDERSTRING </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2006 d8288e1890 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="28%" headers="d8288e2006 d8288e1893 ">
+                                    <p>Dynamically set to provider-specific string attribute settings</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div><a id="OOPOD206"></a><a id="OOPOD205"></a><div class="props_rev_3"><a id="GUID-E0475BAA-4E28-4B1E-A8AD-811CB5DB5EFC" name="GUID-E0475BAA-4E28-4B1E-A8AD-811CB5DB5EFC"></a><h4 id="OOPOD-GUID-E0475BAA-4E28-4B1E-A8AD-811CB5DB5EFC" class="sect4">Rowset Properties</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="oledb-info.html#GUID-E0475BAA-4E28-4B1E-A8AD-811CB5DB5EFC__BABDJGBB" title="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value">Table B-5</a> lists the rowset properties that this release supports, with their default values.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformal" id="GUID-E0475BAA-4E28-4B1E-A8AD-811CB5DB5EFC__BABDJGBB">
+                        <p class="titleintable">Table B-5 DBPROP_ROWSET</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="DBPROP_ROWSET" summary="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="53%" id="d8288e2075">Property </th>
+                                 <th align="left" valign="bottom" width="9%" id="d8288e2078">R/W</th>
+                                 <th align="left" valign="bottom" width="38%" id="d8288e2081">Default Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2086" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_ACCESSORDER</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2086 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2086 d8288e2081 ">
+                                    <p><code class="codeph">DBPROP_AO_RANDOM</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2098" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_APPENDONLY </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2098 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2098 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2110" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_BOOKMARKINFO </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2110 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2110 d8288e2081 ">
+                                    <p><code class="codeph">0</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2122" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_BOOKMARKS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2122 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2122 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2134" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_BOOKMARKSKIPPED </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2134 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2134 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2146" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_BOOKMARKTYPE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2146 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2146 d8288e2081 ">
+                                    <p><code class="codeph">DBPROP_BMK_NUMERIC</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2158" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_CACHEDEFERRED </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2158 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2158 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2170" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_CANFETCHBACKWARDS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2170 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2170 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2182" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_CANHOLDROWS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2182 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2182 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2194" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_CANSCROLLBACKWARDS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2194 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2194 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2206" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_CHANGEINSERTEDROWS</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2206 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2206 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE </code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2219" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_CLIENTCURSOR</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2219 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2219 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2231" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_COLUMNRESTRICT</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2231 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2231 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2243" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_COMMANDTIMEOUT</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2243 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2243 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (unlimited)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2256" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_DEFERRED</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2256 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2256 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2268" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_FINDCOMPAREOPS</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2268 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2268 d8288e2081 ">
+                                    <p><code class="codeph">DBPROPVAL_CO_EQUALITY |  </code></p>
+                                    <p><code class="codeph">DBPROPVAL_CO_STRING | </code></p>
+                                    <p><code class="codeph">DBPROPVAL_CO_CASESENSITIVE |</code></p>
+                                    <p><code class="codeph">DBPROPVAL_CO_CASEINSENSITIVE | </code></p>
+                                    <p><code class="codeph">DBPROPVAL_CO_CONTAINS |</code></p>
+                                    <p><code class="codeph">DBPROPVAL_CO_BEGINSWITH</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2295" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_HIDDENCOLUMNS</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2295 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2295 d8288e2081 ">
+                                    <p><code class="codeph">0</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2307" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IAccessor</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2307 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2307 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2319" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IColumnsInfo</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2319 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2319 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2331" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IColumnsRowset</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2331 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2331 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2343" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IConnectionPointContainer </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2343 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2343 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2355" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IConvertType</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2355 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2355 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2368" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IMMOBILEROWS</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2368 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2368 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2380" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IMultipleResults</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2380 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2380 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2392" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IRowset</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2392 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2392 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2404" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IRowsetChange</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2404 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2404 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2416" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IRowsetFind</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2416 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2416 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2428" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IRowsetIdentity</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2428 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2428 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2440" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IRowsetInfo</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2440 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2440 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2452" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IRowsetLocate</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2452 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2452 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2464" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IRowsetRefresh</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2464 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2464 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2476" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IRowsetScroll</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2476 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2476 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2488" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_IRowsetUpdate </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2488 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2488 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE </code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2501" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_ISupportErrorInfo </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2501 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2501 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2513" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_LITERALBOOKMARKS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2513 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2513 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2525" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_LITERALIDENTITY </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2525 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2525 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2537" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_LOCKMODE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2537 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2537 d8288e2081 ">
+                                    <p><code class="codeph">DBPROPVAL_LM_NONE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2549" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_MAXOPENROWS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2549 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2549 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (unlimited)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2562" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_MAXPENDINGROWS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2562 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2562 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (unlimited)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2575" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_MAXROWS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2575 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2575 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (unlimited)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2588" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_MAXROWSIZE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2588 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2588 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (unlimited)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2601" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_MAXROWSIZEXINCLUDESBLOB</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2601 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2601 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2613" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFICATIONGRANULARITY </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2613 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2613 d8288e2081 ">
+                                    <p><code class="codeph">DBPROPVAL_NT_MULTIPLEROWS</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2625" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFICATIONPHASES </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2625 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2625 d8288e2081 ">
+                                    <p><code class="codeph">DBPROPVAL_NP_OKTODO | </code></p>
+                                    <p><code class="codeph">DBPROPVAL_NP_ABOUTTODO  |  </code></p>
+                                    <p><code class="codeph">DBPROPVAL_NP_SYNCHAFTER | </code></p>
+                                    <p><code class="codeph">DBPROPVAL_NP_DIDEVENT | </code></p>
+                                    <p><code class="codeph">DBPROPVAL_NP_FAILEDTODO</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2650" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFYCOLUMNSET </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2650 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2650 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (unlimited)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2663" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFYROWDELETE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2663 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2663 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (unlimited)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2676" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFYROWFIRSTCHANGE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2676 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2676 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (unlimited)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2689" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFYROWINSERT </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2689 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2689 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (unlimited)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2702" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFYROWRESYNCH </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2702 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2702 d8288e2081 ">
+                                    <p><code class="codeph">DBPROPVAL_NP_OKTODO | </code></p>
+                                    <p><code class="codeph">DBPROPVAL_NP_ABOUTTODO |</code></p>
+                                    <p><code class="codeph">DBPROPVAL_NP_SYNCHAFTER</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2720" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFYROWSETCHANGED </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2720 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2720 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2733" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFYROWSETFETCHPOSITIONCHANGE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2733 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2733 d8288e2081 ">
+                                    <p><code class="codeph">DBPROPVAL_NP_OKTODO | </code></p>
+                                    <p><code class="codeph">DBPROPVAL_NP_ABOUTTODO |</code></p>
+                                    <p><code class="codeph">DBPROPVAL_NP_SYNCHAFTER</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2751" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFYROWSETRELEASE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2751 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2751 d8288e2081 ">
+                                    <p><code class="codeph">DBPROPVAL_NP_OKTODO | </code></p>
+                                    <p><code class="codeph">DBPROPVAL_NP_ABOUTTODO |</code></p>
+                                    <p><code class="codeph">DBPROPVAL_NP_SYNCHAFTER</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2769" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFYROWUNDOCHANGE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2769 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2769 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2782" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFYROWUNDODELETE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2782 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2782 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2795" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFYROWUNDOINSERT </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2795 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2795 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2809" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_NOTIFYROWUPDATE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2809 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2809 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2822" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_ORDEREDBOOKMARKS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2822 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2822 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2834" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_OTHERINSERT </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2834 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2834 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2846" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_OTHERUPDATEDELETE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2846 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2846 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2858" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_OWNINSERT </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2858 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2858 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2870" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_OWNUPDATEDELETE </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2870 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2870 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2882" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_QUICKRESTART </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2882 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2882 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2894" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_REENTRANTEVENTS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2894 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2894 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2906" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_REMOVEDELETED </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2906 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2906 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2918" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_REPORTMULTIPLECHANGES </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2918 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2918 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2930" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_RETURNPENDINGINSERTS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2930 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2930 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2943" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_ROWRESTRICT </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2943 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2943 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2955" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_ROWTHREADMODEL </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2955 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2955 d8288e2081 ">
+                                    <p><code class="codeph">DBPROPVAL_RT_FREETHREAD</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2967" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_SERVERCURSOR </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2967 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2967 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2979" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_STRONGIDENTITY </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2979 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2979 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e2991" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_UNIQUEROWS </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e2991 d8288e2078 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e2991 d8288e2081 ">
+                                    <p><code class="codeph">VARIANT_FALSE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="53%" id="d8288e3003" headers="d8288e2075 ">
+                                    <p><code class="codeph">DBPROP_UPDATABILITY</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="9%" headers="d8288e3003 d8288e2078 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="38%" headers="d8288e3003 d8288e2081 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div><a id="OOPOD207"></a><div class="props_rev_3"><a id="GUID-63531A4B-D463-48D9-8EB4-01C1EE1261DC" name="GUID-63531A4B-D463-48D9-8EB4-01C1EE1261DC"></a><h5 id="OOPOD-GUID-63531A4B-D463-48D9-8EB4-01C1EE1261DC" class="sect5">Rowset Property Implications</h5>
+                     <div>
+                        <div class="section">
+                           <p>OraOLEDB OLAP sets other necessary properties if a particular property is set to <code class="codeph">VARIANT_TRUE</code>. 
+                           </p>
+                           <p>If <code class="codeph">DBPROP_IROWSETLOCATE</code> is set to <code class="codeph">VARIANT_TRUE</code>, the following properties are also set to <code class="codeph">VARIANT_TRUE</code>:
+                           </p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><code class="codeph">DBPROP_CANHOLDROWS</code></p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph">DBPROP_BOOKMARKS</code></p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph">DBPROP_CANFETCHBACKWARDS</code></p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph">DBPROP_CANSCROLLBACKWARDS</code></p>
+                              </li>
+                           </ul>
+                           <p>If <code class="codeph">DBPROP_IROWSETSCROLL</code> is set to <code class="codeph">VARIANT_TRUE</code>, the following properties are also set to <code class="codeph">VARIANT_TRUE</code>:
+                           </p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><code class="codeph">DBPROP_IROWSETLOCATE</code></p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph">DBPROP_CANHOLDROWS</code></p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph">DBPROP_BOOKMARKS</code></p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph">DBPROP_CANFETCHBACKWARDS</code></p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph">DBPROP_CANSCROLLBACKWARDS</code></p>
+                              </li>
+                           </ul>
+                        </div>
+                        <!-- class="section" -->
+                     </div>
+                  </div>
+               </div><a id="OOPOD209"></a><a id="OOPOD208"></a><div class="props_rev_3"><a id="GUID-FA48E790-AF76-4599-9C91-C0AD9991FB4B" name="GUID-FA48E790-AF76-4599-9C91-C0AD9991FB4B"></a><h4 id="OOPOD-GUID-FA48E790-AF76-4599-9C91-C0AD9991FB4B" class="sect4">Session Properties</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="oledb-info.html#GUID-FA48E790-AF76-4599-9C91-C0AD9991FB4B__BABBJGGI" title="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value">Table B-6</a> lists the data source info properties that this release supports, with their default values.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformal" id="GUID-FA48E790-AF76-4599-9C91-C0AD9991FB4B__BABBJGGI">
+                        <p class="titleintable">Table B-6 DBPROPSET_SESSION</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="DBPROPSET_SESSION" summary="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="57%" id="d8288e3178">Property</th>
+                                 <th align="left" valign="bottom" width="11%" id="d8288e3181">R/W</th>
+                                 <th align="left" valign="bottom" width="32%" id="d8288e3184">Default Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="57%" id="d8288e3189" headers="d8288e3178 ">
+                                    <p><code class="codeph">DBPROP_SESS_AUTOCOMMITISOLEVELS</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="11%" headers="d8288e3189 d8288e3181 ">
+                                    <p>R</p>
+                                 </td>
+                                 <td align="left" valign="top" width="32%" headers="d8288e3189 d8288e3184 ">
+                                    <p><code class="codeph">0</code> (not supported)
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div>
+            </div><a id="OOPOD210"></a><div class="props_rev_3"><a id="GUID-D0A4DC54-D063-47D6-8462-7F6438482CEE" name="GUID-D0A4DC54-D063-47D6-8462-7F6438482CEE"></a><h3 id="OOPOD-GUID-D0A4DC54-D063-47D6-8462-7F6438482CEE" class="sect3">Provider-Specific Properties</h3>
+               <div>
+                  <p>Oracle OLAP Provider for OLE DB provides the following provider-specific properties:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="oledb-info.html#GUID-2367794F-7FF0-43AA-848F-9E1FADEFC413">Rowset-Related Property</a></p>
+                     </li>
+                     <li>
+                        <p><a href="oledb-info.html#GUID-77D79AFA-00FA-42A9-A3DC-BAA8CE4ADC0F">Provider-Specific Command Properties</a></p>
+                     </li>
+                  </ul>
+               </div><a id="OOPOD212"></a><a id="OOPOD211"></a><div class="props_rev_3"><a id="GUID-2367794F-7FF0-43AA-848F-9E1FADEFC413" name="GUID-2367794F-7FF0-43AA-848F-9E1FADEFC413"></a><h4 id="OOPOD-GUID-2367794F-7FF0-43AA-848F-9E1FADEFC413" class="sect4">Rowset-Related Property</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="oledb-info.html#GUID-2367794F-7FF0-43AA-848F-9E1FADEFC413__BABDDCDF" title="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value">Table B-7</a> lists the rowset-related provider-specific OLE DB property.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformal" id="GUID-2367794F-7FF0-43AA-848F-9E1FADEFC413__BABDDCDF">
+                        <p class="titleintable">Table B-7 Rowset Fetch Size</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Rowset Fetch Size" summary="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="56%" id="d8288e3302">Property Name</th>
+                                 <th align="left" valign="bottom" width="14%" id="d8288e3305">Type</th>
+                                 <th align="left" valign="bottom" width="10%" id="d8288e3308">R/W</th>
+                                 <th align="left" valign="bottom" width="20%" id="d8288e3311">Default Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="56%" id="d8288e3316" headers="d8288e3302 ">
+                                    <p><code class="codeph">DBPROP_ORAOLEDBOLAP_ROWSETFETCHSIZE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="14%" headers="d8288e3316 d8288e3305 ">
+                                    <p><code class="codeph">VT_I4 </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="10%" headers="d8288e3316 d8288e3308 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="20%" headers="d8288e3316 d8288e3311 ">
+                                    <p><code class="codeph">262144</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div><a id="OOPOD214"></a><a id="OOPOD213"></a><div class="props_rev_3"><a id="GUID-77D79AFA-00FA-42A9-A3DC-BAA8CE4ADC0F" name="GUID-77D79AFA-00FA-42A9-A3DC-BAA8CE4ADC0F"></a><h4 id="OOPOD-GUID-77D79AFA-00FA-42A9-A3DC-BAA8CE4ADC0F" class="sect4">Provider-Specific Command Properties</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="oledb-info.html#GUID-77D79AFA-00FA-42A9-A3DC-BAA8CE4ADC0F__BEHIJIGC" title="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value">Table B-8</a> lists the provider-specific OLE DB Properties, which are related to cube caching and enabling maximum precision of <code class="codeph">NUMBER</code> and <code class="codeph">FLOAT</code> column values.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformal" id="GUID-77D79AFA-00FA-42A9-A3DC-BAA8CE4ADC0F__BEHIJIGC">
+                        <p class="titleintable">Table B-8 Caching-Related Properties</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Caching-Related Properties" summary="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="56%" id="d8288e3403">Property Name</th>
+                                 <th align="left" valign="bottom" width="19%" id="d8288e3406">Type</th>
+                                 <th align="left" valign="bottom" width="10%" id="d8288e3409">R/W</th>
+                                 <th align="left" valign="bottom" width="15%" id="d8288e3412">Default Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="56%" id="d8288e3417" headers="d8288e3403 ">
+                                    <p><code class="codeph">MDPROP_ORAOLEDBOLAP_CELLDATACACHE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="19%" headers="d8288e3417 d8288e3406 ">
+                                    <p><code class="codeph">VT_BOOL</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="10%" headers="d8288e3417 d8288e3409 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d8288e3417 d8288e3412 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="56%" id="d8288e3433" headers="d8288e3403 ">
+                                    <p><code class="codeph">MDPROP_ORAOLEDBOLAP_CACHEBLOCKSIZE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="19%" headers="d8288e3433 d8288e3406 ">
+                                    <p><code class="codeph">VT_ARRAY |</code></p>
+                                    <p><code class="codeph">VT_I4 </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="10%" headers="d8288e3433 d8288e3409 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d8288e3433 d8288e3412 ">
+                                    <p><code class="codeph">NULL</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="56%" id="d8288e3452" headers="d8288e3403 ">
+                                    <p><code class="codeph">MDPROP_ORAOLEDBOLAP_PRESERVEMAXPRECISION</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="19%" headers="d8288e3452 d8288e3406 ">
+                                    <p><code class="codeph">VT_BOOL</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="10%" headers="d8288e3452 d8288e3409 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="15%" headers="d8288e3452 d8288e3412 ">
+                                    <p><code class="codeph">VARIANT_FALSE </code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

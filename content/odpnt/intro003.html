@@ -1,0 +1,2011 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Oracle Data Provider for .NET Assemblies</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="intro002.html" title="Previous" type="text/html">
+      <link rel="next" href="intro004.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="intro002.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="intro004.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="intro.html" property="item" typeof="WebPage"><span property="name">Introducing Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Oracle Data Provider for .NET Assemblies</li>
+            </ol>
+            <a id="GUID-FD1413E6-6DD8-4E92-96F2-674A9D318FF5" name="GUID-FD1413E6-6DD8-4E92-96F2-674A9D318FF5"></a><a id="ODPNT131"></a>
+            
+            <h2 id="ODPNT-GUID-FD1413E6-6DD8-4E92-96F2-674A9D318FF5" class="sect2">Oracle Data Provider for .NET Assemblies</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>This section contains the following topics:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="intro003.html#GUID-4A7942DA-10BA-4683-8957-8C1A278722B1">Oracle Data Provider for .NET, Unmanaged Driver Assemblies</a></p>
+                  </li>
+                  <li>
+                     <p><a href="intro003.html#GUID-76645013-C22A-46D0-9E53-F8FA0D28DA25">Oracle Data Provider for .NET, Managed Driver and ODP.NET Core Assemblies</a></p>
+                  </li>
+                  <li>
+                     <p><a href="intro003.html#GUID-2A5A5F0B-E6C9-45AF-9477-FBD55F7FCDC5">Oracle.DataAccess.Client and Oracle.ManagedDataAccess.Client Namespaces</a></p>
+                  </li>
+                  <li>
+                     <p><a href="intro003.html#GUID-425C9EBA-CFFC-47FE-B490-604251714ACA">Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Namespaces</a></p>
+                  </li>
+               </ul>
+            </div><a id="ODPNT8259"></a><div class="props_rev_3"><a id="GUID-4A7942DA-10BA-4683-8957-8C1A278722B1" name="GUID-4A7942DA-10BA-4683-8957-8C1A278722B1"></a><h3 id="ODPNT-GUID-4A7942DA-10BA-4683-8957-8C1A278722B1" class="sect3">Oracle Data Provider for .NET, Unmanaged Driver Assemblies</h3>
+               <div>
+                  <p>The <code class="codeph">Oracle.DataAccess.dll</code> <a href="glossary.html#GUID-2F772657-C414-4F01-B48C-19063C13EFCA"><span class="xrefglossterm">assembly</span></a> provides two namespaces:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>The <code class="codeph">Oracle.DataAccess.Client</code> namespace contains ODP.NET classes and enumerations for the client-side provider. 
+                        </p>
+                     </li>
+                     <li>
+                        <p>The <code class="codeph">Oracle.DataAccess.Types</code> namespace contains the Oracle Data Provider for .NET data types (ODP.NET Types).
+                        </p>
+                     </li>
+                  </ul>
+                  <p>To use Code First or Entity Framework 6 or higher with ODP.NET, Unmanaged Driver, add <code class="codeph">Oracle.DataAccess.EntityFramework.dll</code> as a project assembly reference. It contains the namespace <code class="codeph">Oracle.DataAccess.EntityFramework</code>.
+                  </p>
+               </div>
+            </div><a id="ODPNT8260"></a><div class="props_rev_3"><a id="GUID-76645013-C22A-46D0-9E53-F8FA0D28DA25" name="GUID-76645013-C22A-46D0-9E53-F8FA0D28DA25"></a><h3 id="ODPNT-GUID-76645013-C22A-46D0-9E53-F8FA0D28DA25" class="sect3">Oracle Data Provider for .NET, Managed Driver and ODP.NET Core Assemblies</h3>
+               <div>
+                  <p>The <code class="codeph">Oracle.ManagedDataAccess.dll</code> <a href="glossary.html#GUID-2F772657-C414-4F01-B48C-19063C13EFCA"><span class="xrefglossterm">assembly</span></a> provides two namespaces:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>The <code class="codeph">Oracle.ManagedDataAccess.Client</code> namespace contains ODP.NET classes and enumerations for the client-side provider. 
+                        </p>
+                     </li>
+                     <li>
+                        <p>The <code class="codeph">Oracle.ManagedDataAccess.Types</code> namespace contains the Oracle Data Provider for .NET data types (ODP.NET Types).
+                        </p>
+                     </li>
+                  </ul>
+                  <p>ODP.NET, Managed Driver contains additional assemblies. These assemblies are optional to install if not using the specific functionality. </p>
+                  <p>Applications do not need to explicitly add these assemblies to their project. ODP.NET, Managed Driver will access these assemblies by default if installed. </p>
+                  <p>The one exception is <code class="codeph">Oracle.ManagedDataAccess.EntityFramework.dll</code>. That DLL must be explicitly added to a project for its functionality to be used.
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><code class="codeph">Oracle.ManagedDataAccess.EntityFramework.dll</code> - Only required when using Code First or Entity Framework 6 or higher. It contains the <code class="codeph">Oracle.ManagedDataAccess.EntityFramework</code> namespace.
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">Oracle.ManagedDataAccessIOP.dll</code> - Only required when using Kerberos. The assembly has 32-bit and x64 versions depending on the .NET Framework's bitness in which it runs. The assembly makes calls to unmanaged assemblies. Applications do not need to explicitly add this assembly to their project as ODP.NET is already configured to access this assembly by default.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+            </div><a id="ODPNT132"></a><div class="props_rev_3"><a id="GUID-2A5A5F0B-E6C9-45AF-9477-FBD55F7FCDC5" name="GUID-2A5A5F0B-E6C9-45AF-9477-FBD55F7FCDC5"></a><h3 id="ODPNT-GUID-2A5A5F0B-E6C9-45AF-9477-FBD55F7FCDC5" class="sect3">Oracle.DataAccess.Client and Oracle.ManagedDataAccess.Client Namespaces</h3>
+               <div>
+                  <div class="section">
+                     <p>The <code class="codeph">Oracle.DataAccess.Client</code> and <code class="codeph">Oracle.ManagedDataAccess.Client</code> namespaces contains implementations of core ADO.NET classes and enumerations for ODP.NET, as well as ODP.NET specific classes.
+                     </p>
+                     <p>The following tables list ODP.NET classes, enumerations, and types that are supported by the <code class="codeph">Oracle.DataAccess.Client</code> and <code class="codeph">Oracle.ManagedDataAccess.Client</code> namespaces. The tables indicate which of them are not supported by ODP.NET, Managed Driver, ODP.NET Core and/or by .NET stored procedures. All are supported by ODP.NET, Unmanaged Driver.
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+               </div><a id="ODPNT134"></a><a id="ODPNT133"></a><div class="props_rev_3"><a id="GUID-7CD88566-0561-4121-937D-57A190CDE2EA" name="GUID-7CD88566-0561-4121-937D-57A190CDE2EA"></a><h4 id="ODPNT-GUID-7CD88566-0561-4121-937D-57A190CDE2EA" class="sect4">Oracle.DataAccess.Client and Oracle.ManagedDataAccess.Client</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="intro003.html#GUID-7CD88566-0561-4121-937D-57A190CDE2EA__BABHAEGJ" title="rows are ODP.NET client classes. first column is name, second column is description">Table 1-1</a> lists the <code class="codeph">Oracle.DataAccess.Client</code> and <code class="codeph">Oracle.ManagedDataAccess.Client</code> classes and delegates.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformalwide" id="GUID-7CD88566-0561-4121-937D-57A190CDE2EA__BABHAEGJ">
+                        <p class="titleintable">Table 1-1 Oracle.DataAccess.Client and Oracle.ManagedDataAccess.Client</p>
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title="Oracle.DataAccess.Client and Oracle.ManagedDataAccess.Client" summary="rows are ODP.NET client classes. first column is name, second column is description" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d31518e196">Class or Delegate</th>
+                                 <th align="left" valign="bottom" id="d31518e199">Supported in the ODP.NET, Managed Driver</th>
+                                 <th align="left" valign="bottom" id="d31518e202">Supported in the ODP.NET Core</th>
+                                 <th align="left" valign="bottom" id="d31518e205">Supported in .NET Stored Procedures</th>
+                                 <th align="left" valign="bottom" id="d31518e208">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e213" headers="d31518e196 ">
+                                    <p><a href="OnChangeEventHandlerEventDelegate.html#GUID-21E19A8D-EA6E-4A26-B722-ACA8828AC503">OnChangeEventHandler Delegate</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e213 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e213 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e213 d31518e205 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e213 d31518e208 ">
+                                    <p>The <code class="codeph">OnChangedEventHandler</code> event delegate represents the signature of the method that handles the notification.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e233" headers="d31518e196 ">
+                                    <p><a href="OracleAQAgentClass.html#GUID-13C70186-8CC7-4D37-AC8C-9FF48C0685A0">OracleAQAgent Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e233 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e233 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e233 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e233 d31518e208 ">
+                                    <p>The <code class="codeph">OracleAQAgent</code> class represents agents that may be senders or recipients of a message.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e253" headers="d31518e196 ">
+                                    <p><a href="OracleAQDequeueOptionsClass.html#GUID-FFFFA2E8-5848-4E9D-96AA-1619E766A34F">OracleAQDequeueOptions Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e253 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e253 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e253 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e253 d31518e208 ">
+                                    <p>An <code class="codeph">OracleAQDequeueOptions</code> object represents the options available when dequeuing a message from an <code class="codeph">OracleAQQueue</code> object.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e276" headers="d31518e196 ">
+                                    <p><a href="OracleAQEnqueueOptionsClass.html#GUID-2CEC6F2D-5A3E-4531-9C76-6348522EAB59">OracleAQEnqueueOptions Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e276 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e276 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e276 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e276 d31518e208 ">
+                                    <p>The <code class="codeph">OracleAQEnqueueOptions</code> class represents the options available when enqueuing a message to an <code class="codeph">OracleAQQueue</code>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e299" headers="d31518e196 ">
+                                    <p><a href="OracleAQMessageClass.html#GUID-16A1F29B-CF63-47A8-8A9B-0A881E3C97CC">OracleAQMessage Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e299 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e299 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e299 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e299 d31518e208 ">
+                                    <p>An <code class="codeph">OracleAQMessage</code> object represents a message to be enqueued and dequeued. 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e319" headers="d31518e196 ">
+                                    <p><a href="OracleAQMessageAvailableEventArgsClass.html#GUID-D01D38BD-3EB2-44CC-AD62-DB80092DEE86">OracleAQMessageAvailableEventArgs Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e319 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e319 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e319 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e319 d31518e208 ">
+                                    <p>The <code class="codeph">OracleAQMessageAvailableEventArgs</code> class provides event data for the <code class="codeph">OracleAQQueue.MessageAvailable</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e342" headers="d31518e196 ">
+                                    <p><a href="OracleAQMessageAvailableEventHandlerDelegate.html#GUID-8A2ECDE4-FFAF-45C2-BFB2-30B542F554A8">OracleAQMessageAvailableEventHandler Delegate</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e342 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e342 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e342 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e342 d31518e208 ">
+                                    <p>The <code class="codeph">OracleAQMessageAvailableEventHandler</code> delegate represents the signature of the method that handles the <code class="codeph">OracleAQQueue.MessageAvailable</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e365" headers="d31518e196 ">
+                                    <p><a href="OracleAQQueueClass.html#GUID-5C99D7AC-DDEA-446D-AF13-F3C297F7CE07">OracleAQQueue Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e365 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e365 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e365 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e365 d31518e208 ">
+                                    <p>An <code class="codeph">OracleAQQueue</code> object represents a queue. 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e385" headers="d31518e196 ">
+                                    <p><a href="OracleBulkCopyClass.html#GUID-3993FDA1-2807-4F66-A078-9A2C7091E2ED">OracleBulkCopy Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e385 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e385 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e385 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e385 d31518e208 ">
+                                    <p>An <code class="codeph">OracleBulkCopy</code> object efficiently bulk loads or copies data into an Oracle table from another data source.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e405" headers="d31518e196 ">
+                                    <p><a href="OracleBulkCopyColumnMappingClass.html#GUID-85BFC1C5-A1B0-46EF-83A2-41EAE3387143">OracleBulkCopyColumnMapping Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e405 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e405 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e405 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e405 d31518e208 ">
+                                    <p>The <code class="codeph">OracleBulkCopyColumnMapping</code> class defines the mapping between a column in the data source and a column in the destination database table.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e425" headers="d31518e196 ">
+                                    <p><a href="OracleBulkCopyColumnMappingCollectionClass.html#GUID-B0A74151-D3DA-4A28-BA41-7EE7980AA763">OracleBulkCopyColumnMappingCollection Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e425 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e425 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e425 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e425 d31518e208 ">
+                                    <p>The <code class="codeph">OracleBulkCopyColumnMappingCollection</code> class represents a collection of <code class="codeph">OracleBulkCopyColumnMapping</code> objects that are used to map columns in the data source to columns in a destination table.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e449" headers="d31518e196 ">
+                                    <p><a href="OracleClientFactoryClass.html#GUID-9E000B2B-B54E-470D-97F3-EDEF5EA4316E">OracleClientFactory Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e449 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e449 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e449 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e449 d31518e208 ">
+                                    <p>An <code class="codeph">OracleClientFactory</code> object allows applications to instantiate ODP.NET classes in a generic way. 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e469" headers="d31518e196 ">
+                                    <p><a href="OracleCommandClass.html#GUID-7C1D5BCC-0268-4F1B-A583-F401F30EB9C0">OracleCommand Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e469 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e469 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e469 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e469 d31518e208 ">
+                                    <p>An <code class="codeph">OracleCommand</code> object represents a SQL command, a stored procedure or function, or a table name. 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e489" headers="d31518e196 ">
+                                    <p><a href="OracleCommandBuilderClass.html#GUID-FE018CDC-29C6-42DA-AD24-E0D874C4030C">OracleCommandBuilder Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e489 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e489 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e489 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e489 d31518e208 ">
+                                    <p>An <code class="codeph">OracleCommandBuilder</code> object provides automatic SQL generation for the <code class="codeph">OracleDataAdapter</code> when the database is updated.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e512" headers="d31518e196 ">
+                                    <p><a href="OracleConfigurationClass.html#GUID-F1F71D03-CBB8-4173-A883-0878DA84D11A">OracleConfiguration Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e512 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e512 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e512 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e512 d31518e208 ">
+                                    <p>An <code class="codeph">OracleConfiguration</code>is a static class for setting ODP.NET Core configuration data using a single programming interface.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e532" headers="d31518e196 ">
+                                    <p><a href="OracleConnectionClass.html#GUID-A8BFA792-97D6-423B-9548-80CA0652174E">OracleConnection Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e532 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e532 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e532 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e532 d31518e208 ">
+                                    <p>An <code class="codeph">OracleConnection</code> object represents a connection to Oracle Database.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e552" headers="d31518e196 ">
+                                    <p><a href="OracleConnectionOpenEventArgsClass.html#GUID-8CD888B1-93D7-4D3E-A286-DDA5269439CF">OracleConnectionOpenEventArgs Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e552 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e552 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e552 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e552 d31518e208 ">
+                                    <p>An <code class="codeph">OracleConnectionOpenEventArgs</code> object provides connection information for the <code class="codeph">OracleConnection.Open()</code> method.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e575" headers="d31518e196 ">
+                                    <p><a href="OracleConnectionOpenEventHandlerDelegate.html#GUID-D47E72D2-575E-415A-9010-1FE369BCEB26">OracleConnectionOpenEventHandler Delegate</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e575 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e575 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e575 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e575 d31518e208 ">
+                                    <p>The <code class="codeph">OracleConnectionOpenEventHandler</code> delegate represents the signature of the method that handles <code class="codeph">OracleConnection.ConnectionOpen</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e598" headers="d31518e196 ">
+                                    <p><a href="OracleConnectionStringBuilderClass.html#GUID-81FD2CFC-D2CE-47A8-BF0A-2F18428A6D5F">OracleConnectionStringBuilder Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e598 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e598 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e598 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e598 d31518e208 ">
+                                    <p>An <code class="codeph">OracleConnectionStringBuilder</code> object allows applications to create or modify connection strings. 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e618" headers="d31518e196 ">
+                                    <p><a href="OracleCredentialClass.html#GUID-193A5715-A785-4CA2-842E-1241DEFD8645">OracleCredential Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e618 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e618 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e618 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e618 d31518e208 ">
+                                    <p><code class="codeph">OracleCredential</code>class provides a secure way to provide password while opening connection with Oracle Database using the ODP.NET driver
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e637" headers="d31518e196 ">
+                                    <p><a href="OracleDataAdapterClass.html#GUID-76F427CE-BC13-4266-B5FC-87D5183D6E6B">OracleDataAdapter Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e637 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e637 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e637 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e637 d31518e208 ">
+                                    <p>An <code class="codeph">OracleDataAdapter</code> object represents a data provider object that communicates with the <code class="codeph">DataSet</code>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e660" headers="d31518e196 ">
+                                    <p><a href="OracleDatabaseClass.html#GUID-F8A71929-B747-4B1F-9259-F41E4E0BF3DA">OracleDatabase Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e660 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e660 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e660 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e660 d31518e208 ">
+                                    <p>An <code class="codeph">OracleDatabase</code> object represents an Oracle Database instance.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e681" headers="d31518e196 ">
+                                    <p><a href="OracleDataReaderClass.html#GUID-6A8F1309-277F-4DA7-B463-642D81DDCB1C">OracleDataReader Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e681 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e681 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e681 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e681 d31518e208 ">
+                                    <p>An <code class="codeph">OracleDataReader</code> object represents a forward-only, read-only, in-memory result set.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e701" headers="d31518e196 ">
+                                    <p><a href="OracleDataSourceCollectionClass.html#GUID-C1D73432-B409-46BE-B060-B5EA06BBBC69">OracleDataSourceCollection Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e701 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e701 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e701 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e701 d31518e208 ">
+                                    <p>An <code class="codeph">OracleDataSourceCollection</code>object supports adding and deleting network service name (i.e. TNS) entries in the <code class="codeph">OracleDataSourceCollection</code>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e724" headers="d31518e196 ">
+                                    <p><a href="OracleDataSourceEnumeratorClass.html#GUID-05A6ED15-DC1D-41CC-980F-3C92063B174F">OracleDataSourceEnumerator Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e724 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e724 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e724 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e724 d31518e208 ">
+                                    <p>An <code class="codeph">OracleDataSourceEnumerator</code> object allows applications to generically obtain a collection of data sources to connect to.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e744" headers="d31518e196 ">
+                                    <p><a href="OracleDependencyClass.html#GUID-D28FE392-A5D9-4921-822D-9E898CFCB361">OracleDependency Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e744 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e744 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e744 d31518e205 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e744 d31518e208 ">
+                                    <p>An <code class="codeph">OracleDependency</code> class represents a dependency between an application and an Oracle database.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e764" headers="d31518e196 ">
+                                    <p><a href="OracleErrorClass.html#GUID-CA1DE3CE-8601-4E91-AD67-04D1D6AFAA16">OracleError Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e764 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e764 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e764 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e764 d31518e208 ">
+                                    <p>The <code class="codeph">OracleError</code> object represents an error reported by an Oracle database.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e784" headers="d31518e196 ">
+                                    <p><a href="OracleErrorCollectionClass.html#GUID-B18C3EF4-A1E8-407C-87A1-9A15B5D88D09">OracleErrorCollection Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e784 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e784 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e784 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e784 d31518e208 ">
+                                    <p>An <code class="codeph">OracleErrorCollection</code> object represents a collection of <code class="codeph">OracleError</code>s.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e807" headers="d31518e196 ">
+                                    <p><a href="OracleExceptionClass.html#GUID-6849ECDC-9730-45E6-9F8E-FC2BBC95C97C">OracleException Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e807 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e807 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e807 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e807 d31518e208 ">
+                                    <p>The <code class="codeph">OracleException</code> object represents an exception that is thrown when Oracle Data Provider for .NET encounters an error.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e827" headers="d31518e196 ">
+                                    <p><a href="OracleFailoverEventArgsClass.html#GUID-3B464F7C-2AD5-4209-BFBF-5EA7751B30C3">OracleFailoverEventArgs Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e827 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e827 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e827 d31518e205 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e827 d31518e208 ">
+                                    <p>The <code class="codeph">OracleFailoverEventArgs</code> class provides event data for the <code class="codeph">OracleConnection.Failover</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e850" headers="d31518e196 ">
+                                    <p><a href="OracleFailoverEventHandlerDelegate.html#GUID-13D8EA35-6F8B-45C4-94ED-31F2DFC6F611">OracleFailoverEventHandler Delegate</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e850 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e850 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e850 d31518e205 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e850 d31518e208 ">
+                                    <p>The <code class="codeph">OracleFailoverEventHandler</code> represents the signature of the method that handles the <code class="codeph">OracleConnection.Failover</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e873" headers="d31518e196 ">
+                                    <p><a href="OracleGlobalizationClass.html#GUID-0F50EB3E-67A3-4748-A146-E783532F9529">OracleGlobalization Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e873 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e873 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e873 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e873 d31518e208 ">
+                                    <p>The <code class="codeph">OracleGlobalization</code> class is used to obtain and set the Oracle globalization settings of the session, thread, and local computer (read-only).
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e893" headers="d31518e196 ">
+                                    <p><a href="OracleHAEventArgsClass.html#GUID-3ED2AF56-7CA1-461A-8930-97367E038A11">OracleHAEventArgs Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e893 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e893 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e893 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e893 d31518e208 ">
+                                    <p>The <code class="codeph">OracleHAEventArgs</code> class provides event data for the <code class="codeph">OracleConnection.HAEvent</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e917" headers="d31518e196 ">
+                                    <p><a href="OracleHAEventHandlerDelegate.html#GUID-7BAD3778-3968-42F2-B39D-FC17BD1935D3">OracleHAEventHandler Delegate</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e917 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e917 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e917 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e917 d31518e208 ">
+                                    <p>The <code class="codeph">OracleHAEventHandler</code> delegate represents the signature of the method that handles the <code class="codeph">OracleConnection.HAEvent</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e940" headers="d31518e196 ">
+                                    <p><a href="OracleInfoMessageEventArgsClass.html#GUID-DDAEF19D-72DE-4464-B792-E98DD4DFF09B">OracleInfoMessageEventArgs Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e940 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e940 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e940 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e940 d31518e208 ">
+                                    <p>The <code class="codeph">OracleInfoMessageEventArgs</code> object provides event data for the <code class="codeph">OracleConnection.InfoMessage</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e963" headers="d31518e196 ">
+                                    <p><a href="OracleInfoMessageEventHandlerDelegate.html#GUID-7D222CD9-1D79-47FF-8576-1E10DB35654D">OracleInfoMessageEventHandler Delegate</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e963 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e963 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e963 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e963 d31518e208 ">
+                                    <p>The <code class="codeph">OracleInfoMessageEventHandler</code> delegate represents the signature of the method that handles the <code class="codeph">OracleConnection.InfoMessage</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e986" headers="d31518e196 ">
+                                    <p><a href="OracleLogicalTransactionClass.html#GUID-28836692-AB05-4E34-AE58-FB87DADDAA1C">OracleLogicalTransaction Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e986 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e986 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e986 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e986 d31518e208 ">
+                                    <p>The <code class="codeph">OracleLogicalTransaction</code> class provides detailed information about the logical transaction status.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1006" headers="d31518e196 ">
+                                    <p><a href="OracleNotificationEventArgsClass.html#GUID-25873C2A-840D-4D22-A111-E3E0D2A5F82D">OracleNotificationEventArgs Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1006 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1006 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1006 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1006 d31518e208 ">
+                                    <p>The <code class="codeph">OracleNotificationEventArgs</code> class provides event data for a notification.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1026" headers="d31518e196 ">
+                                    <p><a href="OracleNotificationRequestClass.html#GUID-D1057A54-2A97-4623-A500-A8C459632150">OracleNotificationRequest Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1026 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1026 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1026 d31518e205 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1026 d31518e208 ">
+                                    <p>An <code class="codeph">OracleNotificationRequest</code> class represents a notification request to be subscribed in the database.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1046" headers="d31518e196 ">
+                                    <p><a href="OracleOnsServerCollectionClass.html#GUID-3E1F75B0-C6F0-4945-8F31-75DB20A3C579">OracleOnsServerCollection Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1046 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1046 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1046 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1046 d31518e208 ">
+                                    <p>The <code class="codeph">OracleOnsServerCollection</code>class supports adding to and deleting from a collection of logical servers with their corresponding list of nodes where the Oracle Notification Service (ONS) daemons are talking to their remote clients.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1066" headers="d31518e196 ">
+                                    <p><a href="OracleParameterClass.html#GUID-F6A0A115-1AF6-4A74-991B-00C7F7D601AE">OracleParameter Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1066 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1066 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1066 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1066 d31518e208 ">
+                                    <p>An <code class="codeph">OracleParameter</code> object represents a parameter for an <code class="codeph">OracleCommand.</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1089" headers="d31518e196 ">
+                                    <p><a href="OracleParameterCollectionClass.html#GUID-92B284FF-6D80-4408-BD0A-DB625965EC04">OracleParameterCollection Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1089 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1089 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1089 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1089 d31518e208 ">
+                                    <p>An <code class="codeph">OracleParameterCollection</code> object represents a collection of <code class="codeph">OracleParameter</code>s. 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1112" headers="d31518e196 ">
+                                    <p><a href="OraclePermissionClass.html#GUID-580CB511-58DB-47E2-AFDB-C88AE9300DC8">OraclePermission Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1112 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1112 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1112 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1112 d31518e208 ">
+                                    <p>An <code class="codeph">OraclePermission</code> object enables ODP.NET to enforce imperative security and helps ensure that a user has a security level adequate for accessing data.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1132" headers="d31518e196 ">
+                                    <p><a href="OraclePermissionAttributeClass.html#GUID-5520A788-1BFB-4DB5-9A83-E244CDD5DC32">OraclePermissionAttribute Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1132 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1132 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1132 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1132 d31518e208 ">
+                                    <p>An <code class="codeph">OraclePermissionAttribute</code> object enables ODP.NET to enforce declarative security and helps ensure that a user has a security level adequate for accessing data.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1153" headers="d31518e196 ">
+                                    <p><a href="OracleRowsCopiedEventHandlerDelegate.html#GUID-29E086B7-077C-43B3-AEB6-4B8B22E012C4">OracleRowsCopiedEventHandler Delegate</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1153 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1153 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1153 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1153 d31518e208 ">
+                                    <p>The <code class="codeph">OracleRowsCopiedEventHandler</code> delegate represents the method that handles the <code class="codeph">OracleRowsCopied</code> event of an <code class="codeph">OracleBulkCopy</code> object.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1179" headers="d31518e196 ">
+                                    <p><a href="OracleRowsCopiedEventArgsClass.html#GUID-F8F59244-0B28-44FC-9CFB-9DEA4AD7F857">OracleRowsCopiedEventArgs Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1179 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1179 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1179 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1179 d31518e208 ">
+                                    <p>The <code class="codeph">OracleRowsCopiedEventArgs</code> class represents the set of arguments passed as part of event data for the <code class="codeph">OracleRowsCopied</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1202" headers="d31518e196 ">
+                                    <p><a href="OracleRowUpdatedEventArgsClass.html#GUID-314001DE-F1B5-4202-89D4-0BD4304AC79D">OracleRowUpdatedEventArgs Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1202 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1202 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1202 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1202 d31518e208 ">
+                                    <p>The <code class="codeph">OracleRowUpdatedEventArgs</code> object provides event data for the <code class="codeph">OracleDataAdapter.RowUpdated</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1225" headers="d31518e196 ">
+                                    <p><a href="OracleRowUpdatedEventHandlerDelegate.html#GUID-4D477AA1-A7C6-4BFC-B597-8DB581CF8984">OracleRowUpdatedEventHandler Delegate</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1225 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1225 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1225 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1225 d31518e208 ">
+                                    <p>The <code class="codeph">OracleRowUpdatedEventHandler</code> delegate represents the signature of the method that handles the <code class="codeph">OracleDataAdapter.RowUpdated</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1248" headers="d31518e196 ">
+                                    <p><a href="OracleRowUpdatingEventArgsClass.html#GUID-C4A189D9-2F64-49CC-89A8-2925E6D06F12">OracleRowUpdatingEventArgs Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1248 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1248 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1248 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1248 d31518e208 ">
+                                    <p>The <code class="codeph">OracleRowUpdatingEventArgs</code> object provides event data for the <code class="codeph">OracleDataAdapter.RowUpdating</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1271" headers="d31518e196 ">
+                                    <p><a href="OracleRowUpdatingEventHandlerDelegate.html#GUID-B4870EB0-EF6A-45F5-8F56-EF410F394D97">OracleRowUpdatingEventHandler Delegate</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1271 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1271 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1271 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1271 d31518e208 ">
+                                    <p>The <code class="codeph">OracleRowUpdatingEventHandler</code> delegate represents the signature of the method that handles the <code class="codeph">OracleDataAdapter.RowUpdating</code> event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1294" headers="d31518e196 ">
+                                    <p><a href="OracleShardingKeyClass.html#GUID-5B4A88CD-58DD-4475-822F-91A4B11FDD75">OracleShardingKey Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1294 d31518e199 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1294 d31518e202 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1294 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1294 d31518e208 ">
+                                    <p>An <code class="codeph">OracleShardingKey</code> object can represent either a sharding key or a super sharding key.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1314" headers="d31518e196 ">
+                                    <p><a href="OracleTransactionClass.html#GUID-841D0FAA-5E18-4753-AE85-23236E4DD38C">OracleTransaction Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1314 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1314 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1314 d31518e205 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1314 d31518e208 ">
+                                    <p>An <code class="codeph">OracleTransaction</code> object represents a local transaction.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1334" headers="d31518e196 ">
+                                    <p><a href="OracleXmlQueryPropertiesClass.html#GUID-4DDE0B33-11F3-4D6B-99AD-3D075B98CA2F">OracleXmlQueryProperties Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1334 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1334 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1334 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1334 d31518e208 ">
+                                    <p>An <code class="codeph">OracleXmlQueryProperties</code> object represents the XML properties used by the <code class="codeph">OracleCommand</code> class when the <code class="codeph">XmlCommandType</code> property is <code class="codeph">Query</code>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d31518e1363" headers="d31518e196 ">
+                                    <p><a href="OracleXmlSavePropertiesClass.html#GUID-553601AB-66E4-4E31-838E-2F4B9732286A">OracleXmlSaveProperties Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1363 d31518e199 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1363 d31518e202 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1363 d31518e205 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" headers="d31518e1363 d31518e208 ">
+                                    <p>An <code class="codeph">OracleXmlSaveProperties</code> object represents the XML properties used by the <code class="codeph">OracleCommand</code> class when the <code class="codeph">XmlCommandType</code> property is <code class="codeph">Insert</code>, <code class="codeph">Update</code>, or <code class="codeph">Delete</code>. 
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div><a id="ODPNT136"></a><a id="ODPNT135"></a><div class="props_rev_3"><a id="GUID-D846B3D7-916C-4C50-830F-AC03F63F5724" name="GUID-D846B3D7-916C-4C50-830F-AC03F63F5724"></a><h4 id="ODPNT-GUID-D846B3D7-916C-4C50-830F-AC03F63F5724" class="sect4">Oracle.DataAccess.Client and Oracle.ManagedDataAccess.Client Enumerations</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="intro003.html#GUID-D846B3D7-916C-4C50-830F-AC03F63F5724__CHDCBGIJ" title="rows are ODP.NET client enumerations. first column is name, second column is description">Table 1-2</a> lists the client enumerations.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformalwide" id="GUID-D846B3D7-916C-4C50-830F-AC03F63F5724__CHDCBGIJ">
+                        <p class="titleintable">Table 1-2 Oracle.DataAccess.Client and Oracle.ManagedDataAccess.Client Enumerations </p>
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title="Oracle.DataAccess.Client and Oracle.ManagedDataAccess.Client Enumerations " summary="rows are ODP.NET client enumerations. first column is name, second column is description" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="35%" id="d31518e1427">Enumeration</th>
+                                 <th align="left" valign="bottom" width="18%" id="d31518e1430">Supported in the ODP.NET, Managed Driver and ODP.NET Core</th>
+                                 <th align="left" valign="bottom" width="17%" id="d31518e1433">Supported in .NET Stored Procedures</th>
+                                 <th align="left" valign="bottom" width="29%" id="d31518e1436">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1441" headers="d31518e1427 ">
+                                    <p><a href="FailoverEventEnumeration.html#GUID-B70B6300-A23A-44CD-A145-9DF847283D30">FailoverEvent Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1441 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1441 d31518e1433 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1441 d31518e1436 ">
+                                    <p><code class="codeph">FailoverEvent</code> enumerated values are used to specify the state of the failover.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1457" headers="d31518e1427 ">
+                                    <p><a href="FailoverReturnCodeEnumeration.html#GUID-35ED2EDE-BE0E-4720-92DC-C708A40EA29B">FailoverReturnCode Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1457 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1457 d31518e1433 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1457 d31518e1436 ">
+                                    <p><code class="codeph">FailoverReturnCode</code> enumerated values are passed back by the application to the ODP.NET provider to request a retry in case of a failover error, or to continue in case of a successful failover.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1473" headers="d31518e1427 ">
+                                    <p><a href="FailoverTypeEnumeration.html#GUID-19FBBBEC-636A-4873-88C9-E018CC5C7D07">FailoverType Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1473 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1473 d31518e1433 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1473 d31518e1436 ">
+                                    <p><code class="codeph">FailoverType</code> enumerated values are used to indicate the type of failover event that was raised.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1489" headers="d31518e1427 ">
+                                    <p><a href="OracleAQDequeueModeEnumeration.html#GUID-A19B769F-7AF3-4569-BB11-74BB6A542CCD">OracleAQDequeueMode Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1489 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1489 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1489 d31518e1436 ">
+                                    <p>The <code class="codeph">OracleAQDequeueMode</code> enumeration type specifies the dequeue mode.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1506" headers="d31518e1427 ">
+                                    <p><a href="OracleAQMessageDeliveryModeEnumeration.html#GUID-9299EA18-3640-4740-9821-923161E99AE7">OracleAQMessageDeliveryMode Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1506 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1506 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1506 d31518e1436 ">
+                                    <p>The  <code class="codeph">OracleAQMessageDeliveryMode</code> enumeration type specifies the delivery mode of the message.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1523" headers="d31518e1427 ">
+                                    <p><a href="OracleAQMessageStateEnumeration.html#GUID-CA666CD6-EB49-43F6-AFD4-66045F2E1AF7">OracleAQMessageState Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1523 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1523 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1523 d31518e1436 ">
+                                    <p>The <code class="codeph">OracleAQMessageState</code> enumeration type identifies the state of the message at the time of dequeue.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1540" headers="d31518e1427 ">
+                                    <p><a href="OracleAQMessageTypeEnumeration.html#GUID-A2338D6C-C76D-4BC9-9699-3D3310BBD0A0">OracleAQMessageType Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1540 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1540 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1540 d31518e1436 ">
+                                    <p>The  <code class="codeph">OracleAQMessageType</code> enumeration type specifies the message payload type.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1557" headers="d31518e1427 ">
+                                    <p><a href="OracleAQNavigationModeEnumeration.html#GUID-4311EB18-37F9-4AC7-B314-BD76CF31E5DC">OracleAQNavigationMode Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1557 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1557 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1557 d31518e1436 ">
+                                    <p>The <code class="codeph">OracleAQNavigationMode</code> enumeration type specifies the navigation mode.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1574" headers="d31518e1427 ">
+                                    <p><a href="OracleAQNotificationGroupingTypeEnumeration.html#GUID-A73EDD0A-E720-495A-960A-3D66D495A42E">OracleAQNotificationGroupingType Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1574 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1574 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1574 d31518e1436 ">
+                                    <p>The  <code class="codeph">OracleAQNotificationGroupingType</code> enumeration type specifies the notification grouping type.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1591" headers="d31518e1427 ">
+                                    <p><a href="OracleAQNotificationTypeEnumeration.html#GUID-53089B37-4943-47AC-BA0F-01CF81237CA3">OracleAQNotificationType Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1591 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1591 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1591 d31518e1436 ">
+                                    <p>The  <code class="codeph">OracleAQNotificationType</code> enumeration type specifies the notification type of the received notification.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1608" headers="d31518e1427 ">
+                                    <p><a href="OracleAQVisibilityModeEnumeration.html#GUID-F278A346-81BF-4629-B90D-30F976514D9D">OracleAQVisibilityMode Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1608 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1608 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1608 d31518e1436 ">
+                                    <p>The <code class="codeph">OracleAQVisibilityMode</code> enumeration type specifies whether the enqueue or dequeue operation is part of the current transaction.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1626" headers="d31518e1427 ">
+                                    <p><a href="OracleBulkCopyOptionsEnumeration.html#GUID-72863EF2-A7C7-4B2F-A54B-AFAD4F61FD1B">OracleBulkCopyOptions Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1626 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1626 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1626 d31518e1436 ">
+                                    <p>The <code class="codeph">OracleBulkCopyOptions</code> enumeration specifies the values that can be combined with an instance of the <code class="codeph">OracleBulkCopy</code> class and used as options to determine its behavior and the behavior of the <code class="codeph">WriteToServer</code> methods for that instance.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1649" headers="d31518e1427 ">
+                                    <p><a href="OracleCollectionTypeEnumeration.html#GUID-1F3026CD-7C66-4470-9AF4-54E3E8F7FF7C">OracleCollectionType Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1649 d31518e1430 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1649 d31518e1433 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1649 d31518e1436 ">
+                                    <p><code class="codeph">OracleCollectionType</code> enumerated values specify whether or not the <code class="codeph">OracleParameter</code> object represents a collection, and if so, specifies the collection type.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1668" headers="d31518e1427 ">
+                                    <p><a href="OracleConnectionTypeEnumeration.html#GUID-B66D0A0B-5C8E-4477-AE07-F567A662E7C4">OracleConnectionType Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1668 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1668 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1668 d31518e1436 ">
+                                    <p><code class="codeph">OracleConnectionType</code> enumerated values specify whether a particular connection object is associated with an Oracle database connection, a TimesTen database connection, or no physical connection at all.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1684" headers="d31518e1427 ">
+                                    <p><a href="OracleDBShutdownModeEnumeration.html#GUID-1E6E468C-0D51-4019-A25B-5B53B6B07440">OracleDBShutdownMode Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1684 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1684 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1684 d31518e1436 ">
+                                    <p><code class="codeph">OracleDBShutdownMode </code>enumerated values specify the database shutdown options.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1700" headers="d31518e1427 ">
+                                    <p><a href="OracleDBStartupModeEnumeration.html#GUID-746F29AE-A2E6-45F3-A684-EB54C4AC01D6">OracleDBStartupMode Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1700 d31518e1430 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1700 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1700 d31518e1436 ">
+                                    <p><code class="codeph">OracleDBStartupMode </code>enumerated values specify the database startup options.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1716" headers="d31518e1427 ">
+                                    <p><a href="OracleDbTypeEnumerationType.html#GUID-E5D6E666-49EA-4A8D-822A-A190101C33D7">OracleDbType Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1716 d31518e1430 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1716 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1716 d31518e1436 ">
+                                    <p><code class="codeph">OracleDbType</code> enumerated values are used to explicitly specify the <code class="codeph">OracleDbType</code> of an <code class="codeph">OracleParameter</code>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1738" headers="d31518e1427 ">
+                                    <p><a href="OracleDRCPPurityEnumeration.html#GUID-C03F3B9E-583D-418E-BC17-F70D26EA1F72">OracleDRCPPurity Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1738 d31518e1430 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1738 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1738 d31518e1436 ">
+                                    <p><code class="codeph">OracleDRCPPurity</code> enumerated values specify the session purity.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1754" headers="d31518e1427 ">
+                                    <p><a href="OracleHAEventSourceEnumeration.html#GUID-09CA34E3-0F40-449D-8A7B-BB32B7DC3A53">OracleHAEventSource Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1754 d31518e1430 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1754 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1754 d31518e1436 ">
+                                    <p>The <code class="codeph">OracleHAEventSource</code> enumeration indicates the source of the HA event.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1771" headers="d31518e1427 ">
+                                    <p><a href="OracleHAEventStatusEnumeration.html#GUID-4D4F667A-3FE2-4CA9-A443-97910FD3FB9C">OracleHAEventStatus Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1771 d31518e1430 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1771 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1771 d31518e1436 ">
+                                    <p>The <code class="codeph">OracleHAEventStatus</code> enumeration indicates the status of the HA event source.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1788" headers="d31518e1427 ">
+                                    <p><a href="OracleIdentityTypeEnumeration.html#GUID-79FC0AE6-FBD7-4572-A413-701500FDE83E">OracleIdentityType Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1788 d31518e1430 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1788 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1788 d31518e1436 ">
+                                    <p>The <code class="codeph">OracleIdentityType</code> enumeration specifies how Oracle identity column values are generated.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1805" headers="d31518e1427 ">
+                                    <p><a href="OracleNotificationInfoEnumeration.html#GUID-F2EDC278-3F8B-4B9A-B63B-A2EC276A45E8">OracleNotificationInfo Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1805 d31518e1430 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1805 d31518e1433 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1805 d31518e1436 ">
+                                    <p><code class="codeph">OracleNotificationInfo</code> enumerated values specify the database event that causes the notification.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1822" headers="d31518e1427 ">
+                                    <p><a href="OracleNotificationSourceEnumeration.html#GUID-A77047E8-88EE-4E4B-B0E3-FC8B0B82B4E0">OracleNotificationSource Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1822 d31518e1430 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1822 d31518e1433 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1822 d31518e1436 ">
+                                    <p><code class="codeph">OracleNotificationSource</code> enumerated values specify the different sources that cause notification.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1838" headers="d31518e1427 ">
+                                    <p><a href="OracleNotificationTypeEnumeration.html#GUID-8A196356-2C48-4E54-980A-CD9A406AFC9D">OracleNotificationType Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1838 d31518e1430 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1838 d31518e1433 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1838 d31518e1436 ">
+                                    <p><code class="codeph">OracleNotificationType</code> enumerated values specify the different types that cause the notification. 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1854" headers="d31518e1427 ">
+                                    <p><a href="OracleParameterStatusEnumeration.html#GUID-D782E182-A426-439F-A49F-9EA3F6248C68">OracleParameterStatus Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1854 d31518e1430 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1854 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1854 d31518e1436 ">
+                                    <p>The <code class="codeph">OracleParameterStatus</code> enumeration type indicates whether a <code class="codeph">NULL</code> value is fetched from a column, or truncation has occurred during the fetch, or a <code class="codeph">NULL</code> value is to be inserted into a database column.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1877" headers="d31518e1427 ">
+                                    <p><a href="OracleRowidInfoEnumeration.html#GUID-71DF4814-7035-4D17-A9AC-663AB9644FA7">OracleRowidInfo Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1877 d31518e1430 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1877 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1877 d31518e1436 ">
+                                    <p>The <code class="codeph">OracleRowidInfo</code> enumeration values specify whether <code class="codeph">ROWID</code> information is included as part of the <code class="codeph">ChangeNotificationEventArgs</code> or not
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="35%" id="d31518e1900" headers="d31518e1427 ">
+                                    <p><a href="OracleXmlCommandTypeEnumeration.html#GUID-A725317C-1F80-49E2-8F94-655D9FC47FEB">OracleXmlCommandType Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d31518e1900 d31518e1430 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d31518e1900 d31518e1433 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d31518e1900 d31518e1436 ">
+                                    <p>The <code class="codeph">OracleXmlCommandType</code> enumeration specifies the values that are allowed for the <code class="codeph">OracleXmlCommandType</code> property of the <code class="codeph">OracleCommand</code> class.
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div>
+            </div><a id="ODPNT137"></a><div class="props_rev_3"><a id="GUID-425C9EBA-CFFC-47FE-B490-604251714ACA" name="GUID-425C9EBA-CFFC-47FE-B490-604251714ACA"></a><h3 id="ODPNT-GUID-425C9EBA-CFFC-47FE-B490-604251714ACA" class="sect3">Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Namespaces</h3>
+               <div>
+                  <div class="section">
+                     <p>The <code class="codeph">Oracle.DataAccess.Types</code> and <code class="codeph">Oracle.ManagedDataAccess.Types</code> namespaces provides classes, structures, and exceptions for Oracle native types that can be used with Oracle Data Provider for .NET. 
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+               </div><a id="ODPNT139"></a><a id="ODPNT138"></a><div class="props_rev_3"><a id="GUID-D8AAD8E7-314C-4BFA-A72A-90C3A90BF476" name="GUID-D8AAD8E7-314C-4BFA-A72A-90C3A90BF476"></a><h4 id="ODPNT-GUID-D8AAD8E7-314C-4BFA-A72A-90C3A90BF476" class="sect4">Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Structures</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="intro003.html#GUID-D8AAD8E7-314C-4BFA-A72A-90C3A90BF476__G1008940" title="rows are ODP.NET structures. first column is name, second column is description">Table 1-3</a> lists the type structures.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformal" id="GUID-D8AAD8E7-314C-4BFA-A72A-90C3A90BF476__G1008940">
+                        <p class="titleintable">Table 1-3 Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Structures </p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Structures " summary="rows are ODP.NET structures. first column is name, second column is description" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="36%" id="d31518e1975">Structure</th>
+                                 <th align="left" valign="bottom" width="64%" id="d31518e1978">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e1983" headers="d31518e1975 ">
+                                    <p><a href="OracleBinaryStructure.html#GUID-D9D05444-46C2-4DB1-AC12-2D3BBF74EF31">OracleBinary Structure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e1983 d31518e1978 ">
+                                    <p>The <code class="codeph">OracleBinary</code> structure represents a variable-length stream of binary data. 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e1994" headers="d31518e1975 ">
+                                    <p><a href="OracleBooleanStructure.html#GUID-B5B5ACB7-14A5-43D5-B8A9-7D0046D40E2E">OracleBoolean Structure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e1994 d31518e1978 ">
+                                    <p>The <code class="codeph">OracleBoolean</code> structure represents a logical value that is either <code class="codeph">TRUE</code> or <code class="codeph">FALSE</code>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e2011" headers="d31518e1975 ">
+                                    <p><a href="OracleDateStructure.html#GUID-F00D1B42-4338-4971-A47F-9DF94E16221C">OracleDate Structure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e2011 d31518e1978 ">
+                                    <p>The <code class="codeph">OracleDate</code> structure represents the Oracle <code class="codeph">DATE</code> data type.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e2025" headers="d31518e1975 ">
+                                    <p><a href="OracleDecimalStructure.html#GUID-671F6F1D-3C9A-40CC-BB0B-F84DF63766D3">OracleDecimal Structure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e2025 d31518e1978 ">
+                                    <p>The <code class="codeph">OracleDecimal</code> structure represents an Oracle <code class="codeph">NUMBER</code> in the database or any Oracle numeric value.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e2039" headers="d31518e1975 ">
+                                    <p><a href="OracleIntervalDSStructure.html#GUID-53F4E66C-7EB7-471C-8710-FF5DD64E7035">OracleIntervalDS Structure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e2039 d31518e1978 ">
+                                    <p>The <code class="codeph">OracleIntervalDS</code> structure represents the Oracle <code class="codeph">INTERVAL</code> <code class="codeph">DAY</code> <code class="codeph">TO</code> <code class="codeph">SECOND</code> data type.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e2062" headers="d31518e1975 ">
+                                    <p><a href="OracleIntervalYMStructure.html#GUID-C63DC193-8689-4817-B968-7FAB6CE67DE4">OracleIntervalYM Structure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e2062 d31518e1978 ">
+                                    <p>The <code class="codeph">OracleIntervalYM</code> structure represents the Oracle <code class="codeph">INTERVAL</code> <code class="codeph">YEAR</code> <code class="codeph">TO</code> <code class="codeph">MONTH</code> data type.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e2085" headers="d31518e1975 ">
+                                    <p><a href="OracleStringStructure.html#GUID-6E880731-1ADD-4E86-AFD4-91A976ACA4AC">OracleString Structure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e2085 d31518e1978 ">
+                                    <p>The <code class="codeph">OracleString</code> structure represents a variable-length stream of characters. 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e2096" headers="d31518e1975 ">
+                                    <p><a href="OracleTimeStampStructure.html#GUID-27C819FE-B6D7-4A1C-AF29-835A65D57DD1">OracleTimeStamp Structure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e2096 d31518e1978 ">
+                                    <p>The <code class="codeph">OracleTimeStamp</code> structure represents the Oracle <code class="codeph">TimeStamp</code> data type. 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e2110" headers="d31518e1975 ">
+                                    <p><a href="OracleTimeStampLTZStructure.html#GUID-CD0E2C04-F2D2-40B0-BFE8-04EC2DA477B6">OracleTimeStampLTZ Structure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e2110 d31518e1978 ">
+                                    <p>The <code class="codeph">OracleTimeStampLTZ</code> structure represents the Oracle <code class="codeph">TIMESTAMP</code> <code class="codeph">WITH</code> <code class="codeph">LOCAL</code> <code class="codeph">TIME</code> <code class="codeph">ZONE</code> data type.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e2137" headers="d31518e1975 ">
+                                    <p><a href="OracleTimeStampTZStructure.html#GUID-E3986815-29F1-493D-8A9A-BF8B70617925">OracleTimeStampTZ Structure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e2137 d31518e1978 ">
+                                    <p>The <code class="codeph">OracleTimeStampTZ</code> structure represents the Oracle <code class="codeph">TIMESTAMP</code> <code class="codeph">WITH</code> <code class="codeph">TIME</code> <code class="codeph">ZONE</code> data type. 
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div><a id="ODPNT141"></a><a id="ODPNT140"></a><div class="props_rev_3"><a id="GUID-A2425A5E-033D-4C37-9567-3E9038802402" name="GUID-A2425A5E-033D-4C37-9567-3E9038802402"></a><h4 id="ODPNT-GUID-A2425A5E-033D-4C37-9567-3E9038802402" class="sect4">Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Exceptions</h4>
+                  <div>
+                     <div class="section">
+                        <p>Type Exceptions are thrown only by ODP.NET type structures. <a href="intro003.html#GUID-A2425A5E-033D-4C37-9567-3E9038802402__CHDJBCID" title="rows are ODP.NETtype exceptions. first column is name, second column is description">Table 1-4</a> lists the type exceptions.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformal" id="GUID-A2425A5E-033D-4C37-9567-3E9038802402__CHDJBCID">
+                        <p class="titleintable">Table 1-4 Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Exceptions </p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Exceptions " summary="rows are ODP.NETtype exceptions. first column is name, second column is description" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="36%" id="d31518e2187">Exception</th>
+                                 <th align="left" valign="bottom" width="64%" id="d31518e2190">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e2195" headers="d31518e2187 ">
+                                    <p><a href="OracleTypeExceptionClass.html#GUID-1451264D-4E19-447B-BAA7-6A6EA908DD53">OracleTypeException Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e2195 d31518e2190 ">
+                                    <p>The <code class="codeph">OracleTypeException</code> object is the base exception class for handling exceptions that occur in the ODP.NET Types classes.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e2206" headers="d31518e2187 ">
+                                    <p><a href="OracleNullValueExceptionClass.html#GUID-9D373AFC-E954-4068-976C-8C396CAB83C2">OracleNullValueException Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e2206 d31518e2190 ">
+                                    <p>The <code class="codeph">OracleNullValueException</code> represents an exception that is thrown when trying to access an ODP.NET Types structure that is <code class="codeph">null</code>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="36%" id="d31518e2220" headers="d31518e2187 ">
+                                    <p><a href="OracleTruncateExceptionClass.html#GUID-70C06100-CCAB-46BE-AC06-E202105EC391">OracleTruncateException Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="64%" headers="d31518e2220 d31518e2190 ">
+                                    <p>The <code class="codeph">OracleTruncateException</code> class represents an exception that is thrown when truncation in an ODP.NET Types class occurs.
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div><a id="ODPNT143"></a><a id="ODPNT142"></a><div class="props_rev_3"><a id="GUID-EA403C39-E67B-4557-9440-7F1726FAC57C" name="GUID-EA403C39-E67B-4557-9440-7F1726FAC57C"></a><h4 id="ODPNT-GUID-EA403C39-E67B-4557-9440-7F1726FAC57C" class="sect4">Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Classes</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="intro003.html#GUID-EA403C39-E67B-4557-9440-7F1726FAC57C__CHDIDFBC" title="rows are ODP.NETclasses. first column is name, second column is description">Table 1-5</a> lists the type classes.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformalwide" id="GUID-EA403C39-E67B-4557-9440-7F1726FAC57C__CHDIDFBC">
+                        <p class="titleintable">Table 1-5 Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Classes </p>
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title="Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Classes " summary="rows are ODP.NETclasses. first column is name, second column is description" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="29%" id="d31518e2259">Class</th>
+                                 <th align="left" valign="bottom" width="21%" id="d31518e2262">Supported in the ODP.NET, Managed Driver and ODP.NET Core</th>
+                                 <th align="left" valign="bottom" width="50%" id="d31518e2265">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d31518e2270" headers="d31518e2259 ">
+                                    <p><a href="OracleArrayMappingAttributeClass.html#GUID-3B789DFD-DF31-4A70-B100-5BD68051D95E">OracleArrayMappingAttribute Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="21%" headers="d31518e2270 d31518e2262 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d31518e2270 d31518e2265 ">
+                                    <p>The <code class="codeph">OracleArrayMappingAttribute</code> class is required to mark a custom class field or property with information that ODP.NET uses when a custom type represents an Oracle Collection type.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d31518e2284" headers="d31518e2259 ">
+                                    <p><a href="OracleBFileClass.html#GUID-571495C6-7BE9-4AF8-9EC3-02BFF074D57A">OracleBFile Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="21%" headers="d31518e2284 d31518e2262 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d31518e2284 d31518e2265 ">
+                                    <p>An <code class="codeph">OracleBFile</code> is an object that has a reference to <code class="codeph">BFILE</code> data. It provides methods for performing operations on <code class="codeph">BFILE</code> objects.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d31518e2304" headers="d31518e2259 ">
+                                    <p><a href="OracleBlobClass.html#GUID-15E1EDFD-8FB6-47ED-AFCF-DA8433B5BADD">OracleBlob Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="21%" headers="d31518e2304 d31518e2262 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d31518e2304 d31518e2265 ">
+                                    <p>An <code class="codeph">OracleBlob</code> object is an object that has a reference to <code class="codeph">BLOB</code> data. It provides methods for performing operations on <code class="codeph">BLOB</code> objects.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d31518e2324" headers="d31518e2259 ">
+                                    <p><a href="OracleClobClass.html#GUID-0C1A0DB5-D2F1-4498-8AC6-565A75E5E384">OracleClob Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="21%" headers="d31518e2324 d31518e2262 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d31518e2324 d31518e2265 ">
+                                    <p>An <code class="codeph">OracleClob</code> is an object that has a reference to <code class="codeph">CLOB</code> data. It provides methods for performing operations on <code class="codeph">CLOB</code> objects.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d31518e2344" headers="d31518e2259 ">
+                                    <p><a href="OracleCustomTypeMappingAttributeClass.html#GUID-74C8A8F2-35A2-466E-9E2F-E24B07DD41F4">OracleCustomTypeMappingAttribute Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="21%" headers="d31518e2344 d31518e2262 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d31518e2344 d31518e2265 ">
+                                    <p>The <code class="codeph">OracleCustomTypeMappingAttribute</code> class is used to mark a custom type factory class or struct with information that is used by ODP.NET when a custom type is used to represent an Oracle UDT.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d31518e2358" headers="d31518e2259 ">
+                                    <p><a href="OracleObjectMappingAttributeClass.html#GUID-EE79486E-D965-4058-B637-5D367298D441">OracleObjectMappingAttribute Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="21%" headers="d31518e2358 d31518e2262 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d31518e2358 d31518e2265 ">
+                                    <p>The <code class="codeph">OracleObjectMappingAttribute</code> class marks custom class fields or properties with information that ODP.NET uses when a custom type represents an Oracle Object type.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d31518e2372" headers="d31518e2259 ">
+                                    <p><a href="OracleRefClass.html#GUID-4299B1DF-12DD-4FB3-9BC2-B0973E203390">OracleRef Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="21%" headers="d31518e2372 d31518e2262 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d31518e2372 d31518e2265 ">
+                                    <p>An <code class="codeph">OracleRef</code> instance represents an Oracle <code class="codeph">REF</code>, which references a persistent, standalone, referenceable object that resides in the database. The <code class="codeph">OracleRef</code> object provides methods to insert, update, and delete the Oracle <code class="codeph">REF</code>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d31518e2395" headers="d31518e2259 ">
+                                    <p><a href="OracleRefCursorClass.html#GUID-AE638391-C3A0-4C97-AF73-DF1DD0443571">OracleRefCursor Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="21%" headers="d31518e2395 d31518e2262 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d31518e2395 d31518e2265 ">
+                                    <p>An <code class="codeph">OracleRefCursor</code> object represents an Oracle <code class="codeph">REF</code> <code class="codeph">CURSOR</code>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d31518e2415" headers="d31518e2259 ">
+                                    <p><a href="OracleUdtClass.html#GUID-E3137DD9-1359-4FF6-9E94-EC285B5EE6EB">OracleUdt Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="21%" headers="d31518e2415 d31518e2262 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d31518e2415 d31518e2265 ">
+                                    <p>The <code class="codeph">OracleUdt</code> class defines static methods that are used when converting between Custom Types and Oracle UDTs and vice-versa.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d31518e2429" headers="d31518e2259 ">
+                                    <p><a href="OracleXmlStreamClass.html#GUID-D4788FE5-5F50-4185-BC8B-B9F9141D744A">OracleXmlStream Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="21%" headers="d31518e2429 d31518e2262 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d31518e2429 d31518e2265 ">
+                                    <p>An <code class="codeph">OracleXmlStream</code> object represents a sequential read-only stream of XML data stored in an <code class="codeph">OracleXmlType</code> object.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d31518e2446" headers="d31518e2259 ">
+                                    <p><a href="OracleXmlTypeClass.html#GUID-DA2D8110-CCB4-4482-A525-31729A0B4F06">OracleXmlType Class</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="21%" headers="d31518e2446 d31518e2262 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="50%" headers="d31518e2446 d31518e2265 ">
+                                    <p>An <code class="codeph">OracleXmlType</code> object represents an Oracle <code class="codeph">XmlType</code> instance.
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div><a id="ODPNT145"></a><a id="ODPNT144"></a><div class="props_rev_3"><a id="GUID-A1F0FC39-956B-4E18-BBEA-C34EA7CACD6C" name="GUID-A1F0FC39-956B-4E18-BBEA-C34EA7CACD6C"></a><h4 id="ODPNT-GUID-A1F0FC39-956B-4E18-BBEA-C34EA7CACD6C" class="sect4">Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Interfaces</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="intro003.html#GUID-A1F0FC39-956B-4E18-BBEA-C34EA7CACD6C__CEGCBDGC" title="rows are ODP.NET interfaces. first column is name, second column is description">Table 1-6</a> lists the type interfaces.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformalwide" id="GUID-A1F0FC39-956B-4E18-BBEA-C34EA7CACD6C__CEGCBDGC">
+                        <p class="titleintable">Table 1-6 Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Interfaces </p>
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title="Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Interfaces " summary="rows are ODP.NET interfaces. first column is name, second column is description" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="26%" id="d31518e2490">Interface</th>
+                                 <th align="left" valign="bottom" width="22%" id="d31518e2493">Supported in the ODP.NET, Managed Driver and ODP.NET Core</th>
+                                 <th align="left" valign="bottom" width="53%" id="d31518e2496">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="26%" id="d31518e2501" headers="d31518e2490 ">
+                                    <p><a href="IOracleArrayTypeFactoryInterface.html#GUID-61BD391C-C2C6-4FF4-A447-F97A2B8DD84B">IOracleArrayTypeFactory Interface</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="22%" headers="d31518e2501 d31518e2493 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="53%" headers="d31518e2501 d31518e2496 ">
+                                    <p>The <code class="codeph">IOracleArrayTypeFactory</code> interface is used by ODP.NET to create arrays that represent Oracle Collections.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="26%" id="d31518e2515" headers="d31518e2490 ">
+                                    <p><a href="IOracleCustomTypeInterface.html#GUID-F6BC2C6D-F83C-4292-A1BA-5DA466DC1358">IOracleCustomType Interface</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="22%" headers="d31518e2515 d31518e2493 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="53%" headers="d31518e2515 d31518e2496 ">
+                                    <p><code class="codeph">IOracleCustomType</code> is an interface for converting between a Custom Type and an Oracle Object or Collection Type.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="26%" id="d31518e2528" headers="d31518e2490 ">
+                                    <p><a href="IOracleCustomTypeFactoryInterface.html#GUID-252C6DC9-4066-4285-B4FE-469A23C12A37">IOracleCustomTypeFactory Interface</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="22%" headers="d31518e2528 d31518e2493 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="53%" headers="d31518e2528 d31518e2496 ">
+                                    <p>The <code class="codeph">IOracleCustomTypeFactory</code> interface is used by ODP.NET to create custom objects that represent Oracle Objects or Collections.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="26%" id="d31518e2542" headers="d31518e2490 ">
+                                    <p><a href="INullableInterface.html#GUID-65A35C4E-24E7-4C4F-B84B-CCEAD036D159">INullable Interface</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="22%" headers="d31518e2542 d31518e2493 ">
+                                    <p>-</p>
+                                 </td>
+                                 <td align="left" valign="top" width="53%" headers="d31518e2542 d31518e2496 ">
+                                    <p>The <code class="codeph">INullable</code> interface is used to determine whether or not an ODP.NET type has a NULL value.
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div><a id="ODPNT147"></a><a id="ODPNT146"></a><div class="props_rev_3"><a id="GUID-626A5A20-A8D8-49EA-8501-4A28BB1B4296" name="GUID-626A5A20-A8D8-49EA-8501-4A28BB1B4296"></a><h4 id="ODPNT-GUID-626A5A20-A8D8-49EA-8501-4A28BB1B4296" class="sect4">Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Enumerations</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="intro003.html#GUID-626A5A20-A8D8-49EA-8501-4A28BB1B4296__CEGEFJAC" title="rows are ODP.NET enumerations. first column is name, second column is description">Table 1-7</a> lists the type enumerations.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformalwide" id="GUID-626A5A20-A8D8-49EA-8501-4A28BB1B4296__CEGEFJAC">
+                        <p class="titleintable">Table 1-7 Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Enumerations </p>
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title="Oracle.DataAccess.Types and Oracle.ManagedDataAccess.Types Enumerations " summary="rows are ODP.NET enumerations. first column is name, second column is description" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="26%" id="d31518e2583">Enumeration</th>
+                                 <th align="left" valign="bottom" width="22%" id="d31518e2586">Supported in the ODP.NET, Managed Driver and ODP.NET Core</th>
+                                 <th align="left" valign="bottom" width="53%" id="d31518e2589">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="26%" id="d31518e2594" headers="d31518e2583 ">
+                                    <p><a href="OracleUdtFetchOptionEnumeration.html#GUID-01224228-1C74-4DB1-845F-AE7B8DFB2DFE">OracleUdtFetchOption Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="22%" headers="d31518e2594 d31518e2586 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="53%" headers="d31518e2594 d31518e2589 ">
+                                    <p><code class="codeph">OracleUdtFetchOption</code> enumeration values specify how to retrieve a copy of the referenceable object.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="26%" id="d31518e2607" headers="d31518e2583 ">
+                                    <p><a href="OracleUdtStatusEnumeration.html#GUID-8B1E0977-CDA7-46A8-88B8-3E7BDB9F57C9">OracleUdtStatus Enumeration</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="22%" headers="d31518e2607 d31518e2586 ">
+                                    <p>No</p>
+                                 </td>
+                                 <td align="left" valign="top" width="53%" headers="d31518e2607 d31518e2589 ">
+                                    <p><code class="codeph">OracleUdtStatus</code> enumeration values specify the status of an object attribute or collection element. An object attribute or a collection element can be a valid value or a null value. 
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

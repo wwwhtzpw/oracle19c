@@ -1,0 +1,146 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Configuring File System Storage for Oracle Database">
+      <meta name="abstract" content="Complete these procedures to use file system storage for Oracle Database.">
+      <meta name="description" content="Complete these procedures to use file system storage for Oracle Database.">
+      <meta name="DC.Relation" scheme="URI" content="direct-nfs-client-storage.html">
+      <meta name="DC.Relation" scheme="URI" content="about-oranfstab-file-for-direct-nfs-client.html#GUID-E6A73FFE-2B17-4F9D-9D42-632622974F15">
+      <meta name="DC.Relation" scheme="URI" content="mounting-nfs-storage-devices-with-direct-nfs-client.html#GUID-DFDA4563-0387-4A5D-8EEB-D92DE65F490C">
+      <meta name="DC.Relation" scheme="URI" content="specifying-network-paths-for-nfs-server.html#GUID-77558D8D-C297-4DF0-8E6D-91156DCEE9A1">
+      <meta name="DC.Relation" scheme="URI" content="creating-oranfstab-file-for-direct-nfs-client.html#GUID-B20B9FB0-C038-42BF-8B85-E97B915FE547">
+      <meta name="DC.Relation" scheme="URI" content="performing-basic-file-operations-using-oradnfs-utility.html#GUID-286C1CD5-7E48-4443-ADF7-9271FFAEA8ED">
+      <meta name="DC.Relation" scheme="URI" content="monitoring-direct-nfs-client-usage.html#GUID-4521C96A-F7A9-48A6-A3E3-757070C526A1">
+      <meta name="DC.Relation" scheme="URI" content="enabling-direct-nfs-client.html#GUID-85684A35-5528-4E3E-AB7E-8ACCFF85FDC3">
+      <meta name="DC.Relation" scheme="URI" content="disabling-direct-nfs-client.html#GUID-2D871A22-3477-4E5D-9E13-36384F1F3863">
+      <meta name="DC.Relation" scheme="URI" content="enabling-hcc-on-direct-nfs-client.html#GUID-059EC319-B09A-4829-90EB-847BFF5FD2D5">
+      <meta name="DC.Relation" scheme="URI" content="https://support.oracle.com/rs?type=doc&amp;id=1496040.1">
+      <meta name="DC.Contributor" content="Prakash Jashnani">
+      <meta name="DC.Contributor" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Barb Glover">
+      <meta name="DC.Creator" content="Eric Belden">
+      <meta name="DC.Creator" content="Sudip Datta">
+      <meta name="DC.Creator" content="David Friedman">
+      <meta name="DC.Creator" content="Alex Keh">
+      <meta name="DC.Creator" content="Peter LaQuerre">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Matt McKerley">
+      <meta name="DC.Creator" content="Sham Rao Pavan">
+      <meta name="DC.Creator" content="Hanlin Qian">
+      <meta name="DC.Creator" content="Sujatha Tolstoy">
+      <meta name="DC.Creator" content="Sergiusz Wolicki">
+      <meta name="DC.Creator" content="Sue Mavris">
+      <meta name="DC.Creator" content="Mohammed Shahnawaz Quadri">
+      <meta name="DC.Creator" content="Vishal Saxena">
+      <meta name="DC.Creator" content="Krishna Itikarlapalli">
+      <meta name="DC.Creator" content="Santanu Datta, Christian Shay, Aneesh Khanderwal">
+      <meta name="DC.Creator" content="Michael Coulter">
+      <meta name="DC.Creator" content="Robert Achacoso">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="David Price">
+      <meta name="DC.Creator" content="Ramesh Chakravarthula">
+      <meta name="DC.Creator" content="Sunil Surabhi">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-9BC5A6E7-155E-41A2-B06E-ACBE91F9F99A">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Complete these procedures to use file system storage for Oracle Database.">
+      <meta name="description" content="Complete these procedures to use file system storage for Oracle Database.">
+      <title>Configuring File System Storage for Oracle Database</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Installation Guide ">
+      <meta property="og:description" content="Complete these procedures to use file system storage for Oracle Database.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Installation Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-database-installation-guide-microsoft-windows.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-12T05:33:31-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2015, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96293-10">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="creating-oracle-database-vault-user-accounts.html" title="Previous" type="text/html">
+      <link rel="next" href="direct-nfs-client-storage.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Database Installation Guide for Microsoft Windows">
+    <meta name="dcterms.isVersionOf" content="NTDBI">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Configuring File System Storage for Oracle Database","description":"Complete these procedures to use file system storage for Oracle Database.","datePublished":"2025-06-12 CST","dateModified":"2025-06-12 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="creating-oracle-database-vault-user-accounts.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="direct-nfs-client-storage.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-9BC5A6E7-155E-41A2-B06E-ACBE91F9F99A" name="GUID-9BC5A6E7-155E-41A2-B06E-ACBE91F9F99A"></a>
+         
+         <h2 id="NTDBI-GUID-9BC5A6E7-155E-41A2-B06E-ACBE91F9F99A" class="sect2"><span class="enumeration_chapter">5 </span>Configuring File System Storage for Oracle Database
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Complete these procedures to use file system storage for Oracle Database. </p>
+               <p>For optimal database organization and performance, Oracle recommends that you install data files and the Oracle Database software in different disks.</p>
+               <p>If you plan to place storage on Network File System (NFS) protocol devices, then Oracle recommends that you use Oracle Direct NFS (dNFS) to take advantage of performance optimizations built into the Oracle Direct NFS client. </p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="direct-nfs-client-storage.html">About Direct NFS Client Storage</a><br>With Oracle Database, you can store data files on a supported NFS system. You can configure Oracle Database to access NFS servers directly using an Oracle internal Direct NFS Client. 
+                  </li>
+                  <li class="ulchildlink"><a href="about-oranfstab-file-for-direct-nfs-client.html#GUID-E6A73FFE-2B17-4F9D-9D42-632622974F15">About the Oranfstab File for Direct NFS Client</a><br>To enable the Direct NFS Client, you must add an <code class="codeph">oranfstab</code> file to <span class="italic"><code class="codeph">ORACLE_HOME</code></span><code class="codeph">\dbs</code>. 
+                  </li>
+                  <li class="ulchildlink"><a href="mounting-nfs-storage-devices-with-direct-nfs-client.html#GUID-DFDA4563-0387-4A5D-8EEB-D92DE65F490C">Mounting NFS Storage Devices with Direct NFS Client</a><br>Direct NFS Client determines the mount point settings for the NFS storage devices based on the configuration information in <code class="codeph">oranfstab</code>.
+                  </li>
+                  <li class="ulchildlink"><a href="specifying-network-paths-for-nfs-server.html#GUID-77558D8D-C297-4DF0-8E6D-91156DCEE9A1">Specifying Network Paths for a NFS Server</a><br>Direct NFS Client can use up to four network paths defined in the oranfstab file for an NFS server.
+                  </li>
+                  <li class="ulchildlink"><a href="creating-oranfstab-file-for-direct-nfs-client.html#GUID-B20B9FB0-C038-42BF-8B85-E97B915FE547">Creating an oranfstab File for Direct NFS Client</a><br>Direct NFS uses a configuration file, <code>oranfstab</code>, to determine the available mount points.
+                  </li>
+                  <li class="ulchildlink"><a href="performing-basic-file-operations-using-oradnfs-utility.html#GUID-286C1CD5-7E48-4443-ADF7-9271FFAEA8ED">Performing Basic File Operations Using the ORADNFS Utility</a><br>ORADNFS is a utility which enables the database administrators to perform basic file operations over Direct NFS Client on Microsoft Windows platforms.
+                  </li>
+                  <li class="ulchildlink"><a href="monitoring-direct-nfs-client-usage.html#GUID-4521C96A-F7A9-48A6-A3E3-757070C526A1">Monitoring Direct NFS Client Usage</a><br>Use the following views for Direct NFS Client management:
+                  </li>
+                  <li class="ulchildlink"><a href="enabling-direct-nfs-client.html#GUID-85684A35-5528-4E3E-AB7E-8ACCFF85FDC3">Enabling Direct NFS Client</a><br>To enable Direct NFS Client, you must add an <code class="codeph">oranfstab</code> file to the <code><span class="variable" translate="no">Oracle_home</span>\dbs</code> directory and modify the related DLL files used by the Oracle Database software. 
+                  </li>
+                  <li class="ulchildlink"><a href="disabling-direct-nfs-client.html#GUID-2D871A22-3477-4E5D-9E13-36384F1F3863">Disabling Direct NFS Client</a><br>Complete the following steps to disable the Direct NFS Client:
+                  </li>
+                  <li class="ulchildlink"><a href="enabling-hcc-on-direct-nfs-client.html#GUID-059EC319-B09A-4829-90EB-847BFF5FD2D5">Enabling HCC on Direct NFS Client</a><br>To enable Hybrid Columnar Compression (HCC) on Direct NFS Client, perform the following steps:
+                  </li>
+               </ul>
+               <div class="relinfo">
+                  <p><strong>Related Topics</strong></p>
+                  <ul>
+                     <li><a href="https://support.oracle.com/rs?type=doc&amp;id=1496040.1" target="_blank">My Oracle Support note 1496040.1</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

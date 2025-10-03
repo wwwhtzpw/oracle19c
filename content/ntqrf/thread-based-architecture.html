@@ -1,0 +1,255 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Thread-Based Architecture">
+      <meta name="abstract" content="The internal process architecture of Oracle Database is thread-based. Threads are objects within a process that run program instructions.">
+      <meta name="description" content="The internal process architecture of Oracle Database is thread-based. Threads are objects within a process that run program instructions.">
+      <meta name="DC.subject" content="thread-based architecture, threads, defined">
+      <meta name="keywords" content="thread-based architecture, threads, defined">
+      <meta name="DC.Relation" scheme="URI" content="overview-of-oracle-database-on-windows-architecture.html#GUID-0F2F5235-69CB-4A77-908E-B9BFFACB286A">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Creator" content="Sunil Surabhi">
+      <meta name="DC.Creator" content="Alexander Keh">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Ricky Chen">
+      <meta name="DC.Creator" content="David Collelo">
+      <meta name="DC.Creator" content="David Friedman">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Mark Bauer">
+      <meta name="DC.Creator" content="Sue K. Lee">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Ravi Thammaiah">
+      <meta name="DC.Creator" content="Michael Verheij">
+      <meta name="DC.Creator" content="Tanaya Bhattacharjee">
+      <meta name="DC.Publisher" content="January2020">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-991E7A28-AC46-40F3-ACEC-8EAB1CCE6E5A">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The internal process architecture of Oracle Database is thread-based. Threads are objects within a process that run program instructions.">
+      <meta name="description" content="The internal process architecture of Oracle Database is thread-based. Threads are objects within a process that run program instructions.">
+      <title>Thread-Based Architecture</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Administrator's Reference ">
+      <meta property="og:description" content="The internal process architecture of Oracle Database is thread-based. Threads are objects within a process that run program instructions.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Administrator's Reference for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="administrators-reference-guide-microsoft-windows.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2020-01-09T06:34:26-08:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2020">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96296-03">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="about-changing-file-access-control.html" title="Previous" type="text/html">
+      <link rel="next" href="file-io-enhancements.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Administrator's Reference Guide for Microsoft Windows">
+    <meta name="dcterms.isVersionOf" content="NTQRF">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="about-changing-file-access-control.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="file-io-enhancements.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database Administrator's Reference </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="oracle-database-architecture-on-windows.html" property="item" typeof="WebPage"><span property="name"> Oracle Database Architecture on Windows</span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="overview-of-oracle-database-on-windows-architecture.html" property="item" typeof="WebPage"><span property="name">Overview of Oracle Database on Windows Architecture</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Thread-Based Architecture</li>
+            </ol>
+            <a id="GUID-991E7A28-AC46-40F3-ACEC-8EAB1CCE6E5A" name="GUID-991E7A28-AC46-40F3-ACEC-8EAB1CCE6E5A"></a><a id="NTQRF99977"></a><a id="NTQRF99978"></a><a id="NTQRF99976"></a>
+            
+            <h2 id="NTQRF-GUID-991E7A28-AC46-40F3-ACEC-8EAB1CCE6E5A" class="sect2">Thread-Based Architecture</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>The internal process architecture of Oracle Database is thread-based. Threads are objects within a process that run program instructions. </p>
+               <p>Threads allow concurrent operations within a process so that a process can run different parts of its program simultaneously on different processors. A thread-based architecture provides the following advantages:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p>Faster context switching</p>
+                  </li>
+                  <li>
+                     <p>Simpler System Global Area allocation routine, because it does not require use of shared memory</p>
+                  </li>
+                  <li>
+                     <p>Faster spawning of new connections, because threads are created more quickly than processes</p>
+                  </li>
+                  <li>
+                     <p>Decreased memory usage, because threads share more data structures than processes</p>
+                  </li>
+               </ul>
+               <p>Internally, the code to implement the thread model is compact and separate from the main body of Oracle Database code. Exception handlers and routines track and deallocate resources. They add robustness, with no downtime because of resource leaks or program that does not function as expected.</p>
+               <p><a id="d4468e75" class="indexterm-anchor"></a>Oracle Database is not a typical Windows process. On Windows, an Oracle Database or Oracle Automatic Storage Management instance (threads and memory structures) is a Windows service: a background process registered with the operating system. The service is started by Windows and requires no user interaction to start. This enables the database to open automatically at computer startup.
+               </p>
+               <p><a id="d4468e81" class="indexterm-anchor"></a><a id="d4468e85" class="indexterm-anchor"></a>When running multiple Oracle Database or Oracle Automatic Storage Management instances on Windows, each instance runs its own Windows service with multiple component threads. Each thread is required for the database to be available, or is optional and specific to certain platforms. The background processes read and write from various data files, depending on your configuration. Oracle Database architecture on Windows is illustrated in Oracle Database Architecture on Windows. Examples of Oracle Database required threads on Windows are listed in Oracle Database Threads.
+               </p>
+               <div class="figure" id="GUID-991E7A28-AC46-40F3-ACEC-8EAB1CCE6E5A__I1008963">
+                  <p class="titleinfigure">Figure 1-1 Oracle Database Architecture on Windows</p><img height="711" width="603" src="img/ntqrf003.gif" alt="Description of Figure 1-1 follows" title="Description of Figure 1-1 follows" longdesc="img_text/ntqrf003.html"><br><a href="img_text/ntqrf003.html">Description of "Figure 1-1 Oracle Database Architecture on Windows"</a></div>
+               <!-- class="figure" -->
+               <div class="tblformal" id="GUID-991E7A28-AC46-40F3-ACEC-8EAB1CCE6E5A__BCGDEJAA">
+                  <p class="titleintable">Table 1-1 Oracle Database Threads</p>
+                  <table cellpadding="4" cellspacing="0" class="Formal" title="Oracle Database Threads" summary="Rows are threads. For each thread, the first column is its name, the second column describes it, and the third column shows whether it is required or optional." width="100%" frame="hsides" border="1" rules="rows">
+                     <thead>
+                        <tr align="left" valign="top">
+                           <th align="left" valign="bottom" width="30%" id="d4468e106">Oracle Database Thread</th>
+                           <th align="left" valign="bottom" width="49%" id="d4468e109">Description</th>
+                           <th align="left" valign="bottom" width="22%" id="d4468e112">Required/Optional</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="30%" id="d4468e117" headers="d4468e106 ">
+                              <p><code class="codeph">DBWO</code></p>
+                           </td>
+                           <td align="left" valign="top" width="49%" headers="d4468e117 d4468e109 ">
+                              <p>database writer</p>
+                           </td>
+                           <td align="left" valign="top" width="22%" headers="d4468e117 d4468e112 ">
+                              <p>Required</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="30%" id="d4468e128" headers="d4468e106 ">
+                              <p><code class="codeph">LGWR</code> 
+                              </p>
+                           </td>
+                           <td align="left" valign="top" width="49%" headers="d4468e128 d4468e109 ">
+                              <p>log writer</p>
+                           </td>
+                           <td align="left" valign="top" width="22%" headers="d4468e128 d4468e112 ">
+                              <p>Required</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="30%" id="d4468e140" headers="d4468e106 ">
+                              <p><code class="codeph">MMAN</code></p>
+                           </td>
+                           <td align="left" valign="top" width="49%" headers="d4468e140 d4468e109 ">
+                              <p>memory manager process</p>
+                           </td>
+                           <td align="left" valign="top" width="22%" headers="d4468e140 d4468e112 ">
+                              <p>Required</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="30%" id="d4468e151" headers="d4468e106 ">
+                              <p><code class="codeph">PMON</code> 
+                              </p>
+                           </td>
+                           <td align="left" valign="top" width="49%" headers="d4468e151 d4468e109 ">
+                              <p>process monitor</p>
+                           </td>
+                           <td align="left" valign="top" width="22%" headers="d4468e151 d4468e112 ">
+                              <p>Required</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="30%" id="d4468e163" headers="d4468e106 ">
+                              <p><code class="codeph">PSPO</code></p>
+                           </td>
+                           <td align="left" valign="top" width="49%" headers="d4468e163 d4468e109 ">
+                              <p>process spawner process</p>
+                           </td>
+                           <td align="left" valign="top" width="22%" headers="d4468e163 d4468e112 ">
+                              <p>Required</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="30%" id="d4468e174" headers="d4468e106 ">
+                              <p><code class="codeph">SMON</code></p>
+                           </td>
+                           <td align="left" valign="top" width="49%" headers="d4468e174 d4468e109 ">
+                              <p>system monitor</p>
+                           </td>
+                           <td align="left" valign="top" width="22%" headers="d4468e174 d4468e112 ">
+                              <p>Required</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="30%" id="d4468e185" headers="d4468e106 ">
+                              <p><code class="codeph">CKPT</code></p>
+                           </td>
+                           <td align="left" valign="top" width="49%" headers="d4468e185 d4468e109 ">
+                              <p>checkpoint process (thread on Windows) that runs by default on Windows</p>
+                           </td>
+                           <td align="left" valign="top" width="22%" headers="d4468e185 d4468e112 ">
+                              <p>Required</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="30%" id="d4468e196" headers="d4468e106 ">
+                              <p><code class="codeph">ARCO</code></p>
+                           </td>
+                           <td align="left" valign="top" width="49%" headers="d4468e196 d4468e109 ">
+                              <p>archive process (or thread on Windows)</p>
+                           </td>
+                           <td align="left" valign="top" width="22%" headers="d4468e196 d4468e112 ">
+                              <p>Required</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="30%" id="d4468e207" headers="d4468e106 ">
+                              <p><code class="codeph">RECO</code></p>
+                           </td>
+                           <td align="left" valign="top" width="49%" headers="d4468e207 d4468e109 ">
+                              <p>distributed recovery background process</p>
+                           </td>
+                           <td align="left" valign="top" width="22%" headers="d4468e207 d4468e112 ">
+                              <p>Required</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <!-- class="inftblhruleinformal" -->
+               <div class="infoboxnote" id="GUID-991E7A28-AC46-40F3-ACEC-8EAB1CCE6E5A__GUID-8748F952-B706-4E8D-8FD9-80F69254B59E">
+                  <p class="notep1">Note:</p>
+                  <p><a id="d4468e219" class="indexterm-anchor"></a>You can view running background processes by entering the following query:
+                  </p><pre class="oac_no_warn" dir="ltr">SQL&gt; select * from v$bgprocess where paddr &lt;&gt; '00'; </pre></div>
+               <p><a id="d4468e225" class="indexterm-anchor"></a><a id="d4468e227" class="indexterm-anchor"></a>Oracle Database for Windows is supplied as a set of executables and dynamic link libraries (DLLs). Executable images can be modified using <code class="codeph">ORASTACK</code> to change the size of the stack used by the threads of the Oracle Database process. Oracle recommends that you use this tool only under the guidance of Oracle Support Services.
+               </p>
+            </div>
+            <div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="overview-of-oracle-database-on-windows-architecture.html#GUID-0F2F5235-69CB-4A77-908E-B9BFFACB286A" title="Oracle Database on Windows is a stable, reliable, and a high-performing system upon which you can build applications. Each release of the database provides new platform-specific features for high performance on Windows.">Overview of Oracle Database on Windows Architecture</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

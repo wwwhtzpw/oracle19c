@@ -1,0 +1,356 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Task 4: Set Up a File System on Oracle RAC">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Task">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-363B43AF-2342-416B-B74C-36C6CE217743">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <title>Task 4: Set Up a File System on Oracle RAC</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="task-3-create-database-services.html" title="Previous" type="text/html">
+      <link rel="next" href="task-5-install-oracle-goldengate.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Task 4: Set Up a File System on Oracle RAC","description":"","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="task-3-create-database-services.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="task-5-install-oracle-goldengate.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-363B43AF-2342-416B-B74C-36C6CE217743" name="GUID-363B43AF-2342-416B-B74C-36C6CE217743"></a>
+         
+         <h2 id="HAOVW-GUID-363B43AF-2342-416B-B74C-36C6CE217743" class="sect2">Task 4: Set Up a File System on Oracle
+        RAC</h2>
+         <div class="ind">
+            <div>
+               <p></p>
+               <div class="section">
+                  
+                  <p>Oracle GoldenGate Microservices Architecture is designed with a simplified
+                installation and deployment directory structure. The installation directory should
+                be placed on local storage on each Oracle RAC node to provide minimized downtime
+                during software patching.</p>
+                  
+                  <p>The deployment directory, which is created during deployment creation using the
+                Oracle GoldenGate Configuration Assistant (oggca.sh), must be placed on a shared
+                file system. The deployment directory contains configuration, security, log,
+                parameter, trail, and checkpoint files.</p>
+                  
+                  <p>Placing the deployment in DBFS or ACFS provides the best recovery and failover
+                capabilities in the event of a system failure. Ensuring the availability of the
+                checkpoint files cluster-wide is essential so that after a failure occurs the
+                GoldenGate processes can continue running from their last known position.</p>
+                  
+                  <p>If Oracle GoldenGate will be configured along with Oracle Data Guard, the recommended
+                file system is DBFS. DBFS is contained in the database protected by Data Guard, and
+                can be fully integrated with XAG. In the event of a Data Guard role transition, the
+                file system can be automatically mounted on the new primary server, followed by
+                automated start-up of Oracle GoldenGate. This is currently not possible with ACFS,
+                because it is not part of the Oracle Data Guard configuration.</p>
+                  
+                  <p>Follow the instructions in the appropriate section below to configure the file system
+                for either DBFS or ACFS.</p>
+                  
+                  <p><span class="bold">Oracle Database File System (DBFS)</span></p>
+                  
+                  <p>It is required that you create the DBFS tablespace inside the same database that the
+                Oracle GoldenGate processes are connected to. For example, if a GoldenGate
+                integrated Extract process is extracting from a database called GGDB, the DBFS
+                tablespace would be located in the same GGDB database.</p>
+                  
+                  <p>Follow instructions in <a href="https://support.oracle.com/rs?type=doc&amp;id=869822.1" target="_blank">My Oracle Support note 869822.1</a> to install the required
+                FUSE libraries if they are not already installed.
+                  </p>
+                  
+                  <p>Use the instructions in <a href="https://support.oracle.com/rs?type=doc&amp;id=1054431.1" target="_blank">My Oracle Support note 1054431.1</a> to configure the
+                database, tablespace, database user, <code class="codeph">tnsnames.ora</code> Oracle Net
+                connection alias, and permissions on source or target GoldenGate environments
+                required for DBFS.
+                  </p>
+                  
+                  <div class="infoboxnote" id="GUID-363B43AF-2342-416B-B74C-36C6CE217743__GUID-83FD4A99-C7E0-4A75-82E9-2C8EA1D42AF0">
+                     <p class="notep1">Note:</p>
+                     
+                     <p>When using an Oracle Multitenant Database, the DBFS tablespace MUST be created
+                    in a Pluggable Database (PDB). It is recommended that you use the same PDB that
+                    the GoldenGate Extract or Replicat processes are connecting to, allowing DBFS to
+                    use the same database service, created above in Task 2, for its database
+                    dependency.</p>
+                     
+                  </div>
+                  
+                  <p>When you create a file system for storing the GoldenGate deployment files, it is
+                recommended that you allocate enough trail file disk space to permit storage of up
+                to 12 hours of trail files. Doing this provides sufficient space for trail file
+                generation should a problem occur with the target environment that prevents it from
+                receiving new trail files. The amount of space needed for 12 hours can only be
+                determined by testing trail file generation rates with real production data.</p>
+                  
+                  <p>Example DBFS creation:</p>
+                  <pre class="pre codeblock"><code>$ cd $ORACLE_HOME/rdbms/admin
+$ sqlplus <span class="variable" translate="no">dbfs_user</span>/<span class="variable" translate="no">dbfs_password</span>@<span class="variable" translate="no">database_tns_alias</span>
+SQL&gt; start dbfs_create_filesystem dbfs_gg_tbs goldengate</code></pre>
+                  <p>Follow the instructions in <a href="https://support.oracle.com/rs?type=doc&amp;id=1054431.1" target="_blank">My Oracle Support note 1054431.1</a> to configure the newly
+                created DBFS file system so that the DBFS instance and mount point resources are
+                automatically started by Cluster Ready Services (CRS) after a node failure, with the
+                following DBFS configuration and script file modifications.
+                  </p>
+                  
+                  <ol id="GUID-363B43AF-2342-416B-B74C-36C6CE217743__OL_DCK_5SK_BZB">
+                     <li>
+                        
+                        <p>Change the <code class="codeph">mount-dbfs.conf</code> parameters to reflect your
+                        database environment.
+                        </p>
+                        
+                        <p>Modify the <code class="codeph">MOUNT_OPTIONS</code> parameter to the following:
+                        </p>
+                        <pre class="pre codeblock"><code>MOUNT_OPTIONS=allow_other,direct_io,failover,nolock</code></pre>
+                        <p>The <code class="codeph">failover</code> option forces all file writes to be committed
+                        to the DBFS database in an <code class="codeph">IMMEDIATE WAIT</code> mode. This
+                        prevents data getting lost when it has been written into the
+                            <code class="codeph">dbfs_client</code> cache but not yet written to the database
+                        at the time of a database or node failure.
+                        </p>
+                        
+                        <p>The <code class="codeph">nolock</code> mount option is required if you are using Oracle
+                        Database 18c or a later release, due to a change in the DBFS file locking
+                        which can cause issues for GoldenGate processes after an Oracle RAC node
+                        failure when a file is currently locked.
+                        </p>
+                        
+                        <p>If you are using a <code class="codeph">dbfs_client</code> from Oracle Database 12c
+                        Release 2 (12.2), make sure you have applied the latest release update that
+                        includes the fix for bug 27056711. Once the fix has been applied, the
+                            <code class="codeph">MOUNT_OPTIONS</code> should also include the
+                            <code class="codeph">nolock</code> option.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Modify the <code class="codeph">mount-dbfs.sh</code> script to force unmounting of DBFS
+                        when the CRS resource is stopped.
+                        </p>
+                        
+                        <p>Change two occurrences of:</p>
+                        
+                        <p><code class="codeph">$FUSERMOUNT -u $MOUNT_POINT</code></p>
+                        
+                        <p>To the following:</p>
+                        
+                        <p><code class="codeph">$FUSERMOUNT -uz $MOUNT_POINT</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>When registering the resource with Oracle Clusterware, be sure to create it
+                        as a <code class="codeph">cluster_resource</code> instead of a
+                            <code class="codeph">local_resource</code>, as specified in the My Oracle Support
+                        note.
+                        </p>
+                        
+                        <p>The reason for using <code class="codeph">cluster_resource</code> is so that the file
+                        system can only be mounted on a single node at a time, preventing mounting
+                        of DBFS from concurrent nodes, which creates the potential for concurrent
+                        file writes, causing file corruption problems.
+                        </p>
+                        
+                        <p>Make sure to use the database service name created in a previous step for the
+                        DBFS service dependency.</p>
+                        
+                        <p>For example:</p>
+                        <pre class="pre codeblock"><code>DBNAME=ggdb
+DEPNAME=ora.$DBNAME.oggserv.svc
+
+crsctl add resource $RESNAME \
+&nbsp; -type <span class="bold">cluster_resource</span> \
+&nbsp; -attr "ACTION_SCRIPT=$ACTION_SCRIPT, \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CHECK_INTERVAL=30,RESTART_ATTEMPTS=10, \&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+START_DEPENDENCIES='hard($DEPNAME)pullup($DEPNAME)',\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STOP_DEPENDENCIES='hard($DEPNAME)',\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SCRIPT_TIMEOUT=300"</code></pre>
+                        <p>Once the DBFS resource has been created, the file system should be mounted
+                        and tested.</p>
+                        <pre class="pre codeblock"><code>$ crsctl start res dbfs_mount
+$ crsctl stat res dbfs_mount</code></pre>
+                        <p>After the file system is mounted, create the directory for storing the
+                        GoldenGate files.</p>
+                        <pre class="pre codeblock"><code>$ cd /mnt/dbfs/goldengate
+$ mkdir deployments</code></pre>
+                        <div class="infoboxnote" id="GUID-363B43AF-2342-416B-B74C-36C6CE217743__GUID-CE3BEA78-C5C0-4AAC-A60D-D9EC8CE025CD">
+                           <p class="notep1">Note:</p>Leave the shared file system mounted. It is required for creating the
+                        GoldenGate deployment in a later step.
+                        </div>
+                        
+                     </li>
+                  </ol>
+                  
+                  <p><span class="bold">Oracle Advanced Cluster File System (ACFS)</span></p>
+                  
+                  <p>Oracle ACFS is an alternative to DBFS for the shared GoldenGate files in an Oracle
+                RAC configuration.</p>
+                  
+                  <p>Refer to <a href="https://support.oracle.com/rs?type=doc&amp;id=1929629.1" target="_blank">My Oracle Support note 1929629.1</a> for more
+                information about ACFS configuration requirements for Oracle Exadata Database
+                Machine.
+                  </p>
+                  
+                  <p>Create a single ACFS file system for storing the Oracle deployment files.</p>
+                  
+                  <p>It is recommended that you allocate enough trail file disk space to permit storage of
+                up to 12 hours of trail files. Doing this provides sufficient space for trail file
+                generation should a problem occur with the target environment that prevents it from
+                receiving new trail files. The amount of space needed for 12 hours can only be
+                determined by testing trail file generation rates with real production data.</p>
+                  
+                  <ol id="GUID-363B43AF-2342-416B-B74C-36C6CE217743__OL_SQP_15K_BZB">
+                     <li>
+                        
+                        <p>Create the file system using ASMCMD as the Oracle ASM administrator user.</p>
+                        <pre class="pre codeblock"><code>ASMCMD [+] &gt; volcreate -G datac1 -s 1200G ACFS_GG </code></pre>
+                        <div class="infoboxnote" id="GUID-363B43AF-2342-416B-B74C-36C6CE217743__GUID-32223C76-E18F-4FC7-99F2-267FB3E7F140">
+                           <p class="notep1">Note:</p>Modify the file system size according to the determined size
+                        requirements.
+                        </div>
+                        <pre class="pre codeblock"><code>ASMCMD&gt; volinfo -G datac1 acfs_gg
+
+Diskgroup Name: DATAC1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Volume Name: ACFS_GG
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Volume Device: /dev/asm/acfs_gg-151
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; State: ENABLED
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Size (MB): 1228800
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Resize Unit (MB): 64
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Redundancy: MIRROR
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stripe Columns: 8
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stripe Width (K): 1024
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Usage:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mountpath:</code></pre>
+                        <p>Make the file system with the following mkfs command.</p>
+                        <pre class="pre codeblock"><code>$ /sbin/mkfs -t acfs /dev/asm/acfs-gg-151</code></pre>
+                        </li>
+                     <li>
+                        
+                        <p>Create the CRS resource for the newly created ACFS file system, if not
+                        already created.</p>
+                        
+                        <p>Check to see if the file system resource was already created.</p>
+                        <pre class="pre codeblock"><code>$ srvctl status filesystem -volume ACFS_GG -diskgroup DATAC1
+
+ACFS file system /mnt/acfs_gg is mounted on nodes oggadm07, oggadm08</code></pre>
+                        <p>If not already created, create the ACFS mount point on all of the Oracle RAC
+                        nodes.</p>
+                        <pre class="pre codeblock"><code># mkdir -p /mnt/acfs_gg</code></pre>
+                        <p>Create the file system resource as the root user. Due to the implementation
+                        of distributed file locking on ACFS, unlike DBFS, it is acceptable to mount
+                        ACFS on more than one RAC node at any one time.</p>
+                        
+                        <p>Create the ACFS resource using srvctl from the Oracle Grid Infrastructure
+                        ORACLE_HOME.</p>
+                        <pre class="pre codeblock"><code># srvctl add filesystem -device /dev/asm/acfs_gg-151 -volume ACFS_GG
+-diskgroup DATAC1 -path /mnt/acfs_gg -user oracle -autostart RESTORE</code></pre>
+                        <p>To verify the currently configured ACFS file systems, use the following
+                        command to view the file system details.</p>
+                        <pre class="pre codeblock"><code>$ srvctl config filesystem
+
+Volume device: /dev/asm/acfs_gg-151
+Diskgroup name: datac1
+Volume name: ACFS_GG
+Canonical volume device: /dev/asm/acfs_gg-151
+Accelerator volume devices:
+Mountpoint path: /mnt/acfs_gg
+Mount point owner: oracle
+
+Check the status of the ACFS resource and mount it.
+
+$ srvctl status filesystem -volume ACFS_GG -diskgroup DATAC1
+
+ACFS file system /mnt/acfs is not mounted
+
+$ srvctl start filesystem -volume ACFS_GG -diskgroup DATAC1 &#x2013;node dc1north01</code></pre>
+                        <p>The CRS resource that is created is named using the format
+                            ora.<span class="italic">diskgroup_name</span>.<span class="italic">volume_name</span>.acfs. Using the above file
+                        system example, the CRS resource is called
+                            <code class="codeph">ora.datac1.acfs_gg.acfs</code>.
+                        </p>
+                        
+                        <p>To see all ACFS file system CRS resources that currently exist, use the
+                        following command.</p>
+                        <pre class="pre codeblock"><code>$ crsctl stat res -w "((TYPE = ora.acfs.type) OR (TYPE = ora.acfs_cluster.type))"
+
+NAME=ora.datac1.acfs_gg.acfs
+TYPE=ora.acfs.type
+TARGET=ONLINE              , OFFLINE
+STATE=ONLINE on dc1north01, OFFLINE</code></pre>
+                        </li>
+                     <li>
+                        
+                        <p>Create a GoldenGate deployment directory on ACFS.</p>
+                        
+                        <p>After the file system is mounted, create the directory for storing the
+                        GoldenGate deployments.</p>
+                        <pre class="pre codeblock"><code>$ cd /mnt/acfs_gg
+$ mkdir deployments</code></pre>
+                        </li>
+                  </ol>
+                  
+                  <div class="infoboxnote" id="GUID-363B43AF-2342-416B-B74C-36C6CE217743__GUID-71374FF1-053C-4225-BA7F-499B6277A7B1">
+                     <p class="notep1">Note:</p>
+                     
+                     <p>Leave the shared file system mounted. It is required for creating the GoldenGate
+                    deployment in a later Task.</p>
+                     
+                  </div>
+                  
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,2051 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="DBMS_SERVER_ALERT">
+      <meta name="abstract" content="The DBMS_SERVER_ALERT package enables you to configure the Oracle Database server to issue an alert when a threshold for a specified server metric has been violated. You can configure both warning and critical thresholds for a large number of predefined metrics.">
+      <meta name="description" content="The DBMS_SERVER_ALERT package enables you to configure the Oracle Database server to issue an alert when a threshold for a specified server metric has been violated. You can configure both warning and critical thresholds for a large number of predefined metrics.">
+      <meta name="DC.subject" content="DBMS_SERVER_ALERT package, EXPAND_MESSAGE function, GET_THRESHOLD procedure, SET_THRESHOLD procedure">
+      <meta name="keywords" content="DBMS_SERVER_ALERT package, EXPAND_MESSAGE function, GET_THRESHOLD procedure, SET_THRESHOLD procedure">
+      <meta name="DC.Creator" content="Gunjan Jain">
+      <meta name="DC.Contributor" content="Prashant Kannan">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Denis Raphaely">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Contributor" content="Drue Baker">
+      <meta name="DC.Contributor" content="Donna Carver">
+      <meta name="DC.Contributor" content="Maitreyee Chaliha">
+      <meta name="DC.Contributor" content="Beethoven Cheng">
+      <meta name="DC.Contributor" content="Rhonda Day">
+      <meta name="DC.Contributor" content="Steve Fogel">
+      <meta name="DC.Contributor" content="Bryn Llewellyn">
+      <meta name="DC.Contributor" content="Paul Lane">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Tony Morales">
+      <meta name="DC.Contributor" content="Anne Murphy">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Sue Pelski">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Antonio Romero">
+      <meta name="DC.Contributor" content="Vivian Schupmann">
+      <meta name="DC.Contributor" content="Cathy Shea">
+      <meta name="DC.Contributor" content="Margaret Taft">
+      <meta name="DC.Contributor" content="Kathy Taylor">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Contributor" content="Pat Huey">
+      <meta name="DC.Contributor" content="Drew Adams">
+      <meta name="DC.Contributor" content="Sarika Surumpudi">
+      <meta name="DC.Contributor" content="Rodney Ward">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Tanmay Choudhury">
+      <meta name="DC.Contributor" content="Roopesh Ashok Kumar">
+      <meta name="DC.Contributor" content="Atif Chaudhry">
+      <meta name="DC.Creator" content="Gunjan Jain">
+      <meta name="DC.Contributor" content="Prashant Kannan">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Denis Raphaely">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Contributor" content="Drue Baker">
+      <meta name="DC.Contributor" content="Donna Carver">
+      <meta name="DC.Contributor" content="Maitreyee Chaliha">
+      <meta name="DC.Contributor" content="Beethoven Cheng">
+      <meta name="DC.Contributor" content="Rhonda Day">
+      <meta name="DC.Contributor" content="Steve Fogel">
+      <meta name="DC.Contributor" content="Bryn Llewellyn">
+      <meta name="DC.Contributor" content="Paul Lane">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Tony Morales">
+      <meta name="DC.Contributor" content="Anne Murphy">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Sue Pelski">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Antonio Romero">
+      <meta name="DC.Contributor" content="Vivian Schupmann">
+      <meta name="DC.Contributor" content="Cathy Shea">
+      <meta name="DC.Contributor" content="Margaret Taft">
+      <meta name="DC.Contributor" content="Kathy Taylor">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Contributor" content="Pat Huey">
+      <meta name="DC.Contributor" content="Drew Adams">
+      <meta name="DC.Contributor" content="Sarika Surumpudi">
+      <meta name="DC.Contributor" content="Rodney Ward">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Tanmay Choudhury">
+      <meta name="DC.Contributor" content="Roopesh Ashok Kumar">
+      <meta name="DC.Contributor" content="Atif Chaudhry">
+      <meta name="DC.Contributor" content="Prashant Kannan">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Denis Raphaely">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Contributor" content="Drue Baker">
+      <meta name="DC.Contributor" content="Donna Carver">
+      <meta name="DC.Contributor" content="Maitreyee Chaliha">
+      <meta name="DC.Contributor" content="Beethoven Cheng">
+      <meta name="DC.Contributor" content="Rhonda Day">
+      <meta name="DC.Contributor" content="Steve Fogel">
+      <meta name="DC.Contributor" content="Bryn Llewellyn">
+      <meta name="DC.Contributor" content="Paul Lane">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Tony Morales">
+      <meta name="DC.Contributor" content="Anne Murphy">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Sue Pelski">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Antonio Romero">
+      <meta name="DC.Contributor" content="Vivian Schupmann">
+      <meta name="DC.Contributor" content="Cathy Shea">
+      <meta name="DC.Contributor" content="Margaret Taft">
+      <meta name="DC.Contributor" content="Kathy Taylor">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Contributor" content="Pat Huey">
+      <meta name="DC.Contributor" content="Drew Adams">
+      <meta name="DC.Contributor" content="Sarika Surumpudi">
+      <meta name="DC.Contributor" content="Rodney Ward">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Tanmay Choudhury">
+      <meta name="DC.Contributor" content="Roopesh Ashok Kumar">
+      <meta name="DC.Contributor" content="Atif Chaudhry">
+      <meta name="DC.Creator" content="Gunjan Jain">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-0938832A-13BB-4044-BBF7-B0F34870065C">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The DBMS_SERVER_ALERT package enables you to configure the Oracle Database server to issue an alert when a threshold for a specified server metric has been violated. You can configure both warning and critical thresholds for a large number of predefined metrics.">
+      <meta name="description" content="The DBMS_SERVER_ALERT package enables you to configure the Oracle Database server to issue an alert when a threshold for a specified server metric has been violated. You can configure both warning and critical thresholds for a large number of predefined metrics.">
+      <title>DBMS_SERVER_ALERT</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="PL/SQL Packages and Types Reference">
+      <meta property="og:description" content="The DBMS_SERVER_ALERT package enables you to configure the Oracle Database server to issue an alert when a threshold for a specified server metric has been violated. You can configure both warning and critical thresholds for a large number of predefined metrics.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="PL/SQL Packages and Types Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-packages-and-types-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-17T01:44:29-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96430-32">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="DBMS_SCHEDULER.html" title="Previous" type="text/html">
+      <link rel="next" href="DBMS_SERVICE.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database PL/SQL Packages and Types Reference">
+    <meta name="dcterms.isVersionOf" content="ARPLS">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"DBMS_SERVER_ALERT","description":"The DBMS_SERVER_ALERT package enables you to configure the Oracle Database server to issue an alert when a threshold for a specified server metric has been violated. You can configure both warning and critical thresholds for a large number of predefined metrics.","datePublished":"2025-07-17 CST","dateModified":"2025-07-17 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="DBMS_SCHEDULER.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="DBMS_SERVICE.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-0938832A-13BB-4044-BBF7-B0F34870065C" name="GUID-0938832A-13BB-4044-BBF7-B0F34870065C"></a><a id="ARPLS016"></a><a id="ARPLS016"></a><a id="ARPLS016"></a>
+         
+         <h2 id="ARPLS-GUID-0938832A-13BB-4044-BBF7-B0F34870065C" class="sect2"><span class="enumeration_chapter">155 </span> DBMS_SERVER_ALERT
+         </h2>
+         <div class="ind">
+            <div>
+               <p>The <code class="codeph">DBMS_SERVER_ALERT</code> package enables you to configure the Oracle Database server to issue an alert when a threshold for a specified server metric has been violated. You can configure both warning and critical thresholds for a large number of predefined metrics.
+               </p>
+               <p>If a warning threshold is reached, the server generates a severity level 5 alert. If a critical threshold is reached, the server generates a severity level 1 alert. </p>
+               <p>The chapter contains the following topics: </p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="DBMS_SERVER_ALERT.html#GUID-E1F5063C-77C9-47B8-A265-FB76A5BAF280" title="The user needs DBA or IMP_FULL_DATABASE roles to use the DBMS_SERVER_ALERT package.">Security Model</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_SERVER_ALERT.html#GUID-AA852729-6684-4B0D-AB57-BB5FBE8C4171" title="You qualify the metric by an individual object for the listed object types.">Object Types</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_SERVER_ALERT.html#GUID-4EB8CB83-4F75-4F98-81CB-FDC0BC6006A5" title="You can specify a relational comparison operator to determine whether or not a given metric's value violates the threshold setting. The server supports the following operators.">Relational Operators</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_SERVER_ALERT.html#GUID-FADEEFDF-77C4-4D7A-B080-4FE768BD831D" title="These metrics are supported. All internal metric names are supplied as package constants.">Supported Metrics</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_SERVER_ALERT.html#GUID-75181FD9-C29A-4D1A-88B9-9F02A5E377E3" title="This table lists the DBMS_SERVER_ALERT subprograms and briefly describes them.">Summary of DBMS_SERVER_ALERT Subprograms</a></p>
+                  </li>
+               </ul>
+            </div><a id="ARPLS73092"></a><a id="ARPLS73092"></a><a id="ARPLS73092"></a><div class="props_rev_3"><a id="GUID-E1F5063C-77C9-47B8-A265-FB76A5BAF280" name="GUID-E1F5063C-77C9-47B8-A265-FB76A5BAF280"></a><h3 id="ARPLS-GUID-E1F5063C-77C9-47B8-A265-FB76A5BAF280" class="sect3"><span class="enumeration_section">155.1 </span>DBMS_SERVER_ALERT Security Model
+               </h3>
+               <div>
+                  <p>The user needs <code class="codeph">DBA</code> or <code class="codeph">IMP_FULL_DATABASE</code> roles to use the <code class="codeph">DBMS_SERVER_ALERT</code> package.
+                  </p>
+               </div>
+            </div><a id="ARPLS67992"></a><a id="ARPLS67993"></a><a id="ARPLS67993"></a><a id="ARPLS67992"></a><a id="ARPLS67993"></a><a id="ARPLS67992"></a><div class="props_rev_3"><a id="GUID-AA852729-6684-4B0D-AB57-BB5FBE8C4171" name="GUID-AA852729-6684-4B0D-AB57-BB5FBE8C4171"></a><h3 id="ARPLS-GUID-AA852729-6684-4B0D-AB57-BB5FBE8C4171" class="sect3"><span class="enumeration_section">155.2 </span>DBMS_SERVER_ALERT Object Types
+               </h3>
+               <div>
+                  <p>You qualify the metric by an individual object for the listed object types.</p>
+                  <div class="tblformal" id="GUID-AA852729-6684-4B0D-AB57-BB5FBE8C4171__GUID-6B039A67-D1EE-4C01-8962-02677078731A">
+                     <p class="titleintable">Table 155-1 Object Types Defined as Constants</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Object Types Defined as Constants" summary="This table describes Object Types Defined as Constants used by DBMS_SERVER_ALERT subprograms." width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="35%" id="d866617e925">Constant</th>
+                              <th align="left" valign="bottom" width="65%" id="d866617e928">Description</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e933" headers="d866617e925 ">
+                                 <p><code class="codeph">OBJECT_TYPE_SYSTEM</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e933 d866617e928 ">
+                                 <p>Metrics collected on the system level for each instance.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e941" headers="d866617e925 ">
+                                 <p><code class="codeph">OBJECT_TYPE_FILE</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e941 d866617e928 ">
+                                 <p>Metrics collected on the file level. These are used for <code class="codeph">AVG_FILE_READ_TIME</code> and <code class="codeph">AVG_FILE_WRITE_TIME</code> metrics.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e955" headers="d866617e925 ">
+                                 <p><code class="codeph">OBJECT_TYPE_SERVICE</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e955 d866617e928 ">
+                                 <p>Metrics collected on the service level. Currently <code class="codeph">ELAPSED_TIME_PER_CALL</code> and <code class="codeph">CPU_TIME_PER_CALL</code> are collected.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e969" headers="d866617e925 ">
+                                 <p><code class="codeph">OBJECT_TYPE_TABLESPACE</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e969 d866617e928 ">
+                                 <p>Metrics collected on the tablespace level.</p>
+                                 <p><span class="bold">Note</span>: Dictionary managed tablespaces are not supported.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e981" headers="d866617e925 ">
+                                 <p><code class="codeph">OBJECT_TYPE_EVENT_CLASS</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e981 d866617e928 ">
+                                 <p>Metrics collected on wait event class level. Currently supported metrics are <code class="codeph">AVG_USERS_WAITING</code> and<code class="codeph"> DB_TIME_WAITING</code>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e995" headers="d866617e925 ">
+                                 <p><code class="codeph">OBJECT_TYPE_SESSION</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e995 d866617e928 ">
+                                 <p>Metrics collected on the session level. Currently only <code class="codeph">BLOCKED_USERS</code> is collected. The threshold can only be set at the instance level, which means that no object name should be specified when setting the threshold for this type of metric.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e1006" headers="d866617e925 ">
+                                 <p><code class="codeph">OBJECT_TYPE_WRCLIENT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e1006 d866617e928 ">
+                                 <p>Refers to a group of metrics (<code class="codeph">WCR_...</code>) used during replay to monitor the replay clients' performance
+                                 </p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div><a id="ARPLS67994"></a><a id="ARPLS67995"></a><a id="ARPLS67995"></a><a id="ARPLS67994"></a><a id="ARPLS67995"></a><a id="ARPLS67994"></a><div class="props_rev_3"><a id="GUID-4EB8CB83-4F75-4F98-81CB-FDC0BC6006A5" name="GUID-4EB8CB83-4F75-4F98-81CB-FDC0BC6006A5"></a><h3 id="ARPLS-GUID-4EB8CB83-4F75-4F98-81CB-FDC0BC6006A5" class="sect3"><span class="enumeration_section">155.3 </span>DBMS_SERVER_ALERT Relational Operators
+               </h3>
+               <div>
+                  <p>You can specify a relational comparison operator to determine whether or not a given metric's value violates the threshold setting. The server supports the following operators.</p>
+                  <div class="tblformal" id="GUID-4EB8CB83-4F75-4F98-81CB-FDC0BC6006A5__GUID-4C174505-4A0D-4107-9129-B2F72813F5FF">
+                     <p class="titleintable">Table 155-2 Relational Operators Defined as Constants</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Relational Operators Defined as Constants" summary="This table describes Relational Operators Defined as Constants used by DBMS_SERVER_ALERT subprograms." width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="35%" id="d866617e1332">Constant</th>
+                              <th align="left" valign="bottom" width="65%" id="d866617e1335">Description</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e1340" headers="d866617e1332 ">
+                                 <p><code class="codeph">OPERATOR_CONTAINS</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e1340 d866617e1335 ">
+                                 <p>A metric value matching an entry in a list of threshold values is considered a violation.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e1348" headers="d866617e1332 ">
+                                 <p><code class="codeph">OPERATOR_DO_NOT_CHECK</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e1348 d866617e1335 ">
+                                 <p>The metric value is not compared to the threshold value, and no alerts are generated. Use this operator to disable alerts for a metric.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e1356" headers="d866617e1332 ">
+                                 <p><code class="codeph">OPERATOR_EQ</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e1356 d866617e1335 ">
+                                 <p>A metric value equal to the threshold value is considered a violation.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e1364" headers="d866617e1332 ">
+                                 <p><code class="codeph">OPERATOR_GE</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e1364 d866617e1335 ">
+                                 <p>A metric value greater than or equal to the threshold value is considered a violation.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e1372" headers="d866617e1332 ">
+                                 <p><code class="codeph">OPERATOR_GT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e1372 d866617e1335 ">
+                                 <p>A metric value greater than the threshold value is considered a violation.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e1380" headers="d866617e1332 ">
+                                 <p><code class="codeph">OPERATOR_LE</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e1380 d866617e1335 ">
+                                 <p>A metric value less than or equal to the threshold value is considered a violation.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e1388" headers="d866617e1332 ">
+                                 <p><code class="codeph">OPERATOR_LT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e1388 d866617e1335 ">
+                                 <p>A metric value less than the threshold value is considered a violation.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="35%" id="d866617e1396" headers="d866617e1332 ">
+                                 <p><code class="codeph">OPERATOR_NE</code></p>
+                              </td>
+                              <td align="left" valign="top" width="65%" headers="d866617e1396 d866617e1335 ">
+                                 <p>A metric value not equal to the threshold value is considered a violation.</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div><a id="ARPLS67996"></a><a id="ARPLS67997"></a><a id="ARPLS67997"></a><a id="ARPLS67996"></a><a id="ARPLS67997"></a><a id="ARPLS67996"></a><div class="props_rev_3"><a id="GUID-FADEEFDF-77C4-4D7A-B080-4FE768BD831D" name="GUID-FADEEFDF-77C4-4D7A-B080-4FE768BD831D"></a><h3 id="ARPLS-GUID-FADEEFDF-77C4-4D7A-B080-4FE768BD831D" class="sect3"><span class="enumeration_section">155.4 </span>DBMS_SERVER_ALERT Supported Metrics
+               </h3>
+               <div>
+                  <p>These metrics are supported. All internal metric names are supplied as package constants.</p>
+                  <div class="tblformalwide" id="GUID-FADEEFDF-77C4-4D7A-B080-4FE768BD831D__GUID-65B39AC2-7DA2-4BCE-AB80-EB369CFD2C99">
+                     <p class="titleintable">Table 155-3 List of Supported Metrics</p>
+                     <table cellpadding="4" cellspacing="0" class="FormalWide" title="List of Supported Metrics" summary="This table describes List of Supported Metrics used by DBMS_SERVER_ALERT subprograms." width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="33%" id="d866617e1720">Metric Name (Internal)</th>
+                              <th align="left" valign="bottom" width="33%" id="d866617e1723">Metric Name (External)</th>
+                              <th align="left" valign="bottom" width="33%" id="d866617e1726">Units</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1731" headers="d866617e1720 ">
+                                 <p><code class="codeph">AVG_FILE_READ_TIME</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1731 d866617e1723 ">
+                                 <p>Average File Read Time</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1731 d866617e1726 ">
+                                 <p>Microseconds</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1742" headers="d866617e1720 ">
+                                 <p><code class="codeph">AVG_FILE_WRITE_TIME</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1742 d866617e1723 ">
+                                 <p>Average File Write Time</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1742 d866617e1726 ">
+                                 <p>Microseconds</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1753" headers="d866617e1720 ">
+                                 <p><code class="codeph">AVG_USERS_WAITING</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1753 d866617e1723 ">
+                                 <p>Average Number of Users Waiting on a Class of Wait Events</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1753 d866617e1726 ">
+                                 <p>Count of sessions</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1764" headers="d866617e1720 ">
+                                 <p><code class="codeph">BLOCKED_USERS</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1764 d866617e1723 ">
+                                 <p>Number of Users blocked by some Session</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1764 d866617e1726 ">
+                                 <p>Number of Users</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1775" headers="d866617e1720 ">
+                                 <p><code class="codeph">BRANCH_NODE_SPLITS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1775 d866617e1723 ">
+                                 <p>Branch Node Splits (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1775 d866617e1726 ">
+                                 <p>Splits for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1786" headers="d866617e1720 ">
+                                 <p><code class="codeph">BRANCH_NODE_SPLITS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1786 d866617e1723 ">
+                                 <p>Branch Node Splits (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1786 d866617e1726 ">
+                                 <p>Splits for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1797" headers="d866617e1720 ">
+                                 <p><code class="codeph">BUFFER_CACHE_HIT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1797 d866617e1723 ">
+                                 <p>Buffer Cache Hit (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1797 d866617e1726 ">
+                                 <p>% of cache accesses</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1808" headers="d866617e1720 ">
+                                 <p><code class="codeph">CONSISTENT_CHANGES_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1808 d866617e1723 ">
+                                 <p>Consistent Changes (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1808 d866617e1726 ">
+                                 <p>Changes for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1819" headers="d866617e1720 ">
+                                 <p><code class="codeph">CONSISTENT_CHANGES_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1819 d866617e1723 ">
+                                 <p>Consistent Changes (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1819 d866617e1726 ">
+                                 <p>Changes for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1830" headers="d866617e1720 ">
+                                 <p><code class="codeph">CONSISTENT_GETS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1830 d866617e1723 ">
+                                 <p>Consistent Gets (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1830 d866617e1726 ">
+                                 <p>Gets for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1841" headers="d866617e1720 ">
+                                 <p><code class="codeph">CONSISTENT_GETS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1841 d866617e1723 ">
+                                 <p>Consistent Gets (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1841 d866617e1726 ">
+                                 <p>Gets for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1853" headers="d866617e1720 ">
+                                 <p><code class="codeph">CR_BLOCKS_CREATED_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1853 d866617e1723 ">
+                                 <p>CR Blocks Created (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1853 d866617e1726 ">
+                                 <p>Blocks for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1864" headers="d866617e1720 ">
+                                 <p><code class="codeph">CR_BLOCKS_CREATED_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1864 d866617e1723 ">
+                                 <p>CR Blocks Created (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1864 d866617e1726 ">
+                                 <p>Blocks for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1875" headers="d866617e1720 ">
+                                 <p><code class="codeph">CR_RECORDS_APPLIED_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1875 d866617e1723 ">
+                                 <p>CR Undo Records Applied (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1875 d866617e1726 ">
+                                 <p>Records for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1886" headers="d866617e1720 ">
+                                 <p><code class="codeph">CR_RECORDS_APPLIED_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1886 d866617e1723 ">
+                                 <p>CR Undo Records Applied (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1886 d866617e1726 ">
+                                 <p>Records for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1897" headers="d866617e1720 ">
+                                 <p><code class="codeph">CURSOR_CACHE_HIT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1897 d866617e1723 ">
+                                 <p>Cursor Cache Hit (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1897 d866617e1726 ">
+                                 <p>% of soft parses</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1908" headers="d866617e1720 ">
+                                 <p><code class="codeph">DATABASE_WAIT_TIME</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1908 d866617e1723 ">
+                                 <p>Database Wait Time (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1908 d866617e1726 ">
+                                 <p>% of all database time</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1919" headers="d866617e1720 ">
+                                 <p><code class="codeph">DATABASE_CPU_TIME</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1919 d866617e1723 ">
+                                 <p>Database CPU Time (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1919 d866617e1726 ">
+                                 <p>% of all database time</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1930" headers="d866617e1720 ">
+                                 <p><code class="codeph">DB_BLKGETS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1930 d866617e1723 ">
+                                 <p>DB Block Gets (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1930 d866617e1726 ">
+                                 <p>Gets for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1941" headers="d866617e1720 ">
+                                 <p><code class="codeph">DB_BLKGETS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1941 d866617e1723 ">
+                                 <p>DB Block Gets (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1941 d866617e1726 ">
+                                 <p>Gets for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1952" headers="d866617e1720 ">
+                                 <p><code class="codeph">DB_TIME_WAITING</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1952 d866617e1723 ">
+                                 <p>Percent of Database Time Spent Waiting on a Class of Wait Events</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1952 d866617e1726 ">
+                                 <p>% of Database Time</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1963" headers="d866617e1720 ">
+                                 <p><code class="codeph">DBWR_CKPT_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1963 d866617e1723 ">
+                                 <p>DBWR Checkpoints (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1963 d866617e1726 ">
+                                 <p>Checkpoints for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1975" headers="d866617e1720 ">
+                                 <p><code class="codeph">DISK_SORT_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1975 d866617e1723 ">
+                                 <p>Sorts to Disk (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1975 d866617e1726 ">
+                                 <p>Sorts for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1986" headers="d866617e1720 ">
+                                 <p><code class="codeph">DISK_SORT_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1986 d866617e1723 ">
+                                 <p>Sorts to Disk (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1986 d866617e1726 ">
+                                 <p>Sorts for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e1997" headers="d866617e1720 ">
+                                 <p><code class="codeph">ELAPSED_TIME_PER_CALL</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1997 d866617e1723 ">
+                                 <p>Elapsed time for each user call for each service</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e1997 d866617e1726 ">
+                                 <p>Microseconds for each call</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2008" headers="d866617e1720 ">
+                                 <p><code class="codeph">ENQUEUE_DEADLOCKS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2008 d866617e1723 ">
+                                 <p>Enqueue Deadlocks (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2008 d866617e1726 ">
+                                 <p>Deadlocks for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2019" headers="d866617e1720 ">
+                                 <p><code class="codeph">ENQUEUE_DEADLOCKS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2019 d866617e1723 ">
+                                 <p>Enqueue Deadlocks (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2019 d866617e1726 ">
+                                 <p>Deadlocks for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2030" headers="d866617e1720 ">
+                                 <p><code class="codeph">ENQUEUE_REQUESTS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2030 d866617e1723 ">
+                                 <p>Enqueue Requests (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2030 d866617e1726 ">
+                                 <p>Requests for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2041" headers="d866617e1720 ">
+                                 <p><code class="codeph">ENQUEUE_REQUESTS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2041 d866617e1723 ">
+                                 <p>Enqueue Requests (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2041 d866617e1726 ">
+                                 <p>Requests for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2052" headers="d866617e1720 ">
+                                 <p><code class="codeph">ENQUEUE_TIMEOUTS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2052 d866617e1723 ">
+                                 <p>Enqueue Timeouts (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2052 d866617e1726 ">
+                                 <p>Timeouts for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2063" headers="d866617e1720 ">
+                                 <p><code class="codeph">ENQUEUE_TIMEOUTS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2063 d866617e1723 ">
+                                 <p>Enqueue Timeouts (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2063 d866617e1726 ">
+                                 <p>Timeouts for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2074" headers="d866617e1720 ">
+                                 <p><code class="codeph">ENQUEUE_WAITS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2074 d866617e1723 ">
+                                 <p>Enqueue Waits (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2074 d866617e1726 ">
+                                 <p>Waits for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2085" headers="d866617e1720 ">
+                                 <p><code class="codeph">ENQUEUE_WAITS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2085 d866617e1723 ">
+                                 <p>Enqueue Waits (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2085 d866617e1726 ">
+                                 <p>Waits for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2097" headers="d866617e1720 ">
+                                 <p><code class="codeph">EXECUTE_WITHOUT_PARSE</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2097 d866617e1723 ">
+                                 <p>Executes Performed Without Parsing</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2097 d866617e1726 ">
+                                 <p>% of all executes</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2108" headers="d866617e1720 ">
+                                 <p><code class="codeph">FULL_INDEX_SCANS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2108 d866617e1723 ">
+                                 <p>Fast Full Index Scans (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2108 d866617e1726 ">
+                                 <p>Scans for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2119" headers="d866617e1720 ">
+                                 <p><code class="codeph">FULL_INDEX_SCANS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2119 d866617e1723 ">
+                                 <p>Fast Full Index Scans (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2119 d866617e1726 ">
+                                 <p>Scans for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2130" headers="d866617e1720 ">
+                                 <p><code class="codeph">GC_AVG_CR_GET_TIME</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2130 d866617e1723 ">
+                                 <p>Global Cache CR Request</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2130 d866617e1726 ">
+                                 <p>Milliseconds</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2141" headers="d866617e1720 ">
+                                 <p><code class="codeph">GC_AVG_CUR_GET_TIME</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2141 d866617e1723 ">
+                                 <p>Global Cache Current Request</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2141 d866617e1726 ">
+                                 <p>Milliseconds</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2152" headers="d866617e1720 ">
+                                 <p><code class="codeph">GC_BLOCKS_CORRUPT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2152 d866617e1723 ">
+                                 <p>Global Cache Blocks Corrupt</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2152 d866617e1726 ">
+                                 <p>Blocks</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2163" headers="d866617e1720 ">
+                                 <p><code class="codeph">GC_BLOCKS_LOST</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2163 d866617e1723 ">
+                                 <p>Global Cache Blocks Lost</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2163 d866617e1726 ">
+                                 <p>Blocks</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2174" headers="d866617e1720 ">
+                                 <p><code class="codeph">HARD_PARSES_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2174 d866617e1723 ">
+                                 <p>Hard Parses (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2174 d866617e1726 ">
+                                 <p>Parses for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2185" headers="d866617e1720 ">
+                                 <p><code class="codeph">HARD_PARSES_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2185 d866617e1723 ">
+                                 <p>Hard Parses (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2185 d866617e1726 ">
+                                 <p>Parses for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2196" headers="d866617e1720 ">
+                                 <p><code class="codeph">LEAF_NODE_SPLITS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2196 d866617e1723 ">
+                                 <p>Leaf Node Splits (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2196 d866617e1726 ">
+                                 <p>Splits for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2207" headers="d866617e1720 ">
+                                 <p><code class="codeph">LEAF_NODE_SPLITS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2207 d866617e1723 ">
+                                 <p>Leaf Node Splits (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2207 d866617e1726 ">
+                                 <p>Splits for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2219" headers="d866617e1720 ">
+                                 <p><code class="codeph">LIBRARY_CACHE_HIT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2219 d866617e1723 ">
+                                 <p>Library Cache Hit (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2219 d866617e1726 ">
+                                 <p>% of cache accesses</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2230" headers="d866617e1720 ">
+                                 <p><code class="codeph">LIBRARY_CACHE_MISS</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2230 d866617e1723 ">
+                                 <p>Library Cache Miss (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2230 d866617e1726 ">
+                                 <p>% of cache accesses</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2241" headers="d866617e1720 ">
+                                 <p><code class="codeph">LOGONS_CURRENT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2241 d866617e1723 ">
+                                 <p>Current Number of Logons</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2241 d866617e1726 ">
+                                 <p>Number of Logons</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2252" headers="d866617e1720 ">
+                                 <p><code class="codeph">LOGONS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2252 d866617e1723 ">
+                                 <p>Cumulative Logons (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2252 d866617e1726 ">
+                                 <p>Logons for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2263" headers="d866617e1720 ">
+                                 <p><code class="codeph">LOGONS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2263 d866617e1723 ">
+                                 <p>Cumulative Logons (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2263 d866617e1726 ">
+                                 <p>Logons for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2274" headers="d866617e1720 ">
+                                 <p><code class="codeph">LONG_TABLE_SCANS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2274 d866617e1723 ">
+                                 <p>Scans on Long Tables (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2274 d866617e1726 ">
+                                 <p>Scans for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2285" headers="d866617e1720 ">
+                                 <p><code class="codeph">LONG_TABLE_SCANS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2285 d866617e1723 ">
+                                 <p>Scans on Long Tables (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2285 d866617e1726 ">
+                                 <p>Scans for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2296" headers="d866617e1720 ">
+                                 <p><code class="codeph">OPEN_CURSORS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2296 d866617e1723 ">
+                                 <p>Cumulative Open Cursors (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2296 d866617e1726 ">
+                                 <p>Cursors for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2307" headers="d866617e1720 ">
+                                 <p><code class="codeph">MEMORY_SORTS_PCT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2307 d866617e1723 ">
+                                 <p>Sorts in Memory (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2307 d866617e1726 ">
+                                 <p>% of sorts</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2318" headers="d866617e1720 ">
+                                 <p><code class="codeph">NETWORK_BYTES_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2318 d866617e1723 ">
+                                 <p>Network Bytes, for each second</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2318 d866617e1726 ">
+                                 <p>Bytes for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2329" headers="d866617e1720 ">
+                                 <p><code class="codeph">OPEN_CURSORS_CURRENT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2329 d866617e1723 ">
+                                 <p>Current Number of Cursors</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2329 d866617e1726 ">
+                                 <p>Number of Cursors</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2341" headers="d866617e1720 ">
+                                 <p><code class="codeph">OPEN_CURSORS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2341 d866617e1723 ">
+                                 <p>Cumulative Open Cursors (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2341 d866617e1726 ">
+                                 <p>Cursors for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2352" headers="d866617e1720 ">
+                                 <p><code class="codeph">OS_SCHED_CPU_WAIT_TIME</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2352 d866617e1723 ">
+                                 <p>Operating System Scheduler CPU Wait (by time) </p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2352 d866617e1726 ">
+                                 <p>Microseconds</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2363" headers="d866617e1720 ">
+                                 <p><code class="codeph">PARSE_FAILURES_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2363 d866617e1723 ">
+                                 <p>Parse Failures (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2363 d866617e1726 ">
+                                 <p>Parses for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2374" headers="d866617e1720 ">
+                                 <p><code class="codeph">PARSE_FAILURES_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2374 d866617e1723 ">
+                                 <p>Parse Failures (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2374 d866617e1726 ">
+                                 <p>Parses for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2385" headers="d866617e1720 ">
+                                 <p><code class="codeph">PGA_CACHE_HIT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2385 d866617e1723 ">
+                                 <p>PGA Cache Hit (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2385 d866617e1726 ">
+                                 <p>% bytes processed in PGA</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2396" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYS_DESGN_WAIT_SCT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2396 d866617e1723 ">
+                                 <p>Physical Design Wait (by session count)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2396 d866617e1726 ">
+                                 <p>Count of sessions</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2407" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYSICAL_READS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2407 d866617e1723 ">
+                                 <p>Physical Reads (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2407 d866617e1726 ">
+                                 <p>Reads for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2418" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYSICAL_READS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2418 d866617e1723 ">
+                                 <p>Physical Reads (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2418 d866617e1726 ">
+                                 <p>Reads for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2429" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYSICAL_WRITES_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2429 d866617e1723 ">
+                                 <p>Physical Writes (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2429 d866617e1726 ">
+                                 <p>Writes for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2440" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYSICAL_WRITES_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2440 d866617e1723 ">
+                                 <p>Physical Writes (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2440 d866617e1726 ">
+                                 <p>Writes for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2451" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYSICAL_READS_DIR_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2451 d866617e1723 ">
+                                 <p>Direct Physical Reads (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2451 d866617e1726 ">
+                                 <p>Reads for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2463" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYSICAL_READS_DIR_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2463 d866617e1723 ">
+                                 <p>Direct Physical Reads (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2463 d866617e1726 ">
+                                 <p>Reads for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2474" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYSICAL_WRITES_DIR_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2474 d866617e1723 ">
+                                 <p>Direct Physical Writes (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2474 d866617e1726 ">
+                                 <p>Writes for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2485" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYSICAL_WRITES_DIR_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2485 d866617e1723 ">
+                                 <p>Direct Physical Writes (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2485 d866617e1726 ">
+                                 <p>Writes for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2496" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYSICAL_READS_LOB_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2496 d866617e1723 ">
+                                 <p>Direct LOB Physical Reads (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2496 d866617e1726 ">
+                                 <p>Reads for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2507" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYSICAL_READS_LOB_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2507 d866617e1723 ">
+                                 <p>Direct LOB Physical Reads (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2507 d866617e1726 ">
+                                 <p>Reads for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2518" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYSICAL_WRITES_LOB_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2518 d866617e1723 ">
+                                 <p>Direct LOB Physical Writes (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2518 d866617e1726 ">
+                                 <p>Writes for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2529" headers="d866617e1720 ">
+                                 <p><code class="codeph">PHYSICAL_WRITES_LOB_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2529 d866617e1723 ">
+                                 <p>Direct LOB Physical Writes (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2529 d866617e1726 ">
+                                 <p>Writes for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2540" headers="d866617e1720 ">
+                                 <p><code class="codeph">PROCESS_LIMIT_PCT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2540 d866617e1723 ">
+                                 <p>Process Limit Usage (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2540 d866617e1726 ">
+                                 <p>% of maximum value</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2551" headers="d866617e1720 ">
+                                 <p><code class="codeph">PX_DOWNGRADED_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2551 d866617e1723 ">
+                                 <p>Downgraded Parallel Operations (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2551 d866617e1726 ">
+                                 <p>Operations for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2562" headers="d866617e1720 ">
+                                 <p><code class="codeph">PX_DOWNGRADED_25_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2562 d866617e1723 ">
+                                 <p>Downgraded to 25% and more (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2562 d866617e1726 ">
+                                 <p>Operations for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2573" headers="d866617e1720 ">
+                                 <p><code class="codeph">PX_DOWNGRADED_50_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2573 d866617e1723 ">
+                                 <p>Downgraded to 50% and more (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2573 d866617e1726 ">
+                                 <p>Operations for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2585" headers="d866617e1720 ">
+                                 <p><code class="codeph">PX_DOWNGRADED_75_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2585 d866617e1723 ">
+                                 <p>Downgraded to 75% and more (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2585 d866617e1726 ">
+                                 <p>Operations for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2596" headers="d866617e1720 ">
+                                 <p><code class="codeph">PX_DOWNGRADED_SER_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2596 d866617e1723 ">
+                                 <p>Downgraded to serial (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2596 d866617e1726 ">
+                                 <p>Operations for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2607" headers="d866617e1720 ">
+                                 <p><code class="codeph">RB_RECORDS_APPLIED_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2607 d866617e1723 ">
+                                 <p>Rollback Undo Records Applied (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2607 d866617e1726 ">
+                                 <p>Records for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2618" headers="d866617e1720 ">
+                                 <p><code class="codeph">RB_RECORDS_APPLIED_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2618 d866617e1723 ">
+                                 <p>Rollback Undo Records Applied (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2618 d866617e1726 ">
+                                 <p>Records for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2629" headers="d866617e1720 ">
+                                 <p><code class="codeph">REDO_ALLOCATION_HIT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2629 d866617e1723 ">
+                                 <p>Redo Log Allocation Hit</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2629 d866617e1726 ">
+                                 <p>% of redo allocations</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2640" headers="d866617e1720 ">
+                                 <p><code class="codeph">REDO_GENERATED_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2640 d866617e1723 ">
+                                 <p>Redo Generated (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2640 d866617e1726 ">
+                                 <p>Redo Bytes for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2651" headers="d866617e1720 ">
+                                 <p><code class="codeph">REDO_GENERATED_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2651 d866617e1723 ">
+                                 <p>Redo Generated (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2651 d866617e1726 ">
+                                 <p>Redo Bytes for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2662" headers="d866617e1720 ">
+                                 <p><code class="codeph">REDO_WRITES_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2662 d866617e1723 ">
+                                 <p>Redo Writes (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2662 d866617e1726 ">
+                                 <p>Writes for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2673" headers="d866617e1720 ">
+                                 <p><code class="codeph">REDO_WRITES_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2673 d866617e1723 ">
+                                 <p>Redo Writes (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2673 d866617e1726 ">
+                                 <p>Writes for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2684" headers="d866617e1720 ">
+                                 <p><code class="codeph">RECURSIVE_CALLS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2684 d866617e1723 ">
+                                 <p>Recursive Calls (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2684 d866617e1726 ">
+                                 <p>Calls for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2695" headers="d866617e1720 ">
+                                 <p><code class="codeph">RECURSIVE_CALLS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2695 d866617e1723 ">
+                                 <p>Recursive Calls (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2695 d866617e1726 ">
+                                 <p>Calls for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2707" headers="d866617e1720 ">
+                                 <p><code class="codeph">RESPONSE_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2707 d866617e1723 ">
+                                 <p>Response (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2707 d866617e1726 ">
+                                 <p>Seconds for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2718" headers="d866617e1720 ">
+                                 <p><code class="codeph">ROWS_PER_SORT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2718 d866617e1723 ">
+                                 <p>Rows Processed for each Sort</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2718 d866617e1726 ">
+                                 <p>Rows for each Sort</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2729" headers="d866617e1720 ">
+                                 <p><code class="codeph">SESS_LOGICAL_READS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2729 d866617e1723 ">
+                                 <p>Session Logical Reads (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2729 d866617e1726 ">
+                                 <p>Reads for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2740" headers="d866617e1720 ">
+                                 <p><code class="codeph">SESS_LOGICAL_READS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2740 d866617e1723 ">
+                                 <p>Session Logical Reads (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2740 d866617e1726 ">
+                                 <p>Reads for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2751" headers="d866617e1720 ">
+                                 <p><code class="codeph">SESSION_CPU_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2751 d866617e1723 ">
+                                 <p>Database CPU (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2751 d866617e1726 ">
+                                 <p>Microseconds for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2762" headers="d866617e1720 ">
+                                 <p><code class="codeph">SESSION_CPU_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2762 d866617e1723 ">
+                                 <p>Database CPU (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2762 d866617e1726 ">
+                                 <p>Microseconds for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2773" headers="d866617e1720 ">
+                                 <p><code class="codeph">SESSION_LIMIT_PCT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2773 d866617e1723 ">
+                                 <p>Session Limit Usage (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2773 d866617e1726 ">
+                                 <p>% of maximum value</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2784" headers="d866617e1720 ">
+                                 <p><code class="codeph">SHARED_POOL_FREE_PCT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2784 d866617e1723 ">
+                                 <p>Shared Pool Free(%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2784 d866617e1726 ">
+                                 <p>% of shared pool</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2795" headers="d866617e1720 ">
+                                 <p><code class="codeph">SOFT_PARSE_PCT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2795 d866617e1723 ">
+                                 <p>Soft Parse (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2795 d866617e1726 ">
+                                 <p>% of all parses</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2806" headers="d866617e1720 ">
+                                 <p><code class="codeph">SQL_SRV_RESPONSE_TIME</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2806 d866617e1723 ">
+                                 <p>Service Response (for each execution)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2806 d866617e1726 ">
+                                 <p>Seconds</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2817" headers="d866617e1720 ">
+                                 <p><code class="codeph">TABLESPACE_PCT_FULL</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2817 d866617e1723 ">
+                                 <p>Tablespace space usage</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2817 d866617e1726 ">
+                                 <p>% full</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2829" headers="d866617e1720 ">
+                                 <p><code class="codeph">TABLESPACE_BYT_FREE</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2829 d866617e1723 ">
+                                 <p>Tablespace bytes space usage</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2829 d866617e1726 ">
+                                 <p>Kilobytes free</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2840" headers="d866617e1720 ">
+                                 <p><code class="codeph">TOTAL_TABLE_SCANS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2840 d866617e1723 ">
+                                 <p>Total Table Scans (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2840 d866617e1726 ">
+                                 <p>Scans for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2851" headers="d866617e1720 ">
+                                 <p><code class="codeph">TOTAL_TABLE_SCANS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2851 d866617e1723 ">
+                                 <p>Total Table Scans (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2851 d866617e1726 ">
+                                 <p>Scans for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2862" headers="d866617e1720 ">
+                                 <p><code class="codeph">TOTAL_INDEX_SCANS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2862 d866617e1723 ">
+                                 <p>Total Index Scans (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2862 d866617e1726 ">
+                                 <p>Scans for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2873" headers="d866617e1720 ">
+                                 <p><code class="codeph">TOTAL_INDEX_SCANS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2873 d866617e1723 ">
+                                 <p>Total Index Scans (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2873 d866617e1726 ">
+                                 <p>Scans for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2884" headers="d866617e1720 ">
+                                 <p><code class="codeph">TOTAL_PARSES_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2884 d866617e1723 ">
+                                 <p>Total Parses (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2884 d866617e1726 ">
+                                 <p>Parses for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2895" headers="d866617e1720 ">
+                                 <p><code class="codeph">TOTAL_PARSES_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2895 d866617e1723 ">
+                                 <p>Total Parses (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2895 d866617e1726 ">
+                                 <p>Parses for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2906" headers="d866617e1720 ">
+                                 <p><code class="codeph">USER_COMMITS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2906 d866617e1723 ">
+                                 <p>User Commits (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2906 d866617e1726 ">
+                                 <p>Commits for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2917" headers="d866617e1720 ">
+                                 <p><code class="codeph">USER_COMMITS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2917 d866617e1723 ">
+                                 <p>User Commits (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2917 d866617e1726 ">
+                                 <p>Commits for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2928" headers="d866617e1720 ">
+                                 <p><code class="codeph">USER_ROLLBACKS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2928 d866617e1723 ">
+                                 <p>User Rollbacks (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2928 d866617e1726 ">
+                                 <p>Rollbacks for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2939" headers="d866617e1720 ">
+                                 <p><code class="codeph">USER_ROLLBACKS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2939 d866617e1723 ">
+                                 <p>User Rollbacks (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2939 d866617e1726 ">
+                                 <p>Rollbacks for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2951" headers="d866617e1720 ">
+                                 <p><code class="codeph">USER_CALLS_SEC</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2951 d866617e1723 ">
+                                 <p>User Calls (for each second)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2951 d866617e1726 ">
+                                 <p>Calls for each Second</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2962" headers="d866617e1720 ">
+                                 <p><code class="codeph">USER_CALLS_TXN</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2962 d866617e1723 ">
+                                 <p>User Calls (for each transaction)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2962 d866617e1726 ">
+                                 <p>Calls for each Transaction</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2973" headers="d866617e1720 ">
+                                 <p><code class="codeph">USER_CALLS_PCT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2973 d866617e1723 ">
+                                 <p>User Calls (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2973 d866617e1726 ">
+                                 <p>% of all calls</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2984" headers="d866617e1720 ">
+                                 <p><code class="codeph">USER_LIMIT_PCT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2984 d866617e1723 ">
+                                 <p>User Limit Usage (%)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2984 d866617e1726 ">
+                                 <p>% of maximum value</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e2995" headers="d866617e1720 ">
+                                 <p><code class="codeph">WCR_AVG_IO_LAT</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2995 d866617e1723 ">
+                                 <p>Average IO response time (for a WRC client)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e2995 d866617e1726 ">
+                                 <p>Milliseconds</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e3006" headers="d866617e1720 ">
+                                 <p><code class="codeph">WCR_PCPU</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e3006 d866617e1723 ">
+                                 <p>Percentage of replay threads on CPU (for a WRC client)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e3006 d866617e1726 ">
+                                 <p>% of total replay threads</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="33%" id="d866617e3017" headers="d866617e1720 ">
+                                 <p><code class="codeph">WCR_PIO</code></p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e3017 d866617e1723 ">
+                                 <p>Percentage of replay threads doing IOs (for a WRC client)</p>
+                              </td>
+                              <td align="left" valign="top" width="33%" headers="d866617e3017 d866617e1726 ">
+                                 <p>% of total replay threads</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div><a id="ARPLS67998"></a><a id="ARPLS67999"></a><a id="ARPLS67999"></a><a id="ARPLS67998"></a><a id="ARPLS67999"></a><a id="ARPLS67998"></a><div class="props_rev_3"><a id="GUID-75181FD9-C29A-4D1A-88B9-9F02A5E377E3" name="GUID-75181FD9-C29A-4D1A-88B9-9F02A5E377E3"></a><h3 id="ARPLS-GUID-75181FD9-C29A-4D1A-88B9-9F02A5E377E3" class="sect3"><span class="enumeration_section">155.5 </span>Summary of DBMS_SERVER_ALERT Subprograms
+               </h3>
+               <div>
+                  <p>This table lists the <code class="codeph">DBMS_SERVER_ALERT</code> subprograms and briefly describes them.
+                  </p>
+                  <div class="tblformal" id="GUID-75181FD9-C29A-4D1A-88B9-9F02A5E377E3__GUID-5F293D2F-7AC5-46ED-AF55-6588E3089407">
+                     <p class="titleintable">Table 155-4 DBMS_SERVER_ALERT Package Subprograms </p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="DBMS_SERVER_ALERT Package Subprograms " summary="This table lists the DBMS_SERVER_ALERT subprograms in alphabetical order and briefly describes them." width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="37%" id="d866617e3347">Subprogram</th>
+                              <th align="left" valign="bottom" width="63%" id="d866617e3350">Description</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="37%" id="d866617e3355" headers="d866617e3347 ">
+                                 <p><a href="DBMS_SERVER_ALERT.html#GUID-C3770565-1FB2-4A40-90DD-B98B888F43D3" title="This function expands alert messages.">EXPAND_MESSAGE Function</a></p>
+                              </td>
+                              <td align="left" valign="top" width="63%" headers="d866617e3355 d866617e3350 ">
+                                 <p>Expands alert messages</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="37%" id="d866617e3367" headers="d866617e3347 ">
+                                 <p><a href="DBMS_SERVER_ALERT.html#GUID-5D36362B-2392-4868-8F21-D612804A98B6" title="This procedure gets the current threshold settings for the specified metric.">GET_THRESHOLD Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="63%" headers="d866617e3367 d866617e3350 ">
+                                 <p>Gets the current threshold settings for a specified metric</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="37%" id="d866617e3379" headers="d866617e3347 ">
+                                 <p><a href="DBMS_SERVER_ALERT.html#GUID-D0099086-6C24-428B-B427-D93BC864738E" title="This procedure sets the warning and critical thresholds for a specified metric.">SET_THRESHOLD Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="63%" headers="d866617e3379 d866617e3350 ">
+                                 <p>Sets the warning and critical thresholds for a specified metric</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div><a id="ARPLS68000"></a><a id="ARPLS68001"></a><a id="ARPLS68001"></a><a id="ARPLS68000"></a><a id="ARPLS68001"></a><a id="ARPLS68000"></a><div class="props_rev_3"><a id="GUID-C3770565-1FB2-4A40-90DD-B98B888F43D3" name="GUID-C3770565-1FB2-4A40-90DD-B98B888F43D3"></a><h4 id="ARPLS-GUID-C3770565-1FB2-4A40-90DD-B98B888F43D3" class="sect4"><span class="enumeration_section">155.5.1 </span>EXPAND_MESSAGE Function
+                  </h4>
+                  <div>
+                     <p>This function expands alert messages.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-C3770565-1FB2-4A40-90DD-B98B888F43D3__GUID-2A79FD38-3D62-4128-ABC0-071BBA7D6E73">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_SERVER_ALERT.EXPAND_MESSAGE(
+   user_language            IN   VARCHAR2,
+   message_id               IN   NUMBER,
+   argument_1               IN   VARCHAR2,
+   argument_2               IN   VARCHAR2,
+   argument_3               IN   VARCHAR2,
+   argument_4               IN   VARCHAR2,
+   argument_5               IN   VARCHAR2)
+  RETURN VARCHAR2;</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-C3770565-1FB2-4A40-90DD-B98B888F43D3__GUID-682C41ED-2A61-4133-8375-CB17B97A3C27">Parameters</p>
+                        <div class="tblformal" id="GUID-C3770565-1FB2-4A40-90DD-B98B888F43D3__GUID-BC3F6126-F4A6-427A-AA88-F41E3FCEEDD0">
+                           <p class="titleintable">Table 155-5 <span class="italic"><span class="bold">EXPAND_MESSAGE Function Parameters </span></span></p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="EXPAND_MESSAGE Function Parameters " summary="This table describes Parameters used by the DBMS_SERVER_ALERT.EXPAND_MESSAGE subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d866617e3789">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d866617e3792">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e3797" headers="d866617e3789 ">
+                                       <p><code class="codeph">user_language</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e3797 d866617e3792 ">
+                                       <p>The language of the current session.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e3805" headers="d866617e3789 ">
+                                       <p><code class="codeph">message_id</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e3805 d866617e3792 ">
+                                       <p>Id of the alert message</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e3813" headers="d866617e3789 ">
+                                       <p><code class="codeph">argument_1</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e3813 d866617e3792 ">
+                                       <p>The first argument in the alert message.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e3821" headers="d866617e3789 ">
+                                       <p><code class="codeph">argument_2</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e3821 d866617e3792 ">
+                                       <p>The second argument in the alert message.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e3829" headers="d866617e3789 ">
+                                       <p><code class="codeph">argument_3</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e3829 d866617e3792 ">
+                                       <p>The third argument in the alert message.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e3837" headers="d866617e3789 ">
+                                       <p><code class="codeph">argument_4</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e3837 d866617e3792 ">
+                                       <p>The fourth argument in the alert message.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e3845" headers="d866617e3789 ">
+                                       <p><code class="codeph">argument_5</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e3845 d866617e3792 ">
+                                       <p>The fifth argument in the alert message.</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div><a id="ARPLS68002"></a><a id="ARPLS68003"></a><a id="ARPLS68003"></a><a id="ARPLS68002"></a><a id="ARPLS68003"></a><a id="ARPLS68002"></a><div class="props_rev_3"><a id="GUID-5D36362B-2392-4868-8F21-D612804A98B6" name="GUID-5D36362B-2392-4868-8F21-D612804A98B6"></a><h4 id="ARPLS-GUID-5D36362B-2392-4868-8F21-D612804A98B6" class="sect4"><span class="enumeration_section">155.5.2 </span>GET_THRESHOLD Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure gets the current threshold settings for the specified metric.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-5D36362B-2392-4868-8F21-D612804A98B6__GUID-312314A5-C538-475A-A745-FE445D8E25CB">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_SERVER_ALERT.GET_THRESHOLD(
+   metrics_id               IN   BINARY_INTEGER,
+   warning_operator         OUT  BINARY_INTEGER,
+   warning_value            OUT  VARCHAR2,
+   critical_operator        OUT  BINARY_INTEGER,
+   critical_value           OUT  VARCHAR2,
+   observation_period       OUT  BINARY_INTEGER,
+   consecutive_occurrences  OUT  BINARY_INTEGER,
+   instance_name            IN   VARCHAR2,
+   object_type              IN   BINARY_INTEGER,
+   object_name              IN   VARCHAR2);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-5D36362B-2392-4868-8F21-D612804A98B6__GUID-70CDD958-934F-4F92-8E50-0933E00D00E7">Parameters</p>
+                        <div class="tblformal" id="GUID-5D36362B-2392-4868-8F21-D612804A98B6__GUID-D662149C-CDFA-4636-B25A-D1638DDDFAAB">
+                           <p class="titleintable">Table 155-6 GET_THRESHOLD Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="GET_THRESHOLD Procedure Parameters " summary="This table describes Parameters used by the DBMS_SERVER_ALERT.GET_THRESHOLD subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d866617e4250">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d866617e4253">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4258" headers="d866617e4250 ">
+                                       <p><code class="codeph">metrics_id</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4258 d866617e4253 ">
+                                       <p>The internal name of the metric. See <span class="q">"<a href="DBMS_SERVER_ALERT.html#GUID-FADEEFDF-77C4-4D7A-B080-4FE768BD831D" title="These metrics are supported. All internal metric names are supplied as package constants.">Supported Metrics</a>"</span>.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4274" headers="d866617e4250 ">
+                                       <p><code class="codeph">warning_operator</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4274 d866617e4253 ">
+                                       <p>The operator for the compa3ring the actual value with the warning threshold.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4282" headers="d866617e4250 ">
+                                       <p><code class="codeph">warning_value</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4282 d866617e4253 ">
+                                       <p>The warning threshold value.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4290" headers="d866617e4250 ">
+                                       <p><code class="codeph">critical_operator</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4290 d866617e4253 ">
+                                       <p>The operator for the comparing the actual value with the critical threshold.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4298" headers="d866617e4250 ">
+                                       <p><code class="codeph">critical_value</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4298 d866617e4253 ">
+                                       <p>The critical threshold value.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4306" headers="d866617e4250 ">
+                                       <p><code class="codeph">observation_period</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4306 d866617e4253 ">
+                                       <p>The period at which the metric values are computed and verified against the threshold setting.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4314" headers="d866617e4250 ">
+                                       <p><code class="codeph">consecutive_occurrences</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4314 d866617e4253 ">
+                                       <p>The number of observation periods the metric value should violate the threshold value before the alert is issued.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4322" headers="d866617e4250 ">
+                                       <p><code class="codeph">instance_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4322 d866617e4253 ">
+                                       <p>The name of the instance for which the threshold is set. This is <code class="codeph">NULL</code> for database-wide alerts. In cases in which this parameter is not <code class="codeph">NULL</code>, this should be set to one of the <code class="codeph">INSTANCE_NAME</code> values found in the <code class="codeph">GV$INSTANCE</code> View. 
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4342" headers="d866617e4250 ">
+                                       <p><code class="codeph">object_type</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4342 d866617e4253 ">
+                                       <p>Either <code class="codeph">OBJECT_TYPE_SYSTEM</code> or <code class="codeph">OBJECT_TYPE_SERVICE</code>.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4356" headers="d866617e4250 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4356 d866617e4253 ">
+                                       <p>The name of the object.</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-5D36362B-2392-4868-8F21-D612804A98B6__GUID-E1208209-29AD-42EE-970D-0A23363F908E">Usage Notes</p>
+                        <p>Note that this subprogram does not check if the value of the <code class="codeph">instance_name</code> parameter is meaningful or valid. 
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="ARPLS68004"></a><a id="ARPLS68005"></a><a id="ARPLS68005"></a><a id="ARPLS68004"></a><a id="ARPLS68005"></a><a id="ARPLS68004"></a><div class="props_rev_3"><a id="GUID-D0099086-6C24-428B-B427-D93BC864738E" name="GUID-D0099086-6C24-428B-B427-D93BC864738E"></a><h4 id="ARPLS-GUID-D0099086-6C24-428B-B427-D93BC864738E" class="sect4"><span class="enumeration_section">155.5.3 </span>SET_THRESHOLD Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure sets the warning and critical thresholds for a specified metric.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D0099086-6C24-428B-B427-D93BC864738E__GUID-5C647519-C909-45BA-A8AF-1B4E51E40926">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_SERVER_ALERT.SET_THRESHOLD(
+   metrics_id               IN   BINARY_INTEGER,
+   warning_operator         IN   BINARY_INTEGER,
+   warning_value            IN   VARCHAR2,
+   critical_operator        IN   BINARY_INTEGER,
+   critical_value           IN   VARCHAR2,
+   observation_period       IN   BINARY_INTEGER,
+   consecutive_occurrences  IN   BINARY_INTEGER,
+   instance_name            IN   VARCHAR2,
+   object_type              IN   BINARY_INTEGER,
+   object_name              IN   VARCHAR2);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D0099086-6C24-428B-B427-D93BC864738E__GUID-55490572-F6D5-420F-BD72-8FEE53883DD6">Parameters</p>
+                        <div class="tblformal" id="GUID-D0099086-6C24-428B-B427-D93BC864738E__GUID-4E8CBCF1-4E3F-47AA-BDE7-AACE4420CD87">
+                           <p class="titleintable">Table 155-7 SET_THRESHOLD Procedure Parameters </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="SET_THRESHOLD Procedure Parameters " summary="This table describes Parameters used by the DBMS_SERVER_ALERT.SET_THRESHOLD subprogram." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d866617e4768">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d866617e4771">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4776" headers="d866617e4768 ">
+                                       <p><code class="codeph">metrics_id</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4776 d866617e4771 ">
+                                       <p>The internal name of the metric. See <span class="q">"<a href="DBMS_SERVER_ALERT.html#GUID-FADEEFDF-77C4-4D7A-B080-4FE768BD831D" title="These metrics are supported. All internal metric names are supplied as package constants.">Supported Metrics</a>"</span>.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4792" headers="d866617e4768 ">
+                                       <p><code class="codeph">warning_operator</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4792 d866617e4771 ">
+                                       <p>The operator for the comparing the actual value with the warning threshold (such as <code class="codeph">OPERATOR_GE</code>). See <span class="q">"<a href="DBMS_SERVER_ALERT.html#GUID-4EB8CB83-4F75-4F98-81CB-FDC0BC6006A5" title="You can specify a relational comparison operator to determine whether or not a given metric's value violates the threshold setting. The server supports the following operators.">Relational Operators</a>"</span>.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4811" headers="d866617e4768 ">
+                                       <p><code class="codeph">warning_value</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4811 d866617e4771 ">
+                                       <p>The warning threshold value. This is <code class="codeph">NULL</code> if no warning threshold is set. A list of values may be specified for <code class="codeph">OPERATOR_CONTAINS</code>.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4825" headers="d866617e4768 ">
+                                       <p><code class="codeph">critical_operator</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4825 d866617e4771 ">
+                                       <p>The operator for the comparing the actual value with the critical threshold. See <span class="q">"<a href="DBMS_SERVER_ALERT.html#GUID-4EB8CB83-4F75-4F98-81CB-FDC0BC6006A5" title="You can specify a relational comparison operator to determine whether or not a given metric's value violates the threshold setting. The server supports the following operators.">Relational Operators</a>"</span>.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4841" headers="d866617e4768 ">
+                                       <p><code class="codeph">critical_value</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4841 d866617e4771 ">
+                                       <p>The critical threshold value. This is <code class="codeph">NULL</code> if not set. A list of values may be specified for <code class="codeph">OPERATOR_CONTAINS</code>.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4855" headers="d866617e4768 ">
+                                       <p><code class="codeph">observation_period</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4855 d866617e4771 ">
+                                       <p>The period at which the metric values are computed and verified against the threshold setting. The valid range is 1 to 60 minutes.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4863" headers="d866617e4768 ">
+                                       <p><code class="codeph">consecutive_occurrences</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4863 d866617e4771 ">
+                                       <p>The number of observation periods the metric value should violate the threshold value before the alert is issued.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4871" headers="d866617e4768 ">
+                                       <p><code class="codeph">instance_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4871 d866617e4771 ">
+                                       <p>The name of the instance for which the threshold is set. This is <code class="codeph">NULL</code> for database-wide alerts.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4882" headers="d866617e4768 ">
+                                       <p><code class="codeph">object_type</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4882 d866617e4771 ">
+                                       <p>See <span class="q">"<a href="DBMS_SERVER_ALERT.html#GUID-AA852729-6684-4B0D-AB57-BB5FBE8C4171" title="You qualify the metric by an individual object for the listed object types.">Object Types</a>"</span>.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d866617e4898" headers="d866617e4768 ">
+                                       <p><code class="codeph">object_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d866617e4898 d866617e4771 ">
+                                       <p>The name of the object. This is <code class="codeph">NULL</code> for <code class="codeph">SYSTEM</code>.
+                                       </p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D0099086-6C24-428B-B427-D93BC864738E__GUID-988D9EBB-724B-446F-BFFD-44A312DA0892">Usage Notes</p>
+                        <p>Note that this subprogram does not check if the value of the <code class="codeph">instance_name</code> parameter is meaningful or valid. Passing a name that does not identify a valid instance will result in a threshold that is not used by any by any instance although the threshold setting will be visible in the <code class="codeph">DBA_THRESHOLDS</code> view. The exception is the lower-case string 'database_wide' which is semantically equivalent to passing <code class="codeph">NULL</code> for the instance name, the latter being the preferred usage. 
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

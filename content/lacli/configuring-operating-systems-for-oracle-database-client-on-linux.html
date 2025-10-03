@@ -1,0 +1,189 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Configuring Operating Systems for Oracle Database Client on Linux">
+      <meta name="abstract" content="Complete operating system configuration requirements and checks for Linux operating systems before you start installation.">
+      <meta name="description" content="Complete operating system configuration requirements and checks for Linux operating systems before you start installation.">
+      <meta name="DC.Relation" scheme="URI" content="about-oracle-linux-and-the-unbreakable-enterprise-kernel.html#GUID-EC62F856-B9AA-4BC5-BC81-B41A5C6A24F5">
+      <meta name="DC.Relation" scheme="URI" content="reviewing-operating-system-security-common-practices.html#GUID-D50A5D72-AC1A-47CE-A7AC-DAE22BA5912D">
+      <meta name="DC.Relation" scheme="URI" content="about-operating-system-requirements.html#GUID-9758581C-6925-4A0E-B321-9E424575E7F2">
+      <meta name="DC.Relation" scheme="URI" content="using-oracle-rpm-checker-on-zlinux.html#GUID-B9454934-4123-4415-A03D-DF925677BEDF">
+      <meta name="DC.Relation" scheme="URI" content="operating-system-requirements-for-x86-64-linux-platforms.html#GUID-3F647617-7FF5-4EE4-BBA8-9A5E3EEC888F">
+      <meta name="DC.Relation" scheme="URI" content="operating-system-requirements-for-zlinux.html#GUID-E815D2C7-B366-4DB3-BF00-99C211835F03">
+      <meta name="DC.Relation" scheme="URI" content="operating-system-reqs-arm.html#GUID-7744E340-220A-4A6D-A70B-C412F7777437">
+      <meta name="DC.Relation" scheme="URI" content="additional-drivers-and-software-packages-for-linux.html#GUID-F09C1AE2-FEE2-42A6-BEEF-289251413841">
+      <meta name="DC.Relation" scheme="URI" content="checking-kernel-and-package-requirements-for-linux.html#GUID-7065A86D-C2AB-4731-953B-12AC25C94156">
+      <meta name="DC.Creator" content="Tejas N K">
+      <meta name="DC.Contributor" content="Douglas Williams">
+      <meta name="DC.Contributor" content="Subhash Chandra">
+      <meta name="DC.Creator" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Neha Avasthy">
+      <meta name="DC.Creator" content="Kalambhatti Prashanth">
+      <meta name="DC.Creator" content="Prasad Bagal">
+      <meta name="DC.Creator" content="Subhranshu Banerjee">
+      <meta name="DC.Creator" content="Tammy Bednar">
+      <meta name="DC.Creator" content="John Arackal">
+      <meta name="DC.Creator" content="Ilia Okomin">
+      <meta name="DC.Creator" content="Sharad Raju">
+      <meta name="DC.Creator" content="Gavin Bowe">
+      <meta name="DC.Creator" content="Ranjit Noronha">
+      <meta name="DC.Creator" content="Kalambhatti Prashanth">
+      <meta name="DC.Creator" content="Bala Appulingam">
+      <meta name="DC.Creator" content="Subrahmanyam Kodavaluru">
+      <meta name="DC.Creator" content="Robert Chang">
+      <meta name="DC.Creator" content="Darcy Christensen">
+      <meta name="DC.Creator" content="Kiran Chamala">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Benoit Dageville">
+      <meta name="DC.Creator" content="Sudip Datta">
+      <meta name="DC.Creator" content="Jim Erickson">
+      <meta name="DC.Creator" content="Marcus Fallen">
+      <meta name="DC.Creator" content="Joseph Francis">
+      <meta name="DC.Creator" content="Richard Roddy">
+      <meta name="DC.Creator" content="Allan Graves">
+      <meta name="DC.Creator" content="Barbara Glover">
+      <meta name="DC.Creator" content="Aneesh Khandelwal">
+      <meta name="DC.Creator" content="Joel Kallman">
+      <meta name="DC.Creator" content="Eugene Karichkin">
+      <meta name="DC.Creator" content="Jai Krishnani">
+      <meta name="DC.Creator" content="Sangeeth Kumar">
+      <meta name="DC.Creator" content="Kevin Jernigan">
+      <meta name="DC.Creator" content="Christopher Jones">
+      <meta name="DC.Creator" content="Prasad Kuruvadi Nagaraj">
+      <meta name="DC.Creator" content="Bryn Llewellyn">
+      <meta name="DC.Creator" content="Saar Maoz">
+      <meta name="DC.Creator" content="Sunil Surabhi">
+      <meta name="DC.Creator" content="Gopal Mulagund">
+      <meta name="DC.Creator" content="Sue Lee">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Barb Lundhild">
+      <meta name="DC.Creator" content="Rudregowda Mallegowda">
+      <meta name="DC.Creator" content="Padmanabhan Manavazhi">
+      <meta name="DC.Creator" content="Mughees Minhas">
+      <meta name="DC.Creator" content="Krishna Mohan">
+      <meta name="DC.Creator" content="Matthew McKerley">
+      <meta name="DC.Creator" content="John McHugh">
+      <meta name="DC.Creator" content="Gurudas Pai">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Rajesh Prasad">
+      <meta name="DC.Creator" content="Rajendra Pingte">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Srinivas Poovala">
+      <meta name="DC.Creator" content="Mohammed Shahnawaz Quadri">
+      <meta name="DC.Creator" content="Sangeeth Jose">
+      <meta name="DC.Creator" content="Gurumurthy Ramamurthy">
+      <meta name="DC.Creator" content="Hema Ramamurthy">
+      <meta name="DC.Creator" content="Sunil Ravindrachar">
+      <meta name="DC.Creator" content="Mark Richwine">
+      <meta name="DC.Creator" content="Dipak Saggi">
+      <meta name="DC.Creator" content="Trivikrama Samudrala">
+      <meta name="DC.Creator" content="Pushkar Punit">
+      <meta name="DC.Creator" content="David Schreiner">
+      <meta name="DC.Creator" content="Ara Shakian">
+      <meta name="DC.Creator" content="Mohit Singhal">
+      <meta name="DC.Creator" content="Dharma Sirnapalli">
+      <meta name="DC.Creator" content="Akshay Shah">
+      <meta name="DC.Creator" content="James Spiller">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Binoy Sukumaran">
+      <meta name="DC.Creator" content="Kamal Tbeileh">
+      <meta name="DC.Creator" content="Ravi Thammaiah">
+      <meta name="DC.Creator" content="Shekhar Vaggu">
+      <meta name="DC.Creator" content="Peter Wahl">
+      <meta name="DC.Creator" content="Terri Winters">
+      <meta name="DC.Creator" content="Sergiusz Wolicki">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-7FC6680D-CFD1-46AD-B6EE-407FB846966B">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Complete operating system configuration requirements and checks for Linux operating systems before you start installation.">
+      <meta name="description" content="Complete operating system configuration requirements and checks for Linux operating systems before you start installation.">
+      <title>Configuring Operating Systems for Oracle Database Client on Linux</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Client Installation Guide">
+      <meta property="og:description" content="Complete operating system configuration requirements and checks for Linux operating systems before you start installation.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Client Installation Guide for Linux">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-client-installation-guide-linux.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-08T07:27:20-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2015, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96433-25">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="checking-server-hardware-and-memory-configuration.html" title="Previous" type="text/html">
+      <link rel="next" href="about-oracle-linux-and-the-unbreakable-enterprise-kernel.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database Client Installation Guide for Linux">
+    <meta name="dcterms.isVersionOf" content="LACLI">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Configuring Operating Systems for Oracle Database Client on Linux","description":"Complete operating system configuration requirements and checks for Linux operating systems before you start installation.","datePublished":"2025-07-08 CST","dateModified":"2025-07-08 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="checking-server-hardware-and-memory-configuration.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="about-oracle-linux-and-the-unbreakable-enterprise-kernel.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-7FC6680D-CFD1-46AD-B6EE-407FB846966B" name="GUID-7FC6680D-CFD1-46AD-B6EE-407FB846966B"></a>
+         
+         <h2 id="LACLI-GUID-7FC6680D-CFD1-46AD-B6EE-407FB846966B" class="sect2"><span class="enumeration_chapter">3 </span>Configuring Operating Systems for Oracle Database Client on Linux
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Complete operating system configuration requirements and checks for Linux operating systems before you start installation.</p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="about-oracle-linux-and-the-unbreakable-enterprise-kernel.html#GUID-EC62F856-B9AA-4BC5-BC81-B41A5C6A24F5">About Oracle Linux with the Unbreakable Enterprise Kernel</a><br>The Unbreakable Enterprise Kernel for Oracle Linux provides the latest innovations from upstream development to customers who run Oracle Linux in the data center. 
+                  </li>
+                  <li class="ulchildlink"><a href="reviewing-operating-system-security-common-practices.html#GUID-D50A5D72-AC1A-47CE-A7AC-DAE22BA5912D">Reviewing Operating System Security Common Practices</a><br>Secure operating systems are an important basis for general system security. 
+                  </li>
+                  <li class="ulchildlink"><a href="about-operating-system-requirements.html#GUID-9758581C-6925-4A0E-B321-9E424575E7F2">About Operating System Requirements</a><br>Depending on the products that you intend to install, verify that you have the required operating system kernel and packages installed.
+                  </li>
+                  <li class="ulchildlink"><a href="using-oracle-rpm-checker-on-zlinux.html#GUID-B9454934-4123-4415-A03D-DF925677BEDF">Using Oracle RPM Checker on IBM: Linux on System z</a><br>Use the Oracle RPM Checker utility to verify that you have the required Red Hat Enterprise Linux or SUSE packages installed on the operating system before you start the Oracle Database or Oracle Grid Infrastructure installation.
+                  </li>
+                  <li class="ulchildlink"><a href="operating-system-requirements-for-x86-64-linux-platforms.html#GUID-3F647617-7FF5-4EE4-BBA8-9A5E3EEC888F">Operating System Requirements for x86-64 Linux Platforms</a><br>The Linux distributions and packages listed in this section are supported for this release on x86-64.
+                  </li>
+                  <li class="ulchildlink"><a href="operating-system-requirements-for-zlinux.html#GUID-E815D2C7-B366-4DB3-BF00-99C211835F03">Operating System Requirements for IBM: Linux on System z</a><br>The Linux distributions and packages listed in this section are supported for this release on IBM: Linux on System z.
+                  </li>
+                  <li class="ulchildlink"><a href="operating-system-reqs-arm.html#GUID-7744E340-220A-4A6D-A70B-C412F7777437">Operating System Requirements for Linux for Arm (aarch64)</a><br>The Linux distribution and packages listed in this section are supported for this release on Linux for Arm (aarch64).
+                  </li>
+                  <li class="ulchildlink"><a href="additional-drivers-and-software-packages-for-linux.html#GUID-F09C1AE2-FEE2-42A6-BEEF-289251413841">Additional Drivers and Software Packages for Linux</a><br>Information about optional drivers and software packages.
+                  </li>
+                  <li class="ulchildlink"><a href="checking-kernel-and-package-requirements-for-linux.html#GUID-7065A86D-C2AB-4731-953B-12AC25C94156">Checking Kernel and Package Requirements for Linux</a><br>Verify your kernel and packages to see if they meet minimum requirements for installation.
+                  </li>
+               </ul>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

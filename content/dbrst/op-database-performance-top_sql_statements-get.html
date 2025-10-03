@@ -1,0 +1,5601 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>REST APIs for Oracle Database - Get all SQL statements ordered by CPU time descending</title>
+		<link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+		<meta name="dcterms.dateCopyrighted" content="2018, 2021">
+		<meta name="dcterms.category" content="database">
+		<meta name="dcterms.identifier" content="E96452-05">
+		
+		<meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+		
+        <link rel="stylesheet" href="/sp_common/rest-template/ohc-rest-template/css/rest.css">
+        <script>
+            document.write('<style type="text/css">');
+            document.write('body > .noscript, body > .noscript ~ * { opacity: 0; }');
+            document.write('</style>');
+        </script>
+        <script data-main="/sp_common/rest-template/ohc-rest-template/js/rest-config" src="/sp_common/rest-template/requirejs/require.js"></script>
+        <script>
+            if(window.require === undefined) {
+                document.write('<script data-main="sp_common/rest-template/ohc-rest-template/js/rest-config" src="sp_common/rest-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/rest-template/ohc-rest-template/css/rest.css" rel="stylesheet">');
+            }
+        </script>
+		
+		<script type="application/json" id="ssot-metadata" space="preserve">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+
+        <meta name="description" content="Provide consumers the ability to perform operations with different Oracle Database features through a web REST API that can be easily adopted.">
+        <meta property="og:site_name" content="Oracle Help Center">
+        <meta property="og:title" content="REST APIs for Oracle Database">
+        <meta property="og:description" content="Provide consumers the ability to perform operations with different Oracle Database features through a web REST API that can be easily adopted.">
+        <meta name="generator" content="Oracle REST API Publisher 1.7.0">
+		<meta name="date" content="2021-01-25 19:53:07 UTC">
+        <link rel="shortcut icon" href="/sp_common/rest-template/ohc-common/img/favicon.ico">
+        <meta name="application-name" content="REST APIs for Oracle Database">
+        <link type="application/swagger+json" title="Swagger 2.0" href="swagger.json" rel="alternate">
+        <link rel="prev" href="op-database-performance-active_sessions_history-get.html" title="Previous" type="text/html">
+        <link rel="next" href="op-database-performance-sql_statements-sql_id-plan-get.html" title="Next" type="text/html">
+    
+    <meta name="dcterms.created" content="2021-01-25T19:55:53+00:00">
+    <meta name="dcterms.title" content="REST APIs for Oracle Database">
+    <meta name="dcterms.isVersionOf" content="DBRST">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+    <body>
+        <div class="noscript alert alert-danger text-center" role="alert">
+            <a class="pull-left" href="op-database-performance-active_sessions_history-get.html"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+            <a class="pull-right" href="op-database-performance-sql_statements-sql_id-plan-get.html">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+            <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        </div>
+        <article>
+
+            
+            <header id="top">
+
+                <ol class="breadcrumb">
+                    <li><a href="index.html">REST APIs for Oracle Database</a></li>
+                    <li>Tasks</li>
+                    
+                    <li class="active">
+                        
+                        <a href="api-performance.html">Performance</a>
+                        
+                    </li>
+                    
+                </ol>
+                
+                <p class="draftsubtitle"></p>
+                
+                
+                <div>
+                	<div class="dropdown btn-group pull-right" style="clear: right;">
+                		<button id="dLabel" class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jump to <span class="caret"></span>
+                		</button>
+      					<ul class="dropdown-menu" aria-labelledby="dLabel">
+          					<li><a href="#request" data-toggle="ignore">Request</a></li>
+          					<li><a href="#response" data-toggle="ignore">Response</a></li>
+          					
+      					</ul>
+    				</div>
+     				<h2>Get all SQL statements ordered by CPU time descending</h2>
+     			</div>
+                
+                <div>
+                    <div class="label label-get text-uppercase">get</div>
+                    <p><strong>/database/performance/top_sql_statements/</strong></p>
+                </div>
+            </header>
+            <section>
+
+                <div class="description">Returns records from GV$SQL ordered by CPU time descending, SQL Text ascending. A client requires SQL Administrator role to invoke this service.</div>
+
+                <h3 id="request">Request</h3>
+                
+
+                
+                
+                <div class="h5">Supported Media Types</div>
+                <ul class="media-types">
+                
+                    <li>application/json</li>
+                
+                </ul>
+                
+                
+
+                
+
+
+                
+                <div class="h5">Query Parameters</div>
+                <div class="schema-container">
+                    <ul class="schema-properties">
+                        
+                        <li><a role="button" data-toggle="collapse" href="#request-query-param-limit" aria-expanded="false" aria-controls="request-query-param-limit">
+                        limit(optional): integer(int32)
+                        </a>
+                        <div class="collapse" id="request-query-param-limit">
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The maximum number of records to return.</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        </li>
+                        
+                        <li><a role="button" data-toggle="collapse" href="#request-query-param-q" aria-expanded="false" aria-controls="request-query-param-q">
+                        q(optional): string
+                        </a>
+                        <div class="collapse" id="request-query-param-q">
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Filtering is the process of limiting a collection resource by using a per-request dynamic filter definition across multiple page resources, where each page contains a subset of items found in the complete collection. Filtering enables efficient traversal of large collections.</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        </li>
+                        
+                    </ul>
+                    
+                </div>
+                
+
+
+                
+
+
+                
+
+
+                
+
+                
+
+                
+                
+                <a style="float: right" href="#top">Back to Top</a>
+
+                <h3 id="response">Response</h3>
+
+                
+                
+                <div class="h5">Supported Media Types</div>
+                <ul class="media-types">
+                    
+                    <li>application/json</li>
+                    
+                </ul>
+                
+                
+
+
+
+                
+                <div class="response">
+                <h4 class="response-code range-200">200 Response</h4>
+                <div class="response-body">
+                <div>Description of the SQL statements in the database ordered to show the top SQL statements first.</div>
+
+                
+
+
+                
+                    <div class="entity">
+                    <div class="h5 hidden-print">Body (<span class="schema-path"></span>)</div>
+
+
+                    <div class="schema-container">
+                    
+                    <div id="200-definitions-PerformanceTopSQLStatements" class="swagger-schema">
+    <div class="panel-heading">Root Schema : PerformanceTopSQLStatements</div>
+    
+      <div class="schema-type">Type: <code>object</code></div>
+      
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceTopSQLStatements-properties-count-properties-count-0" aria-expanded="false" aria-controls="200-definitions-PerformanceTopSQLStatements-properties-count-properties-count-0">
+            count(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceTopSQLStatements-properties-count-properties-count-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Total number of records in the current response.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceTopSQLStatements-properties-hasMore-properties-hasMore-0" aria-expanded="false" aria-controls="200-definitions-PerformanceTopSQLStatements-properties-hasMore-properties-hasMore-0">
+            hasMore(optional): 
+            boolean</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceTopSQLStatements-properties-hasMore-properties-hasMore-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates if there are more records to be retrieved.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceTopSQLStatements-properties-items-properties-items-0" aria-expanded="false" aria-controls="200-definitions-PerformanceTopSQLStatements-properties-items-properties-items-0">
+            items(optional): 
+            array </a> <a href="#200-definitions-PerformanceTopSQLStatements-properties-items" role="button" class="btn btn-default btn-sm btn-xsm">items</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-PerformanceTopSQLStatements-properties-items-properties-items-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceTopSQLStatements-properties-limit-properties-limit-0" aria-expanded="false" aria-controls="200-definitions-PerformanceTopSQLStatements-properties-limit-properties-limit-0">
+            limit(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceTopSQLStatements-properties-limit-properties-limit-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The actual page size limit on number of records applied by the server.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceTopSQLStatements-properties-links-properties-links-0" aria-expanded="false" aria-controls="200-definitions-PerformanceTopSQLStatements-properties-links-properties-links-0">
+            links(optional): 
+            array </a> <a href="#200-definitions-PerformanceTopSQLStatements-properties-links" role="button" class="btn btn-default btn-sm btn-xsm">links</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-PerformanceTopSQLStatements-properties-links-properties-links-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceTopSQLStatements-properties-offset-properties-offset-0" aria-expanded="false" aria-controls="200-definitions-PerformanceTopSQLStatements-properties-offset-properties-offset-0">
+            offset(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceTopSQLStatements-properties-offset-properties-offset-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The actual index from which the item resources are returned.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;object&quot;,
+    &quot;properties&quot;:{
+        &quot;items&quot;:{
+            &quot;type&quot;:&quot;array&quot;,
+            &quot;items&quot;:{
+                &quot;$ref&quot;:&quot;#/definitions/SQLStatement&quot;
+            }
+        },
+        &quot;hasMore&quot;:{
+            &quot;type&quot;:&quot;boolean&quot;,
+            &quot;description&quot;:&quot;Indicates if there are more records to be retrieved.&quot;
+        },
+        &quot;limit&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;The actual page size limit on number of records applied by the server.&quot;
+        },
+        &quot;offset&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;The actual index from which the item resources are returned.&quot;
+        },
+        &quot;count&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Total number of records in the current response.&quot;
+        },
+        &quot;links&quot;:{
+            &quot;type&quot;:&quot;array&quot;,
+            &quot;items&quot;:{
+                &quot;$ref&quot;:&quot;#/definitions/LinkRelation&quot;
+            }
+        }
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-PerformanceTopSQLStatements-properties-items" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : items</div>
+    
+      
+      <div class="schema-type">Type: <code>array</code></div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-items-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-items-0">
+            Array of: 
+                object </a> <a href="#200-definitions-SQLStatement" role="button" class="btn btn-default btn-sm btn-xsm">SQLStatement</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-items-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">Corresponding to a record on GV$SQL, this object describes an SQL Statement. The list of attributes may vary depending on database version.</div>
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;array&quot;,
+    &quot;items&quot;:{
+        &quot;$ref&quot;:&quot;#/definitions/SQLStatement&quot;
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-PerformanceTopSQLStatements-properties-links" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : links</div>
+    
+      
+      <div class="schema-type">Type: <code>array</code></div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-LinkRelation-items-0" aria-expanded="false" aria-controls="200-definitions-LinkRelation-items-0">
+            Array of: 
+                object </a> <a href="#200-definitions-LinkRelation" role="button" class="btn btn-default btn-sm btn-xsm">LinkRelation</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-LinkRelation-items-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;array&quot;,
+    &quot;items&quot;:{
+        &quot;$ref&quot;:&quot;#/definitions/LinkRelation&quot;
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-SQLStatement" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : SQLStatement</div>
+    
+      <div class="schema-type">Type: <code>object</code></div>
+      
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div>Corresponding to a record on GV$SQL, this object describes an SQL Statement. The list of attributes may vary depending on database version.</div>
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-action-properties-action-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-action-properties-action-0">
+            action(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-action-properties-action-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Contains the name of the action that was executing when the SQL statement was first parsed, which is set by calling DBMS_APPLICATION_INFO.SET_ACTION.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-action_hash-properties-action_hash-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-action_hash-properties-action_hash-0">
+            action_hash(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-action_hash-properties-action_hash-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Hash value of the action listed in the ACTION column.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-address-properties-address-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-address-properties-address-0">
+            address(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-address-properties-address-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Address of the handle to the parent for this cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-application_wait_time-properties-application_wait_time-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-application_wait_time-properties-application_wait_time-0">
+            application_wait_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-application_wait_time-properties-application_wait_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Application wait time (in microseconds).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-bind_data-properties-bind_data-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-bind_data-properties-bind_data-0">
+            bind_data(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-bind_data-properties-bind_data-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Bind data.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-buffer_gets-properties-buffer_gets-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-buffer_gets-properties-buffer_gets-0">
+            buffer_gets(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-buffer_gets-properties-buffer_gets-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of buffer gets for this child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-child_address-properties-child_address-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-child_address-properties-child_address-0">
+            child_address(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-child_address-properties-child_address-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Address of the child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-child_latch-properties-child_latch-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-child_latch-properties-child_latch-0">
+            child_latch(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-child_latch-properties-child_latch-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Child latch number that is protecting the cursor. This column is obsolete and maintained for backward compatibility.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-child_number-properties-child_number-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-child_number-properties-child_number-0">
+            child_number(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-child_number-properties-child_number-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of this child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-cluster_wait_time-properties-cluster_wait_time-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-cluster_wait_time-properties-cluster_wait_time-0">
+            cluster_wait_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-cluster_wait_time-properties-cluster_wait_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Cluster wait time (in microseconds).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-command_type-properties-command_type-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-command_type-properties-command_type-0">
+            command_type(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-command_type-properties-command_type-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Oracle command type definition.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-con_id-properties-con_id-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-con_id-properties-con_id-0">
+            con_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-con_id-properties-con_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The ID of the container to which the data pertains.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-concurrency_wait_time-properties-concurrency_wait_time-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-concurrency_wait_time-properties-concurrency_wait_time-0">
+            concurrency_wait_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-concurrency_wait_time-properties-concurrency_wait_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Concurrency wait time (in microseconds).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-cpu_time-properties-cpu_time-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-cpu_time-properties-cpu_time-0">
+            cpu_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-cpu_time-properties-cpu_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>CPU time (in microseconds) used by this cursor for parsing, executing, and fetching.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-ddl_no_invalidate-properties-ddl_no_invalidate-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-ddl_no_invalidate-properties-ddl_no_invalidate-0">
+            ddl_no_invalidate(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-ddl_no_invalidate-properties-ddl_no_invalidate-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates if a DDL statement updated a dependent object and did not invalidate this cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-direct_reads-properties-direct_reads-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-direct_reads-properties-direct_reads-0">
+            direct_reads(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-direct_reads-properties-direct_reads-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of direct reads for this child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-direct_writes-properties-direct_writes-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-direct_writes-properties-direct_writes-0">
+            direct_writes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-direct_writes-properties-direct_writes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of direct writes for this child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-disk_reads-properties-disk_reads-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-disk_reads-properties-disk_reads-0">
+            disk_reads(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-disk_reads-properties-disk_reads-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of disk reads for this child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-elapsed_time-properties-elapsed_time-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-elapsed_time-properties-elapsed_time-0">
+            elapsed_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-elapsed_time-properties-elapsed_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Elapsed time (in microseconds) used by this cursor for parsing, executing, and fetching. If the cursor uses parallel execution, then ELAPSED_TIME is the cumulative time for the query coordinator, plus all parallel query slave processes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-end_of_fetch_count-properties-end_of_fetch_count-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-end_of_fetch_count-properties-end_of_fetch_count-0">
+            end_of_fetch_count(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-end_of_fetch_count-properties-end_of_fetch_count-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of times this cursor was fully executed since the cursor was brought into the library cache. The value of this statistic is not incremented when the cursor is partially executed, either because it failed during the execution or because only the first few rows produced by this cursor are fetched before the cursor is closed or re-executed. By definition, the value of the END_OF_FETCH_COUNT column should be less or equal to the value of the EXECUTIONS column.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-exact_matching_signature-properties-exact_matching_signature-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-exact_matching_signature-properties-exact_matching_signature-0">
+            exact_matching_signature(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-exact_matching_signature-properties-exact_matching_signature-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Signature calculated on the normalized SQL text. The normalization includes the removal of white space and the uppercasing of all non-literal strings.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-executions-properties-executions-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-executions-properties-executions-0">
+            executions(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-executions-properties-executions-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of executions that took place on this object since it was brought into the library cache.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-fetches-properties-fetches-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-fetches-properties-fetches-0">
+            fetches(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-fetches-properties-fetches-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of fetches associated with the SQL statement.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-first_load_time-properties-first_load_time-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-first_load_time-properties-first_load_time-0">
+            first_load_time(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-first_load_time-properties-first_load_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Timestamp of the parent creation time.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-force_matching_signature-properties-force_matching_signature-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-force_matching_signature-properties-force_matching_signature-0">
+            force_matching_signature(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-force_matching_signature-properties-force_matching_signature-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Signature used when the CURSOR_SHARING parameter is set to FORCE.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-full_plan_hash_value-properties-full_plan_hash_value-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-full_plan_hash_value-properties-full_plan_hash_value-0">
+            full_plan_hash_value(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-full_plan_hash_value-properties-full_plan_hash_value-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Numeric representation of the complete SQL plan for this cursor. Comparing one FULL_PLAN_HASH_VALUE to another easily identifies whether or not two plans are the same (rather than comparing the two plans line by line). Note that the FULL_PLAN_HASH_VALUE cannot be compared across databases releases. It is not backward compatible.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-hash_value-properties-hash_value-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-hash_value-properties-hash_value-0">
+            hash_value(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-hash_value-properties-hash_value-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Hash value of the parent statement in the library cache.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-im_scan_bytes_inmemory-properties-im_scan_bytes_inmemory-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-im_scan_bytes_inmemory-properties-im_scan_bytes_inmemory-0">
+            im_scan_bytes_inmemory(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-im_scan_bytes_inmemory-properties-im_scan_bytes_inmemory-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>In-memory size of data scanned from the IM column store.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-im_scan_bytes_uncompressed-properties-im_scan_bytes_uncompressed-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-im_scan_bytes_uncompressed-properties-im_scan_bytes_uncompressed-0">
+            im_scan_bytes_uncompressed(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-im_scan_bytes_uncompressed-properties-im_scan_bytes_uncompressed-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Uncompressed size of data scanned from the IM column store.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-im_scans-properties-im_scans-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-im_scans-properties-im_scans-0">
+            im_scans(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-im_scans-properties-im_scans-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of In-Memory Column Store (IM column store) segment scans.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-inst_id-properties-inst_id-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-inst_id-properties-inst_id-0">
+            inst_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-inst_id-properties-inst_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Instance number from which the associated GV$SQL view information was obtained.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-invalidations-properties-invalidations-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-invalidations-properties-invalidations-0">
+            invalidations(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-invalidations-properties-invalidations-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of times this child cursor has been invalidated.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-io_cell_offload_eligible_bytes-properties-io_cell_offload_eligible_bytes-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-io_cell_offload_eligible_bytes-properties-io_cell_offload_eligible_bytes-0">
+            io_cell_offload_eligible_bytes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-io_cell_offload_eligible_bytes-properties-io_cell_offload_eligible_bytes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of I/O bytes which can be filtered by the Exadata storage system.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-io_cell_offload_returned_bytes-properties-io_cell_offload_returned_bytes-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-io_cell_offload_returned_bytes-properties-io_cell_offload_returned_bytes-0">
+            io_cell_offload_returned_bytes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-io_cell_offload_returned_bytes-properties-io_cell_offload_returned_bytes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of filtered bytes returned by Exadata cells (that is, the number of bytes returned after  processing has been offloaded on the Exadata cells).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-io_cell_uncompressed_bytes-properties-io_cell_uncompressed_bytes-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-io_cell_uncompressed_bytes-properties-io_cell_uncompressed_bytes-0">
+            io_cell_uncompressed_bytes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-io_cell_uncompressed_bytes-properties-io_cell_uncompressed_bytes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of uncompressed bytes (that is, size after decompression) that are offloaded to the Exadata cells.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-io_interconnect_bytes-properties-io_interconnect_bytes-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-io_interconnect_bytes-properties-io_interconnect_bytes-0">
+            io_interconnect_bytes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-io_interconnect_bytes-properties-io_interconnect_bytes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of I/O bytes exchanged between Oracle Database and the storage system.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-is_bind_aware-properties-is_bind_aware-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-is_bind_aware-properties-is_bind_aware-0">
+            is_bind_aware(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-is_bind_aware-properties-is_bind_aware-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether the cursor is bind aware (Y) or not (N). A query is considered bind-aware if it has been marked to use extended cursor sharing. The query would already have been marked as bind-sensitive.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-is_bind_sensitive-properties-is_bind_sensitive-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-is_bind_sensitive-properties-is_bind_sensitive-0">
+            is_bind_sensitive(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-is_bind_sensitive-properties-is_bind_sensitive-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether the cursor is bind sensitive (Y) or not (N). A query is considered bind-sensitive if the optimizer peeked at one of its bind variable values when computing predicate selectivities and where a change in a bind variable value may cause the optimizer to generate a different plan.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-is_obsolete-properties-is_obsolete-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-is_obsolete-properties-is_obsolete-0">
+            is_obsolete(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-is_obsolete-properties-is_obsolete-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether the cursor has become obsolete (Y) or not (N). This can happen if the number of child cursors is too large.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-is_reoptimizable-properties-is_reoptimizable-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-is_reoptimizable-properties-is_reoptimizable-0">
+            is_reoptimizable(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-is_reoptimizable-properties-is_reoptimizable-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>This columns shows whether the next execution matching this child cursor will trigger a reoptimization.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-is_resolved_adaptive_plan-properties-is_resolved_adaptive_plan-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-is_resolved_adaptive_plan-properties-is_resolved_adaptive_plan-0">
+            is_resolved_adaptive_plan(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-is_resolved_adaptive_plan-properties-is_resolved_adaptive_plan-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>This column shows whether all of the adaptive parts of a plan have been resolved to the final plan. Once the plan is resolved, the plan hash value and the plan displayed by DBMS_XPLAN will not change through the end of execution.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-is_rolling_invalid-properties-is_rolling_invalid-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-is_rolling_invalid-properties-is_rolling_invalid-0">
+            is_rolling_invalid(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-is_rolling_invalid-properties-is_rolling_invalid-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates if this cursor is rolling validated.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-is_rolling_refresh_invalid-properties-is_rolling_refresh_invalid-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-is_rolling_refresh_invalid-properties-is_rolling_refresh_invalid-0">
+            is_rolling_refresh_invalid(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-is_rolling_refresh_invalid-properties-is_rolling_refresh_invalid-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates if this cursor is rolling validated and requires execution time refresh.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-is_shareable-properties-is_shareable-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-is_shareable-properties-is_shareable-0">
+            is_shareable(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-is_shareable-properties-is_shareable-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether the cursor can be shared (Y) or not (N).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-java_exec_time-properties-java_exec_time-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-java_exec_time-properties-java_exec_time-0">
+            java_exec_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-java_exec_time-properties-java_exec_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Java execution time (in microseconds).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-kept_versions-properties-kept_versions-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-kept_versions-properties-kept_versions-0">
+            kept_versions(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-kept_versions-properties-kept_versions-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether this child cursor has been marked to be kept pinned in the cache using the DBMS_SHARED_POOL package.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-last_active_time-properties-last_active_time-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-last_active_time-properties-last_active_time-0">
+            last_active_time(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-last_active_time-properties-last_active_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>TIme at which the query plan was last active.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-last_load_time-properties-last_load_time-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-last_load_time-properties-last_load_time-0">
+            last_load_time(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-last_load_time-properties-last_load_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Time at which the query plan was loaded into the library cache.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-links-properties-links-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-links-properties-links-0">
+            links(optional): 
+            array </a> <a href="#200-definitions-SQLStatement-properties-links" role="button" class="btn btn-default btn-sm btn-xsm">links</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-links-properties-links-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-literal_hash_value-properties-literal_hash_value-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-literal_hash_value-properties-literal_hash_value-0">
+            literal_hash_value(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-literal_hash_value-properties-literal_hash_value-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Hash value of the literals which are replaced with system-generated bind variables and are to be matched, when CURSOR_SHARING is used. This is not the hash value for the SQL statement. If CURSOR_SHARING is not used, then the value is 0.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-loaded_versions-properties-loaded_versions-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-loaded_versions-properties-loaded_versions-0">
+            loaded_versions(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-loaded_versions-properties-loaded_versions-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether the context heap is loaded (1) or not (0).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-loads-properties-loads-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-loads-properties-loads-0">
+            loads(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-loads-properties-loads-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of times the object was either loaded or reloaded.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-locked_total-properties-locked_total-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-locked_total-properties-locked_total-0">
+            locked_total(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-locked_total-properties-locked_total-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Total number of times the child cursor has been locked.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-module-properties-module-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-module-properties-module-0">
+            module(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-module-properties-module-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Contains the name of the module that was executing when the SQL statement was first parsed, which is set by calling DBMS_APPLICATION_INFO.SET_MODULE.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-module_hash-properties-module_hash-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-module_hash-properties-module_hash-0">
+            module_hash(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-module_hash-properties-module_hash-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Hash value of the module listed in the MODULE column.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-object_status-properties-object_status-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-object_status-properties-object_status-0">
+            object_status(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-object_status-properties-object_status-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Status of the cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-old_hash_value-properties-old_hash_value-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-old_hash_value-properties-old_hash_value-0">
+            old_hash_value(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-old_hash_value-properties-old_hash_value-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Old SQL hash value.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-open_versions-properties-open_versions-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-open_versions-properties-open_versions-0">
+            open_versions(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-open_versions-properties-open_versions-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether the child cursor is locked (1) or not (0).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-optimized_phy_read_requests-properties-optimized_phy_read_requests-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-optimized_phy_read_requests-properties-optimized_phy_read_requests-0">
+            optimized_phy_read_requests(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-optimized_phy_read_requests-properties-optimized_phy_read_requests-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of physical read I/O requests from Database Smart Flash Cache issued by the monitored SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-optimizer_cost-properties-optimizer_cost-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-optimizer_cost-properties-optimizer_cost-0">
+            optimizer_cost(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-optimizer_cost-properties-optimizer_cost-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Cost of this query given by the optimizer.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-optimizer_env-properties-optimizer_env-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-optimizer_env-properties-optimizer_env-0">
+            optimizer_env(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-optimizer_env-properties-optimizer_env-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Optimizer environment.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-optimizer_env_hash_value-properties-optimizer_env_hash_value-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-optimizer_env_hash_value-properties-optimizer_env_hash_value-0">
+            optimizer_env_hash_value(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-optimizer_env_hash_value-properties-optimizer_env_hash_value-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Hash value for the optimizer environment.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-optimizer_mode-properties-optimizer_mode-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-optimizer_mode-properties-optimizer_mode-0">
+            optimizer_mode(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-optimizer_mode-properties-optimizer_mode-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Mode under which the SQL statement was executed.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-outline_category-properties-outline_category-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-outline_category-properties-outline_category-0">
+            outline_category(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-outline_category-properties-outline_category-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>If an outline was applied during construction of the cursor, then this column displays the category of that outline. Otherwise the column is left blank.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-outline_sid-properties-outline_sid-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-outline_sid-properties-outline_sid-0">
+            outline_sid(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-outline_sid-properties-outline_sid-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Outline session identifier.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-parse_calls-properties-parse_calls-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-parse_calls-properties-parse_calls-0">
+            parse_calls(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-parse_calls-properties-parse_calls-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of parse calls for this child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-parsing_schema_id-properties-parsing_schema_id-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-parsing_schema_id-properties-parsing_schema_id-0">
+            parsing_schema_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-parsing_schema_id-properties-parsing_schema_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Schema ID that was used to originally build this child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-parsing_schema_name-properties-parsing_schema_name-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-parsing_schema_name-properties-parsing_schema_name-0">
+            parsing_schema_name(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-parsing_schema_name-properties-parsing_schema_name-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Schema name that was used to originally build this child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-parsing_user_id-properties-parsing_user_id-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-parsing_user_id-properties-parsing_user_id-0">
+            parsing_user_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-parsing_user_id-properties-parsing_user_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>User ID of the user who originally built this child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-persistent_mem-properties-persistent_mem-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-persistent_mem-properties-persistent_mem-0">
+            persistent_mem(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-persistent_mem-properties-persistent_mem-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Fixed amount of memory used for the lifetime of the child cursor (in bytes).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-physical_read_bytes-properties-physical_read_bytes-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-physical_read_bytes-properties-physical_read_bytes-0">
+            physical_read_bytes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-physical_read_bytes-properties-physical_read_bytes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of bytes read from disks by the monitored SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-physical_read_requests-properties-physical_read_requests-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-physical_read_requests-properties-physical_read_requests-0">
+            physical_read_requests(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-physical_read_requests-properties-physical_read_requests-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of physical read I/O requests issued by the monitored SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-physical_write_bytes-properties-physical_write_bytes-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-physical_write_bytes-properties-physical_write_bytes-0">
+            physical_write_bytes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-physical_write_bytes-properties-physical_write_bytes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of bytes written to disks by the monitored SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-physical_write_requests-properties-physical_write_requests-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-physical_write_requests-properties-physical_write_requests-0">
+            physical_write_requests(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-physical_write_requests-properties-physical_write_requests-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of physical write I/O requests issued by the monitored SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-pinned_total-properties-pinned_total-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-pinned_total-properties-pinned_total-0">
+            pinned_total(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-pinned_total-properties-pinned_total-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Total number of times the child cursor has been pinned.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-plan_hash_value-properties-plan_hash_value-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-plan_hash_value-properties-plan_hash_value-0">
+            plan_hash_value(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-plan_hash_value-properties-plan_hash_value-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Numeric representation of the current SQL plan for this cursor. Comparing one PLAN_HASH_VALUE to another easily identifies whether or not two plans are the same (rather than comparing the two plans line by line).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-plsql_exec_time-properties-plsql_exec_time-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-plsql_exec_time-properties-plsql_exec_time-0">
+            plsql_exec_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-plsql_exec_time-properties-plsql_exec_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>PL/SQL execution time (in microseconds).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-program_id-properties-program_id-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-program_id-properties-program_id-0">
+            program_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-program_id-properties-program_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Program identifier.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-program_line#-properties-program_line#-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-program_line#-properties-program_line#-0">
+            program_line#(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-program_line#-properties-program_line#-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Program line number.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-px_servers_executions-properties-px_servers_executions-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-px_servers_executions-properties-px_servers_executions-0">
+            px_servers_executions(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-px_servers_executions-properties-px_servers_executions-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Total number of executions performed by parallel execution servers (0 when the statement has never been executed in parallel).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-remote-properties-remote-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-remote-properties-remote-0">
+            remote(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-remote-properties-remote-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether the cursor is remote mapped (Y) or not (N).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-result_cache-properties-result_cache-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-result_cache-properties-result_cache-0">
+            result_cache(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-result_cache-properties-result_cache-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether the function is result???cached (YES) or not (NO).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-rows_processed-properties-rows_processed-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-rows_processed-properties-rows_processed-0">
+            rows_processed(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-rows_processed-properties-rows_processed-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Total number of rows the parsed SQL statement returns.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-runtime_mem-properties-runtime_mem-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-runtime_mem-properties-runtime_mem-0">
+            runtime_mem(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-runtime_mem-properties-runtime_mem-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Fixed amount of memory required during the execution of the child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-serializable_aborts-properties-serializable_aborts-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-serializable_aborts-properties-serializable_aborts-0">
+            serializable_aborts(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-serializable_aborts-properties-serializable_aborts-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of times the transaction failed to serialize, producing ORA-08177 errors, per cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-service-properties-service-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-service-properties-service-0">
+            service(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-service-properties-service-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Service name.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-service_hash-properties-service_hash-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-service_hash-properties-service_hash-0">
+            service_hash(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-service_hash-properties-service_hash-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Hash value for the name listed in the SERVICE column.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-sharable_mem-properties-sharable_mem-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-sharable_mem-properties-sharable_mem-0">
+            sharable_mem(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-sharable_mem-properties-sharable_mem-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Amount of shared memory used by the child cursor (in bytes).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-sorts-properties-sorts-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-sorts-properties-sorts-0">
+            sorts(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-sorts-properties-sorts-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of sorts that were done for the child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-sql_fulltext-properties-sql_fulltext-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-sql_fulltext-properties-sql_fulltext-0">
+            sql_fulltext(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-sql_fulltext-properties-sql_fulltext-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Full text for the SQL statement exposed as a CLOB column. The full text of a SQL statement can be retrieved using this column instead of joining with the V$SQLTEXT dynamic performance view.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-sql_id-properties-sql_id-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-sql_id-properties-sql_id-0">
+            sql_id(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-sql_id-properties-sql_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>SQL identifier of the parent cursor in the library cache.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-sql_patch-properties-sql_patch-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-sql_patch-properties-sql_patch-0">
+            sql_patch(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-sql_patch-properties-sql_patch-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>SQL patch used for this statement, if any.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-sql_plan_baseline-properties-sql_plan_baseline-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-sql_plan_baseline-properties-sql_plan_baseline-0">
+            sql_plan_baseline(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-sql_plan_baseline-properties-sql_plan_baseline-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>SQL plan baseline used for this statement, if any.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-sql_profile-properties-sql_profile-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-sql_profile-properties-sql_profile-0">
+            sql_profile(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-sql_profile-properties-sql_profile-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>SQL profile used for this statement, if any.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-sql_text-properties-sql_text-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-sql_text-properties-sql_text-0">
+            sql_text(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-sql_text-properties-sql_text-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>First thousand characters of the SQL text for the current cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-sqltype-properties-sqltype-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-sqltype-properties-sqltype-0">
+            sqltype(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-sqltype-properties-sqltype-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Denotes the version of the SQL language used for this statement.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-type_chk_heap-properties-type_chk_heap-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-type_chk_heap-properties-type_chk_heap-0">
+            type_chk_heap(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-type_chk_heap-properties-type_chk_heap-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Descriptor of the type check heap for this child cursor.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-typecheck_mem-properties-typecheck_mem-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-typecheck_mem-properties-typecheck_mem-0">
+            typecheck_mem(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-typecheck_mem-properties-typecheck_mem-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Typecheck memory.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-user_io_wait_time-properties-user_io_wait_time-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-user_io_wait_time-properties-user_io_wait_time-0">
+            user_io_wait_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-user_io_wait_time-properties-user_io_wait_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>User I/O Wait Time (in microseconds).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-users_executing-properties-users_executing-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-users_executing-properties-users_executing-0">
+            users_executing(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-users_executing-properties-users_executing-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of users executing the statement.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-SQLStatement-properties-users_opening-properties-users_opening-0" aria-expanded="false" aria-controls="200-definitions-SQLStatement-properties-users_opening-properties-users_opening-0">
+            users_opening(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-SQLStatement-properties-users_opening-properties-users_opening-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of users that have any of the child cursors open.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;object&quot;,
+    &quot;description&quot;:&quot;Corresponding to a record on GV$SQL, this object describes an SQL Statement. The list of attributes may vary depending on database version.&quot;,
+    &quot;properties&quot;:{
+        &quot;inst_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Instance number from which the associated GV$SQL view information was obtained.&quot;
+        },
+        &quot;sql_text&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;First thousand characters of the SQL text for the current cursor.&quot;
+        },
+        &quot;sql_fulltext&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Full text for the SQL statement exposed as a CLOB column. The full text of a SQL statement can be retrieved using this column instead of joining with the V$SQLTEXT dynamic performance view.&quot;
+        },
+        &quot;sql_id&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;SQL identifier of the parent cursor in the library cache.&quot;
+        },
+        &quot;sharable_mem&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Amount of shared memory used by the child cursor (in bytes).&quot;
+        },
+        &quot;persistent_mem&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Fixed amount of memory used for the lifetime of the child cursor (in bytes).&quot;
+        },
+        &quot;runtime_mem&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Fixed amount of memory required during the execution of the child cursor.&quot;
+        },
+        &quot;sorts&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of sorts that were done for the child cursor.&quot;
+        },
+        &quot;loaded_versions&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Indicates whether the context heap is loaded (1) or not (0).&quot;
+        },
+        &quot;open_versions&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Indicates whether the child cursor is locked (1) or not (0).&quot;
+        },
+        &quot;users_opening&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of users that have any of the child cursors open.&quot;
+        },
+        &quot;fetches&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of fetches associated with the SQL statement.&quot;
+        },
+        &quot;executions&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of executions that took place on this object since it was brought into the library cache.&quot;
+        },
+        &quot;px_servers_executions&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Total number of executions performed by parallel execution servers (0 when the statement has never been executed in parallel).&quot;
+        },
+        &quot;end_of_fetch_count&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of times this cursor was fully executed since the cursor was brought into the library cache. The value of this statistic is not incremented when the cursor is partially executed, either because it failed during the execution or because only the first few rows produced by this cursor are fetched before the cursor is closed or re-executed. By definition, the value of the END_OF_FETCH_COUNT column should be less or equal to the value of the EXECUTIONS column.&quot;
+        },
+        &quot;users_executing&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of users executing the statement.&quot;
+        },
+        &quot;loads&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of times the object was either loaded or reloaded.&quot;
+        },
+        &quot;first_load_time&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Timestamp of the parent creation time.&quot;
+        },
+        &quot;invalidations&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of times this child cursor has been invalidated.&quot;
+        },
+        &quot;parse_calls&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of parse calls for this child cursor.&quot;
+        },
+        &quot;disk_reads&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of disk reads for this child cursor.&quot;
+        },
+        &quot;direct_writes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of direct writes for this child cursor.&quot;
+        },
+        &quot;direct_reads&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of direct reads for this child cursor.&quot;
+        },
+        &quot;buffer_gets&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of buffer gets for this child cursor.&quot;
+        },
+        &quot;application_wait_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Application wait time (in microseconds).&quot;
+        },
+        &quot;concurrency_wait_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Concurrency wait time (in microseconds).&quot;
+        },
+        &quot;cluster_wait_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Cluster wait time (in microseconds).&quot;
+        },
+        &quot;user_io_wait_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;User I/O Wait Time (in microseconds).&quot;
+        },
+        &quot;plsql_exec_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;PL/SQL execution time (in microseconds).&quot;
+        },
+        &quot;java_exec_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Java execution time (in microseconds).&quot;
+        },
+        &quot;rows_processed&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Total number of rows the parsed SQL statement returns.&quot;
+        },
+        &quot;command_type&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Oracle command type definition.&quot;
+        },
+        &quot;optimizer_mode&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Mode under which the SQL statement was executed.&quot;
+        },
+        &quot;optimizer_cost&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Cost of this query given by the optimizer.&quot;
+        },
+        &quot;optimizer_env&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Optimizer environment.&quot;
+        },
+        &quot;optimizer_env_hash_value&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Hash value for the optimizer environment.&quot;
+        },
+        &quot;parsing_user_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;User ID of the user who originally built this child cursor.&quot;
+        },
+        &quot;parsing_schema_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Schema ID that was used to originally build this child cursor.&quot;
+        },
+        &quot;parsing_schema_name&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Schema name that was used to originally build this child cursor.&quot;
+        },
+        &quot;kept_versions&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Indicates whether this child cursor has been marked to be kept pinned in the cache using the DBMS_SHARED_POOL package.&quot;
+        },
+        &quot;address&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Address of the handle to the parent for this cursor.&quot;
+        },
+        &quot;type_chk_heap&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Descriptor of the type check heap for this child cursor.&quot;
+        },
+        &quot;hash_value&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Hash value of the parent statement in the library cache.&quot;
+        },
+        &quot;old_hash_value&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Old SQL hash value.&quot;
+        },
+        &quot;plan_hash_value&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Numeric representation of the current SQL plan for this cursor. Comparing one PLAN_HASH_VALUE to another easily identifies whether or not two plans are the same (rather than comparing the two plans line by line).&quot;
+        },
+        &quot;full_plan_hash_value&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Numeric representation of the complete SQL plan for this cursor. Comparing one FULL_PLAN_HASH_VALUE to another easily identifies whether or not two plans are the same (rather than comparing the two plans line by line). Note that the FULL_PLAN_HASH_VALUE cannot be compared across databases releases. It is not backward compatible.&quot;
+        },
+        &quot;child_number&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of this child cursor.&quot;
+        },
+        &quot;service&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Service name.&quot;
+        },
+        &quot;service_hash&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Hash value for the name listed in the SERVICE column.&quot;
+        },
+        &quot;module&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Contains the name of the module that was executing when the SQL statement was first parsed, which is set by calling DBMS_APPLICATION_INFO.SET_MODULE.&quot;
+        },
+        &quot;module_hash&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Hash value of the module listed in the MODULE column.&quot;
+        },
+        &quot;action&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Contains the name of the action that was executing when the SQL statement was first parsed, which is set by calling DBMS_APPLICATION_INFO.SET_ACTION.&quot;
+        },
+        &quot;action_hash&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Hash value of the action listed in the ACTION column.&quot;
+        },
+        &quot;serializable_aborts&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of times the transaction failed to serialize, producing ORA-08177 errors, per cursor.&quot;
+        },
+        &quot;outline_category&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;If an outline was applied during construction of the cursor, then this column displays the category of that outline. Otherwise the column is left blank.&quot;
+        },
+        &quot;cpu_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;CPU time (in microseconds) used by this cursor for parsing, executing, and fetching.&quot;
+        },
+        &quot;elapsed_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Elapsed time (in microseconds) used by this cursor for parsing, executing, and fetching. If the cursor uses parallel execution, then ELAPSED_TIME is the cumulative time for the query coordinator, plus all parallel query slave processes.&quot;
+        },
+        &quot;outline_sid&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Outline session identifier.&quot;
+        },
+        &quot;child_address&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Address of the child cursor.&quot;
+        },
+        &quot;sqltype&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Denotes the version of the SQL language used for this statement.&quot;
+        },
+        &quot;remote&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates whether the cursor is remote mapped (Y) or not (N).&quot;
+        },
+        &quot;object_status&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Status of the cursor.&quot;
+        },
+        &quot;literal_hash_value&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Hash value of the literals which are replaced with system-generated bind variables and are to be matched, when CURSOR_SHARING is used. This is not the hash value for the SQL statement. If CURSOR_SHARING is not used, then the value is 0.&quot;
+        },
+        &quot;last_load_time&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Time at which the query plan was loaded into the library cache.&quot;
+        },
+        &quot;is_obsolete&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates whether the cursor has become obsolete (Y) or not (N). This can happen if the number of child cursors is too large.&quot;
+        },
+        &quot;is_bind_sensitive&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates whether the cursor is bind sensitive (Y) or not (N). A query is considered bind-sensitive if the optimizer peeked at one of its bind variable values when computing predicate selectivities and where a change in a bind variable value may cause the optimizer to generate a different plan.&quot;
+        },
+        &quot;is_bind_aware&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates whether the cursor is bind aware (Y) or not (N). A query is considered bind-aware if it has been marked to use extended cursor sharing. The query would already have been marked as bind-sensitive.&quot;
+        },
+        &quot;is_shareable&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates whether the cursor can be shared (Y) or not (N).&quot;
+        },
+        &quot;child_latch&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Child latch number that is protecting the cursor. This column is obsolete and maintained for backward compatibility.&quot;
+        },
+        &quot;sql_profile&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;SQL profile used for this statement, if any.&quot;
+        },
+        &quot;sql_patch&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;SQL patch used for this statement, if any.&quot;
+        },
+        &quot;sql_plan_baseline&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;SQL plan baseline used for this statement, if any.&quot;
+        },
+        &quot;program_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Program identifier.&quot;
+        },
+        &quot;program_line#&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Program line number.&quot;
+        },
+        &quot;exact_matching_signature&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Signature calculated on the normalized SQL text. The normalization includes the removal of white space and the uppercasing of all non-literal strings.&quot;
+        },
+        &quot;force_matching_signature&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Signature used when the CURSOR_SHARING parameter is set to FORCE.&quot;
+        },
+        &quot;last_active_time&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;TIme at which the query plan was last active.&quot;
+        },
+        &quot;bind_data&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Bind data.&quot;
+        },
+        &quot;typecheck_mem&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Typecheck memory.&quot;
+        },
+        &quot;io_cell_offload_eligible_bytes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of I/O bytes which can be filtered by the Exadata storage system.&quot;
+        },
+        &quot;io_interconnect_bytes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of I/O bytes exchanged between Oracle Database and the storage system.&quot;
+        },
+        &quot;physical_read_requests&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of physical read I/O requests issued by the monitored SQL.&quot;
+        },
+        &quot;physical_read_bytes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of bytes read from disks by the monitored SQL.&quot;
+        },
+        &quot;physical_write_requests&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of physical write I/O requests issued by the monitored SQL.&quot;
+        },
+        &quot;physical_write_bytes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of bytes written to disks by the monitored SQL.&quot;
+        },
+        &quot;optimized_phy_read_requests&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of physical read I/O requests from Database Smart Flash Cache issued by the monitored SQL.&quot;
+        },
+        &quot;locked_total&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Total number of times the child cursor has been locked.&quot;
+        },
+        &quot;pinned_total&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Total number of times the child cursor has been pinned.&quot;
+        },
+        &quot;io_cell_uncompressed_bytes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of uncompressed bytes (that is, size after decompression) that are offloaded to the Exadata cells.&quot;
+        },
+        &quot;io_cell_offload_returned_bytes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of filtered bytes returned by Exadata cells (that is, the number of bytes returned after  processing has been offloaded on the Exadata cells).&quot;
+        },
+        &quot;con_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;The ID of the container to which the data pertains.&quot;
+        },
+        &quot;is_reoptimizable&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;This columns shows whether the next execution matching this child cursor will trigger a reoptimization.&quot;
+        },
+        &quot;is_resolved_adaptive_plan&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;This column shows whether all of the adaptive parts of a plan have been resolved to the final plan. Once the plan is resolved, the plan hash value and the plan displayed by DBMS_XPLAN will not change through the end of execution.&quot;
+        },
+        &quot;im_scans&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of In-Memory Column Store (IM column store) segment scans.&quot;
+        },
+        &quot;im_scan_bytes_uncompressed&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Uncompressed size of data scanned from the IM column store.&quot;
+        },
+        &quot;im_scan_bytes_inmemory&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;In-memory size of data scanned from the IM column store.&quot;
+        },
+        &quot;ddl_no_invalidate&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates if a DDL statement updated a dependent object and did not invalidate this cursor.&quot;
+        },
+        &quot;is_rolling_invalid&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates if this cursor is rolling validated.&quot;
+        },
+        &quot;is_rolling_refresh_invalid&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates if this cursor is rolling validated and requires execution time refresh.&quot;
+        },
+        &quot;result_cache&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates whether the function is result???cached (YES) or not (NO).&quot;
+        },
+        &quot;links&quot;:{
+            &quot;type&quot;:&quot;array&quot;,
+            &quot;items&quot;:{
+                &quot;$ref&quot;:&quot;#/definitions/LinkRelation&quot;
+            }
+        }
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-SQLStatement-properties-links" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : links</div>
+    
+      
+      <div class="schema-type">Type: <code>array</code></div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-LinkRelation-items-0" aria-expanded="false" aria-controls="200-definitions-LinkRelation-items-0">
+            Array of: 
+                object </a> <a href="#200-definitions-LinkRelation" role="button" class="btn btn-default btn-sm btn-xsm">LinkRelation</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-LinkRelation-items-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;array&quot;,
+    &quot;items&quot;:{
+        &quot;$ref&quot;:&quot;#/definitions/LinkRelation&quot;
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-LinkRelation" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : LinkRelation</div>
+    
+      <div class="schema-type">Type: <code>object</code></div>
+      
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-LinkRelation-properties-href-properties-href-77" aria-expanded="false" aria-controls="200-definitions-LinkRelation-properties-href-properties-href-77">
+            href: 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-LinkRelation-properties-href-properties-href-77">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-LinkRelation-properties-rel-properties-rel-77" aria-expanded="false" aria-controls="200-definitions-LinkRelation-properties-rel-properties-rel-77">
+            rel: 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-LinkRelation-properties-rel-properties-rel-77">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;object&quot;,
+    &quot;properties&quot;:{
+        &quot;rel&quot;:{
+            &quot;type&quot;:&quot;string&quot;
+        },
+        &quot;href&quot;:{
+            &quot;type&quot;:&quot;string&quot;
+        }
+    },
+    &quot;required&quot;:[
+        &quot;rel&quot;,
+        &quot;href&quot;
+    ]
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    </div>
+
+                    
+                    </div>
+                
+                </div>
+                </div>
+                
+
+				<a style="float: right" href="#top">Back to Top</a>
+				
+                
+
+            </section>
+
+            
+        </article>
+    </body>
+</html>

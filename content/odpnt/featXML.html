@@ -1,0 +1,834 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>ODP.NET XML Support</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="featLOBsupp.html" title="Previous" type="text/html">
+      <link rel="next" href="featUDTs.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="featLOBsupp.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="featUDTs.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="features.html" property="item" typeof="WebPage"><span property="name">Features of Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">ODP.NET XML Support</li>
+            </ol>
+            <a id="GUID-6CF36CBC-281B-4CE3-85DC-FD21FA4D6B52" name="GUID-6CF36CBC-281B-4CE3-85DC-FD21FA4D6B52"></a><a id="ODPNT0020"></a>
+            
+            <h2 id="ODPNT-GUID-6CF36CBC-281B-4CE3-85DC-FD21FA4D6B52" class="sect2">ODP.NET XML Support</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>ODP.NET allows the extraction of data from relational and object-relational tables and views as XML documents. The use of XML documents for insert, update, and delete operations to the database is also allowed. Oracle Database supports XML natively in the database, through Oracle XML DB, a distinct group of technologies related to high-performance XML storage and retrieval. Oracle XML DB is an evolution of the database that encompasses both SQL and XML data models in a highly interoperable manner, providing native XML support.</p>
+               <p>ODP.NET, Managed Driver follows XPath 1.0 specification and hence it does not support default XML namespaces. XML namespaces must be explicitly added to search or update nodes. This behavior differs from ODP.NET, Unmanaged Driver.</p>
+               <p>For samples related to ODP.NET XML support in ODAC installations done using Oracle Universal Installer, see the following directory:</p><pre class="oac_no_warn" dir="ltr"><span class="italic">ORACLE_BASE</span>\<span class="italic">ORACLE_HOME</span>\ODACsamples
+</pre><p>This section includes these topics:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="featXML.html#GUID-7037699D-ADFC-48A1-A643-4E4735FD9C9B">Supported XML Features</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featXML.html#GUID-4419C71D-C85E-4A18-B5D8-8DAEE5DB536D">OracleXmlType and Connection Dependency</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featXML.html#GUID-9B7D1B95-79E8-46A2-B570-4EA0390C2E25">Updating XMLType Data in the Database</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featXML.html#GUID-907974FB-9A5D-4C2D-9AD6-BED42A153FEE">Updating XML Data in OracleXmlType</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featXML.html#GUID-F5DE47B6-9D9B-474C-9578-AD9CDFCE0187">Characters with Special Meaning in XML</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featXML.html#GUID-BEBDD7CC-1E56-4473-A5D7-33CC7DC9D7F7">Retrieving Query Result Set as XML</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featXML.html#GUID-B0C930B5-E66D-49E4-B1C4-C5EA9C0F5C27">Data Manipulation Using XML</a></p>
+                  </li>
+               </ul>
+            </div><a id="ODPNT344"></a><div class="props_rev_3"><a id="GUID-7037699D-ADFC-48A1-A643-4E4735FD9C9B" name="GUID-7037699D-ADFC-48A1-A643-4E4735FD9C9B"></a><h3 id="ODPNT-GUID-7037699D-ADFC-48A1-A643-4E4735FD9C9B" class="sect3">Supported XML Features</h3>
+               <div>
+                  <p>XML support in ODP.NET provides the ability to do the following:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Store XML data natively in the database as the Oracle database native type, <code class="codeph">XMLType</code>. 
+                        </p>
+                     </li>
+                     <li>
+                        <p>Access relational and object-relational data as XML data from an Oracle Database instance into the Microsoft .NET environment, and process the XML using the Microsoft .NET Framework.</p>
+                     </li>
+                     <li>
+                        <p>Save changes to the database using XML data.</p>
+                     </li>
+                     <li>
+                        <p>Execute XQuery statements<a id="d94903e90" class="indexterm-anchor"></a><a id="d94903e92" class="indexterm-anchor"></a><a id="d94903e94" class="indexterm-anchor"></a><a id="d94903e96" class="indexterm-anchor"></a><a id="d94903e98" class="indexterm-anchor"></a>.
+                        </p>
+                     </li>
+                  </ul>
+                  <p>For the .NET application developer, these features include the following:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Enhancements to the <code class="codeph">OracleCommand</code>, <code class="codeph">OracleConnection</code>, and <code class="codeph">OracleDataReader</code> classes.
+                        </p>
+                     </li>
+                     <li>
+                        <p>The following XML-specific classes:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">OracleXmlType</code></p>
+                              <p><code class="codeph">OracleXmlType</code> objects are used to retrieve Oracle native <code class="codeph">XMLType</code> data.   
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleXmlStream</code></p>
+                              <p><code class="codeph">OracleXmlStream</code> objects are used to retrieve XML data from <code class="codeph">OracleXmlType</code> objects as a read-only .NET <code class="codeph">Stream</code> object.
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleXmlQueryProperties</code></p>
+                              <p><code class="codeph">OracleXmlQueryProperties</code> objects represent the XML properties used by the <code class="codeph">OracleCommand</code> class when the <code class="codeph">XmlCommandType</code> property is <code class="codeph">Query</code>.
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleXmlSaveProperties</code></p>
+                              <p><code class="codeph">OracleXmlSaveProperties</code> objects represent the XML properties used by the <code class="codeph">OracleCommand</code> class when the <code class="codeph">XmlCommandType</code> property is <code class="codeph">Insert</code>, <code class="codeph">Update</code>, or <code class="codeph">Delete</code>. 
+                              </p>
+                           </li>
+                        </ul>
+                        <div class="infoboxnotealso" id="GUID-7037699D-ADFC-48A1-A643-4E4735FD9C9B__GUID-8861A397-7C59-4169-9F1D-512099B7E830">
+                           <p class="notep1">See Also:</p>
+                           <p></p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><span class="q">"<a href="featXML.html#GUID-09BB8A48-5601-4CFB-ACA2-9FA1E4375DB3">XQuery Support</a>"</span></p>
+                              </li>
+                              <li>
+                                 <p><span class="q">"<a href="OracleCommandClass.html#GUID-7C1D5BCC-0268-4F1B-A583-F401F30EB9C0">OracleCommand Class</a>"</span></p>
+                              </li>
+                              <li>
+                                 <p><span class="q">"<a href="OracleXmlTypeClass.html#GUID-DA2D8110-CCB4-4482-A525-31729A0B4F06">OracleXmlType Class</a>"</span></p>
+                              </li>
+                              <li>
+                                 <p><span class="q">"<a href="OracleXmlStreamClass.html#GUID-D4788FE5-5F50-4185-BC8B-B9F9141D744A">OracleXmlStream Class</a>"</span></p>
+                              </li>
+                              <li>
+                                 <p><span class="q">"<a href="OracleXmlQueryPropertiesClass.html#GUID-4DDE0B33-11F3-4D6B-99AD-3D075B98CA2F">OracleXmlQueryProperties Class</a>"</span></p>
+                              </li>
+                              <li>
+                                 <p><span class="q">"<a href="OracleXmlSavePropertiesClass.html#GUID-553601AB-66E4-4E31-838E-2F4B9732286A">OracleXmlSaveProperties Class</a>"</span></p>
+                              </li>
+                              <li>
+                                 <p><a href="../adxdb/XML-DB-and-ODP-for-dot-NET.html#ADXDB1500" target="_blank"><span><cite>Oracle XML&nbsp;DB Developer’s Guide</cite></span></a></p>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+            </div><a id="ODPNT345"></a><div class="props_rev_3"><a id="GUID-09BB8A48-5601-4CFB-ACA2-9FA1E4375DB3" name="GUID-09BB8A48-5601-4CFB-ACA2-9FA1E4375DB3"></a><h3 id="ODPNT-GUID-09BB8A48-5601-4CFB-ACA2-9FA1E4375DB3" class="sect3">XQuery Support</h3>
+               <div>
+                  <p>ODP.NET supports the XQuery language through a native implementation of SQL/XML functions, <code class="codeph">XMLQuery</code> and <code class="codeph">XMLTable</code>. When executing XQuery statements, Oracle XML DB generally evaluates XQuery expressions by compiling them into the same underlying structures as relational queries. Queries are optimized, leveraging both relational-database and XQuery-specific optimization technologies, so that Oracle XML DB serves as a native XQuery engine.The treatment of all XQuery expressions, whether natively compiled or evaluated functionally, is transparent: programmers do not need to change their code to take advantage of XQuery optimizations.
+                  </p>
+                  <div class="infoboxnotealso" id="GUID-09BB8A48-5601-4CFB-ACA2-9FA1E4375DB3__GUID-7CFACD0B-7457-46F4-AD03-24FE7CDDAEFB">
+                     <p class="notep1">See Also:</p>
+                     <p><a href="../adxdb/xquery-and-XML-DB.html#ADXDB1700" target="_blank"><span class="italic">Oracle XML DB Developer's Guide</span></a> to learn more about Oracle's XQuery support
+                     </p>
+                  </div>
+               </div>
+            </div><a id="ODPNT346"></a><div class="props_rev_3"><a id="GUID-4419C71D-C85E-4A18-B5D8-8DAEE5DB536D" name="GUID-4419C71D-C85E-4A18-B5D8-8DAEE5DB536D"></a><h3 id="ODPNT-GUID-4419C71D-C85E-4A18-B5D8-8DAEE5DB536D" class="sect3">OracleXmlType and Connection Dependency</h3>
+               <div>
+                  <p>The read-only <code class="codeph">Connection</code> property of the <code class="codeph">OracleXmlType</code> class holds a reference to the <code class="codeph">OracleConnection</code> object used to instantiate the <code class="codeph">OracleXmlType</code> class.
+                  </p>
+                  <p>How the <code class="codeph">OracleXmlType</code> object obtains a reference to an <code class="codeph">OracleConnection</code> object depends on how the <code class="codeph">OracleXmlType</code> class is instantiated:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Instantiated from an <code class="codeph">OracleDataReader</code> class using the <code class="codeph">GetOracleXmlType</code>, <code class="codeph">GetOracleValue</code>, or <code class="codeph">GetOracleValues</code> method:
+                        </p>
+                        <p>The <code class="codeph">Connection</code> property is set with a reference to the same <code class="codeph">OracleConnection</code> object used by the <code class="codeph">OracleDataReader</code> object.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Instantiated by invoking an <code class="codeph">OracleXmlType</code> constructor with one of the parameters of type <code class="codeph">OracleConnection</code>:
+                        </p>
+                        <p>The <code class="codeph">Connection</code> property is set with a reference to the same <code class="codeph">OracleConnection</code> object provided in the constructor.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Instantiated by invoking an <code class="codeph">OracleXmlType(OracleClob)</code> constructor:
+                        </p>
+                        <p>The <code class="codeph">Connection</code> property is set with a reference to the <code class="codeph">OracleConnection</code> object used by the <code class="codeph">OracleClob</code> object.
+                        </p>
+                     </li>
+                  </ul>
+                  <p>An <code class="codeph">OracleXmlType</code> object that is associated with one connection cannot be used with a different connection. For example, if an <code class="codeph">OracleXmlType</code> object is obtained using <code class="codeph">OracleConnection</code> <code class="codeph">A</code>, that <code class="codeph">OracleXmlType</code> object cannot be used as an input parameter of a command that uses <code class="codeph">OracleConnection</code> <code class="codeph">B</code>. By checking the <code class="codeph">Connection</code> property of the <code class="codeph">OracleXmlType</code> objects, the application can ensure that <code class="codeph">OracleXmlType</code> objects are used only within the context of the <code class="codeph">OracleConnection</code> referenced by its connection property. Otherwise, ODP.NET raises an exception.
+                  </p>
+               </div>
+            </div><a id="ODPNT347"></a><div class="props_rev_3"><a id="GUID-9B7D1B95-79E8-46A2-B570-4EA0390C2E25" name="GUID-9B7D1B95-79E8-46A2-B570-4EA0390C2E25"></a><h3 id="ODPNT-GUID-9B7D1B95-79E8-46A2-B570-4EA0390C2E25" class="sect3">Updating XMLType Data in the Database</h3>
+               <div>
+                  <div class="section">
+                     <p>Updating <code class="codeph">XMLType</code> columns does not require a transaction. However, encapsulating the entire database update process within a transaction is highly recommended. This allows the updates to be rolled back if there are any errors.
+                     </p>
+                     <p><code class="codeph">XMLType</code> columns in the database can be updated using Oracle Data Provider for .NET in a few ways:
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="featXML.html#GUID-85B53A81-ADF6-4FD3-80DD-CEF80AE4AB58">Updating with DataSet, OracleDataAdapter, and OracleCommandBuilder</a> 
+                           </p>
+                        </li>
+                        <li>
+                           <p><a href="featXML.html#GUID-0F121E91-F822-4757-A983-6316F7ECC60A">Updating with OracleCommand and OracleParameter</a> 
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <!-- class="section" -->
+               </div><a id="ODPNT348"></a><div class="props_rev_3"><a id="GUID-85B53A81-ADF6-4FD3-80DD-CEF80AE4AB58" name="GUID-85B53A81-ADF6-4FD3-80DD-CEF80AE4AB58"></a><h4 id="ODPNT-GUID-85B53A81-ADF6-4FD3-80DD-CEF80AE4AB58" class="sect4">Updating with DataSet, OracleDataAdapter, and OracleCommandBuilder</h4>
+                  <div>
+                     <p>If the <code class="codeph">XMLType</code> column is fetched into the <code class="codeph">DataSet</code>, the <code class="codeph">XMLType</code> data is represented as a .NET <code class="codeph">String</code>. 
+                     </p>
+                     <p>Modifying <code class="codeph">XMLType</code> data in the <code class="codeph">DataSet</code> does not require special treatment. <code class="codeph">XMLType</code> data can be modified in the same way as any data that is stored in the <code class="codeph">DataSet</code>. When a change is made and the <code class="codeph">OracleDataAdapter.Update</code> method is invoked, the <code class="codeph">OracleDataAdapter</code> object ensures that the <code class="codeph">XMLType</code> data is handled properly. The <code class="codeph">OracleDataAdapter</code> object uses any custom SQL <code class="codeph">INSERT</code>, <code class="codeph">UPDATE</code>, or <code class="codeph">DELETE</code> statements that are provided. Otherwise, valid SQL statements are generated by the <code class="codeph">OracleCommandBuilder</code> object as needed to <a href="glossary.html#GUID-C923C354-863F-42DB-9A7B-9100199F6B9B"><span class="xrefglossterm">flush</span></a> the changes to the database.
+                     </p>
+                  </div>
+               </div><a id="ODPNT349"></a><div class="props_rev_3"><a id="GUID-0F121E91-F822-4757-A983-6316F7ECC60A" name="GUID-0F121E91-F822-4757-A983-6316F7ECC60A"></a><h4 id="ODPNT-GUID-0F121E91-F822-4757-A983-6316F7ECC60A" class="sect4">Updating with OracleCommand and OracleParameter</h4>
+                  <div>
+                     <div class="section">
+                        <p>The <code class="codeph">OracleCommand</code> class provides a powerful way of updating <code class="codeph">XMLType</code> data, especially with the use of an <code class="codeph">OracleParameter</code> object. To update columns in a database table, the new value for the column can be passed as an input parameter of a command. 
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div><a id="ODPNT350"></a><div class="props_rev_3"><a id="GUID-B6A1A275-E5E8-4617-A1BE-A28F91246A17" name="GUID-B6A1A275-E5E8-4617-A1BE-A28F91246A17"></a><h5 id="ODPNT-GUID-B6A1A275-E5E8-4617-A1BE-A28F91246A17" class="sect5">Input Binding</h5>
+                     <div>
+                        <div class="section">
+                           <p>To update an <code class="codeph">XMLType</code> column in the database, a SQL statement can be executed using static values. In addition, input parameters can be bound to SQL statements, anonymous PL/SQL blocks, or stored procedures to update <code class="codeph">XMLType</code> columns. The parameter value can be set as .NET Framework Types, ODP.NET Types, or <code class="codeph">OracleXmlType</code> objects. 
+                           </p>
+                           <p>While <code class="codeph">XMLType</code> columns can be updated using an <code class="codeph">OracleXmlType</code> object, having an instance of an <code class="codeph">OracleXmlType</code> class does not guarantee that the <code class="codeph">XMLType</code> column in the database can be updated. 
+                           </p>
+                        </div>
+                        <!-- class="section" -->
+                     </div>
+                  </div><a id="ODPNT351"></a><div class="props_rev_3"><a id="GUID-8669C7B9-E113-4B4C-9DEB-1FC87CE17B17" name="GUID-8669C7B9-E113-4B4C-9DEB-1FC87CE17B17"></a><h5 id="ODPNT-GUID-8669C7B9-E113-4B4C-9DEB-1FC87CE17B17" class="sect5">Setting XMLType Column to NULL Value</h5>
+                     <div>
+                        <div class="section">
+                           <p>Applications can set an <code class="codeph">XMLType</code> column in the database to a <code class="codeph">NULL</code> value, with or without input binding, as follows:
+                           </p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>Setting <code class="codeph">NULL</code> values in an <code class="codeph">XMLType</code> column with input binding
+                                 </p>
+                                 <p>To set the <code class="codeph">XMLType</code> column to <code class="codeph">NULL</code>, the application can bind an input parameter whose value is <code class="codeph">DBNull</code>.<code class="codeph">Value</code>. This indicates to the <code class="codeph">OracleCommand</code> object that a <code class="codeph">NULL</code> value is to be inserted.
+                                 </p>
+                                 <p>Passing in a null <code class="codeph">OracleXmlType</code> object as an input parameter does not insert a <code class="codeph">NULL</code> value into the <code class="codeph">XMLType</code> column. In this case, the <code class="codeph">OracleCommand</code> object raises an exception.
+                                 </p>
+                              </li>
+                              <li>
+                                 <p>Setting <code class="codeph">NULL</code> Values in an <code class="codeph">XMLType</code> Column without input binding
+                                 </p>
+                                 <p>The following example demonstrates setting <code class="codeph">NULL</code> values in an <code class="codeph">XMLType</code> column without input binding:
+                                 </p><pre class="oac_no_warn" dir="ltr">// Create a table with an XMLType column in the database
+CREATE TABLE XML_TABLE(NUM_COL number, XMLTYPE_COL xmltype);
+</pre><p>An application can set a <code class="codeph">NULL</code> value in the <code class="codeph">XMLType</code> column by explicitly inserting a <code class="codeph">NULL</code> value or by not inserting anything into that column as in the following examples: 
+                                 </p><pre class="oac_no_warn" dir="ltr">insert into xml_table(xmltype_col) values(NULL);
+</pre><pre class="oac_no_warn" dir="ltr">update xml_table t set t.xmltype_col=NULL;
+</pre></li>
+                           </ul>
+                        </div>
+                        <!-- class="section" -->
+                     </div>
+                  </div><a id="ODPNT352"></a><div class="props_rev_3"><a id="GUID-720BB3AC-85F0-4E0A-84C7-809445A34919" name="GUID-720BB3AC-85F0-4E0A-84C7-809445A34919"></a><h5 id="ODPNT-GUID-720BB3AC-85F0-4E0A-84C7-809445A34919" class="sect5">Setting XMLType Column to Empty XML Data </h5>
+                     <div>
+                        <div class="section">
+                           <p>The <code class="codeph">XMLType</code> column can be initialized with empty XML data, using a SQL statement:
+                           </p><pre class="oac_no_warn" dir="ltr">// Create a table with an XMLType column in the database
+CREATE TABLE XML_TABLE(NUM_COL number, XMLTYPE_COL xmltype);
+</pre><pre class="oac_no_warn" dir="ltr">INSERT INTO XML_TABLE (NUM_COL, XMLTYPE_COL) VALUES (4, 
+      XMLType.createxml('&lt;DOC/&gt;'));
+</pre></div>
+                        <!-- class="section" -->
+                     </div>
+                  </div>
+               </div>
+            </div><a id="ODPNT353"></a><div class="props_rev_3"><a id="GUID-907974FB-9A5D-4C2D-9AD6-BED42A153FEE" name="GUID-907974FB-9A5D-4C2D-9AD6-BED42A153FEE"></a><h3 id="ODPNT-GUID-907974FB-9A5D-4C2D-9AD6-BED42A153FEE" class="sect3">Updating XML Data in OracleXmlType</h3>
+               <div>
+                  <div class="section">
+                     <p>The following are ways that XML data can be updated in an <code class="codeph">OracleXmlType</code> object.
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>The XML data can be updated by passing an XPATH expression and the new value to the <code class="codeph">Update</code> method on the <code class="codeph">OracleXmlType</code> object. 
+                           </p>
+                        </li>
+                        <li>
+                           <p>The XML data can be retrieved on the client side as the .NET Framework <code class="codeph">XmlDocument</code> object using the <code class="codeph">GetXmlDocument</code> method on the <code class="codeph">OracleXmlType</code> object. This XML data can then be manipulated using suitable .NET Framework classes. A new <code class="codeph">OracleXmlType</code> can be created with the updated XML data from the .NET Framework classes. This new <code class="codeph">OracleXmlType</code> is bound as an input parameter to an update or insert statement.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="ODPNT355"></a><a id="ODPNT354"></a><div class="props_rev_3"><a id="GUID-F5DE47B6-9D9B-474C-9578-AD9CDFCE0187" name="GUID-F5DE47B6-9D9B-474C-9578-AD9CDFCE0187"></a><h3 id="ODPNT-GUID-F5DE47B6-9D9B-474C-9578-AD9CDFCE0187" class="sect3">Characters with Special Meaning in XML</h3>
+               <div>
+                  <p>The following characters in <a href="featXML.html#GUID-F5DE47B6-9D9B-474C-9578-AD9CDFCE0187__BABDGBDA" title="First column:special characters, second column: Meaning in XML, third column: entity encoding">Table 3-20</a> have special meaning in XML. For more information, refer to the XML 1.0 specifications
+                  </p>
+                  <div class="tblformal" id="GUID-F5DE47B6-9D9B-474C-9578-AD9CDFCE0187__BABDGBDA">
+                     <p class="titleintable">Table 3-20 Characters with Special Meaning in XML</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Characters with Special Meaning in XML" summary="First column:special characters, second column: Meaning in XML, third column: entity encoding" width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="28%" id="d94903e784">Character</th>
+                              <th align="left" valign="bottom" width="36%" id="d94903e787">Meaning in XML</th>
+                              <th align="left" valign="bottom" width="36%" id="d94903e790">Entity Encoding</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d94903e795" headers="d94903e784 ">
+                                 <p>&lt;</p>
+                              </td>
+                              <td align="left" valign="top" width="36%" headers="d94903e795 d94903e787 ">
+                                 <p>Begins an XML tag</p>
+                              </td>
+                              <td align="left" valign="top" width="36%" headers="d94903e795 d94903e790 ">
+                                 <p>&amp;lt;</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d94903e805" headers="d94903e784 ">
+                                 <p>&gt;</p>
+                              </td>
+                              <td align="left" valign="top" width="36%" headers="d94903e805 d94903e787 ">
+                                 <p>Ends an XML tag</p>
+                              </td>
+                              <td align="left" valign="top" width="36%" headers="d94903e805 d94903e790 ">
+                                 <p>&amp;gt;</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d94903e815" headers="d94903e784 ">
+                                 <p>"</p>
+                              </td>
+                              <td align="left" valign="top" width="36%" headers="d94903e815 d94903e787 ">
+                                 <p>Quotation mark</p>
+                              </td>
+                              <td align="left" valign="top" width="36%" headers="d94903e815 d94903e790 ">
+                                 <p>&amp;quot;</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d94903e825" headers="d94903e784 ">
+                                 <p>'</p>
+                              </td>
+                              <td align="left" valign="top" width="36%" headers="d94903e825 d94903e787 ">
+                                 <p>Apostrophe or single quotation mark</p>
+                              </td>
+                              <td align="left" valign="top" width="36%" headers="d94903e825 d94903e790 ">
+                                 <p>&amp;apos;</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="28%" id="d94903e835" headers="d94903e784 ">
+                                 <p>&amp;</p>
+                              </td>
+                              <td align="left" valign="top" width="36%" headers="d94903e835 d94903e787 ">
+                                 <p>Ampersand</p>
+                              </td>
+                              <td align="left" valign="top" width="36%" headers="d94903e835 d94903e790 ">
+                                 <p>&amp;amp;</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <!-- class="inftblhruleinformal" -->
+                  <p>When these characters appear as data in an XML element, they are replaced with their equivalent entity encoding.</p>
+                  <p>Also certain characters are not valid in XML element names. When SQL identifiers (such as column names) are mapped to XML element names, these characters are converted to a sequence of hexadecimal digits, derived from the Unicode encoding of the character, bracketed by an introductory underscore, a lowercase <code class="codeph">x</code> and a trailing underscore. A blank space is not a valid character in an XML element name. If a SQL identifier contains a space character, then in the corresponding XML element name, the space character is replaced by <code class="codeph">_x0020_</code>, which is based on Unicode encoding of the space character.
+                  </p>
+               </div>
+            </div><a id="ODPNT356"></a><div class="props_rev_3"><a id="GUID-BEBDD7CC-1E56-4473-A5D7-33CC7DC9D7F7" name="GUID-BEBDD7CC-1E56-4473-A5D7-33CC7DC9D7F7"></a><h3 id="ODPNT-GUID-BEBDD7CC-1E56-4473-A5D7-33CC7DC9D7F7" class="sect3">Retrieving Query Result Set as XML</h3>
+               <div>
+                  <div class="section">
+                     <p>This section discusses retrieving the result set from a SQL query as XML data.</p>
+                  </div>
+                  <!-- class="section" -->
+               </div><a id="ODPNT357"></a><div class="props_rev_3"><a id="GUID-CC3A139F-A748-4ECE-950E-23B07229DBA8" name="GUID-CC3A139F-A748-4ECE-950E-23B07229DBA8"></a><h4 id="ODPNT-GUID-CC3A139F-A748-4ECE-950E-23B07229DBA8" class="sect4">Handling Date and Time Format </h4>
+                  <div>
+                     <div class="section">
+                        <p>The generated XML <code class="codeph">DATE</code> and <code class="codeph">TIMESTAMP</code> formats are based on the standard XML Schema formats.
+                        </p>
+                        <div class="infoboxnotealso" id="GUID-CC3A139F-A748-4ECE-950E-23B07229DBA8__GUID-F01CC1D3-9C45-4329-BBD9-2A4474F253A8">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="https://www.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/odpnt&amp;id=w3_org_xschema_isoformats" target="_blank"><code class="codeph">http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/datatypes.html#isoformats</code></a> for more information on the XML Schema specification.
+                           </p>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT359"></a><div class="props_rev_3"><a id="GUID-98E34D64-9E69-4F16-8ECD-9E18D2D92293" name="GUID-98E34D64-9E69-4F16-8ECD-9E18D2D92293"></a><h4 id="ODPNT-GUID-98E34D64-9E69-4F16-8ECD-9E18D2D92293" class="sect4">Characters with Special Meaning in Column Data</h4>
+                  <div>
+                     <div class="section">
+                        <p>If the data in any of the select list columns in the query contains any characters with special meaning in XML (see <a href="featXML.html#GUID-F5DE47B6-9D9B-474C-9578-AD9CDFCE0187__BABDGBDA" title="First column:special characters, second column: Meaning in XML, third column: entity encoding">Table 3-20</a>), these characters are replaced with their corresponding entity encoding in the result XML document.
+                        </p>
+                        <p>The following examples demonstrate how ODP.NET handles the angle bracket characters in the column data:</p><pre class="oac_no_warn" dir="ltr">/* Database Setup
+connect scott/tiger@oracle
+drop table specialchars;
+create table specialchars ("id" number, name varchar2(255));
+insert into specialchars values (1, '&lt;Jones&gt;');
+commit;
+*/
+ 
+// C#
+ 
+using System;
+using System.Data;
+using System.Xml;
+using Oracle.DataAccess.Client; 
+ 
+class QueryResultAsXMLSample
+{
+  static void Main()
+  {
+    OracleConnection con = new OracleConnection();
+ 
+    con.ConnectionString = "User Id=scott;Password=tiger;Data Source=oracle;";
+    con.Open();
+ 
+    // Create the command
+    OracleCommand cmd = new OracleCommand("", con);
+ 
+    // Set the XML command type to query.
+    cmd.XmlCommandType = OracleXmlCommandType.Query;
+ 
+    // Set the SQL query
+    cmd.CommandText = "select * from specialchars";
+ 
+    // Set command properties that affect XML query behavior.
+    cmd.BindByName = true;
+ 
+    // Set the XML query properties
+    cmd.XmlQueryProperties.MaxRows = -1;
+ 
+    // Get the XML document as an XmlReader.
+    XmlReader xmlReader = cmd.ExecuteXmlReader();
+    XmlDocument xmlDocument = new XmlDocument();
+ 
+    xmlDocument.PreserveWhitespace = true;
+    xmlDocument.Load(xmlReader);
+    Console.WriteLine(xmlDocument.OuterXml);
+ 
+    // Close and Dispose OracleConnection object
+    con.Close();
+    con.Dispose();
+  }
+}
+</pre><p>The following XML document is generated for that table: The XML entity encoding that represents the angle brackets appears in bold.</p><pre class="oac_no_warn" dir="ltr">&lt;?xml version = '1.0'?&gt;
+&lt;ROWSET&gt;
+   &lt;ROW&gt;
+      &lt;id&gt;1&lt;/id &gt;
+      &lt;NAME&gt;<span class="bold">&amp;lt;</span>Jones<span class="bold">&amp;gt;</span>&lt;/NAME&gt;
+   &lt;/ROW&gt;
+&lt;/ROWSET&gt;</pre><p></p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT360"></a><div class="props_rev_3"><a id="GUID-BD313895-9A96-4E1A-976E-C181598670AD" name="GUID-BD313895-9A96-4E1A-976E-C181598670AD"></a><h4 id="ODPNT-GUID-BD313895-9A96-4E1A-976E-C181598670AD" class="sect4">Characters in Table or View Name</h4>
+                  <div>
+                     <div class="section">
+                        <p>If a table or view name has any non-alphanumeric characters other than an underscore (_), the table or view name must be enclosed in quotation marks.</p>
+                        <p>For example, to select all entries from a table with the name <code class="codeph">test'ing</code>, the <code class="codeph">CommandText</code> property of the <code class="codeph">OracleCommand</code> object must be set to the following string:
+                        </p><pre class="oac_no_warn" dir="ltr">"select * from \"test'ing\"";</pre></div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT361"></a><div class="props_rev_3"><a id="GUID-762F4928-39AB-42BD-AF7F-B1A281354446" name="GUID-762F4928-39AB-42BD-AF7F-B1A281354446"></a><h4 id="ODPNT-GUID-762F4928-39AB-42BD-AF7F-B1A281354446" class="sect4">Case-Sensitivity in Column Name to XML Element Name Mapping</h4>
+                  <div>
+                     <div class="section">
+                        <p>The mapping of SQL identifiers (column names) to XML element names is case- sensitive, and the element names are in exactly the same case as the column names of the table or view.</p>
+                        <p>However, the root tag and row tag names are case-insensitive. The following example demonstrates case-sensitivity in this situation:</p><pre class="oac_no_warn" dir="ltr">//Create the following table
+create table casesensitive_table ("Id" number, NAME varchar2(255));
+ 
+//insert name and id
+insert into casesensitive_table values(1, 'Smith');
+ </pre><p>The following XML document is generated:</p><pre class="oac_no_warn" dir="ltr">&lt;?xml version = '1.0'?&gt;
+  &lt;ROWSET&gt;
+    &lt;ROW&gt;
+      &lt;Id&gt;1&lt;/Id&gt;
+      &lt;NAME&gt;Smith&lt;/NAME&gt;
+    &lt;/ROW&gt;
+  &lt;/ROWSET&gt;
+</pre><p>Note that the element name for the <code class="codeph">Id</code> column matches the case of the column name.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT362"></a><div class="props_rev_3"><a id="GUID-5932D715-9E94-44CA-A0BC-ACF904122149" name="GUID-5932D715-9E94-44CA-A0BC-ACF904122149"></a><h4 id="ODPNT-GUID-5932D715-9E94-44CA-A0BC-ACF904122149" class="sect4">Column Name to XML Element Name Mapping</h4>
+                  <div>
+                     <div class="section">
+                        <p>For each row generated by the SQL query, the SQL identifier (column name) maps to an XML element in the generated XML document, as shown in the following example:</p><pre class="oac_no_warn" dir="ltr">// Create the following table
+create table emp_table (<span>EMPLOYEE_ID</span> NUMBER(4), <span>LAST_NAME</span> varchar2(25));
+// Insert some data
+insert into emp_table values(205, 'Higgins');
+</pre><p>The SQL query, <code class="codeph">SELECT</code> <code class="codeph">*</code> <code class="codeph">FROM</code> <code class="codeph">EMP_TABLE</code>, generates the following XML document:
+                        </p><pre class="oac_no_warn" dir="ltr">&lt;?XML version="1.0"?&gt;
+  &lt;ROWSET&gt;
+    &lt;ROW&gt;
+      &lt;<span>EMPLOYEE_ID</span>&gt;205&lt;/<span>EMPLOYEE_ID</span>&gt;
+      &lt;<span>LAST_NAME</span>&gt;Higgins&lt;/<span>LAST_NAME</span>&gt;
+    &lt;/ROW&gt;
+  &lt;/ROWSET&gt;
+</pre><p>The <code class="codeph">EMPLOYEE_ID</code> and <code class="codeph">LAST_NAME</code> database columns of the <code class="codeph">employees</code> table map to the <code class="codeph">EMPLOYEE_ID</code> and <code class="codeph">LAST_NAME</code> elements of the generated XML document. 
+                        </p>
+                        <p>This section demonstrates how Oracle database handles the mapping of SQL identifiers to XML element names, when retrieving query results as XML from the database. The demonstration uses the <code class="codeph">specialchars</code> table involving the <code class="codeph">some</code> <code class="codeph">id</code> column.
+                        </p><pre class="oac_no_warn" dir="ltr">// Create the specialchars table
+create table specialchars ("<code class="codeph">some</code> <code class="codeph">id</code>" number, name varchar2(255));
+</pre><p>Note that the <code class="codeph">specialchars</code> table has a column named <code class="codeph">some</code> <code class="codeph">id</code> that contains a blank space character. The space character is not allowed in an XML element name.
+                        </p>
+                        <p>When retrieving the query results as XML, the SQL identifiers in the query select list can contain characters that are not valid in XML element names. When these SQL identifiers (such as column names) are mapped to XML element names, each of these characters is converted to a sequence of hexadecimal digits, derived from the Unicode encoding of the characters, bracketed by an introductory underscore, a lowercase x, and a trailing underscore.</p>
+                        <p>Thus, the SQL query in the following example can be used to get a result as an XML document from the <code class="codeph">specialchars</code> table:
+                        </p><pre class="oac_no_warn" dir="ltr">select "some id", name from specialchars;
+</pre><div class="infoboxnotealso" id="GUID-5932D715-9E94-44CA-A0BC-ACF904122149__GUID-9A93932D-608B-4B13-9550-AC1F01EC4591">
+                           <p class="notep1">See Also:</p>
+                           <p><span class="q">"<a href="featXML.html#GUID-F5DE47B6-9D9B-474C-9578-AD9CDFCE0187">Characters with Special Meaning in XML</a>"</span></p>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div><a id="ODPNT363"></a><div class="props_rev_3"><a id="GUID-BEB8EA39-6F4F-4951-9C18-BF0507E1662D" name="GUID-BEB8EA39-6F4F-4951-9C18-BF0507E1662D"></a><h5 id="ODPNT-GUID-BEB8EA39-6F4F-4951-9C18-BF0507E1662D" class="sect5">Improving Default Mapping</h5>
+                     <div>
+                        <div class="section">
+                           <p>You can improve the default mapping of SQL identifiers to XML element names by using the following techniques:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>Modify the source. Create an object-relational view over the source schema, and make that view the new source.</p>
+                              </li>
+                              <li>
+                                 <p>Use cursor subqueries and cast-multiset constructs in the SQL query.</p>
+                              </li>
+                              <li>
+                                 <p>Create an alias for the column or attribute names in the SQL query. Prefix the aliases with an at sign (@) to map them to XML attributes instead of XML elements.</p>
+                              </li>
+                              <li>
+                                 <p>Modify the XML document. Use <a href="glossary.html#GUID-135CBF6C-46CF-4CD9-A9B9-2D40EAB08F50"><span class="xrefglossterm">Extensible Stylesheet Language Transformation (XSLT)</span></a> to transform the XML document. Specify the XSL document and parameters. The transformation is done automatically after the XML document is generated from the relational data. Note that this may have an impact on performance.
+                                 </p>
+                              </li>
+                              <li>
+                                 <p>Specify the name of the root tag and row tag used in the XML document.</p>
+                              </li>
+                           </ul>
+                        </div>
+                        <!-- class="section" -->
+                     </div>
+                  </div>
+               </div><a id="ODPNT364"></a><div class="props_rev_3"><a id="GUID-337962B4-C0A7-4487-B36C-4547A82099E3" name="GUID-337962B4-C0A7-4487-B36C-4547A82099E3"></a><h4 id="ODPNT-GUID-337962B4-C0A7-4487-B36C-4547A82099E3" class="sect4">Object-Relational Data</h4>
+                  <div>
+                     <div class="section">
+                        <p>ODP.NET can generate an XML document for data stored in object-relational columns, tables, and views, as shown in the following example:</p><pre class="oac_no_warn" dir="ltr">// Create the following tables and types
+CREATE TYPE "EmployeeType" AS OBJECT (EMPNO NUMBER, ENAME VARCHAR2(20));
+/
+CREATE TYPE EmployeeListType AS TABLE OF "EmployeeType";
+/
+CREATE TABLE mydept (DEPTNO NUMBER, DEPTNAME VARCHAR2(20), 
+              EMPLIST EmployeeListType)
+              NESTED TABLE EMPLIST STORE AS EMPLIST_TABLE;
+INSERT INTO mydept VALUES (1, 'depta',
+              EmployeeListType("EmployeeType"(1, 'empa')));
+</pre><p>The following XML document is generated for the table:</p><pre class="oac_no_warn" dir="ltr">&lt;?xml version = "1.0"?&gt;
+&lt;ROWSET&gt;
+   &lt;ROW&gt;
+      &lt;DEPTNO&gt;1&lt;/DEPTNO&gt;
+      &lt;DEPTNAME&gt;depta&lt;/DEPTNAME&gt;
+      &lt;EMPLIST&gt;
+         &lt;<span class="bold">EmployeeType</span>&gt;
+            &lt;EMPNO&gt;1&lt;/EMPNO&gt;
+            &lt;ENAME&gt;empa&lt;/ENAME&gt;
+         &lt;/<span class="bold">EmployeeType</span>&gt;
+      &lt;/EMPLIST&gt;
+   &lt;/ROW&gt;
+&lt;/ROWSET&gt;
+</pre><p>ODP.NET encloses each item in a collection element, with the database type name of the element in the collection. The <code class="codeph">mydept</code> table has a collection in the <code class="codeph">EMPLIST</code> database column and each item in the collection is of type <code class="codeph">EmployeeType</code>. Therefore, in the XML document, each item in the collection is enclosed in the type name <code class="codeph">EmployeeType</code>, which appears in bold in the example.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT365"></a><div class="props_rev_3"><a id="GUID-02E537DE-9619-4F7C-9008-9F1C38B1FB06" name="GUID-02E537DE-9619-4F7C-9008-9F1C38B1FB06"></a><h4 id="ODPNT-GUID-02E537DE-9619-4F7C-9008-9F1C38B1FB06" class="sect4">NULL Values</h4>
+                  <div>
+                     <div class="section">
+                        <p>If any database row has a column with a <code class="codeph">NULL</code> value, then that column does not appear for that row in the generated XML document.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div><a id="ODPNT366"></a><div class="props_rev_3"><a id="GUID-B0C930B5-E66D-49E4-B1C4-C5EA9C0F5C27" name="GUID-B0C930B5-E66D-49E4-B1C4-C5EA9C0F5C27"></a><h3 id="ODPNT-GUID-B0C930B5-E66D-49E4-B1C4-C5EA9C0F5C27" class="sect3">Data Manipulation Using XML</h3>
+               <div>
+                  <p>This section discusses making changes to the database data using XML.</p>
+               </div><a id="ODPNT367"></a><div class="props_rev_3"><a id="GUID-8992EAEC-AFBE-4FCC-ABBB-1FBC263C7A2B" name="GUID-8992EAEC-AFBE-4FCC-ABBB-1FBC263C7A2B"></a><h4 id="ODPNT-GUID-8992EAEC-AFBE-4FCC-ABBB-1FBC263C7A2B" class="sect4">Handling Date and Time Format</h4>
+                  <div>
+                     <div class="section">
+                        <p>The generated XML <code class="codeph">DATE</code> and <code class="codeph">TIMESTAMP</code> formats are based on the standard XML Schema formats.
+                        </p>
+                        <div class="infoboxnotealso" id="GUID-8992EAEC-AFBE-4FCC-ABBB-1FBC263C7A2B__GUID-88A2B735-8233-49E5-977B-3B07C3DF08E1">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="https://www.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/odpnt&amp;id=w3_org_xschema_isoformats" target="_blank"><code class="codeph">http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/datatypes.html#isoformats</code></a> for more information on the XML Schema specification.
+                           </p>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT369"></a><div class="props_rev_3"><a id="GUID-FCD945D9-6F08-4765-8E6E-BD49D84AAFDD" name="GUID-FCD945D9-6F08-4765-8E6E-BD49D84AAFDD"></a><h4 id="ODPNT-GUID-FCD945D9-6F08-4765-8E6E-BD49D84AAFDD" class="sect4">Saving Changes Using XML</h4>
+                  <div>
+                     <div class="section">
+                        <p>Changes can be saved to database tables and views using XML data. However, insert, update, and delete operations cannot be combined in a single XML document. ODP.NET cannot accept a single XML document and determine which are insert, update, or delete changes.</p>
+                        <p>The insert change must be in an XML document containing only rows to be inserted, the update changes only with rows to be updated, and the delete changes only with rows to be deleted. </p>
+                        <p>For example, using the <code class="codeph">employees</code> table that comes with the HR sample schema, you can specify the following query:
+                        </p><pre class="oac_no_warn" dir="ltr">select employee_id, last_name from employees where employee_id = 205;
+</pre><p>The following XML document is generated:</p><pre class="oac_no_warn" dir="ltr">&lt;?xml version = '1.0'?&gt;
+&lt;ROWSET&gt;
+   &lt;ROW&gt;
+      &lt;EMPLOYEE_ID&gt;205&lt;/EMPLOYEE_ID&gt;
+      &lt;LAST_NAME&gt;<span class="bold">Higgins</span>&lt;/LAST_NAME&gt;
+   &lt;/ROW&gt;
+&lt;/ROWSET&gt;
+</pre><p>To change the name of employee <code class="codeph">205</code> from <span class="bold"><code class="codeph">Higgins</code></span> to <span class="bold"><code class="codeph">Smith</code></span>, specify the <code class="codeph">employees</code> table and the XML data containing the changes as follows:
+                        </p><pre class="oac_no_warn" dir="ltr">&lt;?xml version = '1.0'?&gt;
+&lt;ROWSET&gt;
+   &lt;ROW&gt;
+      &lt;EMPLOYEE_ID&gt;205&lt;/EMPLOYEE_ID&gt;
+      &lt;LAST_NAME&gt;<span class="bold">Smith</span>&lt;/LAST_NAME&gt;
+   &lt;/ROW&gt;
+&lt;/ROWSET&gt;</pre></div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT370"></a><div class="props_rev_3"><a id="GUID-70929FD2-3989-46F1-959D-8316A30673AE" name="GUID-70929FD2-3989-46F1-959D-8316A30673AE"></a><h4 id="ODPNT-GUID-70929FD2-3989-46F1-959D-8316A30673AE" class="sect4">Characters with Special Meaning in Column Data</h4>
+                  <div>
+                     <div class="section">
+                        <p>If the data in any of the elements in the XML document contains characters that have a special meaning in XML (see <a href="featXML.html#GUID-F5DE47B6-9D9B-474C-9578-AD9CDFCE0187__BABDGBDA" title="First column:special characters, second column: Meaning in XML, third column: entity encoding">Table 3-20</a>), these characters must be replaced with appropriate entity encoding, or be preceded by an escape character in the XML document, so that the data is stored correctly in the database table column. Otherwise, ODP.NET throws an exception.
+                        </p>
+                        <p>The following example demonstrates how ODP.NET handles the angle bracket special characters in the column data, using entity encoding:</p><pre class="oac_no_warn" dir="ltr">// Create the following table
+create table specialchars ("id" number, name varchar2(255));
+</pre><p>The following XML document can be used to insert values <code class="codeph">(1,</code> <code class="codeph">'&lt;Jones&gt;')</code> into the <code class="codeph">specialchars</code> table. The XML entity encoding that represents the angle brackets appears in bold.
+                        </p><pre class="oac_no_warn" dir="ltr">&lt;?xml version = '1.0'?&gt;
+ &lt;ROWSET&gt;
+  &lt;ROW&gt;
+   &lt;id&gt;1&lt;/id &gt;
+   &lt;NAME&gt;<span class="bold">&amp;lt;</span>Jones<span class="bold">&amp;gt;</span>&lt;/NAME&gt;
+  &lt;/ROW&gt;
+ &lt;/ROWSET&gt;</pre></div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT371"></a><div class="props_rev_3"><a id="GUID-10B15F63-A75A-45DB-B372-A5A0EC1D1726" name="GUID-10B15F63-A75A-45DB-B372-A5A0EC1D1726"></a><h4 id="ODPNT-GUID-10B15F63-A75A-45DB-B372-A5A0EC1D1726" class="sect4">Characters with Special Meaning in Table or View Name </h4>
+                  <div>
+                     <div class="section">
+                        <p>If a table or view name has any non-alphanumeric characters other than an underscore (_), the table or view name must be enclosed in quotation marks.</p>
+                        <p>For example, to save changes to a table with the name <code class="codeph">test'ing</code>, the <code class="codeph">OracleCommand.XmlSaveProperties.TableName</code> property must be set to <code class="codeph">"\"test'ing\""</code>.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT372"></a><div class="props_rev_3"><a id="GUID-64A3C44B-4E8A-423E-B97D-AAF2B7660D59" name="GUID-64A3C44B-4E8A-423E-B97D-AAF2B7660D59"></a><h4 id="ODPNT-GUID-64A3C44B-4E8A-423E-B97D-AAF2B7660D59" class="sect4">Case-Sensitivity in XML Element Name to Column Name Mapping</h4>
+                  <div>
+                     <div class="section">
+                        <p>For each XML element that represents a row of data in the XML document, the child XML elements map to database column names. The mapping of the child element name to the column name is always case-sensitive, but the root tag and row tag names are case-insensitive. The following example demonstrates this case-sensitivity:</p><pre class="oac_no_warn" dir="ltr">//Create the following table
+create table casesensitive_table ("Id" number, NAME varchar2(255));
+</pre><p>The following XML document can be used to insert values (<code class="codeph">1</code>, <code class="codeph">Smith</code>) into the    <code class="codeph">casesensitive_table</code>:
+                        </p><pre class="oac_no_warn" dir="ltr">&lt;?xml version = '1.0'?&gt;
+  &lt;ROWSET&gt;
+    &lt;ROW&gt;
+      &lt;<span>Id</span>&gt;1&lt;/<span>Id</span>&gt;
+      &lt;NAME&gt;Smith&lt;/NAME&gt;
+    &lt;/ROW&gt;
+  &lt;/ROWSET&gt;
+</pre><p>Note that the element name for the <code class="codeph">Id</code> column matches the case of the column name.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT373"></a><div class="props_rev_3"><a id="GUID-8FBC4020-A9F7-4CA5-91D4-4A62EFE741F2" name="GUID-8FBC4020-A9F7-4CA5-91D4-4A62EFE741F2"></a><h4 id="ODPNT-GUID-8FBC4020-A9F7-4CA5-91D4-4A62EFE741F2" class="sect4">XML Element Name to Column Name Mapping</h4>
+                  <div>
+                     <div class="section">
+                        <p>This section describes how Oracle database handles the mapping of XML element names to column names when using XML for data manipulation in the database. The following <code class="codeph">specialchars</code> table involving the <code class="codeph">some</code> <code class="codeph">id</code> column demonstrates this handling.
+                        </p><pre class="oac_no_warn" dir="ltr">// Create the specialchars table
+create table specialchars ("<code class="codeph">some</code> <code class="codeph">id</code>" number, name varchar2(255));
+</pre><p>Note that the <code class="codeph">specialchars</code> table has a column named <code class="codeph">some</code> <code class="codeph">id</code> that contains a blank space character. The space character is not allowed in an XML element name.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT374"></a><div class="props_rev_3"><a id="GUID-05517D62-EC3A-4AC7-B8F1-ED7FB6498BBF" name="GUID-05517D62-EC3A-4AC7-B8F1-ED7FB6498BBF"></a><h4 id="ODPNT-GUID-05517D62-EC3A-4AC7-B8F1-ED7FB6498BBF" class="sect4">Saving Changes to a Table Using an XML Document </h4>
+                  <div>
+                     <div class="section">
+                        <p>When an XML document is used to save changes to a table or view, the <code class="codeph">OracleCommand.XmlSaveProperties.UpdateColumnsList</code> property is used to specify the list of columns to update or insert.
+                        </p>
+                        <p>When an XML document is used to save changes to a column in a table or view, and the corresponding column name contains any of the characters that are not valid in an XML element name, the escaped column name must be specified in the <code class="codeph">UpdateColumnsList</code> property as in the following example. 
+                        </p>
+                        <p>The following XML document can be used to insert values (<code class="codeph">2</code>, <code class="codeph">&lt;Jones&gt;</code>) into the <code class="codeph">specialchars</code> table:
+                        </p><pre class="oac_no_warn" dir="ltr">&lt;?xml version = '1.0'?&gt;
+  &lt;ROWSET&gt;
+    &lt;ROW&gt;
+      &lt;some_x0020_id&gt;2&lt;/some_x0020_id&gt;
+      &lt;NAME&gt;&amp;lt;Jones&amp;gt;&lt;/NAME&gt;
+    &lt;/ROW&gt;
+  &lt;/ROWSET&gt;
+</pre><p>The following example specifies the list of columns to update or insert:</p><pre class="oac_no_warn" dir="ltr">/* Database Setup
+connect scott/tiger@oracle
+drop table specialchars;
+create table specialchars ("some id" number, name varchar2(255));
+insert into specialchars values (1, '&lt;Jones&gt;');
+commit;
+*/
+ 
+// C#
+ 
+using System;
+using System.Data;
+using System.Xml;
+using Oracle.DataAccess.Client; 
+ 
+class InsertUsingXmlDocSample
+{
+  static void Main()
+  {
+    OracleConnection con = new OracleConnection();
+ 
+    con.ConnectionString = "User Id=scott;Password=tiger;Data Source=oracle;";
+    con.Open();
+    Console.WriteLine("Connected Successfully");
+ 
+    // Create the command
+    OracleCommand cmd = new OracleCommand("", con);
+ 
+    // Set the XML command type to query.
+    cmd.XmlCommandType = OracleXmlCommandType.Insert;
+ 
+    // Set the XML document
+    cmd.CommandText = "&lt;?xml version = '1.0'?&gt;\n" + "&lt;ROWSET&gt;\n" + "&lt;ROW&gt;\n" +
+      "&lt;some_x0020_id&gt;2&lt;/some_x0020_id&gt;\n" + "&lt;NAME&gt;&amp;lt;Jones&amp;gt;&lt;/NAME&gt;\n" + 
+      "&lt;/ROW&gt;\n" + "&lt;/ROWSET&gt;\n";
+    cmd.XmlSaveProperties.Table = "specialchars";
+ 
+    string[] ucols = new string[2];
+ 
+    ucols[0] = "some_x0020_id";
+    ucols[1] = "NAME";
+    cmd.XmlSaveProperties.UpdateColumnsList = ucols;
+ 
+    // Insert rows
+    int rows = cmd.ExecuteNonQuery();
+ 
+    Console.WriteLine("Number of rows inserted successfully : {0} ", rows);
+ 
+    // Close and Dispose OracleConnection object
+    con.Close();
+    con.Dispose();
+  }
+}</pre></div>
+                     <!-- class="section" -->
+                  </div><a id="ODPNT375"></a><div class="props_rev_3"><a id="GUID-231574B5-C0C8-4727-8FF1-80D2288BDAD3" name="GUID-231574B5-C0C8-4727-8FF1-80D2288BDAD3"></a><h5 id="ODPNT-GUID-231574B5-C0C8-4727-8FF1-80D2288BDAD3" class="sect5">Improving Default Mapping</h5>
+                     <div>
+                        <div class="section">
+                           <p>You can improve the default mapping by using the following techniques:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>Modify the target. Create an object-relational view over the target schema, and make the view the new target.</p>
+                              </li>
+                              <li>
+                                 <p>Modify the XML document. Use XSLT to transform the XML document. Specify the XSL document and parameters. The transformation is done before the changes are saved. Note that this is may have an impact on performance. </p>
+                              </li>
+                              <li>
+                                 <p>Specify the name of the row tag used in the XML document. </p>
+                              </li>
+                           </ul>
+                        </div>
+                        <!-- class="section" -->
+                     </div>
+                  </div>
+               </div><a id="ODPNT376"></a><div class="props_rev_3"><a id="GUID-0A4E9763-1653-47AA-A46F-61C8695E7437" name="GUID-0A4E9763-1653-47AA-A46F-61C8695E7437"></a><h4 id="ODPNT-GUID-0A4E9763-1653-47AA-A46F-61C8695E7437" class="sect4">Object-Relational Data</h4>
+                  <div>
+                     <div class="section">
+                        <p>Changes in an XML document can also be saved to object-relational data. Each item in a collection can be specified in one of the following ways in the XML document: </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>By enclosing the database type name of the item as the XML element name. </p>
+                           </li>
+                           <li>
+                              <p>By enclosing the name of the database column holding the collection with              <code class="codeph">_ITEM</code> appended as the XML element name. 
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT377"></a><div class="props_rev_3"><a id="GUID-B8C1BB52-B482-4344-A575-2AE7AFB0971E" name="GUID-B8C1BB52-B482-4344-A575-2AE7AFB0971E"></a><h4 id="ODPNT-GUID-B8C1BB52-B482-4344-A575-2AE7AFB0971E" class="sect4">Multiple Tables</h4>
+                  <div>
+                     <div class="section">
+                        <p>Oracle Database does not save changes to multiple relational tables that have been joined together. Oracle recommends that you create a view on those relational tables, and then update that view. If the view cannot be updated, triggers can be used instead. </p>
+                        <div class="infoboxnotealso" id="GUID-B8C1BB52-B482-4344-A575-2AE7AFB0971E__GUID-90DE2408-8822-4A20-9503-69C30BB86493">
+                           <p class="notep1">See Also:</p>
+                           <p> <a href="../sqlrf/ALTER-USER.html#SQLRF01103" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a> for the description and syntax of the <code class="codeph">CREATE</code> <code class="codeph">VIEW</code> statement
+                           </p>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT378"></a><div class="props_rev_3"><a id="GUID-9924B78F-43DD-4407-B9D8-A44143E90C5F" name="GUID-9924B78F-43DD-4407-B9D8-A44143E90C5F"></a><h4 id="ODPNT-GUID-9924B78F-43DD-4407-B9D8-A44143E90C5F" class="sect4">Commit Transactions</h4>
+                  <div>
+                     <div class="section">
+                        <p>When the changes in an XML document are made, either all the changes are committed, or if an error occurs, all changes are rolled back.</p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

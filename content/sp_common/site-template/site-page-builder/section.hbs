@@ -1,0 +1,93 @@
+{{#if_path @root.page.title}}
+
+    {{#if image}}
+        <div style="display:table;width:100%;height:auto;">
+        <img style="display:table-cell;width:auto;height:auto;padding-left:20px;padding-right:20px;vertical-align:top;" src="{{@root.imageprefix}}{{image}}" alt="{{alt}}">
+        <div style="display:table-cell;width:100%;height:auto;vertical-align:top;">
+    {{/if}}
+
+    {{#if title}}<h2 id="{{encodeURIComponent title}}{{@../index}}">{{#if href}}<a {{#if always_new}}class="newwindow"{{/if}}{{#if never_new}}class="notnew"{{/if}} href="{{href}}">{{{title}}}</a>{{else}}{{{title}}}{{/if}}</h2>{{/if}}
+
+{{else}}
+
+    {{#if title}}<h2 id="{{encodeURIComponent title}}{{@../index}}">{{#if href}}<a {{#if always_new}}class="newwindow"{{/if}}{{#if never_new}}class="notnew"{{/if}} href="{{href}}">{{{title}}}</a>{{else}}{{{title}}}{{/if}}</h2>{{/if}}
+
+    {{#if image}}
+        <div style="display:table;width:100%;height:auto;">
+        <img style="display:table-cell;width:auto;height:auto;padding-left:20px;padding-right:20px;vertical-align:top;" src="{{@root.imageprefix}}{{image}}" alt="{{alt}}">
+        <div style="display:table-cell;width:100%;height:auto;vertical-align:top;">
+    {{/if}}
+
+{{/if_path}}
+
+
+{{#if description}}<div class="description">{{{description}}}</div>{{/if}}
+{{#if topics}}
+<ul class="topics">
+{{#each topics}}
+    <li>{{> topicPartial}}{{#if topics}}<ul class="subtopics">{{#each topics}}<li>{{> topicPartial}}</li>{{/each}}</ul>{{/if}}</li>
+{{/each}}
+</ul>
+{{/if}}
+
+<div class="section row">
+    {{#each sections}}
+
+    <div class="subsection col-md-6">
+        {{#if large_logo}}
+        {{#if href}}<a {{#if always_new}}class="newwindow"{{/if}}{{#if never_new}}class="notnew"{{/if}} href="{{href}}">{{/if}}
+        <header class="large-logo">
+            <div class="circle medium-circle"></div>
+            <div class="circle small-circle"></div>
+            <div class="outerlogo"><img class="logo" src="{{@root.imageprefix}}{{large_logo}}" alt="{{title}}" ></div>
+            {{#if banner}}<div class="ribbon">{{banner}}</div>{{/if}}
+        </header>
+        {{#if href}}</a>{{/if}}
+        <div class="section-border">
+        {{/if}}
+
+        {{#if small_logo}}
+        <header class="small-logo">
+            <div class="bar"></div>
+            <div class="outerlogo"><img class="logo" src="{{@root.imageprefix}}{{small_logo}}" alt="" ></div>
+            {{#if banner}}<div class="ribbon">{{banner}}</div>{{/if}}
+        </header>
+        <div class="section-border">
+        {{/if}}
+
+        {{#if title}}<h3>{{#if href}}<a {{#if always_new}}class="newwindow"{{/if}}{{#if never_new}}class="notnew"{{/if}} href="{{href}}">{{{title}}}</a>{{else}}{{{title}}}{{/if}}</h3>{{/if}}
+
+        <!-- text block -->
+        {{#if description}}<div class="description">{{{description}}}</div>{{/if}}
+        {{#if topics}}
+		<ul class="topics">
+		{{#each topics}}
+			<li>{{> topicPartial}}{{#if topics}}<ul class="subtopics">{{#each topics}}<li>{{> topicPartial}}</li>{{/each}}</ul>{{/if}}</li>
+		{{/each}}
+		</ul>
+		{{/if}}
+
+        {{#if image}}
+        <img class="img-responsive" src="{{@root.imageprefix}}{{image}}" alt="{{alt}}">
+        {{/if}}
+
+        {{#if large_logo}}
+        </div>
+        {{/if}}
+
+        {{#if small_logo}}
+        </div>
+        {{/if}}
+    </div>
+
+    {{#if_odd @index}}
+    <div class="clearfix visible-md-block visible-lg-block"></div>
+    {{/if_odd}}
+
+    {{/each}}
+</div>
+
+{{#if image}}
+    </div>
+    </div>
+{{/if}}

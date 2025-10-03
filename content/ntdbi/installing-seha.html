@@ -1,0 +1,131 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Deploying Standard Edition High Availability">
+      <meta name="abstract" content="Learn the process and options to deploy high availability on Oracle Database Standard Edition 2.">
+      <meta name="description" content="Learn the process and options to deploy high availability on Oracle Database Standard Edition 2.">
+      <meta name="DC.Relation" scheme="URI" content="configuring-standard-edition-high-availability.html#GUID-B4071766-F926-469F-9F9E-AB82E62236C8">
+      <meta name="DC.Relation" scheme="URI" content="installing-standard-edition-high-availability-on-local-file-system.html#GUID-DE5A868A-F481-4C6B-88CE-1911DC4D5EB7">
+      <meta name="DC.Relation" scheme="URI" content="installing-standard-edition-high-availability-database-software-on-oracle-acfs.html#GUID-B9058C71-A927-4CA0-BC2E-2E442401D835">
+      <meta name="DC.Relation" scheme="URI" content="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/ntdbi&amp;id=CWLIN-GUID-D4E3FADF-360E-49EB-89A2-E4CBBB9CC61F">
+      <meta name="DC.Contributor" content="Prakash Jashnani">
+      <meta name="DC.Contributor" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Barb Glover">
+      <meta name="DC.Creator" content="Eric Belden">
+      <meta name="DC.Creator" content="Sudip Datta">
+      <meta name="DC.Creator" content="David Friedman">
+      <meta name="DC.Creator" content="Alex Keh">
+      <meta name="DC.Creator" content="Peter LaQuerre">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Matt McKerley">
+      <meta name="DC.Creator" content="Sham Rao Pavan">
+      <meta name="DC.Creator" content="Hanlin Qian">
+      <meta name="DC.Creator" content="Sujatha Tolstoy">
+      <meta name="DC.Creator" content="Sergiusz Wolicki">
+      <meta name="DC.Creator" content="Sue Mavris">
+      <meta name="DC.Creator" content="Mohammed Shahnawaz Quadri">
+      <meta name="DC.Creator" content="Vishal Saxena">
+      <meta name="DC.Creator" content="Krishna Itikarlapalli">
+      <meta name="DC.Creator" content="Santanu Datta, Christian Shay, Aneesh Khanderwal">
+      <meta name="DC.Creator" content="Michael Coulter">
+      <meta name="DC.Creator" content="Robert Achacoso">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="David Price">
+      <meta name="DC.Creator" content="Ramesh Chakravarthula">
+      <meta name="DC.Creator" content="Sunil Surabhi">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-A7A88796-A778-47DD-BC00-53F1F1721B2D">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Learn the process and options to deploy high availability on Oracle Database Standard Edition 2.">
+      <meta name="description" content="Learn the process and options to deploy high availability on Oracle Database Standard Edition 2.">
+      <title>Deploying Standard Edition High Availability</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Installation Guide ">
+      <meta property="og:description" content="Learn the process and options to deploy high availability on Oracle Database Standard Edition 2.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Installation Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-database-installation-guide-microsoft-windows.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-12T05:33:31-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2015, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96293-10">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="guidelines-for-seha.html" title="Previous" type="text/html">
+      <link rel="next" href="installing-standard-edition-high-availability-on-local-file-system.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Database Installation Guide for Microsoft Windows">
+    <meta name="dcterms.isVersionOf" content="NTDBI">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Deploying Standard Edition High Availability","description":"Learn the process and options to deploy high availability on Oracle Database Standard Edition 2.","datePublished":"2025-06-12 CST","dateModified":"2025-06-12 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="guidelines-for-seha.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="installing-standard-edition-high-availability-on-local-file-system.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-A7A88796-A778-47DD-BC00-53F1F1721B2D" name="GUID-A7A88796-A778-47DD-BC00-53F1F1721B2D"></a>
+         
+         <h2 id="NTDBI-GUID-A7A88796-A778-47DD-BC00-53F1F1721B2D" class="sect2">Deploying Standard Edition High Availability</h2>
+         <div class="ind">
+            <div>
+               <p>Learn the process and options to deploy high availability on Oracle Database
+        Standard Edition 2.</p>
+               <p>After installing Oracle Clusterware, as described in <span class="italic">Oracle Grid Infrastructure
+                Installation and Upgrade Guide</span> for your platform, install single instance
+            Standard Edition 2 Oracle Database software on the cluster nodes on which you want to
+            configure Standard Edition High Availability.
+               </p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="installing-standard-edition-high-availability-on-local-file-system.html#GUID-DE5A868A-F481-4C6B-88CE-1911DC4D5EB7">Installing Standard Edition High Availability Database Software on Local File System</a><br>You can install Oracle Database software binaries on a local file system to         enable the Oracle Database Standard Edition high availability feature.
+                  </li>
+                  <li class="ulchildlink"><a href="installing-standard-edition-high-availability-database-software-on-oracle-acfs.html#GUID-B9058C71-A927-4CA0-BC2E-2E442401D835">Installing Standard Edition High Availability Database Software on Oracle ACFS</a><br>You can install Oracle Database software binaries on an Oracle ASM         Cluster File System (Oracle ACFS) volume to enable the Oracle Database Standard Edition High         Availability feature.
+                  </li>
+               </ul>
+               <div class="relinfo">
+                  <p><strong>Related Topics</strong></p>
+                  <ul>
+                     <li><a href="../cwlin/installing-oracle-grid-infrastructure.html#CWLIN-GUID-D4E3FADF-360E-49EB-89A2-E4CBBB9CC61F" target="_blank"><span><cite>Oracle Grid Infrastructure Installation and Upgrade Guide for Linux</cite></span></a></li>
+                  </ul>
+               </div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="configuring-standard-edition-high-availability.html#GUID-B4071766-F926-469F-9F9E-AB82E62236C8" title="Learn how to Install high availability on Oracle Database Standard Edition 2.">Installing Standard Edition High Availability</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

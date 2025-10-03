@@ -1,0 +1,939 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Oracle Database Configuration Best Practices">
+      <meta name="abstract" content="Adopt the Oracle MAA best practices for configuring all Oracle single-instance databases to reduce or avoid outages, reduce the risk of corruption, and improve recovery performance.">
+      <meta name="description" content="Adopt the Oracle MAA best practices for configuring all Oracle single-instance databases to reduce or avoid outages, reduce the risk of corruption, and improve recovery performance.">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-F23901EF-C6BD-46FD-B418-1E1CA9915D6F">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Adopt the Oracle MAA best practices for configuring all Oracle single-instance databases to reduce or avoid outages, reduce the risk of corruption, and improve recovery performance.">
+      <meta name="description" content="Adopt the Oracle MAA best practices for configuring all Oracle single-instance databases to reduce or avoid outages, reduce the risk of corruption, and improve recovery performance.">
+      <title>Oracle Database Configuration Best Practices</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content="Adopt the Oracle MAA best practices for configuring all Oracle single-instance databases to reduce or avoid outages, reduce the risk of corruption, and improve recovery performance.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="overview-oracle-database-high-availability-best-practices.html" title="Previous" type="text/html">
+      <link rel="next" href="oracle-flashback-best-practices.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Oracle Database Configuration Best Practices","description":"Adopt the Oracle MAA best practices for configuring all Oracle single-instance databases to reduce or avoid outages, reduce the risk of corruption, and improve recovery performance.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="overview-oracle-database-high-availability-best-practices.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="oracle-flashback-best-practices.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-F23901EF-C6BD-46FD-B418-1E1CA9915D6F" name="GUID-F23901EF-C6BD-46FD-B418-1E1CA9915D6F"></a>
+         
+         <h2 id="HAOVW-GUID-F23901EF-C6BD-46FD-B418-1E1CA9915D6F" class="sect2"><span class="enumeration_chapter">9 </span>Oracle Database Configuration Best
+        Practices
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Adopt the Oracle MAA best practices for configuring all Oracle
+        single-instance databases to reduce or avoid outages, reduce the risk of corruption, and
+        improve recovery performance.</p>
+               <p>Note that the following Oracle Database best practices are used to configure the Oracle
+            MAA Bronze reference architecture, and they are also the base database base practices
+            for the other MAA reference architectures: Silver (Oracle RAC), Gold (Oracle Data
+            Guard), and Platinum (Oracle GoldenGate).</p>
+            </div>
+            <div class="sect2"><a id="GUID-42424382-7C5C-439B-8C8E-9C1690B6E488" name="GUID-42424382-7C5C-439B-8C8E-9C1690B6E488"></a><h3 id="HAOVW-GUID-42424382-7C5C-439B-8C8E-9C1690B6E488" class="sect3">Use a Server Parameter File
+        (SPFILE)</h3>
+               <div>
+                  <p>The server parameter file (SPFILE) enables a single, central parameter file
+        to hold all database initialization parameters associated with all instances of a database.
+        This provides a simple, persistent, and robust environment for managing database parameters.
+        SPFILE is recommended to be placed in the DATA ASM disk group.</p>
+                  <p></p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-49CEBEF0-2369-48B3-9AF7-8D4E0D6A3956" name="GUID-49CEBEF0-2369-48B3-9AF7-8D4E0D6A3956"></a><h3 id="HAOVW-GUID-49CEBEF0-2369-48B3-9AF7-8D4E0D6A3956" class="sect3">Enable Archive Log Mode and Forced
+        Logging</h3>
+               <div>
+                  <p>Running the database in <code class="codeph">ARCHIVELOG</code> mode and using database
+            <code class="codeph">FORCE LOGGING</code> mode are prerequisites for database recovery
+        operations.
+                  </p>
+                  <p>The <code class="codeph">ARCHIVELOG</code> mode enables online database backup and is necessary to
+            recover the database to a point in time later than what has been restored. Features such
+            as Oracle Data Guard and Flashback Database require that the production database run in
+                <code class="codeph">ARCHIVELOG</code> mode.
+                  </p>
+                  <p>If you can isolate data that never needs to be recovered within specific tablespaces,
+            then you can use tablespace level <code class="codeph">FORCE LOGGING</code> attributes instead of
+            the database <code class="codeph">FORCE LOGGING</code> mode.
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-255D5AAD-323B-41D1-9782-16F57A14232E" name="GUID-255D5AAD-323B-41D1-9782-16F57A14232E"></a><h3 id="HAOVW-GUID-255D5AAD-323B-41D1-9782-16F57A14232E" class="sect3">Configure an Alternate Local
+        Archiving Destination</h3>
+               <div>
+                  <p>The local archive destination, usually <code class="codeph">LOG_ARCHIVE_DEST_1</code>,
+        should have an alternate local destination on a different ASM disk group. This configuration
+        prevents database hanging due to lack of archive log space if
+            <code class="codeph">DB_RECOVERY_FILE_DEST</code> fills up or is unavailable for any
+        reason.
+                  </p>
+                  <div class="tblformal" id="GUID-255D5AAD-323B-41D1-9782-16F57A14232E__TABLE_FVC_L5V_3NB">
+                     <p class="titleintable">Table 9-1 Alternate Local Archiving Configuration Parameters</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Alternate Local Archiving Configuration Parameters" summary="configuration parameters and recommended settings for configuring an alternate&#xA;                local archiving destination" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d18782e108">Database Parameter</th>
+                              <th align="left" valign="bottom" width="0%" id="d18782e110">LOG_ARCHIVE_DEST_n parameter settings for local archive
+                            destinations</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d18782e114" headers="d18782e108 "><code class="codeph">LOG_ARCHIVE_DEST_<span class="variable" translate="no">n</span></code></td>
+                              <td align="left" valign="top" width="0%" headers="d18782e114 d18782e110 "><code class="codeph">LOCATION=USE_DB_FILE_RECOVERY_DEST</code><p><code class="codeph">VALID_FOR=(ALL_LOGFILES,ALL_ROLES)</code></p>
+                                 <p><code class="codeph">MAX_FAILURE=1</code></p>
+                                 <p><code class="codeph">REOPEN=5</code></p>
+                                 <p><code class="codeph">DB_UNIQUE_NAME=db_unique_name</code>
+                                of the database
+                                 </p>
+                                 <p><code class="codeph">ALTERNATE=</code>some other log
+                                archive destination. Must be log_archive_dest_[1-10] 
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d18782e140" headers="d18782e108 "><code class="codeph">LOG_ARCHIVE_DEST_<span class="codeinlineitalic">y</span></code></td>
+                              <td align="left" valign="top" width="0%" headers="d18782e140 d18782e110 "><code class="codeph">LOCATION=</code>A disk group other than the disk group used
+                            for <code class="codeph">DB_RECOVERY_FILE_DEST</code>. Usually the DATA disk
+                                    group.
+                                 <p><code class="codeph">VALID_FOR=(ALL_LOGFILES,ALL_ROLES)</code></p>
+                                 <p><code class="codeph">MAX_FAILURE=1</code></p>
+                                 <p><code class="codeph">REOPEN=5</code></p>
+                                 <p><code class="codeph">ALTERNATE=</code>
+                                the primary local archive log destination: usually
+                                    <code class="codeph">LOG_ARCHIVE_DEST_1</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d18782e168" headers="d18782e108 "><code class="codeph">DB_RECOVERY_FILE_DEST</code></td>
+                              <td align="left" valign="top" width="0%" headers="d18782e168 d18782e110 ">Archive destination, for example, a RECO disk group</td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d18782e174" headers="d18782e108 "><code class="codeph">LOG_ARCHIVE_DEST_STATE_<span class="variable" translate="no">n</span></code></td>
+                              <td align="left" valign="top" width="0%" headers="d18782e174 d18782e110 "><code class="codeph">ENABLE</code></td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d18782e183" headers="d18782e108 "><code class="codeph">LOG_ARCHIVE_DEST_STATE_<span class="variable" translate="no">y</span></code></td>
+                              <td align="left" valign="top" width="0%" headers="d18782e183 d18782e110 "><code class="codeph">ALTERNATE</code></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <p>Sample parameter settings:</p>
+                  <ul style="list-style-type: disc;" id="GUID-255D5AAD-323B-41D1-9782-16F57A14232E__UL_S2C_C5V_3NB">
+                     <li><code class="codeph">LOG_ARCHIVE_DEST_1='LOCATION=USE_DB_FILE_RECOVERY_DEST
+                    VALID_FOR=(ALL_LOGFILES,ALL_ROLES) MAX_FAILURE=1 REOPEN=5
+                        DB_UNIQUE_NAME=<span class="variable" translate="no">db_unique_name of the database</span>
+                    ALTERNATE=LOG_ARCHIVE_DEST_10'</code></li>
+                     <li><code class="codeph">LOG_ARCHIVE_DEST_10='LOCATION=+DATA VALID_FOR=(ALL_LOGFILES,ALL_ROLES)
+                    MAX_FAILURE=1 REOPEN=5 DB_UNIQUE_NAME=<span class="variable" translate="no">db_unique_name of the
+                        database</span> ALTERNATE=LOG_ARCHIVE_DEST_1'</code></li>
+                     <li><code class="codeph">LOG_ARCHIVE_DEST_STATE_1 =enable</code></li>
+                     <li><code class="codeph">LOG_ARCHIVE_DEST_STATE_10=alternate</code></li>
+                     <li><code class="codeph">DB_RECOVERY_FILE_DEST=<span class="variable" translate="no">typically the RECO disk
+                    group</span></code></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-DB511B6A-D220-4556-B31B-18E3D310BA61" name="GUID-DB511B6A-D220-4556-B31B-18E3D310BA61"></a><h3 id="HAOVW-GUID-DB511B6A-D220-4556-B31B-18E3D310BA61" class="sect3">Use a Fast Recovery Area</h3>
+               <div>
+                  <p>The Fast Recovery Area is Oracle-managed disk space that provides a
+        centralized disk location for backup and recovery files.</p>
+                  <p>The Fast Recovery Area is defined by setting the following database initialization
+            parameters:</p>
+                  <ul style="list-style-type: disc;" id="GUID-DB511B6A-D220-4556-B31B-18E3D310BA61__UL_XCR_KXV_3NB">
+                     <li>
+                        
+                        <p><code class="codeph">DB_RECOVERY_FILE_DEST</code> specifies the default location for the
+                    fast recovery area. Set this parameter to the RECO disk group.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">DB_RECOVERY_FILE_DEST_SIZE</code> specifies (in bytes) the hard limit
+                    on the total space to be used by database recovery files created in the recovery
+                    area location.
+                        </p>
+                        
+                        <p>Set this parameter to a value large enough to store archived logs, flashback logs
+                    and any local database backup files locally. Having the files locally can reduce
+                    your recovery time after restoring a backup. RMAN will automatically manage
+                    these files according to your RMAN backup and data retention policies. Typically
+                    customers store 24 hours of data in the destination </p>
+                        
+                        <p>When your system hosts many databases sharing the same
+                        <code class="codeph">DB_RECOVERY_FILE_DEST_SIZE</code>, space needs to manage and
+                    monitored holistically. Recommended to alert when RECO disk group for example is
+                    90% full.
+                        </p>
+                        
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-085B0118-D885-4636-93FC-D9E1668E6BCA" name="GUID-085B0118-D885-4636-93FC-D9E1668E6BCA"></a><h3 id="HAOVW-GUID-085B0118-D885-4636-93FC-D9E1668E6BCA" class="sect3">Enable Flashback Database</h3>
+               <div>
+                  <p>Flashback Database provides an efficient alternative to point-in-time
+        recovery for reversing unwanted database changes.</p>
+                  <p>Flashback Database lets you rewind an entire database backward in time, reversing the
+            effects of database changes within a time window. The effects are similar to database
+            point-in-time recovery. You can flash back a database by running a single RMAN command
+            or a SQL*Plus statement instead of using a complex procedure.</p>
+                  <p>To enable Flashback Database, configure a fast recovery area and set a flashback
+            retention target using the best practices listed below. This retention target specifies
+            how far back you can rewind a database with Flashback Database.</p>
+                  <ul style="list-style-type: disc;" id="GUID-085B0118-D885-4636-93FC-D9E1668E6BCA__UL_B5H_FYV_3NB">
+                     <li>
+                        
+                        <p>Know your application performance baseline before you enable flashback database
+                    to help determine the overhead and to assess the application workload
+                    implications of enabling flashback database.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Ensure that the fast recovery area space is sufficient to hold the flashback
+                    database flashback logs. A general rule of thumb is that the volume of flashback
+                    log generation is approximately the same order of magnitude as redo log
+                    generation. For example, if you intend to set
+                        <code class="codeph">DB_FLASHBACK_RETENTION_TARGET</code> to 24 hours, and if the
+                    database generates 20 GB of redo in a day, then allow 20 GB to 30 GB disk space
+                    for the flashback logs.
+                        </p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-085B0118-D885-4636-93FC-D9E1668E6BCA__UL_C5H_FYV_3NB">
+                           <li>
+                              
+                              <p>An additional method to determine fast recovery area sizing is to enable
+                            flashback database and allow the database to run for a short period of
+                            time (2-3 hours). Query
+                                <code class="codeph">V$FLASHBACK_DATABASE_STAT.ESTIMATED_FLASHBACK_SIZE</code>
+                            to retrieve the estimated amount of space required for the fast recovery
+                            area.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Note that the <code class="codeph">DB_FLASHBACK_RETENTION_TARGET</code> is a target
+                            and there is no guarantee that you can flashback the database that far.
+                            In some cases if there is space pressure in the fast recovery area where
+                            the flashback logs are stored, then the oldest flashback logs may be
+                            deleted. To guarantee a flashback point-in-time you must use guaranteed
+                            restore points.
+                              </p>
+                              
+                           </li>
+                        </ul>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Ensure that there is sufficient I/O bandwidth to the fast recovery area.
+                    Insufficient I/O bandwidth with flashback database on is usually indicated by a
+                    high occurrence of the <code class="codeph">FLASHBACK BUF FREE BY RVWR</code> wait
+                    event.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>To monitor the progress of a flashback database operation you can query the
+                        <code class="codeph">V$SESSION_LONGOPS</code> view. An example query to monitor
+                    progress is
+                        </p>
+                        <pre class="pre codeblock"><code>SELECT sofar, totalwork, units FROM v$session_longops WHERE opname = 'Flashback Database';</code></pre>
+                        </li>
+                     <li>
+                        
+                        <p>For repetitive tests where you must flashback to the same point, use flashback
+                    database guaranteed restore points instead of enabling flashback database. This
+                    will minimize space usage.</p>
+                        
+                     </li>
+                     <li>Flashback PDB can rewind a pluggable database without affecting other PDBs in the
+                CDB. You can also create PDB restore points.</li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-52AF17BA-37F9-4242-A8E3-81F7F24730A7" name="GUID-52AF17BA-37F9-4242-A8E3-81F7F24730A7"></a><h3 id="HAOVW-GUID-52AF17BA-37F9-4242-A8E3-81F7F24730A7" class="sect3">Set FAST_START_MTTR_TARGET
+        Initialization Parameter</h3>
+               <div>
+                  <p>With Fast-Start Fault Recovery, the <code class="codeph">FAST_START_MTTR_TARGET</code>
+        initialization parameter simplifies the configuration of recovery time from instance or
+        system failure.
+                  </p>
+                  <p>The <code class="codeph">FAST_START_MTTR_TARGET</code> parameter specifies a target for the expected
+            recovery time objective (RTO), which is the time, in seconds, that it should take to
+            start the instance and perform cache recovery. When you set this parameter, the database
+            manages incremental checkpoint writes in an attempt to meet the target. If you have
+            chosen a practical value for this parameter, then you can expect your database to
+            recover, on average, in approximately the number of seconds you have chosen.
+                  </p>
+                  <p>Initially, set the <code class="codeph">FAST_START_MTTR_TARGET</code> initialization parameter to
+            300 (seconds), or to the value required for your expected recovery time objective (RTO).
+            As you set or lower this value, database writer (DBWR) will become more active to meet
+            your recovery targets. 
+                  </p>
+                  <p>Make sure that you have sufficient IO bandwidth to handle potential higher load. See the
+            Database Performance Tuning Guide for information about monitoring and tuning
+                <code class="codeph">FAST_START_MTTR_TARGET</code>.
+                  </p>
+                  <p>Outage testing for cases such as node or instance failures during peak loads is
+            recommended. </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-58F56292-B014-4EBE-BA8F-BBA67B1DA2AD" name="GUID-58F56292-B014-4EBE-BA8F-BBA67B1DA2AD"></a><h3 id="HAOVW-GUID-58F56292-B014-4EBE-BA8F-BBA67B1DA2AD" class="sect3">Protect Against Data
+        Corruption</h3>
+               <div>
+                  <p>Oracle Database corruption prevention, detection, and repair capabilities
+        are built on internal knowledge of the data and transactions it protects, and on the
+        intelligent integration of its comprehensive high availability solutions.</p>
+                  <p>A data block is corrupted when it is not in a recognized Oracle Database format, or its
+            contents are not internally consistent. Data block corruption can damage internal Oracle
+            control information or application and user data, leading to crippling loss of critical
+            data and services. </p>
+                  <p>When Oracle Database detects corruption, it offers block media recovery and data file
+            media recovery to recover the data. You can undo database-wide logical corruptions
+            caused by human or application errors with Oracle Flashback Technologies. Tools are also
+            available for proactive validation of logical data structures. For example, the SQL*Plus
+                <code class="codeph">ANALYZE TABLE</code> statement detects inter-block corruptions.
+                  </p>
+                  <p>The following are best practices for protecting your database against corruption.</p>
+                  <ul style="list-style-type: disc;" id="GUID-58F56292-B014-4EBE-BA8F-BBA67B1DA2AD__UL_MFR_ZHW_3NB">
+                     <li>
+                        
+                        <p>Use Oracle Automatic Storage Management (Oracle ASM) to provide disk mirroring to
+                    protect against disk failures.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Use the <code class="codeph">HIGH</code> redundancy disk type for optimal corruption repair
+                    with Oracle ASM.
+                        </p>
+                        
+                        <p>Using Oracle ASM redundancy for disk groups provides mirrored extents that can be
+                    used by the database if an I/O error or corruption is encountered. For continued
+                    protection, Oracle ASM redundancy lets you move an extent to a different area on
+                    a disk if an I/O error occurs. The Oracle ASM redundancy mechanism is useful if
+                    you have bad sectors returning media errors.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Enable Flashback technologies for fast point-in-time recovery from logical
+                    corruptions that are most often caused by human error, and for fast
+                    reinstatement of a primary database following failover.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Implement a backup and recovery strategy with Recovery Manager (RMAN) and
+                    periodically use the RMAN <code class="codeph">BACKUP VALIDATE CHECK LOGICAL</code> scan to
+                    detect corruptions.
+                        </p>
+                        
+                        <p>Use RMAN and Oracle Secure Backup for additional block checks during backup and
+                    restore operations. Use Zero Data Loss Recovery Appliance for backup and
+                    recovery validation including corruption checks and repairs, central backup
+                    validation, reduced production database impact, and Enterprise Cloud backup and
+                    recovery solutions.</p>
+                        
+                     </li>
+                     <li>Set database initialization parameter
+                    <code class="codeph">DB_BLOCK_CHECKSUM=TYPICAL</code> or <code class="codeph">FULL</code>.
+                     </li>
+                     <li>Evaluate setting <code class="codeph">DB_BLOCK_CHECKING=MEDIUM</code> or <code class="codeph">FULL</code>,
+                but only after a full performance evaluation with the application.
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-52447D7B-281F-48E0-AC4B-4ED44A4B922E" name="GUID-52447D7B-281F-48E0-AC4B-4ED44A4B922E"></a><h3 id="HAOVW-GUID-52447D7B-281F-48E0-AC4B-4ED44A4B922E" class="sect3">Set the LOG_BUFFER Initialization
+        Parameter to 128MB or Higher</h3>
+               <div>
+                  <p>Set the <code class="codeph">LOG_BUFFER</code> initialization parameter to a minimum of
+        128 MB for databases with flashback enabled.
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-5E098F5D-5C14-4BF0-B306-B368099FA886" name="GUID-5E098F5D-5C14-4BF0-B306-B368099FA886"></a><h3 id="HAOVW-GUID-5E098F5D-5C14-4BF0-B306-B368099FA886" class="sect3">Set USE_LARGE_PAGES=ONLY</h3>
+               <div>
+                  <p>On Linux, the database’s SGA should leverage large pages for consistent
+        performance and stability.</p>
+                  <div class="section">
+                     
+                     <p>There are two ways to ensure this happens with the <code class="codeph">USE_LARGE_PAGES</code>
+                parameter:
+                     </p>
+                     
+                     <ul style="list-style-type: disc;" id="GUID-5E098F5D-5C14-4BF0-B306-B368099FA886__OL_GCQ_XPD_NWB">
+                        <li><code class="codeph">USE_LARGE_PAGES=ONLY</code> - Hugepages must be preallocated before
+                    instance startup.
+                        </li>
+                        <li><code class="codeph">USE_LARGE_PAGES=AUTO_ONLY</code> - Hugepages are dynamically acquired
+                    at instance startup time, but this dynamic acquisition can fail if memory is
+                    fragmented or if another instance is starting up and dynamically acquiring
+                    hugepages at the same time.
+                        </li>
+                     </ul>
+                     
+                     <p>The MAA best practice is <code class="codeph">USE_LARGE_PAGES=ONLY</code>. This recommendation
+                is applicable for Cloud and non-Cloud environments, and all Cloud and Exadata
+                automation tools ensure this configuration is in place.
+                     </p>
+                     
+                     <div class="infoboxnote" id="GUID-5E098F5D-5C14-4BF0-B306-B368099FA886__GUID-311B0C99-052D-428F-8B3F-DB3828782431">
+                        <p class="notep1">Note:</p>Oracle RDBMS 19c default for <code class="codeph">USE_LARGE_PAGES</code> on Exadata is
+                    <code class="codeph">AUTO_ONLY</code>, but this value will be deprecated in the
+                future.
+                     </div>
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8" name="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8"></a><h3 id="HAOVW-GUID-A2CACB2E-B49B-44C7-9948-553A747300F8" class="sect3">Use Bigfile Tablespace</h3>
+               <div>
+                  <p>As databases grow larger more data files are added to smallfile tablespaces,
+        which requires additional administration, monitoring, and maintenance, while negatively
+        impacting database open time and role transition time in Oracle Data Guard
+        environments.</p>
+                  <div class="section">
+                     
+                     <p>Bigfile tablespaces allow a single large data file per tablespace, up to 32TB for 8k
+                blocksize and 128TB for 32k blocksize. The single data file reduces the number of
+                files in the database thus improving database checkpoint, database open, and role
+                transition time, while improving administration costs.</p>
+                     
+                  </div>
+                  <div class="section">
+                     
+                     <p>Recommendations include:</p>
+                     
+                     <ul style="list-style-type: disc;" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__UL_KHX_ZHG_XVB">
+                        <li>
+                           
+                           <p>For <span class="bold">new database</span> design and deployment, use bigfile tablespaces and
+                        partitioning to minimize the number of data files. Partitioning of large
+                        tables prevents having an enormous bigfile. A reasonable bigfile should
+                        still be 16TB or less.
+                           </p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__UL_LHX_ZHG_XVB">
+                              <li>
+                                 
+                                 <p>For very large tables that have different retention policies, or have
+                                different access requirements, use Oracle Partitioning as part of
+                                your database and object design. Oracle Partitioning can also work
+                                around any potential bigfile size limitation.</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>For very large tablespaces, use bigfile tablespaces instead of many
+                                smallfile data files. Bigfile tablespaces are only supported for
+                                locally managed tablespaces with automatic segment space
+                                management.</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>There are no negative trade-offs for using bigfile tablespaces, other
+                                than understanding the maximum limits for your
+                                    <code class="codeph">DB_BLOCK_SIZE</code>. To continue to ensure good
+                                database backup and restore performance, you should also use the
+                                    <code class="codeph">RMAN SECTION SIZE</code> parameter to parallelize
+                                backup and restore operations when there are bigfile
+                                tablespaces.
+                                 </p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>For <span class="bold">existing databases</span> with a lot of data files, focus on tablespaces
+                        that have the most data files and evaluate if you can use the <code class="codeph">ALTER
+                            TABLE MOVE</code> or online redefinition to migrate tables or
+                        partitions to bigfile tablespaces.
+                           </p>
+                           
+                        </li>
+                     </ul>
+                     
+                     <p>The following tables show a recent Data Guard performance test which demonstrates
+                that reducing the number of data files in the database from 9000 data files to ~100
+                data files improved failover times by 10x and switchover times by 4 times.</p>
+                     
+                     <div class="tblformal" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__TABLE_ZW4_5Z5_XVB">
+                        <table cellpadding="4" cellspacing="0" class="Formal" title summary="improved failover times by phase" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="0%" id="d18782e610">Unplanned Outage/DR (Failover)</th>
+                                 <th align="left" valign="bottom" width="0%" id="d18782e612">Initial Configuration</th>
+                                 <th align="left" valign="bottom" width="0%" id="d18782e614">Tuned MAA Configuration</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e618" headers="d18782e610 ">Close to Mount (C2M)</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e618 d18782e612 ">21 secs</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e618 d18782e614 ">1 sec</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e625" headers="d18782e610 ">Terminal Recovery (TR)</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e625 d18782e612 ">154 secs</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e625 d18782e614 ">2 secs</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e632" headers="d18782e610 ">Convert to Primary (C2P)</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e632 d18782e612 ">114 secs</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e632 d18782e614 ">5 secs</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e639" headers="d18782e610 ">Open new Primary (OnP)</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e639 d18782e612 ">98 secs</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e639 d18782e614 ">28 secs</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e646" headers="d18782e610 ">Open PDB and Start Service (OPDB)</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e646 d18782e612 ">146 secs</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e646 d18782e614 ">16 secs</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e653" headers="d18782e610 "><span class="bold">Total App Downtime</span></td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e653 d18782e612 "><span class="bold">533 secs or 8min 53 secs</span></td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e653 d18782e614 "><span class="bold">52 secs (90% drop)</span></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     
+                     <div class="tblformal" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__TABLE_ABM_11V_XVB">
+                        <table cellpadding="4" cellspacing="0" class="Formal" title summary="Improved planned switchover times with MAA tuning" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="0%" id="d18782e672">Planned DR Switch (Switchover)</th>
+                                 <th align="left" valign="bottom" width="0%" id="d18782e674">Initial Configuration</th>
+                                 <th align="left" valign="bottom" width="0%" id="d18782e676">Tuned MAA Configuration</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e680" headers="d18782e672 ">Convert Primary to Standby</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e680 d18782e674 ">26 secs</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e680 d18782e676 ">21 sec</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e687" headers="d18782e672 ">Convert Standby to Primary (C2P)</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e687 d18782e674 ">47 secs</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e687 d18782e676 ">7 secs</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e694" headers="d18782e672 ">Open new Primary (OnP)</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e694 d18782e674 ">152 secs</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e694 d18782e676 ">14 secs</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e701" headers="d18782e672 ">Open PDB and Start Service (OPDB)</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e701 d18782e674 ">130 secs</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e701 d18782e676 ">39 secs</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e708" headers="d18782e672 ">Total App Downtime</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e708 d18782e674 ">355 secs or 5 minutes 55 secs</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e708 d18782e676 ">81 secs (78% drop)</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     
+                     <p>For existing databases with a lot of data files, the following table compares the use
+                of <code class="codeph">ALTER TABLE MOVE</code> or <code class="codeph">DBMS_REDEFINITION</code> to
+                migrate tables or partitions to bigfile tablespaces.
+                     </p>
+                     
+                     <div class="tblformalwide" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__TABLE_WKR_31V_XVB">
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title summary="Comparison between DBMS_REDEFINITION and MOVE ONLINE migration methods" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="0%" id="d18782e734">Areas of Interest or Use Cases</th>
+                                 <th align="left" valign="bottom" width="0%" id="d18782e736">DBMS_REDEFINITION</th>
+                                 <th align="left" valign="bottom" width="0%" id="d18782e738">ALTER TABLE MOVE ONLINE</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e742" headers="d18782e734 ">Application Impact</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e742 d18782e736 ">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__UL_DNK_H1V_XVB">
+                                       <li>No DDL changes allowed during move</li>
+                                       <li>Application blackout of seconds during activation</li>
+                                    </ul>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e742 d18782e738 ">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__UL_ENK_H1V_XVB">
+                                       <li>No DDL changes allowed during move</li>
+                                       <li>Application blackout during final switch unknown</li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e761" headers="d18782e734 ">Application Functionality Supported</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e761 d18782e736 ">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__UL_FNK_H1V_XVB">
+                                       <li>DML supported</li>
+                                       <li>PDML supported</li>
+                                       <li>No DDL changes allowed during move</li>
+                                    </ul>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e761 d18782e738 ">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__UL_GNK_H1V_XVB">
+                                       <li>DML supported</li>
+                                       <li>PDML not supported</li>
+                                       <li>No DDL changes allowed during move</li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e784" headers="d18782e734 ">Impact of indexes</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e784 d18782e736 ">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__UL_HNK_H1V_XVB">
+                                       <li>Available during move</li>
+                                       <li>Indexes maintained</li>
+                                    </ul>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e784 d18782e738 ">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__UL_INK_H1V_XVB">
+                                       <li>Available during move</li>
+                                       <li>Indexes maintained after move (with <code class="codeph">UPDATE
+                                            INDEXES</code> clause)
+                                       </li>
+                                       <li>Indexes moved separately (<code class="codeph">REBUILD
+                                        ONLINE</code>)
+                                       </li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e811" headers="d18782e734 ">Space Requirements</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e811 d18782e736 ">Double space required (tables+indexes)</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e811 d18782e738 ">Double space required (tables+indexes)</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e818" headers="d18782e734 ">Table Partition Functionality</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e818 d18782e736 ">Move entire partitioned table with one execution</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e818 d18782e738 ">Move partition by partition in order to maintain all
+                                indexes</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e825" headers="d18782e734 ">Statistics Management</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e825 d18782e736 ">New statistics can be created before activation</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e825 d18782e738 ">New statistics created after activation</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e832" headers="d18782e734 ">Monitoring Progress</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e832 d18782e736 ">You can query the <code class="codeph">V$ONLINE_REDEF</code> view to monitor
+                                the progress of an online table redefinition operation.
+                                 </td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e832 d18782e738 ">Query <code class="codeph">V$SESSION_LONGOPS?</code></td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e844" headers="d18782e734 ">Resume on failure</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e844 d18782e736 ">Restart-able</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e844 d18782e738 ">Unknown</td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e851" headers="d18782e734 ">Rollback</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e851 d18782e736 ">Yes</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e851 d18782e738 ">N/A </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e858" headers="d18782e734 ">Restrictions</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e858 d18782e736 ">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__UL_JNK_H1V_XVB">
+                                       <li>
+                                          
+                                          <p>Tables with <code class="codeph">LONG</code> columns can be
+                                            redefined online, but those columns must be converted to
+                                                <code class="codeph">CLOBS</code>. Also, <code class="codeph">LONG
+                                                RAW</code> columns must be converted to
+                                                <code class="codeph">BLOBS</code>. Tables with
+                                                <code class="codeph">LOB</code> columns are acceptable.
+                                          </p>
+                                          
+                                       </li>
+                                       <li>
+                                          
+                                          <p>Index-organized table can be moved</p>
+                                          
+                                       </li>
+                                       <li>
+                                          
+                                          <p>Domain indexes can be moved</p>
+                                          
+                                       </li>
+                                       <li>
+                                          
+                                          <p>Parallel DML and direct path <code class="codeph">INSERT</code>
+                                            operations are allowed
+                                          </p>
+                                          
+                                       </li>
+                                    </ul>
+                                    
+                                    <p>Many 'corner case' restrictions with
+                                        <code class="codeph">DBMS_REDEFINITION</code>. See <a href="../admin/managing-tables.html#ADMIN-GUID-CB5589F0-B328-4620-8809-C53696972B4C" target="_blank">Restrictions for Online
+                                        Redefinition of Tables</a> in <cite>Oracle Database
+                                        Administrator’s Guide</cite></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e858 d18782e738 ">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-A2CACB2E-B49B-44C7-9948-553A747300F8__UL_KNK_H1V_XVB">
+                                       <li>
+                                          
+                                          <p>Cannot move a table with a <code class="codeph">LONG</code> or
+                                                <code class="codeph">RAW</code> column
+                                          </p>
+                                          
+                                       </li>
+                                       <li>Cannot move partitioned index-organized table.</li>
+                                       <li>
+                                          
+                                          <p>Cannot move if a domain index is defined on the table
+                                            like spatial, XML, or a Text index.</p>
+                                          
+                                       </li>
+                                       <li>
+                                          
+                                          <p>Parallel DML and direct path <code class="codeph">INSERT</code>
+                                            operations are not possible during a table move.
+                                          </p>
+                                          
+                                       </li>
+                                       <li>
+                                          
+                                          <p>Cannot move index-organized tables that contain any
+                                                <code class="codeph">LOB</code>, <code class="codeph">VARRAY</code>,
+                                            Oracle-supplied type, or user-defined object type
+                                            columns.
+                                          </p>
+                                          
+                                       </li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d18782e956" headers="d18782e734 ">Documentation and References</td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e956 d18782e736 ">
+                                    
+                                    <p>See <a href="../arpls/DBMS_REDEFINITION.html#ARPLS-GUID-2BA796C4-8B4D-49B4-8A35-4C6F789CD374" target="_blank">DBMS_REDEFINITION</a> in
+                                        <cite>Oracle Database PL/SQL Packages and Types
+                                        Reference</cite></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="0%" headers="d18782e956 d18782e738 ">
+                                    
+                                    <p>See <a href="../sqlrf/ALTER-TABLE.html#SQLRF-GUID-552E7373-BF93-477D-9DA3-B2C9386F2877" target="_blank">ALTER TABLE</a> in
+                                        <cite>Oracle Database SQL Language Reference</cite></p>
+                                    
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-9E32F6F3-4E9F-4825-BE8B-11D0516F1148" name="GUID-9E32F6F3-4E9F-4825-BE8B-11D0516F1148"></a><h3 id="HAOVW-GUID-9E32F6F3-4E9F-4825-BE8B-11D0516F1148" class="sect3">Use Automatic Shared Memory
+        Management and Avoid Memory Paging</h3>
+               <div>
+                  <p>Enable Automatic Shared Memory Management by setting the
+            <code class="codeph">SGA_TARGET</code> parameter, and set the <code class="codeph">USE_LARGE_PAGES</code>
+        database initialization parameter to <code class="codeph">AUTO_ONLY</code> or <code class="codeph">ONLY</code> and
+        the <code class="codeph">USE_LARGE_PAGES</code> ASM initialization parameter to
+        <code class="codeph">TRUE</code>.
+                  </p>
+                  <p>Use the following guidelines in addition to setting <code class="codeph">SGA_TARGET</code> to enable
+            Automatic Shared Memory Management.
+                  </p>
+                  <ul style="list-style-type: disc;" id="GUID-9E32F6F3-4E9F-4825-BE8B-11D0516F1148__UL_QYF_1LW_3NB">
+                     <li>
+                        
+                        <p>The sum of SGA and PGA memory allocations on the database server should always be
+                    less than your system's physical memory while still accommodating memory
+                    required for processes, PGA, and other applications running on the same database
+                    server.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>To get an accurate understanding of memory use, monitor PGA memory and host-based
+                    memory use by querying <code class="codeph">V$PGASTAT</code> for operating systems
+                    statistics.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Avoid memory paging by adjusting the number of databases and applications, or
+                    reducing the allocated memory settings. </p>
+                        
+                        <p>Set <code class="codeph">PGA_AGGREGATE_LIMIT</code> to specify a hard limit on PGA memory
+                    usage. If the <code class="codeph">PGA_AGGREGATE_LIMIT</code> value is exceeded, Oracle
+                    Database first terminates session calls that are consuming the most untunable
+                    PGA memory. Then, if the total PGA memory usage is still over the limit, the
+                    sessions that are using the most untunable memory will be terminated.
+                        </p>
+                        
+                     </li>
+                  </ul>
+                  <p>Set the database initialization parameter <code class="codeph">USE_LARGE_PAGES=AUTO_ONLY</code> or
+                <code class="codeph">ONLY</code>, and set the ASM initialization parameter
+                <code class="codeph">USE_LARGE_PAGES=TRUE</code>.
+                  </p>
+                  <ul style="list-style-type: disc;" id="GUID-9E32F6F3-4E9F-4825-BE8B-11D0516F1148__UL_RYF_1LW_3NB">
+                     <li>
+                        
+                        <p>Make sure that the entire SGA of a database instance is stored in HugePages by
+                    setting the <code class="codeph">init.ora</code> parameter
+                        <code class="codeph">USE_LARGE_PAGES=ONLY</code>, or set to <code class="codeph">AUTO_ONLY</code>
+                    on Exadata systems.
+                        </p>
+                        
+                        <p>Setting <code class="codeph">USE_LARGE_PAGES=ONLY</code> is recommended for database
+                    instances, because this parameter ensures that an instance will only start when
+                    it can get all of its memory for SGA from HugePages.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>For ASM instances leave the parameter <code class="codeph">USE_LARGE_PAGES=ONLY</code> (the
+                    default value). This setting still ensures that HugePages are used when
+                    available, but also ensures that ASM as part of Grid Infrastructure starts when
+                    HugePages are not configured, or insufficiently configured.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Use Automatic Shared Memory Management, because HugePages are not compatible with
+                    Automatic Memory Management.</p>
+                        
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-F9B64836-3BA8-4257-9929-FD182B5BFB91" name="GUID-F9B64836-3BA8-4257-9929-FD182B5BFB91"></a><h3 id="HAOVW-GUID-F9B64836-3BA8-4257-9929-FD182B5BFB91" class="sect3">Use Oracle Clusterware</h3>
+               <div>
+                  <p>Oracle Clusterware lets servers communicate with each other, so that they
+        appear to function as a collective unit. Oracle Clusterware has high availability options
+        for all Oracle databases including for single instance Oracle databases. Oracle Clusterware
+        is one of minimum requirements in making applications highly available.</p>
+                  <p>Oracle Clusterware provides the infrastructure necessary to run Oracle Real Application
+            Clusters (Oracle RAC), Oracle RAC One Node, and Oracle Restart. Oracle Grid
+            Infrastructure is the software that provides the infrastructure for an enterprise grid
+            architecture. In a cluster, this software includes Oracle Clusterware and Oracle ASM. </p>
+                  <p>For a standalone server, the Grid Infrastructure includes Oracle Restart and Oracle ASM.
+            Oracle Restart provides managed startup and restart of a single-instance (non-clustered)
+            Oracle database, Oracle ASM instance, service, listener, and any other process running
+            on the server. If an interruption of a service occurs after a hardware or software
+            failure, Oracle Restart automatically restarts the component.</p>
+                  <p>Oracle Clusterware manages resources and resource groups to increase their availability,
+            based on how you configure them. You can configure your resources and resource groups so
+            that Oracle Clusterware:</p>
+                  <ul style="list-style-type: disc;" id="GUID-F9B64836-3BA8-4257-9929-FD182B5BFB91__UL_FTS_H4W_3NB">
+                     <li>
+                        
+                        <p>Starts resources and resource groups during cluster or server start</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Restarts resources and resource groups when failures occur</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Relocates resources and resource groups to other servers, if the servers are
+                    available</p>
+                        
+                     </li>
+                  </ul>
+                  <p>For more information, see <span><cite>Oracle Clusterware Administration and Deployment Guide</cite></span> topics, <a href="../cwadd/introduction-to-oracle-clusterware.html#CWADD-GUID-C54E2511-24E2-452B-B4C7-0D5A93A751A9" target="_blank">High Availability Options for Oracle Database</a>
+            and <a href="../cwadd/making-applications-highly-available-using-oracle-clusterware.html#CWADD-GUID-13400D83-3FF4-482E-B7A7-41C864A491DC" target="_blank">Making Applications Highly Available Using Oracle
+                Clusterware</a>.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

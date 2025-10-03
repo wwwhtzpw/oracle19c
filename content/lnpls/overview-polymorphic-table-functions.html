@@ -1,0 +1,750 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Overview of Polymorphic Table Functions">
+      <meta name="abstract" content="Polymorphic table functions (PTF) are table functions whose operands can have more than one type. The return type is determined by the PTF invocation arguments list. The actual arguments to the table type usually determines the row output shape, but not always.">
+      <meta name="description" content="Polymorphic table functions (PTF) are table functions whose operands can have more than one type. The return type is determined by the PTF invocation arguments list. The actual arguments to the table type usually determines the row output shape, but not always.">
+      <meta name="DC.subject" content="polymorphic table function, definition, implementation, invocation, variadic pseudo-operator, COLUMNS pseudo-operator, compilation and execution, optimization">
+      <meta name="keywords" content="polymorphic table function, definition, implementation, invocation, variadic pseudo-operator, COLUMNS pseudo-operator, compilation and execution, optimization">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-981102A8-5204-4931-B10A-93486304B184">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Polymorphic table functions (PTF) are table functions whose operands can have more than one type. The return type is determined by the PTF invocation arguments list. The actual arguments to the table type usually determines the row output shape, but not always.">
+      <meta name="description" content="Polymorphic table functions (PTF) are table functions whose operands can have more than one type. The return type is determined by the PTF invocation arguments list. The actual arguments to the table type usually determines the row output shape, but not always.">
+      <title>Overview of Polymorphic Table Functions</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content="Polymorphic table functions (PTF) are table functions whose operands can have more than one type. The return type is determined by the PTF invocation arguments list. The actual arguments to the table type usually determines the row output shape, but not always.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="chaining-pipelined-table-functions-multiple-transformations.html" title="Previous" type="text/html">
+      <link rel="next" href="updating-large-tables-parallel.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Overview of Polymorphic Table Functions","description":"Polymorphic table functions (PTF) are table functions whose operands can have more than one type. The return type is determined by the PTF invocation arguments list. The actual arguments to the table type usually determines the row output shape, but not always.","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="chaining-pipelined-table-functions-multiple-transformations.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="updating-large-tables-parallel.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-981102A8-5204-4931-B10A-93486304B184" name="GUID-981102A8-5204-4931-B10A-93486304B184"></a>
+         
+         <h2 id="LNPLS-GUID-981102A8-5204-4931-B10A-93486304B184" class="sect2"><span class="enumeration_section">12.6 </span>Overview of Polymorphic Table Functions
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Polymorphic table functions (PTF) are table functions whose operands can have more than one type. The return type is determined by the PTF invocation arguments list. The actual arguments to the table type usually determines the row output shape, but not always. </p>
+               <div class="section">
+                  <p class="subhead1" id="GUID-981102A8-5204-4931-B10A-93486304B184__GUID-2473DA16-33A6-40AD-83E2-3BF06F9A4ADB">Introduction to Polymorphic Table Functions</p>
+                  <p>Polymorphic Table Functions (PTF) are user-defined functions that can be invoked in the <code class="codeph">FROM</code> clause of a SQL query block. They are capable of processing tables whose row type is not declared at definition time and producing a result table whose row type may or may not be declared at definition time. Polymorphic table functions leverage dynamic SQL capabilities to create powerful and complex custom functions. This is useful for applications demanding an interface with generic extensions which work for arbitrary input tables or queries. 
+                  </p>
+               </div>
+               <div class="section">
+                  <p>A PTF author creates an interface to a procedural mechanism that defines a table. The PTF author defines, documents, and implements the PTF. </p>
+                  <p>The query author can only describe the published interface and invoke the PTF function in queries. </p>
+                  <p>The database is the PTF conductor. It manages the compilation and execution states of the PTF. The database and the PTF author can see a family of related SQL invoked procedures, called the PTF component procedures, and possibly additional private data (such as variables and cursors).</p>
+               </div>
+               <div class="section">
+                  <p class="subhead1" id="GUID-981102A8-5204-4931-B10A-93486304B184__GUID-3BCEAF5A-BE45-4307-9E07-A5F9B3C424D7">Types of Polymorphic Table Functions</p>
+                  <div class="p">The polymorphic table function type is specified based on their formal arguments list semantics:
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>If an input <code class="codeph">TABLE</code> argument has <code class="codeph">Row Semantics</code>, the input is a single row.
+                           </p>
+                        </li>
+                        <li>
+                           <p>If an input <code class="codeph">TABLE</code> argument has <code class="codeph">Table Semantics</code>, the input is a set of rows. When a <code class="codeph">Table Semantics</code> PTF is called from a query, the table argument can optionally be extended with either a <code class="codeph">PARTITION BY</code> clause or an <code class="codeph">ORDER BY</code> clause or both.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-A496E727-7A54-4F6E-9E8E-82DF7558063E" name="GUID-A496E727-7A54-4F6E-9E8E-82DF7558063E"></a><h3 id="LNPLS-GUID-A496E727-7A54-4F6E-9E8E-82DF7558063E" class="sect3"><span class="enumeration_section">12.6.1 </span>Polymorphic Table Function Definition
+               </h3>
+               <div>
+                  <p>The PTF author defines, documents, and implements the Polymorphic Table Function (PTF).</p>
+                  <div class="section">
+                     <p>A PTF has two parts: </p>
+                     <p>1. The PL/SQL package which contains the client interface for the PTF implementation.</p>
+                     <p>2. The standalone or package function naming the PTF and its associated implementation package. </p>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-C18593DB-7A73-441D-A17D-30F54E25937A" name="GUID-C18593DB-7A73-441D-A17D-30F54E25937A"></a><h3 id="LNPLS-GUID-C18593DB-7A73-441D-A17D-30F54E25937A" class="sect3"><span class="enumeration_section">12.6.2 </span>Polymorphic Table Function Implementation
+               </h3>
+               <div>
+                  <p>The Polymorphic Table Function (PTF) implementation client interface is a set of subprograms with fixed names that every PTF must provide. </p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-C18593DB-7A73-441D-A17D-30F54E25937A__GUID-C066864D-CF61-4C74-9B4F-EBD7DD831421">Steps to Implement a Polymorphic Table Function</p>
+                     <ol>
+                        <li>
+                           <p>Create the implementation package containing the <code class="codeph">DESCRIBE</code>  function (required) and the <code class="codeph">OPEN</code>, <code class="codeph">FETCH_ROWS</code> , and <code class="codeph">CLOSE</code>  procedures (optional).
+                           </p>
+                        </li>
+                        <li>
+                           <p>Create the function specification naming the PTF. The function can be created at the top-level after the package has been created, or as a package function in the implementation package (the package created in the first step). Polymorphic table functions do not have a function definition (a <code class="codeph">FUNCTION</code> <code class="codeph">BODY</code>), the definition is encapsulated in the associated implementation package.
+                           </p>
+                           <p>The function definition specifies :</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>The Polymorphic Table Function (PTF) name</p>
+                              </li>
+                              <li>
+                                 <p>Exactly one formal argument of type <code class="codeph">TABLE</code> and any number of non <code class="codeph">TABLE</code> arguments
+                                 </p>
+                              </li>
+                              <li>
+                                 <p>The return type of the PTF as <code class="codeph">TABLE</code></p>
+                              </li>
+                              <li>
+                                 <p>The type of PTF function (<code class="codeph">row</code> or <code class="codeph">table semantics</code> )
+                                 </p>
+                              </li>
+                              <li>
+                                 <p>The PTF implementation package name</p>
+                              </li>
+                           </ul>
+                        </li>
+                     </ol>
+                     <div class="infoboxnotealso" id="GUID-C18593DB-7A73-441D-A17D-30F54E25937A__GUID-3BEB5575-EAAA-436F-9AA3-054F3AD140C7">
+                        <p class="notep1">See Also:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><a href="../arpls/DBMS_TF.html#ARPLS-GUID-6E589F68-6693-42A1-8766-61AF1476DE1C" target="_blank"><span class="italic">Oracle Database PL/SQL Packages and Types Reference</span></a> for information about a <code class="codeph">DESCRIBE</code> Only polymorphic table function
+                              </p>
+                           </li>
+                           <li>
+                              <p><a href="../arpls/DBMS_TF.html#ARPLS-GUID-47E8026F-B66B-4F8D-A2E2-D4324AAB2CED" target="_blank"><span class="italic">Oracle Database PL/SQL Packages and Types Reference</span></a> for more information about how to specify the PTF implementation package and use the <code class="codeph">DBMS_TF</code> utilities
+                              </p>
+                           </li>
+                           <li>
+                              <p><a href="PIPELINED-clause.html#GUID-FA182210-C68D-4E03-85B9-A6C681099705" title="Instructs the database to iteratively return the results of a table function or polymorphic table function .">PIPELINED Clause</a> for the standalone or package polymorphic table function creation syntax and semantic
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-4847CB51-6939-44C4-9913-CC3CE13B6730" name="GUID-4847CB51-6939-44C4-9913-CC3CE13B6730"></a><h3 id="LNPLS-GUID-4847CB51-6939-44C4-9913-CC3CE13B6730" class="sect3"><span class="enumeration_section">12.6.3 </span>Polymorphic Table Function Invocation
+               </h3>
+               <div>
+                  <p>A polymorphic table function is invoked by specifying its name followed by the argument list in the <code class="codeph">FROM</code> clause of a SQL query block.
+                  </p>
+                  <div class="section">
+                     <p>The PTF arguments can be the standard scalar arguments that can be passed to a regular table function, but PTF's can additionally take a table argument. A table argument is either a <code class="codeph">WITH</code> clause query or a schema-level object that is allowed in a <code class="codeph">FROM</code> clause (such as tables, views, or table functions).
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-4847CB51-6939-44C4-9913-CC3CE13B6730__GUID-F683BFDF-FF62-42EC-B913-0B86C8346E45">Syntax</p>
+                     <p><span class="italic">table_argument</span> ::= <span class="italic">table</span> [ PARTITION BY <span class="italic">column_list</span> ] [ORDER BY <span class="italic">order_column_list</span>]
+                     </p>
+                     <p><span class="italic">column_list</span> ::=<span class="italic"> identifier</span> | (<span class="italic"> identifier</span>[, <span class="italic">identifier</span>…])
+                     </p>
+                     <p><span class="italic">order_column_list</span> ::= <span class="italic">order_column_name</span> | (<span class="italic">order_column_name</span> [, <span class="italic">order_column_name</span>…])
+                     </p>
+                     <p><span class="italic">order_column_name</span> ::= <span class="italic">identifier</span> [ ASC | DESC ][ NULLS FIRST | NULLS LAST ]
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-4847CB51-6939-44C4-9913-CC3CE13B6730__GUID-7FD97D62-A820-4435-A826-5EBF40D8AD2F">Semantics</p>
+                     <p>Each identifier is a column in the corresponding table.</p>
+                     <p>The PTF has <code class="codeph">Table Semantics</code>.
+                     </p>
+                     <p>Query can optionally partition and order <code class="codeph">Table Semantics</code> PTF input. This is disallowed for <code class="codeph">Row Semantics</code> PTF input.
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p> A polymorphic table function (PTF) cannot be the target of a DML statement. Any table argument of a PTF is passed in by name.</p>
+                     <p>For example, the noop PTF can be used in a query such as :</p><pre class="oac_no_warn" dir="ltr">SELECT * 
+FROM noop(emp);</pre><p>or </p><pre class="oac_no_warn" dir="ltr">WITH e AS 
+ (SELECT * FROM emp NATURAL JOIN dept)
+SELECT t.* FROM noop(e) t;</pre><p>The input table argument must be a basic table name. </p>
+                     <div class="p">The name resolution rules of the table identifier are (in priority order) as follows :
+                        <ol>
+                           <li>
+                              <p>Identifier is resolved as a column name (such as a correlated column from an outer query block).</p>
+                           </li>
+                           <li>
+                              <p>Identifier is resolved as a Common Table Expression (CTE) name in the current or some outer query-block. CTE is commonly known as the <code class="codeph">WITH</code> clause.
+                              </p>
+                           </li>
+                           <li>
+                              <p>Identifier is resolved as a schema-level table, view, or table-function (regular or polymorphic, and defined either at the schema-level or inside a package).</p>
+                           </li>
+                        </ol>
+                     </div>
+                     <p>Many types of table expressions otherwise allowed in the <code class="codeph">FROM</code> clause cannot be directly used as a table argument for a PTF (such as ANSI Joins, bind-variables, in-line views, <code class="codeph">CURSOR</code> operators, <code class="codeph">TABLE</code> operators). To use such table expressions as a PTF argument, these table expressions must be passed indirectly into a PTF by wrapping them in a CTE and then passing the CTE name into the PTF.
+                     </p>
+                     <p>A PTF can be used as a table reference in the <code class="codeph">FROM</code> clause and thus can be part of the ANSI Join and LATERAL syntax. Additionally, a PTF can be the source table for PIVOT/UNPIVOT and MATCH_RECOGNIZE. Some table modification clauses that are meant for tables and views (such as SAMPLING, PARTITION, CONTAINERS) are disallowed for PTF.
+                     </p>
+                     <p>Direct function composition of PTF  is allowed (such as nested PTF cursor expression invocation or PTF(TF()) nesting). However, nested PTF is disallowed (such as PTF(PTF()) nesting).</p>
+                     <p>The scalar arguments of a PTF can be any SQL scalar expression. While the constant scalar values are passed as-is to the <code class="codeph">DESCRIBE</code> function, all other values are passed as NULLs. This is usually not a problem for the PTF implementation if these values are not row shape determining, but otherwise the <code class="codeph">DESCRIBE</code> function can raise an error; typically the documentation accompanying the PTF will state which scalar parameters, if any, are shape defining and thus must have constant non-null values. Note, that during query execution (during <code class="codeph">OPEN</code>, <code class="codeph">FETCH_ROWS</code>, <code class="codeph">CLOSE</code>) the expressions are evaluated and their actual values are passed to these PTF execution procedures. The return type is determined by the PTF invocation arguments list.
+                     </p>
+                     <p>Query arguments are passed to PTF using a <code class="codeph">WITH</code> clause.
+                     </p>
+                     <p>The <code class="codeph">TABLE</code> operator is optional when the table function arguments list or empty list () appears.
+                     </p>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-A3123AB1-E06D-4E00-A856-6052527482CE" name="GUID-A3123AB1-E06D-4E00-A856-6052527482CE"></a><h4 id="LNPLS-GUID-A3123AB1-E06D-4E00-A856-6052527482CE" class="sect4"><span class="enumeration_section">12.6.3.1 </span>Variadic Pseudo-Operators
+                  </h4>
+                  <div>
+                     <p>A variadic pseudo-operator operates with a variable number of operands. </p>
+                     <div class="section">
+                        <p>Starting with Oracle Database Release 18c, we introduce the concept of variadic pseudo-operator into the SQL expression language to support Polymorphic Table Functions (PTF). A pseudo-operator can be used to pass list of identifiers (such as column name) to a PTF. A pseudo-operator can only appear as arguments to PTFs, and are parsed by the SQL compiler like other SQL operators or PL/SQL function invocation. A pseudo-operator has a variable number of arguments but must have at least one. The pseudo-operator does not have any execution function associated with it, and they are completely removed from the SQL cursor after the PTF compilation is finished. During SQL compilation, the pseudo-operators are converted to corresponding DBMS_TF types and then passed to the <code class="codeph">DESCRIBE</code> method. There is no output type associated with these operators. It is not possible to embed a pseudo-operator inside a general SQL expression.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-AB520C25-6735-4E5D-AC01-6237CD32BE17" name="GUID-AB520C25-6735-4E5D-AC01-6237CD32BE17"></a><h4 id="LNPLS-GUID-AB520C25-6735-4E5D-AC01-6237CD32BE17" class="sect4"><span class="enumeration_section">12.6.3.2 </span>COLUMNS Pseudo-Operator
+                  </h4>
+                  <div>
+                     <p>You can use the COLUMNS pseudo-operator to specify arguments to a Polymorphic Table Function (PTF) invocation in the FROM clause of a SQL query block.</p>
+                     <div class="section">
+                        <p>The <code class="codeph">COLUMNS</code> pseudo-operator arguments specify the list of column names, or the list of column names with associated types.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-AB520C25-6735-4E5D-AC01-6237CD32BE17__GUID-6A5AEDBE-F866-415C-B3AC-1C8E305D03F5">Syntax</p>
+                        <p><span class="italic">column_operator </span> ::= COLUMNS ( <span class="italic">column_list</span> )
+                        </p>
+                        <p><span class="italic">column_list</span> ::= <span class="italic">column_name_list</span> | <span class="italic">column_type_list</span></p>
+                        <p><span class="italic">column_name_list</span> ::=<span class="italic"> identifier</span> [, <span class="italic"> identifier</span> ... ]
+                        </p>
+                        <p><span class="italic">column_type_list</span>::= <span class="italic"> identifier</span> <span class="italic">column_type</span> [, <span class="italic"> identifier</span><span class="italic"> column_type</span>…]
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-AB520C25-6735-4E5D-AC01-6237CD32BE17__GUID-7EF6F5D9-BB87-4215-B766-FBE4CE6F6D8C">Semantics</p>
+                        <p>The <code class="codeph">COLUMNS</code> pseudo-operator can only appear as an argument to a PTF. It cannot appear in any other SQL expression than the PTF expression itself. 
+                        </p>
+                        <p>The <span class="italic">column_type</span> must be a scalar type.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-C0FBB1E4-2D75-4D52-BA85-BCF910AF0DD0" name="GUID-C0FBB1E4-2D75-4D52-BA85-BCF910AF0DD0"></a><h3 id="LNPLS-GUID-C0FBB1E4-2D75-4D52-BA85-BCF910AF0DD0" class="sect3"><span class="enumeration_section">12.6.4 </span>Polymorphic Table Function Compilation and Execution
+               </h3>
+               <div>
+                  <p>The database fulfills the Polymorphic Table Functions (PTF) conductor role. As such, it is responsible for the PTF compilation, execution and its related states.</p>
+                  <div class="section">
+                     <div class="p">The database manages :
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>The compilation state : This is the immutable state that is generated by <code class="codeph">DESCRIBE</code> which is needed before execution.
+                              </p>
+                           </li>
+                           <li>
+                              <p>The execution state: This is the state used by the execution procedures of a <code class="codeph">Table semantics</code> PTF.
+                              </p>
+                           </li>
+                        </ul>.
+                     </div>
+                     <div class="infoboxnotealso" id="GUID-C0FBB1E4-2D75-4D52-BA85-BCF910AF0DD0__GUID-FCF7112B-4BA8-48B4-8A91-65C3D74F9A54">
+                        <p class="notep1">See Also:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><a href="../arpls/DBMS_TF.html#ARPLS-GUID-EAC49A1C-F4EB-48C8-B726-A143643A479C" target="_blank"><span class="italic">Oracle Database PL/SQL Packages and Types Reference</span></a> for more information about how the database manages the compilation and execution states of the PTFs
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-0999E5D7-EB9B-4DCD-964C-C5F6B278B5DB" name="GUID-0999E5D7-EB9B-4DCD-964C-C5F6B278B5DB"></a><h3 id="LNPLS-GUID-0999E5D7-EB9B-4DCD-964C-C5F6B278B5DB" class="sect3"><span class="enumeration_section">12.6.5 </span>Polymorphic Table Function Optimization
+               </h3>
+               <div>
+                  <p>A polymorphic table function (PTF) provides an efficient and scalable mechanism to extend the analytical capabilities of the database.</p>
+                  <div class="section">
+                     <p>The key benefits are:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>Minimal data-movement: Only columns of interest are passed to PTF</p>
+                        </li>
+                        <li>
+                           <p>Predicates/Projections/Partitioning are/is pushed into underlying table/query (where semantically possible)</p>
+                        </li>
+                        <li>
+                           <p>Bulk data transfer into and out of PTF</p>
+                        </li>
+                        <li>
+                           <p>Parallelism is based on type of PTF and query specified partitioning (if any)</p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-695FBA1A-89EA-45B4-9C81-CA99F6C794A5" name="GUID-695FBA1A-89EA-45B4-9C81-CA99F6C794A5"></a><h3 id="LNPLS-GUID-695FBA1A-89EA-45B4-9C81-CA99F6C794A5" class="sect3"><span class="enumeration_section">12.6.6 </span>Skip_col Polymorphic Table Function Example
+               </h3>
+               <div>
+                  <p>This PTF example demonstrates Row Semantics, Describe Only, package table function, and overloading features.</p>
+                  <div class="section">
+                     <div class="infoboxnotealso" id="GUID-695FBA1A-89EA-45B4-9C81-CA99F6C794A5__GUID-EA9D7C23-D156-415D-BCF2-37D64CD9835F">
+                        <p class="notep1">See Also:</p>
+                        <p><a href="../arpls/DBMS_TF.html#ARPLS-GUID-2D97C0CD-6AD9-4F86-86E6-C806D688C57A" target="_blank"><span class="italic">Oracle Database PL/SQL Packages and Types Reference</span> </a> for more Polymorphic Table Function (PTF) examples
+                        </p>
+                     </div>
+                  </div>
+                  <div class="example" id="GUID-695FBA1A-89EA-45B4-9C81-CA99F6C794A5__GUID-CFF59A63-42BE-4217-A104-42E41EEABC15">
+                     <p class="titleinexample">Example 12-36 Skip_col Polymorphic Table Function Example</p>
+                     <p>The skip_col Polymorphic Table Function (PTF) returns all the columns in a table except the columns specified in the PTF input argument. The skip_col PTF skips columns based on column names (overload 1) or columns data type (overload 2). </p>
+                     <div class="infoboxnote" id="GUID-695FBA1A-89EA-45B4-9C81-CA99F6C794A5__GUID-46DC7C38-8CB1-4EAC-B3FE-261F6C048588">
+                        <p class="notep1">Live SQL:</p>
+                        <p>You can view and run this example on Oracle Live SQL at <a href="https://livesql.oracle.com/apex/livesql/docs/lnpls/ptf/ptfskpcol.html" target="_blank">18c Skip_col Polymorphic Table Function</a></p>
+                     </div>
+                     <p>Create the implementation package named skip_col_pkg containing the <code class="codeph">DESCRIBE</code> function for the skip_col polymorphic table function (PTF). The <code class="codeph">DESCRIBE</code> function is invoked to determine the row shape produced by the PTF. It returns a <code class="codeph">DBMS_TF.DESCRIBE_T</code> table. It is overloaded. The <code class="codeph">FETCH_ROWS</code> procedure is not required because it does need to produce&nbsp;associated new column values for a given subset of rows.
+                     </p><pre class="pre codeblock"><code>CREATE PACKAGE skip_col_pkg AS
+
+  -- OVERLOAD 1: Skip by name --
+  FUNCTION skip_col(tab TABLE, 
+                    col COLUMNS)
+           RETURN TABLE PIPELINED ROW POLYMORPHIC USING skip_col_pkg;
+
+  FUNCTION describe(tab IN OUT DBMS_TF.TABLE_T, 
+                    col        DBMS_TF.COLUMNS_T)
+           RETURN DBMS_TF.DESCRIBE_T;
+
+  -- OVERLOAD 2: Skip by type --
+  FUNCTION skip_col(tab       TABLE, 
+                    type_name VARCHAR2,
+                    flip      VARCHAR2 DEFAULT 'False') 
+           RETURN TABLE PIPELINED ROW POLYMORPHIC USING skip_col_pkg;
+
+  FUNCTION describe(tab       IN OUT DBMS_TF.TABLE_T, 
+                    type_name        VARCHAR2, 
+                    flip             VARCHAR2 DEFAULT 'False') 
+           RETURN DBMS_TF.DESCRIBE_T;
+
+END skip_col_pkg; 
+</code></pre><p>Create the implementation package body which contains the polymorphic table function definition. </p><pre class="pre codeblock"><code>CREATE PACKAGE BODY skip_col_pkg AS
+
+/* OVERLOAD 1: Skip by name 
+ * Package PTF name:  skip_col_pkg.skip_col
+ * Standalone PTF name: skip_col_by_name
+ *
+ * PARAMETERS:
+ * tab - The input table
+ * col - The name of the columns to drop from the output
+ *
+ * DESCRIPTION:
+ *   This PTF removes all the input columns listed in col from the output
+ *   of the PTF.
+*/  
+ FUNCTION  describe(tab IN OUT DBMS_TF.TABLE_T, 
+                    col        DBMS_TF.COLUMNS_T)
+            RETURN DBMS_TF.DESCRIBE_T
+  AS 
+    new_cols DBMS_TF.COLUMNS_NEW_T;
+    col_id   PLS_INTEGER := 1;
+  BEGIN 
+    FOR i IN 1 .. tab.column.count() LOOP
+      FOR j IN 1 .. col.count() LOOP
+        tab.column(i).PASS_THROUGH := tab.column(i).DESCRIPTION.NAME != col(j);
+        EXIT WHEN NOT tab.column(i).PASS_THROUGH;
+      END LOOP;
+    END LOOP;
+
+    RETURN NULL;
+  END;  
+
+/* OVERLOAD 2: Skip by type
+ * Package PTF name:  skip_col_pkg.skip_col
+ * Standalone PTF name: skip_col_by_type
+ *
+ * PARAMETERS:
+ *   tab       - Input table
+ *   type_name - A string representing the type of columns to skip
+ *   flip      - 'False' [default] =&gt; Match columns with given type_name
+ *               otherwise         =&gt; Ignore columns with given type_name
+ *
+ * DESCRIPTION:
+ *   This PTF removes the given type of columns from the given table. 
+*/ 
+  FUNCTION describe(tab       IN OUT DBMS_TF.TABLE_T, 
+                    type_name        VARCHAR2, 
+                    flip             VARCHAR2 DEFAULT 'False') 
+           RETURN DBMS_TF.DESCRIBE_T 
+  AS 
+    typ CONSTANT VARCHAR2(1024) := UPPER(TRIM(type_name));
+  BEGIN 
+    FOR i IN 1 .. tab.column.count() LOOP
+       tab.column(i).PASS_THROUGH := 
+         CASE UPPER(SUBSTR(flip,1,1))
+           WHEN 'F' THEN DBMS_TF.column_type_name(tab.column(i).DESCRIPTION)!=typ
+           ELSE          DBMS_TF.column_type_name(tab.column(i).DESCRIPTION) =typ
+         END /* case */;
+    END LOOP;
+
+    RETURN NULL;
+  END;
+
+END skip_col_pkg; 
+
+</code></pre><p>Create a standalone polymorphic table function named skip_col_by_name for overload 1. Specify exactly one formal argument of type <code class="codeph">TABLE</code>, specify the return type of the PTF as <code class="codeph">TABLE</code>, specify a <code class="codeph">Row Semantics</code> PTF type, and indicate the PTF implementation package to use is skip_col_pkg.  
+                     </p><pre class="pre codeblock"><code>CREATE FUNCTION skip_col_by_name(tab TABLE, 
+                                 col COLUMNS)
+                  RETURN TABLE PIPELINED ROW POLYMORPHIC USING skip_col_pkg;
+</code></pre><p>Create a standalone polymorphic table function named skip_col_by_type for overload 2. Specify exactly one formal argument of type <code class="codeph">TABLE</code>, specify the return type of the PTF as <code class="codeph">TABLE</code>, specify a <code class="codeph">Row Semantics</code> PTF type, and indicate the PTF implementation package to use is skip_col_pkg. 
+                     </p><pre class="pre codeblock"><code>
+CREATE FUNCTION skip_col_by_type(tab TABLE, 
+                                 type_name VARCHAR2,
+                                 flip VARCHAR2 DEFAULT 'False')
+                  RETURN TABLE PIPELINED ROW POLYMORPHIC USING skip_col_pkg;
+</code></pre><p>Invoke the package skip_col  PTF (overload 1) to report from the <code class="codeph">SCOTT.DEPT</code> table only columns whose type is not <code class="codeph">NUMBER</code>.
+                     </p><pre class="pre codeblock"><code>SELECT * FROM skip_col_pkg.skip_col(scott.dept, 'number');</code></pre><pre class="oac_no_warn" dir="ltr">DNAME          LOC
+-------------- -------------
+ACCOUNTING     NEW YORK
+RESEARCH       DALLAS
+SALES          CHICAGO
+OPERATIONS     BOSTON
+</pre><p>The same result can be achieved by invoking the standalone skip_col_by_type PTF to report from the <code class="codeph">SCOTT.DEPT</code> table only columns whose type is not <code class="codeph">NUMBER</code>.
+                     </p><pre class="pre codeblock"><code>SELECT * FROM skip_col_by_type(scott.dept, 'number');</code></pre><pre class="oac_no_warn" dir="ltr">DNAME          LOC
+-------------- -------------
+ACCOUNTING     NEW YORK
+RESEARCH       DALLAS
+SALES          CHICAGO
+OPERATIONS     BOSTON
+</pre><p>Invoke the package skip_col PTF (overload 2) to report from the <code class="codeph">SCOTT.DEPT</code> table only columns whose type is <code class="codeph">NUMBER</code>.
+                     </p><pre class="pre codeblock"><code>SELECT * FROM skip_col_pkg.skip_col(scott.dept, 'number', flip =&gt; 'True');</code></pre><pre class="oac_no_warn" dir="ltr">   DEPTNO
+----------
+        10
+        20
+        30
+        40
+</pre><p>The same result can be achieved by invoking the standalone skip_col_by_type PTF to report from the <code class="codeph">SCOTT.DEPT</code> table only columns whose type is <code class="codeph">NUMBER</code>.
+                     </p><pre class="pre codeblock"><code>SELECT * FROM skip_col_by_type(scott.dept, 'number', flip =&gt; 'True');</code></pre><pre class="oac_no_warn" dir="ltr">   DEPTNO
+----------
+        10
+        20
+        30
+        40
+</pre><p>Invoke the package skip_col PTF to report all employees in department 20 from the <code class="codeph">SCOTT.EMP</code> table all columns except <code class="codeph">COMM</code>, <code class="codeph">HIREDATE</code> and <code class="codeph">MGR</code>. 
+                     </p><pre class="pre codeblock"><code>SELECT *
+FROM skip_col_pkg.skip_col(scott.emp, COLUMNS(comm, hiredate, mgr))
+WHERE deptno = 20;</code></pre><pre class="oac_no_warn" dir="ltr">    EMPNO ENAME      JOB              SAL     DEPTNO
+---------- ---------- --------- ---------- ----------
+      7369 SMITH      CLERK            800         20
+      7566 JONES      MANAGER         2975         20
+      7788 SCOTT      ANALYST         3000         20
+      7876 ADAMS      CLERK           1100         20
+      7902 FORD       ANALYST         3000         20
+</pre></div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-F8E13DDD-710D-4626-824E-B344849C5AFE" name="GUID-F8E13DDD-710D-4626-824E-B344849C5AFE"></a><h3 id="LNPLS-GUID-F8E13DDD-710D-4626-824E-B344849C5AFE" class="sect3"><span class="enumeration_section">12.6.7 </span>To_doc Polymorphic Table Function Example
+               </h3>
+               <div>
+                  <p>The to_doc PTF example combines a list of specified columns into a single document column.</p>
+                  <div class="example" id="GUID-F8E13DDD-710D-4626-824E-B344849C5AFE__GUID-4DC9A4E9-B1C8-4BB6-9EE9-673C385DDFEA">
+                     <p class="titleinexample">Example 12-37 To_doc Polymorphic Table Function Example</p>
+                     <p>The to_doc PTF combines  a list of columns into a document column constructed like a JSON object.</p>
+                     <div class="infoboxnote" id="GUID-F8E13DDD-710D-4626-824E-B344849C5AFE__GUID-ED9A985B-2DAC-4E20-BA49-45DC11ED9242">
+                        <p class="notep1">Live SQL:</p>
+                        <p>You can view and run this example on Oracle Live SQL at <a href="https://livesql.oracle.com/apex/livesql/docs/lnpls/ptf/ptftodoc.html" target="_blank">18c To_doc Polymorphic Table Function</a></p>
+                     </div>
+                     <p>Create the implementation package to_doc_p containing the <code class="codeph">DESCRIBE</code> function and <code class="codeph">FETCH_ROWS</code> procedure for the to_doc polymorphic table function (PTF).
+                     </p>
+                     <div class="p">The PTF parameters are :
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>tab  : The input table (The tab parameter is of type <code class="codeph">DBMS_TF</code>.<code class="codeph">TABLE_T</code>, a table descriptor record type)
+                              </p>
+                           </li>
+                           <li>
+                              <p>cols (optional) : The list of columns to convert to document. (The cols parameter is type <code class="codeph">DBMS_TF</code>.<code class="codeph">COLUMNS_T</code> , a column descriptor record type)
+                              </p>
+                           </li>
+                        </ul>
+                     </div><pre class="pre codeblock"><code>CREATE PACKAGE to_doc_p AS
+   FUNCTION describe(tab      IN OUT DBMS_TF.TABLE_T,
+                     cols     IN     DBMS_TF.COLUMNS_T DEFAULT NULL)
+		       RETURN DBMS_TF.DESCRIBE_T;
+   
+   PROCEDURE fetch_rows;
+END to_doc_p;
+</code></pre><p>Create the package containing the <code class="codeph">DESCRIBE</code> function and <code class="codeph">FETCH_ROWS</code> procedure. The <code class="codeph">FETCH_ROWS</code> procedure is required to produce a new column named DOCUMENT in the output rowset. The <code class="codeph">DESCRIBE</code> function indicates the read columns by annotating them in the input table descriptor, <code class="codeph">TABLE_T</code>. Only the indicated read columns will be fetched and thus available for processing during <code class="codeph">FETCH_ROWS</code>. The PTF invocation in a query can use the COLUMNS pseudo-operator to indicate which columns the query wants the PTF to read, and this information is passed to the <code class="codeph">DESCRIBE</code> function which then in turn sets the <code class="codeph">COLUMN_T</code>.<code class="codeph">FOR_READ</code> boolean flag. Only scalar SQL data types are allowed for the read columns. The <code class="codeph">COLUMN_T</code>.<code class="codeph">PASS_THROUGH</code> boolean flag indicates columns that are passed from the input table of the PTF to the output, without any modifications.
+                     </p><pre class="pre codeblock"><code>CREATE PACKAGE BODY to_doc_p AS
+   
+FUNCTION describe(tab      IN OUT DBMS_TF.TABLE_T,
+                  cols     IN     DBMS_TF.COLUMNS_T DEFAULT NULL)
+		    RETURN DBMS_TF.DESCRIBE_T AS
+BEGIN
+  FOR i IN 1 .. tab.column.count LOOP 
+	 CONTINUE WHEN NOT DBMS_TF.SUPPORTED_TYPE(tab.column(i).DESCRIPTION.TYPE);
+	 
+	  IF cols IS NULL THEN
+	     tab.column(i).FOR_READ     := TRUE;
+	     tab.column(i).PASS_THROUGH := FALSE;
+	     CONTINUE;
+	   END IF;
+	 
+	  FOR j IN 1 .. cols.count LOOP
+	    IF (tab.column(i).DESCRIPTION.NAME = cols(j)) THEN
+	        tab.column(i).FOR_READ     := TRUE;
+	        tab.column(i).PASS_THROUGH := FALSE;
+	    END IF;
+	  END LOOP;
+	 
+  END LOOP;
+      
+  RETURN DBMS_TF.describe_t(new_columns =&gt; DBMS_TF.COLUMNS_NEW_T(1 =&gt;
+	                          DBMS_TF.COLUMN_METADATA_T(name =&gt;'DOCUMENT')));   
+END;
+   
+ PROCEDURE fetch_rows AS 
+      rst DBMS_TF.ROW_SET_T;
+      col DBMS_TF.TAB_VARCHAR2_T;
+      rct PLS_INTEGER;
+ BEGIN
+      DBMS_TF.GET_ROW_SET(rst, row_count =&gt; rct);
+      FOR rid IN 1 .. rct LOOP 
+	       col(rid) := DBMS_TF.ROW_TO_CHAR(rst, rid); 
+      END LOOP;
+      DBMS_TF.PUT_COL(1, col);
+ END; 
+   
+END to_doc_p;</code></pre><p>Create the standalone to_doc PTF. Specify exactly one formal argument of type <code class="codeph">TABLE</code>, specify the return type of the PTF as <code class="codeph">TABLE</code>, specify a Row Semantics PTF type, and indicate the PTF implementation package to use is to_doc_p.
+                     </p><pre class="pre codeblock"><code>CREATE FUNCTION to_doc(
+                 tab  TABLE, 
+       			    cols  COLUMNS DEFAULT NULL) 
+       			    RETURN TABLE
+    PIPELINED ROW POLYMORPHIC USING to_doc_p;
+ </code></pre><p>Invoke the to_doc PTF to display all columns of table <code class="codeph">SCOTT</code>.<code class="codeph">DEPT</code> as one combined <code class="codeph">DOCUMENT</code> column.
+                     </p><pre class="pre codeblock"><code>SELECT * FROM to_doc(scott.dept);</code></pre><pre class="oac_no_warn" dir="ltr">DOCUMENT
+--------------------------------------------------
+{"DEPTNO":10, "DNAME":"ACCOUNTING", "LOC":"NEW YORK"}
+{"DEPTNO":20, "DNAME":"RESEARCH", "LOC":"DALLAS"}
+{"DEPTNO":30, "DNAME":"SALES", "LOC":"CHICAGO"}
+{"DEPTNO":40, "DNAME":"OPERATIONS", "LOC":"BOSTON"}
+</pre><p>For all employees in departments 10 and 30, display the <code class="codeph">DEPTNO</code>, <code class="codeph">ENAME</code> and <code class="codeph">DOCUMENT</code> columns ordered by <code class="codeph">DEPTNO</code> and <code class="codeph">ENAME</code>. Invoke the to_doc PTF with the <code class="codeph">COLUMNS</code> pseudo-operator to select columns <code class="codeph">EMPNO</code>, <code class="codeph">JOB</code>, <code class="codeph">MGR</code>, <code class="codeph">HIREDATE</code>, <code class="codeph">SAL</code> and <code class="codeph">COMM</code> of table <code class="codeph">SCOTT</code>.<code class="codeph">EMP</code> . The PTF combines these columns into the <code class="codeph">DOCUMENT</code> column.
+                     </p><pre class="pre codeblock"><code>SELECT deptno, ename, document 
+FROM   to_doc(scott.emp, COLUMNS(empno,job,mgr,hiredate,sal,comm))
+WHERE  deptno IN (10, 30) 
+ORDER BY 1, 2;</code></pre><pre class="oac_no_warn" dir="ltr">DEPTNO ENAME      DOCUMENT
+------ ---------- ---------------------------------------------------------------------------------
+    10 CLARK      {"EMPNO":7782, "JOB":"MANAGER", "MGR":7839, "HIREDATE":"09-JUN-81", "SAL":2450}
+    10 KING       {"EMPNO":7839, "JOB":"PRESIDENT", "HIREDATE":"17-NOV-81", "SAL":5000}
+    10 MILLER     {"EMPNO":7934, "JOB":"CLERK", "MGR":7782, "HIREDATE":"23-JAN-82", "SAL":1300}
+    30 ALLEN      {"EMPNO":7499, "JOB":"SALESMAN", "MGR":7698, "HIREDATE":"20-FEB-81", "SAL":1600, "COMM":300}
+    30 BLAKE      {"EMPNO":7698, "JOB":"MANAGER", "MGR":7839, "HIREDATE":"01-MAY-81", "SAL":2850}
+    30 JAMES      {"EMPNO":7900, "JOB":"CLERK", "MGR":7698, "HIREDATE":"03-DEC-81", "SAL":950}
+    30 MARTIN     {"EMPNO":7654, "JOB":"SALESMAN", "MGR":7698, "HIREDATE":"28-SEP-81", "SAL":1250, "COMM":1400}
+    30 TURNER     {"EMPNO":7844, "JOB":"SALESMAN", "MGR":7698, "HIREDATE":"08-SEP-81", "SAL":1500, "COMM":0}
+    30 WARD       {"EMPNO":7521, "JOB":"SALESMAN", "MGR":7698, "HIREDATE":"22-FEB-81", "SAL":1250, "COMM":500}
+</pre><p>With the subquery named <code class="codeph">E</code>, display the <code class="codeph">DOC_ID</code> and <code class="codeph">DOCUMENT</code> columns. Report all clerk employees, their salary, department and department location. Use the to_doc PTF to combine the <code class="codeph">NAME</code>, <code class="codeph">SAL</code>, <code class="codeph">DEPTNO</code> and <code class="codeph">LOC</code> columns into the <code class="codeph">DOCUMENT</code> column.
+                     </p><pre class="pre codeblock"><code>WITH e AS (
+       SELECT ename name, sal, deptno, loc 
+	     FROM scott.emp NATURAL JOIN scott.dept 
+        WHERE job = 'CLERK')
+	  SELECT ROWNUM doc_id, t.*
+	    FROM to_doc(e) t;</code></pre><pre class="oac_no_warn" dir="ltr">    DOC_ID DOCUMENT
+---------- -------------------------------------------------------
+         1 {"NAME":"MILLER", "SAL":1300, "DEPTNO":10, "LOC":"NEW YORK"}
+         2 {"NAME":"SMITH", "SAL":800, "DEPTNO":20, "LOC":"DALLAS"}
+         3 {"NAME":"ADAMS", "SAL":1100, "DEPTNO":20, "LOC":"DALLAS"}
+         4 {"NAME":"JAMES", "SAL":950, "DEPTNO":30, "LOC":"CHICAGO"}
+</pre><p>Use a subquery block to display c1, c2, c3 column values converted into the <code class="codeph">DOCUMENT</code> column.
+                     </p><pre class="pre codeblock"><code>WITH t(c1,c2,c3)  AS (
+    SELECT NULL, NULL, NULL FROM dual 
+    UNION ALL
+    SELECT    1, NULL, NULL FROM dual 
+    UNION ALL
+    SELECT NULL,    2, NULL FROM dual 
+    UNION ALL
+    SELECT    0, NULL,    3 FROM dual)
+  SELECT * 
+    FROM to_doc(t);</code></pre><pre class="oac_no_warn" dir="ltr">DOCUMENT
+---------------
+{}
+{"C1":1}
+{"C2":2}
+{"C1":0, "C3":3}
+</pre><p>For all employees in department 30, display the values of the member with property names <code class="codeph">ENAME</code> and <code class="codeph">COMM</code>. The PTF invocation reporting from the <code class="codeph">SCOTT</code>.<code class="codeph">EMP</code> table produces the <code class="codeph">DOCUMENT</code> column which can be used as input to the <code class="codeph">JSON_VALUE</code> function. This function selects a scalar value from some JSON data.
+                     </p><pre class="pre codeblock"><code>SELECT JSON_VALUE(document, '$.ENAME') ename, 
+       JSON_VALUE(document, '$.COMM')  comm 
+FROM   to_doc(scott.emp)
+WHERE  JSON_VALUE(document, '$.DEPTNO') = 30;</code></pre><pre class="oac_no_warn" dir="ltr">ENAME      COMM
+---------- ----
+ALLEN      300
+WARD       500
+MARTIN     1400
+BLAKE
+TURNER     0
+JAMES
+</pre></div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-CF5859FE-4938-4EBF-BE5F-A7C857B77B8C" name="GUID-CF5859FE-4938-4EBF-BE5F-A7C857B77B8C"></a><h3 id="LNPLS-GUID-CF5859FE-4938-4EBF-BE5F-A7C857B77B8C" class="sect3"><span class="enumeration_section">12.6.8 </span>Implicit_echo Polymorphic Table Function Example
+               </h3>
+               <div>
+                  <p>The implicit_echo PTF example demonstrates that the USING clause is optional when the Polymorphic Table Function and the DESCRIBE function are defined in the same package.</p>
+                  <div class="example" id="GUID-CF5859FE-4938-4EBF-BE5F-A7C857B77B8C__IMPLICIT_ECHOPOLYMORPHICTABLE-B0FD91C4">
+                     <p class="titleinexample">Example 12-38 Implicit_echo Polymorphic Table Function Example</p>
+                     <p>The <code class="codeph">implicit_echo</code> PTF, takes in a table and a column and produces a new column with the same value.
+                     </p>
+                     <p>This PTF returns the column in the input table tab, and adds to it the column listed in cols but with the column names prefixed with <code class="codeph">"ECHO_"</code>.
+                     </p>
+                     <p>Create the implementation package <code class="codeph">implicit_echo_package</code> containing the <code class="codeph">DESCRIBE</code> function, <code class="codeph">implicit_echo</code> polymorphic table function (PTF) and <code class="codeph">FETCH_ROWS</code> procedure.
+                     </p><pre class="pre codeblock"><code>CREATE PACKAGE implicit_echo_package AS
+  prefix   DBMS_ID := '"ECHO_';
+
+  FUNCTION DESCRIBE(tab   IN OUT DBMS_TF.TABLE_T,
+                    cols  IN     DBMS_TF.COLUMNS_T)
+           RETURN DBMS_TF.DESCRIBE_T;
+  
+  PROCEDURE FETCH_ROWS;
+
+  -- PTF FUNCTION: WITHOUT USING CLAUSE --
+  FUNCTION implicit_echo(tab TABLE, cols COLUMNS)
+           RETURN TABLE PIPELINED ROW POLYMORPHIC;
+
+END implicit_echo_package;</code></pre><p>Create the package containing the <code class="codeph">DESCRIBE</code> function containing the input table parameter and the column parameter to be read. This function is invoked to determine the type of rows produced by the Polymorphic Table Function. The function returns a table <code class="codeph">DBMS_TF.DESCRIBE_T</code>. The <code class="codeph">FETCH_ROWS</code> procedure is required to produce the indicated read column along with a new column prefixed with <code class="codeph">"ECHO_"</code> in the output rowset. The <code class="codeph">implicit_echo</code> is the PTF function and contains two arguments, <code class="codeph">tab</code> and <code class="codeph">cols</code>, whose values are obtained from the query and this information is passed to the <code class="codeph">DESCRIBE</code> function. The Row semantics specifies a PTF type but without the <code class="codeph">USING</code> clause. This function is invoked from the SQL query.
+                     </p>
+                     <p>Create the implementation package body <code class="codeph">implicit_echo_package</code> which contains the PTF definition.
+                     </p><pre class="pre codeblock"><code>CREATE PACKAGE BODY implicit_echo_package AS
+
+FUNCTION DESCRIBE(tab  IN  OUT DBMS_TF.TABLE_T,
+                  cols IN      DBMS_TF.COLUMNS_T)
+          RETURN DBMS_TF.DESCRIBE_T
+AS
+  new_cols DBMS_TF.COLUMNS_NEW_T;
+  col_id   PLS_INTEGER := 1;
+
+BEGIN
+ FOR i in 1 .. tab.column.COUNT LOOP
+ 
+   FOR j in 1 .. cols.COUNT LOOP
+    
+     IF (tab.column(i).description.name = cols(j)) THEN
+       
+       IF (NOT DBMS_TF.SUPPORTED_TYPE(tab.column(i).description.type)) THEN
+            RAISE_APPLICATION_ERROR(-20102, 'Unsupported column type['||
+                                    tab.column(i).description.type||']');
+       END IF;
+
+       tab.column(i).for_read := TRUE;
+       new_cols(col_id)       := tab.column(i).description;
+       new_cols(col_id).name  := prefix||
+                                 REGEXP_REPLACE(tab.column(i).description.name,
+                                                                      '^"|"$');
+       col_id                 := col_id + 1;
+       EXIT;
+
+     END IF;
+
+    END LOOP;
+
+ END LOOP;
+
+/* VERIFY ALL COLUMNS WERE FOUND */
+ IF (col_id - 1 != cols.COUNT) then
+    RAISE_APPLICATION_ERROR(-20101,'Column mismatch['||col_id-1||'],
+                                                   ['||cols.COUNT||']');
+ END IF;
+
+ RETURN DBMS_TF.DESCRIBE_T(new_columns =&gt; new_cols);
+
+END;
+
+ PROCEDURE FETCH_ROWS AS
+	 rowset DBMS_TF.ROW_SET_T;
+ BEGIN
+         DBMS_TF.GET_ROW_SET(rowset);
+         DBMS_TF.PUT_ROW_SET(rowset);
+ END;
+
+END implicit_echo_package;</code></pre><p>Invoke the PTF to display ENAME column of table <code class="codeph">SCOTT</code>.<code class="codeph">EMP</code> and display it along with another column  <code class="codeph">ECHO_ENAME</code> having the same value.
+                     </p><pre class="pre codeblock"><code>SELECT ENAME, ECHO_ENAME
+FROM implicit_echo_package.implicit_echo(SCOTT.EMP, COLUMNS(SCOTT.ENAME));</code></pre><pre class="oac_no_warn" dir="ltr">ENAME      ECHO_ENAME
+---------- ----------
+SMITH      SMITH
+ALLEN      ALLEN
+WARD       WARD
+JONES      JONES
+MARTIN     MARTIN
+BLAKE      BLAKE
+CLARK      CLARK
+SCOTT      SCOTT
+KING       KING
+TURNER     TURNER
+ADAMS      ADAMS
+JAMES      JAMES
+FORD       FORD
+MILLER     MILLER
+</pre></div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

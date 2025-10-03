@@ -1,0 +1,584 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Steps in a Typical LogMiner Session">
+      <meta name="abstract" content="Learn about the typical ways you can use LogMiner to extract and mine data.">
+      <meta name="description" content="Learn about the typical ways you can use LogMiner to extract and mine data.">
+      <meta name="DC.subject" content="LogMiner utility, steps in a typical session, specifying redo logs for analysis, starting, ending a session">
+      <meta name="keywords" content="LogMiner utility, steps in a typical session, specifying redo logs for analysis, starting, ending a session">
+      <meta name="DC.Relation" scheme="URI" content="oracle-logminer-utility.html#GUID-3417B738-374C-4EE3-B15C-3A66E01AE2B5">
+      <meta name="DC.Relation" scheme="URI" content="steps-in-a-typical-logminer-session.html#GUID-6609EBA2-B2D7-4EAE-8344-A1F6C0A24760">
+      <meta name="DC.Relation" scheme="URI" content="steps-in-a-typical-logminer-session.html#GUID-F621A15A-0A29-4261-9C23-F95139E5D79E">
+      <meta name="DC.Relation" scheme="URI" content="steps-in-a-typical-logminer-session.html#GUID-8D74F78A-E7D1-48E6-8E65-5E8CC55F0757">
+      <meta name="DC.Relation" scheme="URI" content="steps-in-a-typical-logminer-session.html#GUID-CEB3F34A-633A-47D5-B568-F65746D02D02">
+      <meta name="DC.Relation" scheme="URI" content="steps-in-a-typical-logminer-session.html#GUID-319446A8-6FEC-42CE-A6A4-582CA65377CF">
+      <meta name="DC.Relation" scheme="URI" content="steps-in-a-typical-logminer-session.html#GUID-CDB10F63-EC7C-4ADB-8022-0A0EA45268E6">
+      <meta name="DC.Relation" scheme="URI" content="steps-in-a-typical-logminer-session.html#GUID-F6E100FC-817C-486C-A60E-B6D372E46CD3">
+      <meta name="DC.Creator" content="William Beauregard">
+      <meta name="DC.Creator" content="Steve DiPirro">
+      <meta name="DC.Creator" content="John Kalogeropoulos">
+      <meta name="DC.Creator" content="Dan Mullen">
+      <meta name="DC.Creator" content="Rod Payne">
+      <meta name="DC.Creator" content="Rich Phillips">
+      <meta name="DC.Creator" content="Mike Sakayeda">
+      <meta name="DC.Creator" content="Jim Stenoish">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Douglas Williams">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-0653BB78-4151-4C9F-B661-04E11D24DF23">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Learn about the typical ways you can use LogMiner to extract and mine data.">
+      <meta name="description" content="Learn about the typical ways you can use LogMiner to extract and mine data.">
+      <title>Steps in a Typical LogMiner Session</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Utilities ">
+      <meta property="og:description" content="Learn about the typical ways you can use LogMiner to extract and mine data.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Utilities">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-database-utilities-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-16T12:44:53-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96081-31">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="oracle-logminer-utility.html" title="Previous" type="text/html">
+      <link rel="next" href="using-oracle-dbms_metadata-api.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Database Utilities Guide">
+    <meta name="dcterms.isVersionOf" content="SUTIL">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Steps in a Typical LogMiner Session","description":"Learn about the typical ways you can use LogMiner to extract and mine data.","datePublished":"2025-06-16 CST","dateModified":"2025-06-16 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="oracle-logminer-utility.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="using-oracle-dbms_metadata-api.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-0653BB78-4151-4C9F-B661-04E11D24DF23" name="GUID-0653BB78-4151-4C9F-B661-04E11D24DF23"></a>
+         
+         <h2 id="SUTIL-GUID-0653BB78-4151-4C9F-B661-04E11D24DF23" class="sect2"><span class="enumeration_section">23.12 </span>Steps in a Typical LogMiner
+        Session
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Learn about the typical ways you can use LogMiner to extract and mine data. </p>
+               <p>
+                  
+                  
+               </p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="steps-in-a-typical-logminer-session.html#GUID-6609EBA2-B2D7-4EAE-8344-A1F6C0A24760">Understanding How to Run LogMiner Sessions</a><br>On Premises and  Oracle Autonomous Cloud Platform Services LogMiner         Sessions are similar, but require different users.  
+                  </li>
+                  <li class="ulchildlink"><a href="steps-in-a-typical-logminer-session.html#GUID-F621A15A-0A29-4261-9C23-F95139E5D79E">Typical LogMiner Session Task 1: Enable Supplemental Logging</a><br>To be able to use LogMiner with redo log files, you must enable supplemental         logging. 
+                  </li>
+                  <li class="ulchildlink"><a href="steps-in-a-typical-logminer-session.html#GUID-8D74F78A-E7D1-48E6-8E65-5E8CC55F0757">Typical LogMiner Session Task 2: Extract a LogMiner Dictionary</a><br>To use LogMiner, you must select an option to supply LogMiner with a         database dictionary. 
+                  </li>
+                  <li class="ulchildlink"><a href="steps-in-a-typical-logminer-session.html#GUID-CEB3F34A-633A-47D5-B568-F65746D02D02">Typical LogMiner Session Task 3: Specify Redo Log Files for Analysis</a><br>You must specify the redo log files that you want to analyze with          <code class="codeph">DBMS_LOGMNR_ADD_LOGFILE</code> before starting LogMiner.
+                  </li>
+                  <li class="ulchildlink"><a href="steps-in-a-typical-logminer-session.html#GUID-319446A8-6FEC-42CE-A6A4-582CA65377CF">Start LogMiner</a><br>See how to start LogMiner, and what options you can use to analyze redo log       files, filter criteria, and other session characteristics.
+                  </li>
+                  <li class="ulchildlink"><a href="steps-in-a-typical-logminer-session.html#GUID-CDB10F63-EC7C-4ADB-8022-0A0EA45268E6">Query V$LOGMNR_CONTENTS</a><br>After you start LogMiner, you can query the Oracle Database             <code class="codeph">V$LOGMNR_CONTENTS</code> view.
+                  </li>
+                  <li class="ulchildlink"><a href="steps-in-a-typical-logminer-session.html#GUID-F6E100FC-817C-486C-A60E-B6D372E46CD3">Typical LogMiner Session Task 6: End the LogMiner Session</a><br>Ending the LogMiner session.
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="oracle-logminer-utility.html#GUID-3417B738-374C-4EE3-B15C-3A66E01AE2B5" title="Oracle LogMiner, which is part of Oracle Database, enables you to query online and archived redo log files through a SQL interface.">Using LogMiner to Analyze Redo Log Files</a></p>
+                  </div>
+               </div>
+            </div>
+            <a id="SUTIL1597"></a><div class="props_rev_3"><a id="GUID-6609EBA2-B2D7-4EAE-8344-A1F6C0A24760" name="GUID-6609EBA2-B2D7-4EAE-8344-A1F6C0A24760"></a><h3 id="SUTIL-GUID-6609EBA2-B2D7-4EAE-8344-A1F6C0A24760" class="sect3"><span class="enumeration_section">23.12.1 </span>Understanding How to Run LogMiner
+        Sessions
+               </h3>
+               <div>
+                  <p>On Premises and  Oracle Autonomous Cloud Platform Services LogMiner
+        Sessions are similar, but require different users.  </p>
+                  <p>In a traditional LogMiner session, and when you run LogMiner on
+                <code class="codeph">CDB$ROOT</code>, you run LogMiner by using a PL/SQL package that is owned
+            by <code class="codeph">SYS</code>. To use LogMiner, there are requirements for the user account
+            that you use with LogMiner.
+                  </p>
+                  <p>When you run LogMiner in an On-Premise Oracle Database, you can create one
+                <code class="codeph">CDB$ROOT</code> capture extract to capture data from multiple PDBs at the
+            same time, or mine multiple individual PDB logs using Oracle GoldenGate, each capturing
+            data from just one PDB. However for Oracle Autonomous Database Cloud Platform Services,
+            where you do not have access to <code class="codeph">CDB$ROOT</code>, you must use the per-PDB
+            capture method. In this mode, you provision a local user with a predefined set of
+            privileges to the source PDB whose logs you want to review. All LogMiner processing is
+            restricted to this PDB only.
+                  </p>
+                  <p>With On-Premise PDBs, you can start as many sessions as resources allow. But
+            for Cloud configurations, while you can still start many concurrent sessions in
+                <code class="codeph">CDB$ROOT</code>, you can start only one session for each PDB using the
+            LogMiner PL/SQL package. 
+                  </p>
+                  <p>To run LogMiner on <code class="codeph">CDB$ROOT</code>, you use the PL/SQL package
+                <code class="codeph">DBMS_LOGMNR.ADD_LOGFILE</code> and add log files explicitly. Additionally,
+            if you choose to extract a LogMiner dictionary rather than use the online catalog, then
+            you can also use the <code class="codeph">DBMS_LOGMNR_D</code> package. 
+                  </p>
+                  <p>To run LogMiner on individual PDBs, the procedures are slightly different.
+            instead of using <code class="codeph">DBMS_LOGMNR.ADD_LOGFILE</code>. you specify a period in which
+            you want to review log files for the PDB. Specify the SCN value of the log that you want
+            to query, with either <code class="codeph">startScn</code> and, if you choose,
+                <code class="codeph">endScn</code>, or <code class="codeph">startTime</code>, and if you choose,
+                <code class="codeph">endTime</code>. You then start LogMiner with
+                <code class="codeph">DBMS_LOGMNR.START_LOGMNR</code>. <code class="codeph">DBMS_LOGMNR.START_LOGMNR</code>
+            automatically adds the redo logs for you to analyze. 
+                  </p>
+                  <p>The <code class="codeph">DBMS_LOGMNR</code> package contains the procedures used to
+            initialize and run LogMiner, including interfaces to specify names of redo log files,
+            filter criteria, and session characteristics. The <code class="codeph">DBMS_LOGMNR_D</code> package
+            queries the database dictionary tables of the current database to create a LogMiner
+            dictionary file. 
+                  </p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-6609EBA2-B2D7-4EAE-8344-A1F6C0A24760__GUID-9E885173-4F0A-4CE3-BE25-EAE531C7D0B3">Requirements for Running LogMiner
+                for Individual PDB</p>
+                     
+                     
+                     <p>To run LogMiner to query individual PDBs, you must provision a local
+                user with the necessary privilege, using the procedure call
+                    <code class="codeph">DBMS_GOLDENGATE_AUTH.GRANT_ADMIN_PRIVILEGE</code>. Also, users with
+                the <code class="codeph">GGADMIN</code> privilege can run Per-PDB capture Extracts. 
+                     </p>
+                     
+                     
+                     <p>Again, with individual PDBs, you do not specify the archive logs that you
+                want to mine. Instead, connect to the PDB that you want to mine, and then run
+                    <code class="codeph">dbms_logmnr_d.STORE_IN_REDO_LOGS</code>. For example: 
+                     </p>
+                     <pre class="pre codeblock"><code>SQL&gt; execute dbms_logmnr_d.build(option=&gt;dbms_logmnr_d.STORE_IN_REDO_LOGS);</code></pre>
+                     <p>You can then connect to the PDB, identify SCNs,  then run
+                    <code class="codeph">dbms_logmnr.start_logmnr</code> to query the log files for the
+                starting point system change number (SCN) for the PDB log history that you want to
+                view, and if you choose, an end point SCN. Mining proceeds at that point just as
+                with traditional LogMiner queries to the V$LOGMNR_CONTENTS view. However, only redo
+                generated for the PDB to which you are connected is available 
+                     </p>
+                     
+                     
+                     <div class="infoboxnote" id="GUID-6609EBA2-B2D7-4EAE-8344-A1F6C0A24760__GUID-4C7F5E23-FBC3-40DB-8787-F27F836ABDB5">
+                        <p class="notep1">Note:</p>
+                        
+                        <p>If you shut down a PDB while Extract and any LogMiner processes are
+                    running, then these processes are terminated, as with other active sessions.
+                    When the PDB is reopened, restart of Extract mining should continue as normal.
+                    When you unplug the PDB, there are no special actions required. However, when
+                    you plug in a PDB after unplugging it, all LogMiner and Capture sessions that
+                    previously existed in the PDB are removed.</p>
+                        
+                     </div>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-6609EBA2-B2D7-4EAE-8344-A1F6C0A24760__GUID-D98A962C-92A2-48BE-9BC2-626F60C18978">Requirements for Running
+                Traditional LogMiner Sessions When Not Connected As SYS</p>
+                     
+                     
+                     <p>With On Premises log mining, the LogMiner PL/SQL packages are owned by
+                the <code class="codeph">SYS</code> schema. Therefore, if you are not connected as user
+                    <code class="codeph">SYS</code>, then:
+                     </p>
+                     
+                     <ul style="list-style-type: disc;" id="GUID-6609EBA2-B2D7-4EAE-8344-A1F6C0A24760__UL_ZNZ_T35_VJB">
+                        <li>
+                           
+                           <p>You must include <code class="codeph">SYS</code> in your call. For
+                        example:
+                           </p>
+                           <pre class="pre codeblock"><code>EXECUTE SYS.DBMS_LOGMNR.END_LOGMNR;
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>You must have been granted the
+                            <code class="codeph">EXECUTE_CATALOG_ROLE</code> role.
+                           </p>
+                           
+                        </li>
+                     </ul>
+                     
+                  </div>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="oracle-logminer-utility.html#GUID-FCECC066-F214-4595-870F-930D6F930F26" title="To locate a dictionary build, by time or by SCN (for example, when starting per-PDB mining), you can use the SYS.DBA_LOGMNR_DICTIONARY_BUILDLOG view on the source database.">Querying Individual PDBs Using LogMiner</a></li>
+                        <li><a href="../arpls/DBMS_LOGMNR.html#ARPLS-GUID-C1E24B58-CA7A-484D-99B8-BF304B22C412" target="_blank">DBMS_LOGMNR</a></li>
+                        <li><a href="../adfns/coding-subprograms-and-packages.html#ADFNS-GUID-29768EA9-170A-4038-B6EB-9821E33E5DF6" target="_blank">Overview of PL/SQL Packages</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="steps-in-a-typical-logminer-session.html#GUID-0653BB78-4151-4C9F-B661-04E11D24DF23" title="Learn about the typical ways you can use LogMiner to extract and mine data.">Steps in a Typical LogMiner Session</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="SUTIL1598"></a><div class="props_rev_3"><a id="GUID-F621A15A-0A29-4261-9C23-F95139E5D79E" name="GUID-F621A15A-0A29-4261-9C23-F95139E5D79E"></a><h3 id="SUTIL-GUID-F621A15A-0A29-4261-9C23-F95139E5D79E" class="sect3"><span class="enumeration_section">23.12.2 </span>Typical LogMiner Session Task 1: Enable Supplemental Logging
+               </h3>
+               <div>
+                  <p>To be able to use LogMiner with redo log files, you must enable supplemental
+        logging. </p>
+                  <div class="section">
+                     
+                     <p>Redo-based applications can require that additional columns are logged
+                in the redo log files. The process of logging these additional columns is called
+                    <strong class="term">supplemental logging</strong>. By default, Oracle Database does
+                not have supplemental logging enabled. At the very least, to use LogMiner, you must
+                enable minimal supplemental logging. 
+                     </p>
+                     
+                  </div>
+                  <div class="example" id="GUID-F621A15A-0A29-4261-9C23-F95139E5D79E__GUID-0608B1E8-0212-46A8-99FA-823A590474C8">
+                     <p class="titleinexample">Example 23-2 Enabling Minimal Supplemental Logging</p>
+                     
+                     
+                     <p>To enable supplemental logging, enter the following statement:</p>
+                     <pre class="pre codeblock"><code>ALTER DATABASE ADD SUPPLEMENTAL LOG DATA;
+</code></pre>
+                     </div>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="oracle-logminer-utility.html#GUID-D857AF96-AC24-4CA1-B620-8EA3DF30D72E" title="Describes supplemental logging.">Supplemental Logging</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="steps-in-a-typical-logminer-session.html#GUID-0653BB78-4151-4C9F-B661-04E11D24DF23" title="Learn about the typical ways you can use LogMiner to extract and mine data.">Steps in a Typical LogMiner Session</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="SUTIL1599"></a><div class="props_rev_3"><a id="GUID-8D74F78A-E7D1-48E6-8E65-5E8CC55F0757" name="GUID-8D74F78A-E7D1-48E6-8E65-5E8CC55F0757"></a><h3 id="SUTIL-GUID-8D74F78A-E7D1-48E6-8E65-5E8CC55F0757" class="sect3"><span class="enumeration_section">23.12.3 </span>Typical LogMiner Session Task 2: Extract a LogMiner Dictionary
+               </h3>
+               <div>
+                  <p>To use LogMiner, you must select an option to supply LogMiner with a
+        database dictionary. </p>
+                  <p>Choose one of the following options:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Specify use of the online catalog by using the
+                        <code class="codeph">DICT_FROM_ONLINE_CATALOG</code> option when you start
+                    LogMiner.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Extract the database dictionary information to the redo log files. </p>
+                     </li>
+                     <li>
+                        <p>Extract database dictionary information to a flat file. </p>
+                     </li>
+                  </ul>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="oracle-logminer-utility.html#GUID-1D510A2F-4CE8-4D69-AB18-CDD58FB3458C" title="To direct LogMiner to use the dictionary currently in use for the database, specify the online catalog as your dictionary source when you start LogMiner.">Using the Online Catalog</a></li>
+                        <li><a href="oracle-logminer-utility.html#GUID-A0D89906-C787-4EB4-BA47-171A457445EC" title="To extract a LogMiner dictionary to the redo log files, the database must be open and in ARCHIVELOG mode and archiving must be enabled.">Extracting a LogMiner Dictionary to the Redo Log Files</a></li>
+                        <li><a href="oracle-logminer-utility.html#GUID-DA37874F-6637-4205-AB5C-A8AC1914D018" title="When the LogMiner dictionary is in a flat file, fewer system resources are used than when it is contained in the redo log files.">Extracting the LogMiner Dictionary to a Flat File</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="steps-in-a-typical-logminer-session.html#GUID-0653BB78-4151-4C9F-B661-04E11D24DF23" title="Learn about the typical ways you can use LogMiner to extract and mine data.">Steps in a Typical LogMiner Session</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="SUTIL1600"></a><div class="props_rev_3"><a id="GUID-CEB3F34A-633A-47D5-B568-F65746D02D02" name="GUID-CEB3F34A-633A-47D5-B568-F65746D02D02"></a><h3 id="SUTIL-GUID-CEB3F34A-633A-47D5-B568-F65746D02D02" class="sect3"><span class="enumeration_section">23.12.4 </span>Typical LogMiner Session Task 3: Specify Redo Log Files for Analysis
+               </h3>
+               <div>
+                  <p>You must specify the redo log files that you want to analyze with
+         <code class="codeph">DBMS_LOGMNR_ADD_LOGFILE</code> before starting LogMiner.
+                  </p>
+                  <div class="section">
+                     
+                     <p>To query logs on <code class="codeph">CDB$ROOT</code> for On Premises, before you can
+            start LogMiner, you must specify the redo log files that you want to analyze. To specify
+            log files, run the <code class="codeph">DBMS_LOGMNR.ADD_LOGFILE</code> procedure, as demonstrated
+            in the following steps. You can add and remove redo log files in any order.
+                     </p>
+                     
+                     <div class="infoboxnote" id="GUID-CEB3F34A-633A-47D5-B568-F65746D02D02__GUID-86AFD093-0015-4BDE-9506-02CBD6786488">
+                        <p class="notep1">Note:</p>To query logs for an individual PDB,
+            you use a slightly different procedure. After you connect to the PDB, you query
+               <code class="codeph">DBA_LOGMNR_DICTIONARY_BUILDLOG</code>, identify a
+               <code class="codeph">START_SCN</code> value, and then start LogMiner with
+               <code class="codeph">DBMS_LOGMNR.START_LOGMNR</code>, specifying the SCN value of the log that
+            you want to review. <code class="codeph">DBMS_LOGMNR.START_LOGMNR</code> automatically adds the
+            redo logs for you to analyze. Refer to "Querying Individual PDBs Using LogMiner" for an
+            example. 
+                     </div>
+                     
+                  </div>
+                  <ol>
+                     <li class="stepexpand"><span>Use SQL*Plus to start an Oracle Database instance, with the database either mounted
+               or unmounted. For example, enter the <code class="codeph">STARTUP</code> statement at the SQL
+               prompt:</span><div>
+                           <pre class="pre codeblock"><code>STARTUP
+</code></pre>
+                           </div>
+                     </li>
+                     <li class="stepexpand"><span>Create a list of redo log files. Specify the <code class="codeph">NEW</code> option of the <code class="codeph">DBMS_LOGMNR.ADD_LOGFILE</code> PL/SQL procedure to signal that this is the beginning of a new list. For example, enter the following to specify the <code class="codeph">/oracle/logs/log1.f</code> redo log file: </span><div>
+                           <pre class="pre codeblock"><code>EXECUTE DBMS_LOGMNR.ADD_LOGFILE( -
+   LOGFILENAME =&gt; '/oracle/logs/log1.f', -
+   OPTIONS =&gt; DBMS_LOGMNR.NEW);
+</code></pre>
+                           </div>
+                     </li>
+                     <li class="stepexpand"><span>If desired, add more redo log files by specifying the <code class="codeph">ADDFILE</code> option of the <code class="codeph">DBMS_LOGMNR.ADD_LOGFILE</code> PL/SQL procedure. For example, enter the following to add the <code class="codeph">/oracle/logs/log2.f</code> redo log file:</span><div>
+                           <pre class="pre codeblock"><code>EXECUTE DBMS_LOGMNR.ADD_LOGFILE( -
+   LOGFILENAME =&gt; '/oracle/logs/log2.f', -
+   OPTIONS =&gt; DBMS_LOGMNR.ADDFILE);
+</code></pre>
+                           <p>The <code class="codeph">OPTIONS</code> parameter is optional when you are
+                  adding additional redo log files. For example, you can simply enter the
+                  following:
+                           </p>
+                           <pre class="pre codeblock"><code>EXECUTE DBMS_LOGMNR.ADD_LOGFILE( -
+   LOGFILENAME=&gt;'/oracle/logs/log2.f');
+</code></pre>
+                           </div>
+                     </li>
+                     <li class="stepexpand"><span>If desired, remove redo log files by using the
+                  <code class="codeph">DBMS_LOGMNR.REMOVE_LOGFILE</code> PL/SQL procedure. For example, enter
+               the following to remove the <code class="codeph">/oracle/logs/log2.f</code> redo log file:</span><div>
+                           <pre class="pre codeblock"><code>EXECUTE DBMS_LOGMNR.REMOVE_LOGFILE( -
+   LOGFILENAME =&gt; '/oracle/logs/log2.f');</code></pre>
+                           </div>
+                     </li>
+                  </ol>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="oracle-logminer-utility.html#GUID-FCECC066-F214-4595-870F-930D6F930F26" title="To locate a dictionary build, by time or by SCN (for example, when starting per-PDB mining), you can use the SYS.DBA_LOGMNR_DICTIONARY_BUILDLOG view on the source database.">Querying Individual PDBs Using LogMiner</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="steps-in-a-typical-logminer-session.html#GUID-0653BB78-4151-4C9F-B661-04E11D24DF23" title="Learn about the typical ways you can use LogMiner to extract and mine data.">Steps in a Typical LogMiner Session</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="SUTIL1601"></a><div class="props_rev_3"><a id="GUID-319446A8-6FEC-42CE-A6A4-582CA65377CF" name="GUID-319446A8-6FEC-42CE-A6A4-582CA65377CF"></a><h3 id="SUTIL-GUID-319446A8-6FEC-42CE-A6A4-582CA65377CF" class="sect3"><span class="enumeration_section">23.12.5 </span>Start LogMiner
+               </h3>
+               <div>
+                  <p>See how to start LogMiner, and what options you can use to analyze redo log
+      files, filter criteria, and other session characteristics.</p>
+                  <div class="p">After you have created a LogMiner dictionary file and specified which
+         redo log files to analyze, you can start LogMiner and analyze your Oracle Database
+            transactions.</div>
+                  <ol>
+                     <li class="stepexpand"><span>To start LogMiner, execute the <code class="codeph">DBMS_LOGMNR.START_LOGMNR</code>
+               procedure.</span><div>
+                           
+                           <p>Oracle recommends that you specify a LogMiner dictionary option. If
+                  you do not specify a dictionary option, then LogMiner cannot translate internal
+                  object identifiers and data types to object names and external data formats. As a
+                  result, LogMiner returns internal object IDs and present data as binary data.
+                  Additionally, you cannot use the <code class="codeph">MINE_VALUE</code> and
+                     <code class="codeph">COLUMN_PRESENT</code> functions without a dictionary.
+                           </p>
+                           
+                           <p>If you are specifying the name of a flat file LogMiner dictionary,
+                  then you must supply a fully qualified file name for the dictionary file. For
+                  example, to start LogMiner using <code class="codeph">/oracle/database/dictionary.ora</code>,
+                  issue the following statement:
+                           </p>
+                           <pre class="pre codeblock"><code>EXECUTE DBMS_LOGMNR.START_LOGMNR( -
+   DICTFILENAME =&gt;'/oracle/database/dictionary.ora');
+</code></pre>
+                           <p>If you are not specifying a flat file dictionary name, then use the
+                     <code class="codeph">OPTIONS</code> parameter to specify either the
+                     <code class="codeph">DICT_FROM_REDO_LOGS</code> or
+                     <code class="codeph">DICT_FROM_ONLINE_CATALOG</code> option. 
+                           </p>
+                           
+                           <p>If you specify <code class="codeph">DICT_FROM_REDO_LOGS</code>, then LogMiner
+                  expects to find a dictionary in the redo log files that you specified with the
+                     <code class="codeph">DBMS_LOGMNR.ADD_LOGFILE</code> procedure. To determine which redo log
+                  files contain a dictionary, look at the <code class="codeph">V$ARCHIVED_LOG</code> view. To
+                  see an example of this task, refer to "Extracting a LogMiner Dictionary to the
+                  Redo Log Files."
+                           </p>
+                           
+                           <div class="infoboxnote" id="GUID-319446A8-6FEC-42CE-A6A4-582CA65377CF__GUID-7E8B82D6-442D-4911-A7DA-019E1EC04B16">
+                              <p class="notep1">Note:</p>
+                              
+                              <p>If you add additional redo log files after LogMiner has been
+                     started, then you must restart LogMiner. LogMiner does not retain options
+                     included in the previous call to <code class="codeph">DBMS_LOGMNR.START_LOGMNR</code>; you
+                     must respecify the options that you want to use. However, if you do not specify
+                     a dictionary in the current call to <code class="codeph">DBMS_LOGMNR.START_LOGMNR</code>,
+                     then LogMiner does retain the dictionary specification from the previous
+                     call.
+                              </p>
+                              
+                           </div>
+                           
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Optionally, you can filter or format your query, or use the
+                  <code class="codeph">OPTIONS</code> parameter to specify additional characteristics of your
+               LogMiner session. For example, you might decide to use the online catalog as your
+               LogMiner dictionary and to have only committed transactions shown in the
+                  <code class="codeph">V$LOGMNR_CONTENTS</code> view, as follows:</span><div>
+                           <pre class="oac_no_warn" dir="ltr">EXECUTE DBMS_LOGMNR.START_LOGMNR(OPTIONS =&gt; -
+   DBMS_LOGMNR.DICT_FROM_ONLINE_CATALOG + -
+   DBMS_LOGMNR.COMMITTED_DATA_ONLY);
+</pre>
+                           <p>You can execute the <code class="codeph">DBMS_LOGMNR.START_LOGMNR</code>
+                  procedure multiple times, specifying different options each time. For example, if
+                  you did not obtain the desired results from a query of
+                     <code class="codeph">V$LOGMNR_CONTENTS</code>, you can restart LogMiner with different
+                  options. Unless you need to respecify the LogMiner dictionary, you do not need to
+                  add redo log files if they were already added with a previous call to
+                     <code class="codeph">DBMS_LOGMNR.START_LOGMNR</code>.
+                           </p>
+                           
+                           
+                        </div>
+                     </li>
+                  </ol>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="oracle-logminer-utility.html#GUID-A0D89906-C787-4EB4-BA47-171A457445EC" title="To extract a LogMiner dictionary to the redo log files, the database must be open and in ARCHIVELOG mode and archiving must be enabled.">Extracting a LogMiner Dictionary to the Redo Log Files</a></li>
+                        <li><a href="oracle-logminer-utility.html#GUID-1D510A2F-4CE8-4D69-AB18-CDD58FB3458C" title="To direct LogMiner to use the dictionary currently in use for the database, specify the online catalog as your dictionary source when you start LogMiner.">Using the Online Catalog</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="steps-in-a-typical-logminer-session.html#GUID-0653BB78-4151-4C9F-B661-04E11D24DF23" title="Learn about the typical ways you can use LogMiner to extract and mine data.">Steps in a Typical LogMiner Session</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-CDB10F63-EC7C-4ADB-8022-0A0EA45268E6" name="GUID-CDB10F63-EC7C-4ADB-8022-0A0EA45268E6"></a><h3 id="SUTIL-GUID-CDB10F63-EC7C-4ADB-8022-0A0EA45268E6" class="sect3"><span class="enumeration_section">23.12.6 </span>Query V$LOGMNR_CONTENTS
+               </h3>
+               <div>
+                  <p>After you start LogMiner, you can query the Oracle Database
+            <code class="codeph">V$LOGMNR_CONTENTS</code> view.
+                  </p>
+                  <p>For example: </p><pre class="pre codeblock"><code>SELECT (XIDUSN || '.' || XIDSLT || '.' || XIDSQN) AS XID, 
+   USERNAME, SQL_REDO FROM V$LOGMNR_CONTENTS WHERE USERNAME != 'SYS' 
+   AND SEG_OWNER IS NULL OR SEG_OWNER NOT IN ('SYS', 'SYSTEM');
+
+
+XID         USERNAME  SQL_REDO
+
+1.15.3045   RON       set transaction read write;
+1.15.3045   RON       insert into "HR"."JOBS"("JOB_ID","JOB_TITLE",
+                      "MIN_SALARY","MAX_SALARY") values ('9782',
+                      'HR_ENTRY',NULL,NULL);
+1.18.3046   JANE      set transaction read write;
+1.18.3046   JANE      insert into "OE"."CUSTOMERS"("CUSTOMER_ID",
+                      "CUST_FIRST_NAME","CUST_LAST_NAME",
+                      "CUST_ADDRESS","PHONE_NUMBERS","NLS_LANGUAGE",
+                      "NLS_TERRITORY","CREDIT_LIMIT","CUST_EMAIL",
+                      "ACCOUNT_MGR_ID") values ('9839','Edgar',
+                      'Cummings',NULL,NULL,NULL,NULL,
+                       NULL,NULL,NULL);
+1.9.3041    RAJIV      set transaction read write;
+1.9.3041    RAJIV      insert into "OE"."CUSTOMERS"("CUSTOMER_ID",
+                       "CUST_FIRST_NAME","CUST_LAST_NAME","CUST_ADDRESS",
+                       "PHONE_NUMBERS","NLS_LANGUAGE","NLS_TERRITORY",
+                       "CREDIT_LIMIT","CUST_EMAIL","ACCOUNT_MGR_ID") 
+                       values ('9499','Rodney','Emerson',NULL,NULL,NULL,NULL,
+                       NULL,NULL,NULL);
+1.15.3045    RON       commit;
+1.8.3054     RON       set transaction read write;
+1.8.3054     RON       insert into "HR"."JOBS"("JOB_ID","JOB_TITLE",
+                       "MIN_SALARY","MAX_SALARY") values ('9566',
+                       'FI_ENTRY',NULL,NULL);
+1.18.3046    JANE      commit;
+1.11.3047    JANE      set transaction read write;
+1.11.3047    JANE      insert into "OE"."CUSTOMERS"("CUSTOMER_ID",
+                       "CUST_FIRST_NAME","CUST_LAST_NAME",
+                       "CUST_ADDRESS","PHONE_NUMBERS","NLS_LANGUAGE",
+                       "NLS_TERRITORY","CREDIT_LIMIT","CUST_EMAIL",
+                       "ACCOUNT_MGR_ID") values ('8933','Ronald',
+                       'Frost',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+1.11.3047    JANE      commit;
+1.8.3054     RON       commit;</code></pre><p>To see more examples, refer to "Filtering an Formatting Data Returned to
+                <code class="codeph">V$LOGMNR_CONTENTS</code>.
+                  </p>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="oracle-logminer-utility.html#GUID-C659DAB0-03D0-4958-BB2F-E81C2928BE24" title="LogMiner can potentially deal with large amounts of information. You can limit the information that is returned to the V$LOGMNR_CONTENTS view, and the speed at which it is returned.">Filtering and Formatting Data Returned to V$LOGMNR_CONTENTS</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="steps-in-a-typical-logminer-session.html#GUID-0653BB78-4151-4C9F-B661-04E11D24DF23" title="Learn about the typical ways you can use LogMiner to extract and mine data.">Steps in a Typical LogMiner Session</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="SUTIL1603"></a><div class="props_rev_3"><a id="GUID-F6E100FC-817C-486C-A60E-B6D372E46CD3" name="GUID-F6E100FC-817C-486C-A60E-B6D372E46CD3"></a><h3 id="SUTIL-GUID-F6E100FC-817C-486C-A60E-B6D372E46CD3" class="sect3"><span class="enumeration_section">23.12.7 </span>Typical LogMiner Session Task 6: End the LogMiner Session
+               </h3>
+               <div>
+                  <p>Ending the LogMiner session.</p>
+                  <div class="section">
+                     <p>To properly end a LogMiner session, use the <code class="codeph">DBMS_LOGMNR.END_LOGMNR</code> PL/SQL procedure, as follows:
+                     </p><pre class="oac_no_warn" dir="ltr">EXECUTE DBMS_LOGMNR.END_LOGMNR;
+</pre><p>This procedure closes all the redo log files and allows all the database and system resources allocated by LogMiner to be released. </p>
+                     <p>If this procedure is not executed, then LogMiner retains all its allocated resources until the end of the Oracle session in which it was called. It is particularly important to use this procedure to end the LogMiner session if either the <code class="codeph">DDL_DICT_TRACKING</code> option or the <code class="codeph">DICT_FROM_REDO_LOGS</code> option was used.
+                     </p>
+                  </div>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="steps-in-a-typical-logminer-session.html#GUID-0653BB78-4151-4C9F-B661-04E11D24DF23" title="Learn about the typical ways you can use LogMiner to extract and mine data.">Steps in a Typical LogMiner Session</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

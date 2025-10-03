@@ -1,0 +1,195 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Installing Oracle Instant Client">
+      <meta name="abstract" content="Starting with Oracle Database 19c Release Update (19.10), Oracle Instant Client is available on Linux x86-64 and Linux for Arm (aarch64) platforms.">
+      <meta name="description" content="Starting with Oracle Database 19c Release Update (19.10), Oracle Instant Client is available on Linux x86-64 and Linux for Arm (aarch64) platforms.">
+      <meta name="DC.subject" content="Oracle Instant Client, installation">
+      <meta name="keywords" content="Oracle Instant Client, installation">
+      <meta name="DC.Relation" scheme="URI" content="about-instant-client.html#GUID-A4EEF626-09E3-4116-ABAD-885D60E9CFF0">
+      <meta name="DC.Relation" scheme="URI" content="hardware-reqs-arm.html#GUID-7BF5FE42-0D1E-49DF-8D0D-C277F8EE5BED">
+      <meta name="DC.Relation" scheme="URI" content="software-reqs-arm.html#GUID-7744E340-220A-4A6D-A70B-C412F7777437">
+      <meta name="DC.Relation" scheme="URI" content="enable-client-code-signing.html#GUID-FDAB795A-5939-492C-A3CC-348218CA13D7">
+      <meta name="DC.Relation" scheme="URI" content="instant-client-install-linux.html#GUID-1F3D38AD-A4DB-461A-9B50-9FC283C5A7CB">
+      <meta name="DC.Relation" scheme="URI" content="installing-instant-client-light.html#GUID-3720AD3F-D7B2-4A14-90B0-78E009012F38">
+      <meta name="DC.Relation" scheme="URI" content="instant-client-shared-libraries.html#GUID-1D801ED9-D7DD-42D7-8BA1-1993A6CD6356">
+      <meta name="DC.Relation" scheme="URI" content="arm-variables-instant-client.html#GUID-BA8FB14E-1463-4F6A-9926-4F9F696E52D0">
+      <meta name="DC.Relation" scheme="URI" content="arm-sdk-instant-client.html#GUID-CB106003-791E-4B92-8F00-16C9484539EA">
+      <meta name="DC.Relation" scheme="URI" content="regenerating-library-zip-rpm.html#GUID-4BF5C911-2740-4556-A367-DF4BEFF0913B">
+      <meta name="DC.Creator" content="Tejas N K">
+      <meta name="DC.Contributor" content="Douglas Williams">
+      <meta name="DC.Contributor" content="Subhash Chandra">
+      <meta name="DC.Creator" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Neha Avasthy">
+      <meta name="DC.Creator" content="Kalambhatti Prashanth">
+      <meta name="DC.Creator" content="Prasad Bagal">
+      <meta name="DC.Creator" content="Subhranshu Banerjee">
+      <meta name="DC.Creator" content="Tammy Bednar">
+      <meta name="DC.Creator" content="John Arackal">
+      <meta name="DC.Creator" content="Ilia Okomin">
+      <meta name="DC.Creator" content="Sharad Raju">
+      <meta name="DC.Creator" content="Gavin Bowe">
+      <meta name="DC.Creator" content="Ranjit Noronha">
+      <meta name="DC.Creator" content="Kalambhatti Prashanth">
+      <meta name="DC.Creator" content="Bala Appulingam">
+      <meta name="DC.Creator" content="Subrahmanyam Kodavaluru">
+      <meta name="DC.Creator" content="Robert Chang">
+      <meta name="DC.Creator" content="Darcy Christensen">
+      <meta name="DC.Creator" content="Kiran Chamala">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Benoit Dageville">
+      <meta name="DC.Creator" content="Sudip Datta">
+      <meta name="DC.Creator" content="Jim Erickson">
+      <meta name="DC.Creator" content="Marcus Fallen">
+      <meta name="DC.Creator" content="Joseph Francis">
+      <meta name="DC.Creator" content="Richard Roddy">
+      <meta name="DC.Creator" content="Allan Graves">
+      <meta name="DC.Creator" content="Barbara Glover">
+      <meta name="DC.Creator" content="Aneesh Khandelwal">
+      <meta name="DC.Creator" content="Joel Kallman">
+      <meta name="DC.Creator" content="Eugene Karichkin">
+      <meta name="DC.Creator" content="Jai Krishnani">
+      <meta name="DC.Creator" content="Sangeeth Kumar">
+      <meta name="DC.Creator" content="Kevin Jernigan">
+      <meta name="DC.Creator" content="Christopher Jones">
+      <meta name="DC.Creator" content="Prasad Kuruvadi Nagaraj">
+      <meta name="DC.Creator" content="Bryn Llewellyn">
+      <meta name="DC.Creator" content="Saar Maoz">
+      <meta name="DC.Creator" content="Sunil Surabhi">
+      <meta name="DC.Creator" content="Gopal Mulagund">
+      <meta name="DC.Creator" content="Sue Lee">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Barb Lundhild">
+      <meta name="DC.Creator" content="Rudregowda Mallegowda">
+      <meta name="DC.Creator" content="Padmanabhan Manavazhi">
+      <meta name="DC.Creator" content="Mughees Minhas">
+      <meta name="DC.Creator" content="Krishna Mohan">
+      <meta name="DC.Creator" content="Matthew McKerley">
+      <meta name="DC.Creator" content="John McHugh">
+      <meta name="DC.Creator" content="Gurudas Pai">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Rajesh Prasad">
+      <meta name="DC.Creator" content="Rajendra Pingte">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Srinivas Poovala">
+      <meta name="DC.Creator" content="Mohammed Shahnawaz Quadri">
+      <meta name="DC.Creator" content="Sangeeth Jose">
+      <meta name="DC.Creator" content="Gurumurthy Ramamurthy">
+      <meta name="DC.Creator" content="Hema Ramamurthy">
+      <meta name="DC.Creator" content="Sunil Ravindrachar">
+      <meta name="DC.Creator" content="Mark Richwine">
+      <meta name="DC.Creator" content="Dipak Saggi">
+      <meta name="DC.Creator" content="Trivikrama Samudrala">
+      <meta name="DC.Creator" content="Pushkar Punit">
+      <meta name="DC.Creator" content="David Schreiner">
+      <meta name="DC.Creator" content="Ara Shakian">
+      <meta name="DC.Creator" content="Mohit Singhal">
+      <meta name="DC.Creator" content="Dharma Sirnapalli">
+      <meta name="DC.Creator" content="Akshay Shah">
+      <meta name="DC.Creator" content="James Spiller">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Binoy Sukumaran">
+      <meta name="DC.Creator" content="Kamal Tbeileh">
+      <meta name="DC.Creator" content="Ravi Thammaiah">
+      <meta name="DC.Creator" content="Shekhar Vaggu">
+      <meta name="DC.Creator" content="Peter Wahl">
+      <meta name="DC.Creator" content="Terri Winters">
+      <meta name="DC.Creator" content="Sergiusz Wolicki">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-09538EE8-5EE8-4319-9B17-DCE0EF0154A0">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Starting with Oracle Database 19c Release Update (19.10), Oracle Instant Client is available on Linux x86-64 and Linux for Arm (aarch64) platforms.">
+      <meta name="description" content="Starting with Oracle Database 19c Release Update (19.10), Oracle Instant Client is available on Linux x86-64 and Linux for Arm (aarch64) platforms.">
+      <title>Installing Oracle Instant Client</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Client Installation Guide">
+      <meta property="og:description" content="Starting with Oracle Database 19c Release Update (19.10), Oracle Instant Client is available on Linux x86-64 and Linux for Arm (aarch64) platforms.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Client Installation Guide for Linux">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-client-installation-guide-linux.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-08T07:27:20-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2015, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96433-25">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="relinking-database-client-binaries.html" title="Previous" type="text/html">
+      <link rel="next" href="about-instant-client.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database Client Installation Guide for Linux">
+    <meta name="dcterms.isVersionOf" content="LACLI">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Installing Oracle Instant Client","description":"Starting with Oracle Database 19c Release Update (19.10), Oracle Instant Client is available on Linux x86-64 and Linux for Arm (aarch64) platforms.","datePublished":"2025-07-08 CST","dateModified":"2025-07-08 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="relinking-database-client-binaries.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="about-instant-client.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-09538EE8-5EE8-4319-9B17-DCE0EF0154A0" name="GUID-09538EE8-5EE8-4319-9B17-DCE0EF0154A0"></a>
+         
+         <h2 id="LACLI-GUID-09538EE8-5EE8-4319-9B17-DCE0EF0154A0" class="sect2"><span class="enumeration_chapter">6 </span>Installing Oracle Instant Client
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Starting with Oracle Database 19c Release Update (19.10), Oracle Instant Client is available on Linux x86-64 and Linux for Arm (aarch64) platforms.</p>
+               <p>You can install Oracle Instant Client by downloading either the zip files or RPMs from the Oracle Instant Client download page on the Oracle website.</p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="about-instant-client.html#GUID-A4EEF626-09E3-4116-ABAD-885D60E9CFF0">About Oracle Instant Client</a><br>Learn how Oracle Instant Client enables applications to connect to a local or remote Oracle Database for development and production deployment.
+                  </li>
+                  <li class="ulchildlink"><a href="hardware-reqs-arm.html#GUID-7BF5FE42-0D1E-49DF-8D0D-C277F8EE5BED">Hardware Requirements for Oracle Instant Client Installation on Linux for Arm (aarch64)</a><br>Use this checklist to check hardware requirements for an Oracle Instant Client installation on Linux for Arm (aarch64)
+                  </li>
+                  <li class="ulchildlink"><a href="software-reqs-arm.html#GUID-7744E340-220A-4A6D-A70B-C412F7777437">Operating System Requirements for Linux for Arm (aarch64)</a><br>The Linux distribution and packages listed in this section are supported for this release on Linux for Arm (aarch64).
+                  </li>
+                  <li class="ulchildlink"><a href="enable-client-code-signing.html#GUID-FDAB795A-5939-492C-A3CC-348218CA13D7">Verifying Oracle Instant Client Code Signing</a><br>Starting with Oracle Database Client 19c, you can verify the code sign for Oracle Instant Client zips and RPMs to ensure the integrity of the packages before you deploy them in your environments.
+                  </li>
+                  <li class="ulchildlink"><a href="instant-client-install-linux.html#GUID-1F3D38AD-A4DB-461A-9B50-9FC283C5A7CB">Installing Oracle Instant Client Packages</a><br>Learn the different methods to install Oracle Instant Client on Linux x86-64 and Linux for Arm (aarch64) platforms.
+                  </li>
+                  <li class="ulchildlink"><a href="installing-instant-client-light.html#GUID-3720AD3F-D7B2-4A14-90B0-78E009012F38">Installing Oracle Instant Client Basic Light</a><br>Learn how to install Oracle Instant Client Basic Light on Linux x86-64 and Linux for Arm (aarch64) platforms.
+                  </li>
+                  <li class="ulchildlink"><a href="instant-client-shared-libraries.html#GUID-1D801ED9-D7DD-42D7-8BA1-1993A6CD6356">Instant Client Libraries for OCI</a><br> Learn about the Oracle Database client-side files required to deploy Oracle Call Interface (OCI) applications.
+                  </li>
+                  <li class="ulchildlink"><a href="arm-variables-instant-client.html#GUID-BA8FB14E-1463-4F6A-9926-4F9F696E52D0">Environment Variables for Oracle Instant Client</a><br>Some Oracle environment variables that can influence Oracle Instant Client installations.
+                  </li>
+                  <li class="ulchildlink"><a href="arm-sdk-instant-client.html#GUID-CB106003-791E-4B92-8F00-16C9484539EA">About the Oracle Instant Client SDK</a><br>Learn about the software development kit (SDK) development tools for Oracle Instant Client.
+                  </li>
+                  <li class="ulchildlink"><a href="regenerating-library-zip-rpm.html#GUID-4BF5C911-2740-4556-A367-DF4BEFF0913B">Patching Oracle Instant Client Shared Libraries</a><br>Learn how to patch Oracle Instant Client shared libraries on top of a complete Oracle Database Client installation.
+                  </li>
+               </ul>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

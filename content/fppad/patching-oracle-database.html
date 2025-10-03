@@ -1,0 +1,174 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Patching Oracle Database">
+      <meta name="abstract" content="To patch an Oracle database, you move the database home to a new home, which includes the patches you want to implement.">
+      <meta name="description" content="To patch an Oracle database, you move the database home to a new home, which includes the patches you want to implement.">
+      <meta name="DC.subject" content="Oracle Database, moving between working copies, Fleet Patching and Provisioning, moving databases between working copies">
+      <meta name="keywords" content="Oracle Database, moving between working copies, Fleet Patching and Provisioning, moving databases between working copies">
+      <meta name="DC.Relation" scheme="URI" content="patching-and-upgrading-oracle-database.html#GUID-50F62D9A-86C9-412D-AB71-DBBFDD360C0C">
+      <meta name="DC.Relation" scheme="URI" content="patching-oracle-grid-infrastructure.html#GUID-856C7378-2510-4B3E-8BE1-B4D79DF4FE8B">
+      <meta name="DC.Relation" scheme="URI" content="provisioning-gold-image-copies.html#GUID-FE6E954E-89D7-4AE3-9B9B-A26B787ECBAE">
+      <meta name="DC.Relation" scheme="URI" content="adding-gold-images-to-oracle-fpp-server.html#GUID-58793EAD-3C8B-4C3F-A5CB-680BD5693A14">
+      <meta name="DC.Relation" scheme="URI" content="rhpctl-command-reference.html#GUID-BB5B4501-E270-482A-ADEF-B3D487A9055E">
+      <meta name="DC.Creator" content="Eric Belden">
+      <meta name="DC.Creator" content="Ludovico Caldara">
+      <meta name="DC.Creator" content="Philippe Fierens">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Kamalesh Ramasamy">
+      <meta name="DC.Creator" content="Kannan S. Viswanathan">
+      <meta name="DC.Creator" content="Rahul Desale">
+      <meta name="DC.Creator" content="Ricardo A. Gonzalez">
+      <meta name="DC.Creator" content="Ricardo Tamez Durandeau">
+      <meta name="DC.Creator" content="Sampath Ravindhran">
+      <meta name="DC.Creator" content="Siddharth Shankaran">
+      <meta name="DC.Creator" content="Soo Huey Wong">
+      <meta name="DC.Creator" content="Subhash Chandra">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-CD92C0DB-D5E2-427A-8784-94F4C140B279">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="To patch an Oracle database, you move the database home to a new home, which includes the patches you want to implement.">
+      <meta name="description" content="To patch an Oracle database, you move the database home to a new home, which includes the patches you want to implement.">
+      <title>Patching Oracle Database</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Oracle Fleet Patching and Provisioning Administrator's Guide">
+      <meta property="og:description" content="To patch an Oracle database, you move the database home to a new home, which includes the patches you want to implement.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Oracle Fleet Patching and Provisioning Administrator's Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="fleet-patching-and-provisioning-administrators-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-15T22:02:19-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2016, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F38220-07">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="creating-an-oracle-database.html" title="Previous" type="text/html">
+      <link rel="next" href="upgrading-oracle-database-software.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Fleet Patching and Provisioning Administrator's Guide">
+    <meta name="dcterms.isVersionOf" content="FPPAD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Patching Oracle Database","description":"To patch an Oracle database, you move the database home to a new home, which includes the patches you want to implement.","datePublished":"2025-07-16 CST","dateModified":"2025-07-16 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="creating-an-oracle-database.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="upgrading-oracle-database-software.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-CD92C0DB-D5E2-427A-8784-94F4C140B279" name="GUID-CD92C0DB-D5E2-427A-8784-94F4C140B279"></a>
+         
+         <h2 id="FPPAD-GUID-CD92C0DB-D5E2-427A-8784-94F4C140B279" class="sect2">Patching Oracle Database</h2>
+         <div class="ind">
+            <div>
+               <p>To patch an Oracle database, you move the database home to a new home, which includes the patches you want to implement.</p>
+               <div class="section">Use the <code class="codeph">rhpctl move database</code> command to move one or more database homes to a working copy of the same database release level. The databases may be running on a working copy, or on an Oracle Database home that is not managed by Fleet Patching and Provisioning.
+               </div>
+               <div class="section">When the move operation is initiated by a Fleet Patching and Provisioning Server or Client, the version moved to must be a working copy of a gold image. You can also perform this operation using the independent automaton in an environment where no Fleet Patching and Provisioning Server is present. In this case, the source and destination homes are not working copies of gold images, but are two installed homes that you deployed with some method other than using Fleet Patching and Provisioning.</div>
+               <div class="section">The working copy to which you are moving the database can be at a lower patch level than the current database home. This facilitates rollback in the event that you encounter any problems after moving to the higher level patched home.</div>
+               <div class="section">The working copy to which you are moving the database home can be at the same patch level as the original working copy. This is useful if you are moving a database home from one storage location to another, or if you wish to convert an unmanaged home to a managed home while staying at the same patch level.</div>
+               <div class="section">Fleet Patching and Provisioning applies all patches out-of-place, minimizing the downtime necessary for maintenance. Fleet Patching and Provisioning also preserves the current configuration, enabling the rollback capability previously described. By default, Fleet Patching and Provisioning applies patches in a rolling manner, which reduces, and in many cases eliminates, service downtime. Use the&nbsp;<code class="codeph">-nonrolling</code> option to perform patching in non-rolling mode.&nbsp;The database is then completely stopped on the old&nbsp;<code class="codeph">ORACLE_HOME</code>, and then restarted to make it run from the newly patched&nbsp;<code class="codeph">ORACLE_HOME</code>.
+                  <div class="infoboxnote" id="GUID-CD92C0DB-D5E2-427A-8784-94F4C140B279__GUID-798067EB-E9CA-4292-B958-1538CFF860E8">
+                     <p class="notep1">Note:</p>Part of the patching process includes applying Datapatch. When you move an Oracle Database 12<span class="italic">c</span> release 1 (12.1) or higher, Fleet Patching and Provisioning completes this step for you. When you move to a version previous to Oracle Database 12<span class="italic">c</span> release 1 (12.1), however, you must run Datapatch manually. Fleet Patching and Provisioning is Oracle Data Guard-aware, and will not apply Datapatch to Oracle Data Guard standbys.
+                  </div>
+               </div>
+               <div class="section">
+                  <p><span class="bold">Workflow for Database Patching</span></p>Assume that a database named <code class="codeph">myorcldb</code> is running on a working copy that was created from an Oracle Database 12c release 2 (12.2) gold image named <code class="codeph">DB122</code>. The typical workflow for patching an Oracle Database home is as follows:
+               </div>
+               <ol>
+                  <li class="stepexpand"><span>Create a working copy of the Oracle Database that you want to patch, in this case <code class="codeph">DB122</code>.</span></li>
+                  <li class="stepexpand"><span>Apply the patch to the working copy you created.</span></li>
+                  <li class="stepexpand"><span>Test and validate the patched working copy.</span></li>
+                  <li class="stepexpand"><span>Use the <code class="codeph">rhpctl add image</code> command to create a gold image (for example, <code class="codeph">DB122_PATCH</code>) from the patched working copy.</span><div>
+                        <div class="infoboxnote" id="GUID-CD92C0DB-D5E2-427A-8784-94F4C140B279__GUID-37F07A1D-A6CB-4C90-974F-B3EA70C70D16">
+                           <p class="notep1">Note:</p>The working copy you specify in the preceding command must be hosted on the Fleet Patching and Provisioning Server in Fleet Patching and Provisioning-managed storage.
+                        </div>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Delete the patched working copy with the patched Oracle Database using the <code class="codeph">rhpctl delete workingcopy</code> command.</span><div>
+                        <div class="infoboxnote" id="GUID-CD92C0DB-D5E2-427A-8784-94F4C140B279__GUID-56F8104D-9F2F-4B39-BE0E-8F0CFC7DB106">
+                           <p class="notep1">Note:</p>Do not remove directly using the <code class="codeph">rm</code> command or some other method, because this does not update the Fleet Patching and Provisioning inventory information.
+                        </div>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Create a working copy from the patched gold image, (<code class="codeph">DB122_PATCH</code>).</span></li>
+                  <li class="stepexpand"><span>Move <code class="codeph">myorcldb</code> to the working copy you just created.</span></li>
+                  <li class="stepexpand"><span>When you are confident that you will not need to roll back to the working copy on which the database was running at the beginning of the procedure, delete that working copy using the <code class="codeph">rhpctl delete workingcopy</code> command.</span></li>
+               </ol>
+               <div class="section">
+                  
+                  <p><span class="bold">Patching Oracle Database in a Data Guard Environment</span></p>
+                  
+                  <p>Oracle Fleet Patching and Provisioning Server checks if the role of the
+                database allows the execution of <code class="codeph">datapatch</code> and acts accordingly.
+                For example, if the database role is primary, Oracle FPP runs
+                    <code class="codeph">datapatch</code> at the end of the moving process, and does not run
+                    <code class="codeph">datapatch</code> if the database role is physical standby.
+                  </p>
+                  
+                  <p>However, Oracle FPP is not aware of the standby topology and does not
+                check for the patching level of the working copy on the standby locations. You must
+                ensure that the standby database is always moved to a patched working copy before
+                moving the primary database. Also, if you move the standby database to a patched
+                working copy and a switchover or a failover occurs before moving the primary
+                database to the patched working copy, it is possible that <code class="codeph">datapatch</code>
+                has not been executed on the primary database. This is because both sites have been
+                moved to the patched working copy when the role was physical standby. In this case,
+                you must run <code class="codeph">datapatch</code> manually on the primary database.
+                  </p>
+                  
+               </div>
+               <div class="section">
+                  <p><span class="bold">Patching Oracle Database Using Batches</span></p>
+                  <p>During database patching, Fleet Patching and Provisioning can sequentially process batches of nodes, with a number of nodes in each batch being restarted in parallel. This method maximizes service availability during the patching process. You can define the batches on the command line or choose to have Fleet Patching and Provisioning generate the list of batches based on its analysis of the database services running in the cluster.</p>
+                  <p><span class="bold">Adaptive Oracle RAC-Rolling Patching for OJVM Deployments</span></p>
+                  <p>In a clustered environment, the default approach for applying database maintenance with Fleet Patching and Provisioning is Oracle RAC rolling. However, non-rolling may be required if the new (patched) database home contains OJVM patches. In this case, Fleet Patching and Provisioning determines whether the rolling approach is possible, and rolls when applicable. (See MOS Note 2217053.1 for details.)</p>
+               </div>
+            </div>
+            <div>
+               <div class="relinfo">
+                  <p><strong>Related Topics</strong></p>
+                  <ul>
+                     <li><a href="patching-oracle-grid-infrastructure.html#GUID-856C7378-2510-4B3E-8BE1-B4D79DF4FE8B">Patching Oracle Grid Infrastructure</a></li>
+                     <li><a href="provisioning-gold-image-copies.html#GUID-FE6E954E-89D7-4AE3-9B9B-A26B787ECBAE">Provisioning Copies of Gold Images</a></li>
+                     <li><a href="adding-gold-images-to-oracle-fpp-server.html#GUID-58793EAD-3C8B-4C3F-A5CB-680BD5693A14">Adding Gold Images to the Fleet Patching and Provisioning Server</a></li>
+                     <li><a href="rhpctl-command-reference.html#GUID-BB5B4501-E270-482A-ADEF-B3D487A9055E">RHPCTL Command Reference</a></li>
+                  </ul>
+               </div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="patching-and-upgrading-oracle-database.html#GUID-50F62D9A-86C9-412D-AB71-DBBFDD360C0C" title="The Oracle Fleet Patching and Provisioning Server provides an efficient and secure platform for patching and upgrading Oracle Database.">Patching and Upgrading Oracle Database</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

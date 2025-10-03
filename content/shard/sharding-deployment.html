@@ -1,0 +1,2746 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Sharded Database Deployment">
+      <meta name="abstract" content="Sharded database deployment includes the prerequisites and instructions for installing the required software components, creating the catalog, roles, and the sharded database, configuring replication for high availability, and creating the schema for the sharded database.">
+      <meta name="description" content="Sharded database deployment includes the prerequisites and instructions for installing the required software components, creating the catalog, roles, and the sharded database, configuring replication for high availability, and creating the schema for the sharded database.">
+      <meta name="DC.Creator" content="Roopam Jain">
+      <meta name="DC.Creator" content="Shailesh Dwivedi">
+      <meta name="DC.Creator" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Pankaj Chandiramani">
+      <meta name="DC.Creator" content="Mark Dilman">
+      <meta name="DC.Creator" content="Nourdine Benadjaoud">
+      <meta name="DC.Creator" content="Rennie Sreekumar Ranjit Kumar">
+      <meta name="DC.Creator" content="David Colello">
+      <meta name="DC.Creator" content="Steve Ball">
+      <meta name="DC.Creator" content="Abhishek Srivastava">
+      <meta name="DC.Creator" content="Sebastian Binek">
+      <meta name="DC.Creator" content="Shahab Hamid">
+      <meta name="DC.Creator" content="Virginia Beecher">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-F99B8742-4089-4E77-87D4-4691EA932207">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Sharded database deployment includes the prerequisites and instructions for installing the required software components, creating the catalog, roles, and the sharded database, configuring replication for high availability, and creating the schema for the sharded database.">
+      <meta name="description" content="Sharded database deployment includes the prerequisites and instructions for installing the required software components, creating the catalog, roles, and the sharded database, configuring replication for high availability, and creating the schema for the sharded database.">
+      <title>Sharded Database Deployment</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Using Oracle Sharding">
+      <meta property="og:description" content="Sharded database deployment includes the prerequisites and instructions for installing the required software components, creating the catalog, roles, and the sharded database, configuring replication for high availability, and creating the schema for the sharded database.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Using Oracle Sharding">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-globally-distributed-database-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-24T13:16:05-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2018, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E87088-15">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="security-oracle-sharding-environment-19c-only1.html" title="Previous" type="text/html">
+      <link rel="next" href="gdd-oracle-cloud-infrastructure.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Globally Distributed Database Guide">
+    <meta name="dcterms.isVersionOf" content="SHARD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Sharded Database Deployment","description":"Sharded database deployment includes the prerequisites and instructions for installing the required software components, creating the catalog, roles, and the sharded database, configuring replication for high availability, and creating the schema for the sharded database.","datePublished":"2025-06-25 CST","dateModified":"2025-06-25 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="security-oracle-sharding-environment-19c-only1.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="gdd-oracle-cloud-infrastructure.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-F99B8742-4089-4E77-87D4-4691EA932207" name="GUID-F99B8742-4089-4E77-87D4-4691EA932207"></a>
+         
+         <h2 id="SHARD-GUID-F99B8742-4089-4E77-87D4-4691EA932207" class="sect2"><span class="enumeration_chapter">4 </span>Sharded Database Deployment
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Sharded database deployment includes the prerequisites and instructions for installing the required software components, creating the catalog, roles, and the sharded database, configuring replication for high availability, and creating the schema for the sharded database.</p>
+               <p>The following topics contain the concepts and tasks you need to deploy a sharded database:</p>
+            </div>
+            <div class="sect2"><a id="GUID-059FD35C-C1C2-4B14-9A76-B3632A6080DC" name="GUID-059FD35C-C1C2-4B14-9A76-B3632A6080DC"></a><h3 id="SHARD-GUID-059FD35C-C1C2-4B14-9A76-B3632A6080DC" class="sect3">Introduction to Sharded
+        Database Deployment</h3>
+               <div>
+                  <p>Oracle Sharding provides the capability to automatically deploy the
+        sharded database, which includes both the shards and the replicas.</p>
+                  <p>The sharded database administrator defines the topology (regions, shard
+            hosts, replication technology) and invokes the <code class="codeph">DEPLOY</code> command with a
+            declarative specification using the <code class="codeph">GDSCTL</code> command-line interface.
+                  </p>
+                  <p><span class="bold">Before You Begin</span></p>
+                  <p>Note that there are many different configurations and topologies that can be
+            used for a sharded database. Your particular sharded database may employ a variety of
+            Oracle software components such as Oracle Data Guard, Oracle GoldenGate, and Oracle Real
+            Application Clusters (Oracle RAC) along with different sharding methodologies including
+            system-managed, composite, and user-defined sharding. </p>
+                  <p>Depending on your application’s particular architecture and system
+            requirements, you may have several choices from which to choose when designing your
+            system. See <a href="architecture-and-concepts1.html#GUID-3B07D91C-CEAA-4170-A94B-ACF47BEE617B" title="The following topics discuss sharding methods supported by Oracle Sharding, how to choose a method, and how to use subpartitioning.">Sharding Methods</a>, <a href="architecture-and-concepts1.html#GUID-C668B8C7-0F94-4F85-B8E1-A6B91548BBB6" title="Oracle Sharding is integrated with Oracle Database replication technologies for high availability and disaster recovery at the shard level.">Shard-Level High Availability</a> for information about the various sharding methodologies and disaster
+            recovery and high-availability options.
+                  </p>
+               </div>
+               <div class="sect3"><a id="GUID-816B6772-8C1E-4CC1-8284-F4A85A31F8D7" name="GUID-816B6772-8C1E-4CC1-8284-F4A85A31F8D7"></a><h4 id="SHARD-GUID-816B6772-8C1E-4CC1-8284-F4A85A31F8D7" class="sect4">Choosing a Shard Creation
+        Method</h4>
+                  <div>
+                     <p>When deploying a sharded configuration, there are two different
+            <code class="codeph">GDSCTL</code> commands, <code class="codeph">ADD SHARD</code> and <code class="codeph">CREATE
+            SHARD</code>, that can be used to add a shard.
+                     </p>
+                     <p>Before you start to configure the sharding topology, decide which shard
+            creation method to use because this decision affects some of the configuration
+            steps.</p>
+                     <p>The differences between the <code class="codeph">ADD SHARD</code> and <code class="codeph">CREATE
+                SHARD</code> methods are explained where necessary in the configuration
+            instructions.
+                     </p>
+                     <p><span class="bold">ADD SHARD Method</span></p>
+                     <p>The <code class="codeph">GDSCTL ADD SHARD</code> command can be used to add a shard to
+            an Oracle Sharding configuration. When using this command, you are responsible for
+            creating the Oracle databases that will become shards during deployment. You can use
+            whatever method you want to create the databases as long as the databases meet the
+            prerequisites for inclusion in an Oracle Sharding configuration.
+                     </p>
+                     <p>Some of the benefits of using the <code class="codeph">ADD SHARD</code> method
+            include:
+                     </p>
+                     <ul style="list-style-type: disc;" id="GUID-816B6772-8C1E-4CC1-8284-F4A85A31F8D7__UL_YRF_YC3_LLB">
+                        <li>You have complete control over the process used to create the
+                databases.</li>
+                        <li>It is straightforward to customize database parameters, naming, and
+                storage locations.</li>
+                        <li>Both PDB and non-CDB shards are supported.</li>
+                        <li>There is less Oracle software to configure on the shard hosts.</li>
+                        <li>There is much less complexity in the deployment process because the
+                shard databases are created before you run any <code class="codeph">GDSCTL</code>
+                commands.
+                        </li>
+                     </ul>
+                     <p><span class="bold">CREATE SHARD Method</span></p>
+                     <p>The <code class="codeph">GDSCTL CREATE SHARD</code> command can be used to create a
+            shard in an Oracle Sharding configuration. With <code class="codeph">CREATE SHARD</code>, the shard
+            catalog leverages the Oracle Remote Scheduler Agent to run the Database Configuration
+            Assistant (DBCA) remotely on each shard host to create a database for you. This method
+            does not support PDBs, so any shard databases added must be non-CDBs.
+                     </p>
+                     <p>Some of the benefits of using the <code class="codeph">CREATE SHARD</code> method
+            include:
+                     </p>
+                     <ul style="list-style-type: disc;" id="GUID-816B6772-8C1E-4CC1-8284-F4A85A31F8D7__UL_SVJ_ND3_LLB">
+                        <li>It is easier to create shard databases for non-database
+                administrators.</li>
+                        <li>It provides a standard way to provision a new database, when no standard
+                is in current practice.</li>
+                        <li>Any database created with <code class="codeph">CREATE SHARD</code> is automatically
+                configured correctly for Oracle Sharding without the need to run SQL statements
+                against the database or otherwise adjust database parameters.
+                        </li>
+                        <li>You can create standby databases automatically.</li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-D827ED22-4CD5-4795-8A9B-90887CE92533" name="GUID-D827ED22-4CD5-4795-8A9B-90887CE92533"></a><h4 id="SHARD-GUID-D827ED22-4CD5-4795-8A9B-90887CE92533" class="sect4">Sharded Database Deployment
+        Roadmap</h4>
+                  <div>
+                     <p>Follow this roadmap to set up hosts, install the required software, and
+        configure and deploy a sharded database.</p>
+                     <p>At a high level, the deployment steps are:</p>
+                     <ol id="GUID-D827ED22-4CD5-4795-8A9B-90887CE92533__OL_N44_YNJ_SKB">
+                        <li>Set up the components.
+                           <ul style="list-style-type: disc;" id="GUID-D827ED22-4CD5-4795-8A9B-90887CE92533__UL_O44_YNJ_SKB">
+                              <li>Provision and configure the hosts that will be needed for the
+                        sharding configuration and topology selected (see <a href="sharding-deployment.html#GUID-E71E438E-C16F-46F7-8B6D-213F9B98C81C" title="Before you install any software, review these hardware, network, and operating system requirements for Oracle Sharding.">Provision and Configure Hosts and Operating Systems</a>).
+                              </li>
+                              <li>Install Oracle Database software on the selected catalog and
+                        shard nodes (see <a href="sharding-deployment.html#GUID-3F3A387E-FAC5-467C-A45E-4A7DFF95B62D" title="Install Oracle Database on each system that will host the shard catalog, a database shard, or their replicas.">Install the Oracle Database Software</a>).
+                              </li>
+                              <li>Install global service manager (GSM) software on the shard
+                        director nodes (see <a href="sharding-deployment.html#GUID-E1F8A199-D0D2-4ABA-94EA-E314E83A966F" title="Install the global service manager software on each system that you want to host a shard director.">Install the Shard Director Software</a>).
+                              </li>
+                           </ul>
+                        </li>
+                        <li>Create databases needed to store the sharding metadata and the
+                application data.
+                           <ul style="list-style-type: disc;" id="GUID-D827ED22-4CD5-4795-8A9B-90887CE92533__UL_P44_YNJ_SKB">
+                              <li>Create a database that will become the shard catalog along with
+                        any desired replicas for disaster recovery (DR) and high availability (HA)
+                        (see <a href="sharding-deployment.html#GUID-9A0F96A7-4D52-4B3A-8538-6DA2AB5A9BFB" title="Use the following information and guidelines to create the shard catalog database.">Create the Shard Catalog Database</a>).
+                              </li>
+                              <li>If you are using the <code class="codeph">ADD SHARD</code> method to
+                        deploy shards, create databases that will become the shards in the
+                        configuration including any standby databases needed for DR and HA (see
+                            <a href="sharding-deployment.html#GUID-AA268F12-4389-4BB2-B588-06BD48A8DA5C" title="If you are using the CREATE SHARD method to add shards to your configuration, then skip this topic as it does not apply to CREATE SHARD. Otherwise, the databases that will be used as shards should be created on their respective hosts.">Create the Shard Databases</a>).
+                              </li>
+                           </ul>
+                        </li>
+                        <li>Specify the sharding topology using some or all the following commands
+                from the <code class="codeph">GDSCTL</code> command line utility, among others (see <a href="sharding-deployment.html#GUID-4DD37935-BA84-4817-99D6-5FB0BE607E3E" title="The sharded database topology is descibed by the sharding metadata in the shard catalog database. Use GDSCTL to configure the sharded database topology.">Configure the Sharded Database Topology</a>).
+                           <ul style="list-style-type: disc;" id="GUID-D827ED22-4CD5-4795-8A9B-90887CE92533__UL_Q44_YNJ_SKB">
+                              <li><code class="codeph">CREATE SHARDCATALOG</code></li>
+                              <li><code class="codeph">ADD GSM</code></li>
+                              <li><code class="codeph">START GSM</code></li>
+                              <li><code class="codeph">ADD SHARDSPACE</code></li>
+                              <li><code class="codeph">ADD SHARDGROUP</code></li>
+                              <li><code class="codeph">ADD CDB</code></li>
+                              <li><code class="codeph">ADD SHARD</code></li>
+                              <li><code class="codeph">ADD CREDENTIAL</code></li>
+                              <li><code class="codeph">ADD FILE</code></li>
+                              <li><code class="codeph">CREATE SHARD</code></li>
+                              <li><code class="codeph">ADD INVITEDNODE</code></li>
+                           </ul>
+                        </li>
+                        <li>Run <code class="codeph">DEPLOY</code> to deploy the sharding topology
+                configuration (see <a href="sharding-deployment.html#GUID-D382277F-02B2-4BBC-B8F0-15EEA16E630A" title="When the sharded database topology has been fully configured with GDSCTL commands, run the GDSCTL DEPLOY command to deploy the sharded database configuration.">Deploy the Sharding Configuration</a>). 
+                        </li>
+                        <li>Add the global services needed to access any shard in the sharded
+                database (see <a href="sharding-deployment.html#GUID-1DDE95AD-D1B6-4012-9F3E-8833A16E5774" title="After the shards are successfully deployed, and the correct status is confirmed, create and start global database services on the shards to service incoming connection requests from your application.">Create and Start Global Database Services</a>).
+                        </li>
+                        <li>Verify the status of each shard (see <a href="sharding-deployment.html#GUID-566C0888-CE21-4E64-8597-E0BEDF95388A" title="Once you complete the DEPLOY step in your sharding configuration deployment, verify the detailed status of each shard.">Verify Shard Status</a>).
+                        </li>
+                     </ol>
+                     <p>When the sharded database configuration deployment is complete and
+            successful, you can create the sharded schema objects needed for your application. See
+                <a href="architecture-and-concepts1.html#GUID-1B8DAEE1-A662-4516-9EA9-04FF711211C3" title="To obtain the benefits of sharding, the schema of a sharded database should be designed in a way that maximizes the number of database requests executed on a single shard. The following topics define and illustrate the schema objects that form a sharded database to inform your design.">Sharded Database Schema Objects</a>.
+                     </p>
+                     <p>The topics that follow describe each of the deployment tasks in more detail
+            along with specific requirements for various components in the system. These topics can
+            act as a reference for the set up and configuration of each particular step in the
+            process. However, by themselves, they will not produce a fully functional sharding
+            configuration since they do not implement a complete sharding scenario, but only provide
+            the requirements for each step.</p>
+                     <p><a href="sharding-deployment.html#GUID-74F7C601-C9AE-4805-A7BF-70BCB8E73393" title="This example explains how to deploy a typical system-managed sharded database with multiple replicas, using Oracle Data Guard for high availability. The shard catalog and the shards in this example are PDBs and the shards are added to the configuration with the ADD SHARD command.">Example Sharded Database Deployment</a> walks you through a specific deployment scenario of a representative
+            reference configuration. This section provides examples of every command needed to
+            produce a fully functional sharded database after all of the steps are completed.
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-E71E438E-C16F-46F7-8B6D-213F9B98C81C" name="GUID-E71E438E-C16F-46F7-8B6D-213F9B98C81C"></a><h3 id="SHARD-GUID-E71E438E-C16F-46F7-8B6D-213F9B98C81C" class="sect3">Provision and Configure Hosts and
+        Operating Systems</h3>
+               <div>
+                  <p>Before you install any software, review these hardware, network, and
+        operating system requirements for Oracle Sharding.</p>
+                  <ul style="list-style-type: disc;" id="GUID-E71E438E-C16F-46F7-8B6D-213F9B98C81C__UL_ZXP_Q1N_TKB">
+                     <li>
+                        
+                        <p><span class="bold">Oracle Database Enterprise Edition</span> is required when running an Oracle
+                    Sharded Database.
+                        </p>
+                        
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Hardware and operating system requirements for <span class="bold">shards</span> are the same as
+                    those for Oracle Database. See your Oracle Database installation documentation
+                    for these requirements.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Hardware and operating system requirements for the <span class="bold">shard catalog and shard
+                        directors</span> are the same as those for the Global Data Services catalog and
+                    global service manager. See <a href="../gsmug/global-data-services-config.html#GSMUG-GUID-B7010949-4EAE-4AB1-A136-D5A4CD2AE688" target="_blank">Oracle Database Global Data
+                        Services Concepts and Administration Guide</a> for these
+                    requirements.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Network</span> requirements are Low Latency GigE. 
+                        </p>
+                        
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Port communication</span> requirements are as follows.
+                        </p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-E71E438E-C16F-46F7-8B6D-213F9B98C81C__OL_AYP_Q1N_TKB">
+                           <li>
+                              
+                              <p>Each and every shard must be able to reach each and every
+                            shard director's listener and ONS ports. The shard director listener
+                            ports and the ONS ports must also be opened to the application/client
+                            tier, all of the shards, the shard catalog, and all other shard
+                            directors. </p>
+                              
+                              <p>The default listener port of the shard director is 1522, and
+                            the default ONS ports on most platforms are 6123 for the local ONS and
+                            6234 for remote ONS.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Each and every shard must be able to reach the TNS Listener port (default
+                            1521) of the shard catalog (both primary and standbys).</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>The TNS Listener port of each shard must be opened to all shard directors
+                            and the shard catalog.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>All of the port numbers listed above are modifiable during the deployment
+                            configuration. However, the port numbers to be used must be known before
+                            setting up the host software.</p>
+                              
+                           </li>
+                        </ul>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Host name resolution</span> must be successful between all of the shard catalog,
+                    shards, and shard director hosts. Operating system commands such as ‘ping’ must
+                    succeed from a given host to any other host when specifying any host names
+                    provided during sharded database configuration commands.
+                        </p>
+                        
+                     </li>
+                  </ul>
+                  <p><span class="bold">Number and Sizing of Host Systems</span></p>
+                  <p>Depending on your specific configuration, the hosts that are needed may include the
+            following:</p>
+                  <ul style="list-style-type: disc;" id="GUID-E71E438E-C16F-46F7-8B6D-213F9B98C81C__UL_BYP_Q1N_TKB">
+                     <li>
+                        
+                        <p><span class="bold">Shard catalog host.</span> The shard catalog host runs the Oracle Database that
+                    serves as the shard catalog. This database contains a small amount of sharding
+                    topology metadata and any duplicated tables that are created for your
+                    application. In addition, this database acts as a query coordinator for
+                    cross-shard queries and services connections for applications that have not been
+                    written to be sharding-aware. In general, the transaction workload and size of
+                    this database are not particularly large.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Shard catalog database standbys (replicas).</span> At least one more host to
+                    contain a replica or standby of the primary shard catalog database is
+                    recommended. This host is necessary in case of a failure of the primary catalog
+                    host. In addition, while acting as a standby database, this host can also be
+                    configured to be a query coordinator for cross-shard queries.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Shard director host.</span> The shard director (global service manager) software
+                    can reside on a separate host, or it can be co-located on the same host as the
+                    shard catalog. This component of the sharding system is comprised of a network
+                    listener and several background processes used to monitor and configure a
+                    sharded configuration. If the shard director is co-located on the same host as
+                    the catalog database it must be installed in a separate Oracle Home from the
+                    catalog database because the installation package is different than the one used
+                    for Oracle Database.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Multiple shard directors.</span> For high-availability purposes, it is
+                    recommended that you have more than one shard director running in a sharded
+                    system. Any additional shard directors can run on their own hosts or on the
+                    hosts running the standby shard catalog databases.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Shards.</span> In addition to the above hosts, each shard that is configured in
+                    the system should also run on its own separate host. The hosts and their
+                    configurations chosen for this task should be sized in the same way as a typical
+                    Oracle Database host depending on how much load is put on each particular
+                    shard.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Shard standbys (replicas).</span> Again, for high-availability and disaster
+                    recovery purposes, replication technology such as Oracle Data Guard or Oracle
+                    Golden Gate should be used, and replicas created for all sharded data.
+                    Additional hosts will be needed to run these replica or standby databases.
+                        </p>
+                        
+                        <div class="infoboxnote" id="GUID-E71E438E-C16F-46F7-8B6D-213F9B98C81C__GUID-4BDD159B-D927-4509-910F-030144D86A7A">
+                           <p class="notep1">Note:</p><span>Oracle GoldenGate replication support for Oracle Sharding High
+                    Availability is deprecated in Oracle Database 21c. </span></div>
+                        
+                     </li>
+                  </ul>
+                  <p>Once the number of hosts and capacity requirements for each host have been determined,
+            provision your hardware resources as appropriate for your environment using whatever
+            methodologies you choose. Before installing any software, you must confirm that the
+            hosts can communicate with each other though the ports as described above. Because a
+            sharding configuration is inherently a distributed system, it is crucial that this
+            connectivity between and among all of the hosts is confirmed before moving on to the
+            next steps in the deployment process. Failure to set up port access correctly will lead
+            to failures in subsequent commands.</p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-3F3A387E-FAC5-467C-A45E-4A7DFF95B62D" name="GUID-3F3A387E-FAC5-467C-A45E-4A7DFF95B62D"></a><h3 id="SHARD-GUID-3F3A387E-FAC5-467C-A45E-4A7DFF95B62D" class="sect3">Install the Oracle Database Software</h3>
+               <div>
+                  <p>Install Oracle Database on each system that will host the shard catalog, a
+        database shard, or their replicas.</p>
+                  <div class="p">
+                     
+                     <p>Aside from the requirement that the shard catalog and all of the shards
+                in an Oracle Sharding configuration require Oracle Database Enterprise Edition,
+                there are no other special installation considerations needed for sharding as long
+                as the installation is successful and all post-install scripts have been run
+                successfully.</p>
+                     <p>See your platform’s installation guide at <a href="../.." target="_blank">https://docs.oracle.com/en/database/oracle/oracle-database/</a> for
+                information about configuring operating system users.
+                     </p>
+                     
+                     
+                     <p>If you will be using the <code class="codeph">CREATE SHARD</code> method to add shards to your
+                configuration, you must also install the Remote Scheduler Agent software on each
+                shard host. The agent does not need to be installed on the shard catalog hosts. See
+                    <a href="../admin/administering-oracle-scheduler.html#ADMIN-GUID-68793240-9241-42D4-95E7-21C66DD6B305" target="_blank">Installing and Configuring the Scheduler Agent on a Remote
+                    Host</a> for more information.
+                     </p>
+                     
+                     <p>The <code class="codeph">CREATE SHARD</code> method also requires the creation of two
+                directories on each shard host, <code class="codeph">$ORACLE_BASE/oradata</code> and
+                    <code class="codeph">$ORACLE_BASE/fast_recovery_area</code>. Create these two directories
+                while logged into the shard host as the owner of the Oracle Database software.
+                Permissions should be set the same as for the directories that will hold the data
+                files for your shard database, which is typically full access for the software owner
+                only.
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-E1F8A199-D0D2-4ABA-94EA-E314E83A966F" name="GUID-E1F8A199-D0D2-4ABA-94EA-E314E83A966F"></a><h3 id="SHARD-GUID-E1F8A199-D0D2-4ABA-94EA-E314E83A966F" class="sect3">Install the Shard Director Software</h3>
+               <div>
+                  <p>Install the global service manager software on each system that you want to
+        host a shard director.</p>
+                  <div class="section">
+                     
+                     <p>Note that this software installation is distinct from an Oracle Database
+                installation. If you choose to co-locate the shard director software on the same
+                host as the shard catalog database, it must be installed in a separate Oracle
+                Home.</p>
+                     
+                     <p>See <a href="../gsmug/global-data-services-config.html#GSMUG-GUID-04D33448-2CB4-40C7-9DA0-1CFC6EC5E101" target="_blank"><span><cite>Oracle Database Global Data Services Concepts and Administration Guide</cite></span></a> for information
+                about installing the global service manager software.
+                     </p>
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-9A0F96A7-4D52-4B3A-8538-6DA2AB5A9BFB" name="GUID-9A0F96A7-4D52-4B3A-8538-6DA2AB5A9BFB"></a><h3 id="SHARD-GUID-9A0F96A7-4D52-4B3A-8538-6DA2AB5A9BFB" class="sect3">Create the Shard Catalog Database</h3>
+               <div>
+                  <p>Use the following information and guidelines to create the shard catalog
+            database.</p>
+                  <div class="section">
+                     
+                     <p>The shard catalog database contains a small amount of sharding topology
+                metadata and also contains all the duplicated tables that will be created for use by
+                your sharded application. The catalog database also acts as a query coordinator to
+                run cross-shard queries that select and aggregate data from more than one shard.</p>
+                     
+                     <p>From a sharding perspective, the way in which you create or provision the catalog
+                database is irrelevant. The database can be created with the Database Configuration
+                Assistant (DBCA), manually using SQL*Plus, or provisioned from cloud infrastructure
+                tools.</p>
+                     
+                     <p>As long as you have a running Oracle Database Enterprise Edition instance on the
+                shard catalog host with the following characteristics, it can used as the shard
+                catalog.</p>
+                     
+                     <ul style="list-style-type: disc;" id="GUID-9A0F96A7-4D52-4B3A-8538-6DA2AB5A9BFB__UL_NYX_GFN_TKB">
+                        <li>
+                           
+                           <p>Create a legacy database or a pluggable database (PDB)
+                        for use as the shard catalog database. Using the root container
+                            (<code class="codeph">CDB$ROOT</code>) of a container database (CDB) as the shard
+                        catalog database is not supported.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Your shard catalog database must use a server parameter file
+                            (<code class="codeph">SPFILE</code>). This is required because the sharding
+                        infrastructure uses internal database parameters to store configuration
+                        metadata, and that data needs to persist across database startup and
+                        shutdown operations.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; show parameter spfile
+
+NAME     TYPE      VALUE
+-------- --------- ------------------------------------
+spfile   string    /u01/app/oracle/dbs/spfilecat.ora </code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>The database character set and national character set must be the
+                        same because it is used for all of the shard databases. This means that the
+                        character set chosen must contain all possible characters that will be
+                        inserted into the shard catalog or any of the shards.</p>
+                           
+                           <p>This requirement arises from the fact that Oracle Data Pump is
+                        used internally to move transportable tablespaces from one shard to another
+                        during sharding <code class="codeph">MOVE CHUNK</code> commands. A requirement of that
+                        mechanism is that character sets must match on the source and
+                        destination.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">catalog_pdb_name</span>;
+
+SQL&gt; select * from nls_database_parameters 
+  2  where parameter like '%CHARACTERSET';
+
+PARAMETER                                VALUE
+---------------------------------------- --------------------
+NLS_NCHAR_CHARACTERSET                   AL16UTF16
+NLS_CHARACTERSET                         WE8DEC
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>Because the shard catalog database can run multi-shard queries
+                        which connect to shards over database links, the <code class="codeph">OPEN_LINKS</code>
+                        and <code class="codeph">OPEN_LINKS_PER_INSTANCE</code> database initialization
+                        parameter values must be greater than or equal to the number of shards that
+                        will be part of the sharded database configuration.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba	
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">catalog_pdb_name</span>;
+
+SQL&gt; show parameter open_links
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------
+open_links                           integer     20
+open_links_per_instance              integer     20
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>Set the <code class="codeph">DB_FILES</code> database initialization parameter greater
+                        than or equal to the total number of chunks and/or tablespaces in the
+                        system.
+                           </p>
+                           
+                           <p>Each data chunk in a sharding configuration is implemented as a
+                        tablespace partition and resides in its own operating system data file. As a
+                        result, the <code class="codeph">DB_FILES</code> database initialization parameter must
+                        be greater than or equal to the total number of chunks (as specified on the
+                            <code class="codeph">CREATE SHARDCATALOG</code> or <code class="codeph">ADD SHARDSPACE</code>
+                        commands) and/or tablespaces in the system.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba	
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">catalog_pdb_name</span>;
+
+SQL&gt; show parameter db_files
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------
+db_files                             integer     1024
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           
+                           <p>If you are planning to use <code class="codeph">CREATE SHARD</code> to add shards to the
+                        sharding configuration, then the <code class="codeph">SHARED_SERVERS</code> and
+                            <code class="codeph">DISPATCHERS</code> database initialization parameters must be
+                        set to allow the Remote Scheduler Agent to connect to the catalog over an
+                        XDB connection. This is not necessary if <code class="codeph">ADD SHARD</code> will be
+                        used.
+                           </p>
+                           
+                           <p>Specifically, <code class="codeph">SHARED_SERVERS</code> must be greater than 0 (zero)
+                        to allow shared server connections to the shard catalog from the Remote
+                        Scheduler Agent processes running on the shard hosts. In addition, the value
+                        of <code class="codeph">DISPATCHERS</code> must contain a service for XDB, based on the
+                        Oracle SID value.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba	
+
+SQL&gt; show parameter shared_servers
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------
+shared_servers                       integer     5
+
+SQL&gt; show parameter dispatchers
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ----------------------
+Dispatchers                          string      (PROTOCOL=TCP), (PROTO
+                                                 COL=TCP)(SERVICE=mysid
+                                                 XDB)
+</code></pre>
+                           <p>After setting the parameter values appropriately, run the <code class="codeph">ALTER
+                            SYSTEM REGISTER</code> command to ensure that the XDB service is
+                        available for incoming connection requests.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>To support Oracle Managed Files, which is used by the sharding
+                        chunk management infrastructure, the <code class="codeph">DB_CREATE_FILE_DEST</code>
+                        database parameter must be set to a valid value. 
+                           </p>
+                           
+                           <p>This location is used during chunk movement operations (for
+                        example <code class="codeph">MOVE CHUNK</code> or automatic rebalancing) to store the
+                        transportable tablespaces holding the chunk data. In addition, files
+                        described in <span><cite>Oracle Database Administrator’s Guide</cite></span>, "<a href="../admin/using-oracle-managed-files.html#ADMIN-GUID-4A3C4616-0D81-4BBA-8EAD-FCAA8AD5C15A" target="_blank">Using Oracle Managed Files</a>," are
+                        also stored in this location as is customary for any Oracle database using
+                        Oracle Managed Files.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba	
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">catalog_pdb_name</span>;
+
+SQL&gt; show parameter db_create_file_dest
+
+NAME                  TYPE      VALUE
+--------------------- --------- -----------------------------
+db_create_file_dest   string    /u01/app/oracle/oradata </code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>If a standby catalog database will be part of the sharding configuration, the
+                            <code class="codeph">STANDBY_FILE_MANAGEMENT</code> database parameter should be
+                        set to  in order to automatically create new database files on any standby
+                        catalog databases. 
+                           </p>
+                           
+                           <p>If this parameter is set to <code class="codeph">MANUAL</code> (which is the default),
+                        then new database files created during <code class="codeph">CREATE TABLESPACE</code>
+                        commands, for example, will not be created on the standby. This will cause
+                        data unavailability and application errors if the standby ever becomes a
+                        primary database.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; alter session set container=catalog_pdb_name;
+SQL&gt; show parameter standby_file_management
+
+NAME TYPE VALUE
+------------------------------------ ----------- ------------
+standby_file_management stirng AUTO</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>An Oracle-provided user account named
+                            <code class="codeph">GSMCATUSER</code> must be unlocked and assigned a password
+                        inside the legacy database or PDB designated for the shard catalog. This
+                        account is used by the shard director processes to connect to the shard
+                        catalog database and perform administrative tasks in response to sharding
+                        commands. 
+                           </p>
+                           
+                           <p>If you are using a PDB as the shard catalog, note that
+                            <code class="codeph">GSMCATUSER</code> is a common user in the container database.
+                        As a result, its password is the same for <code class="codeph">CDB$ROOT</code> and all
+                        PDBs in the CDB. If multiple PDBs in a single CDB are to be used as catalog
+                        databases for different sharding configurations, they will all share the
+                        same <code class="codeph">GSMCATUSER</code> password which can be a security concern.
+                        To avoid this, host only one shard catalog PDB per CDB, and do not unlock
+                        the <code class="codeph">GSMCATUSER</code> account in any other PDBs.
+                           </p>
+                           
+                           <p>The password you specify is used later during sharding topology
+                        creation in any <code class="codeph">ADD GSM</code> commands that are issued. It never
+                        needs to be specified again because the shard director stores it securely in
+                        an Oracle Wallet and decrypts it only when necessary.
+                           </p>
+                           
+                           <p>The <code class="codeph">MODIFY GSM</code> command can be used to update the stored
+                        password if it is later changed on the shard catalog database.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; alter user gsmcatuser account unlock;
+
+User altered.
+
+SQL&gt; alter user gsmcatuser identified by <span class="variable" translate="no">gsmcatuser_password</span>;
+
+User altered.</code></pre>
+                           <p>If you are using a PDB as the shard catalog, also run the following
+                        commands.</p>
+                           <pre class="pre codeblock"><code>SQL&gt; alter session set container=<span class="variable" translate="no">catalog_pdb_name</span>;
+SQL&gt; alter user gsmcatuser account unlock;
+
+User altered.</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>A shard catalog administrator account must be created, assigned
+                        a password, and granted privileges inside the legacy database or PDB
+                        designated as the shard catalog. </p>
+                           
+                           <p>This account is the administrator account for the sharding
+                        metadata in the shard catalog database. It is used to access the shard
+                        catalog using the <code class="codeph">GDSCTL</code> utility when an administrator
+                        needs to makes changes to the sharded database topology or perform other
+                        administrative tasks.
+                           </p>
+                           
+                           <p><code class="codeph">GDSCTL</code> connects as this user to the shard catalog database
+                        when <code class="codeph">GDSCTL</code> commands are run. The user name and password
+                        specified are used later in the <code class="codeph">CREATE SHARDCATALOG</code>
+                        command. As with the <code class="codeph">GSMCATUSER</code> account above, the user
+                        name and password are stored securely in an Oracle Wallet for later use. The
+                        stored credentials can be updated by issuing an explicit
+                            <code class="codeph">CONNECT</code> command from <code class="codeph">GDSCTL</code> to reset
+                        the values in the wallet.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">catalog_pdb_name</span>;
+
+SQL&gt; create user mysdbadmin identified by <span class="variable" translate="no">mysdbadmin_password</span>;
+
+User created.
+
+SQL&gt; grant gsmadmin_role to mysdbadmin;
+
+Grant succeeded.
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>Set up and run an Oracle Net TNS Listener at your chosen port
+                        (default is 1521) that can service incoming connection requests for the
+                        shard catalog legacy database or PDB. </p>
+                           
+                           <p>The TNS Listener can be created and configured in whatever way
+                        you wish. If the shard catalog is a PDB, depending on how the database was
+                        created, it may be necessary to explicitly create a database service that
+                        can allow for direct connection requests to the PDB without the need to use
+                            <code class="codeph">ALTER SESSION SET CONTAINER</code>.
+                           </p>
+                           
+                           <p>To validate that the listener is configured correctly when using
+                        a PDB for the shard catalog, do the following using your newly created
+                            <span class="variable" translate="no">mysdbadmin</span> account above and an
+                        appropriate connect string. Running <code class="codeph">LSNRCTL SERVICES</code> lists
+                        all services currently available using the listener.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus mysdbadmin/<span class="variable" translate="no">mysdbadmin_password</span>@<span class="variable" translate="no">catalog_connect_string</span>
+
+SQL&gt; show con_name
+
+CON_NAME
+-----------------------
+<span class="variable" translate="no">catalog_pdb_name</span>
+</code></pre>
+                           <p>Once you confirm connectivity, make note of the
+                            <span class="italic">catalog_connect_string</span> above. It is used later in the
+                        configuration process in the <code class="codeph">GDSCTL CREATE SHARDCATALOG</code>
+                        command. Typically, it will be of the form
+                            <span class="italic">host</span>:<span class="italic">port</span>/<span class="italic">service_name</span> (for example,
+                            <code class="codeph">cathost.example.com:1521/catalog_pdb.example.com</code>).
+                           </p>
+                           
+                        </li>
+                     </ul>
+                     
+                     <p>After all of the above requirements have been met, the newly created database can now
+                be the target of a <code class="codeph">GDSCTL CREATE SHARDCATALOG</code> command.
+                     </p>
+                     
+                     <p>For high availability and disaster recovery purposes, it is highly
+                recommended that you also create one or more standby shard catalog databases. From a
+                sharding perspective, as long as the above requirements are also met on the standby
+                databases, and all changes to the primary shard catalog database are consistently
+                applied to the standbys, there are no further sharding-specific configuration steps
+                required.</p>
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-AA268F12-4389-4BB2-B588-06BD48A8DA5C" name="GUID-AA268F12-4389-4BB2-B588-06BD48A8DA5C"></a><h3 id="SHARD-GUID-AA268F12-4389-4BB2-B588-06BD48A8DA5C" class="sect3">Create the Shard Databases</h3>
+               <div>
+                  <p>If you are using the <code class="codeph">CREATE SHARD</code> method to add shards to
+        your configuration, then skip this topic as it does not apply to <code class="codeph">CREATE
+            SHARD</code>. Otherwise, the databases that will be used as shards should be created
+        on their respective hosts.
+                  </p>
+                  <div class="section">
+                     
+                     <p>As with the shard catalog database, the way in which you create or
+                provision the shard databases is irrelevant from a sharding perspective. The
+                database can be created with the Database Configuration Assistant (DBCA), manually
+                using SQL*Plus, or provisioned from cloud infrastructure tools.</p>
+                     
+                     <p>As long as you have a running Oracle Database Enterprise Edition instance on each
+                shard host, with the following characteristics, it can be used as a shard.</p>
+                     
+                     <ul style="list-style-type: disc;" id="GUID-AA268F12-4389-4BB2-B588-06BD48A8DA5C__UL_UBQ_Z1R_TKB">
+                        <li>
+                           
+                           <p>If the shard will be a PDB in a CDB, then an Oracle-provided
+                        user account named <code class="codeph">GSMROOTUSER</code> must be unlocked and
+                        assigned a password inside <code class="codeph">CDB$ROOT</code> of the database
+                        designated for a shard. In addition, this user must be granted the
+                            <code class="codeph">SYSDG</code> and <code class="codeph">SYSBACKUP</code> system privileges. 
+                           </p>
+                           
+                           <p>The <code class="codeph">GSMROOTUSER</code> account is used by <code class="codeph">GDSCTL</code>
+                        and the shard director processes to connect to the shard database to perform
+                        administrative tasks in response to sharding commands. The password
+                        specified is used by <code class="codeph">GDSCTL</code> during sharding topology
+                        creation in any <code class="codeph">ADD CDB</code> commands that are issued. It is
+                        also be used by the shard director during the <code class="codeph">DEPLOY</code>
+                        command to configure Oracle Data Guard (as necessary) on the shard
+                        databases. It never needs to be specified again by the user, because
+                            <code class="codeph">GDSCTL</code> and the shard director store it securely in an
+                        Oracle Wallet and decrypt it only when necessary. The <code class="codeph">MODIFY
+                            CDB</code> command can be used to update the stored password if it is
+                        later changed on the shard database.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; alter user gsmrootuser account unlock;
+
+User altered.
+
+SQL&gt; alter user gsmrootuser identified by <span class="variable" translate="no">gsmrootuser_password</span>;
+
+User altered.
+
+SQL&gt; grant SYSDG, SYSBACKUP to gsmrootuser;
+
+Grant succeeded.
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>If the shard will be a PDB, then create a PDB for use as the
+                        shard database. Using the root container (<code class="codeph">CDB$ROOT</code>) of a
+                        CDB as a shard is not supported.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Your shard database must use a server parameter file
+                            (<code class="codeph">SPFILE</code>). The <code class="codeph">SPFILE</code> is required
+                        because the sharding infrastructure uses internal database parameters to
+                        store configuration metadata, and that data must persist through database
+                        startup and shutdown operations.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">shard_pdb_name</span>;
+
+SQL&gt; show parameter spfile
+
+NAME     TYPE      VALUE
+-------- --------- ------------------------------------
+spfile   string    /u01/app/oracle/dbs/spfileshard.ora
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>The database character set and national character set of the
+                        shard database must be the same as that used for the shard catalog database
+                        and all other shard databases. This means that the character set you choose
+                        must contain all possible characters that will be inserted into the shard
+                        catalog or any of the shards.</p>
+                           
+                           <p>This requirement arises from the fact that Oracle Data Pump is
+                        used internally to move transportable tablespaces from one shard to another
+                        during sharding <code class="codeph">MOVE CHUNK</code> commands. A requirement of that
+                        mechanism is that character sets must match on the source and
+                        destination.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">shard_pdb_name</span>;
+
+SQL&gt; select * from nls_database_parameters 
+  2  where parameter like '%CHARACTERSET';
+
+PARAMETER                                VALUE
+---------------------------------------- --------------------
+NLS_NCHAR_CHARACTERSET                   AL16UTF16
+NLS_CHARACTERSET                         WE8DEC
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>The <code class="codeph">COMPATIBLE</code> initialization parameter must be set to at
+                        least <kbd class="userinput">12.2.0</kbd>.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">shard_pdb_name</span>;
+
+SQL&gt; show parameter compatible
+
+NAME                   TYPE        VALUE
+---------------------- ----------- -----------------
+compatible             string      19.0.0
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>Enable Flashback Database if your sharded database will use
+                        standby shard databases.</p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">shard_pdb_name</span>;
+
+SQL&gt; select flashback_on from v$database;
+
+FLASHBACK_ON
+------------------
+YES
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p><code class="codeph">FORCE LOGGING</code> mode must be enabled if your
+                        shard database will use standby shard databases.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">shard_pdb_name</span>;
+
+SQL&gt; select force_logging from v$database;
+
+FORCE_LOGGING
+---------------------------------------
+YES
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>Set the <code class="codeph">DB_FILES</code> database initialization parameter greater
+                        than or equal to the total number of chunks and/or tablespaces in the
+                        system.
+                           </p>
+                           
+                           <p>Each data chunk in a sharding configuration is implemented as a
+                        tablespace partition and resides in its own operating system datafile. As a
+                        result, the <code class="codeph">DB_FILES</code> database initialization parameter must
+                        be greater than or equal to the total number of chunks (as specified in the
+                            <code class="codeph">CREATE SHARDCATALOG</code> or <code class="codeph">ADD SHARDSPACE</code>
+                        commands) and/or tablespaces in the system.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba	
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">shard_pdb_name</span>;
+
+SQL&gt; show parameter db_files
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------
+db_files                             integer     1024
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>To support Oracle Managed Files, used by the sharding chunk
+                        management infrastructure, the <code class="codeph">DB_CREATE_FILE_DEST</code> database
+                        parameter must be set to a valid value. 
+                           </p>
+                           
+                           <p>This location is used during chunk movement operations (for
+                        example <code class="codeph">MOVE CHUNK</code> or automatic rebalancing) to store the
+                        transportable tablespaces holding the chunk data. In addition, files
+                        described in <span><cite>Oracle Database Administrator’s Guide</cite></span>, "Using Oracle Managed Files," are also stored in
+                        this location as is customary for any Oracle database using Oracle Managed
+                        Files.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba	
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">shard_pdb_name</span>;
+
+SQL&gt; show parameter db_create_file_dest
+
+NAME                  TYPE      VALUE
+--------------------- --------- -----------------------------
+db_create_file_dest   string    /u01/app/oracle/oradata
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>A directory object named <code class="codeph">DATA_PUMP_DIR</code> must be
+                        created and accessible in the shard database from the
+                            <code class="codeph">GSMADMIN_INTERNAL</code> account. 
+                           </p>
+                           
+                           <p><code class="codeph">GSMADMIN_INTERNAL</code> is an Oracle-supplied account that owns
+                        all of the sharding metadata tables and PL/SQL packages. It should remain
+                        locked and is never used to login interactively. It’s only purpose is to own
+                        and control access to the sharding metadata and PL/SQL.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba	
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">shard_pdb_name</span>;
+
+SQL&gt; create or replace directory DATA_PUMP_DIR as ‘/u01/app/oracle/oradata’;
+
+Directory created.
+
+SQL&gt; grant read, write on directory DATA_PUMP_DIR to gsmadmin_internal;
+
+Grant succeeded.
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p> To support file movement from shard to shard, the
+                            <code class="codeph">DB_FILE_NAME_CONVERT</code> database parameter must be set to
+                        a valid value. This location is used when standby databases are in use, as
+                        is typical with non-sharded databases, and the location can also be used
+                        during chunk movement operations. For regular file system locations, it is
+                        recommended that this parameter end with a trailing slash (/).
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">shard_pdb_name</span>;
+
+SQL&gt; show parameter db_file_name_convert
+
+NAME TYPE VALUE
+---------------------- --------- -----------------------------
+db_file_name_convert   string    /dbs/SHARD1/, /dbs/SHARD1S/</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>If a standby shard databases will be part of the sharding configuration, the
+                            <code class="codeph">STANDBY_FILE_MANAGEMENT</code> database parameter should be
+                        set to <code class="codeph">AUTO</code> to automatically create new database files on
+                        any standby shard databases.
+                           </p>
+                           
+                           <p>If this parameter is set to <code class="codeph">MANUAL</code> (which is the default),
+                        then new database files created during <code class="codeph">CREATE TABLESPACE</code>
+                        commands, for example, will not be created on the standby. This will cause
+                        data unavailability and application errors if the standby ever becomes a
+                        primary database.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; alter session set container=shard_pdb_name;
+SQL&gt; show parameter standby_file_management
+
+NAME TYPE VALUE
+------------------------------------ ----------- ------------
+standby_file_management string AUTO
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>An Oracle-provided user account named <code class="codeph">GSMUSER</code>
+                        must be unlocked and assigned a password inside the PDB or legacy database
+                        designated as the shard database. In addition, this user must be granted the
+                            <code class="codeph">SYSDG</code> and <code class="codeph">SYSBACKUP</code> system privileges. 
+                           </p>
+                           
+                           <p>If the shards are PDBs, note that <code class="codeph">GSMUSER</code> is a
+                        common user in the CDB. As a result, its password is the same for
+                            <code class="codeph">CDB$ROOT</code> and all PDBs in the CDB, which can be a
+                        security concern. To avoid this, host only one shard PDB per CDB, and do not
+                        unlock the <code class="codeph">GSMUSER</code> account in any other PDBs.
+                           </p>
+                           
+                           <p>This account is used by the shard director processes to connect
+                        to the shard database and perform administrative tasks in response to
+                        sharding commands. The password specified is used later during sharding
+                        topology creation in any <code class="codeph">ADD SHARD</code> commands that are
+                        issued. The password never needs to be specified again because the shard
+                        director stores it securely in an Oracle Wallet and only decrypts it when
+                        necessary. You can update the stored password using the <code class="codeph">MODIFY
+                            SHARD</code> command if the password is later changed on the shard
+                        database.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; alter user gsmuser account unlock;
+
+User altered.
+
+SQL&gt; alter user gsmuser identified by <span class="variable" translate="no">gsmuser_password</span>;
+
+User altered.
+
+SQL&gt; REM run the following commands if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">shard_pdb_name</span>;
+
+SQL&gt; alter user gsmuser account unlock;
+
+User altered.
+
+SQL&gt; REM all cases run the following command
+
+SQL&gt; grant SYSDG, SYSBACKUP to gsmuser;
+
+Grant succeeded.
+</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>Set up and run an Oracle Net TNS Listener at your chosen port
+                        (default is 1521) that can service incoming connection requests for the
+                        shard PDB. </p>
+                           
+                           <p>The TNS Listener can be created and configured in whatever way
+                        you wish. If the shard is a PDB, depending on how the database was created,
+                        it may be necessary to explicitly create a database service that can allow
+                        for direct connection requests to the PDB without the need to use
+                            <code class="codeph">ALTER SESSION SET CONTAINER</code>. 
+                           </p>
+                           
+                           <p>To validate that the listener is configured correctly when using
+                        a PDB for the shard, run the following command using your newly unlocked
+                            <code class="codeph">GSMUSER</code> account and an appropriate connect string.
+                        Running <code class="codeph">LSNRCTL SERVICES</code> lists all services currently
+                        available using the listener.
+                           </p>
+                           <pre class="pre codeblock"><code>$ sqlplus gsmuser/<span class="variable" translate="no">gsmuser_password</span>@<span class="variable" translate="no">shard_connect_string</span>
+
+SQL&gt; show con_name
+
+CON_NAME
+-----------------------
+<span class="variable" translate="no">shard_pdb_name</span>
+</code></pre>
+                           <p>Once you confirm connectivity, make note of the
+                            <span class="italic">shard_connect_string</span> above. It is used later in the configuration
+                        process in the <code class="codeph">GDSCTL ADD SHARD</code> command. Typically, the
+                        connect string is in the form <span class="italic">host</span>:<span class="italic">port</span>/<span class="italic">service_name</span>
+                        (for example,
+                            <code class="codeph">shardhost.example.com:1521/shard_pdb.example.com</code>).
+                           </p>
+                           
+                           
+                        </li>
+                     </ul>
+                     
+                     <p><span class="bold">Validate the Shard Database</span></p>
+                     
+                     <p>To validate that all of the above requirements have been met, you can
+                run an Oracle-supplied procedure, <code class="codeph">validateShard</code>, that inspects the
+                shard database and reports any issues encountered. This procedure is read-only and
+                makes no changes to the database configuration.
+                     </p>
+                     
+                     <p>The <code class="codeph">validateShard</code> procedure can and should be run
+                against primary, mounted (unopened) standby, and Active Data Guard standby databases
+                that are part of the sharded database configuration. You can run
+                    <code class="codeph">validateShard</code> multiple times and at any time during the sharded
+                database life cycle, including after upgrades and patching.
+                     </p>
+                     
+                     <p>To run the <code class="codeph">validateShard</code> package, do the following:
+                     </p>
+                     <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; REM run the following command if using a CDB
+SQL&gt; alter session set container=<span class="variable" translate="no">shard_pdb_name</span>;
+
+SQL&gt; set serveroutput on
+SQL&gt; execute dbms_gsm_fix.validateShard
+</code></pre>
+                     <p>This procedure will produce output similar to the following:</p>
+                     <pre class="pre codeblock"><code>INFO: Data Guard shard validation requested.
+INFO: Database role is PRIMARY.
+INFO: Database name is SHARD1.
+INFO: Database unique name is shard1.
+INFO: Database ID is 4183411430.
+INFO: Database open mode is READ WRITE.
+INFO: Database in archivelog mode.
+INFO: Flashback is on.
+INFO: Force logging is on.
+INFO: Database platform is Linux x86 64-bit.
+INFO: Database character set is WE8DEC. This value must match the character set of the catalog database.
+INFO: 'compatible' initialization parameter validated successfully.
+INFO: Database is a multitenant container database.
+INFO: Current container is SHARD1_PDB1.
+INFO: Database is using a server parameter file (spfile).
+INFO: db_create_file_dest set to: '/u01/app/oracle/dbs'
+INFO: db_recovery_file_dest set to: '/u01/app/oracle/dbs'
+INFO: db_files=1000. Must be greater than the number of chunks and/or
+tablespaces to be created in the shard.
+INFO: dg_broker_start set to TRUE.
+INFO: remote_login_passwordfile set to EXCLUSIVE.
+INFO: db_file_name_convert set to: '/dbs/SHARD1/, /dbs/SHARD1S/'
+INFO: GSMUSER account validated successfully.
+INFO: DATA_PUMP_DIR is '/u01/app/oracle/dbs/9830571348DFEBA8E0537517C40AF64B'.
+</code></pre>
+                     <p>All output lines marked <code class="codeph">INFO</code> are for informational
+                purposes and should be validated as correct for your configuration.
+                     </p>
+                     
+                     <p>All output lines marked <code class="codeph">ERROR</code> must be fixed before moving on to the
+                next deployment steps. These issues will cause errors for certain sharding
+                operations if they are not resolved.
+                     </p>
+                     
+                     <p>All output lines marked <code class="codeph">WARNING</code> may or may not be applicable for
+                your configuration. For example, if standby databases will not be used for this
+                particular deployment, then any warnings related to standby databases or recovery
+                can be ignored. This is especially true for non-production, proof-of-concept, or
+                application development deployments. Review all warnings and resolve as
+                necessary.
+                     </p>
+                     
+                     <p>Once all of the above steps have been completed, the newly created
+                database can now be the target of a <code class="codeph">GDSCTL ADD SHARD</code> command.
+                     </p>
+                     
+                     <p>For high availability and disaster recovery purposes, it is highly
+                recommended that you also create one or more standby shard databases. From a
+                sharding perspective, as long as the above requirements are also met on the standby
+                databases, and all changes to the primary shard database are applied to the
+                standbys, the standby database only needs to be added to the sharding configuration
+                with an <code class="codeph">ADD SHARD</code> command.
+                     </p>
+                     
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-4DD37935-BA84-4817-99D6-5FB0BE607E3E" name="GUID-4DD37935-BA84-4817-99D6-5FB0BE607E3E"></a><h3 id="SHARD-GUID-4DD37935-BA84-4817-99D6-5FB0BE607E3E" class="sect3">Configure the Sharded Database
+        Topology</h3>
+               <div>
+                  <p>The sharded database topology is descibed by the sharding metadata in the
+        shard catalog database. Use <code class="codeph">GDSCTL</code> to configure the sharded database
+            topology.
+                  </p>
+                  <div class="section">
+                     
+                     <p>The sharded database topology consists of the sharding method,
+                replication (high availability) technology, the default number of chunks to be
+                present in the sharded database, the location and number of shard directors, the
+                numbers of shardgroups, shardspaces, regions, and shards in the sharded database,
+                and the global services that will be used to connect to the sharded database.</p>
+                     
+                     <p>Keep the <a href="../gsmug/gdsctl-reference.html#GSMUG-GUID-E6E76443-AD85-455C-99AA-BF0A7856F880" target="_blank">Global Data Services Control Utility (GDSCTL)
+                    Command Reference</a> in the <span><cite>Oracle Database Global Data Services Concepts and Administration Guide</cite></span> on hand for
+                information about usage and options for the <code class="codeph">GDSCTL</code> commands used in
+                the configuration procedures.
+                     </p>
+                     
+                  </div>
+                  <ul id="GUID-4DD37935-BA84-4817-99D6-5FB0BE607E3E__STEPS-UNORDERED_M2J_ZYP_ZKB">
+                     <li class="stepexpand"><span>Follow the procedures listed below, in the order presented, to complete your
+                    sharded database topology configuration.</span><div>
+                           
+                           <p>Run the commands from a shard director host because the
+                            <code class="codeph">GDSCTL</code> command line interface is installed there as
+                        part of the shard director (global service manager) installation.
+                           </p>
+                           
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+               <div class="sect3"><a id="GUID-323F1808-3FD4-48AC-B4F6-961D0CF8B820" name="GUID-323F1808-3FD4-48AC-B4F6-961D0CF8B820"></a><h4 id="SHARD-GUID-323F1808-3FD4-48AC-B4F6-961D0CF8B820" class="sect4">Create the Shard Catalog</h4>
+                  <div>
+                     <p>Use the <code class="codeph">GDSCTL CREATE SHARDCATALOG</code> command to create
+        metadata describing the sharded database topology in the shard catalog
+            database.
+                     </p>
+                     <div class="section">
+                        
+                        <p>Note that once you run <code class="codeph">CREATE SHARDCATALOG</code>, and the rest
+                of the sharding metadata has been created, there are several metadata properties
+                that cannot be modified without recreating the entire sharded database from scratch.
+                These include the sharding method (system-managed, composite, user-defined),
+                replication technology (Oracle Data Guard, Oracle GoldenGate), default number of
+                chunks in the database, and others. Make sure that you consult the
+                    <code class="codeph">GDSCTL</code> reference documentation for the complete list of
+                possible command options and their defaults.
+                        </p>
+                        
+                        <p>Consult the <code class="codeph">GDSCTL</code> documentation or run <code class="codeph">GDSCTL HELP CREATE
+                    SHARDCATALOG</code> for more details about the command usage.
+                        </p>
+                        
+                     </div>
+                     <div class="p">
+                        
+                        <p><span class="bold">Shard Catalog Connect String</span></p>
+                        
+                        <p>When you run the <code class="codeph">CREATE SHARDCATALOG</code> command,
+                    <code class="codeph">GDSCTL</code> connects to the shard catalog database with the user
+                name and connect string specified.
+                        </p>
+                        
+                        <p>If your shard catalog database has an associated standby database for
+                high availability or disaster recovery purposes, the connection string, <span class="variable" translate="no">catalog_connect_string</span>, in the examples that follow,
+                should specify all of the primary and standby databases. If you don't include the
+                standby databases in the connect string, then the shard director processes will not
+                be able to connect to the standby if the primary shard catalog is unavailable.
+                        </p>
+                        
+                        <p>If the shard catalog database is a PDB, note that <span class="variable" translate="no">catalog_connect_string</span> should specify the PDB for the shard catalog
+                database, not the <code class="codeph">CDB$ROOT</code>.
+                        </p>
+                        
+                        <p>The following is a simple <code class="codeph">tnsnames.ora</code> entry.
+                        </p>
+                        <pre class="pre codeblock"><code>CATALOG_CONNECT_STRING=
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = tcp)(HOST = primary_catalog)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = tcp)(HOST = standby_catalog)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = catpdb.example.com)
+    )
+  )</code></pre>
+                        </div>
+                     <div class="section">
+                        
+                        <p>If you are using the <code class="codeph">ADD SHARD</code> method to create shards, do only the
+                first step. If you are using the <code class="codeph">CREATE SHARD</code> method, do both
+                steps.
+                        </p>
+                        
+                        <ol id="GUID-323F1808-3FD4-48AC-B4F6-961D0CF8B820__UL_DJQ_CLJ_LLB">
+                           <li>
+                              
+                              <p>Run <code class="codeph">CREATE SHARDCATALOG</code> with the settings appropriate for
+                        your planned sharding topology.
+                              </p>
+                              
+                              <p><span class="bold">Additional Parameters Required for CREATE SHARD Method</span></p>
+                              
+                              <p>If you will use the <code class="codeph">CREATE SHARD</code> method to add
+                        shards to the configuration, then when you run <code class="codeph">CREATE
+                            SHARDCATALOG</code> you must set the following additional parameters,
+                        which are required for Remote Scheduler Agent registration in the next
+                        step.
+                              </p>
+                              
+                              <ul style="list-style-type: disc;" id="GUID-323F1808-3FD4-48AC-B4F6-961D0CF8B820__UL_HJS_KKJ_LLB">
+                                 <li><code class="codeph">&#x2013;agent_password</code> specifies the password that
+                            will be used by the Remote Scheduler Agent to register with the shard
+                            catalog.
+                                 </li>
+                                 <li><code class="codeph">&#x2013;agent_port</code> specifies the port number that
+                            the Agent uses to create an XDB connection to the shard catalog. The
+                            default for this parameter is 8080.
+                                 </li>
+                              </ul>
+                              
+                              <p><span class="bold">System-Managed Sharding Method</span></p>
+                              
+                              <p>In the following example, the sharded database metadata is
+                        created for a system-managed sharding configuration with two regions named
+                            <kbd class="userinput">region1</kbd> and <kbd class="userinput">region2</kbd>.
+                        Because system-managed is the default sharding method, it does not need to
+                        be specified with the <code class="codeph">-sharding</code> parameter. 
+                              </p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt; create shardcatalog -database <span class="variable" translate="no">catalog_connect_string</span>
+ -user mysdbadmin/<span class="variable" translate="no">mysdbadmin_password</span> -repl DG -region region1,region2
+</code></pre>
+                              <p>Note also that if <code class="codeph">-shardspace</code> is not specified,
+                        a default shardspace named <kbd class="userinput">shardspaceora</kbd> is created.
+                        If <code class="codeph">-region</code> is not specified, the default region named
+                            <kbd class="userinput">regionora</kbd> is created. If the single default
+                        region is created along with the default shardspace, then a default
+                        shardgroup named <kbd class="userinput">shardspaceora_regionora</kbd> is also
+                        created in the shardspace.
+                              </p>
+                              
+                              <p><span class="bold">Composite Sharding Method</span></p>
+                              
+                              <p>The following example shows you how to create shard catalog
+                        metadata for a composite sharded database with Data Guard replication in
+                            <code class="codeph">MaxAvailability</code> protection mode, 60 chunks per
+                        shardspace, and two shardspaces.
+                              </p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt; create shardcatalog -database <span class="variable" translate="no">catalog_connect_string</span>
+ -user mysdbadmin/<span class="variable" translate="no">mysdbadmin_password</span> -sharding composite -chunks 60 
+ -protectmode maxavailability -shardspace shardspace1,shardspace2
+</code></pre>
+                              <p><span class="bold">User-Defined Sharding Method</span></p>
+                              
+                              <p>The next example shows you how to create shard catalog metadata
+                        for a user-defined sharded database with Data Guard replication.</p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt; create shardcatalog -database <span class="variable" translate="no">catalog_connect_string</span>
+ -user mysdbadmin/<span class="variable" translate="no">mysdbadmin_password</span> -sharding user
+ -protectmode maxperformance 
+</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p><span class="bold">For CREATE SHARD method only:</span> Register the Remote Scheduler Agents
+                        with the shard catalog, and start the agents on each shard host.
+                              </p>
+                              
+                              <p>Go to each shard host, log in as the owner of the Oracle software
+                        installation, and run the following <code class="codeph">schagent</code> commands in
+                        the Oracle Home from which the shard database will run.
+                              </p>
+                              <pre class="pre codeblock"><code>schagent &#x2013;registerdatabase <span class="variable" translate="no">catalog_hostname</span> <span class="variable" translate="no">agent_port</span>
+schagent -start</code></pre>
+                              <p>In the <code class="codeph">schagent</code> command above, replace <span class="variable" translate="no">catalog_hostname</span> with the name of the shard
+                        catalog host, and replace <span class="variable" translate="no">agent_port</span> as with
+                        the port number you configured in <code class="codeph">CREATE SHARDCATALOG</code>
+                        above.
+                              </p>
+                              
+                              <p>For example:</p>
+                              <pre class="pre codeblock"><code>$ $ORACLE_HOME/bin/schagent &#x2013;registerdatabase cathost.example.com 8080
+$ $ORACLE_HOME/bin/schagent -start</code></pre>
+                              <p>After successful agent registration, the shard host can receive remote job
+                        requests from the shard catalog during <code class="codeph">GDSCTL DEPLOY</code>. After
+                        a successful deployment on a given host, the Remote Scheduler Agent is no
+                        longer used during a sharded database’s life cycle and can be stopped safely
+                        using the following command.
+                              </p>
+                              <pre class="pre codeblock"><code>$ $ORACLE_HOME/bin/schagent &#x2013;stop</code></pre>
+                              </li>
+                        </ol>
+                        
+                     </div>
+                     <div class="section">
+                        
+                        <p><span class="bold">Future Connections to the Shard Catalog</span></p>
+                        
+                        <p><code class="codeph">GDSCTL</code> stores the credentials for the shard catalog
+                administrator in a wallet on the local host. However, for subsequent
+                    <code class="codeph">GDSCTL</code> sessions on other hosts, it may be necessary to
+                explicitly connect to the shard catalog in order to perform administrative tasks by
+                running the <code class="codeph">GDSCTL CONNECT</code> command, as shown here.
+                        </p>
+                        <pre class="pre codeblock"><code>GDSCTL&gt; connect mysdbadmin/<span class="variable" translate="no">mysdbadmin_password</span>@<span class="variable" translate="no">catalog_connect_string</span></code></pre>
+                        </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-44478F6F-A3FD-43BA-BDF6-8EBD62741467" name="GUID-44478F6F-A3FD-43BA-BDF6-8EBD62741467"></a><h4 id="SHARD-GUID-44478F6F-A3FD-43BA-BDF6-8EBD62741467" class="sect4">Add and Start Shard Directors</h4>
+                  <div>
+                     <p>Add to the configuration the shard directors, which will monitor the
+        sharding system and run background tasks in response to <code class="codeph">GDSCTL</code> commands and
+        other events, and start them.
+                     </p>
+                     <div class="p">
+                        
+                        <p>The following commands must be run on the host where the shard director
+                processes are to run. This can be the shard catalog host or a dedicated host for the
+                shard director processes.</p>
+                        
+                     </div>
+                     <ol>
+                        <li class="stepexpand"><span>Add and start a shard director (GSM), as shown in the following example.</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt; connect mysdbadmin/<span class="variable" translate="no">mysdbadmin_password</span>@<span class="variable" translate="no">catalog_connect_string</span>
+GDSCTL&gt; add gsm -gsm sharddirector1 -catalog <span class="variable" translate="no">catalog_connect_string</span> -pwd <span class="variable" translate="no">gsmcatuser_password</span>
+GDSCTL&gt; start gsm -gsm sharddirector1
+</code></pre>
+                              <p>The value for the <code class="codeph">-gsm</code> parameter is the name
+                        that you will be using to reference this shard director in later
+                            <code class="codeph">GDSCTL</code> commands. The values for the
+                            <code class="codeph">-catalog</code> and <code class="codeph">-pwd</code> parameters should be
+                        the same used when you created the shard catalog database.
+                              </p>
+                              
+                              <p>Use the <code class="codeph">-listener</code>, <code class="codeph">-localons</code>,
+                        and <code class="codeph">-remoteons</code> parameters as described in the
+                            <code class="codeph">GDSCTL</code> reference to override the default port numbers
+                        of 1522, 6123, and 6234, respectively. Always confirm that the port numbers
+                        to be used, whether default or user-specified, are available on the host and
+                        do not conflict with other running software or Oracle listeners.
+                              </p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Repeat the <code class="codeph">ADD GSM</code> and <code class="codeph">START GSM</code> commands for
+                    any additional shard directors on each shard director host.</span><div>
+                              
+                              <p>Replace the shard director name (that is,
+                            <kbd class="userinput">sharddirector1</kbd> in the example) with an
+                        appropriate value for each shard director.
+                              </p>
+                              
+                              <p>If more than one shard director is used, then multiple regions
+                        must have been created for them in the <code class="codeph">CREATE SHARDCATALOG</code>
+                        command, or you can add them later by running <code class="codeph">ADD REGION</code>. 
+                              </p>
+                              
+                              <p>Specify a region for each shard director with the
+                            <code class="codeph">-region</code> parameter on each <code class="codeph">ADD GSM</code>
+                        command, as shown here.
+                              </p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt; add gsm -gsm <span class="bold">sharddirector2</span> -catalog <span class="variable" translate="no">catalog_connect_string</span> -pwd <span class="variable" translate="no">gsmcatuser_password</span> <span class="bold">-region dc2</span></code></pre>
+                              </div>
+                        </li>
+                     </ol>
+                     <div class="section">
+                        
+                        <p>For later <code class="codeph">GDSCTL</code> sessions, you might need to explicitly
+                specify the shard director to be administered. If an error message is shown
+                referencing the default <kbd class="userinput">GSMORA</kbd> shard director, run
+                    <code class="codeph">GDSCTL SET GSM</code> before continuing, as shown here.
+                        </p>
+                        <pre class="pre codeblock"><code>GDSCTL&gt; set gsm -gsm sharddirector1</code></pre>
+                        </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-A3BA1D48-101A-462F-885D-24D29326F1B1" name="GUID-A3BA1D48-101A-462F-885D-24D29326F1B1"></a><h4 id="SHARD-GUID-A3BA1D48-101A-462F-885D-24D29326F1B1" class="sect4">Add Shardspaces If Needed</h4>
+                  <div>
+                     <p>If you are using composite or user-defined sharding, and you need to add
+        more shardspaces to complete your desired sharding topology, use the <code class="codeph">ADD
+            SHARDSPACE</code> command to add additional shardspaces.
+                     </p>
+                     <ul>
+                        <li class="stepexpand"><span>Run <code class="codeph">ADD SHARDSPACE</code> as shown here.</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt; add shardspace -shardspace shardspace2 </code></pre>
+                              <p>By default, the <code class="codeph">ADD SHARDSPACE</code> command inherits
+                        the <code class="codeph">-chunks</code> and <code class="codeph">-protectmode</code> values that
+                        you used in the <code class="codeph">CREATE SHARDCATALOG</code> command. You can
+                        specify, on a per-shardspace basis,the number of chunks and the Data Guard
+                        protection mode by using the <code class="codeph">-chunks</code> and
+                            <code class="codeph">-protectmode</code> parameters with <code class="codeph">ADD
+                            SHARDSPACE</code>.
+                              </p>
+                              
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-4303ECD7-DFCA-4CCA-BBAD-81E3A320AEC3" name="GUID-4303ECD7-DFCA-4CCA-BBAD-81E3A320AEC3"></a><h4 id="SHARD-GUID-4303ECD7-DFCA-4CCA-BBAD-81E3A320AEC3" class="sect4">Add Shardgoups If Needed</h4>
+                  <div>
+                     <p>If your sharded database topology uses the system-managed or composite
+        sharding method, you can add any necessary additional shardgroups for your
+            application.</p>
+                     <div class="section">
+                        
+                        <p>Each shardspace must contain at least one primary shardgroup and may
+                contain any number or type of standby shardgroups. Shardgroups are not used in the
+                user-defined sharding method.</p>
+                        
+                     </div>
+                     <ul>
+                        <li class="stepexpand"><span>Run <code class="codeph">ADD SHARDGROUP</code> to add shardgroups to the
+                    configuration.</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt; add shardgroup -shardgroup shardgroup_primary -shardspace shardspace1
+ -deploy_as primary -region region1
+GDSCTL&gt; add shardgroup -shardgroup shardgroup_standby -shardspace shardspace1
+ -deploy_as active_standby -region region2
+</code></pre>
+                              <p>Note that when you run <code class="codeph">ADD SHARDGROUP</code> you can
+                        specify one of three types of shardgroups: <code class="codeph">primary</code>,
+                            <code class="codeph">standby</code> (mounted, not open), and
+                            <code class="codeph">active_standby</code> (open, available for queries) using the
+                            <code class="codeph">-deploy_as</code> parameter (the default is
+                            <code class="codeph">standby</code>). 
+                              </p>
+                              
+                              <p>Any shards subsequently added to the shardgroup must be opened
+                        in the mode corresponding to the <code class="codeph">-deploy_as</code> setting for the
+                        shardgroup. For example, read-write for primary shardgroups, mounted for
+                        standby shardgroups, or read-only with apply for active standby
+                        shardgroups.
+                              </p>
+                              
+                              <p>After shards are deployed, their current mode is monitored by
+                        the shard directors and communicated to the shard catalog such that it is
+                        possible and expected that shards of different open modes may be in the same
+                        shardgroup, depending upon subsequent switchover or failover operations.</p>
+                              
+                           </div>
+                        </li>
+                     </ul>
+                     <div class="section"></div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-AA48D92D-8B0D-45A9-87AC-AEB1DD8DDB7A" name="GUID-AA48D92D-8B0D-45A9-87AC-AEB1DD8DDB7A"></a><h4 id="SHARD-GUID-AA48D92D-8B0D-45A9-87AC-AEB1DD8DDB7A" class="sect4">Verify the Sharding Topology</h4>
+                  <div>
+                     <p>Before adding information about your shard databases to the catalog, verify
+        that your sharding topology is correct before proceeding by using the various <code class="codeph">GDSCTL
+            CONFIG</code> commands.
+                     </p>
+                     <div class="section">
+                        
+                        <p>Once shards are added and deployed, it is no longer possible to change
+                much of the shard catalog metadata, so validating your configuration is an important
+                task at this point.</p>
+                        
+                     </div>
+                     <ul>
+                        <li class="stepexpand"><span>Run <code class="codeph">GDSCTL CONFIG</code> to view overall configuration
+                    information.</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt; config
+
+Regions
+------------------------
+region1                       
+region2                       
+
+GSMs
+------------------------
+sharddirector1                          
+sharddirector2                          
+
+Sharded Database
+------------------------
+orasdb                     
+
+Databases
+------------------------ 
+
+Shard Groups
+------------------------
+shardgroup_primary                         
+shardgroup_standby                         
+
+Shard spaces
+------------------------
+shardspaceora                         
+
+Services
+------------------------
+
+GDSCTL pending requests
+------------------------
+Command                   Object                  Status
+-------                   ------                  ------
+
+Global properties
+------------------------
+Name: oradbcloud
+Master GSM: sharddirector1
+DDL sequence #: 0</code></pre>
+                              <p>You can use the various <code class="codeph">GDSCTL CONFIG</code> commands
+                        to display more information about shardspaces, shardgroups, and other shard
+                        catalog objects. For a complete list of <code class="codeph">GDSCTL CONFIG</code>
+                        command variants, see the <code class="codeph">GDSCTL</code> reference documentation or
+                        run <code class="codeph">GDSCTL HELP</code>.
+                              </p>
+                              
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-58DF214E-49AD-4122-82E7-387498DB7327" name="GUID-58DF214E-49AD-4122-82E7-387498DB7327"></a><h4 id="SHARD-GUID-58DF214E-49AD-4122-82E7-387498DB7327" class="sect4">Add the Shard CDBs</h4>
+                  <div>
+                     <p>If your shards will be PDBs inside CDBs, then add the CDBs containing the
+        shard PDBs to the sharding configuration with the <code class="codeph">ADD CDB</code> command. If you
+        will be using non-CDBs as your shards, or will be using <code class="codeph">CREATE SHARD</code> to add
+        shards, skip to the next section.
+                     </p>
+                     <ol id="GUID-58DF214E-49AD-4122-82E7-387498DB7327__STEPS-UNORDERED_RJ5_YMP_ZKB">
+                        <li class="stepexpand"><span>Run the <code class="codeph">ADD CDB</code> command as shown here.</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt; add cdb -connect <span class="variable" translate="no">cdb_connect_string</span> -pwd <span class="variable" translate="no">gsmrootuser_password</span></code></pre>
+                              </div>
+                           <div>
+                              
+                              <p>This command causes <code class="codeph">GDSCTL</code> to connect to
+                            <code class="codeph">GSMROOTUSER</code>/<span class="italic">gsmrootuser_password</span>@<span class="italic">cdb_connect_string</span>
+                        as <kbd class="userinput">SYSDG</kbd> to validate settings and to retrieve the
+                            <code class="codeph">DB_UNIQUE_NAME</code> of the CDB, which will become the CDB
+                        name in the shard catalog.
+                              </p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Repeat the <code class="codeph">ADD CDB</code> command for all of the CDBs that contain a
+                    shard PDB in the configuration.</span></li>
+                        <li class="stepexpand"><span>When all of the CDBs are added, run <code class="codeph">GDSCTL CONFIG CDB</code> to
+                    display a list of CDBs in the catalog.</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt; config cdb</code></pre>
+                              </div>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-5DF3BE00-9024-4A80-8EB8-B24A637A058B" name="GUID-5DF3BE00-9024-4A80-8EB8-B24A637A058B"></a><h4 id="SHARD-GUID-5DF3BE00-9024-4A80-8EB8-B24A637A058B" class="sect4">Add the Shards</h4>
+                  <div>
+                     <p>Depending on whether you use <code class="codeph">ADD SHARD</code> or <code class="codeph">CREATE
+            SHARD</code> to add shards to your configuration, follow the appropriate instructions
+            below.
+                     </p>
+                     <p></p>
+                  </div>
+                  <div class="sect4"><a id="GUID-C960E712-2083-4A52-B47F-ED8A94A3CCAA" name="GUID-C960E712-2083-4A52-B47F-ED8A94A3CCAA"></a><h5 id="SHARD-GUID-C960E712-2083-4A52-B47F-ED8A94A3CCAA" class="sect5">Add Shards Using GDSCTL ADD SHARD</h5>
+                     <div>
+                        <p>Use the <code class="codeph">GDSCTL ADD SHARD</code> command to add the shard
+        information to the shard catalog.
+                        </p>
+                        <ol>
+                           <li class="stepexpand"><span>Run <code class="codeph">ADD SHARD</code> with the usage appropriate to your sharding
+                    method, as shown in the following examples.</span><div>
+                                 
+                                 <p>For <span class="bold">system-managed</span> or <span class="bold">composite</span> sharding, run
+                            <code class="codeph">ADD SHARD</code> with the parameters shown here.
+                                 </p>
+                                 <pre class="pre codeblock"><code>
+GDSCTL&gt; add shard -connect <span class="variable" translate="no">shard_connect_string</span> -pwd <span class="variable" translate="no">gsmuser_password</span> 
+<span class="bold">-shardgroup <span class="variable" translate="no">shardgroup_name</span></span> -cdb <span class="variable" translate="no">cdb_name</span>
+</code></pre>
+                                 <p>For <span class="bold">user-defined</span> sharding, the command usage is slightly
+                        different.
+                                 </p>
+                                 <pre class="pre codeblock"><code>GDSCTL&gt; add shard -connect <span class="variable" translate="no">shard_connect_string</span> -pwd <span class="variable" translate="no">gsmuser_password</span> <span class="bold">
+-shardspace <span class="variable" translate="no">shardspace_name</span> -deploy_as <span class="variable" translate="no">db_mode</span></span> -cdb <span class="variable" translate="no">cdb_name</span>
+</code></pre>
+                                 <p>Do not specify the <code class="codeph">&#x2013;cdb</code> parameter if you are
+                        not using PDBs as your shards. 
+                                 </p>
+                                 
+                                 <p>In the examples above, the <code class="codeph">-cdb</code> parameter
+                        specifies the name of the CDB in which the shard PDB exists,
+                            <code class="codeph">-shardgroup</code> or <code class="codeph">-shardspace</code> specifies
+                        the location of the shard in your sharding topology, and
+                            <code class="codeph">-deploy_as</code> specifies the open mode
+                            (<kbd class="userinput">primary</kbd>, <kbd class="userinput">standby</kbd>,
+                            <kbd class="userinput">active_standby</kbd>) of the shard. 
+                                 </p>
+                                 
+                                 <div class="infoboxnote" id="GUID-C960E712-2083-4A52-B47F-ED8A94A3CCAA__GUID-C3690735-2B8B-4BAA-9A37-C07A715D42B6">
+                                    <p class="notep1">Note:</p>It is highly recommended that you set <code class="codeph">server=dedicated</code> in
+                        the connect string.
+                                 </div>
+                                 
+                              </div>
+                              <div>
+                                 
+                                 <p>When you run <code class="codeph">ADD SHARD</code>, <code class="codeph">GDSCTL</code>
+                        connects to
+                            <code class="codeph">GSMUSER</code>/<span class="italic">gsmuser_password</span>@<span class="italic">shard_connect_string</span>
+                        as SYSDG to validate the settings on the shard, and re-runs
+                            <code class="codeph">dbms_gsm_fix.validateShard</code> to check for errors. Then
+                            <code class="codeph">GDSCTL</code> constructs the shard name using the following
+                        conventions.
+                                 </p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-C960E712-2083-4A52-B47F-ED8A94A3CCAA__UL_F2T_HVJ_LLB">
+                                    <li>For PDB shards: <span class="variable" translate="no">db_unique_name_of_CDB</span>_<span class="variable" translate="no">PDB_name</span>, for example <code class="codeph">cdb1_pdb1</code></li>
+                                    <li>For legacy database shards: <span class="variable" translate="no">db_unique_name_of_DB</span>,
+                            which is simply the <code class="codeph">db_unique_name</code>
+                                       
+                                    </li>
+                                 </ul>
+                                 
+                                 <p>Finally, the metadata that describes the shard is added to the
+                        shard catalog.</p>
+                                 
+                              </div>
+                           </li>
+                           <li class="stepexpand"><span>Run <code class="codeph">GDSCTL CONFIG SHARD</code> to view the shard metadata on the
+                    shard catalog.</span><div>
+                                 <pre class="pre codeblock"><code>GDSCTL&gt; config shard
+Name      Shard Group          Status    State    Region    Availability
+--------- -------------------  ------    -----    ------    ------------
+cdb1_pdb1 shardgroup_primary   U         none     region1   -
+cdb2_pdb1 shardgroup_standby   U         none     region2   -
+cdb3_pdb2 shardgroup_primary   U         none     region1   -
+cdb4_pdb2 shardgroup_standby   U         none     region2   -
+</code></pre>
+                                 <p>Note that the value for Status is <code class="codeph">U</code> for
+                        “undeployed”, and State and Availability are <code class="codeph">none</code> and
+                            <code class="codeph">-</code> until the <code class="codeph">DEPLOY</code> command is
+                        successfully run.
+                                 </p>
+                                 
+                              </div>
+                           </li>
+                        </ol>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-0DD6E07D-0E5A-4586-9004-A7B58F2BD1AC" name="GUID-0DD6E07D-0E5A-4586-9004-A7B58F2BD1AC"></a><h5 id="SHARD-GUID-0DD6E07D-0E5A-4586-9004-A7B58F2BD1AC" class="sect5">Add Shards Using GDSCTL CREATE SHARD</h5>
+                     <div>
+                        <p>Use the <code class="codeph">GDSCTL CREATE SHARD</code> command to create the shard
+        database and add the shard information to the shard catalog.
+                        </p>
+                        <div class="section">
+                           
+                           <p>Run <code class="codeph">CREATE SHARD</code> with the parameters appropriate to your
+                sharding method, as shown in the following examples.
+                           </p>
+                           
+                           <p>For <span class="bold">system-managed</span> or <span class="bold">composite</span> sharding, run
+                    <code class="codeph">CREATE SHARD</code> with the parameters shown here.
+                           </p>
+                           <pre class="pre codeblock"><code>
+GDSCTL&gt; create shard -shardgroup <span class="variable" translate="no">shardgroup_name</span> &#x2013;destination <span class="variable" translate="no">shard_hostname</span>
+ &#x2013;osaccount <span class="variable" translate="no">account_name</span> &#x2013;ospassword <span class="variable" translate="no">account_password</span></code></pre>
+                           <p>For <span class="bold">user-defined</span> sharding, the command usage is slightly
+                different.
+                           </p>
+                           <pre class="pre codeblock"><code>GDSCTL&gt; create shard -shardspace <span class="variable" translate="no">shardspace_name</span> &#x2013;deploy_as db_mode
+ &#x2013;destination <span class="variable" translate="no">shard_hostname</span> &#x2013;osaccount <span class="variable" translate="no">account_name</span> &#x2013;ospassword <span class="variable" translate="no">account_password</span></code></pre>
+                           <p>The <code class="codeph">-shardgroup</code> or <code class="codeph">-shardspace</code> parameters specify
+                the location of the shard in your sharding topology, and <code class="codeph">-deploy_as</code>
+                specifies the intended open mode (<kbd class="userinput">primary</kbd>,
+                    <kbd class="userinput">standby</kbd>, <kbd class="userinput">active_standby</kbd>) of the
+                shard.
+                           </p>
+                           
+                           <p>The <code class="codeph">&#x2013;destination</code> parameter specifies which Remote Scheduler Agent
+                the shard catalog contacts to spawn NETCA and DBCA to create the shard database.
+                This value is typically the host name of the shard host. To see the list of
+                available destinations, select from the
+                    <code class="codeph">ALL_SCHEDULER_EXTERNAL_DESTS</code> view on the shard catalog
+                database.
+                           </p>
+                           
+                           <p>The <code class="codeph">&#x2013;osaccount</code> and <code class="codeph">&#x2013;ospassword</code> parameters specify
+                the operating system user name and password to be used when spawning the NETCA and
+                DBCA processes on the shard host. Typically, the user name is the owner of the
+                Oracle Database software.
+                           </p>
+                           
+                           <p><span class="bold">Password Encryption</span></p>
+                           
+                           <p>To avoid specifying the cleartext password for the account on each
+                    <code class="codeph">CREATE SHARD</code> command, you can store the encrypted password in
+                the shard catalog for later use by using the <code class="codeph">GDSCTL ADD CREDENTIAL</code>
+                command. In the <code class="codeph">CREATE SHARD</code> command specify the credential name in
+                the command parameters instead of <code class="codeph">&#x2013;osaccount</code> and
+                    <code class="codeph">&#x2013;ospassword</code> as shown below.
+                           </p>
+                           <pre class="pre codeblock"><code>GDSCTL&gt; add credential &#x2013;credential <span class="variable" translate="no">credential_name</span>
+ &#x2013;osaccount <span class="variable" translate="no">account_name</span> &#x2013;ospassword <span class="variable" translate="no">account_password</span>
+
+GDSCTL&gt; create shard -shardgroup <span class="variable" translate="no">shardgroup_name</span> &#x2013;destination <span class="variable" translate="no">shard_hostname</span>
+ &#x2013;credential <span class="variable" translate="no">credential_name</span></code></pre>
+                           <p><span class="bold">What Happens When You Run CREATE SHARD</span></p>
+                           
+                           <p>When you run <code class="codeph">CREATE SHARD</code>, <code class="codeph">GDSCTL</code> validates the
+                input parameters and the shard host setup and then adds shard metadata to the shard
+                catalog, which in turn causes the following operations to be performed during
+                    <code class="codeph">GDSCTL DEPLOY</code>:
+                           </p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-0DD6E07D-0E5A-4586-9004-A7B58F2BD1AC__UL_WGJ_SXJ_LLB">
+                              <li>
+                                 
+                                 <p>Create and start a TNS Listener process on shard hosts at port 1521 with a
+                        listener name of “LISTENER” (by default)</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>For primary shards, create the shard database using the default DBCA template
+                        located on the shard host at
+                            <code class="codeph">$ORACLE_HOME/assistants/dbca/templates/General_Purpose.dbc</code>
+                        (by default)
+                                 </p>
+                                 
+                                 <p>The primary shards will have the following characteristics, by default:</p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-0DD6E07D-0E5A-4586-9004-A7B58F2BD1AC__UL_D55_WXJ_LLB">
+                                    <li>Randomly generated passwords for <code class="codeph">SYS</code>,
+                                <code class="codeph">SYSTEM</code>, and <code class="codeph">GSMUSER</code></li>
+                                    <li>A <code class="codeph">db_unique_name</code>, <code class="codeph">db_name</code>, and SID of
+                            the form ‘shNN’ where NN is a sequence-based number to uniquely identify
+                            added shards
+                                    </li>
+                                    <li>A <code class="codeph">db_domain</code> value the same as the domain found in the
+                                <code class="codeph">ALL_SCHEDULER_EXTERNAL_DESTS.HOSTNAME</code> column
+                            corresponding to the specified destination. If no domain is found, then
+                                <code class="codeph">db_domain</code> is set to the <code class="codeph">db_domain</code>
+                            of the shard catalog database.
+                                    </li>
+                                    <li><code class="codeph">NLS_CHARACTERSET</code> and
+                                <code class="codeph">NLS_NCHAR_CHARACTERSET</code> values the same as those for
+                            the shard catalog database
+                                    </li>
+                                    <li>The <code class="codeph">db_file_name_convert</code> parameter set to
+                                <code class="codeph">‘*’,’$ORACLE_BASE/oradata/’</code></li>
+                                    <li>The <code class="codeph">db_create_file_dest</code> parameter set to
+                                <code class="codeph">$ORACLE_BASE/oradata</code></li>
+                                    <li>The <code class="codeph">remote_login_passwordfile</code> parameter
+                            set to <code class="codeph">EXCLUSIVE</code></li>
+                                    <li>The database is in archivelog mode</li>
+                                    <li>Force logging is enabled</li>
+                                    <li>Database flashback is on</li>
+                                    <li>If Oracle Data Guard replication was specified on
+                                <code class="codeph">CREATE SHARDCATALOG</code>, the following parameters are
+                                set.
+                                       <ul style="list-style-type: disc;" id="GUID-0DD6E07D-0E5A-4586-9004-A7B58F2BD1AC__UL_E55_WXJ_LLB">
+                                          <li><code class="codeph">dg_broker_start</code> set to
+                                        <code class="codeph">TRUE</code></li>
+                                          <li><code class="codeph">db_recovery_file_dest</code> set to
+                                        <code class="codeph">$ORACLE_BASE/fast_recovery_area</code></li>
+                                          <li><code class="codeph">db_recovery_file_dest_size</code> set to
+                                        <code class="codeph">51200 MB</code></li>
+                                          <li><code class="codeph">standby_file_management</code> set to
+                                        <code class="codeph">AUTO</code></li>
+                                          <li><code class="codeph">db_flashback_retention_target</code> set
+                                    to <code class="codeph">60</code></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                                 
+                              </li>
+                              <li>For standby shards, use DBCA and RMAN to create the standby database based on
+                    the existing primary. In general, all primary database parameters are inherited
+                    by the standbys.</li>
+                           </ul>
+                           
+                           <p><span class="bold">CREATE SHARD Usage Tips For Database Customization</span></p>
+                           
+                           <p>The <code class="codeph">GDSCTL CREATE SHARD</code> command has several parameters that let you
+                customize the shard databases.
+                           </p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-0DD6E07D-0E5A-4586-9004-A7B58F2BD1AC__UL_J1M_SZJ_LLB">
+                              <li>
+                                 
+                                 <p>The <code class="codeph">&#x2013;sys_password</code> and <code class="codeph">&#x2013;system_password</code>
+                        parameters let you specify the passwords for the <code class="codeph">SYS</code> and
+                            <code class="codeph">SYSTEM</code> accounts on your new shards.
+                                 </p>
+                                 
+                                 <p>Note that the <code class="codeph">GSMUSER</code> password is always created randomly
+                        because this account is not intended to be used for interactive logins. To
+                        change the <code class="codeph">GSMUSER</code> password after deployment, change the
+                        password on the database with <code class="codeph">ALTER USER</code> and then use the
+                            <code class="codeph">GDSCTL MODIFY SHARD</code> command to update the sharding
+                        metadata with the new password.
+                                 </p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>The <code class="codeph">&#x2013;netparam</code> and <code class="codeph">&#x2013;netparamfile</code> parameters
+                        let you customize the TNS listener name and port number when they are
+                        created on the shard host. 
+                                 </p>
+                                 
+                                 <p>The value specified for these parameters is the file name of a
+                        NETCA response file. Examples of response files can be found in
+                            <code class="codeph">$ORACLE_HOME/assistants/netca</code> on the shard hosts.
+                                 </p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>Likewise, you can use the <code class="codeph">-dbtemplate</code> and
+                            <code class="codeph">-dbtemplatefile</code> parameters to specify the DBCA template
+                        file to be used when creating the shard database.
+                                 </p>
+                                 
+                                 <p>The default template is
+                            <code class="codeph">$ORACLE_HOME/assistants/dbca/templates/General_Purpose.dbc</code>
+                        on the shard host.
+                                 </p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>You can use the <code class="codeph">-dbparam</code> and
+                            <code class="codeph">-dbparamfile</code> parameters to directly pass DBCA command
+                        line parameters to the DBCA process on the shard host, just as you would
+                        enter them when running DBCA from the command line. 
+                                 </p>
+                                 
+                                 <p>To see all of the possible parameters for primary database creation, run
+                            <code class="codeph">dbca -help -createDatabase</code>. To see parameters for
+                        standby database creation, run <code class="codeph">dbca -help
+                            -createDuplicateDB</code>. For example, to change the global database
+                        name and SID for a primary shard, create a file with a single line as shown
+                        below, and specify that file name in <code class="codeph">-dbparam</code> or
+                            <code class="codeph">-dbparamfile</code>. 
+                                 </p>
+                                 <pre class="pre codeblock"><code>-gdbName mydb.example.com -sid mysid </code></pre>
+                                 </li>
+                              <li>
+                                 
+                                 <p>When specifying any of these parameters, you can use
+                            <code class="codeph">-netparamfile</code>, <code class="codeph">-dbtemplatefile</code>, or
+                            <code class="codeph">-dbparamfile</code> with an operating system file name, as
+                        seen from <code class="codeph">GDSCTL</code>. 
+                                 </p>
+                                 
+                                 <p>Alternatively, you can save the contents of the file in the shard catalog
+                        database with the <code class="codeph">ADD FILE</code> command and then use
+                            <code class="codeph">-netparam</code>, <code class="codeph">-dbtemplate</code>, or
+                            <code class="codeph">-dbparam</code> on your <code class="codeph">CREATE SHARD</code>
+                        command.
+                                 </p>
+                                 <pre class="pre codeblock"><code>GDSCTL&gt; create shard -dbtemplatefile /home/user/mytemplate.dbc -netparamfile /home/user/mynetca.rsp ...</code></pre>
+                                 <p>or</p>
+                                 <pre class="pre codeblock"><code>GDSCTL&gt; add file &#x2013;file mytemplate &#x2013;source /home/user/mytemplate.dbc
+GDSCTL&gt; add file &#x2013;file mynetca &#x2013;source /home/user/mynetca.rsp
+GDSCTL&gt; create shard &#x2013;dbtemplate mytemplate &#x2013;netparam mynetca ...</code></pre>
+                                 </li>
+                           </ul>
+                           
+                           <p>If you wish to ensure that a standby shard on a particular host is in the
+                same Data Guard configuration as a specific primary shard, it is recommended that
+                you create the primary shard first followed by the standby shard using the desired
+                    <code class="codeph">&#x2013;destination</code> value in <code class="codeph">CREATE SHARD</code>. If you
+                create several primary shards sequentially, and then create several standby shards,
+                the primaries and standbys are matched in Data Guard configurations in a
+                non-deterministic way.
+                           </p>
+                           
+                           <p><span class="bold">Verify the Shard Configuration</span></p>
+                           
+                           <p>Run <code class="codeph">GDSCTL CONFIG SHARD</code> to verify that the shard metadata on the
+                shard catalog is as expected.
+                           </p>
+                           <pre class="pre codeblock"><code>GDSCTL&gt; config shard
+Name      Shard Group          Status    State    Region    Availability
+--------- -------------------  ------    -----    ------    ------------
+sh1       shardgroup_primary   U         none     region1   -
+sh2       shardgroup_primary   U         none     region1   -
+sh3       shardgroup_standby   U         none     region2   -
+sh4       shardgroup_standby   U         none     region2   -
+</code></pre>
+                           <p>Note that the value for Status is U for “undeployed”, and State and Availability are
+                none and - until the <code class="codeph">GDSCTL DEPLOY</code> command is successfully run.
+                           </p>
+                           
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-88CCD096-2BCD-496F-93AB-4781E6C49A75" name="GUID-88CCD096-2BCD-496F-93AB-4781E6C49A75"></a><h4 id="SHARD-GUID-88CCD096-2BCD-496F-93AB-4781E6C49A75" class="sect4">Add Host Metadata</h4>
+                  <div>
+                     <p>Add all of the host names and IP addresses of your shard hosts to the shard
+            catalog.</p>
+                     <div class="section">
+                        
+                        <p>As part of the deployment process, the shard director contacts the
+                shards and directs them to register with the shard director’s TNS listener process.
+                This listener process only accepts incoming registration requests from trusted
+                sources and will reject registration requests from unknown hosts.</p>
+                        
+                        <p>If your shard hosts have multiple host names or network interfaces
+                assigned to them, it is possible that the incoming registration request to the shard
+                director may come from a host that was not automatically added during <code class="codeph">ADD
+                    SHARD</code> or <code class="codeph">CREATE SHARD</code>. In this case, the registration
+                request is rejected and the shard will not deploy correctly. The visible symptom of
+                this problem will be that <code class="codeph">CONFIG SHARD</code> shows
+                    <code class="codeph">PENDING</code> for the shard’s Availability after
+                    <code class="codeph">DEPLOY</code> has completed.
+                        </p>
+                        
+                        <p>To avoid this issue, use the <code class="codeph">GDSCTL ADD INVITEDNODE</code>
+                command to manually add all host names and IP addresses of your shard hosts to the
+                shard catalog metadata.
+                        </p>
+                        
+                     </div>
+                     <ol id="GUID-88CCD096-2BCD-496F-93AB-4781E6C49A75__STEPS_VL5_GHJ_ZKB">
+                        <li class="stepexpand"><span>View a list of trusted hosts.</span><div>
+                              
+                              <p>By default, the <code class="codeph">ADD SHARD</code> and <code class="codeph">CREATE
+                            SHARD</code> commands add the default host name of the shard host to
+                        the shard catalog metadata, so that any registration requests from that host
+                        to the shard director will be accepted. You can view the list of trusted
+                        hosts by running the <code class="codeph">GDSCTL CONFIG VNCR</code> command.
+                              </p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt; config vncr</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Ping from all of the hosts in the configuration to verify successful host name
+                    resolution.</span><div>
+                              
+                              <p>Any hosts listed in the <code class="codeph">CONFIG VNCR</code> output must
+                        be reachable by name from all of the other hosts in the topology. Use the
+                            <code class="codeph">ping</code> command from the shard, shard catalog, and shard
+                        director hosts to verify that hostname resolution succeeds for all of the
+                        host names listed. 
+                              </p>
+                              
+                              <p>To resolve any issues, use operating system commands or settings
+                        to ensure that all of the host names can be resolved.</p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Run the <code class="codeph">REMOVE INVITEDNODE</code> command to manually remove any host
+                    names that are not necessary and cannot be resolved from all of the hosts.</span></li>
+                        <li class="stepexpand"><span>Run the <code class="codeph">ADD INVITEDNODE</code> command to manually add all host names
+                    and IP addresses of your shard hosts to the shard catalog metadata.</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt; add invitednode 127.0.0.1</code></pre>
+                              </div>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-D382277F-02B2-4BBC-B8F0-15EEA16E630A" name="GUID-D382277F-02B2-4BBC-B8F0-15EEA16E630A"></a><h3 id="SHARD-GUID-D382277F-02B2-4BBC-B8F0-15EEA16E630A" class="sect3">Deploy the Sharding
+        Configuration</h3>
+               <div>
+                  <p>When the sharded database topology has been fully configured with
+            <code class="codeph">GDSCTL</code> commands, run the <code class="codeph">GDSCTL DEPLOY</code> command to
+        deploy the sharded database configuration.
+                  </p>
+                  <p>When you run the <code class="codeph">GDSCTL DEPLOY</code> command, the output looks
+            like the following if you used the <code class="codeph">ADD SHARD</code> command to configure the
+            shards.
+                  </p><pre class="pre codeblock"><code>GDSCTL&gt; deploy
+deploy: examining configuration...
+deploy: requesting Data Guard configuration on shards via GSM
+deploy: shards configured successfully
+The operation completed successfully</code></pre><p>If you used <code class="codeph">CREATE SHARD</code> to configure the shards, the <code class="codeph">GDSCTL
+                DEPLOY</code> command output will look similar to the following.
+                  </p><pre class="pre codeblock"><code>GDSCTL&gt; deploy
+deploy: examining configuration...
+deploy: deploying primary shard 'sh1' ...
+deploy: network listener configuration successful at destination 'shard1'
+deploy: starting DBCA at destination 'shard1' to create primary shard 'sh1' ...
+deploy: deploying primary shard 'sh2' ...
+deploy: network listener configuration successful at destination 'shard2'
+deploy: starting DBCA at destination 'shard2' to create primary shard 'sh2' ...
+deploy: waiting for 2 DBCA primary creation job(s) to complete...
+deploy: waiting for 2 DBCA primary creation job(s) to complete...
+deploy: DBCA primary creation job succeeded at destination 'shard1' for shard 'sh1'
+deploy: DBCA primary creation job succeeded at destination 'shard2' for shard 'sh2'
+deploy: deploying standby shard 'sh3' ...
+deploy: network listener configuration successful at destination 'shard3'
+deploy: starting DBCA at destination 'shard3' to create standby shard 'sh3' ...
+deploy: deploying standby shard 'sh4' ...
+deploy: network listener configuration successful at destination 'shard4'
+deploy: starting DBCA at destination 'shard4' to create primary shard 'sh4' ...
+deploy: waiting for 2 DBCA standby creation job(s) to complete...
+deploy: waiting for 2 DBCA standby creation job(s) to complete...
+deploy: DBCA standby creation job succeeded at destination 'shard3' for shard 'sh3'
+deploy: DBCA standby creation job succeeded at destination 'shard4' for shard 'sh4'
+deploy: requesting Data Guard configuration on shards via GSM
+deploy: shards configured successfully
+The operation completed successfully</code></pre><p><span class="bold">What Happens During Deployment</span></p>
+                  <p>As you can see, when you run <code class="codeph">DEPLOY</code> several things happen.
+                  </p>
+                  <ul style="list-style-type: disc;" id="GUID-D382277F-02B2-4BBC-B8F0-15EEA16E630A__UL_TXW_XTS_TKB">
+                     <li>GDSCTL calls a PL/SQL procedure on the shard catalog that examines the
+                sharded database topology configuration to determine if there are any undeployed
+                shards present that are able to be deployed.</li>
+                     <li>If the <code class="codeph">CREATE SHARD</code> method is used to create shards, PL/SQL code on
+                the shard catalog schedules a Remote Scheduler Agent job on each shard host that
+                runs NETCA, which creates and starts a TNS Listener. Then, a second job is scheduled
+                to run DBCA on the shard host, which creates the shard database. If standbys are to
+                be deployed, then another set of NETCA and DBCA jobs are run, which create the
+                standby databases on their respective hosts after the primary databases are
+                successfully created.
+                     </li>
+                     <li>For shards that are being deployed, the shard catalog sends requests to
+                the shard director to update database parameters on the shards, populate topology
+                metadata on the shard, and direct the shard to register with the shard
+                director.</li>
+                     <li>If Oracle Data Guard replication is in use, and standby databases are present to
+                deploy, then the shard director calls PL/SQL APIs on the primary shards to create a
+                Data Guard configuration, or to validate an existing configuration on the primary
+                and standby sets. Fast Start Failover functionality is enabled on all of the shards
+                and, in addition, the shard director starts a Data Guard observer process on its
+                host to monitor the Data Guard configuration.</li>
+                     <li>If new shards are being added to an existing sharded database that already contains
+                deployed shards (called an incremental deployment), then any DDL statements that
+                have been run previously are run on the new shards to ensure that the application
+                schemas are identical across all of the shards.</li>
+                     <li>Finally, in the case of an incremental deployment on a sharded database using
+                system-managed or composite sharding methods, automatic chunk movement is scheduled
+                in the background, which is intended to balance the number of chunks distributed
+                among the shards now in the configuration. This process can be monitored using the
+                    <code class="codeph">GDSCTL CONFIG CHUNKS</code> command after the <code class="codeph">DEPLOY</code>
+                command returns control to <code class="codeph">GDSCTL</code>.
+                     </li>
+                  </ul>
+                  <p><span class="bold">What Does a Successful Deployment Look Like?</span></p>
+                  <p>Following a successful deployment using PDBs and the <code class="codeph">ADD
+                SHARD</code> method, the output from <code class="codeph">CONFIG SHARD</code> should look
+            similar to the following, if Data Guard active standby shards are in use.
+                  </p><pre class="pre codeblock"><code>GDSCTL&gt; config shard
+Name      Shard Group          Status   State     Region   Availability
+--------- -------------------  -------  --------  -------  ------------
+cdb1_pdb1 shardgroup_primary   Ok       Deployed  region1  ONLINE
+cdb2_pdb1 shardgroup_standby   Ok       Deployed  region2  READ ONLY
+cdb3_pdb2 shardgroup_primary   Ok       Deployed  region1  ONLINE
+cdb4_pdb2 shardgroup_standby   Ok       Deployed  region2  READ ONLY
+</code></pre><p>If you used the <code class="codeph">CREATE SHARD</code> method, or used <code class="codeph">ADD
+                SHARD</code> with non-CDBs, then the shard names are the
+                <code class="codeph">db_unique_name</code> value of the shard databases.
+                  </p>
+                  <p>If mounted, non-open standbys are in use, the output will be similar to the following,
+            because the shard director is unable to log in to check the status of a mounted
+            database.</p><pre class="pre codeblock"><code>GDSCTL&gt; config shard
+Name      Shard Group         Status        State     Region   Availability
+--------- ------------------  ------------- --------  -------  ------------
+cdb1_pdb1 shardgroup_primary  Ok            Deployed  region1  ONLINE
+cdb2_pdb1 shardgroup_standby  Uninitialized Deployed  region2  -
+cdb3_pdb2 shardgroup_primary  Ok            Deployed  region1  ONLINE
+cdb4_pdb2 shardgroup_standby  Uninitialized Deployed  region2  -
+</code></pre><p><span class="bold">What To Do If Something Is Not Right</span></p>
+                  <p>If any shards are showing an availability of <code class="codeph">PENDING</code>, confirm that all
+            steps related to <code class="codeph">ADD INVITEDNODE</code> and <code class="codeph">CONFIG VNCR</code> from
+            the topology configuration were completed. If not, complete them now and run
+                <code class="codeph">GDSCTL SYNC DATABASE -database <span class="variable" translate="no">shard_name</span></code> to
+            complete shard deployment.
+                  </p>
+                  <p>If you used the <code class="codeph">CREATE SHARD</code> method to add shards to your configuration,
+            and errors from NETCA or DBCA are returned during <code class="codeph">GDSCTL DEPLOY</code> from
+            Remote Scheduler Agent jobs, then do the following steps to resolve the errors and retry
+            the deployment.
+                  </p>
+                  <ol id="GUID-D382277F-02B2-4BBC-B8F0-15EEA16E630A__UL_EST_ZDK_LLB">
+                     <li>
+                        
+                        <p>Resolve the issues.</p>
+                        
+                        <p>The error message returned by <code class="codeph">GDSCTL DEPLOY</code> should have enough
+                    information to view the output from the failed job on the shard host. 
+                        </p>
+                        
+                        <p>Typically, there will be trace and log files from the NETCA or DBCA execution in
+                        <code class="codeph">$ORACLE_BASE/cfgtoollogs</code> on the shard host. Resolve any
+                    underlying issues that caused the failure (bad parameters, resource issues on
+                    the host, and the like).
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Re-set the shard host.</p>
+                        
+                        <ol type="a" id="GUID-D382277F-02B2-4BBC-B8F0-15EEA16E630A__UL_FST_ZDK_LLB">
+                           <li>Stop any running TNS listeners created during the attempted deployment.</li>
+                           <li>Stop any running shard databases started during the attempted
+                        deployment.</li>
+                           <li>Delete <code class="codeph">$ORACLE_HOME/network/admin/listener.ora</code></li>
+                           <li>Delete all files associated with the failed shard creation from
+                            <code class="codeph">$ORACLE_BASE/oradata</code> and
+                            <code class="codeph">$ORACLE_BASE/fast_recovery_area</code></li>
+                        </ol>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Run <code class="codeph">GDSCTL DEPLOY</code> again.
+                        </p>
+                        
+                     </li>
+                  </ol>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-1DDE95AD-D1B6-4012-9F3E-8833A16E5774" name="GUID-1DDE95AD-D1B6-4012-9F3E-8833A16E5774"></a><h3 id="SHARD-GUID-1DDE95AD-D1B6-4012-9F3E-8833A16E5774" class="sect3">Create and Start Global Database
+        Services</h3>
+               <div>
+                  <p>After the shards are successfully deployed, and the correct status is
+        confirmed, create and start global database services on the shards to service incoming
+        connection requests from your application.</p>
+                  <p>As an example, the commands in the following examples create read-write
+            services on the primary shards in the configuration and read-only services on the
+            standby shards. These service names can then be used in connect strings from your
+            application to appropriately route requests to the correct shards.</p>
+                  <p>After the services are started, your sharded database is ready for application schema
+            creation and incoming client connection requests.</p>
+                  <div class="example" id="GUID-1DDE95AD-D1B6-4012-9F3E-8833A16E5774__GUID-E35C0EF3-3791-489A-AF74-B666C192156E">
+                     <p class="titleinexample">Example 4-1 Add and start a global service
+                that runs on all of the primary shards</p>
+                     
+                     
+                     <p>The following commands create and start a global service named
+                    <code class="codeph">oltp_rw_srvc</code> that a client can use to connect to the sharded
+                database. The <code class="codeph">oltp_rw_srvc</code> service runs read/write transactions on
+                the primary shards.
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; add service -service oltp_rw_srvc -role primary
+GDSCTL&gt; start service -service oltp_rw_srvc
+</code></pre>
+                     </div>
+                  <div class="example" id="GUID-1DDE95AD-D1B6-4012-9F3E-8833A16E5774__GUID-9DBB3409-2345-4CF9-A083-FAC3398DACBA">
+                     <p class="titleinexample">Example 4-2 Add and start a global service for
+                the read-only workload to run on the standby shards</p>
+                     
+                     
+                     <p>The <code class="codeph">oltp_ro_srvc</code> global service is created and started
+                to run read-only workloads on the standby shards. This assumes that the standby
+                shards are Oracle Active Data Guard standby shards which are open for read-only
+                access. Mounted, non-open standbys cannot service read-only connections, and exist
+                for disaster recovery and high availability purposes only.
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; add service -service oltp_ro_srvc -role physical_standby
+GDSCTL&gt; start service -service oltp_ro_srvc
+</code></pre>
+                     </div>
+                  <div class="example" id="GUID-1DDE95AD-D1B6-4012-9F3E-8833A16E5774__GUID-031F2AC5-EA26-484E-B424-9058AA2B2FE1">
+                     <p class="titleinexample">Example 4-3 Verify the status of the global
+                services</p>
+                     
+                     <pre class="pre codeblock"><code>GDSCTL&gt; config service 
+
+Name         Network name                    Pool    Started Preferred all
+----         ------------                    ----    ------- -------------
+oltp_rw_srvc oltp_rw_srvc.orasdb.oracdbcloud orasdb  Yes     Yes
+oltp_ro_srvc oltp_ro_srvc.orasdb.oracdbcloud orasdb  Yes     Yes
+
+
+GDSCTL&gt; status service
+Service "oltp_rw_srvc.orasdb.oradbcloud" has 2 instance(s). Affinity: ANYWHERE
+   Instance "orasdb%1", name: "cdb1_pdb1", db: "cdb1_pdb1", region: "region1", status: ready.
+   Instance "orasdb%21", name: "cdb3_pdb2", db: "cdb3_pdb2", region: "region1", status: ready.
+Service "oltp_ro_srvc.orasdb.oradbcloud" has 2 instance(s). Affinity: ANYWHERE
+   Instance "orasdb%11", name: "cdb2_pdb1", db: "cdb2_pdb1", region: "region2", status: ready.
+   Instance "orasdb%31", name: "cdb4_pdb2", db: "cdb4_pdb2", region: "region2", status: ready.
+</code></pre>
+                     </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-566C0888-CE21-4E64-8597-E0BEDF95388A" name="GUID-566C0888-CE21-4E64-8597-E0BEDF95388A"></a><h3 id="SHARD-GUID-566C0888-CE21-4E64-8597-E0BEDF95388A" class="sect3">Verify Shard Status</h3>
+               <div>
+                  <p>Once you complete the <code class="codeph">DEPLOY</code> step in your sharding
+        configuration deployment, verify the detailed status of each shard.
+                  </p>
+                  <div class="section">
+                     
+                     <p>Run <code class="codeph">GDSCTL CONFIG SHARD</code> to see the detailed status of each
+                shard.
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; config shard -shard cdb1_pdb1
+Name: cdb1_pdb1
+Shard Group: shardgroup_primary
+Status: Ok
+State: Deployed
+Region: region1
+Connection string:<span class="variable" translate="no">shard_connect_string</span>
+SCAN address:
+ONS remote port: 0
+Disk Threshold, ms: 20
+CPU Threshold, %: 75
+Version: 19.0.0.0
+Failed DDL:
+DDL Error: ---
+Management error:
+Failed DDL id:
+Availability: ONLINE
+Rack:
+
+
+Supported services
+------------------------
+Name Preferred Status
+---- --------- ------
+oltp_ro_srvc Yes Enabled
+oltp_rw_srvc Yes Enabled </code></pre>
+                     </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-74F7C601-C9AE-4805-A7BF-70BCB8E73393" name="GUID-74F7C601-C9AE-4805-A7BF-70BCB8E73393"></a><h3 id="SHARD-GUID-74F7C601-C9AE-4805-A7BF-70BCB8E73393" class="sect3">Example Sharded Database
+        Deployment</h3>
+               <div>
+                  <p>This example explains how to deploy a typical system-managed sharded
+                database with multiple replicas, using Oracle Data Guard for high availability. The
+                shard catalog and the shards in this example are PDBs and the shards are added to
+                the configuration with the <code class="codeph">ADD SHARD</code> command.
+                  </p>
+                  <p>To deploy a system-managed sharded database you create shardgroups
+                        and shards, create and configure the databases to be used as shards, execute
+                        the <code class="codeph">DEPLOY</code> command, and create role-based global
+                        services.
+                  </p>
+                  <p>You are not required to map data to shards in system-managed
+                        sharding, because the data is automatically distributed across shards using
+                        partitioning by consistent hash. The partitioning algorithm evenly and
+                        randomly distributes data across shards. For more conceptual information
+                        about the system-managed sharded Database, see <a href="architecture-and-concepts1.html#GUID-37F20817-EFD5-400B-A082-41171C0B6D1C" title="System-managed sharding is a sharding method which does not require the user to specify mapping of data to shards. Data is automatically distributed across shards using partitioning by consistent hash. The partitioning algorithm evenly and randomly distributes data across shards.">System-Managed Sharding</a>.
+                  </p>
+               </div>
+               <div class="sect3"><a id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D" name="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D"></a><h4 id="SHARD-GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D" class="sect4">Example Sharded Database
+        Topology</h4>
+                  <div>
+                     <p>Consider the following system-managed sharded database configuration, where
+        shardgroup 1 contains the primary shards, while shardgroups 2 and 3 contain standby
+            replicas.</p>
+                     <p>In addition, let’s assume that the replicas in shardgroup 2 are Oracle
+            Active Data Guard standbys (that is, databases open for read-only access), while the
+            replicas in shardgroup 3 are mounted databases that have not been opened.</p><br><div class="imageleft"><img class="imageleft" id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D__IMAGE_R4B_CCZ_TKB" src="img/admin_3v_136a.png" alt="Description of admin_3v_136a.eps follows" title="Description of admin_3v_136a.eps follows" longdesc="img_text/admin_3v_136a.html"><br><a href="img_text/admin_3v_136a.html">Description of the illustration admin_3v_136a.eps</a></div><br><div class="tblformal" id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D__TABLE_PWC_MDZ_TKB">
+                        <p class="titleintable">Table 4-1 Example System-Managed Topology Host Names</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Example System-Managed Topology Host Names" summary="each component of the example topology is matched with a host name" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" id="d6391e3951">Topology Object</th>
+                                 <th align="left" valign="bottom" id="d6391e3953">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d6391e3957" headers="d6391e3951 ">Shard Catalog Database</td>
+                                 <td align="left" valign="top" headers="d6391e3957 d6391e3953 ">
+                                    
+                                    <p>Every sharded database topology requires a shard catalog. In our
+                                example, the shard catalog database has 2 standbys, one in each data
+                                center.</p>
+                                    
+                                    <p>Primary</p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D__UL_R4Z_BFZ_TKB">
+                                       <li>Data center = 1</li>
+                                       <li>Host name = cathost</li>
+                                       <li>DB_UNIQUE_NAME = catcdb</li>
+                                       <li>PDB name = catpdb</li>
+                                       <li>Connect service name = catpdb</li>
+                                    </ul>
+                                    
+                                    <p>Active Standby</p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D__UL_EWB_KFZ_TKB">
+                                       <li>Data center = 1</li>
+                                       <li>Host name = cathost1</li>
+                                    </ul>
+                                    
+                                    <p>Standby</p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D__UL_DXT_NFZ_TKB">
+                                       <li>Data center = 2</li>
+                                       <li>Host name = cathost2</li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d6391e3999" headers="d6391e3951 ">Regions</td>
+                                 <td align="left" valign="top" headers="d6391e3999 d6391e3953 ">
+                                    
+                                    <p>Because there are two datacenters involved in this configuration,
+                                there are two corresponding regions created in the shard catalog
+                                database.</p>
+                                    
+                                    <p>Data center 1</p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D__UL_PBN_DGZ_TKB">
+                                       <li>Region name = dc1</li>
+                                    </ul>
+                                    
+                                    <p>Data center 2</p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D__UL_YXR_SGZ_TKB">
+                                       <li>Region name = dc2</li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d6391e4021" headers="d6391e3951 ">Shard Directors (global service managers)</td>
+                                 <td align="left" valign="top" headers="d6391e4021 d6391e3953 ">
+                                    
+                                    <p>Each region requires a shard director running on a host
+                                within that data center. This example shows how to use two shard
+                                directors per region, which is the best practice recommendation.</p>
+                                    
+                                    <p>Data center 1</p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D__UL_H45_2GZ_TKB">
+                                       <li>Shard director host names = gsmhost1 and
+                                    gsmhost1b</li>
+                                       <li>Shard director name = gsm1 and gsm1b</li>
+                                    </ul>
+                                    
+                                    <p>Data center 2</p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D__UL_LVF_LGZ_TKB">
+                                       <li>Shard director hast name = gsmhost2 and
+                                    gsmhost2b</li>
+                                       <li>Shard director name = gsm2 and gsm2b</li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d6391e4047" headers="d6391e3951 ">Shardgroups</td>
+                                 <td align="left" valign="top" headers="d6391e4047 d6391e3953 ">
+                                    
+                                    <p>Data center 1</p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D__UL_ASV_QGZ_TKB">
+                                       <li>sg1</li>
+                                       <li>sg2</li>
+                                    </ul>
+                                    
+                                    <p>Data center 2</p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D__UL_FFG_RGZ_TKB">
+                                       <li>sg3</li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" id="d6391e4068" headers="d6391e3951 ">Shards</td>
+                                 <td align="left" valign="top" headers="d6391e4068 d6391e3953 ">
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-0F1CBBF6-5056-4625-BD5D-7AAD18833D0D__UL_XD5_WGZ_TKB">
+                                       <li>Host names = shardhost1, …, shardhost9</li>
+                                       <li>DB_UNIQUE_NAME = cdb1, …, cdb9</li>
+                                       <li>PDB names = pdb1, pdb2, pdb3 
+                                          <p>PDB names on standby replicas
+                                        are the same as the PDB names on their corresponding
+                                        primaries</p>
+                                       </li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-D1E1DC1F-73D9-4456-89CD-9BDC6D0E24D1" name="GUID-D1E1DC1F-73D9-4456-89CD-9BDC6D0E24D1"></a><h4 id="SHARD-GUID-D1E1DC1F-73D9-4456-89CD-9BDC6D0E24D1" class="sect4">Deploy the Example Sharded Database</h4>
+                  <div>
+                     <p>Do the following steps to deploy the example system-managed sharded database
+        with multiple replicas, using Oracle Data Guard for high availability.</p>
+                     <ol>
+                        <li class="stepexpand"><span>Provision and configure the following hosts: cathost, cathost1, cathost2,
+                    gsmhost1, gsmhost1b, gsmhost2 gsmhost2b, and shardhost1 through shardhost9. </span><div>
+                              
+                              <p>See <a href="sharding-deployment.html#GUID-E71E438E-C16F-46F7-8B6D-213F9B98C81C" title="Before you install any software, review these hardware, network, and operating system requirements for Oracle Sharding.">Provision and Configure Hosts and Operating Systems</a> for details.
+                              </p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Install the Oracle Database software on the following hosts: cathost, cathost1,
+                    cathost2, and shardhost1 through shardhost9. </span><div>
+                              
+                              <p>See <a href="sharding-deployment.html#GUID-3F3A387E-FAC5-467C-A45E-4A7DFF95B62D" title="Install Oracle Database on each system that will host the shard catalog, a database shard, or their replicas.">Install the Oracle Database Software</a> for details.
+                              </p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Install the shard director software on hosts gsmhost1, gsmhost1b, gsmhost2, and
+                    gsmhost2b.</span><div>
+                              
+                              <p>See <a href="sharding-deployment.html#GUID-E1F8A199-D0D2-4ABA-94EA-E314E83A966F" title="Install the global service manager software on each system that you want to host a shard director.">Install the Shard Director Software</a> for details.
+                              </p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Create the shard catalog database and start an Oracle TNS Listener on cathost. </span><div>
+                              
+                              <p>Additionally, create standby replicas of the catalog on cathost1 and
+                        cathost2, and verify that changes made to the primary catalog are applied on
+                        these standbys.</p>
+                              
+                              <p>See <a href="sharding-deployment.html#GUID-9A0F96A7-4D52-4B3A-8538-6DA2AB5A9BFB" title="Use the following information and guidelines to create the shard catalog database.">Create the Shard Catalog Database</a> for details.
+                              </p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Create the 3 primary databases that will contain the sharded data on hosts
+                    shardhost1, shardhost2 and shardhost3. </span><div>
+                              
+                              <p>Create the corresponding replicas, located and named as listed here.</p>
+                              
+                              <ul style="list-style-type: disc;" id="GUID-D1E1DC1F-73D9-4456-89CD-9BDC6D0E24D1__UL_FJ4_LJZ_TKB">
+                                 <li>shardhost1 (cdb1/pdb1) replicas on shardhost4 (cdb4) and
+                            shardhost7 (cdb7)</li>
+                                 <li>shardhost2 (cdb2/pdb2) replicas on shardhost5 (cdb5) and
+                            shardhost8 (cdb8)</li>
+                                 <li>shardhost3 (cdb3/pdb3) replicas on shardhost6 (cdb6) and
+                            shardhost9 (cdb9)</li>
+                              </ul>
+                              
+                              <p>The <code class="codeph">db_unique_name</code> of the 9 container databases
+                        (CDB) should be cdb1 through cdb9, in which the PDB names should be pdb1,
+                        pdb2 and pdb3 on the three primaries and their replicas. 
+                              </p>
+                              
+                              <p>The service names for the CDBs should be cdb1 through cdb9,
+                        which the service names for the PDB shards are pdb1, pdb2, and pdb3.</p>
+                              
+                              <p>See <a href="sharding-deployment.html#GUID-AA268F12-4389-4BB2-B588-06BD48A8DA5C" title="If you are using the CREATE SHARD method to add shards to your configuration, then skip this topic as it does not apply to CREATE SHARD. Otherwise, the databases that will be used as shards should be created on their respective hosts.">Create the Shard Databases</a> for details.
+                              </p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Assuming that all port numbers are the defaults, to configure the sharded
+                    database topology, issue the following <code class="codeph">GDSCTL</code> commands,
+                    replacing domains and passwords with the appropriate values.</span><div>
+                              
+                              <ol type="a" id="GUID-D1E1DC1F-73D9-4456-89CD-9BDC6D0E24D1__OL_QJW_LKZ_TKB">
+                                 <li>
+                                    
+                                    <p>On host gsmhost1, run the following commands in
+                                    <code class="codeph">GDSCTL</code>.
+                                    </p>
+                                    <pre class="pre codeblock"><code>create shardcatalog -database cathost.example.com:1521/catpdb.example.com -user mydbsadmin/<span class="variable" translate="no">mydbsadmin_password</span> -region dc1,dc2
+
+add gsm -gsm gsm1 -region dc1 -catalog cathost.example.com:1521/catpdb.example.com -pwd <span class="variable" translate="no">gsmcatuser_password</span>
+start gsm -gsm gsm1
+</code></pre>
+                                    <p>See <a href="sharding-deployment.html#GUID-323F1808-3FD4-48AC-B4F6-961D0CF8B820" title="Use the GDSCTL CREATE SHARDCATALOG command to create metadata describing the sharded database topology in the shard catalog database.">Create the Shard Catalog</a> and <a href="sharding-deployment.html#GUID-44478F6F-A3FD-43BA-BDF6-8EBD62741467" title="Add to the configuration the shard directors, which will monitor the sharding system and run background tasks in response to GDSCTL commands and other events, and start them.">Add and Start Shard Directors</a> for details.
+                                    </p>
+                                    
+                                 </li>
+                                 <li>
+                                    
+                                    <p>On host gsmhost1b, run the following commands in
+                                    <code class="codeph">GDSCTL</code>.
+                                    </p>
+                                    <pre class="pre codeblock"><code>connect mydbsadmin/<span class="variable" translate="no">mydbsadmin_password</span>@cathost.example.com:1521/catpdb.example.com
+add gsm -gsm gsm1b -region dc1 -catalog cathost.example.com:1521/catpdb.example.com -pwd <span class="variable" translate="no">gsmcatuser_password</span>
+start gsm -gsm gsm1b
+</code></pre>
+                                    <p>See <a href="sharding-deployment.html#GUID-44478F6F-A3FD-43BA-BDF6-8EBD62741467" title="Add to the configuration the shard directors, which will monitor the sharding system and run background tasks in response to GDSCTL commands and other events, and start them.">Add and Start Shard Directors</a> for details.
+                                    </p>
+                                    
+                                 </li>
+                                 <li>
+                                    
+                                    <p>On host gsmhost2, run the following commands in
+                                    <code class="codeph">GDSCTL</code>.
+                                    </p>
+                                    <pre class="pre codeblock"><code>connect mydbsadmin/<span class="variable" translate="no">mydbsadmin_password</span>@cathost.example.com:1521/catpdb.example.com
+add gsm -gsm gsm2 -region dc2 -catalog cathost.example.com:1521/catpdb.example.com -pwd <span class="variable" translate="no">gsmcatuser_password</span>
+start gsm -gsm gsm2
+</code></pre>
+                                    <p>See <a href="sharding-deployment.html#GUID-44478F6F-A3FD-43BA-BDF6-8EBD62741467" title="Add to the configuration the shard directors, which will monitor the sharding system and run background tasks in response to GDSCTL commands and other events, and start them.">Add and Start Shard Directors</a> for details.
+                                    </p>
+                                    
+                                 </li>
+                                 <li>
+                                    
+                                    <p>On host gsmhost2b, run the following commands in
+                                    <code class="codeph">GDSCTL</code>.
+                                    </p>
+                                    <pre class="pre codeblock"><code>connect mydbsadmin/<span class="variable" translate="no">mydbsadmin_password</span>@cathost.example.com:1521/catpdb.example.com
+add gsm -gsm gsm2b -region dc2 -catalog cathost.example.com:1521/catpdb.example.com -pwd <span class="variable" translate="no">gsmcatuser_password</span>
+start gsm -gsm gsm2b
+</code></pre>
+                                    <p>See <a href="sharding-deployment.html#GUID-44478F6F-A3FD-43BA-BDF6-8EBD62741467" title="Add to the configuration the shard directors, which will monitor the sharding system and run background tasks in response to GDSCTL commands and other events, and start them.">Add and Start Shard Directors</a> for details.
+                                    </p>
+                                    
+                                 </li>
+                                 <li>
+                                    
+                                    <p>Back on host gsmhost1, run the following from
+                                    <code class="codeph">GDSCTL</code> to complete the sharded database
+                                setup.
+                                    </p>
+                                    <pre class="pre codeblock"><code>add shardgroup -shardgroup sg1 -deploy_as primary -region dc1
+add shardgroup -shardgroup sg2 -deploy_as active_standby -region dc1
+add shardgroup -shardgroup sg3 -deploy_as standby -region dc2
+add cdb -connect shardhost1.example.com:1521/cdb1.example.com -pwd gsmrootuser_password
+add cdb -connect shardhost2.example.com:1521/cdb2.example.com -pwd gsmrootuser_password</code></pre>
+                                    <p>Repeat the <code class="codeph">ADD CDB</code> command for
+                                shardhost3 through shardhost9 and cdb3 through cdb9, then run the
+                                following commands.
+                                    </p>
+                                    <pre class="pre codeblock"><code>add shard -connect shardhost1.example.com:1521/pdb1.example.com -pwd gsmuser_password -shardgroup sg1 -cdb cdb1
+add shard -connect shardhost2.example.com:1521/pdb2.example.com -pwd gsmuser_password -shardgroup sg1 -cdb cdb2
+add shard -connect shardhost3.example.com:1521/pdb3.example.com -pwd gsmuser_password -shardgroup sg1 -cdb cdb3
+add shard -connect shardhost4.example.com:1521/pdb1.example.com -pwd gsmuser_password -shardgroup sg2 -cdb cdb4
+add shard -connect shardhost5.example.com:1521/pdb2.example.com -pwd gsmuser_password -shardgroup sg2 -cdb cdb5
+add shard -connect shardhost6.example.com:1521/pdb3.example.com -pwd gsmuser_password -shardgroup sg2 -cdb cdb6
+add shard -connect shardhost7.example.com:1521/pdb1.example.com -pwd gsmuser_password -shardgroup sg3 -cdb cdb7
+add shard -connect shardhost8.example.com:1521/pdb2.example.com -pwd gsmuser_password -shardgroup sg3 -cdb cdb8
+add shard -connect shardhost9.example.com:1521/pdb3.example.com -pwd gsmuser_password -shardgroup sg3 -cdb cdb9</code></pre>
+                                    <p>See <a href="sharding-deployment.html#GUID-4303ECD7-DFCA-4CCA-BBAD-81E3A320AEC3" title="If your sharded database topology uses the system-managed or composite sharding method, you can add any necessary additional shardgroups for your application.">Add Shardgoups If Needed</a>, <a href="sharding-deployment.html#GUID-58DF214E-49AD-4122-82E7-387498DB7327" title="If your shards will be PDBs inside CDBs, then add the CDBs containing the shard PDBs to the sharding configuration with the ADD CDB command. If you will be using non-CDBs as your shards, or will be using CREATE SHARD to add shards, skip to the next section.">Add the Shard CDBs</a>, and <a href="sharding-deployment.html#GUID-C960E712-2083-4A52-B47F-ED8A94A3CCAA" title="Use the GDSCTL ADD SHARD command to add the shard information to the shard catalog.">Add Shards Using GDSCTL ADD SHARD</a> for details.
+                                    </p>
+                                    
+                                 </li>
+                                 <li>
+                                    
+                                    <p>Use the <code class="codeph">CONFIG VNCR</code> and <code class="codeph">ADD
+                                    INVITEDNODE</code> commands to validate that all of the VNCR
+                                entries are valid and sufficient for a successful deployment. 
+                                    </p>
+                                    
+                                    <p>See <a href="sharding-deployment.html#GUID-88CCD096-2BCD-496F-93AB-4781E6C49A75" title="Add all of the host names and IP addresses of your shard hosts to the shard catalog.">Add Host Metadata</a> for details.
+                                    </p>
+                                    
+                                 </li>
+                                 <li>
+                                    
+                                    <p>Run <code class="codeph">DEPLOY</code> from <code class="codeph">GDSCTL</code> to complete
+                                the configuration of the sharded database.
+                                    </p>
+                                    
+                                    <p>See <a href="sharding-deployment.html#GUID-D382277F-02B2-4BBC-B8F0-15EEA16E630A" title="When the sharded database topology has been fully configured with GDSCTL commands, run the GDSCTL DEPLOY command to deploy the sharded database configuration.">Deploy the Sharding Configuration</a> for details.
+                                    </p>
+                                    
+                                 </li>
+                                 <li>
+                                    
+                                    <p>Add and start services for read-write and read-only access to the
+                                sharded database.</p>
+                                    <pre class="pre codeblock"><code>add service -service oltp_rw_srvc -role primary
+start service -service oltp_rw_srvc
+add service -service oltp_ro_srvc -role physical_standby
+start service -service oltp_ro_srvc
+</code></pre>
+                                    <p>See <a href="sharding-deployment.html#GUID-1DDE95AD-D1B6-4012-9F3E-8833A16E5774" title="After the shards are successfully deployed, and the correct status is confirmed, create and start global database services on the shards to service incoming connection requests from your application.">Create and Start Global Database Services</a> for details.
+                                    </p>
+                                    
+                                 </li>
+                              </ol>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>You can use the <code class="codeph">GDSCL CONFIG</code>, <code class="codeph">CONFIG SHARD</code>,
+                    and <code class="codeph">CONFIG SERVICE</code> commands to validate that all of the shards
+                    and services are online and running.</span><div>
+                              
+                              <p>See <a href="sharding-deployment.html#GUID-566C0888-CE21-4E64-8597-E0BEDF95388A" title="Once you complete the DEPLOY step in your sharding configuration deployment, verify the detailed status of each shard.">Verify Shard Status</a> for details.
+                              </p>
+                              
+                           </div>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

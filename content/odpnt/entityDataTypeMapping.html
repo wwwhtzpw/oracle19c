@@ -1,0 +1,391 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Oracle Number Default Data Type Mapping and Customization</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="entityEDMmapping.html" title="Previous" type="text/html">
+      <link rel="next" href="entityMigrate.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="entityEDMmapping.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="entityMigrate.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="entity_framework.html" property="item" typeof="WebPage"><span property="name">ADO.NET Entity Framework and LINQ to Entities</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Oracle Number Default Data Type Mapping and Customization</li>
+            </ol>
+            <a id="GUID-121CDE13-EB42-4B03-BFDA-F6617E5777AD" name="GUID-121CDE13-EB42-4B03-BFDA-F6617E5777AD"></a><a id="ODPNT8300"></a>
+            
+            <h2 id="ODPNT-GUID-121CDE13-EB42-4B03-BFDA-F6617E5777AD" class="sect2">Oracle Number Default Data Type Mapping and Customization</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>This section describes the default number mapping behavior and how to customize it for your application. You can configure a custom mapping in the .NET configuration file to override the default mapping for each Oracle <code class="codeph">NUMBER(p,0)</code>, which represents integer values.
+               </p>
+               <p>Oracle <code class="codeph">NUMBER</code> data types that represent integers do not have a matching .NET integer data type with exactly the same range of acceptable values. ODP.NET uses a default mapping that ensures any .NET integer type values can be stored within the Oracle database without requiring custom data type mapping. However, it is possible that Oracle <code class="codeph">NUMBER(p,0)</code> column data can be larger than what a .NET data type can hold when retrieving values from the database.
+               </p>
+               <p>For example, in Entity Framework 6, Oracle <code class="codeph">NUMBER(3,0)</code> has a default mapping to .NET Byte. Oracle <code class="codeph">NUMBER(3,0)</code> can store a value up to <code class="codeph">999</code>, while a .NET <code class="codeph">BYTE</code> can store up to the value of <code class="codeph">255</code>. If you expect the Oracle data to exceed <code class="codeph">255</code>, modify the mapping to a larger numeric data type, such as a .NET <code class="codeph">Int16</code>. Setting up this custom mapping allows you to consume the data in .NET without encountering an error. When such a custom mapping is used, be cautious not to insert a .NET <code class="codeph">Int16</code> value beyond what an Oracle <code class="codeph">NUMBER(3,0)</code> column can hold. Trying to insert <code class="codeph">Int16.MaxValue</code> (i.e. <code class="codeph">32,767</code>) into a <code class="codeph">NUMBER(3,0)</code> column will cause an Oracle Database error.
+               </p>
+            </div><a id="ODPNT8468"></a><a id="ODPNT8301"></a><a id="ODPNT8302"></a><a id="ODPNT8467"></a><div class="props_rev_3"><a id="GUID-8EE05F96-7262-4804-A713-EAF190303DBD" name="GUID-8EE05F96-7262-4804-A713-EAF190303DBD"></a><h3 id="ODPNT-GUID-8EE05F96-7262-4804-A713-EAF190303DBD" class="sect3">Entity Framework 5 and Earlier Mapping and Customization</h3>
+               <div>
+                  <p><a href="entityDataTypeMapping.html#GUID-8EE05F96-7262-4804-A713-EAF190303DBD__CIHEAGGA">Example 4-1</a> shows an ODP.NET, Unmanaged Driver sample <code class="codeph">app.config</code> file that uses custom mapping to map the <code class="codeph">Number(1,0)</code> Oracle data type to the <code class="codeph">bool</code> EDM type. For example, <code class="codeph">Number(1,0)</code>, which is mapped to <code class="codeph">Int16</code> by default, can be custom mapped to the .NET <code class="codeph">Bool</code> or .NET <code class="codeph">Byte</code> type. This example maps <code class="codeph">Number(3,0)</code> to byte, and sets the maximum precisions for the <code class="codeph">Int16</code>, <code class="codeph">Int32</code>, and <code class="codeph">Int64</code> data types to <code class="codeph">4</code>, <code class="codeph">9</code>, and <code class="codeph">18</code> respectively.
+                  </p>
+                  <p><a href="entityDataTypeMapping.html#GUID-8EE05F96-7262-4804-A713-EAF190303DBD__CIHFHDFH">Example 4-2</a> shows the same changes as <a href="entityDataTypeMapping.html#GUID-8EE05F96-7262-4804-A713-EAF190303DBD__CIHEAGGA">Example 4-1</a>, but using the traditional ODP.NET, Unmanaged Driver <code class="codeph">app.config</code> format.
+                  </p>
+                  <p><a href="entityDataTypeMapping.html#GUID-8EE05F96-7262-4804-A713-EAF190303DBD__CIHEBJGC">Example 4-3</a> shows a ODP.NET, Managed Driver sample <code class="codeph">app.config</code> file.
+                  </p>
+                  <p><a href="entityDataTypeMapping.html#GUID-8EE05F96-7262-4804-A713-EAF190303DBD__CIHEAGGA">Example 4-1</a>, <a href="entityDataTypeMapping.html#GUID-8EE05F96-7262-4804-A713-EAF190303DBD__CIHFHDFH">Example 4-2</a>, and <a href="entityDataTypeMapping.html#GUID-8EE05F96-7262-4804-A713-EAF190303DBD__CIHEBJGC">Example 4-3</a> customizes the mappings as follows:
+                  </p>
+                  <div class="tblformal" id="GUID-8EE05F96-7262-4804-A713-EAF190303DBD__GUID-0202403F-3835-41D2-AB4A-2ABC5E5422BA">
+                     <table cellpadding="4" cellspacing="0" class="Formal" title summary="Summarizes customized mappings created by the preceding app.config file." width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" id="d121166e155">Oracle Type</th>
+                              <th align="left" valign="bottom" id="d121166e158">Default EDM Type</th>
+                              <th align="left" valign="bottom" id="d121166e161">Custom EDM Type</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d121166e166" headers="d121166e155 ">
+                                 <p><code class="codeph">Number(1,0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e166 d121166e158 ">
+                                 <p><code class="codeph">Int16</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e166 d121166e161 ">
+                                 <p><code class="codeph">bool</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d121166e179" headers="d121166e155 ">
+                                 <p><code class="codeph">Number(2,0)</code> to <code class="codeph">Number(3,0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e179 d121166e158 ">
+                                 <p><code class="codeph">Int16</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e179 d121166e161 ">
+                                 <p><code class="codeph">byte</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d121166e195" headers="d121166e155 ">
+                                 <p><code class="codeph">Number(4,0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e195 d121166e158 ">
+                                 <p><code class="codeph">Int16</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e195 d121166e161 ">
+                                 <p><code class="codeph">Int16</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d121166e208" headers="d121166e155 ">
+                                 <p><code class="codeph">Number(5,0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e208 d121166e158 ">
+                                 <p><code class="codeph">Int16</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e208 d121166e161 ">
+                                 <p><code class="codeph">Int32</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d121166e221" headers="d121166e155 ">
+                                 <p><code class="codeph">Number(6,0)</code> to <code class="codeph">Number(9,0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e221 d121166e158 ">
+                                 <p><code class="codeph">Int32</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e221 d121166e161 ">
+                                 <p><code class="codeph">Int32</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d121166e237" headers="d121166e155 ">
+                                 <p><code class="codeph">Number(10,0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e237 d121166e158 ">
+                                 <p><code class="codeph">Int32</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e237 d121166e161 ">
+                                 <p><code class="codeph">Int64</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d121166e250" headers="d121166e155 ">
+                                 <p><code class="codeph">Number(11,0)</code> to <code class="codeph">Number(18,0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e250 d121166e158 ">
+                                 <p><code class="codeph">Int64</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e250 d121166e161 ">
+                                 <p><code class="codeph">Int64</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d121166e266" headers="d121166e155 ">
+                                 <p><code class="codeph">Number(19,0)</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e266 d121166e158 ">
+                                 <p><code class="codeph">Int64</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d121166e266 d121166e161 ">
+                                 <p><code class="codeph">Decimal</code></p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <!-- class="inftblhruleinformal" -->
+                  <p>Custom mapping configures the maximum precision of the Oracle <code class="codeph">Number</code> type that would map to the .NET/EDM type. So, for example, the preceding custom application configuration file configures ODP.NET to map <code class="codeph">Number(10,0)</code> through <code class="codeph">Number(18,0)</code> to <code class="codeph">Int64</code>, as opposed to the default range of <code class="codeph">Number(11,0) </code>through <code class="codeph">Number(19,0)</code> for <code class="codeph">Int64</code>. 
+                  </p>
+                  <div class="infoboxnote" id="GUID-8EE05F96-7262-4804-A713-EAF190303DBD__GUID-B7E132F2-9CAD-40B7-809A-6B9EF703B3C3">
+                     <p class="notep1">Note:</p>
+                     <p></p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>Custom mapping does not require you to map all the .NET/EDM types. For example, if custom mapping is required just for <code class="codeph">Int16</code>, then having a single entry for <code class="codeph">Int16</code> is sufficient. Default mapping gets used for the other types.
+                           </p>
+                        </li>
+                        <li>
+                           <p>When using Model First, a <code class="codeph">Byte</code> attribute is mapped to <code class="codeph">Number(3,0)</code> by default. However, when a model is generated for a <code class="codeph">Number(3,0)</code> column, it gets mapped to <code class="codeph">Int16</code> by default unless custom mapping for <code class="codeph">Byte</code> is specified.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <p>You must make sure that your mappings allow the data to fit within the range of the .NET/EDM type and the <code class="codeph">Number(p, s) </code>type. If you select a .NET/EDM type with a range too small for the Oracle <code class="codeph">Number</code> data, then errors will occur during data retrieval. Also, if you select a .NET/EDM type, and the corresponding data is too big for the Oracle <code class="codeph">Number</code> column, then INSERTs and UPDATEs to the Oracle database will error out.
+                  </p>
+                  <div class="example" id="GUID-8EE05F96-7262-4804-A713-EAF190303DBD__CIHEAGGA">
+                     <p class="titleinexample">Example 4-1 First Sample ODP.NET, Unmanaged Driver Application Configuration File to Custom Map the Number (p,0) Data Type</p><pre class="oac_no_warn" dir="ltr">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+  &lt;oracle.unmanageddataaccess.client&gt;
+    &lt;version number="*"&gt;
+       &lt;edmMappings&gt;
+           &lt;edmMapping dataType="number"&gt;
+               &lt;add name="bool" precision="1"/&gt;
+               &lt;add name="byte" precision="3" /&gt;
+               &lt;add name="int16" precision="4" /&gt;
+               &lt;add name="int32" precision="9" /&gt;
+               &lt;add name="int64" precision="18" /&gt;
+          &lt;/edmMapping&gt;
+       &lt;/edmMappings&gt;
+     &lt;/version&gt;
+  &lt;/oracle.unmanageddataaccess.client&gt;
+&lt;/configuration&gt;
+</pre></div>
+                  <!-- class="example" -->
+                  <div class="example" id="GUID-8EE05F96-7262-4804-A713-EAF190303DBD__CIHFHDFH">
+                     <p class="titleinexample">Example 4-2 Second Sample ODP.NET, Unmanaged Driver Application Configuration File to Custom Map the Number (p,0) Data Type</p><pre class="oac_no_warn" dir="ltr">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;configuration&gt;
+  &lt;connectionStrings&gt;
+  &lt;/connectionStrings&gt;
+  &lt;oracle.dataaccess.client&gt;
+    &lt;settings&gt;
+      &lt;add name="bool" value="edmmapping number(1,0)" /&gt;
+      &lt;add name="byte" value="edmmapping number(3,0)" /&gt;
+      &lt;add name="int16" value="edmmapping number(4,0)" /&gt;
+      &lt;add name="int32" value="edmmapping number(9,0)" /&gt;
+      &lt;add name="int64" value="edmmapping number(18,0)" /&gt;
+    &lt;/settings&gt;
+  &lt;/oracle.dataaccess.client&gt;
+&lt;/configuration&gt;
+</pre></div>
+                  <!-- class="example" -->
+                  <div class="example" id="GUID-8EE05F96-7262-4804-A713-EAF190303DBD__CIHEBJGC">
+                     <p class="titleinexample">Example 4-3 Sample ODP.NET, Managed Driver Application Configuration File to Custom Map the Number Data Type</p><pre class="oac_no_warn" dir="ltr">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+  &lt;oracle.manageddataaccess.client&gt;
+    &lt;version number="*"&gt;
+       &lt;edmMappings&gt;
+           &lt;edmMapping dataType="number"&gt;
+               &lt;add name="bool" precision="1"/&gt;
+               &lt;add name="byte" precision="3" /&gt;
+               &lt;add name="int16" precision="4" /&gt;
+               &lt;add name="int32" precision="9" /&gt;
+               &lt;add name="int64" precision="18" /&gt;
+          &lt;/edmMapping&gt;
+       &lt;/edmMappings&gt;
+     &lt;/version&gt;
+  &lt;/oracle.manageddataaccess.client&gt;
+&lt;/configuration&gt;
+</pre></div>
+                  <!-- class="example" -->
+               </div>
+            </div><a id="ODPNT8469"></a><div class="props_rev_3"><a id="GUID-4C48988B-CEA2-4193-95AC-949CCE90D601" name="GUID-4C48988B-CEA2-4193-95AC-949CCE90D601"></a><h3 id="ODPNT-GUID-4C48988B-CEA2-4193-95AC-949CCE90D601" class="sect3">Entity Framework 6 Mapping and Customization</h3>
+               <div>
+                  <p>ODP.NET 12.1.0.2 introduces a new .NET configuration setting format for both managed and unmanaged ODP.NET. This new setting format applies only for use with Entity Framework 6 and Entity Data Model mappings, including Code First, Database First, and Model First use cases. Developers can continue using the existing ODP.NET format for non-Entity Framework 6 applications.</p>
+                  <p>This new format unifies how ODP.NET, Managed and Unmanaged Drivers sets their configuration values and supports auto-completion. </p>
+                  <p>The following is an example of an <code class="codeph">edmMappings</code> section for ODP.NET, Managed Driver:
+                  </p><pre class="oac_no_warn" dir="ltr">&lt;oracle.manageddataaccess.client&gt;
+  &lt;version number="*"&gt;
+    &lt;edmMappings&gt;
+      &lt;edmNumberMapping&gt;
+        &lt;add NETType="bool" MinPrecision="1" MaxPrecision="1" DBType="Number" /&gt;
+        &lt;add NETType="byte" MinPrecision="2" MaxPrecision="3" DBType="Number" /&gt;
+        &lt;add NETType="int16" MinPrecision="4" MaxPrecision="5" DBType="Number" /&gt;
+        &lt;add NETType="int32" MinPrecision="6" MaxPrecision="10" DBType="Number" /&gt;
+        &lt;add NETType="int64" MinPrecision="11" MaxPrecision="19" DBType="Number" /&gt;
+      &lt;/edmNumberMapping&gt;
+    &lt;/edmMappings&gt;
+  &lt;/version&gt;
+&lt;/oracle.manageddataaccess.client&gt;
+</pre><p>Where:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><code class="codeph">DBType</code> is the Oracle Database data type
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">NETType</code> is the .NET data type that the Oracle data type maps to
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">MinPrecision</code> is the minimum range the Oracle data type will map to the .NET type
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">MaxPrecision</code> is the maximum range the Oracle data type will map to the .NET type
+                        </p>
+                     </li>
+                  </ul>
+                  <p>The following is an example of an <code class="codeph">edmmappings</code> section for ODP.NET, Unmanaged Driver. It is exactly same format as the managed driver with the exception of the opening and closing tags.
+                  </p><pre class="oac_no_warn" dir="ltr">&lt;oracle.unmanageddataaccess.client&gt;
+  &lt;version number="*"&gt;
+    &lt;edmMappings&gt;
+      &lt;edmNumberMapping&gt;
+        &lt;add NETType="bool" MinPrecision="1" MaxPrecision="1" DBType="Number" /&gt;
+        &lt;add NETType="byte" MinPrecision="2" MaxPrecision="3" DBType="Number" /&gt;
+        &lt;add NETType="int16" MinPrecision="4" MaxPrecision="5" DBType="Number" /&gt;
+        &lt;add NETType="int32" MinPrecision="6" MaxPrecision="10" DBType="Number" /&gt;
+        &lt;add NETType="int64" MinPrecision="11" MaxPrecision="19" DBType="Number" /&gt;
+      &lt;/edmNumberMapping&gt;
+    &lt;/edmMappings&gt;
+  &lt;/version&gt;
+&lt;/oracle.unmanageddataaccess.client&gt;
+</pre></div><a id="ODPNT8470"></a><div class="props_rev_3"><a id="GUID-2C6E184F-CFBE-4FB3-9232-8D5059B89159" name="GUID-2C6E184F-CFBE-4FB3-9232-8D5059B89159"></a><h4 id="ODPNT-GUID-2C6E184F-CFBE-4FB3-9232-8D5059B89159" class="sect4">New Default Mappings</h4>
+                  <div>
+                     <p>For Entity Framework 6, ODP.NET 12.1.0.2 introduces new default mappings that apply to Code First, Database First, and Model First scenarios. These changes were necessary to support Code First interoperability.</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>.NET <code class="codeph">Booleans</code> map to Oracle <code class="codeph">Number(1,0)</code> and vice-versa by default 
+                           </p>
+                        </li>
+                        <li>
+                           <p>.NET <code class="codeph">Bytes</code> map to Oracle <code class="codeph">Number(2,0) </code>and<code class="codeph"> Number(3,0)</code> and vice-versa by default
+                           </p>
+                        </li>
+                     </ul>
+                     <p>This default behavior can be changed by providing an alternative data type mapping by configuring the section of the .NET config file. </p>
+                  </div>
+               </div>
+            </div><a id="ODPNT8303"></a><div class="props_rev_3"><a id="GUID-46457FB1-0F7F-422D-9912-1E4F21B9A7D8" name="GUID-46457FB1-0F7F-422D-9912-1E4F21B9A7D8"></a><h3 id="ODPNT-GUID-46457FB1-0F7F-422D-9912-1E4F21B9A7D8" class="sect3">Data Type Mapping and Customization Process</h3>
+               <div>
+                  <p>To enable custom mapping, add the mapping information to the .NET config file <span class="italic">prior</span> to EDM creation. 
+                  </p>
+                  <p>If the EDM was created already before providing the mapping information, then you can <span class="italic">modify</span> the mappings either through the Visual Studio tools or manually. Using Visual Studio, go to the EDM Model Browser page. Right-click on the table(s) requiring new data type mapping and select <span class="bold">Table Mapping</span> from the pop-up menu. The <span class="bold">Mapping Details</span> window will appear usually at the bottom of your screen. Update <span class="bold">Column Mappings</span> as desired.
+                  </p>
+                  <p>If you need to <span class="italic">add</span> or <span class="italic">delete</span> mappings, find the <span class="bold">Type</span> values in the CSDL mapping section of your project's existing EDMX file. Add or delete those <span class="bold">Type</span> values to the .NET data types you want the application to use. In the example below, the property name types for <code class="codeph">BOOLCOL</code> and <code class="codeph">BYTECOL</code> are added to the CSDL and mapped to Boolean and Byte, respectively.
+                  </p>
+                  <p>Example Mapping Before CSDL Customization:</p><pre class="oac_no_warn" dir="ltr">&lt;Property Name="INT16COL" Type="Int16" Nullable="false" /&gt; 
+</pre><p>Example Mapping After CSDL Customization:</p><pre class="oac_no_warn" dir="ltr">&lt;Property Name="BOOLCOL" Type="Boolean" Nullable="false" /&gt; 
+&lt;Property Name="BYTECOL" Type="Byte" Nullable="false" /&gt; 
+&lt;Property Name="INT16COL" Type="Int16" Nullable="false" /&gt;
+</pre><p>You can employ combinations of these customization possibilities depending on your planned mapping changes. If <span class="italic">many</span> tables and <span class="italic">many</span> columns require mapping changes, it is most efficient to delete the EDMX file and regenerate the data model. If a <span class="italic">few</span> tables and <span class="italic">many</span> columns require changes, then delete the affected tables, save the EDMX file, and select <span class="bold">Update Model from Database... </span>to include those tables again. If only a <span class="italic">single</span> table and <span class="italic">one or two</span> columns require changes, then modify the EDMX either manually or by using the <span class="bold">Mapping Details</span> window.
+                  </p>
+                  <div class="infoboxnote" id="GUID-46457FB1-0F7F-422D-9912-1E4F21B9A7D8__GUID-66252E98-E9E0-480A-B6D0-B8216077A0E6">
+                     <p class="notep1">Note:</p>
+                     <p>When using the EDM wizard to create a complex type from a function import, any custom EDM type mappings specified will not be applied automatically. The EDM wizard uses the default type mappings. Developers must then manually edit the resulting complex type. Developers begin this process after the complex type is generated. Any type declaration (field, property, constructor parameter, etc.) in the complex object which has an undesired type mapping, such as Decimal rather than Boolean, should be manually edited to the desired type. </p>
+                  </div>
+               </div>
+            </div><a id="ODPNT8304"></a><div class="props_rev_3"><a id="GUID-01937C97-07C0-445C-A0AE-2C86F3EE2606" name="GUID-01937C97-07C0-445C-A0AE-2C86F3EE2606"></a><h3 id="ODPNT-GUID-01937C97-07C0-445C-A0AE-2C86F3EE2606" class="sect3">StoreGeneratedPattern Enumeration</h3>
+               <div>
+                  <p>The following sections describe the Identity attribute and the Virtual column.</p>
+               </div><a id="ODPNT8305"></a><div class="props_rev_3"><a id="GUID-C5DBC0F6-0B37-4821-9868-439E3D9EC5BC" name="GUID-C5DBC0F6-0B37-4821-9868-439E3D9EC5BC"></a><h4 id="ODPNT-GUID-C5DBC0F6-0B37-4821-9868-439E3D9EC5BC" class="sect4">Identity Attribute</h4>
+                  <div>
+                     <p>Oracle Database 12<span class="italic">c</span> (12.1) and later versions support table or view Identity attribute columns. Oracle has three Identity attribute types. When the EDM wizard generates a data model from an Oracle Identity attribute-containing table or view, ODP.NET will set the value of <code class="codeph">StoreGeneratedPattern</code> to <code class="codeph">Identity</code> in the <code class="codeph">.edmx</code> file for any of three Oracle Identity types. The Identity attribute-associated column will use the server-generated value during <code class="codeph">INSERT</code>: hence, application developers no longer need to create a sequence nor trigger. If the .NET application attempts to set the Identity attribute itself, this value will be ignored.
+                     </p>
+                     <p>For Oracle Database 11<span class="italic">g</span> Release 2 (11.2) and earlier versions that do not support Identity columns, application developers can manually set <code class="codeph">StoreGeneratedPattern</code> to <code class="codeph">Identity</code> in columns through the entity model designer Properties after model generation, then create an <code class="codeph">INSERT</code> trigger. Depending on the data type, a sequence may not be necessary if a server function, such as <code class="codeph">sys_guid()</code>, can generate the value for the column.
+                     </p>
+                  </div>
+               </div><a id="ODPNT8306"></a><div class="props_rev_3"><a id="GUID-2ACA1AEB-1619-470C-B3D2-F2886611F095" name="GUID-2ACA1AEB-1619-470C-B3D2-F2886611F095"></a><h4 id="ODPNT-GUID-2ACA1AEB-1619-470C-B3D2-F2886611F095" class="sect4">Virtual Column</h4>
+                  <div>
+                     <p>Oracle Database 11<span class="italic">g</span> (11.1) and later versions can store expressions directly in base tables as Virtual columns, also known as Generated columns. Virtual columns cannot be inserted into or updated. ODP.NET will not automatically set <code class="codeph">StoreGeneratedPattern</code> to <code class="codeph">Computed</code> in the EF model for Virtual columns. To avoid errors, application developers need to add or change the value of <code class="codeph">StoreGeneratedPattern</code> to <code class="codeph">Computed</code> for Virtual columns after the model generation. Once done, Virtual columns are excluded from <code class="codeph">INSERT</code>s and <code class="codeph">UPDATE</code>s upon calling <code class="codeph">SaveChanges()</code>.
+                     </p>
+                  </div>
+               </div>
+            </div><a id="ODPNT8307"></a><div class="props_rev_3"><a id="GUID-F427DBC4-65F1-4FB1-AE01-02094169FCEB" name="GUID-F427DBC4-65F1-4FB1-AE01-02094169FCEB"></a><h3 id="ODPNT-GUID-F427DBC4-65F1-4FB1-AE01-02094169FCEB" class="sect3">Resolving Compilation Errors When Using Custom Mapping</h3>
+               <div>
+                  <p>If the custom mapping in a .NET configuration file has changed, then regenerate the data model to solve compilation errors introduced by the changes.</p>
+                  <p>Under certain scenarios, custom mapping may cause compilation errors when a project that uses custom mapping is loaded by Visual Studio. One specific scenario is when Visual Studio opens a project with an existing custom mapping that now generates errors when those errors did not exist before. You may use the following workaround for such scenarios:</p>
+                  <ol>
+                     <li>
+                        <p>Open Visual Studio Help, About Microsoft Visual Studio. Click <span class="bold">OK</span> to exit the dialog box. 
+                        </p>
+                        <p>Alternatively, open the to-be-used connection in Server Explorer. </p>
+                     </li>
+                     <li>
+                        <p>Compile the project again to eliminate the compilation errors.</p>
+                     </li>
+                  </ol>
+               </div>
+            </div><a id="ODPNT8308"></a><div class="props_rev_3"><a id="GUID-A47D8547-2422-4E3D-A76A-4053C37EADF4" name="GUID-A47D8547-2422-4E3D-A76A-4053C37EADF4"></a><h3 id="ODPNT-GUID-A47D8547-2422-4E3D-A76A-4053C37EADF4" class="sect3">Mapping Boolean and Guid Parameters in Custom INSERT, UPDATE, and DELETE Stored Procedures</h3>
+               <div>
+                  <p>When using your custom <code class="codeph">INSERT, UPDATE,</code> or <code class="codeph">DELETE</code> stored procedure in Stored Procedure Mapping, the following error might occur:
+                  </p>
+                  <p><code class="codeph">Error 2042: Parameter Mapping specified is not valid.</code></p>
+                  <p>This can happen if a <code class="codeph">Number</code> parameter has been mapped to a <code class="codeph">Boolean</code> attribute, or if a <code class="codeph">RAW</code> parameter has been mapped to a <code class="codeph">Guid</code> attribute. 
+                  </p>
+                  <p>The solution is to manually add <code class="codeph">Precision="1"</code> for the <code class="codeph">Number</code> parameter, and <code class="codeph">MaxLength="16"</code> for the RAW parameter of your stored procedure in the SSDL.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

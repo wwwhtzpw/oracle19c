@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>REST APIs for Oracle Database - Get all locks held in the database</title>
+		<link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+		<meta name="dcterms.dateCopyrighted" content="2018, 2021">
+		<meta name="dcterms.category" content="database">
+		<meta name="dcterms.identifier" content="E96452-05">
+		
+		<meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+		
+        <link rel="stylesheet" href="/sp_common/rest-template/ohc-rest-template/css/rest.css">
+        <script>
+            document.write('<style type="text/css">');
+            document.write('body > .noscript, body > .noscript ~ * { opacity: 0; }');
+            document.write('</style>');
+        </script>
+        <script data-main="/sp_common/rest-template/ohc-rest-template/js/rest-config" src="/sp_common/rest-template/requirejs/require.js"></script>
+        <script>
+            if(window.require === undefined) {
+                document.write('<script data-main="sp_common/rest-template/ohc-rest-template/js/rest-config" src="sp_common/rest-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/rest-template/ohc-rest-template/css/rest.css" rel="stylesheet">');
+            }
+        </script>
+		
+		<script type="application/json" id="ssot-metadata" space="preserve">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+
+        <meta name="description" content="Provide consumers the ability to perform operations with different Oracle Database features through a web REST API that can be easily adopted.">
+        <meta property="og:site_name" content="Oracle Help Center">
+        <meta property="og:title" content="REST APIs for Oracle Database">
+        <meta property="og:description" content="Provide consumers the ability to perform operations with different Oracle Database features through a web REST API that can be easily adopted.">
+        <meta name="generator" content="Oracle REST API Publisher 1.7.0">
+		<meta name="date" content="2021-01-25 19:53:07 UTC">
+        <link rel="shortcut icon" href="/sp_common/rest-template/ohc-common/img/favicon.ico">
+        <meta name="application-name" content="REST APIs for Oracle Database">
+        <link type="application/swagger+json" title="Swagger 2.0" href="swagger.json" rel="alternate">
+        <link rel="prev" href="op-database-monitoring-sessions-get.html" title="Previous" type="text/html">
+        <link rel="next" href="op-database-monitoring-session_locks-holding-get.html" title="Next" type="text/html">
+    
+    <meta name="dcterms.created" content="2021-01-25T19:55:52+00:00">
+    <meta name="dcterms.title" content="REST APIs for Oracle Database">
+    <meta name="dcterms.isVersionOf" content="DBRST">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+    <body>
+        <div class="noscript alert alert-danger text-center" role="alert">
+            <a class="pull-left" href="op-database-monitoring-sessions-get.html"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+            <a class="pull-right" href="op-database-monitoring-session_locks-holding-get.html">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+            <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        </div>
+        <article>
+
+            
+            <header id="top">
+
+                <ol class="breadcrumb">
+                    <li><a href="index.html">REST APIs for Oracle Database</a></li>
+                    <li>Tasks</li>
+                    
+                    <li class="active">
+                        
+                        <a href="api-monitoring.html">Monitoring</a>
+                        
+                    </li>
+                    
+                </ol>
+                
+                <p class="draftsubtitle"></p>
+                
+                
+                <div>
+                	<div class="dropdown btn-group pull-right" style="clear: right;">
+                		<button id="dLabel" class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jump to <span class="caret"></span>
+                		</button>
+      					<ul class="dropdown-menu" aria-labelledby="dLabel">
+          					<li><a href="#request" data-toggle="ignore">Request</a></li>
+          					<li><a href="#response" data-toggle="ignore">Response</a></li>
+          					
+      					</ul>
+    				</div>
+     				<h2>Get all locks held in the database</h2>
+     			</div>
+                
+                <div>
+                    <div class="label label-get text-uppercase">get</div>
+                    <p><strong>/database/monitoring/session_locks/</strong></p>
+                </div>
+            </header>
+            <section>
+
+                <div class="description">Get all locks that are held in the database using DBA_LOCK view. A client requires SQL Administrator role to invoke this service.</div>
+
+                <h3 id="request">Request</h3>
+                
+
+                
+                
+                <div class="h5">Supported Media Types</div>
+                <ul class="media-types">
+                
+                    <li>application/json</li>
+                
+                </ul>
+                
+                
+
+                
+
+
+                
+                <div class="h5">Query Parameters</div>
+                <div class="schema-container">
+                    <ul class="schema-properties">
+                        
+                        <li><a role="button" data-toggle="collapse" href="#request-query-param-limit" aria-expanded="false" aria-controls="request-query-param-limit">
+                        limit(optional): integer(int32)
+                        </a>
+                        <div class="collapse" id="request-query-param-limit">
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The maximum number of records to return.</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        </li>
+                        
+                        <li><a role="button" data-toggle="collapse" href="#request-query-param-q" aria-expanded="false" aria-controls="request-query-param-q">
+                        q(optional): string
+                        </a>
+                        <div class="collapse" id="request-query-param-q">
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Filtering is the process of limiting a collection resource by using a per-request dynamic filter definition across multiple page resources, where each page contains a subset of items found in the complete collection. Filtering enables efficient traversal of large collections.</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        </li>
+                        
+                    </ul>
+                    
+                </div>
+                
+
+
+                
+
+
+                
+
+
+                
+
+                
+
+                
+                
+                <a style="float: right" href="#top">Back to Top</a>
+
+                <h3 id="response">Response</h3>
+
+                
+                
+                <div class="h5">Supported Media Types</div>
+                <ul class="media-types">
+                    
+                    <li>application/json</li>
+                    
+                </ul>
+                
+                
+
+
+
+                
+                <div class="response">
+                <h4 class="response-code range-200">200 Response</h4>
+                <div class="response-body">
+                <div>All locks held in the database.</div>
+
+                
+
+
+                
+                    <div class="entity">
+                    <div class="h5 hidden-print">Body (<span class="schema-path"></span>)</div>
+
+
+                    <div class="schema-container">
+                    
+                    <div id="200-definitions-MonitoringSessionLocks" class="swagger-schema">
+    <div class="panel-heading">Root Schema : MonitoringSessionLocks</div>
+    
+      <div class="schema-type">Type: <code>object</code></div>
+      
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocks-properties-count-properties-count-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocks-properties-count-properties-count-0">
+            count(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocks-properties-count-properties-count-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Total number of records in the current response.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocks-properties-hasMore-properties-hasMore-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocks-properties-hasMore-properties-hasMore-0">
+            hasMore(optional): 
+            boolean</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocks-properties-hasMore-properties-hasMore-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates if there are more records to be retrieved.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocks-properties-items-properties-items-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocks-properties-items-properties-items-0">
+            items(optional): 
+            array </a> <a href="#200-definitions-MonitoringSessionLocks-properties-items" role="button" class="btn btn-default btn-sm btn-xsm">items</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocks-properties-items-properties-items-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocks-properties-limit-properties-limit-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocks-properties-limit-properties-limit-0">
+            limit(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocks-properties-limit-properties-limit-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The actual page size limit on number of records applied by the server.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocks-properties-links-properties-links-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocks-properties-links-properties-links-0">
+            links(optional): 
+            array </a> <a href="#200-definitions-MonitoringSessionLocks-properties-links" role="button" class="btn btn-default btn-sm btn-xsm">links</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocks-properties-links-properties-links-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocks-properties-offset-properties-offset-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocks-properties-offset-properties-offset-0">
+            offset(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocks-properties-offset-properties-offset-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The actual index from which the item resources are returned.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;object&quot;,
+    &quot;properties&quot;:{
+        &quot;items&quot;:{
+            &quot;type&quot;:&quot;array&quot;,
+            &quot;items&quot;:{
+                &quot;$ref&quot;:&quot;#/definitions/MonitoringSessionLocksItem&quot;
+            }
+        },
+        &quot;hasMore&quot;:{
+            &quot;type&quot;:&quot;boolean&quot;,
+            &quot;description&quot;:&quot;Indicates if there are more records to be retrieved.&quot;
+        },
+        &quot;limit&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;The actual page size limit on number of records applied by the server.&quot;
+        },
+        &quot;offset&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;The actual index from which the item resources are returned.&quot;
+        },
+        &quot;count&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Total number of records in the current response.&quot;
+        },
+        &quot;links&quot;:{
+            &quot;type&quot;:&quot;array&quot;,
+            &quot;items&quot;:{
+                &quot;$ref&quot;:&quot;#/definitions/LinkRelation&quot;
+            }
+        }
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-MonitoringSessionLocks-properties-items" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : items</div>
+    
+      
+      <div class="schema-type">Type: <code>array</code></div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocksItem-items-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocksItem-items-0">
+            Array of: 
+                object </a> <a href="#200-definitions-MonitoringSessionLocksItem" role="button" class="btn btn-default btn-sm btn-xsm">MonitoringSessionLocksItem</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocksItem-items-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">This object is represents a record on DBA_LOCK view. DBA_LOCK lists all locks or latches held in the database, and all outstanding requests for a lock or latch. The list of attributes may vary depending on database version.</div>
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;array&quot;,
+    &quot;items&quot;:{
+        &quot;$ref&quot;:&quot;#/definitions/MonitoringSessionLocksItem&quot;
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-MonitoringSessionLocks-properties-links" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : links</div>
+    
+      
+      <div class="schema-type">Type: <code>array</code></div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-LinkRelation-items-0" aria-expanded="false" aria-controls="200-definitions-LinkRelation-items-0">
+            Array of: 
+                object </a> <a href="#200-definitions-LinkRelation" role="button" class="btn btn-default btn-sm btn-xsm">LinkRelation</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-LinkRelation-items-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;array&quot;,
+    &quot;items&quot;:{
+        &quot;$ref&quot;:&quot;#/definitions/LinkRelation&quot;
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-MonitoringSessionLocksItem" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : MonitoringSessionLocksItem</div>
+    
+      <div class="schema-type">Type: <code>object</code></div>
+      
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div>This object is represents a record on DBA_LOCK view. DBA_LOCK lists all locks or latches held in the database, and all outstanding requests for a lock or latch. The list of attributes may vary depending on database version.</div>
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocksItem-properties-blocking_others-properties-blocking_others-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocksItem-properties-blocking_others-properties-blocking_others-0">
+            blocking_others(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocksItem-properties-blocking_others-properties-blocking_others-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Whether the lock is currently blocking others.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocksItem-properties-con_id-properties-con_id-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocksItem-properties-con_id-properties-con_id-0">
+            con_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocksItem-properties-con_id-properties-con_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The ID of the container to which the data pertains.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocksItem-properties-last_convert-properties-last_convert-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocksItem-properties-last_convert-properties-last_convert-0">
+            last_convert(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocksItem-properties-last_convert-properties-last_convert-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The last convert.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocksItem-properties-links-properties-links-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocksItem-properties-links-properties-links-0">
+            links(optional): 
+            array </a> <a href="#200-definitions-MonitoringSessionLocksItem-properties-links" role="button" class="btn btn-default btn-sm btn-xsm">links</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocksItem-properties-links-properties-links-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocksItem-properties-lock_id1-properties-lock_id1-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocksItem-properties-lock_id1-properties-lock_id1-0">
+            lock_id1(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocksItem-properties-lock_id1-properties-lock_id1-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Type-specific lock identifier, part 1.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocksItem-properties-lock_id2-properties-lock_id2-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocksItem-properties-lock_id2-properties-lock_id2-0">
+            lock_id2(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocksItem-properties-lock_id2-properties-lock_id2-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Type-specific lock identifier, part 2.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocksItem-properties-lock_type-properties-lock_type-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocksItem-properties-lock_type-properties-lock_type-0">
+            lock_type(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocksItem-properties-lock_type-properties-lock_type-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Lock type.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocksItem-properties-mode_held-properties-mode_held-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocksItem-properties-mode_held-properties-mode_held-0">
+            mode_held(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocksItem-properties-mode_held-properties-mode_held-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Lock mode.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocksItem-properties-mode_requested-properties-mode_requested-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocksItem-properties-mode_requested-properties-mode_requested-0">
+            mode_requested(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocksItem-properties-mode_requested-properties-mode_requested-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Lock mode requested.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-MonitoringSessionLocksItem-properties-session_id-properties-session_id-0" aria-expanded="false" aria-controls="200-definitions-MonitoringSessionLocksItem-properties-session_id-properties-session_id-0">
+            session_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-MonitoringSessionLocksItem-properties-session_id-properties-session_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Session holding or acquiring the lock.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;object&quot;,
+    &quot;description&quot;:&quot;This object is represents a record on DBA_LOCK view. DBA_LOCK lists all locks or latches held in the database, and all outstanding requests for a lock or latch. The list of attributes may vary depending on database version.&quot;,
+    &quot;properties&quot;:{
+        &quot;session_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Session holding or acquiring the lock.&quot;
+        },
+        &quot;lock_type&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Lock type.&quot;
+        },
+        &quot;mode_held&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Lock mode.&quot;
+        },
+        &quot;mode_requested&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Lock mode requested.&quot;
+        },
+        &quot;lock_id1&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Type-specific lock identifier, part 1.&quot;
+        },
+        &quot;lock_id2&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Type-specific lock identifier, part 2.&quot;
+        },
+        &quot;last_convert&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;The last convert.&quot;
+        },
+        &quot;blocking_others&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Whether the lock is currently blocking others.&quot;
+        },
+        &quot;con_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;The ID of the container to which the data pertains.&quot;
+        },
+        &quot;links&quot;:{
+            &quot;type&quot;:&quot;array&quot;,
+            &quot;items&quot;:{
+                &quot;$ref&quot;:&quot;#/definitions/LinkRelation&quot;
+            }
+        }
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-MonitoringSessionLocksItem-properties-links" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : links</div>
+    
+      
+      <div class="schema-type">Type: <code>array</code></div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-LinkRelation-items-0" aria-expanded="false" aria-controls="200-definitions-LinkRelation-items-0">
+            Array of: 
+                object </a> <a href="#200-definitions-LinkRelation" role="button" class="btn btn-default btn-sm btn-xsm">LinkRelation</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-LinkRelation-items-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;array&quot;,
+    &quot;items&quot;:{
+        &quot;$ref&quot;:&quot;#/definitions/LinkRelation&quot;
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-LinkRelation" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : LinkRelation</div>
+    
+      <div class="schema-type">Type: <code>object</code></div>
+      
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-LinkRelation-properties-href-properties-href-17" aria-expanded="false" aria-controls="200-definitions-LinkRelation-properties-href-properties-href-17">
+            href: 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-LinkRelation-properties-href-properties-href-17">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-LinkRelation-properties-rel-properties-rel-17" aria-expanded="false" aria-controls="200-definitions-LinkRelation-properties-rel-properties-rel-17">
+            rel: 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-LinkRelation-properties-rel-properties-rel-17">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;object&quot;,
+    &quot;properties&quot;:{
+        &quot;rel&quot;:{
+            &quot;type&quot;:&quot;string&quot;
+        },
+        &quot;href&quot;:{
+            &quot;type&quot;:&quot;string&quot;
+        }
+    },
+    &quot;required&quot;:[
+        &quot;rel&quot;,
+        &quot;href&quot;
+    ]
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    </div>
+
+                    
+                    </div>
+                
+                </div>
+                </div>
+                
+
+				<a style="float: right" href="#top">Back to Top</a>
+				
+                
+
+            </section>
+
+            
+        </article>
+    </body>
+</html>

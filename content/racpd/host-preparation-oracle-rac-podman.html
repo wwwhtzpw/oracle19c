@@ -1,0 +1,244 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Host Preparation for Oracle RAC on Podman">
+      <meta name="abstract" content="Use these instructions to deploy Oracle Real Application Clusters (Oracle RAC) on Podman">
+      <meta name="description" content="Use these instructions to deploy Oracle Real Application Clusters (Oracle RAC) on Podman">
+      <meta name="DC.Relation" scheme="URI" content="host-preparation-oracle-rac-podman.html#GUID-9FC9E71F-EA26-41BD-893C-2BE8D4C05938">
+      <meta name="DC.Creator" content="Paramdeep Sani">
+      <meta name="DC.Creator" content="Sanjay Singh">
+      <meta name="DC.Creator" content="Gia-Khanh Nguyen">
+      <meta name="DC.Creator" content="Douglas Williams">
+      <meta name="DC.Publisher" content="April2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-FAB2E98B-F707-4793-80FD-83F9CA495BA0">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Use these instructions to deploy Oracle Real Application Clusters (Oracle RAC) on Podman">
+      <meta name="description" content="Use these instructions to deploy Oracle Real Application Clusters (Oracle RAC) on Podman">
+      <title>Host Preparation for Oracle RAC on Podman</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Real Application Clusters Installation Guide for Podman">
+      <meta property="og:description" content="Use these instructions to deploy Oracle Real Application Clusters (Oracle RAC) on Podman">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Real Application Clusters Installation Guide for Podman Oracle Linux">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-real-application-clusters-installation-guide-podman-oracle-linux.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-04-22T16:04:56-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2014, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F56134-06">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="index.html" title="Previous" type="text/html">
+      <link rel="next" href="target-configuration-oracle-rac-podman.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Real Application Clusters Installation Guide for Podman on Oracle Linux">
+    <meta name="dcterms.isVersionOf" content="RACPD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Host Preparation for Oracle RAC on Podman","description":"Use these instructions to deploy Oracle Real Application Clusters (Oracle RAC) on Podman","datePublished":"2025-04-22 CST","dateModified":"2025-04-22 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="index.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="target-configuration-oracle-rac-podman.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-FAB2E98B-F707-4793-80FD-83F9CA495BA0" name="GUID-FAB2E98B-F707-4793-80FD-83F9CA495BA0"></a>
+         
+         <h2 id="RACPD-GUID-FAB2E98B-F707-4793-80FD-83F9CA495BA0" class="sect2"><span class="enumeration_chapter">1 </span>Host Preparation for Oracle RAC on
+                Podman
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Use these instructions to deploy Oracle Real Application Clusters (Oracle
+                RAC) on Podman</p>
+               <p>In this publication, the Linux server hosting the Podman containers
+                        is referred to as the <strong class="term">Podman host,</strong> or just the <strong class="term">Host</strong>. The Podman hosts running the Oracle RAC,
+                        Oracle Grid Infrastructure, and Oracle Automatic Storage Management (Oracle
+                        ASM) are collectively referred to as the Podman Oracle RAC Container, or
+                        just the Oracle RAC Container.
+               </p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="host-preparation-oracle-rac-podman.html#GUID-9FC9E71F-EA26-41BD-893C-2BE8D4C05938">Prerequisites for Oracle RAC on Podman</a><br>Before beginning to deploy Oracle Real Application Clusters (Oracle RAC) on                                 Podman container images, ensure that you are prepared for the                                 installation, and that your system meets software and storage                                 requirements. 
+                  </li>
+               </ul>
+            </div>
+            
+            <div class="sect2"><a id="GUID-9FC9E71F-EA26-41BD-893C-2BE8D4C05938" name="GUID-9FC9E71F-EA26-41BD-893C-2BE8D4C05938"></a><h3 id="RACPD-GUID-9FC9E71F-EA26-41BD-893C-2BE8D4C05938" class="sect3">Prerequisites for Oracle RAC on
+                                Podman</h3>
+               <div>
+                  <p>Before beginning to deploy Oracle Real Application Clusters (Oracle RAC) on
+                                Podman container images, ensure that you are prepared for the
+                                installation, and that your system meets software and storage
+                                requirements. </p>
+               </div>
+               <div>
+                  <ul class="ullinks">
+                     <li class="ulchildlink"><a href="host-preparation-oracle-rac-podman.html#GUID-7DC4536F-BE2F-4024-89B2-9A38B7632272">Preparing to Install Oracle RAC on Podman Containers</a><br>To use these instructions, you should have background knowledge of the         technology and operating system. 
+                     </li>
+                     <li class="ulchildlink"><a href="host-preparation-oracle-rac-podman.html#GUID-6FE6FE61-D2D0-493B-862C-A0AB8BE263D5">Software and Storage Requirements for Oracle RAC on Podman</a><br>Review which Oracle software releases are supported for deployment with         Oracle RAC on Podman, and what storage options you can use. 
+                     </li>
+                  </ul>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="host-preparation-oracle-rac-podman.html#GUID-FAB2E98B-F707-4793-80FD-83F9CA495BA0" title="Use these instructions to deploy Oracle Real Application Clusters (Oracle RAC) on Podman">Host Preparation for Oracle RAC on Podman</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="sect3"><a id="GUID-7DC4536F-BE2F-4024-89B2-9A38B7632272" name="GUID-7DC4536F-BE2F-4024-89B2-9A38B7632272"></a><h4 id="RACPD-GUID-7DC4536F-BE2F-4024-89B2-9A38B7632272" class="sect4">Preparing to Install Oracle RAC on
+        Podman Containers</h4>
+                  <div>
+                     <p>To use these instructions, you should have background knowledge of the
+        technology and operating system. </p>
+                     <p>You should be familiar with the following technologies:</p>
+                     <ul style="list-style-type: disc;" id="GUID-7DC4536F-BE2F-4024-89B2-9A38B7632272__UL_I4W_FPR_LLB">
+                        <li>Linux </li>
+                        <li>Podman </li>
+                        <li>Oracle Real Application Clusters (Oracle RAC) installation </li>
+                        <li>Oracle Grid Infrastructure installation </li>
+                        <li>Oracle Automatic Storage Management (Oracle ASM) </li>
+                     </ul>
+                     <p>Installation on Podman follows the standard Linux installation procedure.
+            However, because Podman is closely integrated with the host operating system, some of
+            the environment setup steps are slightly different. Refer to the Podman documentation
+            for an explanation of the Podman architecture, including namespaces, and resources for
+            which you cannot use a namespace. This guide focuses on what is different. For
+            information about standard steps and details of configuration, refer to <cite>Oracle
+                Grid Infrastructure Installation and Upgrade Guide for Linux</cite>. Review the
+            Oracle Grid Infrastructure Installation Checklist before starting the installation.
+                     </p>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="../cwlin/oracle-grid-infrastructure-installation-checklist.html#CWLIN-GUID-71A93E07-7E50-449C-B425-02F04A2EA8E6" target="_blank">Oracle Grid Infrastructure Installation Checklist</a></li>
+                        </ul>
+                     </div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="host-preparation-oracle-rac-podman.html#GUID-9FC9E71F-EA26-41BD-893C-2BE8D4C05938" title="Before beginning to deploy Oracle Real Application Clusters (Oracle RAC) on Podman container images, ensure that you are prepared for the installation, and that your system meets software and storage requirements.">Prerequisites for Oracle RAC on Podman</a></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-6FE6FE61-D2D0-493B-862C-A0AB8BE263D5" name="GUID-6FE6FE61-D2D0-493B-862C-A0AB8BE263D5"></a><h4 id="RACPD-GUID-6FE6FE61-D2D0-493B-862C-A0AB8BE263D5" class="sect4">Software and Storage Requirements
+        for Oracle RAC on Podman</h4>
+                  <div>
+                     <p>Review which Oracle software releases are supported for deployment with
+        Oracle RAC on Podman, and what storage options you can use. </p>
+                     <p>In this guide, Oracle Real Application Clusters (Oracle RAC) on Podman is
+            deployed on Oracle Database 19c. Podman deployment is supported with the following 19c
+            releases:</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-6FE6FE61-D2D0-493B-862C-A0AB8BE263D5__GUID-3BA771FD-1FCA-48A2-BA3A-6F3CB04E85A3">Software Requirements for Linux
+                x86-64</p>
+                        
+                        
+                        <ul style="list-style-type: disc;" id="GUID-6FE6FE61-D2D0-493B-862C-A0AB8BE263D5__UL_R4M_SGY_3TB">
+                           <li>Oracle Grid Infrastructure Release 19c (19.3), updated with Release
+                    Update (RU) 19.16, or later release updates</li>
+                           <li>Oracle Database Release 19c (19.3) updated with RU 19.16 or later
+                    release updates</li>
+                           <li>Podman 4.0.2 or later</li>
+                           <li>Oracle Linux 8 Container image (<code class="codeph">oraclelinux:8</code>)
+                           </li>
+                           <li>Oracle Linux for Podman host on Oracle Linux 8.5 (Linux-x86-64) or
+                    later updates</li>
+                        </ul>
+                        
+                        
+                        <p>Unbreakable Enterprise Kernel 6 (UEKR6), and its release updates.</p>
+                        
+                        
+                        
+                        
+                        <p>Unbreakable Enterprise Kernel 7 (UEKR7), and its release updates.</p>
+                        
+                        <p>In this example, we use Oracle Linux 8.5 (Linux-x86-64) with the
+                Unbreakable Enterprise Kernel 6:
+                <code class="codeph">5.4.17-2136.300.7.el8uek.x86_64</code>.
+                        </p>
+                        
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-6FE6FE61-D2D0-493B-862C-A0AB8BE263D5__GUID-BBE0A9B3-94D7-4B9F-AECB-330704B76297">Software Requirements for Linux
+                ARM</p>
+                        
+                        
+                        
+                        <ul style="list-style-type: disc;" id="GUID-6FE6FE61-D2D0-493B-862C-A0AB8BE263D5__UL_DWS_JFD_4CC">
+                           <li>Oracle Grid Infrastructure Release 19.19 or later release
+                    updates</li>
+                           <li>Oracle Database Release 19.19 or later release updates</li>
+                           <li>Podman 4.0.2 or later</li>
+                           <li>Oracle Linux 8 Container image (<code class="codeph">oraclelinux:8</code>)
+                           </li>
+                           <li>Oracle Linux for Podman host on Oracle Linux 8.7
+                    (<code class="codeph">Linux-aarch64</code>) or later updates
+                           </li>
+                        </ul>
+                        
+                        <p>Unbreakable Enterprise Kernel 7 (UEKR7), minimum
+                    <code class="codeph">5.15.0-100.96.32.el8uek.aarch64</code> and its release updates
+                        </p>
+                        
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-6FE6FE61-D2D0-493B-862C-A0AB8BE263D5__GUID-83D7727E-67D7-41B9-9357-29A4F8950ACE">Storage Requirements</p>
+                        
+                        
+                        <p>Database storage for Oracle RAC on Podman must use Oracle Automatic Storage
+                Management (Oracle ASM) configured either on block storage, or on a network file
+                system (NFS). </p>
+                        
+                        <div class="infobox-caution" id="GUID-6FE6FE61-D2D0-493B-862C-A0AB8BE263D5__GUID-2ACD3A53-2EA6-4D20-A424-3E5DF257BA8E">
+                           <p class="notep1">Caution:</p>For Podman
+                deployment, Oracle Advanced Cluster File System (Oracle ACFS) and Oracle ASM Filter
+                Driver (Oracle ASMFD) are not supported
+                        </div>
+                        
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="host-preparation-oracle-rac-podman.html#GUID-9FC9E71F-EA26-41BD-893C-2BE8D4C05938" title="Before beginning to deploy Oracle Real Application Clusters (Oracle RAC) on Podman container images, ensure that you are prepared for the installation, and that your system meets software and storage requirements.">Prerequisites for Oracle RAC on Podman</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

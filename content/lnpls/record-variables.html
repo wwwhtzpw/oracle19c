@@ -1,0 +1,615 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Record Variables">
+      <meta name="DC.subject" content="record, creating, initial value, of variable, constant, declaring, declaring constant, nested record, declaration example, nested, See, types of, public package item, RECORD type as, as public package item, %ROWTYPE attribute, attribute, %ROWTYPE, representing row, virtual columns and, virtual column, %ROWTYPE attribute and, invisible columns and, invisible column">
+      <meta name="keywords" content="record, creating, initial value, of variable, constant, declaring, declaring constant, nested record, declaration example, nested, See, types of, public package item, RECORD type as, as public package item, %ROWTYPE attribute, attribute, %ROWTYPE, representing row, virtual columns and, virtual column, %ROWTYPE attribute and, invisible columns and, invisible column">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-75875E26-FC7B-4513-A5E2-EDA26F1D67B1">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Record Variables</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="collection-types-defined-package-specifications.html" title="Previous" type="text/html">
+      <link rel="next" href="assigning-values-record-variables.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Record Variables","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="collection-types-defined-package-specifications.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="assigning-values-record-variables.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-75875E26-FC7B-4513-A5E2-EDA26F1D67B1" name="GUID-75875E26-FC7B-4513-A5E2-EDA26F1D67B1"></a><a id="LNPLS417"></a><a id="LNPLS00509"></a>
+         
+         <h2 id="LNPLS-GUID-75875E26-FC7B-4513-A5E2-EDA26F1D67B1" class="sect2"><span class="enumeration_section">5.12 </span>Record Variables
+         </h2>
+         <div class="ind">
+            <div>
+               <p>You can create a record variable in any of these ways:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p>Define a <code class="codeph">RECORD</code> type and then declare a variable of that type.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Use <code class="codeph">%ROWTYPE</code> to declare a record variable that represents either a full or partial row of a database table or view.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Use <code class="codeph">%TYPE</code> to declare a record variable of the same type as a previously declared record variable.
+                     </p>
+                  </li>
+               </ul>
+               <p>For syntax and semantics, see <span class="q">"<a href="record-variable-declaration.html#GUID-704FC014-561E-422C-9636-EDCA3B996AAD" title="A record variable is a composite variable whose internal components, called fields, can have different data types. The value of a record variable and the values of its fields can change.">Record Variable Declaration</a>"</span>.
+               </p>
+               <div class="section">
+                  <p class="subhead1" id="GUID-75875E26-FC7B-4513-A5E2-EDA26F1D67B1__GUID-10EB7748-AC4F-4461-89A6-CBFBCA49620D">Topics</p>
+               </div>
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="record-variables.html#GUID-AD93581B-6F16-4E84-9C05-30B251755782" title="For a record variable of a RECORD type, the initial value of each field is NULL unless you specify a different initial value for it when you define the type.">Initial Values of Record Variables</a></p>
+                     </li>
+                     <li>
+                        <p><a href="record-variables.html#GUID-BB893086-90BC-4831-81E2-41B9C1AE68A8" title="When declaring a record constant, you must create a function that populates the record with its initial value and then invoke the function in the constant declaration.">Declaring Record Constants</a></p>
+                     </li>
+                     <li>
+                        <p><a href="record-variables.html#GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F">RECORD Types</a></p>
+                     </li>
+                     <li>
+                        <p><a href="record-variables.html#GUID-EBF66B92-8A94-4E3A-A837-253D5DA79D5F" title="The %ROWTYPE attribute lets you declare a record variable that represents either a full or partial row of a database table or view.">Declaring Items using the %ROWTYPE Attribute</a></p>
+                     </li>
+                  </ul>
+               </div>
+            </div><a id="LNPLS419"></a><div class="props_rev_3"><a id="GUID-AD93581B-6F16-4E84-9C05-30B251755782" name="GUID-AD93581B-6F16-4E84-9C05-30B251755782"></a><h3 id="LNPLS-GUID-AD93581B-6F16-4E84-9C05-30B251755782" class="sect3"><span class="enumeration_section">5.12.1 </span>Initial Values of Record Variables
+               </h3>
+               <div>
+                  <p>For a record variable of a <code class="codeph">RECORD</code> type, the initial value of each field is <code class="codeph">NULL</code> unless you specify a different initial value for it when you define the type.
+                  </p>
+                  <p>For a record variable declared with <code class="codeph">%ROWTYPE</code> or <code class="codeph">%TYPE</code>, the initial value of each field is <code class="codeph">NULL</code>. The variable does not inherit the initial value of the referenced item.
+                  </p>
+               </div>
+            </div><a id="LNPLS426"></a><a id="LNPLS99856"></a><div class="props_rev_3"><a id="GUID-BB893086-90BC-4831-81E2-41B9C1AE68A8" name="GUID-BB893086-90BC-4831-81E2-41B9C1AE68A8"></a><h3 id="LNPLS-GUID-BB893086-90BC-4831-81E2-41B9C1AE68A8" class="sect3"><span class="enumeration_section">5.12.2 </span>Declaring Record Constants
+               </h3>
+               <div>
+                  <p>When declaring a record constant, you must create a function that populates the record with its initial value and then invoke the function in the constant declaration.</p>
+                  <div class="example" id="GUID-BB893086-90BC-4831-81E2-41B9C1AE68A8__BABCGFCE">
+                     <p class="titleinexample">Example 5-35 Declaring Record Constant</p>
+                     <p>This example creates a function that populates the record with its initial value and then invoke the function in the constant declaration.</p>
+                     <div class="infoboxnote" id="GUID-BB893086-90BC-4831-81E2-41B9C1AE68A8__GUID-F0637744-DA65-44DD-B8E5-226D68F8FE7C">
+                        <p class="notep1">Live SQL:</p>
+                        <p>You can view and run this example on Oracle Live SQL at <a href="https://livesql.oracle.com/apex/livesql/docs/lnpls/plsql-collections-and-records/tdlnplscomposites90.html" target="_blank">Declaring Record Constant</a></p>
+                     </div><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE PACKAGE My_Types AUTHID CURRENT_USER IS
+  TYPE My_Rec IS RECORD (a NUMBER, b NUMBER);
+  FUNCTION Init_My_Rec RETURN My_Rec;
+END My_Types;
+/
+CREATE OR REPLACE PACKAGE BODY My_Types IS
+  <span class="bold">FUNCTION Init_My_Rec RETURN My_Rec IS</span>
+    <span class="bold">Rec My_Rec;</span>
+  <span class="bold">BEGIN</span>
+    <span class="bold">Rec.a := 0;</span>
+    <span class="bold">Rec.b := 1;</span>
+    <span class="bold">RETURN Rec;</span>
+  <span class="bold">END Init_My_Rec;</span>
+END My_Types;
+/
+DECLARE
+  <span class="bold">r CONSTANT My_Types.My_Rec := My_Types.Init_My_Rec();</span>
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('r.a = ' || r.a);
+  DBMS_OUTPUT.PUT_LINE('r.b = ' || r.b);
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">r.a = 0
+r.b = 1
+ 
+PL/SQL procedure successfully completed.</pre></div>
+               </div>
+            </div><a id="LNPLS427"></a><a id="LNPLS433"></a><a id="LNPLS439"></a><a id="LNPLS441"></a><a id="LNPLS99971"></a><div class="props_rev_3"><a id="GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F" name="GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F"></a><h3 id="LNPLS-GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F" class="sect3"><span class="enumeration_section">5.12.3 </span>RECORD Types
+               </h3>
+               <div>
+                  <p>A <code class="codeph">RECORD</code> type defined in a PL/SQL block is a <span class="bold">local type</span>. It is available only in the block, and is stored in the database only if the block is in a standalone or package subprogram.
+                  </p>
+                  <p>A <code class="codeph">RECORD</code> type defined in a package specification is a <span class="bold">public item</span>. You can reference it from outside the package by qualifying it with the package name (<span class="italic"><code class="codeph">package_name.type_name</code></span>). It is stored in the database until you drop the package with the <code class="codeph">DROP</code> <code class="codeph">PACKAGE</code> statement.
+                  </p>
+                  <p>You cannot create a <code class="codeph">RECORD</code> type at schema level. Therefore, a <code class="codeph">RECORD</code> type cannot be an ADT attribute data type.
+                  </p>
+                  <p>To define a <code class="codeph">RECORD</code> type, specify its name and define its fields. To define a field, specify its name and data type. By default, the initial value of a field is <code class="codeph">NULL</code>. You can specify the <code class="codeph">NOT</code> <code class="codeph">NULL</code> constraint for a field, in which case you must also specify a non-<code class="codeph">NULL</code> initial value. Without the <code class="codeph">NOT</code> <code class="codeph">NULL</code> constraint, a non-<code class="codeph">NULL</code> initial value is optional.
+                  </p>
+                  <p>A <code class="codeph">RECORD</code> type defined in a package specification is incompatible with an identically defined local <code class="codeph">RECORD</code> type.
+                  </p>
+                  <div class="infoboxnotealso" id="GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F__GUID-06DEDBF8-F8E5-43D2-96FA-EAE7D433F380">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="plsql-packages.html#GUID-C285EC5A-BE50-4192-A88E-48C0778B34E0" title="This chapter explains how to bundle related PL/SQL code and data into a package, whose contents are available to many applications.">PL/SQL Packages</a></p>
+                        </li>
+                        <li>
+                           <p><a href="plsql-subprograms.html#GUID-13BEBBEC-02D4-48E8-A059-DFEAC4751A3B">PL/SQL Subprograms</a></p>
+                        </li>
+                        <li>
+                           <p><a href="nested-package-and-standalone-subprograms.html#GUID-E03F512B-1A30-43B4-8DCA-64DA68AE7CE4">Nested, Package, and Standalone Subprograms</a></p>
+                        </li>
+                        <li>
+                           <p><a href="record-variables.html#GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F__CIHFBIAF">Example 5-39</a>, <span class="q">""</span></p>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="example" id="GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F__CIHHBIDA">
+                     <p class="titleinexample">Example 5-36 RECORD Type Definition and Variable Declaration</p>
+                     <p>This example defines a <code class="codeph">RECORD</code> type named <code class="codeph">DeptRecTyp</code>, specifying an initial value for each field. Then it declares a variable of that type named <code class="codeph">dept_rec</code> and prints its fields.
+                     </p>
+                     <div class="infoboxnote" id="GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F__GUID-7B368681-6234-47FB-81F9-3CEC4C078E1A">
+                        <p class="notep1">Live SQL:</p>
+                        <p>You can view and run this example on Oracle Live SQL at <a href="https://livesql.oracle.com/apex/livesql/docs/lnpls/plsql-collections-and-records/tdlnplscomposites76.html" target="_blank">RECORD Type Definition and Variable Declaration</a></p>
+                     </div><pre class="oac_no_warn" dir="ltr">DECLARE
+  TYPE DeptRecTyp IS RECORD (
+    dept_id    NUMBER(4) NOT NULL := 10,
+    dept_name  VARCHAR2(30) NOT NULL := 'Administration',
+    mgr_id     NUMBER(6) := 200,
+    loc_id     NUMBER(4) := 1700
+  );
+ 
+  dept_rec DeptRecTyp;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('dept_id:   ' || dept_rec.dept_id);
+  DBMS_OUTPUT.PUT_LINE('dept_name: ' || dept_rec.dept_name);
+  DBMS_OUTPUT.PUT_LINE('mgr_id:    ' || dept_rec.mgr_id);
+  DBMS_OUTPUT.PUT_LINE('loc_id:    ' || dept_rec.loc_id);
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">dept_id:   10
+dept_name: Administration
+mgr_id:    200
+loc_id:    1700
+</pre></div>
+                  <div class="example" id="GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F__CIHEGIFD">
+                     <p class="titleinexample">Example 5-37 RECORD Type with RECORD Field (Nested Record)</p>
+                     <p>This example defines two <code class="codeph">RECORD</code> types, <code class="codeph">name_rec</code> and <code class="codeph">contact</code>. The type <code class="codeph">contact</code> has a field of type <code class="codeph">name_rec</code>.
+                     </p>
+                     <div class="infoboxnote" id="GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F__GUID-A4286E0A-9DD8-4E7C-9A1B-66906484BCDA">
+                        <p class="notep1">Live SQL:</p>
+                        <p>You can view and run this example on Oracle Live SQL at <a href="https://livesql.oracle.com/apex/livesql/docs/lnpls/plsql-collections-and-records/tdlnplscomposites77.html" target="_blank">RECORD Type with RECORD Field (Nested Record)</a></p>
+                     </div><pre class="oac_no_warn" dir="ltr">DECLARE
+  <span class="bold">TYPE name_rec IS RECORD</span> (
+    first  employees.first_name%TYPE,
+    last   employees.last_name%TYPE
+  );
+ 
+  <span class="bold">TYPE contact IS RECORD</span> (
+    <span class="bold">name  name_rec,                    -- nested record</span>
+    phone employees.phone_number%TYPE
+  );
+ 
+  friend contact;
+BEGIN
+  friend.name.first := 'John';
+  friend.name.last := 'Smith';
+  friend.phone := '1-650-555-1234';
+  
+  DBMS_OUTPUT.PUT_LINE (
+    friend.name.first  || ' ' ||
+    friend.name.last   || ', ' ||
+    friend.phone
+  );
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">John Smith, 1-650-555-1234
+</pre></div>
+                  <div class="example" id="GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F__CIHDJFDB">
+                     <p class="titleinexample">Example 5-38 RECORD Type with Varray Field</p>
+                     <p>This defines a <code class="codeph">VARRAY</code> type, <code class="codeph">full_name</code>, and a <code class="codeph">RECORD</code> type, <code class="codeph">contact</code>. The type <code class="codeph">contact</code> has a field of type <code class="codeph">full_name</code>.
+                     </p>
+                     <div class="infoboxnote" id="GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F__GUID-23794D86-103A-4A5E-96E4-350C1451D3CF">
+                        <p class="notep1">Live SQL:</p>
+                        <p>You can view and run this example on Oracle Live SQL at <a href="https://livesql.oracle.com/apex/livesql/docs/lnpls/plsql-collections-and-records/tdlnplscomposites78.html" target="_blank">RECORD Type with Varray Field</a></p>
+                     </div><pre class="oac_no_warn" dir="ltr">DECLARE
+  <span class="bold">TYPE full_name IS VARRAY(2) OF VARCHAR2(20);</span>
+ 
+  <span class="bold">TYPE contact IS RECORD</span> (
+    <span class="bold">name  full_name</span> := full_name('John', 'Smith'),  <span class="bold">-- varray field</span>
+    phone employees.phone_number%TYPE
+  );
+ 
+  friend contact;
+BEGIN
+  friend.phone := '1-650-555-1234';
+  
+  DBMS_OUTPUT.PUT_LINE (
+    friend.name(1) || ' ' ||
+    friend.name(2) || ', ' ||
+    friend.phone
+  );
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">John Smith, 1-650-555-1234
+</pre></div>
+                  <div class="example" id="GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F__CIHFBIAF">
+                     <p class="titleinexample">Example 5-39 Identically Defined Package and Local RECORD Types</p>
+                     <p>In this example, the package <code class="codeph">pkg</code> and the anonymous block define the <code class="codeph">RECORD</code> type <code class="codeph">rec_type</code> identically. The package defines a procedure, <code class="codeph">print_rec_type</code>, which has a <code class="codeph">rec_type</code> parameter. The anonymous block declares the variable <code class="codeph">r1</code> of the package type (<code class="codeph">pkg.rec_type</code>) and the variable <code class="codeph">r2</code> of the local type (<code class="codeph">rec_type</code>). The anonymous block can pass <code class="codeph">r1</code> to <code class="codeph">print_rec_type</code>, but it cannot pass <code class="codeph">r2</code> to <code class="codeph">print_rec_type</code>.
+                     </p>
+                     <div class="infoboxnote" id="GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F__GUID-5A99E590-8A58-4B7B-AB10-86A3638FA58C">
+                        <p class="notep1">Live SQL:</p>
+                        <p>You can view and run this example on Oracle Live SQL at <a href="https://livesql.oracle.com/apex/livesql/docs/lnpls/plsql-collections-and-records/tdlnplscomposites75err.html" target="_blank">Identically Defined Package and Local RECORD Types</a></p>
+                     </div><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE PACKAGE pkg AS
+  <span class="bold">TYPE rec_type IS RECORD (       -- package RECORD type</span>
+    <span class="bold">f1 INTEGER,</span>
+    <span class="bold">f2 VARCHAR2(4)</span>
+  <span class="bold">);</span>
+  PROCEDURE print_rec_type (rec rec_type);
+END pkg;
+/
+CREATE OR REPLACE PACKAGE BODY pkg AS
+  PROCEDURE print_rec_type (rec rec_type) IS
+  BEGIN
+    DBMS_OUTPUT.PUT_LINE(rec.f1);
+    DBMS_OUTPUT.PUT_LINE(rec.f2);
+  END; 
+END pkg;
+/
+DECLARE
+  <span class="bold">TYPE rec_type IS RECORD (       -- local RECORD type</span>
+    <span class="bold">f1 INTEGER,</span>
+    <span class="bold">f2 VARCHAR2(4)</span>
+  <span class="bold">);</span>
+  r1 pkg.rec_type;                -- package type
+  r2     rec_type;                -- local type
+ 
+BEGIN
+  r1.f1 := 10; r1.f2 := 'abcd';
+  r2.f1 := 25; r2.f2 := 'wxyz';
+ 
+  pkg.print_rec_type(r1);  -- succeeds
+  <span class="bold">pkg.print_rec_type(r2);  -- fails</span>
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">  pkg.print_rec_type(r2);  -- fails
+  *
+ERROR at line 14:
+ORA-06550: line 14, column 3:
+PLS-00306: wrong number or types of arguments in call to 'PRINT_REC_TYPE'
+</pre></div>
+               </div>
+            </div><a id="LNPLS442"></a><a id="LNPLS99912"></a><div class="props_rev_3"><a id="GUID-EBF66B92-8A94-4E3A-A837-253D5DA79D5F" name="GUID-EBF66B92-8A94-4E3A-A837-253D5DA79D5F"></a><h3 id="LNPLS-GUID-EBF66B92-8A94-4E3A-A837-253D5DA79D5F" class="sect3"><span class="enumeration_section">5.12.4 </span>Declaring Items using the %ROWTYPE Attribute
+               </h3>
+               <div>
+                  <p>The <code class="codeph">%ROWTYPE</code> attribute lets you declare a record variable that represents either a full or partial row of a database table or view. 
+                  </p>
+                  <p>For the syntax and semantics details, see <a href="ROWTYPE-attribute.html#GUID-4E0B9FE2-909D-444A-9B4A-E0243B7FCB99" title="The %ROWTYPE attribute lets you declare a record that represents either a full or partial row of a database table or view.">%ROWTYPE Attribute</a>.
+                  </p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-EBF66B92-8A94-4E3A-A837-253D5DA79D5F__GUID-1FF4F104-DD04-4BF3-997B-0BD372CB8DDA">Topics</p>
+                  </div>
+                  <div class="section">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="record-variables.html#GUID-9D20CCCC-E34B-473B-8499-4787D17C1980">Declaring a Record Variable that Always Represents Full Row</a></p>
+                        </li>
+                        <li>
+                           <p><a href="record-variables.html#GUID-064DACC4-4F40-43CA-9518-09F0BE5923EB">Declaring a Record Variable that Can Represent Partial Row</a></p>
+                        </li>
+                        <li>
+                           <p><a href="record-variables.html#GUID-FE47FF68-8720-48EF-9091-88476E31C589">%ROWTYPE Attribute and Virtual Columns</a></p>
+                        </li>
+                        <li>
+                           <p><a href="record-variables.html#GUID-058B062C-C429-422B-AD64-B2CFF63075FC">%ROWTYPE Attribute and Invisible Columns</a></p>
+                        </li>
+                     </ul>
+                  </div>
+               </div><a id="LNPLS445"></a><a id="LNPLS219"></a><a id="LNPLS444"></a><div class="props_rev_3"><a id="GUID-9D20CCCC-E34B-473B-8499-4787D17C1980" name="GUID-9D20CCCC-E34B-473B-8499-4787D17C1980"></a><h4 id="LNPLS-GUID-9D20CCCC-E34B-473B-8499-4787D17C1980" class="sect4"><span class="enumeration_section">5.12.4.1 </span>Declaring a Record Variable that Always Represents Full Row
+                  </h4>
+                  <div>
+                     <p>To declare a record variable that always represents a full row of a database table or view, use this syntax:</p><pre class="oac_no_warn" dir="ltr"><span class="italic">variable_name</span> <span class="italic">table_or_view_name</span>%ROWTYPE;
+</pre><p>For every column of the table or view, the record has a field with the same name and data type.</p>
+                     <div class="infoboxnotealso" id="GUID-9D20CCCC-E34B-473B-8499-4787D17C1980__GUID-62B73CAF-71C4-48D0-95BA-E9459947F14F">
+                        <p class="notep1">See Also:</p>
+                        <p><span class="q">"<a href="ROWTYPE-attribute.html#GUID-4E0B9FE2-909D-444A-9B4A-E0243B7FCB99" title="The %ROWTYPE attribute lets you declare a record that represents either a full or partial row of a database table or view.">%ROWTYPE Attribute</a>"</span> for more information about <code class="codeph">%ROWTYPE</code></p>
+                     </div>
+                     <div class="example" id="GUID-9D20CCCC-E34B-473B-8499-4787D17C1980__CIHJDGEJ">
+                        <p class="titleinexample">Example 5-40 %ROWTYPE Variable Represents Full Database Table Row</p>
+                        <p>This example declares a record variable that represents a row of the table <code class="codeph">departments</code>, assigns values to its fields, and prints them. Compare this example to <a href="record-variables.html#GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F__CIHHBIDA">Example 5-36</a>.
+                        </p>
+                        <div class="infoboxnote" id="GUID-9D20CCCC-E34B-473B-8499-4787D17C1980__GUID-F617EC90-7E08-44FD-ACFA-987A3F0A2214">
+                           <p class="notep1">Live SQL:</p>
+                           <p>You can view and run this example on Oracle Live SQL at <a href="https://livesql.oracle.com/apex/livesql/docs/lnpls/plsql-collections-and-records/tdlnplscomposites80.html" target="_blank">%ROWTYPE Variable Represents Full Database Table Row</a></p>
+                        </div><pre class="oac_no_warn" dir="ltr">DECLARE
+  <span class="bold">dept_rec departments%ROWTYPE;</span>
+BEGIN
+  -- Assign values to fields:
+  
+  dept_rec.department_id   := 10;
+  dept_rec.department_name := 'Administration';
+  dept_rec.manager_id      := 200;
+  dept_rec.location_id     := 1700;
+ 
+  -- Print fields:
+ 
+  DBMS_OUTPUT.PUT_LINE('dept_id:   ' || dept_rec.department_id);
+  DBMS_OUTPUT.PUT_LINE('dept_name: ' || dept_rec.department_name);
+  DBMS_OUTPUT.PUT_LINE('mgr_id:    ' || dept_rec.manager_id);
+  DBMS_OUTPUT.PUT_LINE('loc_id:    ' || dept_rec.location_id);
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">dept_id:   10
+dept_name: Administration
+mgr_id:    200
+loc_id:    1700
+</pre></div>
+                     <div class="example" id="GUID-9D20CCCC-E34B-473B-8499-4787D17C1980__BEIBGEFH">
+                        <p class="titleinexample">Example 5-41 %ROWTYPE Variable Does Not Inherit Initial Values or Constraints</p>
+                        <p>This example creates a table with two columns, each with an initial value and a <code class="codeph">NOT</code> <code class="codeph">NULL</code> constraint. Then it declares a record variable that represents a row of the table and prints its fields, showing that they did not inherit the initial values or <code class="codeph">NOT</code> <code class="codeph">NULL</code> constraints.
+                        </p>
+                        <div class="infoboxnote" id="GUID-9D20CCCC-E34B-473B-8499-4787D17C1980__GUID-58CE7EE5-5FE0-40DB-9FEC-A5226B37865B">
+                           <p class="notep1">Live SQL:</p>
+                           <p>You can view and run this example on Oracle Live SQL at <a href="https://livesql.oracle.com/apex/livesql/docs/lnpls/plsql-collections-and-records/tdlnplscomposites79.html" target="_blank">%ROWTYPE Variable Does Not Inherit Initial Values or Constraints</a></p>
+                        </div><pre class="oac_no_warn" dir="ltr">DROP TABLE t1;
+CREATE TABLE t1 (
+  c1 INTEGER <span class="bold">DEFAULT 0 NOT NULL</span>,
+  c2 INTEGER <span class="bold">DEFAULT 1 NOT NULL</span>
+);
+ 
+DECLARE
+  <span class="bold">t1_row t1%ROWTYPE;</span>
+BEGIN
+  DBMS_OUTPUT.PUT('t1.c1 = ');
+  DBMS_OUTPUT.PUT_LINE(NVL(TO_CHAR(t1_row.c1), 'NULL'));
+
+  DBMS_OUTPUT.PUT('t1.c2 = '); print(t1_row.c2);
+  DBMS_OUTPUT.PUT_LINE(NVL(TO_CHAR(t1_row.c2), 'NULL'));
+END;
+/
+ </pre><p>Result:</p><pre class="oac_no_warn" dir="ltr"><span class="bold">t1.c1 = NULL</span>
+<span class="bold">t1.c2 = NULL</span></pre></div>
+                  </div>
+               </div><a id="LNPLS220"></a><a id="LNPLS221"></a><a id="LNPLS446"></a><div class="props_rev_3"><a id="GUID-064DACC4-4F40-43CA-9518-09F0BE5923EB" name="GUID-064DACC4-4F40-43CA-9518-09F0BE5923EB"></a><h4 id="LNPLS-GUID-064DACC4-4F40-43CA-9518-09F0BE5923EB" class="sect4"><span class="enumeration_section">5.12.4.2 </span>Declaring a Record Variable that Can Represent Partial Row
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>To declare a record variable that can represent a partial row of a database table or view, use this syntax:</p><pre class="oac_no_warn" dir="ltr"><span class="italic">variable_name</span> <span class="italic">cursor</span>%ROWTYPE;
+</pre><p>A cursor is associated with a query. For every column that the query selects, the record variable must have a corresponding, type-compatible field. If the query selects every column of the table or view, then the variable represents a full row; otherwise, the variable represents a partial row. The cursor must be either an explicit cursor or a strong cursor variable.</p>
+                        <div class="infoboxnotealso" id="GUID-064DACC4-4F40-43CA-9518-09F0BE5923EB__GUID-516FA222-71B5-4F4B-B6E1-14419BA783F5">
+                           <p class="notep1">See Also:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><span class="q">"<a href="FETCH-statement.html#GUID-75BC6E63-841A-4103-9B96-8AC97F5C28BB" title="The FETCH statement retrieves rows of data from the result set of a multiple-row query—one row at a time, several rows at a time, or all rows at once—and stores the data in variables, records, or collections.">FETCH Statement</a>"</span> for complete syntax
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><span class="q">"<a href="cursors-overview.html#GUID-F1FE15F9-5C96-4C4E-B240-B7363D25A8F1" title="A cursor is a pointer to a private SQL area that stores information about processing a specific SELECT or DML statement.">Cursors Overview</a>"</span> for information about cursors
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><span class="q">"<a href="cursors-overview.html#GUID-89E0242F-42AC-4B21-9DF1-ACD6F4FC03B9">Explicit Cursors</a>"</span> for information about explicit cursors
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><span class="q">"<a href="cursor-variables.html#GUID-4A6E054A-4002-418D-A1CA-DE849CD7E6D5" title="To create a cursor variable, either declare a variable of the predefined type SYS_REFCURSOR or define a REF CURSOR type and then declare a variable of that type.After opening a cursor variable, you can fetch the rows of the query result set with the FETCH statement.You can assign to a PL/SQL cursor variable the value of another PL/SQL cursor variable or host cursor variable.The query associated with a cursor variable can reference any variable in its scope.You can use a cursor variable as a subprogram parameter, which makes it useful for passing query results between subprograms.You can use a cursor variable as a host variable, which makes it useful for passing query results between PL/SQL stored subprograms and their clients.">Cursor Variables</a>"</span> for information about cursor variables
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><a href="../sqlrf/Joins.html#SQLRF30046" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a> for information about joins
+                                 </p>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="example" id="GUID-064DACC4-4F40-43CA-9518-09F0BE5923EB__CBJCGDHB">
+                        <p class="titleinexample">Example 5-42 %ROWTYPE Variable Represents Partial Database Table Row</p>
+                        <p>This example defines an explicit cursor whose query selects only the columns <code class="codeph">first_name</code>, <code class="codeph">last_name</code>, and <code class="codeph">phone_number</code> from the <code class="codeph">employees</code> table in the sample schema <code class="codeph">HR</code>. Then the example declares a record variable that has a field for each column that the cursor selects. The variable represents a partial row of <code class="codeph">employees</code>. Compare this example to <a href="record-variables.html#GUID-7DC81088-1265-4C46-A04D-E3AD10BCC04F__CIHEGIFD">Example 5-37</a>.
+                        </p>
+                        <div class="infoboxnote" id="GUID-064DACC4-4F40-43CA-9518-09F0BE5923EB__GUID-74DD35A4-972D-447C-B920-46A4050397B3">
+                           <p class="notep1">Live SQL:</p>
+                           <p>You can view and run this example on Oracle Live SQL at <a href="https://livesql.oracle.com/apex/livesql/docs/lnpls/plsql-collections-and-records/tdlnplscomposites81.html" target="_blank">%ROWTYPE Variable Represents Partial Database Table Row</a></p>
+                        </div><pre class="oac_no_warn" dir="ltr">DECLARE
+  CURSOR c IS
+    SELECT first_name, last_name, phone_number
+    FROM employees;
+ 
+  <span class="bold">friend c%ROWTYPE;</span>
+BEGIN
+  friend.first_name   := 'John';
+  friend.last_name    := 'Smith';
+  friend.phone_number := '1-650-555-1234';
+  
+  DBMS_OUTPUT.PUT_LINE (
+    friend.first_name  || ' ' ||
+    friend.last_name   || ', ' ||
+    friend.phone_number
+  );
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">John Smith, 1-650-555-1234
+</pre></div>
+                     <div class="example" id="GUID-064DACC4-4F40-43CA-9518-09F0BE5923EB__CIHIFJHG">
+                        <p class="titleinexample">Example 5-43 %ROWTYPE Variable Represents Join Row</p>
+                        <p>This example defines an explicit cursor whose query is a join and then declares a record variable that has a field for each column that the cursor selects. </p>
+                        <div class="infoboxnote" id="GUID-064DACC4-4F40-43CA-9518-09F0BE5923EB__GUID-C0B244F8-2E16-4FEF-BEC3-31F95C4E18A5">
+                           <p class="notep1">Live SQL:</p>
+                           <p>You can view and run this example on Oracle Live SQL at <a href="https://livesql.oracle.com/apex/livesql/docs/lnpls/plsql-collections-and-records/tdlnplscomposites82.html" target="_blank">%ROWTYPE Variable Represents Join Row</a></p>
+                        </div><pre class="oac_no_warn" dir="ltr">DECLARE
+  CURSOR c2 IS
+    SELECT employee_id, email, employees.manager_id, location_id
+    FROM employees, departments
+    WHERE employees.department_id = departments.department_id;
+  
+  <span class="bold">join_rec c2%ROWTYPE;</span>  -- includes columns from two tables
+  
+BEGIN
+  NULL;
+END;
+/</pre></div>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-FE47FF68-8720-48EF-9091-88476E31C589" name="GUID-FE47FF68-8720-48EF-9091-88476E31C589"></a><h4 id="LNPLS-GUID-FE47FF68-8720-48EF-9091-88476E31C589" class="sect4"><span class="enumeration_section">5.12.4.3 </span>%ROWTYPE Attribute and Virtual Columns
+                  </h4>
+                  <div>
+                     <p>If you use the <code class="codeph">%ROWTYPE</code> attribute to define a record variable that represents a full row of a table that has a virtual column, then you cannot insert that record into the table. Instead, you must insert the individual record fields into the table, excluding the virtual column.
+                     </p>
+                     <div class="example" id="GUID-FE47FF68-8720-48EF-9091-88476E31C589__BABBCHAI">
+                        <p class="titleinexample">Example 5-44 Inserting %ROWTYPE Record into Table (Wrong)</p>
+                        <p>This example creates a record variable that represents a full row of a table that has a virtual column, populates the record, and inserts the record into the table, causing ORA-54013.</p><pre class="oac_no_warn" dir="ltr">DROP TABLE plch_departure;
+ 
+CREATE TABLE plch_departure (
+  destination    VARCHAR2(100),
+  departure_time DATE,
+  delay          NUMBER(10),
+  <span class="bold">expected       GENERATED ALWAYS AS (departure_time + delay/24/60/60)</span>
+);
+ 
+ 
+DECLARE
+ <span class="bold">dep_rec plch_departure%ROWTYPE;</span>
+BEGIN
+  dep_rec.destination := 'X'; 
+  dep_rec.departure_time := SYSDATE;
+  dep_rec.delay := 1500;
+ 
+  <span class="bold">INSERT INTO plch_departure VALUES dep_rec;</span>
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">DECLARE
+*
+ERROR at line 1:
+<span class="bold">ORA-54013: INSERT operation disallowed on virtual columns</span>
+ORA-06512: at line 8
+</pre></div>
+                     <div class="example" id="GUID-FE47FF68-8720-48EF-9091-88476E31C589__BABGHFEI">
+                        <p class="titleinexample">Example 5-45 Inserting %ROWTYPE Record into Table (Right)</p>
+                        <p>This solves the problem in <a href="record-variables.html#GUID-FE47FF68-8720-48EF-9091-88476E31C589__BABBCHAI">Example 5-44</a> by inserting the individual record fields into the table, excluding the virtual column.
+                        </p><pre class="oac_no_warn" dir="ltr">DECLARE
+  dep_rec plch_departure%rowtype;
+BEGIN
+  dep_rec.destination := 'X';
+  dep_rec.departure_time := SYSDATE;
+  dep_rec.delay := 1500;
+ 
+  <span class="bold">INSERT INTO plch_departure (destination, departure_time, delay)</span>
+  <span class="bold">VALUES (dep_rec.destination, dep_rec.departure_time, dep_rec.delay);</span>
+end;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">PL/SQL procedure successfully completed.</pre></div>
+                  </div>
+               </div><a id="LNPLS447"></a><a id="LNPLS99854"></a><div class="props_rev_3"><a id="GUID-058B062C-C429-422B-AD64-B2CFF63075FC" name="GUID-058B062C-C429-422B-AD64-B2CFF63075FC"></a><h4 id="LNPLS-GUID-058B062C-C429-422B-AD64-B2CFF63075FC" class="sect4"><span class="enumeration_section">5.12.4.4 </span>%ROWTYPE Attribute and Invisible Columns
+                  </h4>
+                  <div>
+                     <p>Suppose that you use the <code class="codeph">%ROWTYPE</code> attribute to define a record variable that represents a row of a table that has an invisible column, and then you make the invisible column visible.
+                     </p>
+                     <p>If you define the record variable with a cursor, as in <span class="q">"<a href="record-variables.html#GUID-064DACC4-4F40-43CA-9518-09F0BE5923EB">Declaring a Record Variable that Can Represent Partial Row</a>"</span>, then making the invisible column visible does not change the structure of the record variable.
+                     </p>
+                     <p>However, if you define the record variable as in <span class="q">"<a href="record-variables.html#GUID-9D20CCCC-E34B-473B-8499-4787D17C1980">Declaring a Record Variable that Always Represents Full Row</a>"</span> and use a <code class="codeph">SELECT</code> <code class="codeph">*</code> <code class="codeph">INTO</code> statement to assign values to the record, then making the invisible column visible does change the structure of the record—see <a href="record-variables.html#GUID-058B062C-C429-422B-AD64-B2CFF63075FC__BABJBIGE">Example 5-46</a>.
+                     </p>
+                     <div class="infoboxnotealso" id="GUID-058B062C-C429-422B-AD64-B2CFF63075FC__GUID-43D186FB-DFB2-4369-AEFC-728C6F69FF10">
+                        <p class="notep1">See Also:</p>
+                        <p><a href="../sqlrf/CREATE-TABLE.html#SQLRF55897" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a> for general information about invisible columns
+                        </p>
+                     </div>
+                     <div class="example" id="GUID-058B062C-C429-422B-AD64-B2CFF63075FC__BABJBIGE">
+                        <p class="titleinexample">Example 5-46 %ROWTYPE Affected by Making Invisible Column Visible</p><pre class="oac_no_warn" dir="ltr">CREATE <span class="bold">TABLE t</span> (a INT, b INT, <span class="bold">c INT INVISIBLE</span>);
+INSERT INTO t (a, b, <span class="bold">c</span>) VALUES (1, 2, <span class="bold">3</span>);
+COMMIT;
+
+DECLARE
+  <span class="bold">t_rec t%ROWTYPE;  -- t_rec has fields a and b, but not c</span>
+BEGIN
+  <span class="bold">SELECT * INTO t_rec FROM t</span> WHERE ROWNUM &lt; 2;  <span class="bold">-- t_rec(a)=1, t_rec(b)=2</span>
+  DBMS_OUTPUT.PUT_LINE('c = ' || <span class="bold">t_rec.c</span>);
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">  DBMS_OUTPUT.PUT_LINE('c = ' || t_rec.c);
+                                       *
+ERROR at line 5:
+ORA-06550: line 5, column 40:
+<span class="bold">PLS-00302: component 'C' must be declared</span>
+ORA-06550: line 5, column 3:
+PL/SQL: Statement ignored
+ </pre><p>Make invisible column visible:</p><pre class="oac_no_warn" dir="ltr">ALTER TABLE t MODIFY (<span class="bold">c VISIBLE</span>);
+ </pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">Table altered.
+ </pre><p>Repeat preceding anonymous block:</p><pre class="oac_no_warn" dir="ltr">DECLARE
+  <span class="bold">t_rec t%ROWTYPE;  -- t_rec has fields a, b, and c</span>
+BEGIN
+  <span class="bold">SELECT * INTO t_rec</span> FROM t WHERE ROWNUM &lt; 2;  <span class="bold">-- t_rec(a)=1, t_rec(b)=2,</span>
+                                                  <span class="bold">-- t_rec(c)=3</span>
+  DBMS_OUTPUT.PUT_LINE('c = ' || <span class="bold">t_rec.c</span>);
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr"><span class="bold">c = 3</span>
+ 
+PL/SQL procedure successfully completed.</pre></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,2223 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Sharded Database Schema Design">
+      <meta name="abstract" content="To obtain the benefits of sharding, the schema of a sharded database should be designed in a way that maximizes the number of database requests executed on a single shard.">
+      <meta name="description" content="To obtain the benefits of sharding, the schema of a sharded database should be designed in a way that maximizes the number of database requests executed on a single shard.">
+      <meta name="DC.subject" content=", globally unique sequence numbers, sequence numbers, globally unique, unique sequence numbers, global">
+      <meta name="keywords" content=", globally unique sequence numbers, sequence numbers, globally unique, unique sequence numbers, global">
+      <meta name="DC.Creator" content="Roopam Jain">
+      <meta name="DC.Creator" content="Shailesh Dwivedi">
+      <meta name="DC.Creator" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Pankaj Chandiramani">
+      <meta name="DC.Creator" content="Mark Dilman">
+      <meta name="DC.Creator" content="Nourdine Benadjaoud">
+      <meta name="DC.Creator" content="Rennie Sreekumar Ranjit Kumar">
+      <meta name="DC.Creator" content="David Colello">
+      <meta name="DC.Creator" content="Steve Ball">
+      <meta name="DC.Creator" content="Abhishek Srivastava">
+      <meta name="DC.Creator" content="Sebastian Binek">
+      <meta name="DC.Creator" content="Shahab Hamid">
+      <meta name="DC.Creator" content="Virginia Beecher">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-F4562E84-87F9-4AA0-BB13-8C2F54FE326A">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="To obtain the benefits of sharding, the schema of a sharded database should be designed in a way that maximizes the number of database requests executed on a single shard.">
+      <meta name="description" content="To obtain the benefits of sharding, the schema of a sharded database should be designed in a way that maximizes the number of database requests executed on a single shard.">
+      <title>Sharded Database Schema Design</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Using Oracle Sharding">
+      <meta property="og:description" content="To obtain the benefits of sharding, the schema of a sharded database should be designed in a way that maximizes the number of database requests executed on a single shard.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Using Oracle Sharding">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-globally-distributed-database-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-24T13:16:05-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2018, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E87088-15">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="gdd-oracle-cloud-infrastructure.html" title="Previous" type="text/html">
+      <link rel="next" href="migration1.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Globally Distributed Database Guide">
+    <meta name="dcterms.isVersionOf" content="SHARD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Sharded Database Schema Design","description":"To obtain the benefits of sharding, the schema of a sharded database should be designed in a way that maximizes the number of database requests executed on a single shard.","datePublished":"2025-06-25 CST","dateModified":"2025-06-25 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="gdd-oracle-cloud-infrastructure.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="migration1.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-F4562E84-87F9-4AA0-BB13-8C2F54FE326A" name="GUID-F4562E84-87F9-4AA0-BB13-8C2F54FE326A"></a>
+         
+         <h2 id="SHARD-GUID-F4562E84-87F9-4AA0-BB13-8C2F54FE326A" class="sect2"><span class="enumeration_chapter">6 </span>Sharded Database Schema
+        Design
+         </h2>
+         <div class="ind">
+            <div>
+               <p>To obtain the benefits of sharding, the schema of a sharded database should
+                be designed in a way that maximizes the number of database requests executed on a
+                single shard.</p>
+               <p></p>
+            </div>
+            <div class="sect2"><a id="GUID-42B2CA52-76DF-4F51-9CB6-51664102408F" name="GUID-42B2CA52-76DF-4F51-9CB6-51664102408F"></a><h3 id="SHARD-GUID-42B2CA52-76DF-4F51-9CB6-51664102408F" class="sect3">Sharded Database Schema Design
+        Considerations</h3>
+               <div>
+                  <p>Design of the database schema has a big impact on the performance and
+        scalability of a sharded database. An improperly designed schema can lead to unbalanced
+        distribution of data and workload across shards and large percentage of multi-shard
+        operations.</p>
+                  <p> The data model should be a hierarchical tree structure with a single root
+            table. Oracle Sharding supports any number of levels within the hierarchy.</p>
+                  <p>To obtain the benefits of sharding, the schema of a sharded database should
+            be designed in a way that maximizes the number of database requests executed on a single
+            shard. </p>
+                  <p>A sharded database schema consists of a sharded table family and duplicated
+            tables with the following characteristics.</p>
+                  <p>Sharded table family</p>
+                  <ul style="list-style-type: disc;" id="GUID-42B2CA52-76DF-4F51-9CB6-51664102408F__UL_GRR_3W3_SKB">
+                     <li>A set of tables which are equi-partitioned by the sharding key.
+                        <ul style="list-style-type: disc;" id="GUID-42B2CA52-76DF-4F51-9CB6-51664102408F__UL_HRR_3W3_SKB">
+                           <li>Related data is always stored and moved together.</li>
+                           <li>Joins and integrity constraint checks are done within a
+                        shard.</li>
+                        </ul>
+                     </li>
+                     <li>The sharding method and key are based on the application's
+                requirements.</li>
+                     <li>The sharding key must be included in the primary key.</li>
+                  </ul>
+                  <p>Duplicated tables</p>
+                  <ul style="list-style-type: disc;" id="GUID-42B2CA52-76DF-4F51-9CB6-51664102408F__UL_IRR_3W3_SKB">
+                     <li>Non-sharded tables which are replicated to all shards.</li>
+                     <li>Usually contain common reference data.</li>
+                     <li>Can be read and updated on each shard.</li>
+                  </ul>
+                  <p><span class="bold">Planning a Sharded Database Schema Design</span></p>
+                  <p>Once the sharded database is populated with data, it is impossible to change many
+            attributes of the schema, such as whether a table is sharded or duplicated, sharding
+            key, and so on. Therefore, the following points should be carefully considered before
+            deploying a sharded database.</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Which tables should be sharded?</p>
+                     </li>
+                     <li>
+                        <p>Which tables should be duplicated?</p>
+                     </li>
+                     <li>
+                        <p>Which sharded table should be the root table?</p>
+                     </li>
+                     <li>
+                        <p>What method should be used to link other tables to the root table?</p>
+                     </li>
+                     <li>
+                        <p>Which sharding method should be used?</p>
+                     </li>
+                     <li>
+                        <p>Which sharding key should be used?</p>
+                     </li>
+                     <li>
+                        <p>Which super sharding key should be used (if the sharding method is composite)?</p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-3DD73EB6-DBFA-407E-AFE2-AAEEF370C58E" name="GUID-3DD73EB6-DBFA-407E-AFE2-AAEEF370C58E"></a><h3 id="SHARD-GUID-3DD73EB6-DBFA-407E-AFE2-AAEEF370C58E" class="sect3">Choosing Sharding Keys</h3>
+               <div>
+                  <p>Sharded table partitions are distributed across shards at the tablespace
+        level, based on a sharding key. Examples of keys include customer ID, account number, and
+        country ID. </p>
+                  <p>Sharding keys must adhere to the following characteristics.</p>
+                  <ul style="list-style-type: disc;" id="GUID-3DD73EB6-DBFA-407E-AFE2-AAEEF370C58E__UL_GQP_YCH_DMB">
+                     <li>
+                        
+                        <p>The sharding key should be very stable; its value should almost never
+                    change.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>The sharding key must be present in all of the sharded tables. This
+                    allows the creation of a family of equi-partitioned tables based on the sharding
+                    key.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Joins between tables in a table family should be performed using the
+                    sharding key.</p>
+                        
+                     </li>
+                  </ul>
+                  <p><span class="bold">Sharding Keys for System-Managed Sharded Databases</span></p>
+                  <p>For the system-managed sharding method, the sharding key must be based on a
+            column that has high cardinality; the number of unique values in this column must be
+            much bigger than the number of shards. Customer ID, for example, is a good candidate for
+            the sharding key, while a United States state name is not.</p>
+                  <p>A sharding key can be a single column or multiple columns. When multiple columns are
+            present, the hash of the columns are concatenated to form the sharding key.</p>
+                  <p>The following examples create a sharded table called Customers and specify that columns
+                <code class="codeph">cust_id</code> and <code class="codeph">name</code> form the sharding keys for the
+            table.
+                  </p><pre class="pre codeblock"><code>CREATE SHARDED TABLE customers
+(cust_id     NUMBER NOT NULL
+, name        VARCHAR2(50)
+, address     VARCHAR2(250)
+, region      VARCHAR2(20)
+, class       VARCHAR2(3)
+, signup      DATE,
+CONSTRAINT cust_pk PRIMARY KEY(cust_id, name))
+PARTITION BY CONSISTENT HASH (cust_id,name)
+PARTITIONS AUTO
+TABLESPACE SET ts1;</code></pre><pre class="pre codeblock"><code>CREATE SHARDED TABLE Orders
+( OrderNo   NUMBER NOT NULL
+, CustNo    NUMBER NOT NULL
+, Name      VARCHAR2(50) NOT NULL
+, OrderDate DATE
+, CONSTRAINT OrderPK PRIMARY KEY (CustNo, Name, OrderNo)
+, CONSTRAINT CustFK  FOREIGN KEY (CustNo, Name) REFERENCES Customers(Cust_ID, Name)
+)
+PARTITION BY REFERENCE (CustFK);</code></pre><p><span class="bold">Sharding Keys for Composite Sharded Databases</span></p>
+                  <p>Composite sharding enables two levels of sharding - one by list or range and
+            another by consistent hash. This is accomplished by the application providing two keys:
+            a super sharding key and a sharding key.</p>
+                  <p>Composite sharding does not support multi-column <code class="codeph">LIST</code> partitionsets, as
+            shown here.
+                  </p><pre class="pre codeblock"><code>CREATE SHARDED TABLE customers (
+cust_id     NUMBER NOT NULL,
+Name    VARCHAR2(50) NOT NULL,
+class VARCHAR2(3) NOT NULL ,
+class2 number not null,
+CONSTRAINT cust_pk PRIMARY KEY(cust_id,name,class))
+PARTITIONSET BY LIST (class, class2)
+PARTITION BY CONSISTENT HASH (cust_id,name)
+PARTITIONS AUTO (
+PARTITIONSET silver VALUES (('SLV',1),('BRZ',2)) TABLESPACE SET ts1
+PARTITIONSET gold   VALUES (('GLD',3),('OTH',4)) TABLESPACE SET ts2);
+
+PARTITION BY CONSISTENT HASH (cust_id,name)
+*
+ERROR at line 8:
+ORA-02514: list PARTITIONSET method expects a single partitioning column
+</code></pre><p>Multi-column <code class="codeph">RANGE</code> partitionsets are supported, as shown below.
+                  </p><pre class="pre codeblock"><code>
+CREATE SHARDED TABLE customers (
+cust_id     NUMBER NOT NULL,
+Name    VARCHAR2(50) NOT NULL,
+class number NOT NULL ,
+class2 number not null,
+CONSTRAINT cust_pk PRIMARY KEY(cust_id,name,class))
+PARTITIONSET BY RANGE (class, class2)
+PARTITION BY CONSISTENT HASH (cust_id,name)
+PARTITIONS AUTO (
+PARTITIONSET silver VALUES LESS THAN (10,100) TABLESPACE SET ts1,
+PARTITIONSET gold   VALUES LESS THAN (20,200) TABLESPACE SET ts2);
+
+Table created.
+</code></pre><p>In both of the above cases, the sharding key (not the partitionset key) can be
+            multi-column.</p>
+                  <p><span class="bold">Sharding Keys for User-Defined Sharded Databases</span></p>
+                  <p> For partition by list in user-defined sharding, Oracle Sharding expects a single
+            sharding key column. An error is thrown when multiple columns are specified for a
+            list-partitioned sharded table.</p><pre class="pre codeblock"><code>CREATE SHARDED TABLE accounts
+( id             NUMBER
+, account_number NUMBER
+, customer_id    NUMBER
+, branch_id      NUMBER
+, state          VARCHAR(2) NOT NULL
+, state2         VARCHAR(2) NOT NULL
+, status         VARCHAR2(1)
+)
+PARTITION BY LIST (state,state2)
+( PARTITION p_northwest VALUES ('OR', 'WA') TABLESPACE ts1
+, PARTITION p_southwest VALUES ('AZ', 'UT', 'NM') TABLESPACE ts2
+, PARTITION p_northcentral VALUES ('SD', 'WI') TABLESPACE ts3
+, PARTITION p_southcentral VALUES ('OK', 'TX') TABLESPACE ts4
+, PARTITION p_northeast VALUES ('NY', 'VM', 'NJ') TABLESPACE ts5
+, PARTITION p_southeast VALUES ('FL', 'GA') TABLESPACE ts6
+);
+
+ERROR at line 1:
+ORA-03813: list partition method expects a single partitioning column in
+user-defined sharding</code></pre><p>For a range-partitioned sharded table, you can specify multiple columns as sharding key
+            columns.</p><pre class="pre codeblock"><code>
+CREATE SHARDED TABLE accounts
+( id             NUMBER
+, account_number NUMBER
+, customer_id    NUMBER
+, branch_id      NUMBER
+, state          NUMBER NOT NULL
+, state2         NUMBER NOT NULL
+, status         VARCHAR2(1)
+)
+PARTITION BY RANGE (state, state2)
+( PARTITION p_northwest VALUES LESS THAN(10, 100) TABLESPACE ts1
+, PARTITION p_southwest VALUES LESS THAN(20,200) TABLESPACE ts2);
+
+Table created.</code></pre><p>But in both cases, the sharding key (not the partitionset key) can be multi-column.</p>
+                  <p><span class="bold">Sharding Key Type Support</span></p>
+                  <p>The following data types are supported for the sharding key.</p>
+                  <ul style="list-style-type: disc;" id="GUID-3DD73EB6-DBFA-407E-AFE2-AAEEF370C58E__UL_OHB_5ZC_KGB">
+                     <li>
+                        
+                        <p><code class="codeph">NUMBER</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">INTEGER</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">SMALLINT</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">RAW</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">(N)VARCHAR</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">(N)VARCHAR2</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">(N)CHAR</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">DATE</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">TIMESTAMP</code></p>
+                        
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-2A201F75-2E4F-40FE-B367-EFB27A664004" name="GUID-2A201F75-2E4F-40FE-B367-EFB27A664004"></a><h3 id="SHARD-GUID-2A201F75-2E4F-40FE-B367-EFB27A664004" class="sect3">Primary Key and Foreign Key
+        Constraints</h3>
+               <div>
+                  <p>In a sharding environment, the primary key constraints and foreign key
+        constraints are controlled by the following rules.</p>
+                  <ul style="list-style-type: disc;" id="GUID-2A201F75-2E4F-40FE-B367-EFB27A664004__UL_RNR_31D_CNB">
+                     <li>
+                        
+                        <p>For primary keys, there are unique constraints and unique indexes on
+                    sharded tables; the column list must contain the sharding key columns. In
+                    earlier Oracle releases the restriction was that the sharding key must be a
+                    prefix of such columns, but this rule is now more relaxed.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Foreign keys from one sharded table to another sharded table also
+                    must contain the sharding key. This is automatically enforced because a foreign
+                    key refers to either the primary key or unique columns of the referenced
+                    table.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Foreign keys on sharded tables must be within the same table family.
+                    This is required because different table families have different sharding key
+                    columns.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Foreign keys in sharded tables referencing local tables are not allowed.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Foreign keys in sharded tables referencing duplicated tables are not
+                    allowed.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Foreign keys in duplicated table referencing sharded tables are not
+                    allowed.</p>
+                        
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-6A224DA1-2521-4036-B015-F72C1BC4763C" name="GUID-6A224DA1-2521-4036-B015-F72C1BC4763C"></a><h3 id="SHARD-GUID-6A224DA1-2521-4036-B015-F72C1BC4763C" class="sect3">Indexes on Sharded Tables</h3>
+               <div>
+                  <p>Only local indexes can be created on sharded tables. Unique local indexes on
+                sharded tables must contain the sharding key.</p>
+                  <p>Global indexes on sharded tables are not allowed because they can compromise
+                        the performance of online chunk movement. </p>
+                  <p>The following example creates a local index named <code class="codeph">id1</code> for the
+                                <code class="codeph">id</code> column of the <code class="codeph">account</code>
+                        table.
+                  </p><pre class="pre codeblock"><code>CREATE INDEX id1 ON account (id) LOCAL;</code></pre><p>The following example creates a local unique index named <code class="codeph">id2</code> for
+                        the <code class="codeph">id</code> and <code class="codeph">state</code> columns of the
+                                <code class="codeph">account</code> table.
+                  </p><pre class="pre codeblock"><code>CREATE UNIQUE INDEX id2 ON account (id, state) LOCAL;</code></pre></div>
+            </div>
+            <div class="sect2"><a id="GUID-FD5760B7-1F77-4A3C-A74C-2C70B2469E16" name="GUID-FD5760B7-1F77-4A3C-A74C-2C70B2469E16"></a><h3 id="SHARD-GUID-FD5760B7-1F77-4A3C-A74C-2C70B2469E16" class="sect3">DDL Execution in a Sharded Database</h3>
+               <div>
+                  <p>To create a schema in a sharded database, you must issue DDL commands on
+    the shard catalog database, which validates the DDLs and executes them locally before they are
+    executed on the shards.</p>
+                  <p>The shard catalog database contains local copies of all of the objects that exist in the
+      sharded database, and serves as the master copy of the sharded database schema. If the shard
+      catalog validation and execution of DDLs are successful, the DDLs are automatically propagated
+      to all of the shards and applied in the order in which they were issued on the shard
+      catalog.</p>
+                  <p>If a shard is down or not accessible during DDL propagation, the shard catalog keeps
+      track of DDLs that could not be applied to the shard, and then applies them when the shard is
+      back up. </p>
+                  <p>When a new shard is added to a sharded database, all of the DDLs that have been
+      executed in the sharded database are applied in the same order to the shard before it becomes
+      accessible to clients.</p>
+                  <p>There are two ways you can issue DDLs in a sharded database.</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Use the <code class="codeph">GDSCTL SQL</code> command.
+                        </p>
+                        <p>When you issue a DDL with the <code class="codeph">GDSCTL SQL</code> command, as shown in the
+          following example, <code class="codeph">GDSCTL</code> waits until all of the shards have finished
+          executing the DDL and returns the status of the execution.
+                        </p><pre class="pre codeblock"><code>GDSCTL&gt; sql “create tablespace set tbsset”</code></pre></li>
+                     <li>
+                        <p>Connect to the shard catalog database using SQL*Plus using the
+              <code class="codeph">GDS$CATALOG.<span class="variable" translate="no">sdbname</span></code> service.
+                        </p>
+                        
+                        <p>When you issue a DDL command on the shard catalog database, it returns the
+          status when it finishes executing locally, but the propagation of the DDL to all of the
+          shards happens in the background asynchronously.</p><pre class="pre codeblock"><code>SQL&gt; create tablespace set tbsset;</code></pre></li>
+                  </ul>
+                  <div class="infoboxnote" id="GUID-FD5760B7-1F77-4A3C-A74C-2C70B2469E16__GUID-D945A5CE-8A75-4E0E-906D-34254D99D893">
+                     <p class="notep1">Note:</p>Using the SYS account to execute shard DDL
+      is not recommended; create a privileged account for this purpose.
+                  </div>
+                  <p>For information about DDL syntax extensions for Oracle Sharding, see <a href="schema-design1.html#GUID-CE40067A-8A19-431F-B6D1-153759FA00ED" title="Oracle Sharding includes SQL DDL statements with syntax that can only be run against a sharded database.">DDL Syntax Extensions for Oracle Sharding</a>.
+                  </p>
+               </div>
+               <div class="sect3"><a id="GUID-23FD7FE6-5514-4228-93F8-8876980EA8CC" name="GUID-23FD7FE6-5514-4228-93F8-8876980EA8CC"></a><h4 id="SHARD-GUID-23FD7FE6-5514-4228-93F8-8876980EA8CC" class="sect4">Creating Objects Locally and
+        Globally</h4>
+                  <div>
+                     <p>Objects created using GDSCTL creates global, sharded database objects;
+        however, you can create local or global objects by connecting to the shard catalog with
+        SQL*Plus.</p>
+                     <p>When a DDL to create an object is issued using the GDSCTL
+                <code class="codeph">sql</code> command, the object is created on all of the shards. A master
+            copy of the object is also created in the shard catalog database. An object that exists
+            on all shards, and the shard catalog database, is called a <span class="italic">sharded database
+                object</span>.
+                     </p>
+                     <p>When connecting to the shard catalog using SQL*Plus, two types of objects
+            can be created: sharded database objects and local objects. <span class="italic">Local objects</span> are
+            traditional objects that exist only in the shard catalog. Local objects can be used for
+            administrative purposes, or they can be used by multi-shard queries originated from the
+            shard catalog database, to generate and store a report, for example.
+                     </p>
+                     <p>Sharded objects cannot have any dependency on local objects. For example, you cannot
+            create an all-shard view on a local table.</p>
+                     <p>The type of object (sharded database or local) that is created in a SQL*Plus
+            session depends on whether the <code class="codeph">SHARD DDL</code> mode is enabled in the
+            session. This mode is enabled by default on the shard catalog database for the
+            all-shards user, which is a user that exists on all of the shards and the shard catalog
+            database. All of the objects created while <code class="codeph">SHARD DDL</code> is enabled in a
+            session are sharded database objects. 
+                     </p>
+                     <p>To enable <code class="codeph">SHARD DDL</code> in the session, the all-shards user must run
+                     </p><pre class="pre codeblock"><code>ALTER SESSION ENABLE SHARD DDL</code></pre><p>All of the objects created while <code class="codeph">SHARD DDL</code> is disabled are
+            local objects. To create a local object, the all-shards user must first run 
+                     </p><pre class="pre codeblock"><code>ALTER SESSION DISABLE SHARD DDL</code></pre><p>See <a href="schema-design1.html#GUID-59EEFD84-4B33-48F4-8719-1F96D4E2E719" title="The ALTER SESSION statement is extended to support sharded databases.">ALTER SESSION</a> for more information about the <code class="codeph">SHARD DDL</code> session
+            parameter.
+                     </p>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-CE40067A-8A19-431F-B6D1-153759FA00ED" name="GUID-CE40067A-8A19-431F-B6D1-153759FA00ED"></a><h4 id="SHARD-GUID-CE40067A-8A19-431F-B6D1-153759FA00ED" class="sect4">DDL Syntax Extensions for Oracle
+        Sharding</h4>
+                  <div>
+                     <p>Oracle Sharding includes SQL DDL statements with syntax that can only be
+        run against a sharded database.</p>
+                     <p>Changes to query and DML statements are not required to support Oracle
+            Sharding, and the changes to the DDL statements are very limited. Most existing DDL
+            statements will work the same way on a sharded database, with the same syntax and
+            semantics, as they do on a non-sharded database.</p>
+                  </div>
+                  <div class="sect4"><a id="GUID-DDFEE0EA-921A-4DE1-8F85-E0D1BA6706DD" name="GUID-DDFEE0EA-921A-4DE1-8F85-E0D1BA6706DD"></a><h5 id="SHARD-GUID-DDFEE0EA-921A-4DE1-8F85-E0D1BA6706DD" class="sect5">CREATE TABLESPACE SET</h5>
+                     <div>
+                        <p>This statement creates a tablespace set that can be used as a logical
+        storage unit for one or more sharded tables and indexes. A tablespace set consists of
+        multiple Oracle tablespaces distributed across shards in a shardspace.</p>
+                        <p>The <code class="codeph">CREATE TABLESPACE SET</code> statement is intended specifically for Oracle
+            Sharding. Its syntax is similar to <code class="codeph">CREATE TABLESPACE</code>.
+                        </p><pre class="pre codeblock"><code>CREATE TABLESPACE SET tablespace_set 
+	   [IN SHARDSPACE shardspace]
+      		[USING TEMPLATE (
+    { MINIMUM EXTENT size_clause
+    | BLOCKSIZE integer [ K ]
+    | logging_clause
+    | FORCE LOGGING
+    | ENCRYPTION tablespace_encryption_spec
+    | DEFAULT [ table_compression ] storage_clause
+    | { ONLINE | OFFLINE }
+    | extent_management_clause
+    | segment_management_clause
+    | flashback_mode_clause
+    }...
+   )];</code></pre><p>Note that in system-managed sharding there is only one default shardspace in
+            the sharded database. The number of tablespaces in a tablespace set is determined
+            automatically and is equal to the number of chunks in the corresponding shardspace.</p>
+                        <p>All tablespaces in a tablespace set are bigfile tablespaces and have the same
+            properties. The properties are specified in the <code class="codeph">USING TEMPLATE</code> clause
+            and they describe the properties of one single tablespace in the tablespace set. This
+            clause is the same as <code class="codeph">permanent_tablespace_clause</code> for a typical
+            tablespace, with the exception that a data file name cannot be specified in the
+                <code class="codeph">datafile_tempfile_spec</code> clause. The data file name for each
+            tablespace in a tablespace set is generated automatically.
+                        </p>
+                        <p>Note that a tablespace set can only consist of permanent tablespaces, there
+            is no system, undo, or temporary tablespace set. Also, note that in the example below
+            the total data file size of the tablespace set is <kbd class="userinput">100mx<span class="variable" translate="no">N</span></kbd> (where <span class="variable" translate="no">N</span> is the number
+            of tablespaces in the tablespace set).
+                        </p>
+                        <p id="GUID-DDFEE0EA-921A-4DE1-8F85-E0D1BA6706DD__GUID-95EC7020-1ABE-4560-BB9A-C107CA4EB4D0"><span class="bold">Example</span></p><pre class="pre codeblock"><code>CREATE TABLESPACE SET TSP_SET_1 IN SHARDSPACE sgr1 
+USING TEMPLATE
+( DATAFILE SIZE 100m
+  EXTEND MANAGEMENT LOCAL
+  SEGMENT SPACE MANAGEMENT AUTO
+);</code></pre></div>
+                  </div>
+                  <div class="sect4"><a id="GUID-45C92D49-D43D-4563-8D75-D9FD0593EB1A" name="GUID-45C92D49-D43D-4563-8D75-D9FD0593EB1A"></a><h5 id="SHARD-GUID-45C92D49-D43D-4563-8D75-D9FD0593EB1A" class="sect5">ALTER TABLESPACE SET</h5>
+                     <div>
+                        <p>This statement alters a tablespace set that can be used as a logical storage
+        unit for one or more sharded tables and indexes.</p>
+                        <p>The <code class="codeph">SHARDSPACE</code> property of a tablespace set cannot be
+            modified. All other attributes of a tablespace set can be altered just as for a regular
+            permanent tablespace. Because tablespaces in a tablespace set are bigfile, the
+                <code class="codeph">ADD DATAFILE</code> and <code class="codeph">DROP DATAFILE</code> clauses are not
+            supported.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-79748A1A-FF60-4F72-A72B-18D6AFC89E13" name="GUID-79748A1A-FF60-4F72-A72B-18D6AFC89E13"></a><h5 id="SHARD-GUID-79748A1A-FF60-4F72-A72B-18D6AFC89E13" class="sect5">DROP TABLESPACE SET and PURGE TABLESPACE
+        SET</h5>
+                     <div>
+                        <p>These statements drop or purge a tablespace set, which can be used as a
+        logical storage unit for one or more sharded tables and indexes.</p>
+                        <p>The syntax and semantics for these statements are similar to
+                <code class="codeph">DROP</code> and <code class="codeph">PURGE TABLESPACE</code> statements.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-BB24A6D3-6FDE-482B-AAC0-75CA07ECF881" name="GUID-BB24A6D3-6FDE-482B-AAC0-75CA07ECF881"></a><h5 id="SHARD-GUID-BB24A6D3-6FDE-482B-AAC0-75CA07ECF881" class="sect5">CREATE TABLE</h5>
+                     <div>
+                        <p>The <code class="codeph">CREATE TABLE</code> statement has been extended to create
+                sharded and duplicated tables, and specify a table family.
+                        </p>
+                        <p id="GUID-BB24A6D3-6FDE-482B-AAC0-75CA07ECF881__GUID-F8AC1BEE-6905-4D82-9344-0249A4FBDC42"><span class="bold">Syntax</span></p><pre class="pre codeblock"><code>CREATE [ { GLOBAL TEMPORARY | SHARDED | DUPLICATED} ] 
+	     TABLE [ schema. ] table
+      { relational_table | object_table | XMLType_table }
+      	[ PARENT [ schema. ] table ] ;</code></pre><p>The following parts of the <code class="codeph">CREATE TABLE</code> statement
+                        are intended to support Oracle Sharding:
+                        </p>
+                        <ul style="list-style-type: disc;" id="GUID-BB24A6D3-6FDE-482B-AAC0-75CA07ECF881__UL_KHP_HMR_HKB">
+                           <li>
+                              
+                              <p>The <code class="codeph">SHARDED</code> and
+                                                <code class="codeph">DUPLICATED</code> keywords indicate that
+                                        the table content is either partitioned across shards or
+                                        duplicated on all shards respectively. The
+                                                <code class="codeph">DUPLICATED</code> keyword is the only
+                                        syntax change to create duplicated tables. All other changes
+                                        described below apply only to sharded tables.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>The <code class="codeph">PARENT</code> clause links a sharded
+                                        table to the root table of its table family.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>In system and composite sharding, to create a
+                                        sharded table, <code class="codeph">TABLESPACE SET</code> is used
+                                        instead of <code class="codeph">TABLESPACE</code>. All clauses that
+                                        contain <code class="codeph">TABLESPACE</code> are extended to contain
+                                                <code class="codeph">TABLESPACE SET</code>.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Three clauses:
+                                                <code class="codeph">consistent_hash_partitions</code>,
+                                                <code class="codeph">consistent_hash_with_subpartitions</code>,
+                                        and <code class="codeph">partition_set_clause</code> in the
+                                                <code class="codeph">table_partitioning_clauses</code>.
+                              </p>
+                              <pre class="pre codeblock"><code>table_partitioning_clauses ::=
+{range_partitions
+| hash_partitions
+| list_partitions
+| composite_range_partitions
+| composite_hash_partitions
+| composite_list_partitions
+| reference_partitioning
+| system_partitioning
+<span class="bold">| consistent_hash_partitions
+| consistent_hash_with_subpartitions
+| partition_set_clause</span>
+}</code></pre>
+                              </li>
+                        </ul>
+                        <p id="GUID-BB24A6D3-6FDE-482B-AAC0-75CA07ECF881__GUID-AD258DAF-1B98-48CC-8C42-1D7AFD4E2C53"><span class="bold">Example</span></p><pre class="pre codeblock"><code>CREATE SHARDED TABLE customers 
+( cust_id     NUMBER NOT NULL
+, name        VARCHAR2(50)
+, address     VARCHAR2(250) 
+, location_id VARCHAR2(20)
+, class       VARCHAR2(3)
+, signup_date DATE
+,
+CONSTRAINT cust_pk PRIMARY KEY(cust_id, class)
+)
+PARTITIONSET BY LIST (class)
+PARTITION BY CONSISTENT HASH (cust_id)
+PARTITIONS AUTO
+(PARTITIONSET gold   VALUES (‘gld’) TABLESPACE SET ts2,
+ PARTITIONSET silver VALUES (‘slv’) TABLESPACE SET ts1)
+;</code></pre><p><span class="bold">Example of consistent_hash_with_subpartitions</span></p><pre class="pre codeblock"><code>CREATE SHARDED TABLE Customers
+       ( "custi_id" NUMBER NOT NULL
+       , name VARCHAR2(50)
+       , class VARCHAR2(3) NOT NULL
+       , signup_date DATE
+       ,
+       CONSTRAINT cust_pk PRIMARY KEY("custi_id",name,signup_date,class)
+       )
+       PARTITIONSET BY LIST (class)
+       PARTITION BY CONSISTENT HASH ("custi_id",name)
+       SUBPARTITION BY RANGE (signup_date)
+       SUBPARTITION TEMPLATE
+          ( SUBPARTITION per1 VALUES LESS THAN (TO_DATE('01/01/2000','DD/MM/YYYY'))
+          , SUBPARTITION per2 VALUES LESS THAN (TO_DATE('01/01/2010','DD/MM/YYYY'))
+          , SUBPARTITION per3 VALUES LESS THAN (TO_DATE('01/01/2020','DD/MM/YYYY'))
+          , SUBPARTITION future VALUES LESS THAN (MAXVALUE))
+       PARTITIONS AUTO
+       (
+         PARTITIONSET "gold" VALUES ('Gld','BRZ') TABLESPACE SET ts1 SUBPARTITIONS STORE IN(TBS1,TBS2,TBS3,TBS4)
+       , PARTITIONSET "silver" VALUES ('Slv','OTH') TABLESPACE SET ts2 SUBPARTITIONS STORE IN(TBS5,TBS6,TBS7,TBS8)
+       ) ;</code></pre><p><span class="bold">Limitations</span></p>
+                        <p>Limitations for sharded tables in the current release:</p>
+                        <ul style="list-style-type: disc;" id="GUID-BB24A6D3-6FDE-482B-AAC0-75CA07ECF881__UL_LHP_HMR_HKB">
+                           <li>
+                              
+                              <p>There is no default tablespace set for sharded
+                                        tables.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>A temporary table cannot be sharded or
+                                        duplicated.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Index-organized sharded tables are not
+                                        supported.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>A sharded table cannot contain a nested table column
+                                        or an identity column.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>A primary key constraint defined on a sharded table
+                                        must contain the sharding column(s). A foreign key
+                                        constraint on a column of a sharded table referencing a
+                                        duplicated table column is not supported.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>System partitioning and interval range partitioning
+                                        are not supported for sharded tables. Specification of
+                                        individual hash partitions is not supported for partitioning
+                                        by consistent hash.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>A column in a sharded table used in
+                                                <code class="codeph">PARTITION BY</code> or
+                                                <code class="codeph">PARTITIONSET BY</code> clauses cannot be a
+                                        virtual column.
+                              </p>
+                              
+                           </li>
+                        </ul>
+                        <p>Duplicated tables in the current release are not supported with the
+                        following:</p>
+                        <ul style="list-style-type: disc;" id="GUID-BB24A6D3-6FDE-482B-AAC0-75CA07ECF881__UL_MHP_HMR_HKB">
+                           <li>
+                              
+                              <p>System and reference partitioned tables</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>LONG, abstract (MDSYS data types are supported), REF
+                                        data types</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Maximum number of columns without primary key is
+                                        999</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>The <code class="codeph">nologging</code> and
+                                                <code class="codeph">inmemory</code> options
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>XMLType column in a duplicated table cannot be used
+                                        in non-ASSM tablespace</p>
+                              
+                           </li>
+                        </ul>
+                        <p>See <a href="../sqlrf/CREATE-TABLE.html#SQLRF-GUID-F9CE0CC3-13AE-4744-A43C-EAC7A71AAAB6" target="_blank">CREATE TABLE</a> for more
+                        information about using the clauses supporting Oracle Sharding.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-E3171ACA-CFED-4476-B342-2A446D078E8C" name="GUID-E3171ACA-CFED-4476-B342-2A446D078E8C"></a><h5 id="SHARD-GUID-E3171ACA-CFED-4476-B342-2A446D078E8C" class="sect5">ALTER TABLE</h5>
+                     <div>
+                        <p>The <code class="codeph">ALTER TABLE</code> statement is extended to modify sharded and
+                duplicated tables.
+                        </p>
+                        <p>There are limitations on using <code class="codeph">ALTER TABLE</code> with a
+                        sharded database. 
+                        </p>
+                        <p>The following options are not supported for a sharded table in a
+                        system-managed or composite sharded database:</p>
+                        <ul style="list-style-type: disc;" id="GUID-E3171ACA-CFED-4476-B342-2A446D078E8C__UL_CWG_VMR_HKB">
+                           <li>
+                              
+                              <p>Rename</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Add foreign key constraint</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>All operations on individual partitions and
+                                        subpartitions</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>All partition-related operations on the shard,
+                                        except <code class="codeph">TRUNCATE</code> partition, <code class="codeph">UNUSABLE
+                                                LOCAL INDEXES</code>, and <code class="codeph">REBUILD UNUSABLE
+                                                LOCAL INDEXES</code></p>
+                              
+                           </li>
+                        </ul>
+                        <p>The following are not supported for duplicated tables:</p>
+                        <ul style="list-style-type: disc;" id="GUID-E3171ACA-CFED-4476-B342-2A446D078E8C__UL_DWG_VMR_HKB">
+                           <li>
+                              
+                              <p>Data types: long, abstract (<code class="codeph">MDSYS</code>
+                                        datatypes are supported), <code class="codeph">REF</code></p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Column options: vector encode, invisible column,
+                                        nested tables</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Object types</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Clustered table</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>External table</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>ILM policy</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><code class="codeph">PARENT</code> clause
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Flashback table operation</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>System and Reference partitioning</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Enable <code class="codeph">NOLOGGING</code> option
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Drop duplicated table materialized view log</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Drop duplicated table materialized views on
+                                        shards</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Alter materialized views (of duplicated tables) on
+                                        shards</p>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-59EEFD84-4B33-48F4-8719-1F96D4E2E719" name="GUID-59EEFD84-4B33-48F4-8719-1F96D4E2E719"></a><h5 id="SHARD-GUID-59EEFD84-4B33-48F4-8719-1F96D4E2E719" class="sect5">ALTER SESSION</h5>
+                     <div>
+                        <p>The <code class="codeph">ALTER SESSION</code> statement is extended to support sharded
+                databases.
+                        </p>
+                        <p>The session-level <code class="codeph">SHARD DDL</code> parameter sets the scope
+                        for DDLs issued against the shard catalog database. 
+                        </p><pre class="pre codeblock"><code>ALTER SESSION { ENABLE | DISABLE } <span class="bold">SHARD DDL</span>;</code></pre><p>When <code class="codeph">SHARD DDL</code> is enabled, all DDLs issued in the
+                        session are executed on the shard catalog and all shards. When <code class="codeph">SHARD
+                                DDL</code> is disabled, a DDL is executed only against the shard
+                        catalog database. <code class="codeph">SHARD DDL</code> is enabled by default for a
+                        sharded database user (the user that exists on all shards and the catalog).
+                        To create a sharded database user, the <code class="codeph">SHARD DDL</code> parameter
+                        must be enabled before running <code class="codeph">CREATE USER</code>.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-67BC4EEF-91D7-4240-8975-06C94E2FEA8C" name="GUID-67BC4EEF-91D7-4240-8975-06C94E2FEA8C"></a><h3 id="SHARD-GUID-67BC4EEF-91D7-4240-8975-06C94E2FEA8C" class="sect3">PL/SQL Procedure Execution in a Sharded Database</h3>
+               <div>
+                  <p>In the same way that DDL statements can be executed on all shards in a configuration, so too can certain Oracle-provided PL/SQL procedures. These specific procedure calls behave as if they were sharded DDL statements, in that they are propogated to all shards, tracked by the catalog, and run whenever a new shard is added to a configuration.</p>
+                  <p>All of the following procedures can act as if they were a sharded DDL statement.</p>
+                  <ul style="list-style-type: disc;" id="GUID-67BC4EEF-91D7-4240-8975-06C94E2FEA8C__UL_SCD_CPH_2GB">
+                     <li>Any procedure in the DBMS_FGA package</li>
+                     <li>Any procedure in the DBMS_RLS package</li>
+                     <li>The following procudures from the DBMS_STATS package:
+                        <ul style="list-style-type: disc;" id="GUID-67BC4EEF-91D7-4240-8975-06C94E2FEA8C__UL_QXH_FPH_2GB">
+                           <li>GATHER_INDEX_STATS</li>
+                           <li>GATHER_TABLE_STATS</li>
+                           <li>GATHER_SCHEMA_STATS</li>
+                           <li>GATHER_DATABASE_STATS</li>
+                           <li>GATHER_SYSTEM_STATS</li>
+                        </ul>
+                     </li>
+                     <li>The following procedures from the DBMS_GOLDENGATE_ADM package:
+                        <ul style="list-style-type: disc;" id="GUID-67BC4EEF-91D7-4240-8975-06C94E2FEA8C__UL_GGD_JPH_2GB">
+                           <li>ADD_AUTO_CDR</li>
+                           <li>ADD_AUTO_CDR_COLUMN_GROUP</li>
+                           <li>ADD_AUTO_CDR_DELTA_RES</li>
+                           <li>ALTER_AUTO_CDR</li>
+                           <li>ALTER_AUTO_CDR_COLUMN_GROUP</li>
+                           <li>PURGE_TOMBSTONES</li>
+                           <li>REMOVE_AUTO_CDR</li>
+                           <li>REMOVE_AUTO_CDR_COLUMN_GROUP</li>
+                           <li>REMOVE_AUTO_CDR_DELTA_RES</li>
+                        </ul>
+                     </li>
+                  </ul>
+                  <p>To run one of the procedures in the same way as sharded DDL statements, do the following steps.</p>
+                  <ol id="GUID-67BC4EEF-91D7-4240-8975-06C94E2FEA8C__OL_AHY_QPH_2GB">
+                     <li>Connect to the shard catalog database using SQL*Plus as a database user with the gsm_pooladmin_role.</li>
+                     <li>Enable sharding DDL using <code class="codeph">alter session enable shard ddl</code>.
+                     </li>
+                     <li>Run the target procedure using a sharding-specific PL/SQL procedure named <code class="codeph">SYS.EXEC_SHARD_PLSQL</code>. 
+                        <p>This procedure takes a single CLOB argument, which is a character string specifying a fully qualified procedure name and its arguments. Note that running the target procedure without using <code class="codeph">EXEC_SHARD_PLSQL</code> causes the procedure to only be run on the catalog and it is not propogated to all of the shards. Running the procedure without specifying the fully qualified name (for example,<code class="codeph"> SYS.DBMS_RLS.ADD_POLICY</code>) will result in an error.
+                        </p>
+                     </li>
+                  </ol>
+                  <p>For example, to run <code class="codeph">DBMS_RLS.ADD_POLICY</code> on all shards, do the following from SQL*Plus after enabling shard DLL.
+                  </p><pre class="pre codeblock"><code>exec sys.exec_shard_plsql('sys.dbms_rls.add_policy(object_schema               =&gt;
+          ''testuser1'',
+                                                            
+          object_name     =&gt; ''DEPARTMENTS'', 
+                                                            
+          policy_name     =&gt; ''dept_vpd_pol'',
+                                                            
+          function_schema =&gt; ''testuser1'',
+                                                            
+          policy_function =&gt; ''authorized_emps'', 
+                                                            
+          statement_types =&gt; ''INSERT, UPDATE, DELETE, SELECT, INDEX'',
+                                                            
+          update_check    =&gt; TRUE)' 
+                                             
+          ) ;</code></pre><p>Take careful note of the need for double single-quotes inside the target procedure call specification, because the call specification itself is a string parameter to <code class="codeph">exec_shard_plsql</code>.
+                  </p>
+                  <p>If the target procedure executes correctly on the shard catalog database, it will be queued for processing on all the currently deployed shards. Any error in the target procedure execution on the catalog is returned to the SQL*Plus session. Errors during execution on the shards can be tracked in the same way they are for DDLs.</p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-7DEC4996-5159-4C75-A96C-C1735E9A36DD" name="GUID-7DEC4996-5159-4C75-A96C-C1735E9A36DD"></a><h3 id="SHARD-GUID-7DEC4996-5159-4C75-A96C-C1735E9A36DD" class="sect3">Creating Sharded Database Schema
+                Objects</h3>
+               <div>
+                  <p>The following topics show you how to create the schema objects in your
+                sharded database. Refer back to the Sharded Database Schema Objects section in
+                chapter 2 for conceptual information about these objects.</p>
+                  <p></p>
+               </div>
+               <div class="sect3"><a id="GUID-401CD85A-63FC-44A3-97AB-D0BE01B27239" name="GUID-401CD85A-63FC-44A3-97AB-D0BE01B27239"></a><h4 id="SHARD-GUID-401CD85A-63FC-44A3-97AB-D0BE01B27239" class="sect4">Create an All-Shards User</h4>
+                  <div>
+                     <p>Local users that only exist in the shard catalog database do not have the
+        privileges to create schema objects in the sharded database. The first step of creating the
+        sharded database schema is to create an <strong class="term">all-shards</strong> user.
+                     </p>
+                     <p>Create an all-shards user by connecting to the shard catalog database as a
+            privileged user, enabling <code class="codeph">SHARD DDL</code>, and executing the <code class="codeph">CREATE
+                USER</code> command. When the all-shards user connects to the shard catalog
+            database, the <code class="codeph">SHARD DDL</code> mode is enabled by default.
+                     </p>
+                     <div class="infoboxnote" id="GUID-401CD85A-63FC-44A3-97AB-D0BE01B27239__GUID-53959C1B-AB72-4165-8413-5177650AFD3F">
+                        <p class="notep1">Note:</p>
+                        
+                        <p>Local users can create non-schema sharded database objects, such as
+                tablespaces, directories, and contexts, if they enable <code class="codeph">SHARD DDL</code>
+                mode; however, they cannot create schema objects, such as tables, views, indexes,
+                functions, procedures, and so on.
+                        </p>
+                        
+                        <p>Sharded objects cannot have any dependency on local
+                objects. For example, you cannot create an all-shard view on a local table.</p>
+                        
+                        <p>You cannot grant <code class="codeph">SYS</code> privileges to sharded users using
+                sharded DDL. You must log in to each shard and grant the privilege to the account
+                manually on that shard.
+                        </p>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-EBE26C29-ED1E-4CAE-BB5C-9480A2C45F6E" name="GUID-EBE26C29-ED1E-4CAE-BB5C-9480A2C45F6E"></a><h4 id="SHARD-GUID-EBE26C29-ED1E-4CAE-BB5C-9480A2C45F6E" class="sect4">Creating a Sharded Table
+        Family</h4>
+                  <div>
+                     <p>Create a sharded table family with the <code class="codeph">SQL CREATE TABLE</code>
+        statement. You can specify parent-child relationships between tables using reference
+        partitioning or equi-partitioning.
+                     </p>
+                     <p><span class="bold">Use Reference Partitioning to Specify Parent-Child Relationships Between
+            Tables</span></p>
+                     <p>The recommended way to create a sharded table family is to specify
+            parent-child relationships between tables using reference partitioning. </p>
+                     <p>Partitioning by reference simplifies the syntax since the partitioning scheme
+            is only specified for the root table. Also, partition management operations that are
+            performed on the root table are automatically propagated to its descendents. For
+            example, when adding a partition to the root table, a new partition is created on all
+            its descendents.</p>
+                     <p>The appropriate <code class="codeph">CREATE TABLE</code> statements for
+            Customers&#x2013;Orders&#x2013;LineItems schema using a system-managed sharding methodology are shown
+            below. The first statement creates the root table of the table family, Customers. 
+                     </p><pre class="pre codeblock"><code>CREATE SHARDED TABLE Customers 
+( CustNo      NUMBER NOT NULL
+, Name        VARCHAR2(50)
+, Address     VARCHAR2(250) 
+, CONSTRAINT RootPK PRIMARY KEY(CustNo)
+)
+PARTITION BY CONSISTENT HASH (CustNo)
+PARTITIONS AUTO
+TABLESPACE SET ts1
+;</code></pre><p>The following two statements create the Orders and LineItems tables, which
+            are a child and grandchild of the Customers table.</p><pre class="pre codeblock"><code>CREATE SHARDED TABLE Orders 
+( OrderNo   NUMBER NOT NULL
+, CustNo    NUMBER NOT NULL
+, OrderDate DATE
+, CONSTRAINT OrderPK PRIMARY KEY (CustNo, OrderNo)
+, CONSTRAINT CustFK  FOREIGN KEY (CustNo) REFERENCES Customers(CustNo) 
+)
+PARTITION BY REFERENCE (CustFK)
+;</code></pre><pre class="pre codeblock"><code>CREATE SHARDED TABLE LineItems 
+( CustNo    NUMBER NOT NULL
+, LineNo    NUMBER(2) NOT NULL
+, OrderNo   NUMBER(5) NOT NULL
+, StockNo   NUMBER(4)
+, Quantity  NUMBER(2)
+, CONSTRAINT LinePK  PRIMARY KEY (CustNo, OrderNo, LineNo)
+, CONSTRAINT LineFK  FOREIGN KEY (CustNo, OrderNo) REFERENCES Orders(CustNo, OrderNo)
+)
+PARTITION BY REFERENCE (LineFK)
+;</code></pre><p>In the example statements above, corresponding partitions of all tables in
+            the family are stored in the same tablespace set, TS1. However, it is possible to
+            specify separate tablespace sets for each table.</p>
+                     <p>Note that in the example statements above, the partitioning column
+                <code class="codeph">CustNo</code> used as the sharding key is present in all three tables.
+            This is despite the fact that reference partitioning, in general, allows a child table
+            to be equi-partitioned with the parent table without having to duplicate the key columns
+            in the child table. The reason for this is that reference partitioning requires a
+            primary key in a parent table because the primary key must be specified in the foreign
+            key constraint of a child table used to link the child to its parent. However, a primary
+            key on a sharded table must be the same as, or contain, the sharding key. This makes it
+            possible to enforce global uniqueness of a primary key without coordination with other
+            shards, a critical requirement for linear scalability.
+                     </p>
+                     <p>To summarize, the use of reference-partitioned tables in a sharded database
+            requires adhering to the following rules:</p>
+                     <ul style="list-style-type: disc;" id="GUID-EBE26C29-ED1E-4CAE-BB5C-9480A2C45F6E__UL_A3P_PSH_ZKB">
+                        <li>
+                           
+                           <p>A primary key on a sharded table must either be the same as the
+                    sharding key, or contain the sharding key. This is required to enforce global
+                    uniqueness of a primary key without coordination with other shards.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Reference partitioning requires a primary key in a parent table,
+                    because the primary key must be specified in the foreign key constraint of a
+                    child table to link the child to its parent. It is also possible to have a
+                    foreign key constraint when the parent table has just <code class="codeph">UNIQUE</code>
+                    constraint, but no <code class="codeph">PRIMARY KEY</code>. The sharding key must also be
+                        <code class="codeph">NOT NULL</code>.
+                           </p>
+                           
+                           <p>For example, to link the LineItems (child) table to the Orders
+                    (parent) table, you need a primary key in the Orders table. The second rule
+                    implies that the primary key in the Orders table contains the
+                        <code class="codeph">CustNo</code> value. (This is an existing partitioning rule not
+                    specific to Oracle Sharding.)
+                           </p>
+                           
+                        </li>
+                     </ul>
+                     <p><span class="bold">Use Equi-Partitioning to Specify Parent-Child Relationships Between
+                Tables</span></p>
+                     <p>In some cases it is impossible or undesirable to create primary and foreign
+            key constraints that are required for reference partitioning. For such cases, specifying
+            parent-child relationships in a table family requires that all tables are explicitly
+            equi-partitioned. Each child table is created with the <code class="codeph">PARENT</code> clause in
+                <code class="codeph">CREATE SHARDED TABLE</code> that contains the name of its parent. An
+            example of the syntax is shown below.
+                     </p><pre class="pre codeblock"><code> CREATE SHARDED TABLE Customers 
+( CustNo      NUMBER NOT NULL
+, Name        VARCHAR2(50)
+, Address     VARCHAR2(250) 
+, region      VARCHAR2(20)
+, class       VARCHAR2(3)
+, signup      DATE
+)
+PARTITION BY CONSISTENT HASH (CustNo)
+PARTITIONS AUTO
+TABLESPACE SET ts1
+;
+
+CREATE SHARDED TABLE Orders 
+( OrderNo   NUMBER 
+, CustNo    NUMBER NOT NULL
+, OrderDate DATE
+)
+<span class="bold">PARENT Customers
+</span>PARTITION BY CONSISTENT HASH (CustNo)
+PARTITIONS AUTO
+TABLESPACE SET ts1
+;
+
+CREATE SHARDED TABLE LineItems 
+( LineNo    NUMBER
+, OrderNo   NUMBER
+, CustNo    NUMBER NOT NULL
+, StockNo   NUMBER
+, Quantity  NUMBER
+)
+<span class="bold">PARENT Customers
+</span>PARTITION BY CONSISTENT HASH (CustNo)
+PARTITIONS AUTO
+TABLESPACE SET ts1
+;</code></pre><p>Because the partitioning scheme is fully specified in all of the
+                <code class="codeph">CREATE SHARDED TABLE</code> statements, any table can be independently
+            subpartitioned. This is not permitted with reference partitioning where subpartitions
+            can only be specified for the root table and the subpartitioning scheme is the same for
+            all tables in a table family.
+                     </p>
+                     <p>Note that this method only supports two-level table families, that is, all
+            children must have the same parent and grandchildren cannot exist. This is not a
+            limitation as long as the partitioning column from the parent table exists in all of the
+            child tables.</p>
+                     <div class="infoboxnotealso" id="GUID-EBE26C29-ED1E-4CAE-BB5C-9480A2C45F6E__GUID-49673F2F-2B83-4FB8-879B-1F0BB6DE2A67">
+                        <p class="notep1">See Also:</p>
+                        
+                        <p><a href="../vldbg/partition-concepts.html#VLDBG-GUID-54D18B18-6838-4115-9389-E1FB0D20A8CA" target="_blank"><span><cite>Oracle Database VLDB and Partitioning Guide</cite></span></a> for information about reference
+                partitioning
+                        </p>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-F864F816-615E-4C53-9FDE-0C26B753CA0D" name="GUID-F864F816-615E-4C53-9FDE-0C26B753CA0D"></a><h4 id="SHARD-GUID-F864F816-615E-4C53-9FDE-0C26B753CA0D" class="sect4">Creating Sharded Tables</h4>
+                  <div>
+                     <p>A sharded table is a table that is partitioned into smaller and more
+        manageable pieces among multiple databases, called shards.</p>
+                     <p><span class="bold">Tablespace Set Sizing</span></p>
+                     <p>In the system-managed and composite sharding methods, when you create a tablespace set on
+            the shard catalog, you must make sure you have enough space for all of the tablespaces
+            created on the shard catalog and on each of the shards. This is especially important in
+            a metered usage environment.</p>
+                     <p>For example, with a shard catalog and three shards in the configuration, you issue the
+            following statements.</p><pre class="pre codeblock"><code>ALTER SESSION ENABLE SHARD DDL;
+CREATE TABLESPACE SET TSP_SET_1 IN SHARDSPACE SHSPC_1 USING TEMPLATE
+ (DATAFILE SIZE 100M  AUTOEXTEND ON NEXT 1M MAXSIZE UNLIMITED);</code></pre><p>Assuming a default of 120 chunks per shard, the command creates 360 tablespaces of an
+            initial tables space 100M each on the shard catalog and on each shard. While that
+            doesn't sound like a lot of storage, when the database administrator allots 100G
+            initially, they are not expecting 3.6TB per shard. If that amount of storage is not
+            planned for, this may lead to a failed DDL, and will require significant effort to
+            recover from.</p>
+                     <p><span class="bold">Creating Sharded Tables in a System-Managed Sharded Database</span></p>
+                     <p>In a system-managed sharded database, data is automatically distributed across the shards
+            using partitioning by consistent hash.</p>
+                     <p>Before creating a sharded table, create a tablespace set with <code class="codeph">CREATE TABLESPACE
+                SET</code> to store the table partitions.
+                     </p><pre class="pre codeblock"><code>CREATE TABLESPACE SET ts1;</code></pre><p>If you need to customize the tablespace attributes, add the <code class="codeph">USING
+                TEMPLATE</code> clause to <code class="codeph">CREATE TABLESPACE SET</code> as shown in this
+            example.
+                     </p><pre class="pre codeblock"><code>CREATE TABLESPACE SET ts1
+USING TEMPLATE
+( DATAFILE SIZE 10M
+  EXTENT MANAGEMENT LOCAL UNIFORM SIZE 256K
+  SEGMENT SPACE MANAGEMENT AUTO
+  ONLINE
+)
+;</code></pre><p>You create a sharded table with <code class="codeph">CREATE SHARDED TABLE</code>,
+            horizontally partitioning the table across the shards based on the sharding key
+                <code class="codeph">cust_id</code>.
+                     </p><pre class="pre codeblock"><code>CREATE SHARDED TABLE customers 
+( cust_id     NUMBER NOT NULL
+, name        VARCHAR2(50)
+, address     VARCHAR2(250)
+, region      VARCHAR2(20)
+, class       VARCHAR2(3)
+, signup      DATE
+CONSTRAINT cust_pk PRIMARY KEY(cust_id)
+)
+PARTITION BY CONSISTENT HASH (cust_id)
+PARTITIONS AUTO
+TABLESPACE SET ts1
+;</code></pre><p>A system-managed sharded table is partitioned by consistent hash, by specifying
+                <code class="codeph">PARTITION BY CONSISTENT HASH
+                (<span class="variable" translate="no">primary_key_column</span>)</code>.
+                     </p>
+                     <p>The <code class="codeph">PARTITIONS AUTO</code> clause specifies that the number of partitions is
+            automatically set to the number of tablespaces in the tablespace set
+                <code class="codeph">ts1</code>, and each partition is stored in a separate tablespace.
+                     </p>
+                     <p><span class="bold">Creating Sharded Tables in a User-Defined Sharded Database</span></p>
+                     <p>In a user-defined sharded database, you explicitly map data to individual shards. A
+            sharded table in a user-defined sharded database can be partitioned by range or
+            list.</p>
+                     <p>You do not create tablespace sets for user-defined sharded tables; however, you must
+            create each tablespace individually and explicitly associate it with a shardspace
+            deployed in the sharded database configuration, as shown here.</p><pre class="pre codeblock"><code>CREATE TABLESPACE tbs1 IN SHARDSPACE west;
+CREATE TABLESPACE tbs2 IN SHARDSPACE west;
+
+CREATE TABLESPACE tbs3 IN SHARDSPACE central;
+CREATE TABLESPACE tbs4 IN SHARDSPACE central;
+
+CREATE TABLESPACE tbs5 IN SHARDSPACE east;
+CREATE TABLESPACE tbs6 IN SHARDSPACE east;</code></pre><p>When you create the sharded table, you define the partitions with the ranges or lists of
+            data to be stored in each tablespace, as shown in the following example.</p><pre class="pre codeblock"><code>CREATE SHARDED TABLE accounts
+( id             NUMBER
+, account_number NUMBER
+, customer_id    NUMBER
+, branch_id      NUMBER
+, state          VARCHAR(2) NOT NULL
+, status         VARCHAR2(1)
+)
+PARTITION BY LIST (state)
+( PARTITION p_northwest VALUES ('OR', 'WA') TABLESPACE ts1
+, PARTITION p_southwest VALUES ('AZ', 'UT', 'NM') TABLESPACE ts2
+, PARTITION p_northcentral VALUES ('SD', 'WI') TABLESPACE ts3
+, PARTITION p_southcentral VALUES ('OK', 'TX') TABLESPACE ts4
+, PARTITION p_northeast VALUES ('NY', 'VM', 'NJ') TABLESPACE ts5
+, PARTITION p_southeast VALUES ('FL', 'GA') TABLESPACE ts6
+)
+;</code></pre><p><span class="bold">Creating Sharded Tables in a Composite Sharded Database</span></p>
+                     <p>The sharded database using the composite sharding method allows you to partition subsets
+            of data that correspond to a range or list of key values in a table partitioned by
+            consistent hash.</p>
+                     <p>With composite sharding, as with the other sharding methods, tablespaces are used to
+            specify the mapping of partitions to shards. To partition subsets of data in a sharded
+            table, a separate tablespace set must be created for each shardspace deployed in the
+            sharded database configuration as shown in the following example.</p><pre class="pre codeblock"><code>CREATE TABLESPACE SET tbs1 IN SHARDSPACE shspace1;
+CREATE TABLESPACE SET tbs2 IN SHARDSPACE shspace2;</code></pre><p>The statement in the following example partitions a sharded table into two partition
+            sets: gold and silver, based on class of service. Each partition set is stored in a
+            separate tablespace. Then data in each partition set is further partitioned by
+            consistent hash on customer ID. </p><pre class="pre codeblock"><code>CREATE SHARDED TABLE customers
+( cust_id NUMBER NOT NULL
+, name VARCHAR2(50)
+, address VARCHAR2(250) 
+, location_id VARCHAR2(20) 
+, class VARCHAR2(3) 
+, signup_date DATE 
+, CONSTRAINT cust_pk PRIMARY KEY(cust_id, class) 
+)
+PARTITIONSET BY LIST (class) 
+  PARTITION BY CONSISTENT HASH (cust_id)
+  PARTITIONS AUTO
+(PARTITIONSET gold VALUES (‘gld’) TABLESPACE SET tbs1,
+ PARTITIONSET silver VALUES (‘slv’) TABLESPACE SET tbs2)
+;</code></pre></div>
+               </div>
+               <div class="sect3"><a id="GUID-C18F4181-370A-4317-B183-32A2BA28FF1E" name="GUID-C18F4181-370A-4317-B183-32A2BA28FF1E"></a><h4 id="SHARD-GUID-C18F4181-370A-4317-B183-32A2BA28FF1E" class="sect4">Creating Duplicated Tables</h4>
+                  <div>
+                     <p>The number of database requests handled by a single shard can be maximized by
+        duplicating read-only or read-mostly tables across all shards. This strategy is a good
+        choice for relatively small tables that are not updated frequently, and that are often
+        accessed together with sharded tables.</p>
+                     <div class="p">
+                        
+                        <p>There are some limitations on duplicated tables. The following are not
+                supported for duplicated tables.</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-C18F4181-370A-4317-B183-32A2BA28FF1E__UL_WYT_TPD_CNB">
+                           <li>
+                              <code class="codeph">NOLOGGING</code></li>
+                           <li>
+                              <code class="codeph">ALTER TABLE ADD/DROP CONSTRAINT</code> for primary key only
+                           </li>
+                           <li><code class="codeph"> ALTER TABLE ADD/DROP PRIMARY KEY</code></li>
+                           <li>
+                              <code class="codeph">ALTER TABLE RENAME COLUMN</code></li>
+                           <li>
+                              <code class="codeph">PARTITION BY REFERENCE</code></li>
+                           <li>
+                              <code class="codeph">PARTITION BY SYSTEM</code></li>
+                           <li>
+                              <code class="codeph">CLUSTERED TABLE</code></li>
+                           <li> Non-final <code class="codeph">UDT</code> or <code class="codeph">NESTED
+                    TABLE</code></li>
+                           <li>
+                              <code class="codeph">LONG DATATYPE</code></li>
+                           <li>
+                              <code class="codeph">COLUMN VECTOR ENCODE</code></li>
+                           <li>
+                              <code class="codeph">INVISIBLE COLUMN</code></li>
+                           <li>Column encryption</li>
+                           <li> Information Lifecycle Management (ILM) policy</li>
+                           <li> CTAS Parallel</li>
+                           <li>Foreign key constraints between duplicated tables and sharded tables are
+                    generally not allowed with the exception that in user-defined sharding, you can
+                    create <code class="codeph">DISABLE NOVALIDATE</code> foreign key constraints between
+                    sharded and duplicated tables.
+                           </li>
+                           <li>Creation of duplicated tables with <code class="codeph">inmemory</code> option is not
+                    supported; however, altering a duplicated table to be <code class="codeph">inmemory</code>
+                    is supported.
+                           </li>
+                        </ul>
+                        
+                     </div>
+                     <div class="section">
+                        
+                        <p>The Products duplicated table can be created using the following
+                statement.</p>
+                        <pre class="pre codeblock"><code>CREATE DUPLICATED TABLE Products 
+( StockNo     NUMBER PRIMARY KEY
+, Description VARCHAR2(20)
+, Price       NUMBER(6,2))
+;</code></pre>
+                        </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-3F1CBC6A-C96D-4FE2-B3D5-CABB5EB38A2F" name="GUID-3F1CBC6A-C96D-4FE2-B3D5-CABB5EB38A2F"></a><h4 id="SHARD-GUID-3F1CBC6A-C96D-4FE2-B3D5-CABB5EB38A2F" class="sect4">Updating Duplicated Tables and Synchronizing
+        Their Contents</h4>
+                  <div>
+                     <p>Oracle Sharding synchronizes the contents of duplicated tables using
+        Materialized View Replication. </p>
+                     <div class="section">
+                        
+                        <p>A duplicated table on each shard is represented by a materialized view.
+                The master table for the materialized views is located in the shard catalog. The
+                    <code class="codeph">CREATE DUPLICATED TABLE</code> statement automatically creates the
+                master table, materialized views, and other objects required for materialized view
+                replication.
+                        </p>
+                        
+                        <p>You can connect to any shard and update a duplicated table directly on
+                the shard. The update is first propagated over a database link from the shard to the
+                master table on the shard catalog. Then the update is asynchronously propagated to
+                all other shards as a result of a materialized view refresh.</p>
+                        
+                        <p>The materialized views on all of the shards can be refreshed with one of
+                the two options:</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-3F1CBC6A-C96D-4FE2-B3D5-CABB5EB38A2F__UL_MTD_N3N_RNB">
+                           <li>Automatic refresh at a configurable frequency per table</li>
+                           <li>On-demand refresh by running a stored procedure</li>
+                        </ul>
+                        
+                        <p>For automatic refresh, to get better refresh performance, you can also use a stored
+                procedure interface to create materialized view refresh groups.</p>
+                        
+                        <div class="infoboxnote" id="GUID-3F1CBC6A-C96D-4FE2-B3D5-CABB5EB38A2F__GUID-8D9B6557-E034-4D79-86A9-27705077BB26">
+                           <p class="notep1">Note:</p>
+                           
+                           <p>A race condition is possible when a transaction run on a shard tries
+                    to update a row which was deleted on the shard catalog. In this case, an error
+                    is returned and the transaction on the shard is rolled back.</p>
+                           
+                           <p>The following use cases are not supported when updating duplicated
+                    tables on a shard.</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-3F1CBC6A-C96D-4FE2-B3D5-CABB5EB38A2F__UL_R3P_WDH_DMB">
+                              <li>Updating a LOB or a data type not supported by database
+                        links</li>
+                              <li>Updating or deleting of a row inserted by the same
+                        transaction</li>
+                           </ul>
+                           
+                        </div>
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-BDE45E28-9075-42AB-8F47-9C3995BDA7E2" name="GUID-BDE45E28-9075-42AB-8F47-9C3995BDA7E2"></a><h3 id="SHARD-GUID-BDE45E28-9075-42AB-8F47-9C3995BDA7E2" class="sect3">Schema Creation Examples</h3>
+               <div>
+                  <p>The following examples show the steps you would take to create a schema for
+        a sharded database using the system-managed, user-defined, and composite sharding
+        methods.</p>
+                  <p></p>
+               </div>
+               <div class="sect3"><a id="GUID-61B495D3-4482-47E2-937E-B7E03286F565" name="GUID-61B495D3-4482-47E2-937E-B7E03286F565"></a><h4 id="SHARD-GUID-61B495D3-4482-47E2-937E-B7E03286F565" class="sect4">Create a System-Managed Sharded Database
+    Schema</h4>
+                  <div>
+                     <p>Create the tablespace set, sharded tables, and duplicated tables for a
+    sharded database that uses the system-managed sharding method.</p>
+                     <ol>
+                        <li class="stepexpand"><span>Connect to the shard
+          catalog database, create the application schema user, and grant privileges and roles to
+          the user.</span><div>
+                              <p>In this example, the application schema user is called app_schema.</p><pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; alter session enable shard ddl;
+SQL&gt; create user app_schema identified by <span class="variable" translate="no">app_schema_password</span>;
+SQL&gt; grant all privileges to app_schema;
+SQL&gt; grant gsmadmin_role to app_schema;
+SQL&gt; grant select_catalog_role to app_schema;
+SQL&gt; grant connect, resource to app_schema;
+SQL&gt; grant dba to app_schema;
+SQL&gt; grant execute on dbms_crypto to app_schema;</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Create a tablespace set for the sharded tables.</span><div><pre class="pre codeblock"><code>SQL&gt; CREATE TABLESPACE SET TSP_SET_1 using template
+ (datafile size 100m autoextend on next 10M maxsize unlimited
+  extent management local segment space management auto);
+</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>If you use LOBs in a column, you can specify a tablespace set for the LOBs.</span><div><pre class="pre codeblock"><code>SQL&gt; CREATE TABLESPACE SET LOBTS1;</code></pre><div class="infoboxnote" id="GUID-61B495D3-4482-47E2-937E-B7E03286F565__GUID-DA0D2D1F-4D62-41ED-93A7-615CF0896A4C">
+                                 <p class="notep1">Note:</p>
+                                 <p>Tablespace sets for LOBS cannot be specified at the subpartitition level in system-managed sharding.</p>
+                              </div>
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Create a tablespace for the duplicated tables.</span><div>
+                              <p>In this example the duplicated table is the Products table in the sample Customers-Orders-Products schema.</p><pre class="pre codeblock"><code>SQL&gt; CREATE TABLESPACE products_tsp datafile size 100m
+ autoextend on next 10M maxsize unlimited
+ extent management local uniform size 1m; 
+</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Create a sharded table for the root table.</span><div>
+                              <p>In this example, the root table is the Customers table in the sample Customers-Orders-Products schema.</p><pre class="pre codeblock"><code>SQL&gt; CONNECT app_schema/<span class="variable" translate="no">app_schema_password</span>
+SQL&gt; CREATE SHARDED TABLE Customers
+  (
+    CustId      VARCHAR2(60) NOT NULL,
+    FirstName   VARCHAR2(60),
+    LastName    VARCHAR2(60),
+    Class       VARCHAR2(10),
+    Geo         VARCHAR2(8),
+    CustProfile VARCHAR2(4000),
+    Passwd      RAW(60),
+    CONSTRAINT pk_customers PRIMARY KEY (CustId),
+    CONSTRAINT json_customers CHECK (CustProfile IS JSON)
+  ) TABLESPACE SET TSP_SET_1
+  PARTITION BY CONSISTENT HASH (CustId) PARTITIONS AUTO;</code></pre><div class="infoboxnote" id="GUID-61B495D3-4482-47E2-937E-B7E03286F565__GUID-A34A0827-00CE-40AD-BF1C-9016670A1618">
+                                 <p class="notep1">Note:</p>
+                                 <p>If any columns contain LOBs, you can include the tablespace set in the parent table creation statement, as shown here.</p><pre class="pre codeblock"><code>SQL&gt; CREATE SHARDED TABLE Customers
+  (
+    CustId      VARCHAR2(60) NOT NULL,
+    FirstName   VARCHAR2(60),
+    LastName    VARCHAR2(60),
+    Class       VARCHAR2(10),
+    Geo         VARCHAR2(8),
+    CustProfile VARCHAR2(4000),
+    Passwd      RAW(60),
+    <span class="bold">image       BLOB,</span>
+    CONSTRAINT pk_customers PRIMARY KEY (CustId),
+    CONSTRAINT json_customers CHECK (CustProfile IS JSON)
+  ) TABLESPACE SET TSP_SET_1
+&nbsp;&nbsp;&nbsp; <span class="bold">LOB(image) store as (TABLESPACE SET LOBTS1)</span> 
+  PARTITION BY CONSISTENT HASH (CustId) PARTITIONS AUTO;</code></pre></div>
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Create a sharded table for the other tables in the table family.</span><div>
+                              <p>In this example, sharded tables are created for the Orders and LineItems tables in the sample Customers-Orders-Products schema.</p>
+                              <p>The Orders sharded table is created first:</p><pre class="pre codeblock"><code>SQL&gt; CREATE SHARDED TABLE Orders
+  (
+    OrderId     INTEGER NOT NULL,
+    CustId      VARCHAR2(60) NOT NULL,
+    OrderDate   TIMESTAMP NOT NULL,
+    SumTotal    NUMBER(19,4),
+    Status      CHAR(4),
+    CONSTRAINT  pk_orders PRIMARY KEY (CustId, OrderId),
+    CONSTRAINT  fk_orders_parent FOREIGN KEY (CustId) 
+    REFERENCES Customers ON DELETE CASCADE
+  ) PARTITION BY REFERENCE (fk_orders_parent);
+</code></pre><p>Create the sequence used for the OrderId column.</p><pre class="pre codeblock"><code>SQL&gt; CREATE SEQUENCE Orders_Seq;</code></pre><p>Create a sharded table for LineItems</p><pre class="pre codeblock"><code>SQL&gt; CREATE SHARDED TABLE LineItems
+  (
+    OrderId     INTEGER NOT NULL,
+    CustId      VARCHAR2(60) NOT NULL,
+    ProductId   INTEGER NOT NULL,
+    Price       NUMBER(19,4),
+    Qty         NUMBER,
+    CONSTRAINT  pk_items PRIMARY KEY (CustId, OrderId, ProductId),
+    CONSTRAINT  fk_items_parent FOREIGN KEY (CustId, OrderId)
+    REFERENCES Orders ON DELETE CASCADE
+  ) PARTITION BY REFERENCE (fk_items_parent);</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Create any required duplicated tables.</span><div> 
+                              <p>In this example, the Products table is a duplicated object.</p><pre class="pre codeblock"><code>SQL&gt; CREATE DUPLICATED TABLE Products
+  (
+    ProductId  INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    Name       VARCHAR2(128),
+    DescrUri   VARCHAR2(128),
+    LastPrice  NUMBER(19,4)
+  ) TABLESPACE products_tsp;</code></pre></div>
+                        </li>
+                     </ol>
+                     <div class="section">
+                        
+                        <p>Next you should monitor the DDL execution and verify that the tablespace sets, tables, and
+        chunks were correctly created on all of the shards.</p>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-97C5E0B3-F870-4F4E-9507-9644A73E6C76" name="GUID-97C5E0B3-F870-4F4E-9507-9644A73E6C76"></a><h4 id="SHARD-GUID-97C5E0B3-F870-4F4E-9507-9644A73E6C76" class="sect4">Create a User-Defined Sharded Database
+    Schema</h4>
+                  <div>
+                     <p>Create the schema user, tablespace set, sharded tables, and duplicated
+    tables for a sharded database that uses the user-defined sharding method.</p>
+                     <ol>
+                        <li class="stepexpand"><span>Connect to the shard catalog database, create the application schema user, and grant privileges and roles to the user.</span><div>
+                              <p>In this example, the application schema user is called app_schema.</p><pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; alter session enable shard ddl;
+SQL&gt; create user app_schema identified by <span class="variable" translate="no">app_schema_password</span>;
+SQL&gt; grant all privileges to app_schema;
+SQL&gt; grant gsmadmin_role to app_schema;
+SQL&gt; grant select_catalog_role to app_schema;
+SQL&gt; grant connect, resource to app_schema;
+SQL&gt; grant dba to app_schema;
+SQL&gt; grant execute on dbms_crypto to app_schema;</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Create tablespaces for the sharded tables.</span><div><pre class="pre codeblock"><code>SQL&gt; CREATE TABLESPACE ck1_tsp DATAFILE SIZE 100M autoextend on next 10M maxsize 
+unlimited extent management local segment space management auto in
+ shardspace shspace1;
+
+SQL&gt; CREATE TABLESPACE ck2_tsp DATAFILE SIZE 100M autoextend on next 10M maxsize 
+unlimited extent management local segment space management auto in
+ shardspace shspace2;</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>If you use LOBs in any columns, you can specify tablespaces for the LOBs.</span><div><pre class="pre codeblock"><code>SQL&gt; CREATE TABLESPACE lobts1 ... in shardspace shspace1;
+
+SQL&gt; CREATE TABLESPACE lobts2 ... in shardspace shspace2;</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Create a tablespace for the duplicated tables.</span><div>
+                              <p>In this example the duplicated table is the Products table in the sample Customers-Orders-Products schema.</p><pre class="pre codeblock"><code>SQL&gt; CREATE TABLESPACE products_tsp datafile size 100m autoextend
+ on next 10M maxsize unlimited extent management local uniform size 1m; 
+</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Create a sharded table for the root table.</span><div>
+                              <p>In this example, the root table is the Customers table in the sample Customers-Orders-Products schema.</p><pre class="pre codeblock"><code>SQL&gt; CONNECT app_schema/<span class="variable" translate="no">app_schema_password
+</span>
+SQL&gt; ALTER SESSION ENABLE SHARD DDL;
+
+SQL&gt; CREATE SHARDED TABLE Customers
+  (
+    CustId      VARCHAR2(60) NOT NULL,
+    CustProfile VARCHAR2(4000),
+    Passwd      RAW(60),
+    CONSTRAINT pk_customers PRIMARY KEY (CustId),
+    CONSTRAINT json_customers CHECK (CustProfile IS JSON)
+  ) PARTITION BY <span class="bold">RANGE</span> (CustId)
+  ( <span class="bold">PARTITION ck1</span> values less than ('m') tablespace ck1_tsp,
+    <span class="bold">PARTITION ck2</span> values less than (MAXVALUE) tablespace ck2_tsp
+  );</code></pre><div class="infoboxnote" id="GUID-97C5E0B3-F870-4F4E-9507-9644A73E6C76__GUID-C4911510-CA99-421C-A0F6-9554B63484A1">
+                                 <p class="notep1">Note:</p>
+                                 <p>If any columns in the sharded tables contain LOBs, the CREATE SHARDED TABLE statement can include the LOB tablespaces, as shown here.</p><pre class="pre codeblock"><code>SQL&gt; CREATE SHARDED TABLE Customers
+  (
+    CustId      VARCHAR2(60) NOT NULL,
+    CustProfile VARCHAR2(4000),
+    Passwd      RAW(60),
+    <span class="bold">image       BLOB,</span>
+    CONSTRAINT pk_customers PRIMARY KEY (CustId),
+    CONSTRAINT json_customers CHECK (CustProfile IS JSON)
+  ) PARTITION BY RANGE (CustId)
+  ( PARTITION ck1 values less than ('m') tablespace ck1_tsp
+     <span class="bold">lob(image) store as (tablespace lobts1)</span>,
+    PARTITION ck2 values less than (MAXVALUE) tablespace ck2_tsp
+     <span class="bold">lob(image) store as (tablespace lobts2)</span>
+  );</code></pre></div>
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Create a sharded table for the other tables in the table family.</span><div>
+                              <p>In this example, sharded tables are created for the Orders and LineItems tables in the sample Customers-Orders-Products schema.</p>
+                              <p>The Orders sharded table is created first:</p><pre class="pre codeblock"><code>SQL&gt; CREATE SHARDED TABLE Orders
+  (
+    OrderId     INTEGER NOT NULL,
+    CustId      VARCHAR2(60) NOT NULL,
+    OrderDate   TIMESTAMP NOT NULL,
+    SumTotal    NUMBER(19,4),
+    Status      CHAR(4),
+    CONSTRAINT  pk_orders PRIMARY KEY (CustId, OrderId),
+    CONSTRAINT  fk_orders_parent FOREIGN KEY (CustId) 
+    REFERENCES Customers ON DELETE CASCADE
+  ) PARTITION BY REFERENCE (fk_orders_parent);
+</code></pre><p>Create the sequence used for the OrderId column.</p><pre class="pre codeblock"><code>SQL&gt; CREATE SEQUENCE Orders_Seq;</code></pre><p>Create a sharded table for LineItems</p><pre class="pre codeblock"><code>SQL&gt; CREATE SHARDED TABLE LineItems
+  (
+    OrderId     INTEGER NOT NULL,
+    CustId      VARCHAR2(60) NOT NULL,
+    ProductId   INTEGER NOT NULL,
+    Price       NUMBER(19,4),
+    Qty         NUMBER,
+    CONSTRAINT  pk_items PRIMARY KEY (CustId, OrderId, ProductId),
+    CONSTRAINT  fk_items_parent FOREIGN KEY (CustId, OrderId)
+    REFERENCES Orders ON DELETE CASCADE
+  ) PARTITION BY REFERENCE (fk_items_parent);</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Create any required duplicated tables.</span><div> 
+                              <p>In this example, the Products table is a duplicated object.</p><pre class="pre codeblock"><code>SQL&gt; CREATE DUPLICATED TABLE Products
+  (
+    ProductId  INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    Name       VARCHAR2(128),
+    DescrUri   VARCHAR2(128),
+    LastPrice  NUMBER(19,4)
+  ) TABLESPACE products_tsp;</code></pre></div>
+                        </li>
+                     </ol>
+                     <div class="section">
+                        
+                        <p>Next you should monitor the DDL execution and verify that the tablespace sets, tables, and
+        chunks were correctly created on all of the shards.</p>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-D2098302-8636-41E7-ADEA-07099C882F32" name="GUID-D2098302-8636-41E7-ADEA-07099C882F32"></a><h4 id="SHARD-GUID-D2098302-8636-41E7-ADEA-07099C882F32" class="sect4">Create a Composite Sharded Database
+    Schema</h4>
+                  <div>
+                     <p>Create the schema user, tablespace set, sharded tables, and duplicated
+    tables for a sharded database that uses the composite sharding method.</p>
+                     <ol>
+                        <li class="stepexpand"><span>Connect to the shard catalog host, and set the ORACLE_SID to the shard catalog name.</span></li>
+                        <li class="stepexpand"><span>Connect to the shard catalog database, create the application schema user, and grant privileges and roles to the user.</span><div>
+                              <p>In this example, the application schema user is called app_schema.</p><pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; connect / as sysdba
+SQL&gt; alter session enable shard ddl;
+SQL&gt; create user app_schema identified by <span class="variable" translate="no">app_schema_password</span>;
+SQL&gt; grant connect, resource, alter session to app_schema;
+SQL&gt; grant execute on dbms_crypto to app_schema;
+SQL&gt; grant create table, create procedure, create tablespace,
+ create materialized view to app_schema;
+SQL&gt; grant unlimited tablespace to app_schema;
+SQL&gt; grant select_catalog_role to app_schema;
+SQL&gt; grant all privileges to app_schema;
+SQL&gt; grant gsmadmin_role to app_schema;
+SQL&gt; grant dba to app_schema;
+</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Create tablespace sets for the sharded tables.</span><div><pre class="pre codeblock"><code>SQL&gt; CREATE TABLESPACE SET  
+  TSP_SET_1 in shardspace cust_america using template
+  (datafile size 100m autoextend on next 10M maxsize
+   unlimited extent management
+   local segment space management auto );
+
+SQL&gt; CREATE TABLESPACE SET
+  TSP_SET_2 in shardspace cust_europe using template
+  (datafile size 100m autoextend on next 10M maxsize
+   unlimited extent management
+   local segment space management auto );</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>If you use LOBs in any columns, you can specify tablespace sets for the LOBs.</span><div><pre class="pre codeblock"><code>SQL&gt; CREATE TABLESPACE SET LOBTS1 in shardspace cust_america ... ;
+
+SQL&gt; CREATE TABLESPACE SET LOBTS2 in shardspace cust_europe ... ;</code></pre><div class="infoboxnote" id="GUID-D2098302-8636-41E7-ADEA-07099C882F32__GUID-385821D7-C68A-466A-8BDF-D302F2B964A6">
+                                 <p class="notep1">Note:</p>
+                                 <p>Tablespace sets for LOBs cannot be specified at the subpartitition level in composite sharding.</p>
+                              </div>
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Create a tablespace for the duplicated tables.</span><div>
+                              <p>In this example the duplicated table is the Products table in the sample Customers-Orders-Products schema.</p><pre class="pre codeblock"><code>CREATE TABLESPACE products_tsp datafile size 100m autoextend on next 10M
+ maxsize unlimited extent management local uniform size 1m;</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Create a sharded table for the root table.</span><div>
+                              <p>In this example, the root table is the Customers table in the sample Customers-Orders-Products schema.</p><pre class="pre codeblock"><code>connect app_schema/<span class="variable" translate="no">app_schema_password</span>
+alter session enable shard ddl;
+
+CREATE SHARDED TABLE Customers
+(
+  CustId      VARCHAR2(60) NOT NULL,
+  FirstName   VARCHAR2(60),
+  LastName    VARCHAR2(60),
+  Class       VARCHAR2(10),
+  Geo         VARCHAR2(8),
+  CustProfile VARCHAR2(4000),
+  Passwd      RAW(60),
+  CONSTRAINT pk_customers PRIMARY KEY (CustId),
+  CONSTRAINT json_customers CHECK (CustProfile IS JSON)
+) partitionset by list(GEO)
+partition by consistent hash(CustId)
+partitions auto
+(partitionset america values ('AMERICA') tablespace set tsp_set_1,
+partitionset europe values ('EUROPE') tablespace set tsp_set_2
+);
+</code></pre><div class="infoboxnote" id="GUID-D2098302-8636-41E7-ADEA-07099C882F32__GUID-C89200B3-3D47-40F7-B05E-AADD1DB6C1DA">
+                                 <p class="notep1">Note:</p>
+                                 <p>If any columns in the sharded tables contain LOBs, the CREATE SHARDED TABLE statement can include the LOB tablespace set, as shown here.</p><pre class="pre codeblock"><code>CREATE SHARDED TABLE Customers
+(
+  CustId      VARCHAR2(60)  NOT NULL,
+  FirstName   VARCHAR2(60),
+  LastName    VARCHAR2(60),
+  Class       VARCHAR2(10),
+  Geo         VARCHAR2(8)   NOT NULL,
+  CustProfile VARCHAR2(4000),
+  Passwd      RAW(60),
+  <span class="bold">image       BLOB,</span>
+  CONSTRAINT pk_customers PRIMARY KEY (CustId),
+  CONSTRAINT json_customers CHECK (CustProfile IS JSON)
+) partitionset by list(GEO)
+partition by consistent hash(CustId)
+partitions auto
+(partitionset america values ('AMERICA') tablespace set tsp_set_1
+ <span class="bold">lob(image) store as (tablespace set lobts1)</span>,
+partitionset europe values ('EUROPE') tablespace set tsp_set_2
+ <span class="bold">lob(image) store as (tablespace set lobts2)</span>);
+</code></pre></div>
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Create a sharded table for the other tables in the table family.</span><div>
+                              <p>In this example, sharded tables are created for the Orders and LineItems tables in the sample Customers-Orders-Products schema.</p>
+                              <p>Create the sequence used for the OrderId column.</p><pre class="pre codeblock"><code>CREATE SEQUENCE Orders_Seq;
+</code></pre><p>The Orders sharded table is created first:</p><pre class="pre codeblock"><code>CREATE SHARDED TABLE Orders
+(
+  OrderId     INTEGER NOT NULL,
+  CustId      VARCHAR2(60) NOT NULL,
+  OrderDate   TIMESTAMP NOT NULL,
+  SumTotal    NUMBER(19,4),
+  Status      CHAR(4),
+  constraint  pk_orders primary key (CustId, OrderId),
+  constraint  fk_orders_parent foreign key (CustId) 
+    references Customers on delete cascade
+) partition by reference (fk_orders_parent);
+</code></pre><p>Create a sharded table for LineItems</p><pre class="pre codeblock"><code>CREATE SHARDED TABLE LineItems
+(
+  OrderId     INTEGER NOT NULL,
+  CustId      VARCHAR2(60) NOT NULL,
+  ProductId   INTEGER NOT NULL,
+  Price       NUMBER(19,4),
+  Qty         NUMBER,
+  constraint  pk_items primary key (CustId, OrderId, ProductId),
+  constraint  fk_items_parent foreign key (CustId, OrderId)
+    references Orders on delete cascade
+) partition by reference (fk_items_parent);</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Create any required duplicated tables.</span><div> 
+                              <p>In this example, the Products table is a duplicated object.</p><pre class="pre codeblock"><code>CREATE DUPLICATED TABLE Products
+(
+  ProductId  INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  Name       VARCHAR2(128),
+  DescrUri   VARCHAR2(128),
+  LastPrice  NUMBER(19,4)
+) tablespace products_tsp;</code></pre></div>
+                        </li>
+                     </ol>
+                     <div class="section">
+                        
+                        <p>Next you should monitor the DDL execution and verify that the tablespace sets, tables, and
+        chunks were correctly created on all of the shards.</p>
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-BD4471CB-4BBE-40A4-A68C-A86DE6788471" name="GUID-BD4471CB-4BBE-40A4-A68C-A86DE6788471"></a><h3 id="SHARD-GUID-BD4471CB-4BBE-40A4-A68C-A86DE6788471" class="sect3">Monitor DDL Execution and Verify Object
+        Creation</h3>
+               <div>
+                  <p>You can monitor DDL execution using GDSCTL and SQL, to verify that the DDLs
+        are propagated to all of the shards.</p>
+                  <div class="section">
+                     
+                     <p><span class="bold">Monitor DDL Execution</span></p>
+                     
+                     <p>You can check the status of the DDL propagation to the shards by using the GDSCTL
+                    <code class="codeph">show ddl</code> and <code class="codeph">config shard</code> commands.
+                     </p>
+                     
+                     <p>This check is mandatory when a DDL is executed using SQL*Plus on the
+                shard catalog, because SQL*Plus does not return the execution status on all of the
+                shards.</p>
+                     
+                     <p>The <code class="codeph">show ddl</code> command output might be truncated. You can run
+                    <code class="codeph">SELECT ddl_text FROM gsmadmin_internal.ddl_requests</code> on the
+                shard catalog to see the full text of the statements.
+                     </p>
+                     
+                     <p>Run the following command from the shard director host.</p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; show ddl
+id    DDL Text                                  Failed shards
+--    --------                                  -------------
+5     grant connect, resource to app_schema
+6     grant dba to app_schema
+7     grant execute on dbms_crypto to app_s... 
+8     CREATE TABLESPACE SET  TSP_SET_1 usin...
+9     CREATE TABLESPACE products_tsp datafi...
+10    CREATE SHARDED TABLE Customers (   Cu...
+11    CREATE SHARDED TABLE Orders (   Order...
+12    CREATE SEQUENCE Orders_Seq;
+13    CREATE SHARDED TABLE LineItems (   Or...
+14    CREATE MATERIALIZED VIEW "APP_SCHEMA"...
+</code></pre>
+                     <p>Run the <code>config shard</code> command on each shard
+                in your configuration, as shown here, and note the Last Failed DDL line in the
+                command output.
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; config shard -shard sh1
+Name: sh1
+Shard Group: primary_shardgroup
+Status: Ok
+State: Deployed
+Region: region1
+Connection string: <span class="variable" translate="no">shard_host_1</span>:1521/<span class="variable" translate="no">sh1_host</span>:dedicated
+SCAN address: 
+ONS remote port: 0
+Disk Threshold, ms: 20
+CPU Threshold, %: 75
+Version: 18.0.0.0
+<span class="bold">Last Failed DDL: 
+DDL Error: ---
+Failed DDL id:</span> 
+Availability: ONLINE
+
+Supported services
+------------------------
+Name                                          Preferred Status    
+----                                          --------- ------    
+oltp_ro_srvc                                  Yes       Enabled   
+oltp_rw_srvc                                  Yes       Enabled  </code></pre>
+                     <p><span class="bold">Verify Tablespace Set Creation</span></p>
+                     
+                     <p>Verify that the tablespaces of the tablespace set you created for the sharded table
+                family, and the tablespaces you created for the duplicated tables, are created on
+                all of the shards.</p>
+                     
+                     <p>The number of tablespaces in the tablespace set, shown below as
+                C001TSP_SET_1 through C006TSP_SET_1, is based on the number of chunks specified in
+                the GDSCTL <code>create shardcatalog</code> command when the
+                sharded database configuration was deployed.
+                     </p>
+                     
+                     <p>The duplicated Products tablespace is shown below as PRODUCTS_TSP.</p>
+                     
+                     <p> Run <code class="codeph">SELECT TABLESPACE_NAME</code> on all of the shards in your
+                configuration, as shown here.
+                     </p>
+                     <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; select TABLESPACE_NAME, BYTES/1024/1024 MB from sys.dba_data_files
+ order by tablespace_name;
+
+TABLESPACE_NAME 		    MB
+----------------------- ----------
+<span class="bold">C001TSP_SET_1           100
+C002TSP_SET_1           100
+C003TSP_SET_1			      100
+C004TSP_SET_1			      100
+C005TSP_SET_1			      100
+C006TSP_SET_1			      100
+PRODUCTS_TSP            100</span>
+SYSAUX                  650
+SYSTEM                  890
+SYS_SHARD_TS			      100
+TSP_SET_1			          100
+
+TABLESPACE_NAME 		     MB
+------------------------ ----------
+UNDOTBS1			           105
+USERS					             5
+
+13 rows selected.
+</code></pre>
+                     <p><span class="bold">Verify Chunk Creation and Distribution</span></p>
+                     
+                     <p>Verify that the chunks and chunk tablespaces were created on all of the shards.</p>
+                     
+                     <p>Run the GDSCTL <code>config chunks</code> command as
+                shown here, and note the ranges of chunk IDs on each shard.
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; config chunks
+Chunks
+------------------------
+Database                      From      To        
+--------                      ----      --        
+<span class="bold">sh1                           1         6         
+sh2                           1         6         
+sh3                           7         12        
+sh4                           7         12</span></code></pre>
+                     <p>Run the following SQL statements on each of the shards in your
+                configuration, as shown here.</p>
+                     <pre class="pre codeblock"><code>SQL&gt; show parameter db_unique_name
+
+NAME             TYPE        VALUE
+---------------- ----------- ------------------------------
+db_unique_name   string      sh1
+
+SQL&gt; select table_name, partition_name, tablespace_name
+ from dba_tab_partitions
+ where tablespace_name like 'C%TSP_SET_1'
+ order by tablespace_name;
+
+TABLE_NAME       PARTITION_NAME   TABLESPACE_NAME
+---------------- ---------------- --------------------
+ORDERS           CUSTOMERS_P1     C001TSP_SET_1
+CUSTOMERS        CUSTOMERS_P1     C001TSP_SET_1
+LINEITEMS        CUSTOMERS_P1     C001TSP_SET_1
+CUSTOMERS        CUSTOMERS_P2     C002TSP_SET_1
+LINEITEMS        CUSTOMERS_P2     C002TSP_SET_1
+ORDERS           CUSTOMERS_P2     C002TSP_SET_1
+CUSTOMERS        CUSTOMERS_P3     C003TSP_SET_1
+ORDERS           CUSTOMERS_P3     C003TSP_SET_1
+LINEITEMS        CUSTOMERS_P3     C003TSP_SET_1
+ORDERS           CUSTOMERS_P4     C004TSP_SET_1
+CUSTOMERS        CUSTOMERS_P4     C004TSP_SET_1
+
+TABLE_NAME       PARTITION_NAME   TABLESPACE_NAME
+---------------- ---------------- --------------------
+LINEITEMS        CUSTOMERS_P4     C004TSP_SET_1
+CUSTOMERS        CUSTOMERS_P5     C005TSP_SET_1
+LINEITEMS        CUSTOMERS_P5     C005TSP_SET_1
+ORDERS           CUSTOMERS_P5     C005TSP_SET_1
+CUSTOMERS        CUSTOMERS_P6     C006TSP_SET_1
+LINEITEMS        CUSTOMERS_P6     C006TSP_SET_1
+ORDERS           CUSTOMERS_P6     C006TSP_SET_1
+18 rows selected.</code></pre>
+                     <p>Connect to the shard catalog database and verify that the chunks are
+                uniformly distributed, as shown here.</p>
+                     <pre class="pre codeblock"><code>$ sqlplus / as sysdba
+
+SQL&gt; SELECT a.name Shard, COUNT(b.chunk_number) Number_of_Chunks
+  FROM gsmadmin_internal.database a, gsmadmin_internal.chunk_loc b
+  WHERE a.database_num=b.database_num
+  GROUP BY a.name
+  ORDER BY a.name;
+
+SHARD			       NUMBER_OF_CHUNKS
+------------------------------ ----------------
+<span class="bold">sh1					      6
+sh2					      6
+sh3					      6
+sh4					      6</span></code></pre>
+                     <p><span class="bold">Verify Table Creation</span></p>
+                     
+                     <p>To verify that the sharded and duplicated tables were created, log in as the
+                application schema user on the shard catalog database and each of the shards and
+                query the tables on a database shard, as shown below with the example app_schema
+                user.</p>
+                     <pre class="pre codeblock"><code>$ sqlplus app_schema/<span class="variable" translate="no">app_schema_password</span>
+Connected.
+
+SQL&gt; select table_name from user_tables;
+
+TABLE_NAME
+-----------------------------------------------------------------------
+CUSTOMERS
+ORDERS
+LINEITEMS
+PRODUCTS
+
+4 rows selected.</code></pre>
+                     </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-F4479521-DFF2-49B3-BE12-51CCB3B05B0D" name="GUID-F4479521-DFF2-49B3-BE12-51CCB3B05B0D"></a><h3 id="SHARD-GUID-F4479521-DFF2-49B3-BE12-51CCB3B05B0D" class="sect3">DDL Execution Failure and Recovery
+        Examples</h3>
+               <div>
+                  <p>The following examples demonstrate the steps to issue a DDL, monitor its
+        execution status, and what to do when errors are encountered.</p>
+                  <p>When a DDL fails on a shard, all further DDLs on that shard are blocked until
+            the failure is resolved and the GDSCTL <code class="codeph">recover shard</code> command is run. 
+                  </p>
+                  <p>Note that you must have GSM_ADMIN privileges to run these GDSCTL
+            commands.</p>
+                  <p>The following examples demonstrate the case when a DDL is issued using SQL*Plus, but the
+            same status checking and corrective actions apply when using the <code class="codeph">GDSCTL
+                SQL</code> command.
+                  </p>
+                  <div class="example" id="GUID-F4479521-DFF2-49B3-BE12-51CCB3B05B0D__GUID-A4259AFA-082A-4E9B-ACB8-DA9B38394F09">
+                     <p class="titleinexample">Example 6-1 A DDL execution error
+                on the shard catalog</p>
+                     
+                     
+                     <p>In this example the user makes a typo in the <code class="codeph">CREATE USER</code>
+                command.
+                     </p>
+                     <pre class="pre codeblock"><code>SQL&gt; alter session enable shard ddl;
+Session altered.
+
+SQL&gt; CREATE USER example_user IDENTRIFIED BY out_standing1;
+CREATE USER example_user IDENTRIFIED BY out_Standing1
+                   *
+ERROR at line 1:
+ORA-00922: missing or invalid option</code></pre>
+                     <p>The DDL fails to execute on the shard catalog and, as expected, the
+                GDSCTL <code class="codeph">show ddl</code> command shows that no DDL was executed on any of
+                the shards:
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; show ddl
+id      DDL Text                         Failed shards 
+--      --------                         -------------</code></pre>
+                     <p>Then the user repeats the command with the correct spelling. Note that
+                there is no need to run <code class="codeph">alter session enable shard ddl</code>again because
+                the same session is used.
+                     </p>
+                     <pre class="pre codeblock"><code>SQL&gt; CREATE USER example_user IDENTIFIED BY out_Standing1;
+User created.</code></pre>
+                     <p>Now <code class="codeph">show ddl</code> shows that the DDL has been successfully
+                executed on the shard catalog database and it did not fail on any shards that are
+                online. 
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; show ddl
+id      DDL Text                                     Failed shards 
+--      --------                                     ------------- 
+1       create user example_user identified by *****</code></pre>
+                     <div class="infoboxnote" id="GUID-F4479521-DFF2-49B3-BE12-51CCB3B05B0D__GUID-BD9A4F92-7505-4BFE-A975-08305DB16E86">
+                        <p class="notep1">Note:</p>
+                        
+                        <p>For any shard that is down at the time of the DDL execution, the DDL
+                    is automatically applied when the shard is back up. </p>
+                        
+                     </div>
+                     
+                  </div>
+                  <div class="example" id="GUID-F4479521-DFF2-49B3-BE12-51CCB3B05B0D__GUID-80B09F09-EC5D-42DE-B2AF-45E1A02B1D98">
+                     <p class="titleinexample">Example 6-2 Recovery from an error on a shard
+                by executing a corrective action on that shard</p>
+                     
+                     
+                     <p>In this example, the user attempts to create a tablespace set for
+                system-managed sharded tables. But the datafile directory on one of the shards is
+                not writable, so the DDL is successfully executed on the catalog, but fails on the
+                shard.</p>
+                     <pre class="pre codeblock"><code>SQL&gt; connect example_user/out_Standing1
+Connected
+
+SQL&gt; create tablespace set tbsset;
+Tablespace created.</code></pre>
+                     <p>Note that there is no need to run <code class="codeph">alter session enable shard
+                    ddl</code> because the user example_user was created as the SDB user and shard
+                ddl is enabled by default.
+                     </p>
+                     
+                     <p>Check status using GDSCTL <code class="codeph">show ddl</code>:
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; show ddl
+id      DDL Text                                      Failed shards 
+--      --------                                      ------------- 
+1       create user example_user identified by *****
+2       create tablespace set tbsset                  shard01 </code></pre>
+                     <p>The command output shows that the DDL failed on the shard shard01. Run the
+                GDSCTL <code class="codeph">config shard</code> command to get detailed information:
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; config shard -shard shard01
+
+Conversion = ':'Name: shard01
+Shard Group: dbs1
+Status: Ok
+State: Deployed
+Region: east
+Connection string: (DESCRIPTION=(ADDRESS=(HOST=shard01-host)(PORT=1521)(PROTOCOL=tcp))
+(CONNECT_DATA=(SID=shard01)))
+SCAN address: 
+ONS remote port: 0
+Disk Threshold, ms: 20
+CPU Threshold, %: 75
+Version: 18.0.0.0
+<span class="bold">Failed DDL: create tablespace set tbsset
+DDL Error: ORA-02585: create tablepsace set failure, one of its tablespaces not created
+ORA-01119: error in creating database file \'/ade/b/3667445372/oracle/rdbms/dbs/
+SHARD01/datafile/o1_mf_tbsset_%u_.dbf\'
+ORA-27040: file create error, unable to create file
+Linux-x86_64 Error: 13: Permission denied
+Additional information: 1 \(ngsmoci_execute\) 
+Failed DDL id: 2
+</span>Availability: ONLINE</code></pre>
+                     <p>The text beginning with “Failed DDL:” indicates the problem. To resolve
+                it, the user must log in to the shard database host and make the directory
+                writable.</p>
+                     
+                     <p>Display the permissions on the directory:</p>
+                     <pre class="pre codeblock"><code>cd $ORACLE_HOME/rdbms/dbs 
+ ls &#x2013;l ../ | grep dbs
+dr-xr-xr-x  4 oracle dba    102400 Jul 20 15:41 dbs/
+</code></pre>
+                     <p>Change the directory to writable:</p>
+                     <pre class="pre codeblock"><code>chmod +w .
+ls &#x2013;l ../ | grep dbs
+drwxrwxr-x  4 oracle dba    102400 Jul 20 15:41 dbs/</code></pre>
+                     <p>Go back to the GDSCTL console and issue the <code class="codeph">recover
+                    shard</code> command:
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; recover shard -shard shard01</code></pre>
+                     <p>Check the status again:</p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; show ddl
+id      DDL Text                                      Failed shards 
+--      --------                                      ------------- 
+1       create user example_user identified by *****
+2       create tablespace set tbsset
+
+GDSCTL&gt; config shard -shard shard01
+
+Conversion = ':'Name: shard01
+Shard Group: dbs1
+Status: Ok
+State: Deployed
+Region: east
+Connection string: (DESCRIPTION=(ADDRESS=(HOST=shard01-host)(PORT=1521)(PROTOCOL=tcp))
+(CONNECT_DATA=(SID=shard01)))
+SCAN address: 
+ONS remote port: 0
+Disk Threshold, ms: 20
+CPU Threshold, %: 75
+Version: 18.0.0.0
+Last Failed DDL: 
+DDL Error: ---
+DDL id: 
+Availability: ONLINE</code></pre>
+                     <p>As shown above, the failed DDL error no longer appears.</p>
+                     
+                  </div>
+                  <div class="example" id="GUID-F4479521-DFF2-49B3-BE12-51CCB3B05B0D__GUID-EE10FFFC-5D97-43A1-8ECF-89CCDB035B21">
+                     <p class="titleinexample">Example 6-3 Recovery from an error on a shard
+                by executing a corrective action on all other shards</p>
+                     
+                     
+                     <p>In this example, the user attempts to create another tablespace set,
+                tbs_set, but the DDL fails on a shard because there is already an existing local
+                tablespace with the same name.</p>
+                     
+                     <p>On the shard catalog:</p>
+                     <pre class="pre codeblock"><code>SQL&gt; create tablespace set tbs_set;
+Tablespace created.</code></pre>
+                     <p>Check status using the GDSCTL <code class="codeph">show ddl</code> command:
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; show ddl
+id      DDL Text                                      Failed shards 
+--      --------                                      ------------- 
+1       create user example_user identified by *****
+2       create tablespace set tbsset 
+3       create tablespace set tbs_set                 shard01  
+
+GDSCTL&gt; config shard -shard shard01
+Conversion = ':'Name: shard01
+……
+<span class="bold">Failed DDL: create tablespace set tbs_set
+DDL Error: ORA-02585: create tablespace set failure, one of its tablespaces not created
+ORA-01543: tablespace \'TBS_SET\' already exists \(ngsmoci_execute\)</span></code></pre>
+                     <p>A solution to this problem is to login to shard01 as a local database
+                administrator, drop the tablespace TBS_SET, and then run GDSCTL <code class="codeph">recover
+                    shard -shard shard01</code>. But suppose you want to keep this tablespace, and
+                instead choose to drop the newly created tablespace set that has the name conflict
+                and create another tablespace set with a different name, such as tbsset2. The
+                following example shows how to do that on the shard catalog:
+                     </p>
+                     <pre class="pre codeblock"><code>SQL&gt; drop tablespace set tbs_set;
+SQL&gt; create tablespace set tbs_set2;</code></pre>
+                     <p>Check status using GDSCTL:</p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; show ddl
+id      DDL Text                                      Failed shards 
+--      --------                                      ------------- 
+1       create user example_user identified by *****
+2       create tablespace set tbsset             
+3       create tablespace set tbs_set                 shard01  
+4       drop tablespace set tbs_set
+5       create tablespace set tbsset2 </code></pre>
+                     <p>You can see that DDLs 4 and 5 are not attempted on shard01 because DDL 3
+                failed there. To make this shard consistent with the shard catalog, you must run the
+                GDSCTL <code class="codeph">recover shard</code> command. However, it does not make sense to
+                execute DDL 3 on this shard because it will fail again and you actually do not want
+                to create tablespace set tbs_set anymore. To skip DDL 3 run <code class="codeph">recover
+                    shard</code> with the <code class="codeph">&#x2013;ignore_first</code> option:
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; recover shard -shard shard01 &#x2013;ignore_first
+<span class="bold">GSM Errors: dbs1 shard01:ORA-00959: tablespace \'TBS_SET\' does not exist
+ (ngsmoci_execute)</span>
+
+GDSCTL&gt; show ddl
+id      DDL Text                                Failed shards 
+--      --------                                ------------- 
+1       create user sidney identified by *****
+2       create tablespace set tbsset             
+3       create tablespace set tbs_set            
+4       drop tablespace set tbs_set             shard01  
+5       create tablespace set tbsset2 </code></pre>
+                     <p>There is no failure with DDL 3 this time because it was skipped.
+                However, the next DDL (4 - drop tablespace set tbs_set) was applied and resulted in
+                the error because the tablespace set to be dropped does not exist on the shard.</p>
+                     
+                     <p>Because the <code class="codeph">&#x2013;ignore_first</code> option only skips the first
+                DDL, you need to execute <code class="codeph">recover shard</code> again to skip the
+                    <code class="codeph">drop</code> statement as well:
+                     </p>
+                     <pre class="pre codeblock"><code>GDSCTL&gt; recover shard -shard shard01 &#x2013;ignore_first
+
+GDSCTL&gt; show ddl
+id      DDL Text                                Failed shards 
+--      --------                                -------------
+1       create user sidney identified by *****
+2       create tablespace set tbsset             
+3       create tablespace set tbs_set          
+4       drop tablespace set tbs_set
+5       create tablespace set tbsset2 </code></pre>
+                     <p>Note that there are no longer any failures shown, and all of the DDLs
+                were applied successfully on the shards.</p>
+                     
+                     <p>When <code class="codeph">recover shard</code> is run with the
+                    <code class="codeph">&#x2013;ignore_first</code> option, the failed DDL is marked to be ignored
+                during incremental deployment. Therefore, DDL numbers 3 and 4 are skipped when a new
+                shard is added to the SDB, and only DDL numbers 1, 2, and 5 are applied.
+                     </p>
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-1ED42D4E-7A13-4303-9EF7-253BAE6A4999" name="GUID-1ED42D4E-7A13-4303-9EF7-253BAE6A4999"></a><h3 id="SHARD-GUID-1ED42D4E-7A13-4303-9EF7-253BAE6A4999" class="sect3">Generating Unique Sequence Numbers Across Shards</h3>
+               <div>
+                  <p>Oracle Sharding allows you to generate globally unique sequence numbers across shards for non-primary key columns, and it is handled by the sharded database.</p>
+                  <p>Customers often need to generate unique IDs for non-primary key columns, for example order_id, when the customer_id is the sharding key. For this case among others, this feature lets you generate unique sequence numbers across shards, while not requiring you to manage the global uniqueness of a given non-primary key column in your application.</p>
+                  <p>This functionality is supported by a new object, <code class="codeph">SHARDED SEQUENCE</code>. A sharded sequence is created on the shard catalog but has an instance on each shard. Each instance generates monotonically increasing numbers that belong to a range which does not overlap with ranges used on other shards. Therefore, every generated number is globally unique.
+                  </p>
+                  <p>A sharded sequence can be used, for example, to generate a unique order number for a table sharded by a customer ID. An application that establishes a connection to a shard using the customer ID as a key can use a local instance of the sharded sequence to generate a globally unique order number.</p>
+                  <p>Note that the number generated by a sharded sequence cannot be immediately used as a sharding key for a new row being inserted into this shard, because the key value may belong to another shard and the insert will result in an error. To insert a new row, the application should first generate a value of the sharding key and then use it to connect to the appropriate shard. A typical way to generate a new value of the sharding key would be use a regular (non-sharded) sequence on the shard catalog.</p>
+                  <p>If a single sharding key generator becomes a bottleneck, a sharded sequence can be used for this purpose. In this case, an application should connect to a random shard (using the global service without specifying the sharding key), get a unique key value from a sharded sequence, and then connect to the appropriate shard using the key value.</p>
+                  <p>To support this feature, new <code class="codeph">SEQUENCE</code> object clauses, <code class="codeph">SHARD</code> and <code class="codeph">NOSHARD</code>, are included in the <code class="codeph">SEQUENCE</code> object DDL syntax, as shown in the following <code class="codeph">CREATE</code> statement syntax.
+                  </p><pre class="pre codeblock"><code>CREATE | ALTER SEQUENCE [ schema. ]sequence
+   [ { INCREMENT BY | START WITH } integer
+   | { MAXVALUE integer | NOMAXVALUE }
+   | { MINVALUE integer | NOMINVALUE }
+   | { CYCLE | NOCYCLE }
+   | { CACHE integer | NOCACHE }
+   | { ORDER | NOORDER }
+   | { SCALE {EXTEND | NOEXTEND} | NOSCALE}
+   | <span class="bold">{ SHARD {EXTEND | NOEXTEND} | NOSHARD}</span> 
+   ]</code></pre><div class="section">
+                     <p><code class="codeph">NOSHARD</code> is the default for a sequence. If the <code class="codeph">SHARD</code> clause is specified, this property is registered in the sequence object’s dictionary table, and is shown using the <code class="codeph">DBA_SEQUENCES</code>, <code class="codeph">USER_SEQUENCES</code>, and <code class="codeph">ALL_SEQUENCES</code> views.
+                     </p>
+                     <p>When <code class="codeph">SHARD</code> is specified, the <code class="codeph">EXTEND</code> and <code class="codeph">NOEXTEND</code> clauses define the behavior of a sharded sequence. When <code class="codeph">EXTEND</code> is specified, the generated sequence values are all of length <span class="italic">(x+y)</span>, where <span class="italic">x</span> is the length of a <code class="codeph">SHARD</code> offset of size 4 (corresponding to the width of the maximum number of shards, that is, 1000) affixed at beginning of the sequence values, and <span class="italic">y</span> is the maximum number of digits in the sequence <code class="codeph">MAXVALUE</code>/<code class="codeph">MINVALUE</code>.
+                     </p>
+                     <p>The default setting for the <code class="codeph">SHARD</code> clause is <code class="codeph">NOEXTEND</code>. With the <code class="codeph">NOEXTEND</code> setting, the generated sequence values are at most as wide as the maximum number of digits in the sequence <code class="codeph">MAXVALUE</code>/<code class="codeph">MINVALUE</code>. This setting is useful for integration with existing applications where sequences are used to populate fixed width columns. On invocation of <code class="codeph">NEXTVAL</code> on a sequence with <code class="codeph">SHARD NOEXTEND</code> specified, a user error is thrown if the generated value requires more digits of representation than the sequence’s <code class="codeph">MAXVALUE</code>/<code class="codeph">MINVALUE</code>. 
+                     </p>
+                     <p>If the <code class="codeph">SCALE</code> clause is also specified with the <code class="codeph">SHARD</code> clause, the sequence generates scalable values within a shard for multiple instances and sessions, which are globally unique. When <code class="codeph">EXTEND</code> is specified with both the <code class="codeph">SHARD</code> and <code class="codeph">SCALE</code> keywords, the generated sequence values are all of length <span class="italic">(x+y+z)</span>, where <span class="italic">x</span> is the length of a prepended <code class="codeph">SHARD</code> offset of size 4, <span class="italic">y</span> is the length of the scalable offset (default 6), and <span class="italic">z</span> is the maximum number of digits in the sequence <code class="codeph">MAXVALUE</code>/<code class="codeph">MINVALUE</code>.
+                     </p>
+                     <div class="infoboxnote" id="GUID-1ED42D4E-7A13-4303-9EF7-253BAE6A4999__GUID-2A9F25F6-BCCA-4C35-A3F5-DAEB0C31BBB2">
+                        <p class="notep1">Note:</p>
+                        <p>When using the <code class="codeph">SHARD</code> clause, do not specify <code class="codeph">ORDER</code> on the sequence. Using <code class="codeph">SHARD</code> generates globally unordered values. If <code class="codeph">ORDER</code> is required, create the sequences locally on each node. 
+                        </p>
+                        <p>The <code class="codeph">SHARD</code> keyword will work in conjunction with <code class="codeph">CACHE</code> and <code class="codeph">NOCACHE</code> modes of operation.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="section">
+                     <div class="infoboxnotealso" id="GUID-1ED42D4E-7A13-4303-9EF7-253BAE6A4999__GUID-C2BD0705-3628-44E3-9BE0-35FFD0041F42">
+                        <p class="notep1">See Also:</p>
+                        <p><a href="../sqlrf/Changes-in-This-Release-for-Oracle-Database-SQL-Language-Reference.html#SQLRF-GUID-3C11D3A9-8B14-4DCC-B212-B7FE57EE81E8" target="_blank"><span><cite>Oracle Database SQL Language Reference</cite></span></a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

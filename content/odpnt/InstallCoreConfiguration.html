@@ -1,0 +1,274 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <title>Oracle Data Provider for .NET Core Configuration</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="InstallManagedConfig.html" title="Previous" type="text/html">
+      <link rel="next" href="InstallDistributedTransaction.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="InstallManagedConfig.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="InstallDistributedTransaction.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="install.html" property="item" typeof="WebPage"><span property="name">Installing and Configuring Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Oracle Data Provider for .NET Core Configuration</li>
+            </ol>
+            <a id="GUID-24C963AE-F20B-44B5-800C-594CA06BD24B" name="GUID-24C963AE-F20B-44B5-800C-594CA06BD24B"></a>
+            
+            <h2 id="ODPNT-GUID-24C963AE-F20B-44B5-800C-594CA06BD24B" class="sect2">Oracle Data Provider for .NET Core Configuration</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p></p>
+               <p>ODP.NET Core developers can assign application settings in .NET Configuration API, <code class="codeph">sqlnet.ora </code>file, and <code class="codeph">tnsnames.ora</code> file.
+               </p>
+               <div class="section">
+                  <p class="subhead1" id="GUID-24C963AE-F20B-44B5-800C-594CA06BD24B__GUID-77859E42-1845-4906-9513-9924C7A4B164"> .NET Configuration API</p>
+                  <p>.NET Core does not support application configuration via .NET configuration files, that is, <code class="codeph">web.config</code>. Instead, it uses .NET Configuration API in lieu of a configuration file. ODP.NET Core supports Configuration API via the static class, <code class="codeph">OracleConfiguration</code>, for application level provider settings. The <code class="codeph">OracleDataSourceCollection </code>class supports adding and deleting net services names, that is, TNS entries. The <code class="codeph">OracleOnsServerCollection </code> class supports adding to and deleting from a list of nodes where the Oracle Notification Service (ONS) daemons are talking to their remote clients.
+                  </p>
+                  <p>All configurations settings through <code class="codeph">OracleConfiguration</code> should be done before opening any connection in the application. Once a connection is opened, any updates to configuration properties will result in <code class="codeph">InvalidOperationException</code>; with only exception of trace settings that are still allowed to change during application runtime.
+                  </p>
+               </div>
+               <!-- class="section" -->
+               <div class="example" id="GUID-24C963AE-F20B-44B5-800C-594CA06BD24B__GUID-6CA1B223-7259-4020-8AB5-89F023EEDAA0">
+                  <p class="titleinexample">Example 2-6 Code Sample</p><pre class="oac_no_warn" dir="ltr">
+using System;
+using Oracle.ManagedDataAccess.Client;
+
+namespace ODP_Core_Config_API
+{
+    class odp_core_config
+    {
+        static void Main(string[] args)
+        {
+            // This sample demonstrates how to use ODP.NET Core Configuration API
+
+            // Add connect descriptors and net service names entries.
+            OracleConfiguration.OracleDataSources.Add("orclpdb", "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=&lt;hostname or IP&gt;)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=&lt;service name&gt;)(SERVER=dedicated)))");
+            OracleConfiguration.OracleDataSources.Add("orcl", "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=&lt;hostname or IP&gt;)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=&lt;service name&gt;)(SERVER=dedicated)))");
+
+            // Set default statement cache size to be used by all connections.
+            OracleConfiguration.StatementCacheSize = 25;
+
+            // Disable self tuning by default.
+            OracleConfiguration.SelfTuning = false;
+
+            // Bind all parameters by name.
+            OracleConfiguration.BindByName = true;
+
+            // Set default timeout to 60 seconds.
+            OracleConfiguration.CommandTimeout = 60;
+
+            // Set default fetch size as 1 MB.
+            OracleConfiguration.FetchSize = 1024 * 1024;
+
+            // Set tracing options
+            OracleConfiguration.TraceOption = 1;
+            OracleConfiguration.TraceFileLocation = @"D:\traces";
+            // Uncomment below to generate trace files
+            //OracleConfiguration.TraceLevel = 7;
+            
+            // Set network properties
+            OracleConfiguration.SendBufferSize = 8192;
+            OracleConfiguration.ReceiveBuffereSize = 8192;
+            OracleConfiguration.DisableOOB = true;
+
+            OracleConnection orclCon = null;
+
+            try
+            {
+                // Open a connection
+                orclCon = new OracleConnection("user id=hr; password=&lt;password&gt;; data source=orclpdb");
+                orclCon.Open();
+
+                // Execute simple select statement that returns first 10 names from EMPLOYEES table
+                OracleCommand orclCmd = orclCon.CreateCommand();
+                orclCmd.CommandText = "select first_name from employees where rownum &lt;= 10 ";
+                OracleDataReader rdr = orclCmd.ExecuteReader();
+
+                while (rdr.Read())
+                    Console.WriteLine("Employee Name: " + rdr.GetString(0));
+
+                Console.ReadLine();
+
+                rdr.Dispose();
+                orclCmd.Dispose();
+            }
+            finally
+            {
+                // Close the connection
+                if (null != orclCon)
+                    orclCon.Close();
+            }
+        }
+    }
+}</pre></div>
+               <!-- class="example" -->
+               <div class="section">
+                  <p class="subhead1" id="GUID-24C963AE-F20B-44B5-800C-594CA06BD24B__GUID-60818FD2-1748-4F89-9018-7C82B705BBA6">Oracle Configuration Files</p>
+                  <p>ODP.NET Core supports the <code class="codeph">sqlnet.ora</code> and <code class="codeph">tnsnames.ora</code> parameters below. These settings can be used in conjunction with .NET Configuration API.
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><code class="codeph">BindByName</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">DbNotificationPort</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">Disable_Oob</code> &#x2013; <code class="codeph">sqlnet.ora</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">DRCPConnectionClass</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">FetchSize</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">MaxStatementCacheSize</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">NAMES.DIRECTORY_PATH </code>&#x2013; <code class="codeph">sqlnet.ora</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">NODELAY</code> &#x2013;<code class="codeph"> sqlnet.ora</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">RETRY_COUNT</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">RETRY_DELAY</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">RECEIVE_BUF_SIZE</code> &#x2013; <code class="codeph">sqlnet.ora</code> or <code class="codeph">tnsnames.ora</code></p>
+                     </li>
+                     <li>
+                        <p>SelfTuning</p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">SEND_BUF_SIZE</code> &#x2013;<code class="codeph"> sqlnet.ora </code>or <code class="codeph">tnsnames.ora</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">ServiceRelocationConnectionTimeout</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">SQLNET.AUTHENTICATION_SERVICES</code> &#x2013; <code class="codeph">sqlnet.ora</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">SQLNET.CRYPTO_CHECKSUM_CLIENT</code> &#x2013; <code class="codeph">sqlnet.ora</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">SQLNET.CRYPTO_CHECKSUM_TYPES_CLIENT</code> &#x2013; <code class="codeph">sqlnet.ora</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">StatementCacheSize</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">SSL_SERVER_DN_MATCH</code> &#x2013; <code class="codeph">sqlnet.ora</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">SSL_VERSION</code> &#x2013; <code class="codeph">sqlnet.ora</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">TNS_ADMIN</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">TraceFileLocation</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">TraceLevel</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">TraceOption</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">TCP.CONNECT_TIMEOUT </code>&#x2013; <code class="codeph">sqlnet.ora</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">SQLNET.ENCRYPTION_CLIENT</code> &#x2013; <code class="codeph">sqlnet.ora </code> 
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">SQLNET.ENCRYPTION_TYPES_CLIENT</code> &#x2013; <code class="codeph">sqlnet.ora</code></p>
+                     </li>
+                  </ul>
+                  <p>ODP.NET Core will look for <code class="codeph">sqlnet.ora</code> and <code class="codeph">tnsnames.ora</code> files in the following precedence order:
+                  </p>
+                  <ol>
+                     <li>
+                        <p>Directory set in <code class="codeph">OracleConfiguration.TnsAdmin</code> property
+                        </p>
+                     </li>
+                     <li>
+                        <p>Directory of the running ODP.NET Core assembly</p>
+                     </li>
+                     <li>
+                        <p>Current working directory</p>
+                     </li>
+                  </ol>
+                  <div class="infoboxnotealso" id="GUID-24C963AE-F20B-44B5-800C-594CA06BD24B__GUID-E2510A84-13BA-42CA-B06C-C42EE87DE971">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="OracleConfigurationClass.html#GUID-F1F71D03-CBB8-4173-A883-0878DA84D11A">OracleConfiguration Class</a></p>
+                        </li>
+                        <li>
+                           <p><a href="OracleDataSourceCollectionClass.html#GUID-C1D73432-B409-46BE-B060-B5EA06BBBC69">OracleDataSourceCollection Class</a></p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <!-- class="section" -->
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

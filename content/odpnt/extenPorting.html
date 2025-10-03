@@ -1,0 +1,275 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Porting Client Application to .NET Stored Procedure</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="extenRest.html" title="Previous" type="text/html">
+      <link rel="next" href="odp-dot-net-classes.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="extenRest.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="odp-dot-net-classes.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="extensions.html" property="item" typeof="WebPage"><span property="name">Oracle Data Provider for .NET Stored Procedures</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Porting Client Application to .NET Stored Procedure</li>
+            </ol>
+            <a id="GUID-FC0CA4AE-59B1-4B8B-98C6-14A97F0BF820" name="GUID-FC0CA4AE-59B1-4B8B-98C6-14A97F0BF820"></a><a id="ODPNT455"></a><a id="ODPNT456"></a><a id="ODPNT457"></a><a id="ODPNT0018"></a>
+            
+            <h2 id="ODPNT-GUID-FC0CA4AE-59B1-4B8B-98C6-14A97F0BF820" class="sect2">Porting Client Application to .NET Stored Procedure</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>All classes and class members provide the same functionality for both client applications and .NET stored procedures, unless it is otherwise stated. </p>
+               <p><a href="extenPorting.html#GUID-FC0CA4AE-59B1-4B8B-98C6-14A97F0BF820__CHDGEGJD" title="First column lists classes or class members. Second column indicates corresponding yes or no for client-side ODP.NET. Third column indicates corresponding implicit and explicit connections.">Table 5-1</a> lists those classes or class members that have different behavior depending on whether or not they are used in a client application or in a .NET stored procedure. 
+               </p>
+               <div class="section">
+                  <p class="subhead1" id="GUID-FC0CA4AE-59B1-4B8B-98C6-14A97F0BF820__GUID-05D567A5-96DA-40EF-89E5-568085CAE457"><span class="bold">Column Headings</span></p>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <p>The column headings for this table are:</p>
+                  <p>Client application: The client application.</p>
+                  <p>Implicit connection: The implicit database connections in a .NET stored procedure.</p>
+                  <p>Explicit connection: The explicit user connections in a .NET stored procedure.</p>
+                  <div class="tblformal" id="GUID-FC0CA4AE-59B1-4B8B-98C6-14A97F0BF820__CHDGEGJD">
+                     <p class="titleintable">Table 5-1 API Support Comparison Between Client Application and .NET Stored Procedure</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="API Support Comparison Between Client Application and .NET Stored Procedure" summary="First column lists classes or class members. Second column indicates corresponding yes or no for client-side ODP.NET. Third column indicates corresponding implicit and explicit connections." frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" id="d126343e52">Class or Class Members</th>
+                              <th align="left" valign="bottom" id="d126343e55">Client Application</th>
+                              <th align="left" valign="bottom" id="d126343e58">Implicit Connection/Explicit Connection</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d126343e63" headers="d126343e52 ">
+                                 <p><a href="OnChangeEventHandlerEventDelegate.html#GUID-21E19A8D-EA6E-4A26-B722-ACA8828AC503">OnChangeEventHandler Delegate</a></p>
+                                 <p>-all members</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e63 d126343e55 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e63 d126343e58 ">
+                                 <p>No/No</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d126343e76" headers="d126343e52 ">
+                                 <p><a href="OracleDependencyClass.html#GUID-D28FE392-A5D9-4921-822D-9E898CFCB361">OracleDependency Class</a></p>
+                                 <p>-all members</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e76 d126343e55 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e76 d126343e58 ">
+                                 <p>No/No</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d126343e89" headers="d126343e52 ">
+                                 <p><a href="OracleNotificationEventArgsClass.html#GUID-25873C2A-840D-4D22-A111-E3E0D2A5F82D">OracleNotificationEventArgs Class</a></p>
+                                 <p>-all members</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e89 d126343e55 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e89 d126343e58 ">
+                                 <p>No/No</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d126343e102" headers="d126343e52 ">
+                                 <p><a href="OracleNotificationRequestClass.html#GUID-D1057A54-2A97-4623-A500-A8C459632150">OracleNotificationRequest Class</a></p>
+                                 <p>-all members</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e102 d126343e55 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e102 d126343e58 ">
+                                 <p>No/No</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d126343e115" headers="d126343e52 ">
+                                 <p><a href="OracleFailoverEventArgsClass.html#GUID-3B464F7C-2AD5-4209-BFBF-5EA7751B30C3">OracleFailoverEventArgs Class</a></p>
+                                 <p>-all members</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e115 d126343e55 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e115 d126343e58 ">
+                                 <p>No/No</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d126343e128" headers="d126343e52 ">
+                                 <p><a href="OracleFailoverEventHandlerDelegate.html#GUID-13D8EA35-6F8B-45C4-94ED-31F2DFC6F611">OracleFailoverEventHandler Delegate</a></p>
+                                 <p>-all members</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e128 d126343e55 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e128 d126343e58 ">
+                                 <p>No/No</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d126343e141" headers="d126343e52 ">
+                                 <p><a href="OracleTransactionClass.html#GUID-841D0FAA-5E18-4753-AE85-23236E4DD38C">OracleTransaction Class</a></p>
+                                 <p>-all members</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e141 d126343e55 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e141 d126343e58 ">
+                                 <p>No/No</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d126343e154" headers="d126343e52 ">
+                                 <p><a href="OracleCommandClass.html#GUID-7C1D5BCC-0268-4F1B-A583-F401F30EB9C0">OracleCommand Class</a></p>
+                                 <p>-<a href="CommandTransaction.html#GUID-1D62DDC4-2E46-452C-8EE9-5F5ED4F4A295">Transaction</a> Property
+                                 </p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e154 d126343e55 ">
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e154 d126343e58 ">
+                                 <p></p>
+                                 <p>No: Always returns null /No: Always returns null.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d126343e171" headers="d126343e52 ">
+                                 <p><a href="OracleConnectionClass.html#GUID-A8BFA792-97D6-423B-9548-80CA0652174E">OracleConnection Class</a></p>
+                                 <p>-<a href="ConnectionConnectionTimeout.html#GUID-43D3CBFA-964E-494E-8953-195DF63D549A">ConnectionTimeout</a> Property
+                                 </p>
+                                 <p>-<a href="ConnectionDatasource.html#GUID-0CC8BE32-4634-4AFA-8B5F-315CC41C922F">DataSource</a> Property
+                                 </p>
+                                 <p>-<a href="ConnectionBeginTransactionOverloads.html#GUID-7D12BD73-AF13-458E-AF10-E10E23726ABB">BeginTransaction</a> Method
+                                 </p>
+                                 <p>-<a href="ConnectionChangeDatabase.html#GUID-E1BA2428-FDFE-4C99-AA67-BAE880353AEE">ChangeDatabase</a> Method
+                                 </p>
+                                 <p>-<a href="ConnectionClone.html#GUID-18293A32-FD8A-4ECB-932D-285215D50BE8">Clone</a> Method
+                                 </p>
+                                 <p>-<a href="ConnectionEnlistDistributedTransaction.html#GUID-6EB031E2-D457-4142-A112-9A8590905AF7">EnlistDistributedTransaction</a> Method
+                                 </p>
+                                 <p>-<a href="ConnectionOpenWithNewPassword1.html#GUID-4CD612F3-319E-45DD-8211-0CA9B42F8AD0">OpenWithNewPassword(String)</a> Method
+                                 </p>
+                                 <p>-<a href="ConnectionFailover.html#GUID-8B9CCE46-FA13-467D-B58E-EC940713CA3A">Failover</a> Event
+                                 </p>
+                                 <p>-<a href="OracleFailoverEventHandlerDelegate.html#GUID-13D8EA35-6F8B-45C4-94ED-31F2DFC6F611">OracleFailoverEventHandler Delegate</a></p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e171 d126343e55 ">
+                                 <p></p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                                 <p>No</p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e171 d126343e58 ">
+                                 <p></p>
+                                 <p>Yes: Implicit database connection always returns <code class="codeph">0</code>/Yes
+                                 </p>
+                                 <p>Yes: Implicit database connection always returns an empty string/Yes</p>
+                                 <p>No/Yes</p>
+                                 <p>No/No</p>
+                                 <p>No/Yes</p>
+                                 <p>No/No</p>
+                                 <p>No/Yes</p>
+                                 <p>No/No</p>
+                                 <p>No/No</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d126343e263" headers="d126343e52 ">
+                                 <p>ODP.NET Enumerations</p>
+                                 <p>-<a href="FailoverEventEnumeration.html#GUID-B70B6300-A23A-44CD-A145-9DF847283D30">FailoverEvent Enumeration</a></p>
+                                 <p>-<a href="FailoverReturnCodeEnumeration.html#GUID-35ED2EDE-BE0E-4720-92DC-C708A40EA29B">FailoverReturnCode Enumeration</a></p>
+                                 <p>-<a href="FailoverTypeEnumeration.html#GUID-19FBBBEC-636A-4873-88C9-E018CC5C7D07">FailoverType Enumeration</a></p>
+                                 <p>-<a href="OracleNotificationInfoEnumeration.html#GUID-F2EDC278-3F8B-4B9A-B63B-A2EC276A45E8">OracleNotificationInfo Enumeration</a></p>
+                                 <p>-<a href="OracleNotificationSourceEnumeration.html#GUID-A77047E8-88EE-4E4B-B0E3-FC8B0B82B4E0">OracleNotificationSource Enumeration</a></p>
+                                 <p>-<a href="OracleNotificationTypeEnumeration.html#GUID-8A196356-2C48-4E54-980A-CD9A406AFC9D">OracleNotificationType Enumeration</a></p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e263 d126343e55 ">
+                                 <p></p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                              </td>
+                              <td align="left" valign="top" headers="d126343e263 d126343e58 ">
+                                 <p></p>
+                                 <p>No/No</p>
+                                 <p>No/No</p>
+                                 <p>No/No</p>
+                                 <p>No/No</p>
+                                 <p>No/No</p>
+                                 <p>No/No</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <!-- class="inftblhruleinformal" -->
+               </div>
+               <!-- class="section" -->
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

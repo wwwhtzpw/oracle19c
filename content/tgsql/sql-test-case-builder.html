@@ -1,0 +1,444 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Gathering Diagnostic Data with SQL Test Case Builder">
+      <meta name="abstract" content="SQL Test Case Builder is a tool that automatically gathers information needed to reproduce the problem in a different database instance.">
+      <meta name="description" content="SQL Test Case Builder is a tool that automatically gathers information needed to reproduce the problem in a different database instance.">
+      <meta name="DC.subject" content="SQL, test cases, SQL Test Case Builder, gathering diagnostic data, key concepts, incidents, SQL, SQL incidents, what it captures, dynamic statistics, optimizer statistics, dynamic, statistics, optimizer, adaptive query plans, adaptive query optimization, adaptive plans, output, user interfaces, graphical interface, Incident Manager, accessing, accessing the Incident Manager, Support Workbench, accessing, accessing the Support Workbench, DBMS_SQLDIAG package, command-line interface, running">
+      <meta name="keywords" content="SQL, test cases, SQL Test Case Builder, gathering diagnostic data, key concepts, incidents, SQL, SQL incidents, what it captures, dynamic statistics, optimizer statistics, dynamic, statistics, optimizer, adaptive query plans, adaptive query optimization, adaptive plans, output, user interfaces, graphical interface, Incident Manager, accessing, accessing the Incident Manager, Support Workbench, accessing, accessing the Support Workbench, DBMS_SQLDIAG package, command-line interface, running">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-5207C3C6-C459-4CA7-A12A-6D9CC2485197">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="SQL Test Case Builder is a tool that automatically gathers information needed to reproduce the problem in a different database instance.">
+      <meta name="description" content="SQL Test Case Builder is a tool that automatically gathers information needed to reproduce the problem in a different database instance.">
+      <title>Gathering Diagnostic Data with SQL Test Case Builder</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="SQL Tuning Guide">
+      <meta property="og:description" content="SQL Test Case Builder is a tool that automatically gathers information needed to reproduce the problem in a different database instance.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="SQL Tuning Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="sql-tuning-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-04-02T15:26:27-07:00">
+      <meta name="dcterms.title" content="SQL Tuning Guide">
+      <meta name="dcterms.dateCopyrighted" content="2013, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96095-19">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="monitoring-database-operations.html" title="Previous" type="text/html">
+      <link rel="next" href="performing-application-tracing.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="TGSQL">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Gathering Diagnostic Data with SQL Test Case Builder","description":"SQL Test Case Builder is a tool that automatically gathers information needed to reproduce the problem in a different database instance.","datePublished":"2025-04-15 CST","dateModified":"2025-04-15 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="monitoring-database-operations.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="performing-application-tracing.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-5207C3C6-C459-4CA7-A12A-6D9CC2485197" name="GUID-5207C3C6-C459-4CA7-A12A-6D9CC2485197"></a>
+         
+         <h2 id="TGSQL-GUID-5207C3C6-C459-4CA7-A12A-6D9CC2485197" class="sect2"><span class="enumeration_chapter">22 </span>Gathering Diagnostic Data with SQL Test Case Builder
+         </h2>
+         <div class="ind">
+            <div>
+               <p><strong class="term">SQL Test Case Builder</strong> is a tool that automatically gathers information needed to reproduce the problem in a different database instance. 
+               </p>
+               <p>A <strong class="term">SQL test case</strong> is a set of information that enables a developer to reproduce the execution plan for a specific SQL statement that has encountered a performance problem.
+               </p>
+               <p>This chapter contains the following topics:</p>
+            </div>
+            <div class="props_rev_3"><a id="GUID-F4A2878D-311C-45F0-8747-81E4398F2BDC" name="GUID-F4A2878D-311C-45F0-8747-81E4398F2BDC"></a><h3 id="TGSQL-GUID-F4A2878D-311C-45F0-8747-81E4398F2BDC" class="sect3">Purpose of SQL Test Case Builder</h3>
+               <div>
+                  <p>SQL Test Case Builder automates the process of gathering and reproducing information about a problem and the environment in which it occurred.</p>
+                  <p>For most SQL components, obtaining a reproducible test case is the most important factor in bug resolution speed. It is also the longest and most painful step for users. The goal of SQL Test Case Builder is to gather as much as information related to an SQL incident as possible, and then package it in a way that enables Oracle staff to reproduce the problem on a different system.</p>
+                  <p>The output of SQL Test Case Builder is a set of scripts in a predefined directory. These scripts contain the commands required to re-create all the necessary objects and the environment on another database instance. After the test case is ready, you can create a zip file of the directory and move it to another database, or upload the file to Oracle Support.</p>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-78C2FCFC-FA60-4E86-A5F0-DA7CCC1AD987" name="GUID-78C2FCFC-FA60-4E86-A5F0-DA7CCC1AD987"></a><h3 id="TGSQL-GUID-78C2FCFC-FA60-4E86-A5F0-DA7CCC1AD987" class="sect3">Concepts for SQL Test Case Builder</h3>
+               <div>
+                  <p>Key concepts for SQL Test Case Builder include SQL incidents, types of information recorded, and the form of the output.</p>
+                  <p>This section contains the following topics:</p>
+               </div>
+               <div class="props_rev_3"><a id="GUID-1FA91A0F-ACC1-4849-845D-86AB312A866E" name="GUID-1FA91A0F-ACC1-4849-845D-86AB312A866E"></a><h4 id="TGSQL-GUID-1FA91A0F-ACC1-4849-845D-86AB312A866E" class="sect4">SQL Incidents</h4>
+                  <div>
+                     <p>In the fault diagnosability infrastructure of Oracle Database, an <strong class="term">incident</strong> is a single occurrence of a problem.
+                     </p>
+                     <p>A SQL incident is a SQL-related problem. When a problem (critical error) occurs multiple times, the database creates an incident for each occurrence. Incidents are timestamped and tracked in the Automatic Diagnostic Repository (ADR). Each incident has a numeric incident ID, which is unique within the ADR.</p>
+                     <p>SQL Test Case Builder is accessible any time on the command line. In Oracle Enterprise Manager Cloud Control (Cloud Control), the SQL Test Case pages are only available after a SQL incident is found.</p>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-0D666C9D-8B0E-4FC5-8EC1-6FBC65475C66" name="GUID-0D666C9D-8B0E-4FC5-8EC1-6FBC65475C66"></a><h4 id="TGSQL-GUID-0D666C9D-8B0E-4FC5-8EC1-6FBC65475C66" class="sect4">What SQL Test Case Builder Captures</h4>
+                  <div>
+                     <p>SQL Test Case Builder captures permanent information about a SQL query and its environment.</p>
+                     <p>The information includes the query being executed, table and index definitions (but not the actual data), PL/SQL packages and program units, optimizer statistics, SQL plan baselines, and initialization parameter settings. Starting with Oracle Database 12c, SQL Test Case Builder also captures and replays transient information, including information only available as part of statement execution. </p>
+                     <p>SQL Test Case Builder supports the following:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>Adaptive plans</p>
+                           <p>SQL Test Case Builder captures inputs to the decisions made regarding adaptive plans, and replays them at each decision point. For adaptive plans, the final statistics value at each buffering statistics collector is sufficient to decide on the final plan.</p>
+                        </li>
+                        <li>
+                           <p>Automatic memory management</p>
+                           <p>The database automatically handles the memory requested for each SQL operation. Actions such as sorting can affect performance significantly. SQL Test Case Builder keeps track of the memory activities, for example, where the database allocated memory and how much it allocated.</p>
+                        </li>
+                        <li>
+                           <p>Dynamic statistics</p>
+                           <p>Dynamic statistics is an optimization technique in which the database executes a recursive SQL statement to scan a small random sample of a table's blocks to estimate predicate selectivities. Regathering dynamic statistics on a different database does not always generate the same results, for example, when data is missing. To reproduce the problem, SQL Test Case Builder exports the dynamic statistics result from the source database. In the testing database, SQL Test Case Builder reuses the same values captured from the source database instead of regathering dynamic statistics.</p>
+                        </li>
+                        <li>
+                           <p>Multiple execution support</p>
+                           <p>SQL Test Case Builder can capture dynamic information accumulated during multiple executions of the query. This capability is important for automatic reoptimization.</p>
+                        </li>
+                        <li>
+                           <p>Compilation environment and bind values replay</p>
+                           <p>The compilation environment setting is an important part of the query optimization context. SQL Test Case Builder captures nondefault settings altered by the user when running the problem query in the source database. If any nondefault parameter values are used, SQL Test Case Builder re-establishes the same values before running the query.</p>
+                        </li>
+                        <li>
+                           <p>Object statistics history</p>
+                           <p>The statistics history for objects is helpful to determine whether a plan change was caused by a change in statistics values. <code class="codeph">DBMS_STATS</code> stores the history in the data dictionary. SQL Test Case Builder stores this statistics data into a staging table during export. During import, SQL Test Case Builder automatically reloads the statistics history data into the target database from the staging table.
+                           </p>
+                        </li>
+                        <li>
+                           <p>Statement history</p>
+                           <p>The statement history is important for diagnosing problems related to adaptive cursor sharing, statistics feedback, and cursor sharing bugs. The history includes execution plans and compilation and execution statistics.</p>
+                        </li>
+                     </ul>
+                     <div class="infoboxnotealso" id="GUID-0D666C9D-8B0E-4FC5-8EC1-6FBC65475C66__GUID-C7361FF5-20C7-4948-B5DD-AF9F1C7B4DC8">
+                        <p class="notep1">See Also:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><a href="introduction-to-sql-tuning.html#TGSQL-GUID-B653E5F3-F078-4BBC-9516-B892960046A2" target="_blank"><span class="italic">Oracle Database SQL Tuning Guide</span></a> for more information about adaptive query plans, supplemental dynamic statistics, automatic reoptimization, and SQL plan baselines
+                              </p>
+                           </li>
+                           <li>
+                              <p><a href="../arpls/DBMS_STATS.html#ARPLS059" target="_blank"><span class="italic">Oracle Database PL/SQL Packages and Types Reference</span></a> to learn about the <code class="codeph">DBMS_STATS</code> package
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-3E77892C-9259-4361-93FC-0C643AA51A88" name="GUID-3E77892C-9259-4361-93FC-0C643AA51A88"></a><h4 id="TGSQL-GUID-3E77892C-9259-4361-93FC-0C643AA51A88" class="sect4">Output of SQL Test Case Builder</h4>
+                  <div>
+                     <p>The output of SQL Test Case Builder is a set of files that contains commands required to re-create the environment and all necessary objects.</p>
+                     <p>By default, SQL Test Case Builder stores the files in the following directory, where <span class="italic">incnum</span> refers to the incident number and <span class="italic">runnum</span> refers to the run number:
+                     </p><pre class="pre codeblock"><code>$ADR_HOME/incident/incdir_<span class="italic">incnum</span>/SQLTCB_<span class="italic">runnum</span>
+</code></pre><p>For example, a valid output file name could be as follows:</p><pre class="pre codeblock"><code>$ORACLE_HOME/log/diag/rdbms/dbsa/dbsa/incident/incdir_2657/SQLTCB_1
+</code></pre><p>You can also specify a particular directory for storing the SQL Test Case Builder files by creating a directory object with the name <code class="codeph">SQL_TCB_DIR</code> and running the procedure <code class="codeph">DBMS_SQLDIAG.EXPORT_SQL_TESTCASE</code> as shown in the following example:
+                     </p><pre class="pre codeblock"><code>CREATE OR REPLACE DIRECTORY SQL_TCB_DIR '/tmp';
+
+DECLARE  
+tc CLOB;
+BEGIN 
+  DBMS_SQLDIAG.EXPORT_SQL_TESTCASE (
+    directory =&gt; 'SQL_TCB_DIR',   
+    sql_text  =&gt; 'select * from hr_table',   
+    testcase  =&gt; tc);
+END;</code></pre><div class="infoboxnote" id="GUID-3E77892C-9259-4361-93FC-0C643AA51A88__GUID-02229BDB-64C9-4462-87E4-570562FE3D2E">
+                        <p class="notep1">Note:</p>
+                        <p>The database administrator must have read and write access permissions to the operating system directory specified in the directory object <code class="codeph">SQL_TCB_DIR</code>.
+                        </p>
+                     </div>
+                     <p>You can also specify a name for a test case using the <code class="codeph">testcase_name</code> parameter of the <code class="codeph">DBMS_SQLDIAG.EXPORT_SQL_TESTCASE</code> procedure. A test case name is used as a prefix for all the files generated by SQL Test Case Builder.
+                     </p>
+                     <p>If you do not specify a test case name, then a default test case name having the following format is used by SQL Test Case Builder:</p><pre class="pre codeblock"><code>oratcb_<span class="italic">connectionId</span>_<span class="italic">sqlId</span>_<span class="italic">sequenceNumber</span>_<span class="italic">sessionId</span></code></pre><p>Here, <span class="italic">connectionId</span> is the database connection ID, <span class="italic">sqlId</span> is the SQL statement ID, <span class="italic">sequenceNumber</span> is the internal sequence number, and <span class="italic">sessionId</span> is the database session ID.
+                     </p>
+                     <p>You can also specify any additional information to include in the output of SQL Test Case Builder using the <code class="codeph">ctrlOptions</code> parameter of the <code class="codeph">DBMS_SQLDIAG.EXPORT_SQL_TESTCASE</code> procedure. The following are some of the options that you can specify in the <code class="codeph">ctrlOptions</code> parameter:
+                     </p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><code class="codeph">compress</code>: This option is used to compress the SQL Test Case Builder output files into a zip file.
+                           </p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">diag_event</code>: This option is used to specify the level of trace information to include in the SQL Test Case Builder output.
+                           </p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">problem_type</code>: This option is used to assign an issue type for a SQL Test Case Builder test case. For example, if a test case is related to performance regression issue, then you can assign the value of <code class="codeph">PERFORMANCE</code> to the <code class="codeph">problem_type</code> option.
+                           </p>
+                        </li>
+                     </ul>
+                     <p>You can view the information about all the test cases generated by SQL Test Case Builder by querying the <code class="codeph">V$SQL_TESTCASES</code> view as shown in the following example:
+                     </p><pre class="pre codeblock"><code>
+select testcase_name, sql_text from v$sql_testcases;
+
+TESTCASE_NAME                           SQL_TEXT
+-------------------------------------   ----------------------
+oratcb_0_am8q8kudm02v9_1_00244CC50001   select * from hr_table
+</code></pre><div class="infoboxnote" id="GUID-3E77892C-9259-4361-93FC-0C643AA51A88__GUID-A21F6FDB-D621-45C0-B70C-505967C11055">
+                        <p class="notep1">Note:</p>
+                        <p>The <code class="codeph">V$SQL_TESTCASES</code> view requires the existence of a SQL Test Case Builder root directory object named <code class="codeph">SQL_TCB_DIR</code>. In Oracle Autonomous Database environments, this directory object is created automatically on each POD during provisioning. For on-premises databases, you must explicitly create the SQL Test Case Builder root directory object <code class="codeph">SQL_TCB_DIR</code>, otherwise the <code class="codeph">V$SQL_TESTCASES</code> view will not display any information. The database administrator must have read and write access permissions to the operating system directory specified in the directory object <code class="codeph">SQL_TCB_DIR</code>.
+                        </p>
+                     </div>
+                     <div class="infoboxnotealso" id="GUID-3E77892C-9259-4361-93FC-0C643AA51A88__GUID-CFDC8A99-E396-4AF5-A4D3-2FD4413D5EC5">
+                        <p class="notep1">See Also:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><a href="../arpls/DBMS_SQLDIAG.html#ARPLS-GUID-A6751459-6F1D-44C4-BDBB-AE855D01BACA" target="_blank"><span><cite>Oracle Database PL/SQL Packages and Types Reference</cite></span></a> for more information about the <code class="codeph">DBMS_SQLDIAG.EXPORT_SQL_TESTCASE</code> procedure
+                              </p>
+                           </li>
+                           <li>
+                              <p><a href="../refrn/V-SQL_TESTCASES.html#REFRN-GUID-BFF605B2-49FA-44B1-880D-8928F5395184" target="_blank"><span><cite>Oracle Database Reference</cite></span></a> for more information about the <code class="codeph">V$SQL_TESTCASES</code> view
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-C28E1EFD-3F92-4BF1-AE92-9230581712BD" name="GUID-C28E1EFD-3F92-4BF1-AE92-9230581712BD"></a><h3 id="TGSQL-GUID-C28E1EFD-3F92-4BF1-AE92-9230581712BD" class="sect3">User Interfaces for SQL Test Case Builder</h3>
+               <div>
+                  <p>You can access SQL Test Case Builder either through Cloud Control or using PL/SQL on the command line.</p>
+                  <p>This section contains the following topics:</p>
+               </div>
+               <div class="props_rev_3"><a id="GUID-3B9C9026-DD36-44FA-A346-C84C2E30779A" name="GUID-3B9C9026-DD36-44FA-A346-C84C2E30779A"></a><h4 id="TGSQL-GUID-3B9C9026-DD36-44FA-A346-C84C2E30779A" class="sect4">Graphical Interface for SQL Test Case Builder</h4>
+                  <div>
+                     <p>Within Cloud Control, you can access SQL Test Case Builder from the Incident Manager page or the Support Workbench page.</p>
+                     <p>This section contains the following topics:</p>
+                  </div>
+                  <div class="props_rev_3"><a id="GUID-355F7C1F-42B6-47E9-B8E6-BE47DD587A8C" name="GUID-355F7C1F-42B6-47E9-B8E6-BE47DD587A8C"></a><h5 id="TGSQL-GUID-355F7C1F-42B6-47E9-B8E6-BE47DD587A8C" class="sect5">Accessing the Incident Manager</h5>
+                     <div>
+                        <p>From the Incidents and Problems section on the Database Home page, you can navigate to the Incident Manager.</p>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-355F7C1F-42B6-47E9-B8E6-BE47DD587A8C__GUID-40ADF328-61A7-4759-903B-2EDC5B729DBF">To access the Incident Manager:</p>
+                           <ol>
+                              <li>
+                                 <p>Log in to Cloud Control with the appropriate credentials.</p>
+                              </li>
+                              <li>
+                                 <p>Under the <span class="bold">Targets</span> menu, select <span class="bold">Databases</span>.
+                                 </p>
+                              </li>
+                              <li>
+                                 <p>In the list of database targets, select the target for the Oracle Database instance that you want to administer.</p>
+                              </li>
+                              <li>
+                                 <p>If prompted for database credentials, then enter the minimum credentials necessary for the tasks you intend to perform.</p>
+                              </li>
+                              <li>
+                                 <p>In the Incidents and Problems section, locate the SQL incident to be investigated.</p>
+                                 <p>In the following example, the <code class="codeph">ORA 600</code> error is a SQL incident.
+                                 </p>
+                                 <div class="figure" id="GUID-355F7C1F-42B6-47E9-B8E6-BE47DD587A8C__GUID-591D2F54-1C35-48BD-BD9A-8D2EDADE3115"><img height="104" width="671" src="img/incidents_and_problems.gif" alt="Description of incidents_and_problems.gif follows" title="Description of incidents_and_problems.gif follows" longdesc="img_text/incidents_and_problems.html"><br><a href="img_text/incidents_and_problems.html">Description of the illustration incidents_and_problems.gif</a></div>
+                              </li>
+                              <li>
+                                 <p>Click the summary of the incident.</p>
+                                 <p>The Problem Details page of the Incident Manager appears.</p>
+                                 <div class="figure" id="GUID-355F7C1F-42B6-47E9-B8E6-BE47DD587A8C__GUID-7A952FA8-0358-40B0-8D8D-6F11BF57909C"><img height="365" width="750" src="img/problem_details.gif" alt="Description of problem_details.gif follows" title="Description of problem_details.gif follows" longdesc="img_text/problem_details.html"><br><a href="img_text/problem_details.html">Description of the illustration problem_details.gif</a></div>
+                                 <p>The Support Workbench page appears, with the incidents listed in a table.</p>
+                              </li>
+                           </ol>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="props_rev_3"><a id="GUID-82F02C36-11DC-486B-B299-E242E4B10490" name="GUID-82F02C36-11DC-486B-B299-E242E4B10490"></a><h5 id="TGSQL-GUID-82F02C36-11DC-486B-B299-E242E4B10490" class="sect5">Accessing the Support Workbench</h5>
+                     <div>
+                        <p>From the Oracle Database menu, you can navigate to the Support Workbench.</p>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-82F02C36-11DC-486B-B299-E242E4B10490__GUID-85D8EDDE-533B-44F7-A027-2CB5FF9C2A79">To access the Support Workbench:</p>
+                           <ol>
+                              <li>
+                                 <p>Log in to Cloud Control with the appropriate credentials.</p>
+                              </li>
+                              <li>
+                                 <p>Under the <span class="bold">Targets</span> menu, select <span class="bold">Databases</span>.
+                                 </p>
+                              </li>
+                              <li>
+                                 <p>In the list of database targets, select the target for the Oracle Database instance that you want to administer.</p>
+                              </li>
+                              <li>
+                                 <p>If prompted for database credentials, then enter the minimum credentials necessary for the tasks you intend to perform.</p>
+                              </li>
+                              <li>
+                                 <p>From the <span class="bold">Oracle Database</span> menu, select <span class="bold">Diagnostics</span>, then <span class="bold">Support Workbench</span>.
+                                 </p>
+                                 <p>The Support Workbench page appears, with the incidents listed in a table.</p>
+                              </li>
+                           </ol>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-BE5ECC60-8033-40B5-BB0A-5803A78416DB" name="GUID-BE5ECC60-8033-40B5-BB0A-5803A78416DB"></a><h4 id="TGSQL-GUID-BE5ECC60-8033-40B5-BB0A-5803A78416DB" class="sect4">Command-Line Interface for SQL Test Case Builder</h4>
+                  <div>
+                     <p>The <code class="codeph">DBMS_SQLDIAG</code> package performs tasks relating to SQL Test Case Builder.
+                     </p>
+                     <div class="section">
+                        <p>This package consists of various subprograms for the SQL Test Case Builder, some of which are listed in the following table.</p>
+                        <div class="tblformal" id="GUID-BE5ECC60-8033-40B5-BB0A-5803A78416DB__BABHBBHG">
+                           <p class="titleintable">Table 22-1 SQL Test Case Functions in the DBMS_SQLDIAG Package</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="SQL Test Case Functions in the DBMS_SQLDIAG Package" summary="This table lists some of the SQL Test Case functions present in the DBMS_SQLDIAG package." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="42%" id="d99528e1445">Procedure</th>
+                                    <th align="left" valign="bottom" width="58%" id="d99528e1448">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="42%" id="d99528e1453" headers="d99528e1445 ">
+                                       <p><code class="codeph">EXPORT_SQL_TESTCASE</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="58%" headers="d99528e1453 d99528e1448 ">
+                                       <p>Exports a SQL test case to a user-specified directory</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="42%" id="d99528e1461" headers="d99528e1445 ">
+                                       <p><code class="codeph">EXPORT_SQL_TESTCASE_DIR_BY_INC</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="58%" headers="d99528e1461 d99528e1448 ">
+                                       <p>Exports a SQL test case corresponding to the incident ID passed as an argument</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="42%" id="d99528e1469" headers="d99528e1445 ">
+                                       <p><code class="codeph">EXPORT_SQL_TESTCASE_DIR_BY_TXT</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="58%" headers="d99528e1469 d99528e1448 ">
+                                       <p>Exports a SQL test case corresponding to the SQL text passed as an argument</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="42%" id="d99528e1477" headers="d99528e1445 ">
+                                       <p><code class="codeph">IMPORT_SQL_TESTCASE</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="58%" headers="d99528e1477 d99528e1448 ">
+                                       <p>Imports a SQL test case into a schema</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="42%" id="d99528e1485" headers="d99528e1445 ">
+                                       <p><code class="codeph">REPLAY_SQL_TESTCASE</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="58%" headers="d99528e1485 d99528e1448 ">
+                                       <p>Automates reproduction of a SQL test case</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="42%" id="d99528e1493" headers="d99528e1445 ">
+                                       <p><code class="codeph">EXPLAIN_SQL_TESTCASE</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="58%" headers="d99528e1493 d99528e1448 ">
+                                       <p>Explains a SQL test case</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <div class="infoboxnotealso" id="GUID-BE5ECC60-8033-40B5-BB0A-5803A78416DB__GUID-8BC887CC-119B-4A4A-A30E-CB553A23A1E2">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="../arpls/DBMS_SQLDIAG.html#ARPLS203" target="_blank"><span><cite>Oracle Database PL/SQL Packages and Types Reference</cite></span></a> to learn more about the <code class="codeph">DBMS_SQLDIAG</code> package
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-0880A048-4B85-49AE-B9B3-3BFA37F2F2EE" name="GUID-0880A048-4B85-49AE-B9B3-3BFA37F2F2EE"></a><h3 id="TGSQL-GUID-0880A048-4B85-49AE-B9B3-3BFA37F2F2EE" class="sect3">Running SQL Test Case Builder</h3>
+               <div>
+                  <p>You can run SQL Test Case Builder using Cloud Control.</p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-0880A048-4B85-49AE-B9B3-3BFA37F2F2EE__GUID-3651A53A-1B0B-4CE1-ABBC-20DE9F28C858">Assumptions</p>
+                     <p>This tutorial assumes the following:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>You ran the following <code class="codeph">EXPLAIN PLAN</code> statement as user <code class="codeph">sh</code>, which causes an internal error:
+                           </p><pre class="pre codeblock"><code>EXPLAIN PLAN FOR
+  SELECT unit_cost, sold
+  FROM   costs c,
+         ( SELECT /*+ merge */ p.prod_id, SUM(quantity_sold) AS sold
+           FROM   products p, sales s
+           WHERE  p.prod_id = s.prod_id
+           GROUP BY p.prod_id ) v
+  WHERE  c.prod_id = v.prod_id;
+</code></pre></li>
+                        <li>
+                           <p>In the Incidents and Problems section on the Database Home page, a SQL incident generated by the internal error appears.</p>
+                        </li>
+                        <li>
+                           <p>You access the Incident Details page, as explained in <span class="q">"<a href="sql-test-case-builder.html#GUID-355F7C1F-42B6-47E9-B8E6-BE47DD587A8C" title="From the Incidents and Problems section on the Database Home page, you can navigate to the Incident Manager.">Accessing the Incident Manager</a>"</span>.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-0880A048-4B85-49AE-B9B3-3BFA37F2F2EE__GUID-8A4E526C-E064-4BC8-92AB-C6C47617BAF8">To run SQL Test Case Builder:</p>
+                     <ol>
+                        <li>
+                           <p>Click the Incidents tab.</p>
+                           <p>The Problem Details page appears.</p>
+                           <div class="figure" id="GUID-0880A048-4B85-49AE-B9B3-3BFA37F2F2EE__GUID-A4AEE60C-E98A-47E3-BA6D-FB2BB02335D4"><img height="123" width="570" src="img/problem_details_summary.gif" alt="Description of problem_details_summary.gif follows" title="Description of problem_details_summary.gif follows" longdesc="img_text/problem_details_summary.html"><br><a href="img_text/problem_details_summary.html">Description of the illustration problem_details_summary.gif</a></div>
+                        </li>
+                        <li>
+                           <p>Click the summary for the incident.</p>
+                           <p>The Incident Details page appears.</p>
+                           <div class="figure" id="GUID-0880A048-4B85-49AE-B9B3-3BFA37F2F2EE__GUID-879564EF-C896-4291-A3AA-A77C7AB3434D"><img height="419" width="667" src="img/incident_details.gif" alt="Description of incident_details.gif follows" title="Description of incident_details.gif follows" longdesc="img_text/incident_details.html"><br><a href="img_text/incident_details.html">Description of the illustration incident_details.gif</a></div>
+                        </li>
+                        <li>
+                           <p>In Guided Resolution, click <span class="bold">View Diagnostic Data</span>.
+                           </p>
+                           <p>The Incident Details: <span class="italic">incident_number</span> page appears.
+                           </p>
+                           <div class="figure" id="GUID-0880A048-4B85-49AE-B9B3-3BFA37F2F2EE__GUID-D74DAA7C-5D91-4BED-BA98-4BCD687F3E31"><img height="606" width="683" src="img/incident_details_num.gif" alt="Description of incident_details_num.gif follows" title="Description of incident_details_num.gif follows" longdesc="img_text/incident_details_num.html"><br><a href="img_text/incident_details_num.html">Description of the illustration incident_details_num.gif</a></div>
+                        </li>
+                        <li>
+                           <p>In the Application Information section, click <span class="bold">Additional Diagnostics</span>.
+                           </p>
+                           <p>The Additional Diagnostics subpage appears.</p>
+                           <div class="figure" id="GUID-0880A048-4B85-49AE-B9B3-3BFA37F2F2EE__GUID-21292F72-13C3-46C2-BFA5-FE3233FBC06E"><img height="131" width="681" src="img/additional_diagnostics.gif" alt="Description of additional_diagnostics.gif follows" title="Description of additional_diagnostics.gif follows" longdesc="img_text/additional_diagnostics.html"><br><a href="img_text/additional_diagnostics.html">Description of the illustration additional_diagnostics.gif</a></div>
+                        </li>
+                        <li>
+                           <p>Select <span class="bold">SQL Test Case Builder</span>, and then click <span class="bold">Run</span>.
+                           </p>
+                           <p>The Run User Action page appears.</p>
+                           <div class="figure" id="GUID-0880A048-4B85-49AE-B9B3-3BFA37F2F2EE__GUID-1FEB47A1-98AC-422F-BAC0-EC53D791A7A5"><img height="282" width="535" src="img/run_user_action.gif" alt="Description of run_user_action.gif follows" title="Description of run_user_action.gif follows" longdesc="img_text/run_user_action.html"><br><a href="img_text/run_user_action.html">Description of the illustration run_user_action.gif</a></div>
+                        </li>
+                        <li>
+                           <p>Select a sampling percentage (optional), and then click <span class="bold">Submit</span>.
+                           </p>
+                           <p>After processing completes, the Confirmation page appears.</p>
+                           <div class="figure" id="GUID-0880A048-4B85-49AE-B9B3-3BFA37F2F2EE__GUID-09B3E1CB-BC3C-4FB6-8348-4F278BC98AD1"><img height="88" width="436" src="img/sqltcb_confirmation.gif" alt="Description of sqltcb_confirmation.gif follows" title="Description of sqltcb_confirmation.gif follows" longdesc="img_text/sqltcb_confirmation.html"><br><a href="img_text/sqltcb_confirmation.html">Description of the illustration sqltcb_confirmation.gif</a></div>
+                        </li>
+                        <li>
+                           <p>Access the SQL Test Case files in the location described in <span class="q">"<a href="sql-test-case-builder.html#GUID-3E77892C-9259-4361-93FC-0C643AA51A88" title="The output of SQL Test Case Builder is a set of files that contains commands required to re-create the environment and all necessary objects.">Output of SQL Test Case Builder</a>"</span>.
+                           </p>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Using OFS">
+      <meta name="abstract" content="The OFS implementation includes creating and accessing the file system and managing it.">
+      <meta name="description" content="The OFS implementation includes creating and accessing the file system and managing it.">
+      <meta name="DC.Relation" scheme="URI" content="oracle-file-system.html#GUID-5613B15C-9976-4148-A167-4C279E28372D">
+      <meta name="DC.Relation" scheme="URI" content="using-ofs.html#GUID-42E1420E-26CA-49D9-BA8C-A2ADE03478BF">
+      <meta name="DC.Relation" scheme="URI" content="using-ofs.html#GUID-9C6D77CB-228C-4DB2-9593-CD1EF14526BF">
+      <meta name="DC.Relation" scheme="URI" content="using-ofs.html#GUID-05EC95E5-E1EA-43C4-A0EA-3E8C03B6CA94">
+      <meta name="DC.Relation" scheme="URI" content="using-ofs.html#GUID-8495A1EC-86B5-4460-B5F8-22B1E694B04E">
+      <meta name="DC.Relation" scheme="URI" content="using-ofs.html#GUID-8F34BF3D-1B2A-4CA3-B7EB-26350FB08A0F">
+      <meta name="DC.Relation" scheme="URI" content="using-ofs.html#GUID-EAC81B19-7628-4C99-8FB5-696C9425F027">
+      <meta name="DC.Creator" content="Tanmay Choudhry">
+      <meta name="DC.Contributor" content="Tulika Das">
+      <meta name="DC.Contributor" content="Amith Kumar">
+      <meta name="DC.Creator" content="Bharath Aleti">
+      <meta name="DC.Creator" content="Geeta Arora">
+      <meta name="DC.Creator" content="Thomas H. Chang">
+      <meta name="DC.Creator" content="Maria Chien">
+      <meta name="DC.Creator" content="Subramanyam Chitti">
+      <meta name="DC.Creator" content="Amit Ganesh">
+      <meta name="DC.Creator" content="Kevin Jernigan">
+      <meta name="DC.Creator" content="Vikram Kapoor">
+      <meta name="DC.Creator" content="Balaji Krishnan">
+      <meta name="DC.Creator" content="Jean de Lavarene">
+      <meta name="DC.Creator" content="Geoff Lee">
+      <meta name="DC.Creator" content="Scott Lynn">
+      <meta name="DC.Creator" content="Jack Melnick">
+      <meta name="DC.Creator" content="Atrayee Mullick">
+      <meta name="DC.Creator" content="Eric Paapanen">
+      <meta name="DC.Creator" content="Ravi Rajamani">
+      <meta name="DC.Creator" content="Kam Shergill">
+      <meta name="DC.Creator" content="Ed Shirk">
+      <meta name="DC.Creator" content="Srinivas Vemuri">
+      <meta name="DC.Creator" content="Jayashree Sharma">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-096E9ADD-544B-4C83-90A4-835DBF9DFF0C">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The OFS implementation includes creating and accessing the file system and managing it.">
+      <meta name="description" content="The OFS implementation includes creating and accessing the file system and managing it.">
+      <title>Using OFS</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="SecureFiles and Large Objects Developer's Guide">
+      <meta property="og:description" content="The OFS implementation includes creating and accessing the file system and managing it.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="SecureFiles and Large Objects Developer's Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="securefiles-and-large-objects-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-05T05:32:17-07:00">
+      <meta name="dcterms.title" content="SecureFiles and Large Objects Developer's Guide">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96333-05">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="introducing-network-file-system.html" title="Previous" type="text/html">
+      <link rel="next" href="database-file-system.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="ADLOB">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Using OFS","description":"The OFS implementation includes creating and accessing the file system and managing it.","datePublished":"2025-06-05 CST","dateModified":"2025-06-05 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="introducing-network-file-system.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="database-file-system.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-096E9ADD-544B-4C83-90A4-835DBF9DFF0C" name="GUID-096E9ADD-544B-4C83-90A4-835DBF9DFF0C"></a>
+         
+         <h2 id="ADLOB-GUID-096E9ADD-544B-4C83-90A4-835DBF9DFF0C" class="sect2"><span class="enumeration_chapter">19 </span>Using OFS
+         </h2>
+         <div class="ind">
+            <div>
+               <p>The OFS implementation includes creating and accessing the file system and
+        managing it.</p>
+               <p>Topics:</p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="using-ofs.html#GUID-42E1420E-26CA-49D9-BA8C-A2ADE03478BF">About OFS</a><br>Oracle File Server (OFS) addresses the need to store PDB specific scripts, logs, trace files and other files produced by running an application in the database.
+                  </li>
+                  <li class="ulchildlink"><a href="using-ofs.html#GUID-9C6D77CB-228C-4DB2-9593-CD1EF14526BF">About Oracle File Server Process</a><br>OFS manages the database file system using a non-fatal and dedicated background process called Oracle File Server Deamon (OFSD).
+                  </li>
+                  <li class="ulchildlink"><a href="using-ofs.html#GUID-05EC95E5-E1EA-43C4-A0EA-3E8C03B6CA94">Limitations of using OFS</a><br></li>
+                  <li class="ulchildlink"><a href="using-ofs.html#GUID-8495A1EC-86B5-4460-B5F8-22B1E694B04E">OFS Configuration Parameters</a><br>The following table specifies the parameter that can be tuned to provide file system access for database objects using OFS.
+                  </li>
+                  <li class="ulchildlink"><a href="using-ofs.html#GUID-8F34BF3D-1B2A-4CA3-B7EB-26350FB08A0F">Managing DBFS Locally Using FUSE</a><br>Understand how you can manage DBFS using Filesystem in User Space (FUSE).
+                  </li>
+                  <li class="ulchildlink"><a href="using-ofs.html#GUID-EAC81B19-7628-4C99-8FB5-696C9425F027">OFS Client Interface</a><br>The OFS interface includes views and procedures that support OFS         operations.
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="oracle-file-system.html#GUID-5613B15C-9976-4148-A167-4C279E28372D">Oracle File System (OFS) Server</a></p>
+                  </div>
+               </div>
+            </div>
+            
+            <div class="sect2"><a id="GUID-42E1420E-26CA-49D9-BA8C-A2ADE03478BF" name="GUID-42E1420E-26CA-49D9-BA8C-A2ADE03478BF"></a><h3 id="ADLOB-GUID-42E1420E-26CA-49D9-BA8C-A2ADE03478BF" class="sect3"><span class="enumeration_section">19.1 </span>About OFS
+               </h3>
+               <div>
+                  <p>Oracle File Server (OFS) addresses the need to store PDB specific scripts, logs, trace files and other files produced by running an application in the database.</p>
+                  <p>Additionally, you can use OFS for the following tasks:</p>
+                  <ul style="list-style-type: disc;" id="GUID-42E1420E-26CA-49D9-BA8C-A2ADE03478BF__UL_JL4_GVG_KVB">
+                     <li>As a staging area where you can host the source data before it is loaded into database tables.</li>
+                     <li>To store import or export files from Oracle Data Pump process.</li>
+                  </ul>
+                  <p>Ensure that you do not place core database files such as data, redo, archive log files, and database trace file on OFS as this can produce a dependency cycle and cause the system to hang. Similarly, the <code class="codeph">diagnostic_dest</code> initialization parameter that sets the location of the automatic diagnostic repository should not point to a directory inside OFS.
+                  </p>
+                  <p>OFS provides methods and procedures to allow you to create a Database file system using storage that is part of the PDB. You can mount the created file system, unmount it like any other Unix file system using PL/SQL procedures, and  destroy the file system when it is no longer in use.  When the PDB is destroyed, the file system is also destroyed, which  frees up the underlying storage space.</p>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="using-ofs.html#GUID-096E9ADD-544B-4C83-90A4-835DBF9DFF0C" title="The OFS implementation includes creating and accessing the file system and managing it.">Using OFS</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="sect2"><a id="GUID-9C6D77CB-228C-4DB2-9593-CD1EF14526BF" name="GUID-9C6D77CB-228C-4DB2-9593-CD1EF14526BF"></a><h3 id="ADLOB-GUID-9C6D77CB-228C-4DB2-9593-CD1EF14526BF" class="sect3"><span class="enumeration_section">19.2 </span>About Oracle File Server Process
+               </h3>
+               <div>
+                  <p>OFS manages the database file system using a non-fatal and dedicated background process called Oracle File Server Deamon (OFSD).</p>
+                  <p>For more information about background process, see <a href="../refrn/background-processes.html#REFRN-GUID-86184690-5531-405F-AA05-BB935F57B76D" target="_blank">Background Processes</a> in the <cite>Database Reference</cite> guide.
+                  </p>
+                  <p>When an instance starts, the OFSD process gets spawned on operating system platforms, such as Linux, where OFS is supported. OFSD is multi-threaded and non-fatal. It serves both file system management requests and file requests from each mounted file system.</p>
+                  <p>The centralized server background process model of OFS allows multiple file systems to be mounted and accessed using a limited set of server threads. It allows better resource sharing and a linear scalability with new file server threads created on demand. Both memory and CPU used by these threads are controlled through system wide parameters set in the RDBMS instance.</p>
+                  <p>OFSD process starts two types of threads: receiver thread and worker thread. The receiver thread receives requests from the mounted file system. The name of this thread name is similar to <code class="codeph">of01</code>. The requests received by this thread are placed in a submit queue which is served by different worker threads. The submit queue is hash partitioned to efficiently distribute the incoming requests across all the worker threads. By default, OFSD starts 3 worker threads. You can update the value of the <code class="codeph">OFS_THREADS</code> parameter to increase the number of worker thread.
+                  </p><img id="GUID-9C6D77CB-228C-4DB2-9593-CD1EF14526BF__IMAGE_L4W_WN3_KVB" height="571" width="652" src="img/ofsd_process.png" alt="OFSD process" title="OFSD process"><p>OFSD supports these 2 types of file systems: DBFS and OFS.</p>
+                  <p>Use the <code class="codeph">DBMS_FS</code> PL/SQL procedures to create, mount, and work with the file systems managed by the OFSD process.
+                  </p>
+                  <p>OFSD uses a pool of worker threads to serve requests from multiple file systems that are mounted on the instance. Use <code class="codeph">V$OFSMOUNT</code> to query the mounted file systems. The response that is returned is specific to each PDB. It lists only the file systems that are mounted in the specified PDB.
+                  </p>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="using-ofs.html#GUID-096E9ADD-544B-4C83-90A4-835DBF9DFF0C" title="The OFS implementation includes creating and accessing the file system and managing it.">Using OFS</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="sect2"><a id="GUID-05EC95E5-E1EA-43C4-A0EA-3E8C03B6CA94" name="GUID-05EC95E5-E1EA-43C4-A0EA-3E8C03B6CA94"></a><h3 id="ADLOB-GUID-05EC95E5-E1EA-43C4-A0EA-3E8C03B6CA94" class="sect3"><span class="enumeration_section">19.3 </span>Limitations of using OFS
+               </h3>
+               <div>
+                  <p></p>
+                  <p>Use of OFS is subjected to the following limitations:</p>
+                  <div class="p">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>DBFS mounted with ASM storage shows wrong mount size.</p>
+                        </li>
+                        <li>
+                           <p>OFS mounted with local storage shows wrong mount size.</p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="using-ofs.html#GUID-096E9ADD-544B-4C83-90A4-835DBF9DFF0C" title="The OFS implementation includes creating and accessing the file system and managing it.">Using OFS</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="sect2"><a id="GUID-8495A1EC-86B5-4460-B5F8-22B1E694B04E" name="GUID-8495A1EC-86B5-4460-B5F8-22B1E694B04E"></a><h3 id="ADLOB-GUID-8495A1EC-86B5-4460-B5F8-22B1E694B04E" class="sect3"><span class="enumeration_section">19.4 </span>OFS Configuration Parameters
+               </h3>
+               <div>
+                  <p>The following table specifies the parameter that can be tuned to provide file system access for database objects using OFS.</p>
+                  <div class="tblformal" id="GUID-8495A1EC-86B5-4460-B5F8-22B1E694B04E__NFSCONFIGURATIONPARAMETERS-4930AC7B">
+                     <p class="titleintable">Table 19-1 OFS Configuration Parameters</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="OFS Configuration Parameters" summary="This table lists all the OFS configuration parameters." frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="20%" id="d97367e496">Parameter Name</th>
+                              <th align="left" valign="bottom" width="20%" id="d97367e498">Description</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="20%" id="d97367e502" headers="d97367e496 ">
+                                 <p><code class="codeph">OFS_THREADS</code></p>
+                              </td>
+                              <td align="left" valign="top" width="20%" headers="d97367e502 d97367e498 ">
+                                 <p>Set the number of OFS worker threads to handle OFS requests. Enter an integer value in the range of 3&#x2013;128. The default value is 4.</p>
+                                 <p>Set the value for this parameter based on the total number of mounted file systems and the rate at which file operations are performed in each file system.</p>
+                                 <p>Set this value after careful consideration as you can only increase this value dynamically and you cannot decrease it. If you set a high value for <code class="codeph">OFS_THREADS</code>, then the specified number of threads are created. If there is no workload, these threads remain in an idle state and wait for new work.
+                                 </p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="infoboxnote" id="GUID-8495A1EC-86B5-4460-B5F8-22B1E694B04E__GUID-9424B3A5-7E0F-42E5-B0E3-2E21BC2E2806">
+                     <p class="notep1">Note:</p>
+                     <p>The <code class="codeph">diagnostic_dest</code> initialization parameter sets the location of the automatic diagnostic repository. When you use <code class="codeph">dbfs_client</code> or Oracle File Server (OFS) as the file system server, ensure that this parameter does not point to a directory inside <code class="codeph">dbfs_client</code> or OFS as this can produce a dependency cycle and cause the system to hang.
+                     </p>
+                  </div>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="using-ofs.html#GUID-096E9ADD-544B-4C83-90A4-835DBF9DFF0C" title="The OFS implementation includes creating and accessing the file system and managing it.">Using OFS</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="sect2"><a id="GUID-8F34BF3D-1B2A-4CA3-B7EB-26350FB08A0F" name="GUID-8F34BF3D-1B2A-4CA3-B7EB-26350FB08A0F"></a><h3 id="ADLOB-GUID-8F34BF3D-1B2A-4CA3-B7EB-26350FB08A0F" class="sect3"><span class="enumeration_section">19.5 </span>Managing DBFS Locally Using FUSE
+               </h3>
+               <div>
+                  <p>Understand how you can manage DBFS using Filesystem in User Space (FUSE).</p>
+                  <p>The FUSE interface in the Linux kernel makes the file systems available to the operating system processes. After mounting the file system, you can export it, and then NFS mount it on other nodes where client applications can access this file system.</p>
+               </div>
+               <div>
+                  <ul class="ullinks">
+                     <li class="ulchildlink"><a href="using-ofs.html#GUID-1D816A5B-DAC0-4E4F-9C49-9C9D1596B2AB">Configuring FUSE</a><br>OFSD exposes the database file system through FUSE. Before using OFSD to mount the database file systems, you must install and configure the FUSE module.
+                     </li>
+                     <li class="ulchildlink"><a href="using-ofs.html#GUID-52BFBA14-3949-49C0-85DB-0CF7CD256C61">Accessing OFS in Cloud</a><br>To access files from an OFS mounted on any Cloud environment, you must perform additional steps to configure the environment.
+                     </li>
+                  </ul>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="using-ofs.html#GUID-096E9ADD-544B-4C83-90A4-835DBF9DFF0C" title="The OFS implementation includes creating and accessing the file system and managing it.">Using OFS</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="sect3"><a id="GUID-1D816A5B-DAC0-4E4F-9C49-9C9D1596B2AB" name="GUID-1D816A5B-DAC0-4E4F-9C49-9C9D1596B2AB"></a><h4 id="ADLOB-GUID-1D816A5B-DAC0-4E4F-9C49-9C9D1596B2AB" class="sect4"><span class="enumeration_section">19.5.1 </span>Configuring FUSE
+                  </h4>
+                  <div>
+                     <p>OFSD exposes the database file system through FUSE. Before using OFSD to mount the database file systems, you must install and configure the FUSE module.</p>
+                     <div class="p">If you are running your database instance in a Compute node, configure the FUSE module in that node. The file system gets mounted and is visible through a mounted path on the compute node. In a RAC configuration, configure FUSE in each node, so that the OFS file systems can be mounted independently in each node. </div>
+                     <div class="section">To configure the FUSE module in Cloud or on-premises environment, where the database instance is running:</div>
+                     <ol>
+                        <li class="stepexpand"><span>Set read and execute permissions for an Oracle user to use the FUSE executable file, <code class="codeph">fusermount</code>.</span><div><pre class="pre codeblock"><code>sudo chmod o+rx /usr/bin/fusermount</code></pre></div>
+                           <div>Use the <code class="codeph">fusermount</code> file to mount and unmount the FUSE user mode file systems.
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Set the <code class="codeph">setuid</code> bit on the <code class="codeph">fusermount</code> file to permit an Oracle user to mount file systems.</span><div><pre class="pre codeblock"><code>sudo chmod u+s /usr/bin/fusermount</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Permit other users to access the mounted file system.</span><div><pre class="pre codeblock"><code>sudo sh -c ''echo user_allow_other &gt;&gt; /etc/fuse.conf''</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Optional. By default, the maximum number of file systems that you can mount using FUSE is 1000. If you are running a large number of PDBs and need to configure a separate file system for each PDB, then run the following command to increase the number of file systems that can be mounted using FUSE. The following command increases the number of file systems that can be mounted using FUSE to 4000.</span><div><pre class="pre codeblock"><code>sudo sh -c ''echo mount_max=4000 &gt;&gt; /etc/fuse.conf''</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Allow all users to read the <code class="codeph">fuse.conf</code> file, so that the Oracle process can read this file at run time.</span><div><pre class="pre codeblock"><code>sudo chmod a+r /etc/fuse.conf</code></pre></div>
+                        </li>
+                     </ol>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="using-ofs.html#GUID-8F34BF3D-1B2A-4CA3-B7EB-26350FB08A0F" title="Understand how you can manage DBFS using Filesystem in User Space (FUSE).">Managing DBFS Locally Using FUSE</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div>
+               <div class="sect3"><a id="GUID-52BFBA14-3949-49C0-85DB-0CF7CD256C61" name="GUID-52BFBA14-3949-49C0-85DB-0CF7CD256C61"></a><h4 id="ADLOB-GUID-52BFBA14-3949-49C0-85DB-0CF7CD256C61" class="sect4"><span class="enumeration_section">19.5.2 </span>Accessing OFS in Cloud
+                  </h4>
+                  <div>
+                     <p>To access files from an OFS mounted on any Cloud environment, you must perform additional steps to configure the environment.</p>
+                     <div class="p">
+                        <p>To access files in an OFS mount in the Cloud environment, you may need to perform additional configuration. It may not be possible to export the OFS mount point from database node to client node due to security reasons. This may hinder client applications from accessing OFS files through operating system commands and utilities and the OFS mount path may not be available to access using system calls. In such situations, Oracle recommends that you use the <code class="codeph">utl_file</code> package to access files in the OFS mount. For information about UTL file package, see <a href="../arpls/UTL_FILE.html#GUID-85AAC107-6732-4ACA-AA34-0B5DE67792C5" target="_blank">Summary of UTL_FILE Subprograms</a> in <cite>PL/SQL Packages and Types Reference</cite>.
+                        </p>
+                        <p>You can also use the <code class="codeph">impdp</code> and <code class="codeph">expdp</code> command-line clients to access files in the OFS mount. See <a href="../sutil/datapump-import-utility.html#SUTIL-GUID-D11E340E-14C6-43B8-AB09-6335F0C1F71B" target="_blank">Oracle Data Pump Import</a> and <a href="../sutil/oracle-data-pump-export-utility.html#SUTIL-GUID-5F7380CE-A619-4042-8D13-1F7DDE429991" target="_blank">Oracle Data Pump Export</a> in the <cite>Utilities guide</cite>.
+                        </p>
+                     </div>
+                     <div class="section">To configure the environment so that client applications in Cloud can access files in an OFS:</div>
+                     <ol>
+                        <li class="stepexpand"><span>Create a directory object using the OFS mount path.</span><div>
+                              <p>The following sample code displays how you can create a directory object called <code class="codeph">pdb1_ofsdir</code> when <code class="codeph">/u03/dbfs/<span class="codeinlineitalic">&lt;pdbid&gt;</span>/data</code> is the OFS mount directory on the db node.
+                              </p><pre class="pre codeblock"><code>CREATE DIRECTORY pdb1_ofsdir AS '/u03/dbfs/<span class="italic">&lt;pdbid&gt;</span>/data/';</code></pre></div>
+                        </li>
+                        <li class="stepexpand"><span>Grant access to the user to access the directory object.</span><div>
+                              <p>For more information on creating a directory object and setting access permissions on it, see <a href="../sqlrf/CREATE-DIRECTORY.html#SQLRF-GUID-8E9C569A-1B06-42C4-9586-0EF83437001A" target="_blank">CREATE DIRECTORY</a> in <cite>PL/SQL Packages and Types Reference</cite>.
+                              </p>
+                           </div>
+                        </li>
+                     </ol>
+                     <div class="section">
+                        <p>Do not access the OFS files by directly querying or modifying the DBFS tables. Do not use <code class="codeph">dbfs_client</code> when the DBFS file system is mounted through OFS or else it could lead to metadata and data inconsistency. To access the OFS files, use the <code class="codeph">UTL_FILE</code> package in addition to the procedures listed in the <code class="codeph">DBMS_FS</code> package.
+                        </p>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="using-ofs.html#GUID-8F34BF3D-1B2A-4CA3-B7EB-26350FB08A0F" title="Understand how you can manage DBFS using Filesystem in User Space (FUSE).">Managing DBFS Locally Using FUSE</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-EAC81B19-7628-4C99-8FB5-696C9425F027" name="GUID-EAC81B19-7628-4C99-8FB5-696C9425F027"></a><h3 id="ADLOB-GUID-EAC81B19-7628-4C99-8FB5-696C9425F027" class="sect3"><span class="enumeration_section">19.6 </span>OFS Client Interface
+               </h3>
+               <div>
+                  <p>The OFS interface includes views and procedures that support OFS
+        operations.</p>
+                  <p>Topics:</p>
+               </div>
+               <div>
+                  <ul class="ullinks">
+                     <li class="ulchildlink"><a href="using-ofs.html#GUID-E061D62D-F3FB-4E2E-A1F9-A99F28B01FBF">DBMS_FS Package</a><br>Use the <code class="codeph">DBMS_FS</code> package to manage the file systems. Use the procedures in this package to create, mount, unmount and destroy a file system in the Oracle Database.
+                     </li>
+                     <li class="ulchildlink"><a href="using-ofs.html#GUID-CB12BAE5-CFE3-4ED1-82E8-3BFF3E6D6A8C">Views for OFS</a><br>The views that support OFS operations start with <code class="codeph">V$OFS</code>.
+                     </li>
+                  </ul>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="using-ofs.html#GUID-096E9ADD-544B-4C83-90A4-835DBF9DFF0C" title="The OFS implementation includes creating and accessing the file system and managing it.">Using OFS</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="sect3"><a id="GUID-E061D62D-F3FB-4E2E-A1F9-A99F28B01FBF" name="GUID-E061D62D-F3FB-4E2E-A1F9-A99F28B01FBF"></a><h4 id="ADLOB-GUID-E061D62D-F3FB-4E2E-A1F9-A99F28B01FBF" class="sect4"><span class="enumeration_section">19.6.1 </span>DBMS_FS Package
+                  </h4>
+                  <div>
+                     <p>Use the <code class="codeph">DBMS_FS</code> package to manage the file systems. Use the procedures in this package to create, mount, unmount and destroy a file system in the Oracle Database.
+                     </p>
+                     <p>PDBs can submit these jobs using the PL/SQL procedure and they are executed serially by the OFSD process.</p>
+                     <div class="infoboxnotealso" id="GUID-E061D62D-F3FB-4E2E-A1F9-A99F28B01FBF__NOTE-142-493BAB40">
+                        <p class="notep1">See Also:</p>
+                        <p><a href="../arpls/DBMS_FS.html#ARPLS-GUID-EC375036-6CFB-4EE7-AE67-F9F9A66E6332" target="_blank"><span><cite>Oracle Database PL/SQL Packages and Types Reference</cite></span></a> for more information about Oracle OFS procedures.
+                        </p>
+                     </div>
+                     <div class="example" id="GUID-E061D62D-F3FB-4E2E-A1F9-A99F28B01FBF__GUID-2C21D7FA-EBF1-4B4A-A3B7-13EF0BCB152C">
+                        
+                        <p>The following example illustrates the use of <code class="codeph">DBMS_FS</code> package.
+                        </p>
+                        <pre class="pre codeblock"><code>BEGIN
+ DBMS_FS.MAKE_ORACLE_FS (
+  fstype           =&gt; 'dbfs',
+  fsname           =&gt; 'dbfs_fs1',
+  mount_options    =&gt; 'TABLESPACE=dbfs_fs1_tbspc');
+END;
+/
+BEGIN
+ DBMS_FS.MOUNT_ORACLE_FS (
+  fstype           =&gt; 'dbfs',                              
+  fsname           =&gt; 'dbfs_fs1',                              
+  mount_point      =&gt; '/oracle/dbfs/testfs',                              
+  mount_options    =&gt; 'default_permissions, allow_other'); 
+END;
+/
+/************** Now you can access the file system. All the FS operations go here ***************/
+
+BEGIN
+ DBMS_FS.UNMOUNT_ORACLE_FS (
+  fsname           =&gt; 'dbfs_fs1',                              
+  mount_point      =&gt; '/oracle/dbfs/testfs',
+  mount_options    =&gt; 'force'); 
+END;
+/
+BEGIN
+ DBMS_FS.DESTROY_ORACLE_FS (
+  fstype           =&gt; 'dbfs',
+  fsname           =&gt; 'dbfs_fs1');
+END;
+/
+
+</code></pre>
+                        </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="using-ofs.html#GUID-EAC81B19-7628-4C99-8FB5-696C9425F027" title="The OFS interface includes views and procedures that support OFS operations.">OFS Client Interface</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div>
+               <div class="sect3"><a id="GUID-CB12BAE5-CFE3-4ED1-82E8-3BFF3E6D6A8C" name="GUID-CB12BAE5-CFE3-4ED1-82E8-3BFF3E6D6A8C"></a><h4 id="ADLOB-GUID-CB12BAE5-CFE3-4ED1-82E8-3BFF3E6D6A8C" class="sect4"><span class="enumeration_section">19.6.2 </span>Views for OFS
+                  </h4>
+                  <div>
+                     <p>The views that support OFS operations start with <code class="codeph">V$OFS</code>.
+                     </p>
+                     <div class="tblformal" id="GUID-CB12BAE5-CFE3-4ED1-82E8-3BFF3E6D6A8C__TABLE_SWX_CCH_KVB">
+                        <p class="titleintable">Table 19-2 Fixed Views for OFS</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Fixed Views for OFS" summary="Describes the fixed views for OFS" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="0%" id="d97367e1212">View</th>
+                                 <th align="left" valign="bottom" width="0%" id="d97367e1214">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d97367e1218" headers="d97367e1212 "><code class="codeph">V$OFSMOUNT</code></td>
+                                 <td align="left" valign="top" width="0%" headers="d97367e1218 d97367e1214 ">Query this view to retrieve details about the file systems that are mounted by Oracle File System. For information about the columns and data types of this view, see <a href="../refrn/V-OFSMOUNT.html#REFRN-GUID-8CA2FD32-5623-498A-B283-4EA4A5DD8B71" target="_blank">V$OFSMOUNT</a> in <cite>Oracle Database Reference</cite>.
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="0%" id="d97367e1231" headers="d97367e1212 "><code class="codeph">V$OFS_STATS</code></td>
+                                 <td align="left" valign="top" width="0%" headers="d97367e1231 d97367e1214 ">Query this view to list the number of times each file operation has been called for a mount point. For information about the columns and data types of this view, see <a href="../refrn/V-OFS_STATS.html#REFRN-GUID-B0528FD5-49B1-40D1-A8CE-06309D365189" target="_blank">V$OFS_STATS</a> in <cite>Oracle Database Reference</cite>.
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="using-ofs.html#GUID-EAC81B19-7628-4C99-8FB5-696C9425F027" title="The OFS interface includes views and procedures that support OFS operations.">OFS Client Interface</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

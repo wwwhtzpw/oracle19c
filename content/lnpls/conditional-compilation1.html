@@ -1,0 +1,638 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Conditional Compilation">
+      <meta name="abstract" content="Conditional compilation lets you customize the functionality of a PL/SQL application without removing source text.">
+      <meta name="description" content="Conditional compilation lets you customize the functionality of a PL/SQL application without removing source text.">
+      <meta name="DC.subject" content="conditional compilation, compilation, conditional, conditional compilation directive, directive, preprocessor control token, control token, reserved preprocessor control token, selection directive, selection, error directive, error, inquiry directive, inquiry, predefined inquiry directive, $$PLSQL_LINE inquiry directive, $$PLSQL_UNIT inquiry directive, NULL value, for $$PLSQL_UNIT inquiry directive, $$PLSQL_UNIT_OWNER inquiry directive, for $$PLSQL_UNIT_OWNER inquiry directive, $$PLSQL_UNIT_TYPE inquiry directive, compilation parameter, predefined inquiry directive for, displaying value of, PLSQL_CCFLAGS compilation parameter, wrapping PL/SQL source text, inquiry directives and, for unresolvable inquiry directive, DBMS_DB_VERSION package, static constant, in DBMS_DB_VERSION package, constant, static, VERSION constant, RELEASE constant, DBMS_PREPROCESSOR package, post-processed source text, restrictions on, placeholder for bind variable, in conditional compilation directive">
+      <meta name="keywords" content="conditional compilation, compilation, conditional, conditional compilation directive, directive, preprocessor control token, control token, reserved preprocessor control token, selection directive, selection, error directive, error, inquiry directive, inquiry, predefined inquiry directive, $$PLSQL_LINE inquiry directive, $$PLSQL_UNIT inquiry directive, NULL value, for $$PLSQL_UNIT inquiry directive, $$PLSQL_UNIT_OWNER inquiry directive, for $$PLSQL_UNIT_OWNER inquiry directive, $$PLSQL_UNIT_TYPE inquiry directive, compilation parameter, predefined inquiry directive for, displaying value of, PLSQL_CCFLAGS compilation parameter, wrapping PL/SQL source text, inquiry directives and, for unresolvable inquiry directive, DBMS_DB_VERSION package, static constant, in DBMS_DB_VERSION package, constant, static, VERSION constant, RELEASE constant, DBMS_PREPROCESSOR package, post-processed source text, restrictions on, placeholder for bind variable, in conditional compilation directive">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-DC23291F-006D-49C4-87DA-6B31F19F162A">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Conditional compilation lets you customize the functionality of a PL/SQL application without removing source text.">
+      <meta name="description" content="Conditional compilation lets you customize the functionality of a PL/SQL application without removing source text.">
+      <title>Conditional Compilation</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content="Conditional compilation lets you customize the functionality of a PL/SQL application without removing source text.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="error-reporting-functions.html" title="Previous" type="text/html">
+      <link rel="next" href="plsql-data-types.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Conditional Compilation","description":"Conditional compilation lets you customize the functionality of a PL/SQL application without removing source text.","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="error-reporting-functions.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="plsql-data-types.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-DC23291F-006D-49C4-87DA-6B31F19F162A" name="GUID-DC23291F-006D-49C4-87DA-6B31F19F162A"></a><a id="LNPLS238"></a><a id="LNPLS00210"></a>
+         
+         <h2 id="LNPLS-GUID-DC23291F-006D-49C4-87DA-6B31F19F162A" class="sect2"><span class="enumeration_section">2.9 </span>Conditional Compilation
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Conditional compilation lets you customize the functionality of a PL/SQL application without removing source text.</p>
+               <p>For example, you can:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p>Use new features with the latest database release and disable them when running the application in an older database release.</p>
+                  </li>
+                  <li>
+                     <p>Activate debugging or tracing statements in the development environment and hide them when running the application at a production site.</p>
+                  </li>
+               </ul>
+               <div class="section">
+                  <p class="subhead1" id="GUID-DC23291F-006D-49C4-87DA-6B31F19F162A__GUID-730658D9-21CD-478C-82CB-D3B71420D130">Topics</p>
+               </div>
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="conditional-compilation1.html#GUID-09361222-5837-427B-B7C7-D3D425DC89F4" title="Conditional compilation uses selection directives, which are similar to IF statements, to select source text for compilation.">How Conditional Compilation Works</a></p>
+                     </li>
+                     <li>
+                        <p><a href="conditional-compilation1.html#GUID-1C90EF04-87AA-4406-B126-F64BEBC65DB7" title="Examples of conditional compilation using selection and user-defined inquiry directives.">Conditional Compilation Examples</a></p>
+                     </li>
+                     <li>
+                        <p><a href="conditional-compilation1.html#GUID-75F8A716-B2BE-494F-B150-1B4AB802DF25" title="The DBMS_PREPROCESSOR package provides subprograms that retrieve and print the source text of a PL/SQL unit in its post-processed form.">Retrieving and Printing Post-Processed Source Text</a></p>
+                     </li>
+                     <li>
+                        <p><a href="conditional-compilation1.html#GUID-9AA504C5-8D85-41D6-BC3D-0953202BD9A7" title="Conditional compilation directives are subject to these semantic restrictions.">Conditional Compilation Directive Restrictions</a></p>
+                     </li>
+                  </ul>
+               </div>
+            </div><a id="LNPLS239"></a><a id="LNPLS294"></a><div class="props_rev_3"><a id="GUID-09361222-5837-427B-B7C7-D3D425DC89F4" name="GUID-09361222-5837-427B-B7C7-D3D425DC89F4"></a><h3 id="LNPLS-GUID-09361222-5837-427B-B7C7-D3D425DC89F4" class="sect3"><span class="enumeration_section">2.9.1 </span>How Conditional Compilation Works
+               </h3>
+               <div>
+                  <p>Conditional compilation uses selection directives, which are similar to <code class="codeph">IF</code> statements, to select source text for compilation. 
+                  </p>
+                  <p>The condition in a selection directive usually includes an inquiry directive. Error directives raise user-defined errors. All conditional compilation directives are built from preprocessor control tokens and PL/SQL text.</p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-09361222-5837-427B-B7C7-D3D425DC89F4__GUID-EA83A7F8-0C96-4B16-91F2-26B9826A2CD7">Topics</p>
+                  </div>
+                  <div class="section">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="conditional-compilation1.html#GUID-F41AEE35-8739-4B34-95B1-B77504F20887" title="A preprocessor control token identifies code that is processed before the PL/SQL unit is compiled.">Preprocessor Control Tokens</a></p>
+                        </li>
+                        <li>
+                           <p><a href="conditional-compilation1.html#GUID-78F2074C-C799-4CF9-9290-EB8473D0C8FB" title="A selection directive selects source text to compile.">Selection Directives</a></p>
+                        </li>
+                        <li>
+                           <p><a href="conditional-compilation1.html#GUID-61B134B0-8AB9-472A-83EB-6EDE09D875AB" title="An error directive produces a user-defined error message during compilation.">Error Directives</a></p>
+                        </li>
+                        <li>
+                           <p><a href="conditional-compilation1.html#GUID-E918087C-D5A8-4CEE-841B-5333DE6D4C15" title="An inquiry directive provides information about the compilation environment.">Inquiry Directives</a></p>
+                        </li>
+                        <li>
+                           <p><a href="conditional-compilation1.html#GUID-1396BF69-FF55-4242-96A6-6DE74FF2E8A0" title="The DBMS_DB_VERSION package specifies the Oracle version numbers and other information useful for simple conditional compilation selections based on Oracle versions.">DBMS_DB_VERSION Package</a></p>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="section">
+                     <div class="infoboxnotealso" id="GUID-09361222-5837-427B-B7C7-D3D425DC89F4__GUID-48EE9A3C-9999-4C2A-9AD6-1F25ED8383A2">
+                        <p class="notep1">See Also:</p><span class="q">"<a href="expressions.html#GUID-6CDF1EB6-913D-48E7-AFDA-DB4DE45209CE">Static Expressions</a>"</span></div>
+                  </div>
+               </div><a id="LNPLS240"></a><a id="LNPLS295"></a><div class="props_rev_3"><a id="GUID-F41AEE35-8739-4B34-95B1-B77504F20887" name="GUID-F41AEE35-8739-4B34-95B1-B77504F20887"></a><h4 id="LNPLS-GUID-F41AEE35-8739-4B34-95B1-B77504F20887" class="sect4"><span class="enumeration_section">2.9.1.1 </span>Preprocessor Control Tokens
+                  </h4>
+                  <div>
+                     <p>A preprocessor control token identifies code that is processed before the PL/SQL unit is compiled.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-F41AEE35-8739-4B34-95B1-B77504F20887__GUID-00C2750E-F835-4FB3-9479-F4B41AE6AF85">Syntax</p>
+                     </div>
+                     <div class="section"><pre class="oac_no_warn" dir="ltr">$<span class="italic">plsql_identifier</span>
+</pre><p>There cannot be space between <code class="codeph">$</code> and <span class="italic"><code class="codeph">plsql_identifier</code></span>. 
+                        </p>
+                        <p>The character <code class="codeph">$</code> can also appear inside <span class="italic"><code class="codeph">plsql_identifier</code></span>, but it has no special meaning there.
+                        </p>
+                        <p>These preprocessor control tokens are reserved:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">$IF</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">$THEN</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">$ELSE</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">$ELSIF</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">$ERROR</code></p>
+                           </li>
+                        </ul>
+                        <p>For information about <span class="italic"><code class="codeph">plsql_identifier</code></span>, see <span class="q">"<a href="lexical-units.html#GUID-1033B8AE-B6C9-44DB-AFB0-D71A2635BD9E" title="Reserved words and keywords are identifiers that have special meaning in PL/SQL.Predefined identifiers are declared in the predefined package STANDARD.A quoted user-defined identifier is enclosed in double quotation marks.">Identifiers</a>"</span>. 
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="LNPLS244"></a><a id="LNPLS296"></a><div class="props_rev_3"><a id="GUID-78F2074C-C799-4CF9-9290-EB8473D0C8FB" name="GUID-78F2074C-C799-4CF9-9290-EB8473D0C8FB"></a><h4 id="LNPLS-GUID-78F2074C-C799-4CF9-9290-EB8473D0C8FB" class="sect4"><span class="enumeration_section">2.9.1.2 </span>Selection Directives
+                  </h4>
+                  <div>
+                     <p>A <span class="bold">selection directive</span> selects source text to compile.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-78F2074C-C799-4CF9-9290-EB8473D0C8FB__GUID-51F9223C-1D58-4B4B-9AF0-CD29B832847E">Syntax</p>
+                     </div>
+                     <div class="section"><pre class="oac_no_warn" dir="ltr">$IF <span class="italic">boolean_static_expression</span> $THEN
+   <span class="italic">text</span>
+[ $ELSIF <span class="italic">boolean_static_expression</span> $THEN
+   <span class="italic">text</span>
+]...
+[ $ELSE
+   <span class="italic">text</span>
+$END
+]</pre><p>For the syntax of <span class="italic"><code class="codeph">boolean_static_expression</code></span>, see <span class="q">"<a href="expressions.html#GUID-28517127-ED8B-4A52-8F51-118B3D612AEC">BOOLEAN Static Expressions</a>"</span>. The <span class="italic"><code class="codeph">text</code></span> can be anything, but typically, it is either a statement (see <span class="q">"<a href="block.html#GUID-9ACEB9ED-567E-4E1A-A16A-B8B35214FC9D__CJACJBCH">statement ::=</a>"</span>) or an error directive (explained in <span class="q">"<a href="conditional-compilation1.html#GUID-61B134B0-8AB9-472A-83EB-6EDE09D875AB" title="An error directive produces a user-defined error message during compilation.">Error Directives</a>"</span>).
+                        </p>
+                        <p>The selection directive evaluates the <code class="codeph">BOOLEAN</code> static expressions in the order that they appear until either one expression has the value <code class="codeph">TRUE</code> or the list of expressions is exhausted. If one expression has the value <code class="codeph">TRUE</code>, its text is compiled, the remaining expressions are not evaluated, and their text is not analyzed. If no expression has the value <code class="codeph">TRUE</code>, then if <code class="codeph">$ELSE</code> is present, its text is compiled; otherwise, no text is compiled.
+                        </p>
+                        <p>For examples of selection directives, see <span class="q">"<a href="conditional-compilation1.html#GUID-1C90EF04-87AA-4406-B126-F64BEBC65DB7" title="Examples of conditional compilation using selection and user-defined inquiry directives.">Conditional Compilation Examples</a>"</span>.
+                        </p>
+                        <div class="infoboxnotealso" id="GUID-78F2074C-C799-4CF9-9290-EB8473D0C8FB__GUID-4775E8B1-5525-4C86-A8C0-483C3905A385">
+                           <p class="notep1">See Also:</p>
+                           <p><span class="q">"<a href="conditional-selection-statements.html#GUID-B7DD4E62-3ED2-41E9-AAE5-90A78788BB31" title="The conditional selection statements, IF and CASE, run different statements for different data values.">Conditional Selection Statements</a>"</span> for information about the <code class="codeph">IF</code> statement, which has the same logic as the selection directive
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div><a id="LNPLS245"></a><a id="LNPLS297"></a><div class="props_rev_3"><a id="GUID-61B134B0-8AB9-472A-83EB-6EDE09D875AB" name="GUID-61B134B0-8AB9-472A-83EB-6EDE09D875AB"></a><h4 id="LNPLS-GUID-61B134B0-8AB9-472A-83EB-6EDE09D875AB" class="sect4"><span class="enumeration_section">2.9.1.3 </span>Error Directives
+                  </h4>
+                  <div>
+                     <p>An <span class="bold">error directive</span> produces a user-defined error message during compilation.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-61B134B0-8AB9-472A-83EB-6EDE09D875AB__GUID-0082F4CF-0148-42FD-8A8D-1015376CAD8B">Syntax</p>
+                     </div>
+                     <div class="section"><pre class="oac_no_warn" dir="ltr">$ERROR <span class="italic">varchar2_static_expression</span> $END
+</pre><p>It produces this compile-time error message, where <span class="italic"><code class="codeph">string</code></span> is the value of <span class="italic"><code class="codeph">varchar2_static_expression</code></span>:
+                        </p><pre class="oac_no_warn" dir="ltr">PLS-00179: $ERROR: <span class="italic">string</span>
+</pre><p>For the syntax of <span class="italic"><code class="codeph">varchar2_static_expression</code></span>, see <span class="q">"<a href="expressions.html#GUID-5D80A222-E07B-45B5-AB08-83016EF64A45">VARCHAR2 Static Expressions</a>"</span>.
+                        </p>
+                        <p>For an example of an error directive, see <a href="conditional-compilation1.html#GUID-1C90EF04-87AA-4406-B126-F64BEBC65DB7__BEIJFDHG">Example 2-58</a>.
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="LNPLS256"></a><a id="LNPLS261"></a><a id="LNPLS298"></a><div class="props_rev_3"><a id="GUID-E918087C-D5A8-4CEE-841B-5333DE6D4C15" name="GUID-E918087C-D5A8-4CEE-841B-5333DE6D4C15"></a><h4 id="LNPLS-GUID-E918087C-D5A8-4CEE-841B-5333DE6D4C15" class="sect4"><span class="enumeration_section">2.9.1.4 </span>Inquiry Directives
+                  </h4>
+                  <div>
+                     <p>An <span class="bold">inquiry directive</span> provides information about the compilation environment.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-E918087C-D5A8-4CEE-841B-5333DE6D4C15__GUID-72932E60-6873-446F-B3DF-54AEE1D60A2C">Syntax</p>
+                     </div>
+                     <div class="section"><pre class="oac_no_warn" dir="ltr">$$<span class="italic">name</span>
+</pre><p>For information about <span class="italic"><code class="codeph">name</code></span>, which is an unquoted PL/SQL identifier, see <span class="q">"<a href="lexical-units.html#GUID-1033B8AE-B6C9-44DB-AFB0-D71A2635BD9E" title="Reserved words and keywords are identifiers that have special meaning in PL/SQL.Predefined identifiers are declared in the predefined package STANDARD.A quoted user-defined identifier is enclosed in double quotation marks.">Identifiers</a>"</span>.
+                        </p>
+                        <p>An inquiry directive typically appears in the <span class="italic"><code class="codeph">boolean_static_expression</code></span> of a selection directive, but it can appear anywhere that a variable or literal of its type can appear. Moreover, it can appear where regular PL/SQL allows only a literal (not a variable)—for example, to specify the size of a <code class="codeph">VARCHAR2</code> variable.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-E918087C-D5A8-4CEE-841B-5333DE6D4C15__GUID-F79DB031-AF3E-4DBE-AEB1-A0E81F4E3E0B">Topics</p>
+                     </div>
+                     <div class="section">
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><a href="conditional-compilation1.html#GUID-3DABF5E1-AC84-448B-810F-31196991EA10">Predefined Inquiry Directives</a></p>
+                           </li>
+                           <li>
+                              <p><a href="conditional-compilation1.html#GUID-623713EB-4FD1-4C8B-955C-4135342F5F68" title="You can assign values to inquiry directives with the PLSQL_CCFLAGS compilation parameter.">Assigning Values to Inquiry Directives</a></p>
+                           </li>
+                           <li>
+                              <p><a href="conditional-compilation1.html#GUID-9EEDA139-811F-47C2-B382-6EA1424B852E" title="If the source text is not wrapped, PL/SQL issues a warning if the value of an inquiry directive cannot be determined.">Unresolvable Inquiry Directives</a></p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div><a id="LNPLS262"></a><a id="LNPLS273"></a><a id="LNPLS299"></a><div class="props_rev_3"><a id="GUID-3DABF5E1-AC84-448B-810F-31196991EA10" name="GUID-3DABF5E1-AC84-448B-810F-31196991EA10"></a><h5 id="LNPLS-GUID-3DABF5E1-AC84-448B-810F-31196991EA10" class="sect5"><span class="enumeration_section">2.9.1.4.1 </span>Predefined Inquiry Directives
+                     </h5>
+                     <div>
+                        <p>The predefined inquiry directives are:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">$$PLSQL_LINE</code></p>
+                              <p>A <code class="codeph">PLS_INTEGER</code> literal whose value is the number of the source line on which the directive appears in the current PL/SQL unit. An example of <code class="codeph">$$PLSQL_LINE</code> in a selection directive is:
+                              </p><pre class="oac_no_warn" dir="ltr">$IF <span class="bold">$$PLSQL_LINE = 32</span> $THEN ...
+</pre></li>
+                           <li>
+                              <p><code class="codeph">$$PLSQL_UNIT</code></p>
+                              <p>A <code class="codeph">VARCHAR2</code> literal that contains the name of the current PL/SQL unit. If the current PL/SQL unit is an anonymous block, then <code class="codeph">$$PLSQL_UNIT</code> contains a <code class="codeph">NULL</code> value.
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">$$PLSQL_UNIT_OWNER</code></p>
+                              <p>A <code class="codeph">VARCHAR2</code> literal that contains the name of the owner of the current PL/SQL unit. If the current PL/SQL unit is an anonymous block, then <code class="codeph">$$PLSQL_UNIT_OWNER</code> contains a <code class="codeph">NULL</code> value.
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">$$PLSQL_UNIT_TYPE</code></p>
+                              <p>A <code class="codeph">VARCHAR2</code> literal that contains the type of the current PL/SQL unit—<code class="codeph">ANONYMOUS</code> <code class="codeph">BLOCK</code>, <code class="codeph">FUNCTION</code>, <code class="codeph">PACKAGE</code>, <code class="codeph">PACKAGE</code> <code class="codeph">BODY</code>, <code class="codeph">PROCEDURE</code>, <code class="codeph">TRIGGER</code>, <code class="codeph">TYPE</code>, or <code class="codeph">TYPE</code> <code class="codeph">BODY</code>. Inside an anonymous block or non-DML trigger, <code class="codeph">$$PLSQL_UNIT_TYPE</code> has the value <code class="codeph">ANONYMOUS BLOCK</code>.
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">$$</code><span class="italic"><code class="codeph">plsql_compilation_parameter</code></span></p>
+                              <p>The name <span class="italic"><code class="codeph">plsql_compilation_parameter</code></span> is a PL/SQL compilation parameter (for example, <code class="codeph">PLSCOPE_SETTINGS</code>). For descriptions of these parameters, see <a href="architecture-pl-sql.html#GUID-DF63BC59-22C2-4BA8-9240-F74D505D5102__G3260498" title="This table summarizes the initialization parameters for PL/SQL compilation.">Table 1-2</a>.
+                              </p>
+                           </li>
+                        </ul>
+                        <p>Because a selection directive needs a <code class="codeph">BOOLEAN</code> static expression, you cannot use <code class="codeph">$$PLSQL_UNIT</code>, <code class="codeph">$$PLSQL_UNIT_OWNER</code>, or <code class="codeph">$$PLSQL_UNIT_TYPE</code> in a <code class="codeph">VARCHAR2</code> comparison such as:
+                        </p><pre class="oac_no_warn" dir="ltr">$IF <span class="bold">$$PLSQL_UNIT = 'AWARD_BONUS'</span> $THEN ...
+$IF <span class="bold">$$PLSQL_UNIT_OWNER IS HR</span> $THEN ...
+$IF <span class="bold">$$PLSQL_UNIT_TYPE IS FUNCTION</span> $THEN ...
+</pre><p>However, you can compare the preceding directives to <code class="codeph">NULL</code>. For example:
+                        </p><pre class="oac_no_warn" dir="ltr">$IF <span class="bold">$$PLSQL_UNIT IS NULL</span> $THEN ...
+$IF <span class="bold">$$PLSQL_UNIT_OWNER IS NOT NULL</span> $THEN ...
+$IF <span class="bold">$$PLSQL_UNIT_TYPE IS NULL</span> $THEN ...
+</pre><div class="example" id="GUID-3DABF5E1-AC84-448B-810F-31196991EA10__CIHHCCFE">
+                           <p class="titleinexample">Example 2-55 Predefined Inquiry Directives</p>
+                           <p>In this example, a SQL*Plus script, uses several predefined inquiry directives as <code class="codeph">PLS_INTEGER</code> and <code class="codeph">VARCHAR2</code> literals to show how their values are assigned.
+                           </p><pre class="oac_no_warn" dir="ltr">SQL&gt; CREATE OR REPLACE PROCEDURE p
+  2  AUTHID DEFINER IS
+  3    i PLS_INTEGER;
+  4  BEGIN
+  5    DBMS_OUTPUT.PUT_LINE('Inside p');
+  <span class="bold">6    i := $$PLSQL_LINE;</span>
+  7    DBMS_OUTPUT.PUT_LINE('i = ' || i);
+  <span class="bold">8</span>    DBMS_OUTPUT.PUT_LINE('$$PLSQL_LINE = ' || <span class="bold">$$PLSQL_LINE</span>);
+  9    DBMS_OUTPUT.PUT_LINE('$$PLSQL_UNIT = ' || <span class="bold">$$PLSQL_UNIT</span>);
+ 10    DBMS_OUTPUT.PUT_LINE('$$PLSQL_UNIT_OWNER = ' || <span class="bold">$$PLSQL_UNIT_OWNER</span>);
+ 11    DBMS_OUTPUT.PUT_LINE('$$PLSQL_UNIT_TYPE = ' || <span class="bold">$$PLSQL_UNIT_TYPE</span>);
+ 12  END;
+ 13  /
+ 
+Procedure created.
+ 
+SQL&gt; BEGIN
+  2    p;
+  3    DBMS_OUTPUT.PUT_LINE('Outside p');
+  <span class="bold">4</span>    DBMS_OUTPUT.PUT_LINE('$$PLSQL_LINE = ' || <span class="bold">$$PLSQL_LINE</span>);
+  5    DBMS_OUTPUT.PUT_LINE('$$PLSQL_UNIT = ' || <span class="bold">$$PLSQL_UNIT</span>);
+  6    DBMS_OUTPUT.PUT_LINE('$$PLSQL_UNIT_OWNER = ' || <span class="bold">$$PLSQL_UNIT_OWNER</span>);
+  7    DBMS_OUTPUT.PUT_LINE('$$PLSQL_UNIT_TYPE = ' || <span class="bold">$$PLSQL_UNIT_TYPE</span>);
+  8  END;
+  9  /
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">Inside p
+i = 6
+$$PLSQL_LINE = 8
+$$PLSQL_UNIT = P
+$$PLSQL_UNIT_OWNER = HR
+$$PLSQL_UNIT_TYPE = PROCEDURE
+Outside p
+$$PLSQL_LINE = 4
+$$PLSQL_UNIT =
+$$PLSQL_UNIT_OWNER =
+$$PLSQL_UNIT_TYPE = ANONYMOUS BLOCK
+ 
+PL/SQL procedure successfully completed.
+</pre></div>
+                        <div class="example" id="GUID-3DABF5E1-AC84-448B-810F-31196991EA10__CIHDHADG">
+                           <p class="titleinexample">Example 2-56 Displaying Values of PL/SQL Compilation Parameters</p>
+                           <p>This example displays the current values of PL/SQL the compilation parameters.</p>
+                           <div class="infoboxnote" id="GUID-3DABF5E1-AC84-448B-810F-31196991EA10__GUID-39CD12F5-DA86-4ECE-80CD-540641AA2E9C">
+                              <p class="notep1">Note:</p>
+                              <p>In the SQL*Plus environment, you can display the current values of initialization parameters, including the PL/SQL compilation parameters, with the command <code class="codeph">SHOW</code> <code class="codeph">PARAMETERS</code>. For more information about the <code class="codeph">SHOW</code> command and its <code class="codeph">PARAMETERS</code> option, see <a href="../sqpug/SET-system-variable-summary.html#SQPUG123" target="_blank"><span class="italic">SQL*Plus User's Guide and Reference</span></a>.
+                              </p>
+                           </div><pre class="oac_no_warn" dir="ltr">BEGIN
+  DBMS_OUTPUT.PUT_LINE('$$PLSCOPE_SETTINGS = '     || $$PLSCOPE_SETTINGS);
+  DBMS_OUTPUT.PUT_LINE('$$PLSQL_CCFLAGS = '        || $$PLSQL_CCFLAGS);
+  DBMS_OUTPUT.PUT_LINE('$$PLSQL_CODE_TYPE = '      || $$PLSQL_CODE_TYPE);
+  DBMS_OUTPUT.PUT_LINE('$$PLSQL_OPTIMIZE_LEVEL = ' || $$PLSQL_OPTIMIZE_LEVEL);
+  DBMS_OUTPUT.PUT_LINE('$$PLSQL_WARNINGS = '       || $$PLSQL_WARNINGS);
+  DBMS_OUTPUT.PUT_LINE('$$NLS_LENGTH_SEMANTICS = ' || $$NLS_LENGTH_SEMANTICS);
+END;
+/</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">$$PLSCOPE_SETTINGS = IDENTIFIERS:NONE
+$$PLSQL_CCFLAGS =
+$$PLSQL_CODE_TYPE = INTERPRETED
+$$PLSQL_OPTIMIZE_LEVEL = 2
+$$PLSQL_WARNINGS = ENABLE:ALL
+$$NLS_LENGTH_SEMANTICS = BYTE</pre></div>
+                     </div>
+                  </div><a id="LNPLS275"></a><a id="LNPLS274"></a><div class="props_rev_3"><a id="GUID-623713EB-4FD1-4C8B-955C-4135342F5F68" name="GUID-623713EB-4FD1-4C8B-955C-4135342F5F68"></a><h5 id="LNPLS-GUID-623713EB-4FD1-4C8B-955C-4135342F5F68" class="sect5"><span class="enumeration_section">2.9.1.4.2 </span>Assigning Values to Inquiry Directives
+                     </h5>
+                     <div>
+                        <p>You can assign values to inquiry directives with the <code class="codeph">PLSQL_CCFLAGS</code> compilation parameter. 
+                        </p>
+                        <div class="section">
+                           <p>For example:</p><pre class="oac_no_warn" dir="ltr">ALTER SESSION SET PLSQL_CCFLAGS = 
+  '<span class="italic">name1</span>:<span class="italic">value1</span>, <span class="italic">name2</span>:<span class="italic">value2</span>, ... <span class="italic">name</span>n:<span class="italic">value</span>n'
+</pre><p>Each <span class="italic"><code class="codeph">value</code></span> must be either a <code class="codeph">BOOLEAN</code> literal (<code class="codeph">TRUE</code>, <code class="codeph">FALSE</code>, or <code class="codeph">NULL</code>) or <code class="codeph">PLS_INTEGER</code> literal. The data type of <span class="italic"><code class="codeph">value</code></span> determines the data type of <span class="italic"><code class="codeph">name</code></span>.
+                           </p>
+                           <p>The same <span class="italic"><code class="codeph">name</code></span> can appear multiple times, with values of the same or different data types. Later assignments override earlier assignments. For example, this command sets the value of <code class="codeph">$$flag</code> to 5 and its data type to <code class="codeph">PLS_INTEGER</code>:
+                           </p><pre class="oac_no_warn" dir="ltr">ALTER SESSION SET PLSQL_CCFLAGS = 'flag:TRUE, flag:5'
+</pre><p>Oracle recommends against using <code class="codeph">PLSQL_CCFLAGS</code> to assign values to predefined inquiry directives, including compilation parameters. To assign values to compilation parameters, Oracle recommends using the <code class="codeph">ALTER</code> <code class="codeph">SESSION</code> statement. 
+                           </p>
+                           <p>For more information about the <code class="codeph">ALTER</code> <code class="codeph">SESSION</code> statement, see <a href="../sqlrf/ALTER-SESSION.html#SQLRF00901" target="_blank"><span class="italic">Oracle Database SQL Language Reference</span></a>.
+                           </p>
+                           <div class="infoboxnote" id="GUID-623713EB-4FD1-4C8B-955C-4135342F5F68__GUID-89D404FA-004F-4155-AD57-F409416A829E">
+                              <p class="notep1">Note:</p>
+                              <p>The compile-time value of <code class="codeph">PLSQL_CCFLAGS</code> is stored with the metadata of stored PL/SQL units, which means that you can reuse the value when you explicitly recompile the units. For more information, see <span class="q">"<a href="architecture-pl-sql.html#GUID-DF63BC59-22C2-4BA8-9240-F74D505D5102" title="PL/SQL units are affected by PL/SQL compilation parameters (a category of database initialization parameters). Different PL/SQL units—for example, a package specification and its body—can have different compilation parameter settings.">PL/SQL Units and Compilation Parameters</a>"</span>.
+                              </p>
+                           </div>
+                           <p>For more information about <code class="codeph">PLSQL_CCFLAGS</code>, see <a href="../refrn/PLSQL_CCFLAGS.html#REFRN10261" target="_blank"><span class="italic">Oracle Database Reference</span></a>.
+                           </p>
+                        </div>
+                        <div class="example" id="GUID-623713EB-4FD1-4C8B-955C-4135342F5F68__CIHHDCIE">
+                           <p class="titleinexample">Example 2-57 PLSQL_CCFLAGS Assigns Value to Itself</p>
+                           <p>This example uses <code class="codeph">PLSQL_CCFLAGS</code> to assign a value to the user-defined inquiry directive <code class="codeph">$$Some_Flag</code> and (though not recommended) to itself. Because later assignments override earlier assignments, the resulting value of <code class="codeph">$$Some_Flag</code> is 2 and the resulting value of <code class="codeph">PLSQL_CCFLAGS</code> is the value that it assigns to itself (99), not the value that the <code class="codeph">ALTER</code> <code class="codeph">SESSION</code> statement assigns to it (<code class="codeph">'Some_Flag:1, Some_Flag:2, PLSQL_CCFlags:99'</code>).
+                           </p><pre class="oac_no_warn" dir="ltr">ALTER SESSION SET
+<span class="bold">PLSQL_CCFlags = 'Some_Flag:1, Some_Flag:2, PLSQL_CCFlags:99'</span>
+/
+BEGIN
+  DBMS_OUTPUT.PUT_LINE($$Some_Flag);
+  DBMS_OUTPUT.PUT_LINE($$PLSQL_CCFlags);
+END;
+/
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">2
+99</pre></div>
+                     </div>
+                  </div><a id="LNPLS276"></a><div class="props_rev_3"><a id="GUID-9EEDA139-811F-47C2-B382-6EA1424B852E" name="GUID-9EEDA139-811F-47C2-B382-6EA1424B852E"></a><h5 id="LNPLS-GUID-9EEDA139-811F-47C2-B382-6EA1424B852E" class="sect5"><span class="enumeration_section">2.9.1.4.3 </span>Unresolvable Inquiry Directives
+                     </h5>
+                     <div>
+                        <p>If the source text is not wrapped, PL/SQL issues a warning if the value of an inquiry directive cannot be determined.</p>
+                        <p>If an inquiry directive (<code class="codeph">$$</code><span class="italic"><code class="codeph">name</code></span>) cannot be resolved, and the source text is not wrapped, then PL/SQL issues the warning <code class="codeph">PLW-6003</code> and substitutes <code class="codeph">NULL</code> for the value of the unresolved inquiry directive. If the source text is wrapped, the warning message is disabled, so that the unresolved inquiry directive is not revealed. 
+                        </p>
+                        <p>For information about wrapping PL/SQL source text, see <a href="plsql-source-text-wrapping.html#GUID-AB6FFBAD-DE20-4197-A885-AF81F3766FA2">PL/SQL Source Text Wrapping</a>.
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="LNPLS306"></a><div class="props_rev_3"><a id="GUID-1396BF69-FF55-4242-96A6-6DE74FF2E8A0" name="GUID-1396BF69-FF55-4242-96A6-6DE74FF2E8A0"></a><h4 id="LNPLS-GUID-1396BF69-FF55-4242-96A6-6DE74FF2E8A0" class="sect4"><span class="enumeration_section">2.9.1.5 </span>DBMS_DB_VERSION Package
+                  </h4>
+                  <div>
+                     <p>The <code class="codeph">DBMS_DB_VERSION</code> package specifies the Oracle version numbers and other information useful for simple conditional compilation selections based on Oracle versions.
+                     </p>
+                     <p>The <code class="codeph">DBMS_DB_VERSION</code> package provides these static constants:
+                     </p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>The <code class="codeph">PLS_INTEGER</code> constant <code class="codeph">VERSION</code> identifies the current Oracle Database version.
+                           </p>
+                        </li>
+                        <li>
+                           <p>The <code class="codeph">PLS_INTEGER</code> constant <code class="codeph">RELEASE</code> identifies the current Oracle Database release number.
+                           </p>
+                        </li>
+                        <li>
+                           <p>Each <code class="codeph">BOOLEAN</code> constant of the form <code class="codeph">VER_LE_</code><span class="italic"><code class="codeph">v</code></span> has the value <code class="codeph">TRUE</code> if the database version is less than or equal to <span class="italic"><code class="codeph">v</code></span>; otherwise, it has the value <code class="codeph">FALSE</code>.
+                           </p>
+                        </li>
+                        <li>
+                           <p>Each <code class="codeph">BOOLEAN</code> constant of the form <code class="codeph">VER_LE_</code><span class="italic"><code class="codeph">v_r</code></span> has the value <code class="codeph">TRUE</code> if the database version is less than or equal to <span class="italic"><code class="codeph">v</code></span> and release is less than or equal to <span class="italic"><code class="codeph">r</code></span>; otherwise, it has the value <code class="codeph">FALSE</code>.
+                           </p>
+                        </li>
+                     </ul>
+                     <p>For more information about the <code class="codeph">DBMS_DB_VERSION</code> package, see <a href="../arpls/DBMS_DB_VERSION.html#ARPLS223" target="_blank"><span class="italic">Oracle Database PL/SQL Packages and Types Reference</span></a>.
+                     </p>
+                  </div>
+               </div>
+            </div><a id="LNPLS307"></a><a id="LNPLS310"></a><a id="LNPLS308"></a><div class="props_rev_3"><a id="GUID-1C90EF04-87AA-4406-B126-F64BEBC65DB7" name="GUID-1C90EF04-87AA-4406-B126-F64BEBC65DB7"></a><h3 id="LNPLS-GUID-1C90EF04-87AA-4406-B126-F64BEBC65DB7" class="sect3"><span class="enumeration_section">2.9.2 </span>Conditional Compilation Examples
+               </h3>
+               <div>
+                  <p>Examples of conditional compilation using selection and user-defined inquiry directives.</p>
+                  <div class="example" id="GUID-1C90EF04-87AA-4406-B126-F64BEBC65DB7__BEIJFDHG">
+                     <p class="titleinexample">Example 2-58 Code for Checking Database Version</p>
+                     <p>This example generates an error message if the database version and release is less than Oracle Database 10g release 2; otherwise, it displays a message saying that the version and release are supported and uses a <code class="codeph">COMMIT</code> statement that became available at Oracle Database 10g release 2.
+                     </p><pre class="oac_no_warn" dir="ltr">BEGIN
+  <span class="bold">$IF DBMS_DB_VERSION.VER_LE_10_1 $THEN</span>  -- selection directive begins
+    <span class="bold">$ERROR 'unsupported database release' $END</span>  -- error directive
+  <span class="bold">$ELSE</span>
+    DBMS_OUTPUT.PUT_LINE (
+      'Release ' || <span class="bold">DBMS_DB_VERSION.VERSION</span> || '.' ||
+      <span class="bold">DBMS_DB_VERSION.RELEASE</span> || ' is supported.'
+    );
+  -- This COMMIT syntax is newly supported in 10.2:
+  COMMIT WRITE IMMEDIATE NOWAIT;
+  <span class="bold">$END</span>  -- selection directive ends
+END;
+/
+ </pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">Release 12.1 is supported.
+</pre></div>
+                  <div class="example" id="GUID-1C90EF04-87AA-4406-B126-F64BEBC65DB7__CBJBAEAA">
+                     <p class="titleinexample">Example 2-59 Compiling Different Code for Different Database Versions</p>
+                     <p>This example sets the values of the user-defined inquiry directives <code class="codeph">$$my_debug</code> and <code class="codeph">$$my_tracing</code> and then uses conditional compilation:
+                     </p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>In the specification of package <code class="codeph">my_pkg</code>, to determine the base type of the subtype <code class="codeph">my_real</code> (<code class="codeph">BINARY_DOUBLE</code> is available only for Oracle Database versions 10g and later.)
+                           </p>
+                        </li>
+                        <li>
+                           <p>In the body of package <code class="codeph">my_pkg</code>, to compute the values of <code class="codeph">my_pi</code> and <code class="codeph">my_e</code> differently for different database versions
+                           </p>
+                        </li>
+                        <li>
+                           <p>In the procedure <code class="codeph">circle_area</code>, to compile some code only if the inquiry directive <code class="codeph">$$my_debug</code> has the value <code class="codeph">TRUE</code>.
+                           </p>
+                        </li>
+                     </ul><pre class="oac_no_warn" dir="ltr">ALTER SESSION SET <span class="bold">PLSQL_CCFLAGS = 'my_debug:FALSE, my_tracing:FALSE'</span>;
+ 
+CREATE OR REPLACE PACKAGE my_pkg AUTHID DEFINER AS
+  SUBTYPE my_real IS
+    <span class="bold">$IF DBMS_DB_VERSION.VERSION &lt; 10 $THEN</span>
+      <span class="bold">NUMBER;</span>
+    <span class="bold">$ELSE</span>
+      <span class="bold">BINARY_DOUBLE;</span>
+    <span class="bold">$END</span>
+  
+  my_pi my_real;
+  my_e  my_real;
+END my_pkg;
+/
+ 
+CREATE OR REPLACE PACKAGE BODY my_pkg AS
+BEGIN
+  <span class="bold">$IF DBMS_DB_VERSION.VERSION &lt; 10 $THEN</span>
+    <span class="bold">my_pi := 3.14159265358979323846264338327950288420;</span>
+    <span class="bold">my_e  := 2.71828182845904523536028747135266249775;</span>
+  <span class="bold">$ELSE</span>
+    <span class="bold">my_pi := 3.14159265358979323846264338327950288420d;</span>
+    <span class="bold">my_e  := 2.71828182845904523536028747135266249775d;</span>
+  <span class="bold">$END</span>
+END my_pkg;
+/
+ 
+CREATE OR REPLACE PROCEDURE circle_area(radius my_pkg.my_real) AUTHID DEFINER IS
+  my_area       my_pkg.my_real;
+  my_data_type  VARCHAR2(30);
+BEGIN
+  my_area := my_pkg.my_pi * (radius**2);
+  
+  DBMS_OUTPUT.PUT_LINE
+    ('Radius: ' || TO_CHAR(radius) || ' Area: ' || TO_CHAR(my_area));
+  
+  <span class="bold">$IF $$my_debug $THEN</span>
+    SELECT DATA_TYPE INTO my_data_type
+    FROM USER_ARGUMENTS
+    WHERE OBJECT_NAME = 'CIRCLE_AREA'
+    AND ARGUMENT_NAME = 'RADIUS';
+ 
+    DBMS_OUTPUT.PUT_LINE
+      ('Data type of the RADIUS argument is: ' || my_data_type);
+  <span class="bold">$END</span>
+END;
+/
+
+CALL DBMS_PREPROCESSOR.PRINT_POST_PROCESSED_SOURCE
+ ('PACKAGE', 'HR', 'MY_PKG');
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">PACKAGE my_pkg AUTHID DEFINER AS
+SUBTYPE my_real IS
+BINARY_DOUBLE;
+my_pi my_real;
+my_e my_real;
+END my_pkg;
+ 
+Call completed.</pre></div>
+               </div>
+            </div><a id="LNPLS312"></a><a id="LNPLS280"></a><div class="props_rev_3"><a id="GUID-75F8A716-B2BE-494F-B150-1B4AB802DF25" name="GUID-75F8A716-B2BE-494F-B150-1B4AB802DF25"></a><h3 id="LNPLS-GUID-75F8A716-B2BE-494F-B150-1B4AB802DF25" class="sect3"><span class="enumeration_section">2.9.3 </span>Retrieving and Printing Post-Processed Source Text
+               </h3>
+               <div>
+                  <p>The <code class="codeph">DBMS_PREPROCESSOR</code> package provides subprograms that retrieve and print the source text of a PL/SQL unit in its post-processed form. 
+                  </p>
+                  <div class="section">
+                     <p>For information about the <code class="codeph">DBMS_PREPROCESSOR</code> package, see <a href="../arpls/DBMS_PREPROCESSOR.html#ARPLS222" target="_blank"><span class="italic">Oracle Database PL/SQL Packages and Types Reference</span></a>.
+                     </p>
+                  </div>
+                  <div class="example" id="GUID-75F8A716-B2BE-494F-B150-1B4AB802DF25__CIHHCGII">
+                     <p class="titleinexample">Example 2-60 Displaying Post-Processed Source Textsource text</p>
+                     <p>This example invokes the procedure <code class="codeph">DBMS_PREPROCESSOR</code>.<code class="codeph">PRINT_POST_PROCESSED_SOURCE</code> to print the post-processed form of <code class="codeph">my_pkg</code> (from <span class="q">"<a href="conditional-compilation1.html#GUID-1C90EF04-87AA-4406-B126-F64BEBC65DB7__CBJBAEAA">Example 2-59</a>"</span>). Lines of code in <span class="q">"<a href="conditional-compilation1.html#GUID-1C90EF04-87AA-4406-B126-F64BEBC65DB7__CBJBAEAA">Example 2-59</a>"</span> that are not included in the post-processed text appear as blank lines.
+                     </p><pre class="oac_no_warn" dir="ltr">CALL DBMS_PREPROCESSOR.PRINT_POST_PROCESSED_SOURCE (
+  <code class="codeph">'PACKAGE', 'HR', 'MY_PKG'</code>
+);
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">PACKAGE my_pkg AUTHID DEFINERs AS
+SUBTYPE my_real IS
+BINARY_DOUBLE;
+my_pi my_real;
+my_e my_real;
+END my_pkg;</pre></div>
+               </div>
+            </div><a id="LNPLS313"></a><div class="props_rev_3"><a id="GUID-9AA504C5-8D85-41D6-BC3D-0953202BD9A7" name="GUID-9AA504C5-8D85-41D6-BC3D-0953202BD9A7"></a><h3 id="LNPLS-GUID-9AA504C5-8D85-41D6-BC3D-0953202BD9A7" class="sect3"><span class="enumeration_section">2.9.4 </span>Conditional Compilation Directive Restrictions
+               </h3>
+               <div>
+                  <p>Conditional compilation directives are subject to these semantic restrictions.</p>
+                  <p>A conditional compilation directive cannot appear in the specification of a schema-level user-defined type (created with the <span class="q">"<a href="CREATE-TYPE-statement.html#GUID-389D603D-FBD0-452A-8414-240BBBC57034" title="The CREATE TYPE statement specifies the name of the type and its attributes, methods, and other properties.">CREATE TYPE Statement</a>"</span>). This type specification specifies the attribute structure of the type, which determines the attribute structure of dependent types and the column structure of dependent tables.
+                  </p>
+                  <div class="infobox-caution" id="GUID-9AA504C5-8D85-41D6-BC3D-0953202BD9A7__GUID-63A71141-4CB3-42C4-949B-EC89164BA956">
+                     <p class="notep1">Caution:</p>
+                     <p>Using a conditional compilation directive to change the attribute structure of a type can cause dependent objects to "go out of sync" or dependent tables to become inaccessible. Oracle recommends that you change the attribute structure of a type only with the <span class="q">"<a href="ALTER-TYPE-statement.html#GUID-A8B449E7-E3A8-48F4-A4C6-5BB87B1841CD" title="Use the ALTER TYPE statement to add or drop member attributes or methods. You can change the existing properties of an object type, and you can modify the scalar attributes of the type. You can also use this statement to recompile the specification or body of the type or to change the specification of an object type by adding new object member subprogram specifications.">ALTER TYPE Statement</a>"</span>. The <code class="codeph">ALTER</code> <code class="codeph">TYPE</code> statement propagates changes to dependent objects.
+                     </p>
+                  </div>
+                  <p>If a  conditional compilation directive is used in a schema-level type specification, the compiler raises the error <code class="codeph">PLS-00180: preprocessor directives are not supported in this context.</code> 
+                  </p>
+                  <p>As all conditional compiler constructs are processed by the PL/SQL preprocessor, the SQL Parser imposes the following restrictions on the location of the first conditional compilation directive in a stored PL/SQL unit or anonymous block: </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>In a package specification, a package body, a type body, a schema-level function and in a schema-level procedure, at least one nonwhitespace PL/SQL token must appear after the identifier of the unit name before a  conditional compilation directive is valid. </p>
+                        <div class="infoboxnote" id="GUID-9AA504C5-8D85-41D6-BC3D-0953202BD9A7__GUID-667C7D00-6311-4C04-A579-96415524EE7F">
+                           <p class="notep1">Note:</p>
+                           <ul style="list-style-type: disc;" id="GUID-9AA504C5-8D85-41D6-BC3D-0953202BD9A7__UL_FZ1_2XQ_WFB">
+                              <li>
+                                 <p>The PL/SQL comments, "--" or "/*", are counted as whitespace tokens.</p>
+                              </li>
+                              <li>
+                                 <p> If the token is invalid in PL/SQL, then a PLS-00103 error is issued. But if a conditional compilation directive is used in violation of this rule, then an ORA error is produced.</p>
+                              </li>
+                           </ul>
+                        </div>
+                        <p><a href="conditional-compilation1.html#GUID-9AA504C5-8D85-41D6-BC3D-0953202BD9A7__EXAMPLE_HQV_2BZ_ZFB">Example 2-61</a> and <a href="conditional-compilation1.html#GUID-9AA504C5-8D85-41D6-BC3D-0953202BD9A7__EXAMPLE_WJQ_5FZ_ZFB">Example 2-62</a>, show that the first conditional compilation directive appears after the first PL/SQL token that follows the identifier of the unit being defined. 
+                        </p>
+                     </li>
+                     <li>
+                        <p>In a trigger or an anonymous block, the first conditional compilation directive cannot appear before the keyword <code class="codeph">DECLARE</code> or <code class="codeph">BEGIN</code>, whichever comes first.
+                        </p>
+                     </li>
+                  </ul>
+                  <p>The SQL parser also imposes this restriction: If an anonymous block uses a placeholder, the placeholder cannot appear in a conditional compilation directive. For example:</p><pre class="oac_no_warn" dir="ltr">BEGIN
+  :n := 1; -- valid use of placeholder
+  <span class="bold">$IF ... $THEN</span>
+    <span class="bold">:n</span> := 1; -- invalid use of placeholder
+$END</pre><div class="example" id="GUID-9AA504C5-8D85-41D6-BC3D-0953202BD9A7__EXAMPLE_HQV_2BZ_ZFB">
+                     <p class="titleinexample">Example 2-61 Using Conditional Compilation Directive in the Definition of a Package Specification</p>
+                     <p>This example shows the placement of the first conditional compilation directive after an <code class="codeph">AUTHID</code> clause, but before the keyword <code class="codeph">IS</code>, in the definition of the package specification.
+                     </p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE PACKAGE <span class="bold">cc_pkg
+AUTHID DEFINER</span>
+<span class="bold">$IF</span> $$XFLAG $THEN ACCESSIBLE BY(p1_pkg) $END
+IS
+    i NUMBER := 10;
+    trace CONSTANT BOOLEAN := TRUE;
+END cc_pkg;
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">Package created.</pre></div>
+                  <div class="example" id="GUID-9AA504C5-8D85-41D6-BC3D-0953202BD9A7__EXAMPLE_WJQ_5FZ_ZFB">
+                     <p class="titleinexample">Example 2-62 Using Conditional Compilation Directive in the Formal Parameter List of a Subprogram</p>
+                     <p>This example shows the placement of the first conditional compilation directive after the left parenthesis, in the formal parameter list of a PL/SQL procedure definition.</p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE PROCEDURE <span class="bold">my_proc (</span>
+  <span class="bold">$IF</span> $$xxx $THEN i IN PLS_INTEGER $ELSE i IN INTEGER $END
+) IS 
+BEGIN 
+      NULL; 
+END my_proc;
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr">Procedure created.</pre></div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

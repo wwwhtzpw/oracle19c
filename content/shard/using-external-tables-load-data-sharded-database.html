@@ -1,0 +1,289 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Using External Tables to Load Data into a Sharded Database">
+      <meta name="abstract" content="Using the examples and guidelines in the following topics, you can load data into a sharded database by creating external tables and then loading the data from the external tables into sharded or duplicated tables.">
+      <meta name="description" content="Using the examples and guidelines in the following topics, you can load data into a sharded database by creating external tables and then loading the data from the external tables into sharded or duplicated tables.">
+      <meta name="DC.Creator" content="Roopam Jain">
+      <meta name="DC.Creator" content="Shailesh Dwivedi">
+      <meta name="DC.Creator" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Pankaj Chandiramani">
+      <meta name="DC.Creator" content="Mark Dilman">
+      <meta name="DC.Creator" content="Nourdine Benadjaoud">
+      <meta name="DC.Creator" content="Rennie Sreekumar Ranjit Kumar">
+      <meta name="DC.Creator" content="David Colello">
+      <meta name="DC.Creator" content="Steve Ball">
+      <meta name="DC.Creator" content="Abhishek Srivastava">
+      <meta name="DC.Creator" content="Sebastian Binek">
+      <meta name="DC.Creator" content="Shahab Hamid">
+      <meta name="DC.Creator" content="Virginia Beecher">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-D2CD7510-79CE-44B1-A91A-8A96EE2EF62E">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Using the examples and guidelines in the following topics, you can load data into a sharded database by creating external tables and then loading the data from the external tables into sharded or duplicated tables.">
+      <meta name="description" content="Using the examples and guidelines in the following topics, you can load data into a sharded database by creating external tables and then loading the data from the external tables into sharded or duplicated tables.">
+      <title>Using External Tables to Load Data into a Sharded Database</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Using Oracle Sharding">
+      <meta property="og:description" content="Using the examples and guidelines in the following topics, you can load data into a sharded database by creating external tables and then loading the data from the external tables into sharded or duplicated tables.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Using Oracle Sharding">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-globally-distributed-database-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-24T13:16:05-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2018, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E87088-15">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="using-oracle-data-pump-migrate-sharded-database.html" title="Previous" type="text/html">
+      <link rel="next" href="using-oracle-goldengate-migrate-data-non-gdd-gdd.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Globally Distributed Database Guide">
+    <meta name="dcterms.isVersionOf" content="SHARD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Using External Tables to Load Data into a Sharded Database","description":"Using the examples and guidelines in the following topics, you can load data into a sharded database by creating external tables and then loading the data from the external tables into sharded or duplicated tables.","datePublished":"2025-06-25 CST","dateModified":"2025-06-25 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="using-oracle-data-pump-migrate-sharded-database.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="using-oracle-goldengate-migrate-data-non-gdd-gdd.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-D2CD7510-79CE-44B1-A91A-8A96EE2EF62E" name="GUID-D2CD7510-79CE-44B1-A91A-8A96EE2EF62E"></a>
+         
+         <h2 id="SHARD-GUID-D2CD7510-79CE-44B1-A91A-8A96EE2EF62E" class="sect2">Using External Tables to Load Data
+        into a Sharded Database</h2>
+         <div class="ind">
+            <div>
+               <p>Using the examples and guidelines in the following topics, you can load data
+        into a sharded database by creating external tables and then loading the data from the
+        external tables into sharded or duplicated tables.</p>
+               <p>This data loading method is useful when the data to be loaded resides in external files,
+            for example in CSV files.</p>
+               <p>External tables can be defined using the <code class="codeph">ORGANIZATION EXTERNAL</code> keyword
+            in the <code class="codeph">CREATE TABLE</code> statement. This table must be local to each shard
+            and not sharded or duplicated. Loading the data into the sharded or duplicated table
+            involves a simple <code class="codeph">INSERT … SELECT</code> statement from an external table,
+            with a condition to filter only a subset of data for sharded tables.
+               </p>
+               <p>You may choose to keep the files on different hosts based on the access time
+            and size of the files. For example, copy the files for duplicated tables on the shard
+            catalog host and keep files for sharded tables on a network share that is accessible to
+            all of the shards. It is also possible to keep a copy of the sharded table files on each
+            shard for faster loading.</p>
+               <p>For more information about external tables, see <a href="../sutil/oracle-external-tables.html#SUTIL-GUID-038ED956-A6EE-4C6D-B7C9-0D406B8088B6" target="_blank">External Tables</a> in <span><cite>Oracle Database Utilities</cite></span>.
+               </p>
+            </div>
+            <div class="sect2"><a id="GUID-131C28A5-7C14-4658-8AB9-87971BB1D648" name="GUID-131C28A5-7C14-4658-8AB9-87971BB1D648"></a><h3 id="SHARD-GUID-131C28A5-7C14-4658-8AB9-87971BB1D648" class="sect3">Loading Data into Duplicated Tables</h3>
+               <div>
+                  <p>Data for the duplicated tables resides on the shard catalog, so loading the
+        data into the duplicated tables is also done on the shard catalog. The data is then
+        automatically replicated to shards after loading is complete.</p>
+                  <div class="section">
+                     
+                     <p>Consider the following table defined as a duplicated table.</p>
+                     <pre class="pre codeblock"><code>CREATE DUPLICATED TABLE StockItems (
+ StockNo     NUMBER(4) PRIMARY KEY,
+ Description VARCHAR2(20),
+ Price       NUMBER(6,2)
+);</code></pre>
+                     <p>Loading data into the table StockItems involves the following steps.</p>
+                     
+                  </div>
+                  <ol>
+                     <li class="stepexpand"><span>Create a directory object pointing to the directory containing the data file
+                    and grant access to the shard user on this directory.</span><div>
+                           <pre class="pre codeblock"><code>CREATE OR REPLACE DIRECTORY shard_dir AS '/path/to/datafile';
+GRANT ALL on DIRECTORY shard_dir TO uname;</code></pre>
+                           </div>
+                     </li>
+                     <li class="stepexpand"><span>Create an external table that is local to the shard catalog, with the same
+                    columns as the duplicated table.</span><div>
+                           
+                           <p>On the shard catalog, run:</p>
+                           <pre class="pre codeblock"><code>ALTER SESSION DISABLE SHARD DDL;
+CREATE TABLE StockItems_Ext (
+ StockNo     NUMBER(4) NOT NULL,
+ Description VARCHAR2(20),
+ Price       NUMBER(6,2)
+)
+ORGANIZATION EXTERNAL
+(TYPE ORACLE_LOADER DEFAULT DIRECTORY shard_dir
+	ACCESS PARAMETERS
+		(FIELDS TERMINATED BY ’|’ (
+		  StockNo,
+		  Description,
+		  Price)
+	)LOCATION (’StockItems.dat’)
+ );
+</code></pre>
+                           <p>In this example, the data file for the duplicated table is named
+                            <code class="codeph">StockItems.dat</code> and column values are separated by the
+                        character ‘|’.
+                           </p>
+                           
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Insert data from the external table into the duplicated table.</span><div>
+                           <pre class="pre codeblock"><code>INSERT INTO StockItems  (SELECT * FROM StockItems_Ext);</code></pre>
+                           <p>You can use also optimizer hints such as APPEND and PARALLEL (with degree of
+                        parallelism) for faster loading depending on your system resources. For
+                        example:</p>
+                           <pre class="pre codeblock"><code>ALTER SESSION ENABLE PARALLEL DML;
+INSERT /*+ APPEND PARALLEL */ INTO StockItems
+  (SELECT * FROM StockItems_Ext);</code></pre>
+                           <p>or</p>
+                           <pre class="pre codeblock"><code>ALTER SESSION ENABLE PARALLEL DML;
+INSERT /*+ APPEND PARALLEL(24) */ INTO StockItems
+  (SELECT * FROM StockItems_Ext);</code></pre>
+                           </div>
+                     </li>
+                     <li class="stepexpand"><span>Commit the insert operation.</span><div>
+                           <pre class="pre codeblock"><code>COMMIT;</code></pre>
+                           </div>
+                     </li>
+                     <li class="stepexpand"><span>Drop the external table.</span><div>
+                           <pre class="pre codeblock"><code>DROP TABLE StockItems_Ext;</code></pre>
+                           <p>Repeat these steps for each duplicated table.</p>
+                           
+                        </div>
+                     </li>
+                  </ol>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-D9BCF52D-5417-4BF4-9C3D-A046A3C4FE62" name="GUID-D9BCF52D-5417-4BF4-9C3D-A046A3C4FE62"></a><h3 id="SHARD-GUID-D9BCF52D-5417-4BF4-9C3D-A046A3C4FE62" class="sect3">Loading Data into Sharded Tables</h3>
+               <div>
+                  <p>Loading data into a sharded table needs to be performed on individual shards
+        because data for a sharded table is partitioned across shards. The load can be done
+        concurrently on all the shards, even if the source data file is shared.</p>
+                  <div class="section">
+                     
+                     <p>The process of loading is similar to the loading of duplicated tables, with an
+                additional filter in the <code class="codeph">INSERT … SELECT</code> statement to filter out
+                the rows that do not belong to the current shard. 
+                     </p>
+                     
+                     <p>As an example, consider the sharded table created as follows.</p>
+                     <pre class="pre codeblock"><code>CREATE SHARDED TABLE Customers (
+ CustNo     NUMBER(3) NOT NULL,
+ CusName    VARCHAR2(30) NOT NULL,
+ Street     VARCHAR2(20) NOT NULL,
+ City       VARCHAR2(20) NOT NULL,
+ State      CHAR(2) NOT NULL,
+ Zip        VARCHAR2(10) NOT NULL,
+ Phone      VARCHAR2(12),
+ CONSTRAINT RootPK PRIMARY KEY (CustNo)
+)
+PARTITION BY CONSISTENT HASH (CustNo)
+PARTITIONS AUTO
+TABLESPACE SET ts1
+;</code></pre>
+                     <p>Loading data into this table involves doing the following steps <span class="bold">on each shard</span>.
+            
+                     </p>
+                     
+                  </div>
+                  <ol>
+                     <li class="stepexpand"><span>Create the directory object in the same way as done for the duplicated
+                    tables.</span></li>
+                     <li class="stepexpand"><span>Create an external table for Customers table.</span><div>
+                           <pre class="pre codeblock"><code>ALTER SESSION DISABLE SHARD DDL;
+CREATE TABLE Customers_Ext (
+ CustNo     NUMBER(3) NOT NULL,
+ CusName    VARCHAR2(30) NOT NULL,
+ Street     VARCHAR2(20) NOT NULL,
+ City       VARCHAR2(20) NOT NULL,
+ State      CHAR(2) NOT NULL,
+ Zip        VARCHAR2(10) NOT NULL,
+ Phone      VARCHAR2(12)
+)
+ORGANIZATION EXTERNAL
+(TYPE ORACLE_LOADER DEFAULT DIRECTORY shard_dir
+	ACCESS PARAMETERS
+	(FIELDS TERMINATED BY ’|’ (
+	  CustNo, CusName, Street, City, State, Zip, Phone)
+	)LOCATION (’Customers.dat’)
+ );
+</code></pre>
+                           </div>
+                     </li>
+                     <li class="stepexpand"><span>Insert data from external table into sharded table.</span><div>
+                           <pre class="pre codeblock"><code>ALTER SESSION ENABLE PARALLEL DML;
+
+INSERT /*+ APPEND PARALLEL(24) */ INTO Customers
+ (SELECT * FROM Customers_Ext WHERE
+        SHARD_CHUNK_ID(’UNAME.CUSTOMERS’, CUSTNO) IS NOT NULL
+  );
+</code></pre>
+                           <p>The operator <code class="codeph">SHARD_CHUNK_ID</code> is used to filter the rows that
+                        belong to the current shard. This operator returns a valid chunk number for
+                        the given sharding key value. The parameters for this operator are the root
+                        table name (in this case <code class="codeph">UNAME.CUSTOMERS</code>) and values of the
+                        sharding key columns. When a value does not belong to the current shard,
+                        this operator returns <code class="codeph">NULL</code>.
+                           </p>
+                           
+                           <p>Note that this operator is introduced in the current release (Oracle Database
+                        21c). If this operator is not available in your version, you must modify the
+                        insert statement as follows for the case of system-managed sharding.</p>
+                           <pre class="pre codeblock"><code>INSERT /*+ APPEND PARALLEL(24) */ INTO Customers c
+ (SELECT * FROM Customers_Ext WHERE
+        EXISTS (SELECT chunk_number FROM gsmadmin_internal.chunks
+			WHERE ora_hash(c.CustNo)&gt;= low_key
+			  AND ora_hash c.CustNo)&lt; high_key)
+  );</code></pre>
+                           <p>This query user internal sharding metadata to decide the eligibility for the
+                        row to be inserted.</p>
+                           
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Commit the insert operation.</span><div>
+                           <pre class="pre codeblock"><code>COMMIT;</code></pre>
+                           </div>
+                     </li>
+                     <li class="stepexpand"><span>Drop external tables.</span><div>
+                           <pre class="pre codeblock"><code>DROP TABLE Customers_Ext;</code></pre>
+                           </div>
+                     </li>
+                  </ol>
+                  <div class="section">
+                     
+                     <p>Repeat the above steps for each sharded table, starting with the root table and
+                descending down the table family hierarchy to maintain any foreign key
+                constraints.</p>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

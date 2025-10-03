@@ -1,0 +1,172 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Creating an Oracle RAC Database on Direct NFS">
+      <meta name="abstract" content="There are different configuration processes you must perform when installing and create an Oracle RAC database that uses Direct NFS (dNFS) for the database files.">
+      <meta name="description" content="There are different configuration processes you must perform when installing and create an Oracle RAC database that uses Direct NFS (dNFS) for the database files.">
+      <meta name="DC.Relation" scheme="URI" content="installing-oracle-rac-and-oracle-rac-one-node.html#GUID-15AAC8E3-5AF7-48B7-BD53-EFE662FA669A">
+      <meta name="DC.Relation" scheme="URI" content="perform-a-software-only-installation-of-oracle-database.html#GUID-4C026ECC-5C0D-450C-B3AC-DA3A6B8DBCD6">
+      <meta name="DC.Relation" scheme="URI" content="use-asmca-to-configure-an-acfs-mount-point.html#GUID-217F76CA-0DAA-4E75-B463-123107EEC2C1">
+      <meta name="DC.Relation" scheme="URI" content="use-dbca-to-create-and-configure-the-oracle-rac-database.html#GUID-4C5DC9AB-0580-4D2B-BA52-92FEA18578DF">
+      <meta name="DC.Relation" scheme="URI" content="enable-and-configure-direct-nfs.html#GUID-FDE4EECB-D3E2-4AD5-9709-13D32A568C40">
+      <meta name="DC.Relation" scheme="URI" content="use-asmca-to-remove-the-acfs-mount-point.html#GUID-2940A8AD-6547-451B-9FA0-B243580DB916">
+      <meta name="DC.Creator" content="Tejas N K">
+      <meta name="DC.Contributor" content="Douglas Williams">
+      <meta name="DC.Contributor" content="Prakash Jashnani">
+      <meta name="DC.Contributor" content="Subhash Chandra">
+      <meta name="DC.Contributor" content="Sunil Surabhi">
+      <meta name="DC.Creator" content="Alex Keh">
+      <meta name="DC.Creator" content="Aneesh Khandelwal">
+      <meta name="DC.Creator" content="Ara Shakian">
+      <meta name="DC.Creator" content="David Austin">
+      <meta name="DC.Creator" content="David Price">
+      <meta name="DC.Creator" content="Hanlin Chien">
+      <meta name="DC.Creator" content="Jacqueline Sideri">
+      <meta name="DC.Creator" content="James Williams">
+      <meta name="DC.Creator" content="Janelle Simmons">
+      <meta name="DC.Creator" content="Jiangqi Yang">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Joseph Francis">
+      <meta name="DC.Creator" content="Kevin Jernigan">
+      <meta name="DC.Creator" content="Khethavath Singh">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="Michael Coulter">
+      <meta name="DC.Creator" content="Naveen Ramamurthy">
+      <meta name="DC.Creator" content="Philip Newlan">
+      <meta name="DC.Creator" content="Parvathi Subramanian">
+      <meta name="DC.Creator" content="Priyanka Sharma">
+      <meta name="DC.Creator" content="Ramesh Chakravarthula">
+      <meta name="DC.Creator" content="Richard Strohm">
+      <meta name="DC.Creator" content="Robert Achacoso">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Sritej Puvvada">
+      <meta name="DC.Creator" content="Sumit Kumar">
+      <meta name="DC.Creator" content="Susheel Chauhan">
+      <meta name="DC.Creator" content="Suresh Yambari Venkata Naga">
+      <meta name="DC.Creator" content="Binika Kumar">
+      <meta name="DC.Creator" content="Tejas N K">
+      <meta name="DC.Contributor" content="Douglas Williams">
+      <meta name="DC.Contributor" content="Prakash Jashnani">
+      <meta name="DC.Contributor" content="Subhash Chandra">
+      <meta name="DC.Contributor" content="Sunil Surabhi">
+      <meta name="DC.Creator" content="Alex Keh">
+      <meta name="DC.Creator" content="Aneesh Khandelwal">
+      <meta name="DC.Creator" content="Ara Shakian">
+      <meta name="DC.Creator" content="David Austin">
+      <meta name="DC.Creator" content="David Price">
+      <meta name="DC.Creator" content="Hanlin Chien">
+      <meta name="DC.Creator" content="Jacqueline Sideri">
+      <meta name="DC.Creator" content="James Williams">
+      <meta name="DC.Creator" content="Janelle Simmons">
+      <meta name="DC.Creator" content="Jiangqi Yang">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Joseph Francis">
+      <meta name="DC.Creator" content="Kevin Jernigan">
+      <meta name="DC.Creator" content="Khethavath Singh">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="Michael Coulter">
+      <meta name="DC.Creator" content="Naveen Ramamurthy">
+      <meta name="DC.Creator" content="Philip Newlan">
+      <meta name="DC.Creator" content="Parvathi Subramanian">
+      <meta name="DC.Creator" content="Priyanka Sharma">
+      <meta name="DC.Creator" content="Ramesh Chakravarthula">
+      <meta name="DC.Creator" content="Richard Strohm">
+      <meta name="DC.Creator" content="Robert Achacoso">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Sritej Puvvada">
+      <meta name="DC.Creator" content="Sumit Kumar">
+      <meta name="DC.Creator" content="Susheel Chauhan">
+      <meta name="DC.Creator" content="Suresh Yambari Venkata Naga">
+      <meta name="DC.Creator" content="Binika Kumar">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-6FC1FB6A-D73C-4520-8354-BE480281D3BA">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="There are different configuration processes you must perform when installing and create an Oracle RAC database that uses Direct NFS (dNFS) for the database files.">
+      <meta name="description" content="There are different configuration processes you must perform when installing and create an Oracle RAC database that uses Direct NFS (dNFS) for the database files.">
+      <title>Creating an Oracle RAC Database on Direct NFS</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Installation Guide">
+      <meta property="og:description" content="There are different configuration processes you must perform when installing and create an Oracle RAC database that uses Direct NFS (dNFS) for the database files.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Installation Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="real-application-clusters-installation-guide-microsoft-windows.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-12T05:02:19-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2012, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96355-06">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="updating-environment-variables-on-remote-nodes.html" title="Previous" type="text/html">
+      <link rel="next" href="perform-a-software-only-installation-of-oracle-database.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Real Application Clusters Installation Guide for Microsoft Windows">
+    <meta name="dcterms.isVersionOf" content="RIWIN">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Creating an Oracle RAC Database on Direct NFS","description":"There are different configuration processes you must perform when installing and create an Oracle RAC database that uses Direct NFS (dNFS) for the database files.","datePublished":"2025-06-12 CST","dateModified":"2025-06-12 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="updating-environment-variables-on-remote-nodes.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="perform-a-software-only-installation-of-oracle-database.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-6FC1FB6A-D73C-4520-8354-BE480281D3BA" name="GUID-6FC1FB6A-D73C-4520-8354-BE480281D3BA"></a>
+         
+         <h2 id="RIWIN-GUID-6FC1FB6A-D73C-4520-8354-BE480281D3BA" class="sect2">Creating an Oracle RAC Database on Direct NFS</h2>
+         <div class="ind">
+            <div>
+               <p>There are different configuration processes you must perform when installing and create an Oracle RAC database that uses Direct NFS (dNFS) for the database files.</p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="perform-a-software-only-installation-of-oracle-database.html#GUID-4C026ECC-5C0D-450C-B3AC-DA3A6B8DBCD6">Performing a Software-Only Installation of Oracle Database</a><br>In a software-only installation you install the Oracle Database software but do not create a database as part of the installation process.
+                  </li>
+                  <li class="ulchildlink"><a href="use-asmca-to-configure-an-acfs-mount-point.html#GUID-217F76CA-0DAA-4E75-B463-123107EEC2C1">Using Oracle ASMCA to Configure an ACFS Mount Point</a><br>Oracle Automatic Storage Management Configuration Assistant (Oracle ASMCA) enables you to create an Oracle Automatic Storage Management Cluster File System (Oracle ACFS) mount point which is used in the "common file location" step of Oracle Database Configuration Assistant (DBCA).
+                  </li>
+                  <li class="ulchildlink"><a href="use-dbca-to-create-and-configure-the-oracle-rac-database.html#GUID-4C5DC9AB-0580-4D2B-BA52-92FEA18578DF">Using Oracle DBCA to Create and Configure the Oracle RAC Database</a><br>Use Oracle Database Configuration Assistant (DBCA) to create an Oracle Real Application Clusters (Oracle RAC) database that uses Direct NFS for datafile storage.
+                  </li>
+                  <li class="ulchildlink"><a href="enable-and-configure-direct-nfs.html#GUID-FDE4EECB-D3E2-4AD5-9709-13D32A568C40">Enabling and Configuring Direct NFS</a><br>You must manually enable the Direct NFS option after installing the Oracle Database software.
+                  </li>
+                  <li class="ulchildlink"><a href="use-asmca-to-remove-the-acfs-mount-point.html#GUID-2940A8AD-6547-451B-9FA0-B243580DB916">Using Oracle ASMCA to Remove the ACFS Mount Point</a><br>Now you have configured the mount point using Direct NFS, you can remove the Oracle Automatic Storage Management Cluster File System (Oracle ACFS) mount point using Oracle Automatic Storage Management Configuration Assistant (ASMCA).
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="installing-oracle-rac-and-oracle-rac-one-node.html#GUID-15AAC8E3-5AF7-48B7-BD53-EFE662FA669A" title="After installing Oracle Clusterware, as described in Oracle Grid Infrastructure Installation Guide for your platform, you can install Oracle RAC Database software.">Installing Oracle RAC and Oracle RAC One Node</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

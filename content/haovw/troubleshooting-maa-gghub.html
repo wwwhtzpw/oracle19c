@@ -1,0 +1,353 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Troubleshooting MAA GoldenGate Hub">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Orientation">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-1B749A1D-0967-411E-824C-E528B44BE9DF">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <title>Troubleshooting MAA GoldenGate Hub</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="ogg-troubleshooting1.html" title="Previous" type="text/html">
+      <link rel="next" href="troubleshooting-oracle-goldengate-oracle-rac.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Troubleshooting MAA GoldenGate Hub","description":"","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="ogg-troubleshooting1.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="troubleshooting-oracle-goldengate-oracle-rac.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-1B749A1D-0967-411E-824C-E528B44BE9DF" name="GUID-1B749A1D-0967-411E-824C-E528B44BE9DF"></a>
+         
+         <h2 id="HAOVW-GUID-1B749A1D-0967-411E-824C-E528B44BE9DF" class="sect2">Troubleshooting MAA GoldenGate
+        Hub</h2>
+         <div class="ind">
+            <div>
+               <p></p>
+            </div>
+            <div class="sect2"><a id="GUID-A462F598-692C-4323-9490-5BECDE20DD24" name="GUID-A462F598-692C-4323-9490-5BECDE20DD24"></a><h3 id="HAOVW-GUID-A462F598-692C-4323-9490-5BECDE20DD24" class="sect3">Oracle GoldenGate Extract Failure or Error
+        Conditions Considerations</h3>
+               <div>
+                  <p></p>
+                  <p>For Oracle GoldenGate Extract processes using Oracle Data Guard configurations that are
+            using redo transport Maximum Performance or Maximum Availability modes, the following
+            parameter must be added to the Extract process parameter file <span class="bold">on the primary database
+                system</span> to avoid losing transactions and resulting in logical data
+            inconsistencies:
+                  </p><pre class="pre codeblock"><code>TRANLOGOPTIONS HANDLEDLFAILOVER</code></pre><p>This parameter prevents Extract from extracting transaction data from redo that has not
+            yet been applied to the Data Guard standby database. This is crucial to preventing
+            Oracle GoldenGate from replicating data to a target database that does not exist in the
+            source standby database.</p>
+                  <p>If this parameter is not specified, after a data loss failover of the source database it
+            is possible to have data in the target database that is not present in the source
+            database, leading to logical data inconsistencies.</p>
+                  <p>By default, after 60 seconds, a warning message is written to the Extract report file
+            when the Extract is stalled because it can't query the standby database applied SCN
+            information. For example:</p>
+                  <p><code class="codeph">WARNING OGG-02721 Extract has been waiting for the standby database for 60
+                seconds.</code></p>
+                  <p>The amount of time before the warning message is written to the Extract report file can
+            be adjusted using the Extract parameter <code class="codeph">TRANLOGOPTIONS HANDLEDLFAILOVER
+                STANDBY_WARNING</code>.
+                  </p>
+                  <p>If the Extract is still unable to query the standby database applied SCN information
+            after 30 minutes (default), the Extract process abend, logging the following message in
+            the Extract report file:</p>
+                  <p><code class="codeph">ERROR OGG-02722 Extract abended waiting for 1,800 seconds for the standby
+                database to be accessible or caught up with the primary database.</code></p>
+                  <p>If the standby database becomes available before the default 30 timeout expires, Extract
+            continues mining data from the source database and reports the following message to the
+            report file:</p>
+                  <p><code class="codeph">INFO OGG-02723 Extract resumed from stalled state and started processing
+                LCRs.</code></p>
+                  <p>The timeout value of 30 minutes can be adjusted using the Extract parameter
+                <code class="codeph">TRANLOGOPTIONS HANDLEDLFAILOVER STANDBY_ABEND &lt;value&gt;</code>, where
+            value is the number of seconds the standby is unavailable before abending.
+                  </p>
+                  <p>If the standby database will be unavailable for a prolonged duration, such as during a
+            planned maintenance outage, and you wish Extract to continue extracting data from the
+            primary database, remove the <code class="codeph">TRANLOGOPTIONS HANDLEDLFAILOVER</code> parameter
+            from the Extract parameter file and restart Extract. Remember to set the parameter after
+            the standby becomes available.
+                  </p>
+                  <div class="infoboxnote" id="GUID-A462F598-692C-4323-9490-5BECDE20DD24__GUID-795A129A-5DC1-4450-B65A-6C136818F544">
+                     <p class="notep1">Note:</p>If extracting from a primary database continues while the standby is unavailable, a
+            data loss failover could result after the standby becomes available, and not all the
+            primary redo was applied before a failover. The GoldenGate target database will contain
+            data that does not exist in the source database.
+                  </div>
+                  <p>If the Extract process has been assigned an auto restart profile, as documented in <a href="ogg-microservices-cloud1.html#GUID-ADF0293B-DD0F-43AC-8DD9-13340B318DF7" title="Use these best practices for configuring Oracle GoldenGate Microservices Architecture to work with Oracle Exadata Database Service on Dedicated Infrastructure (ExaDB-D) or Oracle Exadata Database Service on Cloud@Customer (ExaDB-C@C), and with Oracle Database File System (DBFS) or Oracle ASM Cluster File System (ACFS).">Cloud: Oracle GoldenGate Microservices Architecture on Oracle Exadata Database Service Configuration Best Practices</a>, after a Data Guard role transition, the Extract process automatically restarts.
+            Extract continues to mine redo data from the new primary database, ignoring the current
+            state of the new standby database, until a default 5 minute timeout period expires.
+            After this time, if the standby is not available Extract will abend with the following
+            errors:
+                  </p>
+                  <p><code class="codeph">INFO    OGG-25053  Timeout waiting for 300 seconds for standby database
+                reinstatement. Now enforcing HANDLEDLFAILOVER.</code></p>
+                  <p><code class="codeph">ERROR   OGG-06219  Unable to extract data from the Logmining server
+                OGG$CAP_XXXXX.</code></p>
+                  <p><code class="codeph">ERROR   OGG-02078  Extract encountered a fatal error in a processing thread and
+                is abending.</code></p>
+                  <p>Extract continues attempting to automatically restart, based on the Oracle GoldenGate
+            Microservices auto restart profile, and fails because it reaches the
+                <code class="codeph">HANDLEDLFAILOVER</code> timeout, until the number of retries is reached or
+            the new standby database becomes available.
+                  </p>
+                  <p>During the timeout period following a database role transition, the
+                <code class="codeph">HANDLEDLFAILOVER</code> parameter is automatically suspended, so data is
+            replicated to the Oracle GoldenGate replica database without consideration of the source
+            standby database not being kept up to date. The timeout period for the standby database
+            to start up before Extract abends can be adjusted using the Extract parameter
+                <code class="codeph">TRANLOGOPTIONS DLFAILOVER_TIMEOUT</code>.
+                  </p>
+                  <p>It is recommended that you leave <code class="codeph">DLFAILOVER_TIMEOUT</code> at the default of 5
+            minutes to allow the old primary to convert to a standby. If the new standby database
+            will be unavailable for an extended period of time or completely gone, then to ensure
+            that Extract starts and remains running, you must remove the
+                <code class="codeph">HANDLEDLFAILOVER</code> parameter from the Extract parameter file. After
+            removing the parameter, Extract no longer waits until redo has been applied to the
+            standby database before extracting the data.
+                  </p>
+                  <p>During the time it takes for the standby database to come back online and apply all of
+            the redo from the primary database, there is data divergence between it and the Oracle
+            GoldenGate replica database. This divergence is resolved when the standby database is up
+            to date. At this point you can add the <code class="codeph">HANDLEDLFAILOVER</code> parameter back
+            into the integrated Extract process parameter file, and then stop and restart the
+            Extract.
+                  </p>
+                  <p>When Oracle Data Guard Fast Start Failover is disabled, such that the broker can
+            automatically fail over to a standby database in the event of loss of the primary
+            database, you must specify an additional integrated Extract parameter:</p><pre class="pre codeblock"><code>TRANLOGOPTIONS FAILOVERTARGETDESTID n</code></pre><p>This parameter identifies which standby database the Oracle GoldenGate Extract process
+            must remain behind, with regards to not extracting redo data that has not yet been
+            applied to the standby database.</p>
+                  <p>If Oracle Data Guard Fast Start Failover is disabled, and you don’t specify the
+            additional integrated Extract parameter <code class="codeph">FAILOVERTARGETDESTID</code>, the
+            extract will abend with the following errors:
+                  </p>
+                  <p><code class="codeph">ERROR OGG-06219 Unable to extract data from the Logmining server
+                OGG$CAP_XXXXX.</code></p>
+                  <p><code class="codeph">ERROR OGG-02078 Extract encountered a fatal error in a processing thread and is
+                abending.</code></p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-8615BC65-F805-4BFC-BAD6-71480C293C3B" name="GUID-8615BC65-F805-4BFC-BAD6-71480C293C3B"></a><h3 id="HAOVW-GUID-8615BC65-F805-4BFC-BAD6-71480C293C3B" class="sect3">Troubleshooting ACFS Replication</h3>
+               <div>
+                  <p></p>
+                  <p>The health of ACFS replication is determined by the <code class="codeph">acfsutil repl util
+                verifyprimary/verifystandby</code> commands. These commands are called by the
+            example CRS action scripts <span class="italic">acfs_primary.scr</span> and <span class="italic">acfs_standby.scr</span>, but they
+            are also implicitly called during a file system role transition.
+                  </p>
+                  <p>Both commands will return a value of ‘0’ if there are no problems detected. If a non-zero
+            value is returned, run the same command with verbose flag to see comprehensive output of
+            the verification tests.</p>
+                  <p>As the grid user on the standby GGHub system, verify the ACFS replication with the
+            primary GGHub:</p><pre class="pre codeblock"><code>[grid@gghub_stby1]$ acfsutil repl util verifyprimary /mnt/acfs_gg -v
+
+- Attempting to ping clust1-vip1
+- ping successful
+- Attempting to ssh
+&nbsp; '/usr/bin/ssh -o BatchMode=true -o Ciphers=aes128-ctr -o ConnectTimeout=3&nbsp;&nbsp; -x oracle@clust1-vip1 true 2&gt;&amp;1'
+- ssh output: Host key verification failed.
+- ssh output: Host key verification failed.
+- ssh attempt failed, ret=255
+verifyprimary return code: 255</code></pre><p>The errors reported by the verify command, <code class="codeph">Host key verification failed</code>,
+            clearly showing why it failed. In this example, there is a problem with the ssh
+            configuration between the standby and the primary file system GGHubs. Once the problem
+            has been resolved, rerun the verify commands to ensure there are no further
+            problems.
+                  </p>
+                  <p>After a failover has completed, it is recommended to check the acfsutil trace files for
+            the reason behind the failover. The acfsutil trace files are located in the CRS trace
+            file directory, which defaults to
+                <code class="codeph">/u01/app/grid/diag/crs/`hostname`/crs/trace/crsd_scriptagent_grid.trc</code>.
+                  </p>
+                  <p>Below are some common failures that can occur with incorrect ACFS replication
+            configuration.</p>
+                  <p><span class="bold">SSH daemon is shutdown or not configured to run on the VIP</span></p>
+                  <p>When using an application VIP on the ACFS primary and standby GGHubs, the ssh daemon must
+            be configured to listen for incoming connections on the VIP address. If this
+            configuration is not done, or the ssh daemon is not running on either of the current
+            primary/standby hosts the verifyprimary or verifystandby commands will fail with the
+            following error.</p>
+                  <p>As the grid user on the primary GGHub system, verify the ACFS recplication with the
+            standby GGHub:</p><pre class="pre codeblock"><code>[grid@gghub_prim1]$ acfsutil repl util verifystandby /mnt/acfs_gg -v
+
+
+- Attempting to ping gghubstby.goldengate.com
+- ping successful
+- Attempting to ssh
+  '/usr/bin/ssh -o BatchMode=true&nbsp;&nbsp; -o Ciphers=aes128-ctr -o ConnectTimeout=3&nbsp;&nbsp; -x oracle@gghub_stby-avip true 2&gt;&amp;1'
+
+- ssh output: ssh: connect to host gghub_stby1 port 22: Connection refused
+- ssh output: ssh: connect to host gghub_stby2 port 22: Connection refused
+
+- ssh attempt failed, ret=255
+verifystandby return code: 255</code></pre><p>As the grid user on the standby GGHub system, check that the resource application VIP and
+            sshd_restart are running and restart them if not:</p><pre class="pre codeblock"><code>[grid@gghub_stby1 ~]$ crsctl stat res -w "TYPE co app.appviptypex2"
+
+NAME=gghubstby
+TYPE=app.appviptypex2.type
+TARGET=OFFLINE
+STATE=OFFLINE
+
+[grid@gghub_stby1 ~]$ crsctl start res gghubstby
+
+CRS-2672: Attempting to start 'gghubstby' on 'gghub_stby1'
+CRS-2676: Start of 'gghubstby' on 'gghub_stby1' succeeded
+CRS-2672: Attempting to start 'sshd_restart' on 'gghub_stby1'
+CRS-2676: Start of 'sshd_restart' on 'gghub_stby1' succeeded</code></pre><p>Check that <code class="codeph">acfsutil repl verifystandby/verifyprimary</code> returns a result of
+            ‘0’ from both the primary and standby host.
+                  </p>
+                  <p><span class="bold">Primary ACFS background resources are not running</span></p>
+                  <ol id="GUID-8615BC65-F805-4BFC-BAD6-71480C293C3B__OL_GW1_CGF_SYB">
+                     <li>
+                        
+                        <p>The primary or standby ACFS servers are not accessible</p>
+                        
+                     </li>
+                     <li>ACFS Replication ssh user problem</li>
+                     <li>SSH Host key verification failed</li>
+                  </ol>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-428A3E12-F0D6-4F7B-B01A-CE9E66DE34A8" name="GUID-428A3E12-F0D6-4F7B-B01A-CE9E66DE34A8"></a><h3 id="HAOVW-GUID-428A3E12-F0D6-4F7B-B01A-CE9E66DE34A8" class="sect3">Troubleshooting Oracle GoldenGate</h3>
+               <div>
+                  <p></p>
+                  <p>There may be occasions when GoldenGate processes are not successfully started on an
+            Oracle RAC node. There are number of files generated by GoldenGate, XAG, and CRS that
+            should be reviewed to determine the cause of the problem.</p>
+                  <p>Below is a list of important log and trace files, along with their example locations and
+            some example output. </p>
+                  <p><span class="bold">XAG log file</span></p>
+                  <p>Location: &lt;XAG installation directory&gt;/log/&lt;hostname&gt; </p>
+                  <p>Example location: /u01/app/grid/xag/log/`hostname`</p>
+                  <p>File name: agctl_goldengate_grid.trc</p>
+                  <p>Contains all commands executed with agctl along with the output from the commands,
+            including those that CRS executes.</p><pre class="pre codeblock"><code>2022-04-18 11:52:21: stop resource success
+2022-04-18 11:52:38: agctl start goldengate &lt;instance_name&gt;
+2022-04-18 11:52:38: executing cmd: /u01/app/19.0.0.0/grid/bin/crsctl status res xag.&lt;INSTANCE_NAME&gt;.goldengate
+2022-04-18 11:52:38: executing cmd: /u01/app/19.0.0.0/grid/bin/crsctl status res xag.&lt;INSTANCE_NAME&gt;.goldengate -f
+2022-04-18 11:52:38: executing cmd: /u01/app/19.0.0.0/grid/bin/crsctl start resource xag.&lt;INSTANCE_NAME&gt;.goldengate -f
+2022-04-18 11:52:45: Command output:
+&gt;&nbsp; CRS-2672: Attempting to start 'xag.&lt;INSTANCE_NAME&gt;.goldengate' on 'exadb-node1'
+&gt;&nbsp; CRS-2676: Start of 'xag.&lt;INSTANCE_NAME&gt;.goldengate' on 'exadb-node1' succeeded
+&gt;End Command output
+2022-04-18 11:52:45: start resource success</code></pre><p><span class="bold">XAG GoldenGate instance trace file</span></p>
+                  <p>Location: &lt;XAG installation directory&gt;/log/&lt;hostname&gt;</p>
+                  <p>Example location: /u01/app/grid/xag/log/`hostname`</p>
+                  <p>File name: &lt;GoldenGate_instance_name&gt;_agent_goldengate.trc</p>
+                  <p>It contains the output from the commands executed by agctl, the environment variables
+            used, and any debug output enabled for the underlying commands.</p><pre class="pre codeblock"><code>2022-04-18 12:14:46: Exported ORACLE_SID ggdg1
+2022-04-18 12:14:46: Exported GGS_HOME /u01/oracle/goldengate/gg21c_MS
+2022-04-18 12:14:46: Exported OGG_CONF_HOME /mnt/dbfs/goldengate/deployments/ggsm01/etc/conf
+2022-04-18 12:14:46: Exported LD_LIBRARY_PATH 
+/u01/oracle/goldengate/gg21c_MS:/u01/app/19.0.0.0/grid/lib:/etc/ORCLcluster/lib
+2022-04-18 12:14:46: Exported LD_LIBRARY_PATH_64 /u01/oracle/goldengate/gg21c_MS
+2022-04-18 12:14:46: Exported LIBPATH /u01/oracle/goldengate/gg21c_MS
+2022-04-18 12:14:46: ogg input = {"oggHome":"/u01/oracle/goldengate/gg21c_MS","serviceManager":{"oggConfHome":"/mnt/dbfs/goldengate/deployments/ggsm01/etc/conf","portNumber":9100},"username":"&lt;username&gt;","credential":"*****"}
+2022-04-18 12:14:46: About to exec /u01/oracle/goldengate/gg21c_MS/bin/XAGTask HealthCheck
+2022-04-18 12:14:47: XAGTask retcode = 0</code></pre><p><span class="bold">CRS trace file</span></p>
+                  <p>Location: /u01/app/grid/diag/crs/&lt;hostname&gt;/crs/trace</p>
+                  <p>Example location: /u01/app/grid/diag/crs/`hostname`/crs/trace</p>
+                  <p>File name: crsd_scriptagent_oracle.trc</p>
+                  <p>Contains the output created by any CRS resource action scripts, like XAG or dbfs_mount.
+            This trace file is crucial to determining why DBFS or GoldenGate did not start on a RAC
+            node.</p><pre class="pre codeblock"><code>2022-04-18 11:52:38.634 :&nbsp;&nbsp;&nbsp; AGFW:549631744: {1:30281:59063} Agent received the message: RESOURCE_START[xag.&lt;INSTANCE_NAME&gt;.goldengate 1 1] ID 4098:4125749
+2022-04-18 11:52:38.634 :&nbsp;&nbsp;&nbsp; AGFW:549631744: {1:30281:59063} Preparing START command for: xag.&lt;INSTANCE_NAME&gt;.goldengate 1 1
+2022-04-18 11:52:38.634 :&nbsp;&nbsp;&nbsp; AGFW:549631744: {1:30281:59063} xag.&lt;INSTANCE_NAME&gt;.goldengate 1 1 state changed from: OFFLINE to: STARTING
+2022-04-18 11:52:38.634 :CLSDYNAM:558036736: [xag.&lt;INSTANCE_NAME&gt;.goldengate]{1:30281:59063} [start] Executing action script: /u01/oracle/XAG_MA/bin/aggoldengatescaas[start]
+2022-04-18 11:52:38.786 :CLSDYNAM:558036736: [xag.&lt;INSTANCE_NAME&gt;.goldengate]{1:30281:59063} [start] GG agent running command 'start' on xag.&lt;INSTANCE_NAME&gt;.goldengate
+2022-04-18 11:52:42.140 :CLSDYNAM:558036736: [xag.&lt;INSTANCE_NAME&gt;.goldengate]{1:30281:59063} [start] ServiceManager fork pid = 265747
+2022-04-18 11:52:42.140 :CLSDYNAM:558036736: [xag.&lt;INSTANCE_NAME&gt;.goldengate]{1:30281:59063} [start] Waiting for /mnt/dbfs/goldengate/deployments/ggsm01/var/run/ServiceManager.pid
+2022-04-18 11:52:42.140 :CLSDYNAM:558036736: [xag.&lt;INSTANCE_NAME&gt;.goldengate]{1:30281:59063} [start] Waiting for SM to start
+2022-04-18 11:52:42.140 :CLSDYNAM:558036736: [xag.&lt;INSTANCE_NAME&gt;.goldengate]{1:30281:59063} [start] ServiceManager PID = 265749
+2022-04-18 11:52:43.643 :CLSDYNAM:558036736: [xag.&lt;INSTANCE_NAME&gt;.goldengate]{1:30281:59063} [start] XAGTask retcode = 0
+2022-04-18 11:52:43.643 :CLSDYNAM:558036736: [xag.&lt;INSTANCE_NAME&gt;.goldengate]{1:30281:59063} [start] XAG HealthCheck after start returned 0
+2022-04-18 11:52:43.643 :&nbsp;&nbsp;&nbsp; AGFW:558036736: {1:30281:59063} Command: start for resource: xag.&lt;INSTANCE_NAME&gt;.goldengate 1 1 completed with status: SUCCESS
+2022-04-18 11:52:43.643 :CLSDYNAM:558036736: [xag.&lt;INSTANCE_NAME&gt;.goldengate]{1:30281:59063} [check] Executing action script: /u01/oracle/XAG_MA/bin/aggoldengatescaas[check]
+2022-04-18 11:52:43.644 :&nbsp;&nbsp;&nbsp; AGFW:549631744: {1:30281:59063} Agent sending reply for: RESOURCE_START[xag.&lt;INSTANCE_NAME&gt;.goldengate 1 1] ID 4098:4125749
+2022-04-18 11:52:43.795 :CLSDYNAM:558036736: [xag.&lt;INSTANCE_NAME&gt;.goldengate]{1:30281:59063} [check] GG agent running command 'check' on xag.&lt;INSTANCE_NAME&gt;.goldengate
+2022-04-18 11:52:45.548 :CLSDYNAM:558036736: [xag.&lt;INSTANCE_NAME&gt;.goldengate]{1:30281:59063} [check] XAGTask retcode = 0
+2022-04-18 11:52:45.548 :&nbsp;&nbsp;&nbsp; AGFW:549631744: {1:30281:59063} xag.&lt;INSTANCE_NAME&gt;.goldengate 1 1 state changed from: STARTING to: ONLINE</code></pre><p><span class="bold">GoldenGate deployment log files</span></p>
+                  <p>Location: &lt;Goldengate_deployment_directory&gt;/&lt;instance_name&gt;/var/log</p>
+                  <p>Example location: /mnt/dbfs/goldengate/deployments/&lt;instance_name&gt;/var/log</p>
+                  <p>File names: adminsrvr.log, recvsrvr.log, pmsrvr.log, distsrvr.log</p>
+                  <p>Contains the output of start, stop, and status checks of the Oracle GoldenGate deployment
+            processes (Administration Server, Distribution Server, Receiver Server, and Performance
+            Metrics Server).</p><pre class="pre codeblock"><code>2022-04-18T11:52:42.645-0400 INFO | Setting deploymentName to '&lt;instance_name&gt;'. (main)
+2022-04-18T11:52:42.665-0400 INFO | Read SharedContext from store for length 19 of file '/mnt/dbfs/goldengate/deployments/&lt;instance_name&gt;/var/lib/conf/adminsrvr-resources.dat'. (main)
+2022-04-18T11:52:42.723-0400 INFO | XAG Integration enabled (main)
+2022-04-18T11:52:42.723-0400 INFO | Configuring security. (main)
+2022-04-18T11:52:42.723-0400 INFO | Configuring user authorization secure store path as '/mnt/dbfs/goldengate/deployments/&lt;instance_name&gt;/var/lib/credential/secureStore/'. (main)
+2022-04-18T11:52:42.731-0400 INFO | Configuring user authorization as ENABLED. (main)
+2022-04-18T11:52:42.749-0400 INFO | Set network configuration. (main)
+2022-04-18T11:52:42.749-0400 INFO | Asynchronous operations are enabled with default synchronous wait time of 30 seconds (main)
+2022-04-18T11:52:42.749-0400 INFO | HttpServer configuration complete. (main)
+2022-04-18T11:52:42.805-0400 INFO | SIGHUP handler installed. (main)
+2022-04-18T11:52:42.813-0400 INFO | SIGINT handler installed. (main)
+2022-04-18T11:52:42.815-0400 INFO | SIGTERM handler installed. (main)
+2022-04-18T11:52:42.817-0400 WARN | Security is configured as 'disabled'. (main)
+2022-04-18T11:52:42.818-0400 INFO | Starting service listener... (main)
+2022-04-18T11:52:42.819-0400 INFO | Mapped 'ALL' interface to address 'ANY:9101' with default IPV4/IPV6 options identified by 'exadb-node1.<span class="variable" translate="no">domain</span>'. (main)
+2022-04-18T11:52:42.821-0400 INFO | Captured 1 interface host names: 'exadb-node1.<span class="variable" translate="no">domain</span>' (main)
+2022-04-18T11:52:42.824-0400 INFO | The Network ipACL specification is empty. Accepting ANY address on ALL interfaces. (main)
+2022-04-18T11:52:42.826-0400 INFO | Server started at 2022-04-18T11:52:42.827-05:00 (2022-04-18T15:52:42.827Z GMT) (main)</code></pre><p><span class="bold">GoldenGate report files</span></p>
+                  <p>Location: &lt;Goldengate_deployment_directory&gt;/&lt;instance_name&gt;/var/lib/report</p>
+                  <p>Example location: /mnt/dbfs/goldengate/deployments/&lt;instance_name&gt;/var/lib/report</p>
+                  <p>The GoldenGate report files contain important information, warning messages, and errors
+            for all GoldenGate processes, including the Manager processes. If any of the GoldenGate
+            processes fail to start or abend when running, the process report file will contain
+            important information that can be used to determine the cause of the failure.</p><pre class="pre codeblock"><code>2022-04-23 13:01:50&nbsp; ERROR&nbsp;&nbsp; OGG-00446&nbsp; Unable to lock file " /mnt/acfs_gg/deployments/&lt;instance_name&gt;/var/lib/checkpt/EXT_1A.cpe" (error 95, Operation not supported).
+2022-04-23 13:01:50&nbsp; ERROR&nbsp;&nbsp; OGG-01668&nbsp; PROCESS ABENDING.</code></pre></div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

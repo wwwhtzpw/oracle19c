@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Part number: F14245-01 -->
+    <!-- Published date: February 2019 -->
+    <!-- See this link for directions on getting a part number: https://confluence.oraclecorp.com/confluence/display/DLPP/Archive+an+OBE -->
+    <!-- Template date: October 15, 2018 -->
+    <meta name="contentid" content="26713">
+    <title>Use Oracle Database Vault Operations Control</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Learn how to create and populate in-memory external tables.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+  
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+    <meta name="dcterms.created" content="2019-05-13T08:03:53+00:00">
+    <meta name="dcterms.title" content="Use Oracle Database Vault Operations Control">
+    <meta name="dcterms.category" content="database">
+    <meta name="dcterms.isVersionOf" content="TUTORIAL-USE-DBVAULT-OPERATIONS-CONTROL">
+    <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+    <meta name="dcterms.identifier" content="F14245-01">
+    <meta name="dcterms.release" content="Release 19">
+  <script id="ssot-metadata" type="application/json"> {"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}} </script>
+    </head>
+  <body>
+    <header>
+      <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo"> <img src="./img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a> </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+      <h1><img src="./img/obe_tag.png" alt="Oracle by Example branding" align="middle">Use
+        Oracle Database Vault Operations Control</h1>
+      <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+          <div class="left-nav-tut"><!-- -->
+            <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+            <div id="navbar" class="left-nav-w"><!-- -->
+              <div id="toc" class="tocify"><!-- --></div>
+            </div>
+          </div>
+        </div>
+        <div id="bookContainer">
+          <article>
+            <section>
+              <h2><img src="./img/32_begin.png" alt="section 0" class="num_circ" height="32" width="32"> Before You Begin</h2>
+              <p>This 15-minute tutorial shows you how to use Database Vault
+                Operations Control to automatically restrict common users from
+                accessing pluggable database (PDB) local data in autonomous,
+                regular Cloud, or on-premise environments. </p>
+              <h3>Background</h3>
+              <p>In Oracle Database 18c, Oracle Database Vault provides command
+                rules and realms to protect sensitive data from users with
+                system privileges and object privileges (mandatory realms). A
+                command rule controls whether a particular SQL command can be
+                executed for a given circumstance. A realm can prevent a user
+                from accessing protected objects if the user is not authorized
+                in the realm. This protection requires the creation and
+                configuration of command rules or realms.</p>
+              <p>In Oracle Database 19c, Oracle Database Vault provides an extra
+                layer of protection on the database objects. Database Vault
+                Operations Control creates a wall between common users in
+                databases and the customer database data that resides in the
+                associated PDBs. Database Vault Operations Control prevents
+                common users from accessing application local data that resides
+                in PDBs. The capability allows you to store sensitive data for
+                your business applications and manage the database without
+                having to access the sensitive data in PDBs.</p>
+              <h3>What Do You Need?</h3>
+              <ul>
+                <li>Oracle Database 19c installed</li>
+                <li>A CDB and a PDB</li>
+                <li>The <code><a href="files/appdata.sh" target="_blank">
+                      appdata.sh</a></code> shell script that creates the <code>HR.EMPLOYEES</code>
+                  table in <code>PDB1</code>. Download the shell script to the
+                  labs directory created on your server <code>/home/oracle/labs</code>.</li>
+                <li>The <code><a href="files/drop_create_user_sec_admin.sql" target="_blank">
+                      drop_create_user_sec_admin.sql</a></code> SQL script that
+                  creates the Database Vault owner and the Database Vault
+                  account manager. Download the SQL script file to the labs
+                  directory created on your server <code>/home/oracle/labs</code>.</li>
+              </ul>
+            </section>
+            <!-- ========================================================================================================================= -->
+            <hr>
+            <section>
+              <h2 id="section_1" role="button" style="text-align: left;"><img src="./img/32_1.png" alt="section 1" class="num_circ" height="32" width="32">Create
+                a Table in the PDB </h2>
+              <ol>
+                <li>Execute the <code><a href="files/appdata.sh" target="_blank">
+                      appdata.sh</a></code> shell script to create the <code>HR.EMPLOYEES</code>
+                  table in <code>PDB1</code>. Update the password in the shell
+                  script if necessary.<br>
+                  <pre>/home/oracle/labs/appdata.sh
+</pre> </li>
+                <li>Check that the user <code>SYS</code> can read the <code>HR.EMPLOYEES</code>
+                  table rows in <code>PDB1</code>.
+                  <pre>SHOW CON_NAME
+
+CON_NAME
+------------------------------
+PDB1
+</pre>
+                  <pre>SELECT count(*) FROM hr.employees;
+
+COUNT(*)
+----------
+       107 </pre>
+                </li>
+                <li>Verify that neither Oracle Database Vault nor Database Vault
+                  Operations Control is configured in <code>PDB1</code>.
+                  <pre>SELECT * FROM dba_dv_status;
+
+NAME                           STATUS
+------------------------------ --------------
+DV_APP_PROTECTION              NOT CONFIGURED
+DV_CONFIGURE_STATUS            FALSE
+DV_ENABLE_STATUS               FALSE</pre>
+                  <code>DV_APP_PROTECTION</code> status of <code>NOT CONFIGURED</code>
+                  means that Operations Control is not configured. </li>
+              </ol>
+            </section>
+            <section>
+              <h2 id="section_2" role="button" style="text-align: left;"><img src="./img/32_2.png" alt="section 2" class="num_circ" height="32" width="32">Configure
+                and Enable Database Vault in the CDB Root</h2>
+              <p>In this section, you configure Database Vault at the CDB root
+                level, ensuring that the <code>DV_OWNER</code> role is granted
+                locally in the CDB root to the common Oracle Database Vault
+                owner, <code>C##DVO</code>. Granting <code>DV_OWNER</code>
+                locally prevents the CDB common user with <code>DV_OWNER</code>
+                from changing containers or logging into PDBs with this role and
+                changing customer DV controls.</p>
+              <ol>
+                <li>Log in to the CDB root as <code>SYS</code>.
+                  <pre>CONNECT / AS SYSDBA
+</pre></li>
+                <li>Execute the <code>/home/oracle/labs/drop_create_user_sec_admin.sql</code>
+                  SQL script that creates the Database Vault <code>C##DVO</code>
+                  owner and the Database Vault <code>C##DVA</code> account
+                  manager in the CDB root. Update the passwords in the SQL
+                  script if necessary.
+                  <pre>@/home/oracle/labs/drop_create_user_sec_admin.sql</pre>
+                </li>
+                <li>Configure Database Vault at the CDB root level ensuring that
+                  the <code>DV_OWNER</code> role is granted locally in the CDB
+                  root to the common Oracle Database Vault owner, <code>C##DVO</code>.
+                  <pre>exec DVSYS.CONFIGURE_DV ( dvowner_uname =&gt;'c##dvo',-
+                          dvacctmgr_uname =&gt;'c##dva', -
+                          force_local_dvowner =&gt; TRUE)</pre>
+                </li>
+                <li>Observe the Oracle Database Vault status in the CDB root.
+                  Oracle Database Vault is configured but Database Vault
+                  Operations Control is not configured.
+                  <pre>SELECT * FROM dba_dv_status;
+
+NAME                     STATUS
+------------------------ --------------
+DV_APP_PROTECTION        NOT CONFIGURED
+DV_CONFIGURE_STATUS      TRUE
+DV_ENABLE_STATUS         FALSE</pre>
+                </li>
+                <li>Observe the Oracle Database Vault status in <code>PDB1</code>.
+                  <pre>CONNECT sys@PDB1 AS SYSDBA
+Enter password: <em>password</em></pre>
+                  <pre>SELECT * FROM dba_dv_status;
+
+NAME                     STATUS
+------------------------ --------------
+DV_APP_PROTECTION        NOT CONFIGURED
+DV_CONFIGURE_STATUS      FALSE
+DV_ENABLE_STATUS         FALSE</pre>
+                </li>
+                <li>Check that the user <code>SYS</code> can still count the <code>HR.EMPLOYEES</code>
+                  table rows.
+                  <pre>SELECT count(*) FROM hr.employees;
+
+COUNT(*)
+----------
+       107 </pre>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_3" role="button" style="text-align: left;"><img src="./img/32_3.png" alt="section 3" class="num_circ" height="32" width="32">Enable
+                Database Vault Operations Control</h2>
+              <ol>
+                <li>In the CDB root, create a common user granted the <code>CREATE
+                    SESSION</code> and <code>SELECT ANY TABLE</code>
+                  privileges.
+                  <pre>CONNECT c##dva
+Enter password: <em>password</em></pre>
+                  <pre>CREATE USER c##common IDENTIFIED BY <em>password</em> CONTAINER=ALL;</pre>
+                </li>
+                <li>Grant the <code>CREATE SESSION</code> and <code>SELECT ANY
+                    TABLE</code> privileges to the common user.
+                  <pre>CONNECT / AS SYSDBA</pre>
+                  <pre>GRANT create session, select any table TO c##common CONTAINER=ALL;</pre>
+                </li>
+                <li>Connect to <code>PDB1</code> as the common user. Verify
+                  that the common user can query the <code>HR.EMPLOYEES</code>.
+                  <pre>CONNECT c##common@PDB1
+Enter password: <em>password</em></pre>
+                  <pre>SELECT count(*) FROM hr.employees;
+
+COUNT(*)
+----------
+       107
+</pre></li>
+                <li>Enable Database Vault Operations Control in the CDB root.
+                  First, enable Oracle Database Vault in the CDB root.
+                  <pre>CONNECT / AS SYSDBA</pre>
+                  <pre>EXEC dvsys.dbms_macadm.enable_app_protection
+BEGIN dvsys.dbms_macadm.enable_app_protection; END;
+*
+ERROR at line 1:
+ORA-47503: Database Vault is not enabled in CDB$ROOT or application root.
+ORA-06512: at "DVSYS.DBMS_MACADM", line 2811
+ORA-06512: at line 1</pre>
+                </li>
+                <li>Log in the CDB root as the Oracle Database Vault owner.
+                  Enable Oracle Database Vault in the CDB root.
+                  <pre>CONNECT c##dvo
+Enter password: <em>password</em></pre>
+                  <pre>EXEC dvsys.dbms_macadm.enable_dv</pre>
+                </li>
+                <li>Restart the database instance to enforce DV configuration
+                  and enabling.
+                  <pre>CONNECT / AS SYSDBA</pre>
+                  <pre>SHUTDOWN IMMEDIATE</pre>
+                  <pre>STARTUP</pre>
+                  If the PDB is not automatically opened, open it.
+                  <pre>ALTER PLUGGABLE DATABASE pdb1 OPEN;</pre>
+                </li>
+                <li>Verify the Oracle Database Vault status in the CDB root.
+                  Oracle Database Vault is configured and enabled but Database
+                  Vault Operations Control is still not configured.
+                  <pre>SELECT * FROM dba_dv_status;
+
+NAME                     STATUS
+------------------------ --------------
+DV_APP_PROTECTION        NOT CONFIGURED
+DV_CONFIGURE_STATUS      TRUE
+DV_ENABLE_STATUS         TRUE</pre>
+                </li>
+                <li>Log in to the CDB root as the common account with the <code>DV_OWNER</code>
+                  role to enable Database Vault Operations Control, even if the
+                  <code>DV_OWNER</code> role has been granted locally.
+                  <pre>CONNECT c##dvo
+Enter password: <em>password</em></pre>
+                  <pre>EXEC dvsys.dbms_macadm.enable_app_protection</pre>
+                </li>
+                <li>Verify the Oracle Database Vault Operations Control status
+                  in the CDB root.
+                  <pre>CONNECT / AS SYSDBA</pre>
+                  <pre>SELECT * FROM dba_dv_status;
+
+NAME                     STATUS
+------------------------ --------------
+DV_APP_PROTECTION        ENABLED
+DV_CONFIGURE_STATUS      TRUE
+DV_ENABLE_STATUS         TRUE</pre>
+                </li>
+                <li>Verify the Oracle Database Vault Operations Control status
+                  in <code>PDB1</code>.
+                  <pre>CONNECT sys@PDB1 AS SYSDBA
+Enter password: <em>password</em></pre>
+                  <pre>SELECT * FROM dba_dv_status;
+
+NAME                     STATUS
+------------------------ --------------
+DV_APP_PROTECTION        ENABLED
+DV_CONFIGURE_STATUS      FALSE
+DV_ENABLE_STATUS         FALSE</pre>
+                  Observe that Oracle Database Vault Operations Control is
+                  enabled at the PDB level with its status inherited from the
+                  CDB root. Oracle Database Vault is not required to be
+                  configured and enabled in PDBs, but must be configured and
+                  enabled at the CDB root level.</li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_4" role="button" style="text-align: left;"><img src="./img/32_4.png" alt="section 4" class="num_circ" height="32" width="32">Test
+                Database Vault Operations Control</h2>
+              <ol>
+                <li>Connect to <code>PDB1</code> as the common user. Verify
+                  that the common user cannot query the <code>HR.EMPLOYEES</code>.
+                  <pre>CONNECT c##common@PDB1
+Enter password: <em>password</em></pre>
+                  <pre>SELECT * FROM hr.employees;
+SELECT * FROM hr.employees
+                 *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+</pre> </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_5" role="button" style="text-align: left;"><img src="./img/32_5.png" alt="section 5" class="num_circ" height="32" width="32">Complete
+                Administrative Tasks in PDBs</h2>
+              <p>In this section, you back up the PDB although Oracle Database
+                Vault Operations Control is enabled. Because database patching,
+                backing up, restoring, and upgrading do not touch customer
+                schemas, DBAs and privileged common users can still run tools as
+                <code>SYSDBA</code> to patch the database (with <code>DV_PATCH_ADMIN</code>
+                granted commonly in the CDB root), backup, restore, and upgrade
+                the database although Oracle Database Vault Operations Control
+                is enabled.</p>
+              <ol>
+                <li>Grant the <code>SYSDBA</code> privilege to the common user
+                  in <code>PDB1</code>.
+                  <pre>CONNECT sys@PDB1 AS SYSDBA
+Enter password: <em>password</em></pre>
+                  <pre>GRANT sysdba TO c##common;</pre>
+                </li>
+                <li>Quit the session.
+                  <pre>EXIT
+</pre> </li>
+                <li>Use RMAN to back up <code>PDB1</code>. Connect as the
+                  common user to <code>PDB1</code>.
+                  <pre>rman target c##common@PDB1
+target database Password: <em>password</em></pre>
+                  <pre>BACKUP DATABASE;</pre>
+                  Although common users cannot query application data in PDBs,
+                  they can still complete administrative tasks for which they
+                  are granted privileges.</li>
+                <li>Quit the RMAN session.
+                  <pre>exit</pre>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_6" role="button" style="text-align: left;"><img src="./img/32_6.png" alt="section 6" class="num_circ" height="32" width="32">Add
+                Users in an Exception List to Allow Them Operations in PDBs </h2>
+              <p>In this section, you will maintain the exception list of common
+                users and packages so that the tasks that need to be completed
+                by common users can be completed despite the Database Vault
+                Operations Control enabled. These common users are automation
+                accounts, not used by humans.</p>
+              <p><code>HR</code> application data in <code>PDB1</code> is very
+                sensitive and should be protected against common users in the
+                CDB. Nevertheless, the <code>C##REPORT</code> common user
+                should be able to access some of the <code>HR</code>
+                application information in <code>PDB1</code> to generate
+                statistics for Human Resources.</p>
+              <ol>
+                <li>Log in as the common user who has been granted the <code>DV_ACCTMGR</code>
+                  role to create the common user <code>C##REPORT</code>.
+                  <pre>sqlplus c##dva
+Enter password: <em>password</em></pre>
+                  <pre>CREATE USER c##report IDENTIFIED BY <em>password</em> CONTAINER=ALL; </pre>
+                </li>
+                <li>Grant the <code>CREATE SESSION</code> and <code>SELECT ANY
+                    TABLE</code> privileges to <code>C##REPORT</code>.
+                  <pre>CONNECT / AS SYSDBA</pre>
+                  <pre>GRANT create session, select any table TO c##report CONTAINER=ALL; </pre>
+                </li>
+                <li>Connect as the common user in <code>PDB1</code> and check
+                  if the common user can query the application data in <code>PDB1</code>.
+                  <pre>CONNECT c##report@PDB1
+Enter password: <em>password</em></pre>
+                  <pre>SELECT count(*) FROM hr.employees; 
+SELECT count(*) FROM hr.employees
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges</pre>
+                  The behavior is expected because Oracle Database Vault
+                  Operations Control is enabled.</li>
+                <li>Add the user to the exception list of users and packages
+                  allowed to access local data in <code>PDB1</code>. This
+                  operation can only be completed in the CDB root.
+                  <pre>CONNECT c##dvo
+Enter password: <em>password</em></pre>
+                </li>
+                <pre>EXEC dvsys.dbms_macadm.add_app_exception (owner =&gt; 'C##REPORT', package_name =&gt; '')</pre>
+                <li>Query the exception list.
+                  <pre>SELECT * FROM DVSYS.DBA_DV_APP_EXCEPTION;
+
+OWNER          PACKAGE
+-------------- --------------
+C##REPORT      %</pre>
+                  Automation accounts frequently have procedure or functions
+                  that need to access local data. In this case, include the
+                  package name so that only the package name can access local
+                  data and not someone who has stolen the credentials and runs
+                  SQL statements. </li>
+                <li>Re-connect as the common user in <code>PDB1</code> and
+                  check that the common user can query the application data in <code>PDB1</code>.
+                  <pre>CONNECT c##report@PDB1
+Enter password: <em>password</em></pre>
+                  <pre>SELECT count(*) FROM hr.employees; 
+
+COUNT(*)
+----------
+       107</pre>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_7" role="button" style="text-align: left;"><img src="./img/32_7.png" alt="section 7" class="num_circ" height="32" width="32">Clean
+                Up the Environment</h2>
+              <ol>
+                <li>Disable Database Vault Operations Control.
+                  <pre>CONNECT c##dvo
+Enter password: <em>password</em></pre>
+                  <pre>EXEC dvsys.dbms_macadm.disable_app_protection</pre>
+                </li>
+                <li>Drop the <code>HR</code> schema in <code>PDB1</code>.
+                  <pre>CONNECT c##dva@PDB1
+Enter password: <em>password</em></pre>
+                  <pre>DROP USER hr CASCADE;</pre>
+                </li>
+                <li>Revoke the <code>SYSDBA</code> privilege from the common
+                  user in <code>PDB1</code>.
+                  <pre>CONNECT sys@PDB1 AS SYSDBA
+Enter password: <em>password</em></pre>
+                  <pre>REVOKE sysdba FROM c##common;</pre>
+                </li>
+                <li>Drop the <code>C##COMMON</code> user in the CDB.
+                  <pre>CONNECT c##dva
+Enter password: <em>password</em></pre>
+                  <pre>DROP USER c##common CASCADE;</pre>
+                </li>
+                <li>Drop the <code>C##REPORT</code> user in the CDB.
+                  <pre>DROP USER c##report CASCADE;</pre>
+                </li>
+                <li>Quit the session.
+                  <pre>EXIT</pre>
+                </li>
+              </ol>
+            </section>
+            <hr> </article>
+        </div>
+        <br class="clearfloat">
+      </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+      <div style="max-width: 994px; padding:10px 0 0 17px;">
+        <footer class="footer-list">
+          <ul>
+            <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                Oracle</a> </li>
+            <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                Notices</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                of Use</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your
+                Privacy Rights</a> </li>
+            <li><a href="./sp_common/en/cpyr.htm">Copyright
+                © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>
+          </ul>
+        </footer>
+      </div>
+      <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+      <!-- Modal hdr and body -->
+      <div id="obe_dialog" class="modal-content">
+        <div class="modal-header"> <a href="#" class="close"> <span class="close">×</span>
+          </a>
+          <h1>Associated Learning Paths</h1>
+        </div>
+        <div id="dialog-content"> </div>
+        <div id="dialog-close" class="closeBtn"> <a href="#" class="close2">
+            <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+          </a> </div>
+      </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+  </body>
+</html>

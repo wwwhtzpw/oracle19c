@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Part number: F19266-02 -->
+    <!-- Published date: January 2020 -->
+    <!-- Template date: October 15, 2018 -->
+    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+    <meta name="contentid" content="26779">
+    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+    <!-- Use an imperative verb in the title. -->
+    <title>Create a Logistic Regression Model Workflow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Put the description of the tutorial here.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+  
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+    <meta name="dcterms.created" content="2020-01-27T15:08:58+00:00">
+    <meta name="dcterms.title" content="Create a Logistic Regression Model Workflow">
+    <meta name="dcterms.category" content="database">
+    <meta name="dcterms.isVersionOf" content="TUTORIAL-CREATE-GLM-WORKFLOW">
+    <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+    <meta name="dcterms.identifier" content="F19266-02">
+    <meta name="dcterms.release" content="Release 19">
+  <script id="ssot-metadata" type="application/json"> {"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}} </script>
+    </head>
+  <body>
+    <header>
+      <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo"> <img src="img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a> </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+      <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+      <!-- Use an imperative verb in the title. -->
+      <h1><img src="img/obe_tag.png" alt="Oracle by Example branding" align="middle">Create
+        a Logistic Regression Model Workflow</h1>
+      <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+          <div class="left-nav-tut"><!-- -->
+            <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+            <div id="navbar" class="left-nav-w"><!-- -->
+              <div id="toc" class="tocify"><!-- --></div>
+            </div>
+          </div>
+        </div>
+        <div id="bookContainer">
+          <article>
+            <section>
+              <h2><img src="img/32_begin.png" alt="section 0" class="num_circ" height="32" width="32">Before You Begin</h2>
+              <p>This 15-minute tutorial shows you how to create a new project,
+                a workflow and add the necessary data sources to the workflow.
+                Rather than use the Data Miner sample data, you will use the
+                Sales History schema data.</p>
+              <h3>Background</h3>
+              <p>Generalized Linear Models provide great transparency, which may
+                be achieved at the expense of accuracy. With the introduction of
+                a feature selection and generation capability, GLMs can maintain
+                a high degree of accuracy without sacrificing transparency (the
+                ability to explain the predictions made by the model).</p>
+              <ul>
+                <li><em>Feature Selection</em> is the process of selecting the
+                  most meaningful attributes. With feature selection, GLMs can
+                  be created with fewer predictors, leading to smaller models
+                  and faster scoring. </li>
+                <li><em>Feature Generation</em> is the process of combining
+                  attributes into new features. With feature generation, GLMs
+                  use non-linear terms (up to cubic terms), leading to more
+                  powerful models and increased transparency.</li>
+              </ul>
+              <h3>Scenario</h3>
+              <p>Here, you focus on a business problem that can be solved by applying a Classification model. In our scenario, ABC Company wants to know which customer attributes are most significant in predicting the gender of a customer. The new feature selection / generation enhancements are used as part of this mining exercise.</p>
+              <p>In this new workflow, you:</p>
+              <ul>
+                <li>Identify and select two new data sources from the Oracle Database sample SH schema: the SALES and CUSTOMERS tables.</li>
+                <li>Summarize the QUANTITY_SOLD and AMOUNT_SOLD measures from the SALES table by Customer and Product, over the Promotion and Channel dimensions.</li>
+                <li>Place the summarized data into a new table.</li>
+                <li>Join the summarized sales data with customer data to provide a pool of data for the Classification model.</li>
+                <li>Apply the Feature Selection / Generation option with a GLM algorithm and examine the results.</li>
+              </ul>
+              <p>The completed workflow looks like this:</p>
+              <figure><img src="img/completed-workflow.gif" alt="Description of completed-workflow.gif follows">
+                <figcaption><a href="files/completed-workflow.txt">Description
+                    of the illustration completed-workflow.gif</a></figcaption>
+              </figure>
+              <p></p>
+              <h3>What Do You Need?</h3>
+              <ul>
+                <li>Oracle Database 19c Enterprise Edition</li>
+                <li><a href="https://www.oracle.com/tools/downloads/sqldev-downloads.html">Oracle SQL Developer version 19.x</a></li>
+                <li>Oracle Data Miner User Account</li>
+                <li>Access to the Sales History sample schema</li>
+                <li>SELECT permissions to DMUSER on the SH schema</li>
+              </ul>
+            </section>
+            <!-- ========================================================================================================================= -->
+            <section>
+              <hr>
+              <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" class="num_circ" height="32" width="32">Create
+                a New Data Miner Project</h2>
+              <p>This is an unnumbered paragraph before a procedure.</p>
+              <ol>
+                <li>Select the<strong> Data Miner</strong> tab. The PDB1-DMUSER
+                  connection that you previously created appears</li>
+                <li>In the Create Project window, enter <strong>SH Schema</strong>
+                  as the project name and then click <strong>OK</strong>.</li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" class="num_circ" height="32" width="32">Create
+                a Workflow and Add Data Sources</h2>
+              <ol>
+                <li> Right-click the SH Schema project and select <strong>New
+                    Workflow</strong> from the menu.</li>
+                <li>In the Create Workflow window, enter <strong>Predicting
+                    Customer Gender</strong> as the name and click <strong>OK</strong>.</li>
+                <li>In the Component Palette, open the Data category, then
+                  drag/drop a Data Source node to the workflow pane.</li>
+                <li>In Step 1 of the Wizard:</li>
+                <ul>
+                  <li>Select the Include Tables from Other Schemas option.</li>
+                  <li>Click YES in the Edit Schema List information box.</li>
+                  <li>In the Edit Schema List dialog, move <strong>SH</strong>
+                    from the Available Schemas list to the Selected Schemas list
+                    and click <strong>OK</strong>.</li>
+                  <li>In the Define Data Source wizard, select <strong>SH.CUSTOMERS</strong>
+                    from the Available Tables/Views list and click <strong>FINISH</strong>.</li>
+                </ul>
+                <li> Add a second Data Source node to the workflow, select the <strong>SH.SALES</strong>
+                  table, and click <strong>Finish</strong>.</li>
+                <li>Click the <strong>Save All</strong> tool in the SQL
+                  Developer toolbar.</li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" class="num_circ" height="32" width="32">Aggregate
+                the Data</h2>
+              <p> The Transforms node group contains a number of tools that
+                enable you to transform data for use within a workflow. </p>
+              <ol>
+                <li>Open the Transforms group, and then drag and drop the
+                  Aggregate node to the workflow.</li>
+                <li>Connect the SALES data source node to the Aggregate node, by
+                  doing the following:
+                  <ul>
+                    <li> Right-click the SALES node</li>
+                    <li>Select <strong>Connect</strong> from the pop-up menu.</li>
+                    <li>Drag the pointer to the Aggregate node and release.</li>
+                  </ul>
+                </li>
+                <li> Double-click the<strong> Aggregate</strong><strong> </strong>node
+                  to display to display the Edit Aggregation window.</li>
+                <li>Select a "Group By" attribute for the aggregation by
+                  performing the following:
+                  <ul>
+                    <li> Click <strong>Edit</strong> to open the Edit Group By
+                      window.</li>
+                    <li>With Column selected as the Type value, move <strong>CUST_ID</strong>
+                      from the Available Attributes list to the Selected
+                      Attributes list, and then click <strong>OK.</strong></li>
+                  </ul>
+                </li>
+                <li> Click the Aggregation Wizard tool (<img src="img/aggregation-wizard.png" alt="Launch the aggregation wizard icon.">) to launch the
+                  wizard.</li>
+                <li>In the Define Aggregation Wizard:
+                  <ul>
+                    <li>In Step 1 of the Define Aggregation wizard, select <strong>COUNT
+                        (DISTINCT())</strong>, <strong>SUM()</strong>, <strong>MAX()</strong>,
+                      <strong>MEDIAN()</strong>, and <strong>AVG()</strong> as
+                      the numerical functions, and then click<strong> Next</strong>.</li>
+                    <li>In Step 2 of the wizard, move <strong>AMOUNT_SOLD</strong>
+                      and <strong>QUANTITY_SOLD</strong> to the Selected
+                      Attributes list and click <strong>Next</strong>.</li>
+                    <li>In Step 3 of the wizard, move <strong>PROD_ID</strong> to
+                      the Selected Attributes list and then click <strong>Finish</strong>.</li>
+                  </ul>
+                </li>
+                <li>In the Edit Aggregation window, click <strong>OK</strong>
+                  to save the aggregation rules. </li>
+                <li> Right-click on the Aggregate SALES node and select <strong>Run</strong>
+                  to run the aggregation.
+                  <figure><img src="img/sales-aggregate.jpg" alt="Description of sales-aggregate.jpg follows">
+                    <figcaption><a href="files/sales-aggregate.txt">Description
+                        of the illustration sales-aggregate.jpg</a></figcaption>
+                  </figure>
+                  <p> The Aggregate node is executed and the process creates a
+                    nested table that can be used for data mining. </p>
+                </li>
+                <li>In the Components tab, open on the Data group and drag a
+                  Create Table or View node to the workflow.</li>
+                <li>Connect the Aggregate node to OUTPUT node, and then rename
+                  the OUTPUT node to "Create Table".</li>
+                <li>Double-click the <strong>Create Table</strong> node and in
+                  the Edit Create Table or View Node window, perform the
+                  following:
+                  <ul>
+                    <li>De-select the <strong>Auto Input Columns Selection</strong>
+                      option.</li>
+                    <li>Select the <strong>Index</strong> option for the CUST_ID
+                      column.</li>
+                    <li>Click <strong>OK</strong>.
+                      <figure><img src="img/create-table.png" alt="Description of create-table.png follows">
+                        <figcaption><a href="files/create-table.txt">Description
+                            of the illustration create-table.png</a></figcaption>
+                      </figure>
+                    </li>
+                  </ul>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" class="num_circ" height="32" width="32">Add a
+                Join Node to the Workflow</h2>
+              <ol>
+                <li>From the Transforms group, drag and drop a <strong>Join</strong>
+                  node to the workflow.</li>
+                <li>Connect the Create Table node to Join node, and the
+                  CUSTOMERS node to the Join node.</li>
+                <li>Double-click the <strong>Join</strong> node to display the
+                  Edit Join Node window. The Join tab is displayed by default.
+                  Then, click the <strong>Add</strong> (green "+" icon).</li>
+                <li>In the Edit Join Column window:
+                  <ul>
+                    <li>Select <strong>CUSTOMERS</strong> as Source 1, and <strong>Create
+                        Table</strong> as Source 2.</li>
+                    <li>Select the <strong>CUST_ID</strong> column from both
+                      sources.</li>
+                    <li>Click the <strong>Add</strong> button to define the Join
+                      Columns.</li>
+                    <li>Click <strong>OK</strong>.
+                      <figure><img src="img/edit-join-column.png" alt="Description of edit-join-column.png follows">
+                        <figcaption><a href="files/edit-join-column.txt">Description
+                            of the illustration edit-join-column.png</a></figcaption>
+                      </figure>
+                    </li>
+                  </ul>
+                </li>
+                <li>Select the Columns tab of the Edit Join Node window, and
+                  remove the CUST_ID column from the Create Table source by
+                  performing the following:
+                  <ul>
+                    <li>Deselect the <strong>Automatic Settings</strong> option.</li>
+                    <li>Select the <strong>CUST_ID</strong> column from the <strong>Create
+                        Table</strong> node.</li>
+                    <li>Click the <strong>Remove</strong> tool (red "x" icon).</li>
+                    <li>Click <strong>Yes</strong> in the Warning window.</li>
+                  </ul>
+                </li>
+                <li>Click <strong>OK</strong> in the Edit Join Node window.
+                  <figure><img src="img/workflow-after-join.png" alt="Description of workflow-after-join.png follows">
+                    <figcaption><a href="files/workflow-after-join.txt">Description
+                        of the illustration workflow-after-join.png</a></figcaption>
+                  </figure>
+                  <p> Your workflow should look similar. </p>
+                </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+                <h2 id="next" role="button" style="text-align: left;"><img src="img/32_next.png" alt="next step" height="32" width="32" class="num_circ">Next Tutorial</h2>
+                <p>In the next tutorial, you'll build and compare logisitic regression classification models.</p>
+            </section>
+            <hr> </article>
+        </div>
+        <br class="clearfloat">
+      </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+      <div style="max-width: 994px; padding:10px 0 0 17px;">
+        <footer class="footer-list">
+          <ul>
+            <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                Oracle</a> </li>
+            <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                Notices</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                of Use</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your
+                Privacy Rights</a> </li>
+            <li> <a href="./sp_common/en/cpyr.htm">Copyright
+                © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+          </ul>
+        </footer>
+      </div>
+      <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+      <!-- Modal hdr and body -->
+      <div id="obe_dialog" class="modal-content">
+        <div class="modal-header"> <a href="#" class="close"> <span class="close">×</span>
+          </a>
+          <h1>Associated Learning Paths</h1>
+        </div>
+        <div id="dialog-content"> </div>
+        <div id="dialog-close" class="closeBtn"> <a href="#" class="close2">
+            <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+          </a> </div>
+      </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+  </body>
+</html>

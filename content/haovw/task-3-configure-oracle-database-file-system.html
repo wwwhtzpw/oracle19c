@@ -1,0 +1,262 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Task 3 - Configure Oracle Database File System">
+      <meta name="abstract" content="The Database File System (DBFS) is the only recommended solution when configuring Oracle GoldenGate with Oracle Data Guard.">
+      <meta name="description" content="The Database File System (DBFS) is the only recommended solution when configuring Oracle GoldenGate with Oracle Data Guard.">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Task">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-FE3A7595-0159-4B53-B107-A61493B675BC">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The Database File System (DBFS) is the only recommended solution when configuring Oracle GoldenGate with Oracle Data Guard.">
+      <meta name="description" content="The Database File System (DBFS) is the only recommended solution when configuring Oracle GoldenGate with Oracle Data Guard.">
+      <title>Task 3 - Configure Oracle Database File System</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content="The Database File System (DBFS) is the only recommended solution when configuring Oracle GoldenGate with Oracle Data Guard.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="task-2-configure-oracle-database-goldengate-ogg-ma-cloud-rac-adg.html" title="Previous" type="text/html">
+      <link rel="next" href="task-4-install-oracle-goldengate-oggma-clod-rac-adg.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Task 3 - Configure Oracle Database File System","description":"The Database File System (DBFS) is the only recommended solution when configuring Oracle GoldenGate with Oracle Data Guard.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="task-2-configure-oracle-database-goldengate-ogg-ma-cloud-rac-adg.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="task-4-install-oracle-goldengate-oggma-clod-rac-adg.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-FE3A7595-0159-4B53-B107-A61493B675BC" name="GUID-FE3A7595-0159-4B53-B107-A61493B675BC"></a>
+         
+         <h2 id="HAOVW-GUID-FE3A7595-0159-4B53-B107-A61493B675BC" class="sect2">Task 3 - Configure Oracle Database File
+        System</h2>
+         <div class="ind">
+            <div>
+               <p>The Database File System (DBFS) is the only recommended solution when
+        configuring Oracle GoldenGate with Oracle Data Guard. </p>
+               <div class="section">
+                  
+                  <p>The DBFS user, tablespace, and file system in the database was previously created in
+                the primary database, as detailed in <a href="ogg-microservices-cloud1.html#GUID-ADF0293B-DD0F-43AC-8DD9-13340B318DF7" title="Use these best practices for configuring Oracle GoldenGate Microservices Architecture to work with Oracle Exadata Database Service on Dedicated Infrastructure (ExaDB-D) or Oracle Exadata Database Service on Cloud@Customer (ExaDB-C@C), and with Oracle Database File System (DBFS) or Oracle ASM Cluster File System (ACFS).">Cloud: Oracle GoldenGate Microservices Architecture on Oracle Exadata Database Service Configuration Best Practices</a>.
+                  </p>
+                  
+                  <p>Perform the following steps to complete this task:</p>
+                  
+                  <ul style="list-style-type: disc;" id="GUID-FE3A7595-0159-4B53-B107-A61493B675BC__UL_DVY_RJ3_TYB">
+                     <li>Step 3.1 - Configuring DBFS on Oracle Exadata Database Service</li>
+                     <li>Step 3.2 - (PDB Only) Create an Entry in TNSNAMES</li>
+                     <li>Step 3.3 - Copy and Edit the mount-dbfs Scripts from the Primary System</li>
+                     <li>Step 3.4 - Register the DBFS Resource with Oracle Clusterware</li>
+                  </ul>
+                  
+                  <p><span class="bold">Step 3.1 - Configuring DBFS on Oracle Exadata Database Service</span></p>
+                  
+                  <ol id="GUID-FE3A7595-0159-4B53-B107-A61493B675BC__OL_QJZ_SJ3_TYB">
+                     <li>As the <code class="codeph">opc</code> OS user on the standby system, add the
+                        <code class="codeph">grid</code> user to the <code class="codeph">fuse</code>
+                    group:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ sudo -u grid
+ $(grep ^crs_home /etc/oracle/olr.loc | cut -d= -f2)/bin/olsnodes &gt; ~/dbs_group
+[opc@exadb-node1 ~]$ dcli -g ~/dbs_group -l opc sudo usermod -a -G fuse grid</code></pre></li>
+                     <li>As the <code class="codeph">opc</code> OS user on the standby system, validate that the
+                    file <code class="codeph">/etc/fuse.conf</code> exists and contains the
+                        <code class="codeph">user_allow_other</code> option:
+                    <pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ cat /etc/fuse.conf
+# mount_max = 1000
+user_allow_other</code></pre></li>
+                     <li>As the <code class="codeph">opc</code> OS user on the standby system, skip this step if the
+                    option <code class="codeph">user_allow_other</code> is already in the
+                        <code class="codeph">/etc/fuse.conf</code> file. Otherwise run the following commands
+                    to add the option:
+                    <pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ dcli -g ~/dbs_group -l opc “echo user_allow_other |
+ sudo tee -a /etc/fuse.conf”</code></pre></li>
+                     <li>As the <code class="codeph">opc</code> OS user on the standby system, create an empty
+                    directory that will be used as the mount point for the DBFS filesystem. 
+                        <div class="infoboxnote" id="GUID-FE3A7595-0159-4B53-B107-A61493B675BC__GUID-B0A1A396-5187-4A91-B783-5EA3CDB2928C">
+                           <p class="notep1">Note:</p>It
+                        is important that the mount point is identical as the one in the primary
+                        system, because the physical location of the Oracle GoldenGate deployment is
+                        included within the deployment configuration
+                    files.
+                        </div><pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ dcli -g ~/dbs_group -l opc sudo mkdir -p /mnt/dbfs</code></pre></li>
+                     <li>As the <code class="codeph">opc</code> OS user on the standby system, change ownership on
+                    the mount point directory so the <code class="codeph">grid</code> OS user can access
+                    it:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ dcli -g ~/dbs_group -l opc
+ sudo chown oracle:oinstall /mnt/dbfs</code></pre></li>
+                  </ol>
+                  
+                  <p><span class="bold">Step 3.2 - (PDB Only) Create an Entry in TNSNAMES</span></p>
+                  
+                  <ol id="GUID-FE3A7595-0159-4B53-B107-A61493B675BC__OL_BV2_QK3_TYB">
+                     <li>As the <code class="codeph">oracle</code> OS user on the standby system, add a connect
+                    entry in <code class="codeph">$TNS_ADMIN/tnsnames.ora</code> file. Use the PDB service name
+                    created in Step
+                    2.3:<pre class="pre codeblock"><code>[oracle@exadb-node1 ~]$ vi $TNS_ADMIN/tnsnames.ora
+dbfs =
+&nbsp;&nbsp;&nbsp; (DESCRIPTION =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (ADDRESS = (PROTOCOL = IPC)(KEY=LISTENER))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (CONNECT_DATA =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (SERVICE_NAME = &lt;PDB_SERVICE_NAME&gt; )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )
+&nbsp;&nbsp;&nbsp; )</code></pre></li>
+                     <li>As the <code class="codeph">oracle</code> OS user, distribute the
+                        <code class="codeph">$TNS_ADMIN/tnsnames.ora</code> file to the rest of the
+                    nodes:<pre class="pre codeblock"><code>[oracle@exadb-node1 ~]$ /usr/local/bin/dcli -l oracle -g ~/dbs_group
+ -f $TNS_ADMIN/tnsnames.ora -d $TNS_ADMIN/</code></pre></li>
+                  </ol>
+                  
+                  <p><span class="bold">Step 3.3 - Copy and Edit the mount-dbfs Scripts from the Primary System</span></p>
+                  
+                  <ol id="GUID-FE3A7595-0159-4B53-B107-A61493B675BC__OL_SL5_WK3_TYB">
+                     <li>As the <code class="codeph">root</code> OS user on the primary system, create a zip file
+                    with the files <code class="codeph">mount-dbfs.conf</code> and
+                        <code class="codeph">mount-dbfs.sh</code>:<pre class="pre codeblock"><code>[opc@exapri-node1 ~]$ sudo su -
+[root@exapri-node1 ~]# zip -j /tmp/mount-dbfs.zip
+ $(grep ^crs_home /etc/oracle/olr.loc | cut -d= -f2)/crs/script/mount-dbfs.sh
+ /etc/oracle/mount-dbfs.conf
+&nbsp; adding: mount-dbfs.sh (deflated 67%)
+&nbsp; adding: mount-dbfs.conf (deflated 58%)</code></pre></li>
+                     <li>As the <code class="codeph">opc</code> OS user on the standby system, copy the
+                        <code class="codeph">mount-dbfs.zip</code> file from the primary system to the standby
+                    system:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ scp exapri-node1.oracle.com:/tmp/mount-dbfs.zip /tmp</code></pre></li>
+                     <li>As the <code class="codeph">opc</code> OS user on the standby system, unzip the
+                        <code class="codeph">mount-dbfs.zip</code> file and edit the configuration file
+                        <code class="codeph">mount-dbfs.conf</code>:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ unzip /tmp/mount-dbfs.zip -d /tmp
+Archive:&nbsp; /tmp/mount-dbfs.zip
+&nbsp; inflating: /tmp/mount-dbfs.sh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; inflating: /tmp/mount-dbfs.conf&nbsp;
+[opc@exastb-node1 ~]$ vi /tmp/mount-dbfs.conf</code></pre><p>It
+                        is recommended that you place them in the same directory as the primary
+                        system. You will need to modify the following parameters in the
+                            <code class="codeph">mount-dbfs.conf</code> file to match the standby
+                        database:
+                        </p>
+                        <ul style="list-style-type: disc;" id="GUID-FE3A7595-0159-4B53-B107-A61493B675BC__UL_LYY_HL3_TYB">
+                           <li><code class="codeph">DBNAME</code></li>
+                           <li><code class="codeph">TNS_ADMIN</code></li>
+                           <li><code class="codeph">PDB_SERVICE</code></li>
+                        </ul>
+                     </li>
+                     <li>As the <code class="codeph">opc</code> OS user on the standby system, copy
+                        <code class="codeph">mount-dbfs.conf</code> to the directory
+                        <code class="codeph">/etc/oracle</code> on database nodes and set proper permissions on
+                    it:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc -d /tmp
+ -f /tmp/mount-dbfs.conf
+[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc sudo
+ cp /tmp/mount-dbfs.conf /etc/oracle
+[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc sudo
+ chown oracle:oinstall /etc/oracle/mount-dbfs.conf
+[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc sudo
+ chmod 660 /etc/oracle/mount-dbfs.conf</code></pre></li>
+                     <li>As the <code class="codeph">opc</code> OS user on the standby system, copy
+                        <code class="codeph">mount-dbfs.sh</code> to the directory
+                        <code class="codeph">$GI_HOME/crs/script</code> on database nodes and set proper
+                    permissions on
+                    it:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc sudo mkdir
+ $(grep ^crs_home /etc/oracle/olr.loc | cut -d= -f2)/crs/script
+[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l opc sudo chown
+ grid:oinstall $(grep ^crs_home /etc/oracle/olr.loc | cut -d= -f2)/crs/script
+[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l grid
+ -d $(grep ^crs_home /etc/oracle/olr.loc | cut -d= -f2)/crs/script
+ -f /tmp/mount-dbfs.sh
+[opc@exastb-node1 ~]$ /usr/local/bin/dcli -g ~/dbs_group -l grid chmod 770
+ $(grep ^crs_home /etc/oracle/olr.loc | cut -d= -f2)/crs/script/mount-dbfs.sh</code></pre></li>
+                  </ol>
+                  
+                  <p><span class="bold">Step 3.3 - Register the DBFS Resource with Oracle Clusterware</span></p>
+                  
+                  <p>When registering the resource with Oracle Clusterware, be sure to create it as a
+                cluster_resource. The reason for using cluster_resource is so the file system can
+                only by mounted on a single node at one time, preventing mounting of DBFS from
+                concurrent nodes creating the potential of concurrent file writes, causing file
+                corruption problems.</p>
+                  
+                  <p>If using Oracle Multitenant, make sure to use the service name for the same PDB that
+                contains the DBFS repository as was created in the primary database.</p>
+                  
+                  <ol id="GUID-FE3A7595-0159-4B53-B107-A61493B675BC__OL_WN4_SL3_TYB">
+                     <li>As the <code class="codeph">grid</code> OS user on the standby system, find the resource
+                    name for the database service created in a previous step for the DBFS service
+                    dependency:
+                    <pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ sudo su - grid
+[grid@exastb-node1 ~]$ crsctl stat res |grep &lt;PDB_NAME&gt;
+NAME=ora.&lt;DB_UNIQUE_NAME&gt;.&lt;PDB_SERVICE_NAME&gt;.svc</code></pre></li>
+                     <li>As the oracle OS user on the standby system, register the Clusterware resource
+                    by executing the following
+                    script:<pre class="pre codeblock"><code>[opc@exadb-node1 ~]$ sudo su - oracle
+[oracle@exadb-node1 ~]$ vi add-dbfs-resource.sh
+##### start script add-dbfs-resource.sh
+#!/bin/bash
+ACTION_SCRIPT=$(grep ^crs_home /etc/oracle/olr.loc | cut -d=
+ -f2)/crs/script/mount-dbfs.sh
+RESNAME=dbfs_mount
+DEPNAME=ora.&lt;DB_UNIQUE_NAME&gt;.&lt;PDB_SERVICE_NAME&gt;.svc
+ORACLE_HOME=$(grep ^crs_home /etc/oracle/olr.loc | cut -d= -f2)
+PATH=$ORACLE_HOME/bin:$PATH
+export PATH ORACLE_HOME
+crsctl add resource $RESNAME \
+&nbsp; -type cluster_resource \
+&nbsp; -attr "ACTION_SCRIPT=$ACTION_SCRIPT, \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CHECK_INTERVAL=30,RESTART_ATTEMPTS=10, \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; START_DEPENDENCIES='hard($DEPNAME)pullup($DEPNAME)',\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STOP_DEPENDENCIES='hard($DEPNAME)',\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SCRIPT_TIMEOUT=300"
+##### end script add-dbfs-resource.sh
+[oracle@exadb-node1 ~]$ sh add-dbfs-resource.sh</code></pre></li>
+                  </ol>
+                  
+                  <div class="infoboxnote" id="GUID-FE3A7595-0159-4B53-B107-A61493B675BC__GUID-2E51AD15-B10B-4614-B602-58A4313ED89C">
+                     <p class="notep1">Note:</p>
+                     
+                     <p>After creating the <code class="codeph">$RESNAME</code> resource, in order to stop the
+                        <code class="codeph">$DBNAME</code> database when the <code class="codeph">$RESNAME</code>
+                    resource is <code class="codeph">ONLINE</code>, you will have to specify the force flag
+                    when using <code class="codeph">srvctl</code>. 
+                     </p>
+                     
+                     <p>For example: <code class="codeph">srvctl stop database -d $ORACLE_UNQNAME -f</code></p>
+                     
+                  </div>
+                  
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

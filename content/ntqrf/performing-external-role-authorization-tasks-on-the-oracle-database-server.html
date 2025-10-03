@@ -1,0 +1,238 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Performing External Role Authorization Tasks on the Oracle Database Server">
+      <meta name="abstract" content="Learn how to perform external role authorization tasks on the Oracle Database server.">
+      <meta name="description" content="Learn how to perform external role authorization tasks on the Oracle Database server.">
+      <meta name="DC.subject" content="sqlnet.ora file, and Windows native authentication, Windows native authentication, setting the sqlnet.ora file, location of, external roles, authorization on Oracle database server, Windows-specific, role syntax, Windows local groups with DBA privileges, SET ROLE command, commands, SET ROLE">
+      <meta name="keywords" content="sqlnet.ora file, and Windows native authentication, Windows native authentication, setting the sqlnet.ora file, location of, external roles, authorization on Oracle database server, Windows-specific, role syntax, Windows local groups with DBA privileges, SET ROLE command, commands, SET ROLE">
+      <meta name="DC.Relation" scheme="URI" content="overview-of-manually-creating-an-external-role.html#GUID-1728B82D-DEE2-4CAA-A72E-E4DD8F47636C">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Creator" content="Sunil Surabhi">
+      <meta name="DC.Creator" content="Alexander Keh">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Ricky Chen">
+      <meta name="DC.Creator" content="David Collelo">
+      <meta name="DC.Creator" content="David Friedman">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Mark Bauer">
+      <meta name="DC.Creator" content="Sue K. Lee">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Ravi Thammaiah">
+      <meta name="DC.Creator" content="Michael Verheij">
+      <meta name="DC.Creator" content="Tanaya Bhattacharjee">
+      <meta name="DC.Publisher" content="January2020">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-365AFA95-B5EB-4F21-B2DD-6A7FF51BE8DA">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Learn how to perform external role authorization tasks on the Oracle Database server.">
+      <meta name="description" content="Learn how to perform external role authorization tasks on the Oracle Database server.">
+      <title>Performing External Role Authorization Tasks on the Oracle Database Server</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Administrator's Reference ">
+      <meta property="og:description" content="Learn how to perform external role authorization tasks on the Oracle Database server.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Administrator's Reference for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="administrators-reference-guide-microsoft-windows.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2020-01-09T06:34:26-08:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2020">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96296-03">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="overview-of-manually-creating-an-external-role.html" title="Previous" type="text/html">
+      <link rel="next" href="performing-external-role-authorization-tasks-on-the-oracle-client-computer.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Administrator's Reference Guide for Microsoft Windows">
+    <meta name="dcterms.isVersionOf" content="NTQRF">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="overview-of-manually-creating-an-external-role.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="performing-external-role-authorization-tasks-on-the-oracle-client-computer.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database Administrator's Reference </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="administering-external-users-and-roles-on-windows.html" property="item" typeof="WebPage"><span property="name">Administering External Users and Roles on Windows</span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="overview-of-manually-administering-external-users-and-roles.html" property="item" typeof="WebPage"><span property="name">Overview of Manually Administering External Users and Roles</span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="overview-of-manually-creating-an-external-role.html" property="item" typeof="WebPage"><span property="name">Overview of Manually Creating an External Role</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Performing External Role Authorization Tasks on the Oracle Database Server</li>
+            </ol>
+            <a id="GUID-365AFA95-B5EB-4F21-B2DD-6A7FF51BE8DA" name="GUID-365AFA95-B5EB-4F21-B2DD-6A7FF51BE8DA"></a><a id="NTQRF351"></a>
+            
+            <h2 id="NTQRF-GUID-365AFA95-B5EB-4F21-B2DD-6A7FF51BE8DA" class="sect2">Performing External Role Authorization Tasks on the Oracle Database Server</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Learn how to perform external role authorization tasks on the Oracle Database server.</p>
+               <div class="p">Perform the following steps:</div>
+               <!-- class="section" -->
+               <ol>
+                  <li class="stepexpand"><span>Add initialization parameter <code class="codeph">OS_ROLES</code> to the <code class="codeph">init.ora</code> file. </span></li>
+                  <li class="stepexpand"><span>Set <code class="codeph">OS_ROLES</code> to <code class="codeph">true</code>. </span><div>
+                        <p>The default setting for this parameter is <code class="codeph">false</code>. 
+                        </p>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Ensure that parameter <code class="codeph">SQLNET.AUTHENTICATN_SERVICES</code> in file <code class="codeph">sqlnet.ora</code> contains <code class="codeph">nts</code>.</span></li>
+                  <li class="stepexpand"><span>Start SQL*Plus:</span><div><pre class="oac_no_warn" dir="ltr">C:\&gt; sqlplus /NOLOG
+</pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Connect to your Windows server:</span><div><pre class="oac_no_warn" dir="ltr">SQL&gt; CONNECT / AS SYSDBA
+</pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Create a new database role. You can give this new role whatever name you want. In this example the role is named <code class="codeph">DBSALES3</code>:</span><div><pre class="oac_no_warn" dir="ltr">SQL&gt; CREATE ROLE DBSALES3 IDENTIFIED EXTERNALLY;
+</pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Grant to <code class="codeph">DBSALES3</code> whatever Oracle Database roles are appropriate to your database environment:</span><div><pre class="oac_no_warn" dir="ltr">SQL&gt; GRANT DBA TO DBSALES3 WITH ADMIN OPTN;
+</pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Connect to the database as <code class="codeph">SYSDBA</code>:</span><div><pre class="oac_no_warn" dir="ltr">SQL&gt; CONNECT / AS SYSDBA
+</pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Shut down the database:</span><div><pre class="oac_no_warn" dir="ltr">SQL&gt; SHUTDOWN
+</pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Restart the database:</span><div><pre class="oac_no_warn" dir="ltr">SQL&gt; STARTUP
+</pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Create a Windows local group with the following syntax:</span><div><pre class="oac_no_warn" dir="ltr">ORA_<span class="italic">sid_rolename</span>[_D][_A] 
+</pre><p>For this command, note the following:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><span class="italic"><code class="codeph">sid</code></span> identifies the database instance
+                              </p>
+                           </li>
+                           <li>
+                              <p><span class="italic"><code class="codeph">rolename</code></span> identifies the database role granted
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">D</code> indicates that this database role is to be a default role of the database user
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">A</code> indicates that this database role includes <code class="codeph">ADMIN</code> <code class="codeph">OPTN</code> 
+                              </p>
+                           </li>
+                        </ul>
+                        <p>Characters <code class="codeph">D</code> and <code class="codeph">A</code> are optional. If specified, they must be preceded by an underscore.
+                        </p>
+                        <p>For this example, <code class="codeph">ORA_orcl_dbsales3_D</code> is created.
+                        </p>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Add one or more Windows local or domain user names to this group.</span><div>
+                        <p>You can create multiple database roles and grant them to several possible Windows groups with differing options, as shown in the following table. Users connecting to the <code class="codeph">ORCL</code> instance and authenticated by Windows as members of all four of these Windows local groups has the privileges associated with <code class="codeph">dbsales3</code> and <code class="codeph">dbsales4</code> by default (because of option <code class="codeph">_D</code>). If these users first connect as members of <code class="codeph">dbsales3</code> or <code class="codeph">dbsales4</code> and use the <code class="codeph">SET ROLE</code> command, then they can also gain access to database roles <code class="codeph">dbsales1</code> and <code class="codeph">dbsales2</code>. But if these users try to connect with <code class="codeph">dbsales1</code> or <code class="codeph">dbsales2</code> without first connecting with a default role, they are unable to connect. Finally, these users can grant <code class="codeph">dbsales2</code> and <code class="codeph">dbsales4</code> to other roles (because of option <code class="codeph">_A</code>). 
+                        </p>
+                        <div class="tblformal" id="GUID-365AFA95-B5EB-4F21-B2DD-6A7FF51BE8DA__GUID-09A10CDB-339D-44BE-BB8C-C1A63457251A">
+                           <table cellpadding="4" cellspacing="0" class="Formal" title summary="Rows are example database roles. For each role, the first column is its name, and the second column is a Windows group granted the role." width="90%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="49%" id="d39322e279">Database Roles</th>
+                                    <th align="left" valign="bottom" width="51%" id="d39322e282">Windows Groups</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="49%" id="d39322e287" headers="d39322e279 ">
+                                       <p><code class="codeph">dbsales1</code> 
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="51%" headers="d39322e287 d39322e282 ">
+                                       <p><code class="codeph">ORA_ORCL_dbsales1</code> 
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="49%" id="d39322e298" headers="d39322e279 ">
+                                       <p><code class="codeph">dbsales2</code> 
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="51%" headers="d39322e298 d39322e282 ">
+                                       <p><code class="codeph">ORA_ORCL_dbsales2_a</code> 
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="49%" id="d39322e309" headers="d39322e279 ">
+                                       <p><code class="codeph">dbsales3</code> 
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="51%" headers="d39322e309 d39322e282 ">
+                                       <p><code class="codeph">ORA_ORCL_dbsales3_d</code> 
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="49%" id="d39322e320" headers="d39322e279 ">
+                                       <p><code class="codeph">dbsales4</code> 
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="51%" headers="d39322e320 d39322e282 ">
+                                       <p><code class="codeph">ORA_ORCL_dbsales4_da</code> 
+                                       </p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <!-- class="inftblhruleinformal" -->
+                        <div class="infoboxnote" id="GUID-365AFA95-B5EB-4F21-B2DD-6A7FF51BE8DA__GUID-9A263BC9-B83E-46F5-97B4-702E04860CC3">
+                           <p class="notep1">Note:</p>
+                           <p>When Oracle Database converts the group name to a role name, it changes the name to uppercase.</p>
+                        </div>
+                     </div>
+                  </li>
+               </ol>
+               <div class="section">
+                  <div class="infoboxnotealso" id="GUID-365AFA95-B5EB-4F21-B2DD-6A7FF51BE8DA__GUID-B3649EB3-B25D-4776-834A-1713747FAC10">
+                     <p class="notep1">See Also:</p>
+                     <p>Your operating system documentation for instructions on managing users and groups</p>
+                  </div>
+               </div>
+               <!-- class="section" -->
+            </div>
+            <div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="overview-of-manually-creating-an-external-role.html#GUID-1728B82D-DEE2-4CAA-A72E-E4DD8F47636C" title="Describes how to grant Oracle Database roles to users directly through Windows (known as external roles).">Overview of Manually Creating an External Role</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

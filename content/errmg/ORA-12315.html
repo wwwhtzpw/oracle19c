@@ -1,0 +1,587 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="ORA-12315 to ORA-12354">
+      <meta name="DC.Creator" content="Rhonda Day">
+      <meta name="DC.Publisher" content="April2022">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>ORA-12315 to ORA-12354</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Error Messages">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Error Messages">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-error-messages.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2022-04-12T12:15:27-07:00">
+      <meta name="dcterms.title" content="Database Error Messages">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2022">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E95938-07">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="ORA-12150.html" title="Previous" type="text/html">
+      <link rel="next" href="ORA-12400.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="ERRMG">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","name":"ORA-12315 to ORA-12354","datePublished":"2019-02-22 07:19:22 GMT","dateModified":"2022-04-12 12:25:32 PDT"} </script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="ORA-12150.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="ORA-12400.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database Error Messages</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem"> ORA-12315 to ORA-12354</li>
+            </ol>
+            <a id="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B" name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B"></a>
+            
+            <h2 id="ERRMG-GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B" class="sect2"><span class="enumeration_chapter">79 </span> ORA-12315 to ORA-12354
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <dl>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-934927B6-8C1D-46EA-A3AB-720F128795EF">
+                        <!-- --></a>
+ORA-12315: database link type is invalid for the ALTER DATABASE statement
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+The database link name you specified on the ALTER DATABASE statement is not an ROM: link.  You must specify an ROM: link when using the ALTER DATABASE statement to mount or open a secondary database.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Re-issue the ALTER DATABASE statement using a valid ROM: link to the database you want to mount or open.  If a valid ROM: link does not exist, create one using the CREATE DATABASE LINK command.  See the Trusted ORACLE RDBMS Guide to Security Features for more information about creating database links using the ROM: link type.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-0D1862E1-6770-4B9A-9668-B36D24C92FF7">
+                        <!-- --></a>
+ORA-12316: syntax error in database link's connect string
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+The connect string in the CREATE DATABASE LINK statement has a syntactical error.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Drop the database link and recreate it using valid syntax.  See the SQL Language Reference Manual for more information about the connect string portion of the CREATE DATABASE LINK statement.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-A80FB46A-F047-42D6-90C6-6C40947EC49C">
+                        <!-- --></a>
+ORA-12317: logon to database (link name <span class="variable" translate="no">string</span>) denied
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+There are several possible causes for this error.  First, you can get this error if your username (and password, if you are using database instead of operating system authentication) in the secondary database are not identical to your username (and password) in the primary database.  Second, you can get this error if your username in the secondary database is invalid (has not been created).  Third, you can get this error if the username/password combination specified in the connect string of the database link definition is invalid (either not created or has an invalid password).
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+In the first case, ensure that the secondary database contains a username (and password, if you are using database authentication) identical to the one you are using in the primary database.  In general, you should always use operating system authentication in Trusted ORACLE (see the Trusted ORACLE RDBMS Guide to Security Features for more information about the advantages of OS authentication). In the second case, ensure that your username in the secondary database has been created. In the third case, ensure that the username specified in the connect string has been created in the secondary database.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-6A3D8D9D-1B54-4E94-8D79-E6974FEA5807">
+                        <!-- --></a>
+ORA-12318: database (link name <span class="variable" translate="no">string</span>) is already mounted
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+You are attempting to mount a secondary database that has already been mounted by your instance.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+The database is already mounted, so you need not take additional action to mount it.  To establish access, use the ALTER DATABASE <span class="variable" translate="no">linkname</span> OPEN command to open the database.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-0FB4B4E1-454F-46D5-9101-AD947FD73C72">
+                        <!-- --></a>
+ORA-12319: database (link name <span class="variable" translate="no">string</span>) is already open
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+You are attempting to open a secondary database that is already open.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+The database is open and you need not take additional action to establish access.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-2ED995BA-6861-4ED8-A43A-9C1A88A76E52">
+                        <!-- --></a>
+ORA-12321: database (link name <span class="variable" translate="no">string</span>) is not open and AUTO_MOUNTING=FALSE
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+The secondary database that your instance is attempting to mount is not open and automatic mounting has not been enabled.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Manually mount and open the secondary database using ALTER DATABASE <span class="variable" translate="no">linkname</span> with the OPEN and MOUNT options. Alternately, to allow your instance to automatically mount and open secondary databases, set the AUTO_MOUNTING parameter in the parameter file to TRUE.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-1448939B-467F-4355-A735-FB60CB50D159">
+                        <!-- --></a>
+ORA-12322: unable to mount database (link name <span class="variable" translate="no">string</span>)
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+This message should be accompanied by additional error messages that indicate the cause of the problem.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Follow the steps outlined in the accompanying error messages to resolve the problem.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-D2341BFF-2C72-4F9B-9FF6-F83D183C2440">
+                        <!-- --></a>
+ORA-12323: unable to open database (link name <span class="variable" translate="no">string</span>)
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+This message should be accompanied by additional error messages that indicate the cause of the problem.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Follow the steps outlined in the accompanying error messages to resolve the problem.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-D0BC1BA5-7421-466A-A84E-464EF8971DFF">
+                        <!-- --></a>
+ORA-12324: cannot use the ROM: link type on a private database link
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+You can only specify the ROM: link type on a public, not a private, database link.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Determine if there is an existing public database link to the secondary database.  If not, and if you wish to establish public access to the secondary database, create a public database link to the secondary database using the CREATE DATABASE LINK command.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-4DF179DB-7B75-4AEC-9873-D219B7B4C1E8">
+                        <!-- --></a>
+ORA-12326: database <span class="variable" translate="no">string</span> is closing immediately;  no operations are permitted
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+The database you attempted to access is closing, so your operation has been terminated.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Wait until the database has been reopened, or contact the database adminstrator.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-3FE804F2-0635-4D26-9571-416C71341570">
+                        <!-- --></a>
+ORA-12329: database <span class="variable" translate="no">string</span> is closed;  no operations are permitted
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+The database you attempted to access is closed, so your operation has been terminated.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Wait until the database is reopened, or contact the database administrator.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-EF6B74AD-E978-4583-9D47-2BA0CCE497F2">
+                        <!-- --></a>
+ORA-12333: database (link name <span class="variable" translate="no">string</span>) is not mounted
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+You attempted to open a database that has not been mounted.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Mount the database with the ALTER DATABASE <span class="variable" translate="no">linkname</span> MOUNT command, then re-attempt to open the database.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-3D757190-B9D3-463E-98EF-581285F699A9">
+                        <!-- --></a>
+ORA-12334: database (link name <span class="variable" translate="no">string</span>) is still open
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+You attempted to dismount a database that is still open.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Close the database with the ALTER DATABASE <span class="variable" translate="no">linkname</span> CLOSE command, then re-attempt to dismount the database.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-AAB8A415-3CA2-4A35-A0D9-65776A2C0520">
+                        <!-- --></a>
+ORA-12335: database (link name <span class="variable" translate="no">string</span>) is not open
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+You attempted to close a database that is not open.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+The database is closed;  you can proceed with dismounting it.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-FCD5A3D3-3CC9-4A76-9E54-B659AFF8CE4D">
+                        <!-- --></a>
+ORA-12336: cannot login to database (link name <span class="variable" translate="no">string</span>) 
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+You are tyring to login while another user is mounting or dismounting the same database.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Check to see if the database is in the middle of being mounted or opened and try your login again once the database is accessible.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-14F21632-A23C-4ED2-8759-9988B6DFFA3F">
+                        <!-- --></a>
+ORA-12341: maximum number of open mounts exceeded
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+The number specified on the OPEN_MOUNTS parameter in the parameter file exceeds the maximum allowed (255).
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Change the value of this parameter so that it reflects the actual number of possible open mounts to secondary databases.  This must be less than 255.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-D0A0C464-5CF5-415A-956C-06507BD2990A">
+                        <!-- --></a>
+ORA-12342: open mounts exceeds limit set on the OPEN_MOUNTS parameter
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+The number of currently open mounts exceeds the value you specified on the OPEN_MOUNTS parameter.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Increase the value of the OPEN_MOUNTS parameter so that it accommodates the maximum possible number of open mounts to secondary databases.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-69D0C92C-1BFD-4340-B618-8190DA515520">
+                        <!-- --></a>
+ORA-12345: user <span class="variable" translate="no">string</span> lacks CREATE SESSION privilege in database link (linkname <span class="variable" translate="no">string</span>)
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+There are several possible causes for this message: First, you will get this message if your username in the second database specified was not granted the CREATE SESSION system privilege. Second, you will get this message if the username specified in the connect string of the database link definition was not granted the CREATE SESSION system privilege.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+The action you take depends upon the cause of the message: In the first case, ensure that your username in the secondary database was granted the CREATE SESSION system privilege. In the second case, ensure the username specified in the connect string of the database link definition was granted the CREATE SESSION system privilege in the secondary database.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-F9B5AA6D-A128-4525-A504-71755F7DA94E">
+                        <!-- --></a>
+ORA-12350: database link being dropped is still mounted
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+An attempt was made to drop a ROM: database link that was still mounted and/or opened.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Close and dismount the database and then re-issue the drop statement.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-B66E7F7B-4B59-4316-A32C-34E31B9DA33F">
+                        <!-- --></a>
+ORA-12351: cannot create view using a remote object which has a remote object reference
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+You tried to create a view which references a remote object which, in turn, references an object on another database.  Since the view that you tried to create references a remote object, that object cannot reference an object on another database.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Choose a different object to reference in your view or change the remote object so that it does not reference another database.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-A8A4A240-AB3A-4E94-8706-DFCE20F824F8">
+                        <!-- --></a>
+ORA-12352: object <span class="variable" translate="no">string</span>.<span class="variable" translate="no">string</span>@<span class="variable" translate="no">string</span> is invalid
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+An attempt was made to reference (compile against) an object of a secondary database but the object is invalid and the system cannot validate or recompile it because it is in a secondary database.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Manually recompile the invalid object in the secondary database.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-49ED2235-F93B-49FA-8D41-DB6D4E77BF1F">
+                        <!-- --></a>
+ORA-12353: secondary stored object cannot reference remote object
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+You tried to either select from a remote view or execute a remote procedure which references an object on another database.  Since the remote view or procedure is on a secondary database, an additional reference to another database cannot be done.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Choose a different object to reference or change the remote view or procedure so that it does not reference another database.
+
+                     </p>
+                     
+                  </dd>
+                  <dt class="dlterm"><a name="GUID-D2E6B3F9-0021-4487-9145-EB0F7261152B__GUID-F16E47D5-66ED-4323-A856-31474634A987">
+                        <!-- --></a>
+ORA-12354: secondary object being dropped
+                  </dt>
+                  <dd>
+                     
+                     <p>
+                        <span class="keyword">Cause:</span>
+You tried to access a object (for example, a table or view) on a secondary database that was in the process of being dropped.
+
+                     </p>
+                     
+                  </dd>
+                  <dd class="ddexpand">
+                     
+                     <p>
+                        <span class="keyword">Action:</span>
+Repeat the operation.  If you receive this message again, try to access the object from the secondary database.  If you receive an internal error or a trace file, contact Oracle WorldWide Technical Support.
+
+                     </p>
+                     
+                  </dd>
+               </dl>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

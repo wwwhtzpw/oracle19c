@@ -1,0 +1,1922 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="SQL*Loader Express">
+      <meta name="abstract" content="SQL*Loader express mode allows you to quickly and easily use SQL*Loader to load simple data types.">
+      <meta name="description" content="SQL*Loader express mode allows you to quickly and easily use SQL*Loader to load simple data types.">
+      <meta name="DC.subject" content="SQL*Loader express mode, SQL*Loader, express mode, default values, byte-order handling, BAD parameter, bad file, CHARACTERSET parameter, SQL*Loader utility, CSV parameter, DATA parameter, DATA command-line parameter, SQL*Loader command line, datafiles, specifying, DATE_FORMAT parameter, DEGREE_OF_PARALLELISM parameter, DIRECT parameter, DNFS_ENABLE parameter, DNFS_READBUFFERS parameter, ENCLOSED_BY parameter, EXTERNAL_TABLE parameter, FIELD_NAMES parameter, LOAD parameter, LOAD command-line parameter, records, specifying how to load, NULLIF parameter, OPTIONALLY_ENCLOSED_BY parameter, PARFILE parameter, SILENT parameter, SILENT command-line parameter, suppressing messages, TABLE parameter, TERMINATED_BY parameter, TIMESTAMP_FORMAT parameter, TRIM parameter, blanks, trimming, external tables, trimming blanks, USERID parameter, USERID command-line parameter, syntax diagrams">
+      <meta name="keywords" content="SQL*Loader express mode, SQL*Loader, express mode, default values, byte-order handling, BAD parameter, bad file, CHARACTERSET parameter, SQL*Loader utility, CSV parameter, DATA parameter, DATA command-line parameter, SQL*Loader command line, datafiles, specifying, DATE_FORMAT parameter, DEGREE_OF_PARALLELISM parameter, DIRECT parameter, DNFS_ENABLE parameter, DNFS_READBUFFERS parameter, ENCLOSED_BY parameter, EXTERNAL_TABLE parameter, FIELD_NAMES parameter, LOAD parameter, LOAD command-line parameter, records, specifying how to load, NULLIF parameter, OPTIONALLY_ENCLOSED_BY parameter, PARFILE parameter, SILENT parameter, SILENT command-line parameter, suppressing messages, TABLE parameter, TERMINATED_BY parameter, TIMESTAMP_FORMAT parameter, TRIM parameter, blanks, trimming, external tables, trimming blanks, USERID parameter, USERID command-line parameter, syntax diagrams">
+      <meta name="DC.Relation" scheme="URI" content="oracle-sql-loader.html#GUID-8D037494-07FA-4226-B507-E1B2ED10C144">
+      <meta name="DC.Relation" scheme="URI" content="oracle-sql-loader-express-mode.html#GUID-5ACBE942-C177-4ECA-BDFD-30D77920B4DE">
+      <meta name="DC.Relation" scheme="URI" content="oracle-sql-loader-express-mode.html#GUID-C3A4DCCB-5499-4525-94C3-F1DE23F35F7F">
+      <meta name="DC.Relation" scheme="URI" content="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC">
+      <meta name="DC.Relation" scheme="URI" content="oracle-sql-loader-express-mode.html#GUID-E6C91A9F-06BE-4D63-972A-974FE752C065">
+      <meta name="DC.Creator" content="William Beauregard">
+      <meta name="DC.Creator" content="Steve DiPirro">
+      <meta name="DC.Creator" content="John Kalogeropoulos">
+      <meta name="DC.Creator" content="Dan Mullen">
+      <meta name="DC.Creator" content="Rod Payne">
+      <meta name="DC.Creator" content="Rich Phillips">
+      <meta name="DC.Creator" content="Mike Sakayeda">
+      <meta name="DC.Creator" content="Jim Stenoish">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Douglas Williams">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-8C235861-2A8B-4196-9705-E6FFED0C0C99">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="SQL*Loader express mode allows you to quickly and easily use SQL*Loader to load simple data types.">
+      <meta name="description" content="SQL*Loader express mode allows you to quickly and easily use SQL*Loader to load simple data types.">
+      <title>SQL*Loader Express</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Utilities ">
+      <meta property="og:description" content="SQL*Loader express mode allows you to quickly and easily use SQL*Loader to load simple data types.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Utilities">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-database-utilities-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-16T12:44:53-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96081-31">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="oracle-sql-loader-conventional-and-direct-loads.html" title="Previous" type="text/html">
+      <link rel="next" href="oracle-external-tables.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Database Utilities Guide">
+    <meta name="dcterms.isVersionOf" content="SUTIL">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"SQL*Loader Express","description":"SQL*Loader express mode allows you to quickly and easily use SQL*Loader to load simple data types.","datePublished":"2025-06-16 CST","dateModified":"2025-06-16 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="oracle-sql-loader-conventional-and-direct-loads.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="oracle-external-tables.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-8C235861-2A8B-4196-9705-E6FFED0C0C99" name="GUID-8C235861-2A8B-4196-9705-E6FFED0C0C99"></a><a id="SUTIL3948"></a>
+         
+         <h2 id="SUTIL-GUID-8C235861-2A8B-4196-9705-E6FFED0C0C99" class="sect2"><span class="enumeration_chapter">13 </span>SQL*Loader Express 
+         </h2>
+         <div class="ind">
+            <div>
+               <p>SQL*Loader express mode allows you to quickly and easily use SQL*Loader to load simple data types.</p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-5ACBE942-C177-4ECA-BDFD-30D77920B4DE">What is SQL*Loader Express Mode?</a><br>SQL*Loader express mode lets you quickly perform a load by specifying only a table name when the table columns are all character, number, or datetime data types, and the input data files contain only delimited character data.
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-C3A4DCCB-5499-4525-94C3-F1DE23F35F7F">Using SQL*Loader Express Mode</a><br>To activate SQL*Loader express mode, you can simply specify your user name and a table name. 
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC">SQL*Loader Express Mode Parameter Reference</a><br>This section provides descriptions of the parameters available in SQL*Loader express mode. 
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-E6C91A9F-06BE-4D63-972A-974FE752C065">SQL*Loader Express Mode Syntax Diagrams</a><br>To understand SQL*Loader express mode options, refer to these graphic form         syntax guides (sometimes called railroad diagrams or DDL diagrams). 
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="oracle-sql-loader.html#GUID-8D037494-07FA-4226-B507-E1B2ED10C144">SQL*Loader</a></p>
+                  </div>
+               </div>
+            </div>
+            <a id="SUTIL3949"></a><div class="props_rev_3"><a id="GUID-5ACBE942-C177-4ECA-BDFD-30D77920B4DE" name="GUID-5ACBE942-C177-4ECA-BDFD-30D77920B4DE"></a><h3 id="SUTIL-GUID-5ACBE942-C177-4ECA-BDFD-30D77920B4DE" class="sect3"><span class="enumeration_section">13.1 </span>What is SQL*Loader Express Mode?
+               </h3>
+               <div>
+                  <p>SQL*Loader express mode lets you quickly perform a load by specifying only a table name when the table columns are all character, number, or datetime data types, and the input data files contain only delimited character data.</p>
+                  <p>In express mode, a SQL*Loader control file is not used. Instead, SQL*Loader uses the table column definitions found in the <code class="codeph">ALL_TAB_COLUMNS</code> view to determine the input field order and data types. For most other settings, it assumes default values which you can override with command-line parameters.
+                  </p>
+                  <div class="infoboxnote" id="GUID-5ACBE942-C177-4ECA-BDFD-30D77920B4DE__GUID-A06B1A61-2A50-487E-BAEA-ACAC4D3AA7CC">
+                     <p class="notep1">Note:</p>
+                     <p>The only valid parameters for use with SQL*Loader express mode are those described in this chapter. Any other parameters will be ignored or may result in an error.</p>
+                  </div>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-8C235861-2A8B-4196-9705-E6FFED0C0C99" title="SQL*Loader express mode allows you to quickly and easily use SQL*Loader to load simple data types.">SQL*Loader Express</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div><a id="SUTIL3950"></a><div class="props_rev_3"><a id="GUID-C3A4DCCB-5499-4525-94C3-F1DE23F35F7F" name="GUID-C3A4DCCB-5499-4525-94C3-F1DE23F35F7F"></a><h3 id="SUTIL-GUID-C3A4DCCB-5499-4525-94C3-F1DE23F35F7F" class="sect3"><span class="enumeration_section">13.2 </span>Using SQL*Loader Express Mode
+               </h3>
+               <div>
+                  <p>To activate SQL*Loader express mode, you can simply specify your user name and a table name. </p>
+                  <div class="section">
+                     <p>SQL*Loader prompts you for a password, for example:</p><pre class="oac_no_warn" dir="ltr">&gt; sqlldr <span class="italic">username</span> TABLE=employees
+Password:
+.
+.
+. 
+ 
+SQL*Loader: Release 18.0.0.0.0 - Production on Mon Oct 16 127:19:39 2017
+Version 18.1.0.0.0
+
+Copyright (c) 1982, 2017, Oracle and/or its affiliates.  All rights reserved.
+ 
+Express Mode Load, Table: EMPLOYEES
+.
+.
+.
+</pre><p>If you activate SQL*Loader express mode by specifying only the <code class="codeph">TABLE</code> parameter, then SQL*Loader uses default settings for a number of other parameters. You can override most of the default values by specifying additional parameters on the command line.
+                     </p>
+                     <p>SQL*Loader express mode generates a log file that includes a SQL*Loader control file. The log file also contains SQL scripts for creating the external table and performing the load using a SQL <code class="codeph">INSERT AS SELECT</code> statement. Neither the control file nor the SQL scripts are used by SQL*Loader express mode. They are made available to you in case you want to use them as a starting point to perform operations using regular SQL*Loader or standalone external tables; the control file is for use with SQL*Loader, whereas the SQL scripts are for use with standalone external tables operations.
+                     </p>
+                  </div>
+               </div>
+               <div>
+                  <ul class="ullinks">
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-0F35B551-861B-450D-8BF3-2312893A67D7">Default Values Used by SQL*Loader Express Mode</a><br>Learn how SQL*Loader express loads tables, what defaults it uses, and under         what conditions the defaults are changed. 
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-539AAB61-90AD-4328-9BF8-A39970FBDFF2">How SQL*Loader Express Mode Handles Byte Order</a><br>The type of character set used with your data file affects the byte order         used with SQL*Loader express.
+                     </li>
+                  </ul>
+                  <div class="infoboxnotealso" id="GUID-C3A4DCCB-5499-4525-94C3-F1DE23F35F7F__GUID-A301454F-FA8C-4EF3-A12B-91D91C4F0F42">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </li>
+                        <li>
+                           <p><a href="oracle-sql-loader-control-file-contents.html#GUID-7F8983A0-CA5D-41D9-A096-CB1858CEDB4C" title="The SQL*Loader control file is a text file that contains data definition language (DDL) instructions for a SQL*Loader job."> SQL*Loader Control File Reference</a> for more information about control files
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-8C235861-2A8B-4196-9705-E6FFED0C0C99" title="SQL*Loader express mode allows you to quickly and easily use SQL*Loader to load simple data types.">SQL*Loader Express</a></p>
+                     </div>
+                  </div>
+               </div>
+               <a id="SUTIL3951"></a><div class="props_rev_3"><a id="GUID-0F35B551-861B-450D-8BF3-2312893A67D7" name="GUID-0F35B551-861B-450D-8BF3-2312893A67D7"></a><h4 id="SUTIL-GUID-0F35B551-861B-450D-8BF3-2312893A67D7" class="sect4"><span class="enumeration_section">13.2.1 </span>Default Values Used by SQL*Loader Express Mode
+                  </h4>
+                  <div>
+                     <p>Learn how SQL*Loader express loads tables, what defaults it uses, and under
+        what conditions the defaults are changed. </p>
+                     <p>By default, a load done using SQL*Loader express mode assumes the following, unless
+            you specify otherwise:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>If no data file is specified, then it looks for a file named
+                            <code class="codeph"><span class="variable" translate="no">table-name</span>.dat</code> in the current
+                    directory.
+                           </p>
+                        </li>
+                        <li>
+                           <p>By default, SQL*Loader express uses the external tables load method. However, for
+                    some errors, SQL*Loader express mode automatically switches from the default
+                    external tables load method to direct path load. An example of when this can
+                    occur is if a privilege violation caused the <code class="codeph">CREATE DIRECTORY</code>
+                    SQL command to fail.
+                           </p>
+                        </li>
+                        <li>
+                           <p>SQL*Loader express fields are set up as follows:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>Names, from table column names (the order of the fields matches the table column
+                            order)</p>
+                              </li>
+                              <li>
+                                 <p>Types, based on table column types</p>
+                              </li>
+                              <li>
+                                 <p>Newline, as the record delimiter</p>
+                              </li>
+                              <li>
+                                 <p>Commas, as field delimiters</p>
+                              </li>
+                              <li>
+                                 <p>No enclosure</p>
+                              </li>
+                              <li>
+                                 <p>Left-right trimming</p>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <p>The <code class="codeph">DEGREE_OF_PARALLELISM</code> parameter is set to <code class="codeph">AUTO</code>.
+                           </p>
+                        </li>
+                        <li>
+                           <p>Date and timestamp format use the NLS settings.</p>
+                        </li>
+                        <li>
+                           <p>The NLS client character set is used.</p>
+                        </li>
+                        <li>
+                           <p>If a table already has data in it, then new data is appended to the table.</p>
+                        </li>
+                        <li>
+                           <p>If you do not specify a data file, then the data, log, and bad files take the
+                                        following default names (note the <code class="codeph"><span class="variable" translate="no">%p</span></code> is replaced
+                                        with the process ID of the Oracle Database child
+                                        process):
+                           </p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><code class="codeph"><span class="variable" translate="no">table-name.dat</span></code> for the data file
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph"><span class="variable" translate="no">table-name.log</span></code> for the SQL*Loader log file
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph"><span class="variable" translate="no">table-name_%p</span>.log_xt</code> for Oracle Database log
+                            files (for example, <code class="codeph">emp_17228.log_xt</code>)
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph"><span class="variable" translate="no">table-name_%p</span>.bad</code> for bad files
+                                 </p>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <p>If you specify one or more data files, using the <code class="codeph">DATA</code> parameter,
+                                        then the log and bad files take the following default names
+                                        (note the <code class="codeph"><span class="variable" translate="no">%p</span></code>
+                                        is replaced with the process ID of the server child
+                                        process.):
+                           </p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><code class="codeph"><span class="variable" translate="no">table-name</span>.log</code> for the SQL*Loader log file
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph"><span class="variable" translate="no">table-name_%p</span>.log_xt</code> for the Oracle Database log
+                            files
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph"><span class="variable" translate="no">first-data-file_%p</span>.bad</code> for the bad files
+                                 </p>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="oracle-sql-loader-express-mode.html#GUID-B9E4314F-1CE2-4F7A-9C95-7A218021467A" title="The SQL*Loader express mode DATA parameter specifies names of data files containing the data that you want to load.">DATA</a></li>
+                        </ul>
+                     </div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-C3A4DCCB-5499-4525-94C3-F1DE23F35F7F" title="To activate SQL*Loader express mode, you can simply specify your user name and a table name.">Using SQL*Loader Express Mode</a></p>
+                        </div>
+                     </div>
+                  </div>
+               </div><a id="SUTIL4313"></a><div class="props_rev_3"><a id="GUID-539AAB61-90AD-4328-9BF8-A39970FBDFF2" name="GUID-539AAB61-90AD-4328-9BF8-A39970FBDFF2"></a><h4 id="SUTIL-GUID-539AAB61-90AD-4328-9BF8-A39970FBDFF2" class="sect4"><span class="enumeration_section">13.2.2 </span>How SQL*Loader Express Mode Handles Byte Order
+                  </h4>
+                  <div>
+                     <p>The type of character set used with your data file affects the byte order
+        used with SQL*Loader express.</p>
+                     <p>In general, SQL*Loader express mode handles byte order marks in the same way
+            that a load performed using a SQL*Loader control file does. </p>
+                     <p>In summary:</p>
+                     <ul style="list-style-type: disc;" id="GUID-539AAB61-90AD-4328-9BF8-A39970FBDFF2__UL_VNC_XWF_W3B">
+                        <li>
+                           
+                           <p>For data files with a Unicode character set, SQL*Loader express mode
+                    checks for a byte order mark at the beginning of the file.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>For a UTF16 data file, if a byte order mark is found, the byte order
+                    mark sets the byte order for the data file. If no byte order mark is found, the
+                    byte order of the system where SQL*Loader is executing is used for the data
+                    file.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>A UTF16 data file can be loaded regardless of whether or not the byte
+                    order (endianness) is the same byte order as the system on which SQL*Loader
+                    express is running.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>For UTF8 data files, any byte order marks found are skipped.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>A load is terminated if multiple data files are involved and they
+                    use different byte ordering.</p>
+                           
+                        </li>
+                     </ul>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="oracle-sql-loader-field-list-contents.html#GUID-D1D5D538-C27C-4E20-955F-90E546D417DC" title="SQL*Loader can load data from a data file that was created on a system whose byte ordering is different from the byte ordering on the system where SQL*Loader is running, even if the data file contains certain nonportable data types.">Understanding how SQL*Loader Manages Byte Ordering</a></li>
+                        </ul>
+                     </div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-C3A4DCCB-5499-4525-94C3-F1DE23F35F7F" title="To activate SQL*Loader express mode, you can simply specify your user name and a table name.">Using SQL*Loader Express Mode</a></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="SUTIL3952"></a><div class="props_rev_3"><a id="GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" name="GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC"></a><h3 id="SUTIL-GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" class="sect3"><span class="enumeration_section">13.3 </span>SQL*Loader Express Mode Parameter Reference
+               </h3>
+               <div>
+                  <p>This section provides descriptions of the parameters available in SQL*Loader express mode. </p>
+                  <p>Some of the parameter names are the same as parameters used by regular SQL*Loader, but there may be behavior differences. Be sure to read the descriptions so you know what behavior to expect.</p>
+                  <div class="infoboxnote" id="GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC__GUID-EF6802D2-FE97-4690-877C-5A6A2B07FBC4">
+                     <p class="notep1">Note:</p>
+                     <p>If parameter values include quotation marks, then it is recommended that you specify them in a parameter file. See "Use of Quotation Marks on the Data Pump Command Line” in <a href="oracle-data-pump-export-utility.html#GUID-33880357-06B1-4CA2-8665-9D41347C6705" title="Use Oracle Data Pump parameters for Export (expdp) to manage your data exports.">Parameters Available in Data Pump Export Command-Line Mode</a> - the issues discussed there are also pertinent to SQL*Loader express mode.
+                     </p>
+                  </div>
+               </div>
+               <div>
+                  <ul class="ullinks">
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-D6C2612D-5960-424B-955B-6212B1C57EF9">BAD</a><br>The SQL*Loader express mode BAD parameter specifies the location and name of the bad         file. 
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-DE43FA02-12DB-4A42-8D1C-796D0435F44D">CHARACTERSET</a><br>The SQL*Loader express mode <code class="codeph">CHARACTERSET</code> parameter specifies a         character set you want to use for the load.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-4B16892B-824B-4C77-B8EF-F1D125D2AC28">CSV</a><br>The SQL*Loader express mode <code class="codeph">CSV</code> parameter lets you you specify if         CSV format files contain fields with embedded record terminators.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-B9E4314F-1CE2-4F7A-9C95-7A218021467A">DATA</a><br>The SQL*Loader express mode <code class="codeph">DATA</code> parameter specifies names of data         files containing the data that you want to load.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-082AA152-F5E0-492B-9DFB-50A47E0891EA">DATE_FORMAT</a><br>The SQL*Loader express mode  <code class="codeph">DATE_FORMAT</code> parameter specifies         a date format that overrides the default value for all date fields.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-B3EAC57A-3AEB-42F9-9438-4CB077BF7383">DEGREE_OF_PARALLELISM</a><br>The SQL*Loader express mode <code class="codeph">DEGREE_OF_PARALLELISM</code> parameter         specifies the degree of parallelism to use for the load.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-A1EFA56E-35FF-4581-8861-4EF7844149D7">DIRECT</a><br>The SQL*Loader express mode <code class="codeph">DIRECT</code> parameter specifies the load         method to use, either conventional path or direct path.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-5B1FC3A1-6DC2-4749-8109-19AADDAF8D8C">DNFS_ENABLE</a><br>The SQL*Loader express mode <code class="codeph">DNFS_ENABLE</code> parameter lets you         enable and disable use of the Direct NFS Client on input data files during a SQL*Loader         operation.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-A7FC04ED-D624-4B9B-A200-3CFE240CC300">DNFS_READBUFFERS</a><br>The SQL*Loader express mode <code class="codeph">DNFS_READBUFFERS</code> parameter lets         you control the number of read buffers used by the Direct NFS Client. 
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-A58EAA9D-AB1B-4F3F-8D80-6297F2CDAC4D">ENCLOSED_BY</a><br>The SQL*Loader express mode <code class="codeph">ENCLOSED_BY</code> parameter specifies a field         enclosure string.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-51843558-56ED-4E6D-B100-5EB316D554E2">EXTERNAL_TABLE</a><br>The SQL*Loader express mode <code class="codeph">EXTERNAL_TABLE</code> parameter         determines whether to load data using the external tables option.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-2582B104-2A27-4A2D-94F7-FFC572585C71">FIELD_NAMES</a><br>The SQL*Loader express mode <code class="codeph">FIELD_NAMES</code> parameter overrides the         fields being in the order of the columns in the database table. 
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-E2132E3F-F0F1-4C85-8C84-F55539395420">LOAD</a><br>The SQL*Loader express mode <code class="codeph">LOAD</code> specifies the number of records         that you want to be loaded.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-CCE72650-7C00-4AD1-AC78-02007E61FB37">NULLIF</a><br>The SQL*Loader express mode <code class="codeph">NULLIF</code> parameter specifies a         value that is used to determine whether a field is loaded as a NULL column.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-3C000956-3730-4D27-9A46-F7D12BC81540">OPTIONALLY_ENCLOSED_BY</a><br>The SQL*Loader express mode <code class="codeph">OPTIONALLY_ENCLOSED_BY</code> specifies an         optional field enclosure string.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-A6A5E794-6184-44CA-9746-3C704DAB6DD7">PARFILE</a><br>The SQL*Loader express mode <code class="codeph">PARFILE</code> parameter specifies the         name of a file that contains commonly used command-line parameters.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-BF357B3C-A06F-4F94-91EB-6B3B5954F137">SILENT</a><br>The SQL*Loader express mode <code class="codeph">SILENT</code> parameter suppresses some content         that is written to the screen during a SQL*Loader operation.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-5D02DA3B-334D-470F-AE48-2099FDE6B5F6">TABLE</a><br>The SQL*Loader express mode <code class="codeph">TABLE</code> parameter activates         SQL*Loader express mode.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-A8779EFE-D245-4E5A-953B-F384760F9054">TERMINATED_BY</a><br>The SQL*Loader express mode <code class="codeph">TERMINATED_BY</code> specifies a field         terminator that overrides the default. 
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-AE4A0EA9-F417-4E5F-87EF-A19CE68765C1">TIMESTAMP_FORMAT</a><br>The <code class="codeph">TIMESTAMP_FORMAT</code> parameter specifies a timestamp format         that you want to use for the load.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-9149B77F-8FE4-4988-A310-5ADCDB49D08A">TRIM</a><br>The SQL*Loader express mode <code class="codeph">TRIM</code> parameter specifies the type of         field trimming that you want to use during the load.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-sql-loader-express-mode.html#GUID-C58AB08F-A4C8-4085-AF5F-E10110CABEAA">USERID</a><br>The SQL*Loader express mode <code class="codeph">USERID</code> enables you to provide provide         your Oracle username and password, so that you are not prompted for it. 
+                     </li>
+                  </ul>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-8C235861-2A8B-4196-9705-E6FFED0C0C99" title="SQL*Loader express mode allows you to quickly and easily use SQL*Loader to load simple data types.">SQL*Loader Express</a></p>
+                     </div>
+                  </div>
+               </div>
+               <a id="SUTIL3954"></a><a id="SUTIL3955"></a><a id="SUTIL3956"></a><a id="SUTIL3957"></a><a id="SUTIL3953"></a><div class="props_rev_3"><a id="GUID-D6C2612D-5960-424B-955B-6212B1C57EF9" name="GUID-D6C2612D-5960-424B-955B-6212B1C57EF9"></a><h4 id="SUTIL-GUID-D6C2612D-5960-424B-955B-6212B1C57EF9" class="sect4"><span class="enumeration_section">13.3.1 </span>BAD
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode BAD parameter specifies the location and name of the bad
+        file. </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D6C2612D-5960-424B-955B-6212B1C57EF9__GUID-7BF21A31-8C41-4BEC-AB5A-C7C7A7BD4D73">Default</p>
+                        
+                        
+                        <p>The default depends on whether any data files are specified, using the
+                    <code class="codeph">DATA</code> parameter.
+                        </p>
+                        
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D6C2612D-5960-424B-955B-6212B1C57EF9__GUID-AA2F3702-795C-4A23-8BC9-816F3818FD54">Purpose</p>
+                     </div>
+                     <div class="section">
+                        <p>The <code class="codeph">BAD</code> parameter specifies the location and name of the bad file. 
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D6C2612D-5960-424B-955B-6212B1C57EF9__GUID-C5DF706E-7D40-48AE-8C8F-FFFC12555797">Syntax</p>
+                        <pre class="oac_no_warn" dir="ltr">BAD=[<span class="variable" translate="no">directory</span>/][<span class="variable" translate="no">filename</span>]
+</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D6C2612D-5960-424B-955B-6212B1C57EF9__GUID-CC6E8472-EAD0-444E-9BC8-1E7CAE76513F">Usage Notes</p>
+                        
+                        <p>The bad file stores records that cause errors during insert or that are improperly
+                formatted. If you specify the <code class="codeph">BAD</code> parameter, then you must supply
+                either a directory or file name, or both. If you do not specify the
+                    <code class="codeph">BAD</code> parameter, and there are rejected records, then the default
+                file name is used.
+                        </p>
+                        <p>The <code class="codeph"><span class="variable" translate="no">directory</span></code> variable specifies a directory to
+                which the bad file is written. The specification can include the name of a device or
+                a network node. 
+                        </p>
+                        <p>The <code class="codeph"><span class="variable" translate="no">filename</span></code> variable specifies a file name
+                recognized as valid on your platform. You must specify only a name (and extension,
+                if you want to use one other than <code class="codeph">.bad</code>). Any spaces or punctuation
+                marks in the file name must be enclosed in single quotation marks. 
+                        </p>
+                        <p>The values of <code class="codeph"><span class="variable" translate="no">directory</span></code> and
+                        <code class="codeph"><span class="variable" translate="no">filename</span></code> are determined as follows:
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>If you specify the <code class="codeph">BAD</code> parameter with a file name, but no directory,
+                        then the directory defaults to the current directory.
+                              </p>
+                           </li>
+                           <li>
+                              <p>If you specify the <code class="codeph">BAD</code> parameter with a directory, but no file name,
+                        then the specified directory is used, and the default is used for the file
+                        name and the extension.
+                              </p>
+                           </li>
+                        </ul>
+                        <p>The <code class="codeph">BAD</code> parameter applies to all the files that match the specified
+                    <code class="codeph">DATA</code> parameter, if you specify the <code class="codeph">DATA</code>
+                parameter. If you do not specify the DATA parameter, then the <code class="codeph">BAD</code>
+                parameter applies to the one data file (<code class="codeph">table-name.dat</code>) 
+                        </p>
+                        
+                        <div class="infobox-caution" id="GUID-D6C2612D-5960-424B-955B-6212B1C57EF9__GUID-27083314-BBEE-42FF-8A29-B000B493DD75">
+                           <p class="notep1">Caution:</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-D6C2612D-5960-424B-955B-6212B1C57EF9__UL_O4L_M2G_W3B">
+                              <li>
+                                 
+                                 <p>If the file name (either the default or one you specify)
+                            already exists, then that file name either is overwritten, or a new
+                            version is created, depending on your operating system.</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>If multiple data files are being loaded, then Oracle
+                            recommends that you either not specify the <code class="codeph">BAD</code>
+                            parameter, or that you specify it with only a directory for the bad
+                            file.
+                                 </p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D6C2612D-5960-424B-955B-6212B1C57EF9__GUID-253244F7-48A1-49D5-93BD-7CAB6D9D2196">Example</p>
+                        
+                        <p>The following specification creates a bad file named
+                    <code class="codeph">emp1.bad</code> in the current directory:
+                        </p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees BAD=emp1</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL3959"></a><a id="SUTIL3960"></a><a id="SUTIL3961"></a><a id="SUTIL3962"></a><a id="SUTIL3958"></a><div class="props_rev_3"><a id="GUID-DE43FA02-12DB-4A42-8D1C-796D0435F44D" name="GUID-DE43FA02-12DB-4A42-8D1C-796D0435F44D"></a><h4 id="SUTIL-GUID-DE43FA02-12DB-4A42-8D1C-796D0435F44D" class="sect4"><span class="enumeration_section">13.3.2 </span>CHARACTERSET
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">CHARACTERSET</code> parameter specifies a
+        character set you want to use for the load.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-DE43FA02-12DB-4A42-8D1C-796D0435F44D__GUID-57E80C0C-CF8D-4843-9BC4-39C2A5BFDE9D">Default</p>
+                        
+                        <p>The NLS client character set as specified in the <code class="codeph">NLS_LANG</code>
+                environment variable
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-DE43FA02-12DB-4A42-8D1C-796D0435F44D__GUID-9DAD2646-C90D-477F-BEE3-84B084D01AEF">Purpose</p>
+                        
+                        <p>The <code class="codeph">CHARACTERSET</code> parameter specifies a character set,
+                other than the default, to use for the load.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-DE43FA02-12DB-4A42-8D1C-796D0435F44D__GUID-33ADBB5A-866A-4DFF-8E2F-2314BCAE0662">Syntax</p>
+                        <pre class="pre codeblock"><code>CHARACTERSET=<span class="variable" translate="no">character_set_name</span>
+</code></pre>
+                        <p>The <code class="codeph"><span class="variable" translate="no">character_set_name</span></code> variable
+                specifies the character set name. Normally, the specified name must be the name of a
+                character set that is supported by Oracle Database. 
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-DE43FA02-12DB-4A42-8D1C-796D0435F44D__GUID-892B6998-5592-4DAA-B711-BB5679A448A3">Usage Notes</p>
+                        
+                        <p>The <code class="codeph">CHARACTERSET</code> parameter specifies the character set of the SQL*Loader input data files. If the <code class="codeph">CHARACTERSET</code> parameter is not specified, then the default character set for all data files is the session character set, which is defined by the <code class="codeph">NLS_LANG</code> environment variable. Only character data (fields of the SQL*Loader data types <code class="codeph">CHAR,</code> <code class="codeph">VARCHAR,</code> <code class="codeph">VARCHARC,</code> numeric <code class="codeph">EXTERNAL</code>, and the datetime and interval data types) is affected by the character set of the data file.   
+                        </p>
+                        <p>For UTF-16 Unicode encoding, use the name UTF16 rather than AL16UTF16. AL16UTF16, which is the supported character set name for UTF-16 encoded data, is only for UTF-16 data that is in big-endian byte order. However, because you are allowed to set up data using the byte order of the system where you create the data file, the data in the data file can be either big-endian or little-endian. Therefore, a different character set name (UTF16) is used. The character set name AL16UTF16 is also supported. But if you specify AL16UTF16 for a data file that has little-endian byte order, then SQL*Loader issues a warning message and processes the data file as little-endian.</p>
+                        <p>The <code class="codeph">CHARACTERSET</code> parameter value is assumed to the be same for all data files. 
+                        </p>
+                        <div class="infoboxnote" id="GUID-DE43FA02-12DB-4A42-8D1C-796D0435F44D__GUID-7912275F-087C-4C68-8D11-4FBD0F3F9BE5">
+                           <p class="notep1">Note:</p>
+                           <p> The term UTF-16 is a general reference to UTF-16 encoding for Unicode. The term UTF16 (no hyphen) is the specific name of the character set and is what you should specify for the <code class="codeph">CHARACTERSET</code> parameter when you want to use UTF-16 encoding. This also applies to UTF-8 and UTF8.
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-DE43FA02-12DB-4A42-8D1C-796D0435F44D__GUID-F4D9EBB4-1742-443C-AAD0-823999614F23">Restrictions</p>
+                        
+                        <p>None. </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-DE43FA02-12DB-4A42-8D1C-796D0435F44D__GUID-7B7EC921-66D0-4822-A0C5-BAB0B4724959">Example</p>
+                        
+                        <p>The following example specifies the UTF-8 character set:</p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees CHARACTERSETNAME=utf8</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL3964"></a><a id="SUTIL3965"></a><a id="SUTIL3966"></a><a id="SUTIL3967"></a><a id="SUTIL3963"></a><div class="props_rev_3"><a id="GUID-4B16892B-824B-4C77-B8EF-F1D125D2AC28" name="GUID-4B16892B-824B-4C77-B8EF-F1D125D2AC28"></a><h4 id="SUTIL-GUID-4B16892B-824B-4C77-B8EF-F1D125D2AC28" class="sect4"><span class="enumeration_section">13.3.3 </span>CSV
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">CSV</code> parameter lets you you specify if
+        CSV format files contain fields with embedded record terminators.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4B16892B-824B-4C77-B8EF-F1D125D2AC28__GUID-03C01CCC-123F-4903-9AB7-06D65DB1BC60">Default</p>
+                        
+                        <p>If the CSV parameter is not specified on the command line, then SQL*Loader express
+                assumes that the CSV file being loaded contains data that has no embedded characters
+                and no enclosures.</p>
+                        <p>If <code class="codeph">CSV=WITHOUT_EMBEDDED</code> is specified on the command line, then SQL*Loader express assumes that the CSV file being loaded contains data that has no embedded characters and that is optionally enclosed by '"'.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4B16892B-824B-4C77-B8EF-F1D125D2AC28__GUID-94A33B2E-034B-47A4-AD32-1B7D0DE7886F">Purpose</p>
+                        
+                        <p>The <code class="codeph">CSV</code> parameter provides options that let you specify
+                whether the comma-separated value (CSV) format file being loaded contains fields in
+                which record terminators are embedded.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4B16892B-824B-4C77-B8EF-F1D125D2AC28__GUID-798BEBA0-B7BB-481B-B7AC-CED7ABF8C542">Syntax</p>
+                        <pre class="pre codeblock"><code>CSV=[WITH_EMBEDDED | WITHOUT_EMBEDDED]
+</code></pre>
+                        <ul style="list-style-type: disc;" id="GUID-4B16892B-824B-4C77-B8EF-F1D125D2AC28__UL_WVB_PLG_W3B">
+                           <li>
+                              
+                              <p><code class="codeph">WITH_EMBEDDED</code> — This option means that there
+                        can be record terminators included (embedded) in a field in the record. The
+                        record terminator is newline. The default delimiters are <code class="codeph">TERMINTATED
+                            by ","</code>  and <code class="codeph">OPTIONALLY_ENCLOSED_BY '"'</code>.
+                        Embedded record terminators must be enclosed.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><code class="codeph">WITHOUT_EMBEDDED</code> — This option means that there
+                        are no record terminators included (embedded) in a field in the record. The
+                        record terminator is newline. The default delimiters are <code class="codeph">TERMINATED
+                            BY ","</code>  and <code class="codeph">OPTIONALLY_ENCLOSED_BY ' " '</code>.
+                              </p>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4B16892B-824B-4C77-B8EF-F1D125D2AC28__GUID-7259C6B9-5AD5-42A1-BFEE-A74968AC910A">Usage Notes</p>
+                        
+                        
+                        <p>If the CSV file contains many embedded record terminators, then it is
+                possible that performance can be adversely affected by this parameter.</p>
+                        
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4B16892B-824B-4C77-B8EF-F1D125D2AC28__GUID-52400D9C-3582-4EF7-A099-26037910291F">Restrictions</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-4B16892B-824B-4C77-B8EF-F1D125D2AC28__UL_ZTM_TLG_W3B">
+                           <li>
+                              
+                              <p>Normally a file can be processed in parallel (split up and
+                        processed by more than one execution server at a time). But in the case of
+                        CSV format files with embedded record terminators, the file must be
+                        processed by only one execution server. Therefore, parallel processing
+                        within a data file is disabled when you set the <code class="codeph">CSV</code>
+                        parameter to <code class="codeph">CSV=WITH_EMBEDDED</code>. 
+                              </p>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4B16892B-824B-4C77-B8EF-F1D125D2AC28__GUID-36123ABF-54F5-4EC7-962C-F37457D62B80">Example</p>
+                        
+                        <p>The following example processes the data files as CSV format files with
+                embedded record terminators.</p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees CSV=WITH_EMBEDDED</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL3969"></a><a id="SUTIL3970"></a><a id="SUTIL3971"></a><a id="SUTIL3972"></a><a id="SUTIL3968"></a><div class="props_rev_3"><a id="GUID-B9E4314F-1CE2-4F7A-9C95-7A218021467A" name="GUID-B9E4314F-1CE2-4F7A-9C95-7A218021467A"></a><h4 id="SUTIL-GUID-B9E4314F-1CE2-4F7A-9C95-7A218021467A" class="sect4"><span class="enumeration_section">13.3.4 </span>DATA
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">DATA</code> parameter specifies names of data
+        files containing the data that you want to load.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B9E4314F-1CE2-4F7A-9C95-7A218021467A__GUID-E82FBA0A-394B-41DB-A36B-9DF5E5877CA4">Default</p>
+                        
+                        <p>The same name as the table name, but with an extension of <code class="codeph">.dat</code>.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B9E4314F-1CE2-4F7A-9C95-7A218021467A__GUID-5C6B87E6-B5D0-4919-AB8A-E425BDED9398">Purpose</p>
+                        
+                        <p>The <code class="codeph">DATA</code> parameter specifies names of data files
+                containing the data that you want to load.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B9E4314F-1CE2-4F7A-9C95-7A218021467A__GUID-95EF951C-AE94-44EC-BF0D-A3560183ED4C">Syntax</p>
+                        <pre class="pre codeblock"><code>DATA=<span class="variable" translate="no">data-file-name</span>
+</code></pre>
+                        <p>If you do not specify a file extension, then the default is
+                    <code class="codeph">.dat</code>. 
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B9E4314F-1CE2-4F7A-9C95-7A218021467A__GUID-D30AE35D-1DE7-4A1F-8C49-71AB962637E0">Usage Notes</p>
+                        
+                        
+                        <p>The file specification can contain wildcards, but only in the file name
+                and file extension, not in a device or directory name. An asterisk
+                    (<code class="codeph">*</code>) represents multiple characters. A question mark
+                    (<code class="codeph">?</code>) represents a single character. For example:
+                        </p>
+                        <pre class="pre codeblock"><code>DATA='emp*.dat'
+
+DATA='m?emp.dat'
+</code></pre>
+                        <p>To list multiple data file specifications (each of which can contain
+                wild cards), you must separate the file names by commas.</p>
+                        
+                        <p>If the file name contains any special characters (for example, spaces,
+                    <code class="codeph">*</code>, or <code class="codeph">?</code>), then the entire name must be
+                enclosed within single quotation marks.
+                        </p>
+                        
+                        <p>The following are three examples of possible valid uses of the
+                    <code class="codeph">DATA</code> parameter (the single quotation marks would only be
+                necessary if the file name contained special characters):
+                        </p>
+                        <pre class="pre codeblock"><code>DATA='file1','file2','file3','file4','file5','file6' 
+</code></pre>
+                        <pre class="pre codeblock"><code>DATA='file1','file2'
+DATA='file3,'file4','file5'
+DATA='file6' 
+</code></pre>
+                        <pre class="pre codeblock"><code>DATA='file1'
+DATA='file2'
+DATA='file3'
+DATA='file4'
+DATA='file5'
+DATA='file6' </code></pre>
+                        <div class="infobox-caution" id="GUID-B9E4314F-1CE2-4F7A-9C95-7A218021467A__GUID-5EBD332E-B664-4AD5-8F5F-C00CF8839128">
+                           <p class="notep1">Caution:</p>
+                           
+                           <p>If multiple data files are being loaded, and you also specify the
+                        <code class="codeph">BAD</code> parameter, then Oracle recommends that you specify only
+                    a directory for the bad file, not a file name. If you specify a file name, and a
+                    file with that name already exists, then that file either is overwritten, or a
+                    new version is created, depending on your operating system. 
+                           </p>
+                           
+                        </div>
+                        
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B9E4314F-1CE2-4F7A-9C95-7A218021467A__GUID-4A346566-1B69-498F-AC6B-867C96A99A8B">Example</p>
+                        
+                        <p>Assume that the current directory contains data files with the names
+                    <code class="codeph">emp1.dat</code>, <code class="codeph">emp2.dat</code>,
+                <code class="codeph">m1emp.dat</code>, and <code class="codeph">m2emp.dat</code> and you issue the
+                following command:
+                        </p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees DATA='emp*','m1emp'
+</code></pre>
+                        <p>The command loads the <code class="codeph">emp1.dat</code>,
+                    <code class="codeph">emp2.dat</code>, and <code class="codeph">m1emp.dat</code> files. The
+                    <code class="codeph">m2emp.dat</code> file is not loaded because it did not match any of
+                the wildcard criteria.
+                        </p>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL3974"></a><a id="SUTIL3975"></a><a id="SUTIL3976"></a><a id="SUTIL3977"></a><a id="SUTIL3973"></a><div class="props_rev_3"><a id="GUID-082AA152-F5E0-492B-9DFB-50A47E0891EA" name="GUID-082AA152-F5E0-492B-9DFB-50A47E0891EA"></a><h4 id="SUTIL-GUID-082AA152-F5E0-492B-9DFB-50A47E0891EA" class="sect4"><span class="enumeration_section">13.3.5 </span>DATE_FORMAT
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode  <code class="codeph">DATE_FORMAT</code> parameter specifies
+        a date format that overrides the default value for all date fields.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-082AA152-F5E0-492B-9DFB-50A47E0891EA__GUID-09DB46C0-A879-443E-BDE8-DC6854C7CDCB">Default</p>
+                        <p>If the <code class="codeph">DATE_FORMAT</code> parameter is not specified, then the <code class="codeph">NLS_DATE_FORMAT</code>, <code class="codeph">NLS_LANGUAGE</code>, or <code class="codeph">NLS_DATE_LANGUAGE</code> environment variable settings (if defined for the SQL*Loader session) are used. If the <code class="codeph">NLS_DATE_FORMAT</code> is not defined, then dates are assumed to be in the default format defined by the <code class="codeph">NLS_TERRITORY</code> setting.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-082AA152-F5E0-492B-9DFB-50A47E0891EA__GUID-76D6201F-AC01-4055-9260-4E3537E9C772">Purpose</p>
+                        <p>The <code class="codeph">DATE_FORMAT</code> parameter specifies a date format that overrides the default value for all date fields.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-082AA152-F5E0-492B-9DFB-50A47E0891EA__GUID-9747CEA9-7C65-4756-BB82-6AE4C82798D4">Syntax</p><pre class="pre codeblock"><code>DATE_FORMAT=<span class="variable" translate="no">mask</span>
+</code></pre><p>The <span class="variable" translate="no">mask</span> is a date format mask, which normally is
+                enclosed in double quotation marks. 
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-082AA152-F5E0-492B-9DFB-50A47E0891EA__GUID-09681F95-AB93-42B9-A4AD-3A2AB7E02975">Example</p>
+                        <p>If the date in the data file was June 25, 2019, then the date format would be
+                specified in the following format:</p><pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees DATE_FORMAT="DD-Month-YYYY"</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL3979"></a><a id="SUTIL3980"></a><a id="SUTIL3981"></a><a id="SUTIL3982"></a><a id="SUTIL3978"></a><div class="props_rev_3"><a id="GUID-B3EAC57A-3AEB-42F9-9438-4CB077BF7383" name="GUID-B3EAC57A-3AEB-42F9-9438-4CB077BF7383"></a><h4 id="SUTIL-GUID-B3EAC57A-3AEB-42F9-9438-4CB077BF7383" class="sect4"><span class="enumeration_section">13.3.6 </span>DEGREE_OF_PARALLELISM
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">DEGREE_OF_PARALLELISM</code> parameter
+        specifies the degree of parallelism to use for the load.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B3EAC57A-3AEB-42F9-9438-4CB077BF7383__GUID-671A528C-09AC-46BA-9A03-20F6EA81BA4D">Default</p><pre class="pre codeblock"><code>AUTO</code></pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B3EAC57A-3AEB-42F9-9438-4CB077BF7383__GUID-F44FC2D9-C57A-4D0E-B414-470BC5058489">Purpose</p>
+                        <p>The <code class="codeph">DEGREE_OF_PARALLELISM</code> parameter specifies the degree of parallelism to use for the load.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B3EAC57A-3AEB-42F9-9438-4CB077BF7383__GUID-2C8308C6-27DB-451B-AE75-79624BA2AD46">Syntax</p><pre class="pre codeblock"><code>DEGREE_OF_PARALLELISM=[<span class="variable" translate="no">degree-num</span>|DEFAULT|AUTO|NONE]
+</code></pre>
+                        <p>Options:</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-B3EAC57A-3AEB-42F9-9438-4CB077BF7383__UL_VQF_W14_W3B">
+                           <li><code class="codeph"><span class="variable" translate="no">degree-num</span></code> specifies degree of
+                    parallelism. It must be a whole number value from 1 to <span class="variable" translate="no">n</span>.
+                           </li>
+                           <li><code class="codeph">DEFAULT</code> specifies that you want to use the default parallelism
+                        <span class="italic">of the database</span> (not the default parameter value of
+                        <code class="codeph">AUTO</code>). 
+                           </li>
+                           <li><code class="codeph">AUTO</code> specifies that Oracle Database automatically sets the
+                    degree of parallelism for the load. If the
+                        <code class="codeph">DEGREE_OF_PARALLELISM</code> parameter is not specified,. then
+                    this is the default option for parallelism.
+                           </li>
+                           <li><code class="codeph">NONE</code> specifies that you do not want the load performed in
+                    parallel. A value of <code class="codeph">NONE</code> is the same as a value of
+                        <code class="codeph">1</code>.
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B3EAC57A-3AEB-42F9-9438-4CB077BF7383__GUID-5D47D91F-09F4-47AD-B1A4-662DED741FD5">Restrictions</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>The <code class="codeph">DEGREE_OF_PARALLELISM</code> parameter is ignored if you force the load method to be conventional or direct path (the <code class="codeph">NONE</code> option is used). Any time you specify the <code class="codeph">DEGREE_OF_PARALLELISM</code> parameter, for any value, you receive a message reminding you of this.
+                              </p>
+                           </li>
+                           <li>
+                              <p>If the load is a default external tables load and an error occurs that causes SQL*Loader express mode to use direct path load instead, then the job is not performed in parallel, even if you had specified a degree of parallelism or had accepted the external tables default of <code class="codeph">AUTO</code>. A message is displayed alerting you to this change.
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B3EAC57A-3AEB-42F9-9438-4CB077BF7383__GUID-BF9875CD-3585-4796-94A4-DBA9E6B59131">Example</p>
+                        <p>The following example loads the data without using parallelism:</p><pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees DEGREE_OF_PARALLELISM=NONE</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="../vldbg/parallel-exec-intro.html#GUID-F9A83EDB-42AD-4638-9A2E-F66FE09F2B43" target="_blank">Parallel Execution Concepts</a></li>
+                        </ul>
+                     </div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+               </div><a id="SUTIL3984"></a><a id="SUTIL3985"></a><a id="SUTIL3986"></a><a id="SUTIL3987"></a><a id="SUTIL3983"></a><div class="props_rev_3"><a id="GUID-A1EFA56E-35FF-4581-8861-4EF7844149D7" name="GUID-A1EFA56E-35FF-4581-8861-4EF7844149D7"></a><h4 id="SUTIL-GUID-A1EFA56E-35FF-4581-8861-4EF7844149D7" class="sect4"><span class="enumeration_section">13.3.7 </span>DIRECT
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">DIRECT</code> parameter specifies the load
+        method to use, either conventional path or direct path.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A1EFA56E-35FF-4581-8861-4EF7844149D7__GUID-98295DA9-2C0E-4A59-A7DF-6D980F7C23CF">Default</p>
+                        
+                        <p>No default. </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A1EFA56E-35FF-4581-8861-4EF7844149D7__GUID-34263478-A33C-442C-89A6-74CE36A988E5">Purpose</p>
+                     </div>
+                     <div class="section">
+                        <p>The <code class="codeph">DIRECT</code> parameter specifies the load method to use, either conventional path or direct path.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A1EFA56E-35FF-4581-8861-4EF7844149D7__GUID-1C1104B1-5361-4B38-9D23-5E38655276B1">Syntax</p>
+                        <pre class="oac_no_warn" dir="ltr">DIRECT=[TRUE|FALSE]
+</pre>
+                        <p>A value of <code class="codeph">TRUE</code> specifies a direct path load. A value
+                of <code class="codeph">FALSE</code> specifies a conventional path load.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A1EFA56E-35FF-4581-8861-4EF7844149D7__GUID-DE0AD610-2A93-4151-8460-99EAF6AD0D7F">Usage Notes</p>
+                        
+                        <p>This parameter overrides the SQL*Loader express mode default load method of external
+                tables.</p>
+                        <p>For some errors, SQL*Loader express mode automatically switches from the default
+                external tables load method to direct path load. An example of when this can occur
+                is if a privilege violation caused the <code class="codeph">CREATE DIRECTORY</code> SQL command
+                to fail.
+                        </p>
+                        <p>If you use the <code class="codeph">DIRECT</code> parameter to specify a conventional or direct path load, then the following regular SQL*Loader parameters are valid to use in express mode:
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li><code class="codeph">BINDSIZE</code></li>
+                           <li><code class="codeph">COLUMNARRAYROWS</code> (direct path loads only)
+                           </li>
+                           <li><code class="codeph">DATE_CACHE</code></li>
+                           <li><code class="codeph">ERRORS</code></li>
+                           <li><code class="codeph">MULTITHREADING</code> (direct path loads only)
+                           </li>
+                           <li><code class="codeph">NO_INDEX_ERRORS</code> (direct path loads only)
+                           </li>
+                           <li><code class="codeph">RESUMABLE</code></li>
+                           <li><code class="codeph">RESUMABLE_NAME</code></li>
+                           <li><code class="codeph">RESUMABLE_TIMEOUT</code></li>
+                           <li><code class="codeph">ROWS</code></li>
+                           <li><code class="codeph">SKIP</code></li>
+                           <li><code class="codeph">STREAMSIZE</code></li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A1EFA56E-35FF-4581-8861-4EF7844149D7__GUID-8434318F-7DF7-4ADE-A5B9-A5A7DF545BD6">Example</p>
+                        
+                        
+                        <p>In the following example, SQL*Loader uses the direct path load method
+                for the load instead of external tables:</p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees DIRECT=TRUE</code></pre>
+                        </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4188"></a><a id="SUTIL4189"></a><a id="SUTIL4187"></a><div class="props_rev_3"><a id="GUID-5B1FC3A1-6DC2-4749-8109-19AADDAF8D8C" name="GUID-5B1FC3A1-6DC2-4749-8109-19AADDAF8D8C"></a><h4 id="SUTIL-GUID-5B1FC3A1-6DC2-4749-8109-19AADDAF8D8C" class="sect4"><span class="enumeration_section">13.3.8 </span>DNFS_ENABLE
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">DNFS_ENABLE</code> parameter lets you
+        enable and disable use of the Direct NFS Client on input data files during a SQL*Loader
+        operation.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-5B1FC3A1-6DC2-4749-8109-19AADDAF8D8C__GUID-9AAFF6A9-0096-4CDB-B147-2C1151542A2E">Default</p>
+                        <p><code class="codeph">TRUE</code></p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-5B1FC3A1-6DC2-4749-8109-19AADDAF8D8C__GUID-94B697E0-ABD9-42CE-BD9E-8D8F3F3B6140">Purpose</p>
+                        <p>The <code class="codeph">DNFS_ENABLE</code> parameter lets you enable and disable use of the Direct NFS Client on input data files during a SQL*Loader operation.
+                        </p>
+                        <p>The Direct NFS Client is an API that can be implemented by file servers to allow improved performance when Oracle accesses files on those servers. </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-5B1FC3A1-6DC2-4749-8109-19AADDAF8D8C__GUID-164D4670-A84A-4CD3-AAA8-834D10EE1C94">Syntax</p>
+                        <p>The syntax is as follows:</p><pre class="pre codeblock"><code>DNFS_ENABLE=[TRUE|FALSE]
+</code></pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-5B1FC3A1-6DC2-4749-8109-19AADDAF8D8C__GUID-F6F15D45-4B0D-40E0-9E1E-C8FCBE548043">Usage Notes</p>
+                        
+                        
+                        <p>SQL*Loader uses the Direct NFS Client interfaces by default when it
+                reads data files over 1 GB. For smaller files, the operating system's I/O interfaces
+                are used. To use the Direct NFS Client on <span class="italic">all</span> input data files, use
+                    <code class="codeph">DNFS_ENABLE=TRUE</code>.
+                        </p>
+                        
+                        <p>To disable use of the Direct NFS Client for all data files, specify
+                    <code class="codeph">DNFS_ENABLE=FALSE</code>.
+                        </p>
+                        
+                        <p>The <code class="codeph">DNFS_ENABLE</code> parameter can be used in conjunction
+                with the <code class="codeph">DNFS_READBUFFERS</code> parameter, which can specify the number
+                of read buffers used by the Direct NFS Client.
+                        </p>
+                        
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4191"></a><a id="SUTIL4192"></a><a id="SUTIL4190"></a><div class="props_rev_3"><a id="GUID-A7FC04ED-D624-4B9B-A200-3CFE240CC300" name="GUID-A7FC04ED-D624-4B9B-A200-3CFE240CC300"></a><h4 id="SUTIL-GUID-A7FC04ED-D624-4B9B-A200-3CFE240CC300" class="sect4"><span class="enumeration_section">13.3.9 </span>DNFS_READBUFFERS
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">DNFS_READBUFFERS</code> parameter lets
+        you control the number of read buffers used by the Direct NFS Client. 
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A7FC04ED-D624-4B9B-A200-3CFE240CC300__GUID-9DC2443D-28ED-4BB1-9BA9-18A35E30BA6D">Default</p>
+                        <p>4</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A7FC04ED-D624-4B9B-A200-3CFE240CC300__GUID-1A83856B-8A1F-467B-BD28-AD32FA490459">Purpose</p>
+                        <p>The <code class="codeph">DNFS_READBUFFERS</code> parameter lets you control the number of read buffers used by the Direct NFS Client. The Direct NFS Client is an API that can be implemented by file servers to allow improved performance when Oracle accesses files on those servers. 
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A7FC04ED-D624-4B9B-A200-3CFE240CC300__GUID-32E0444D-4B9C-4689-ABC2-E66932C728D0">Syntax</p>
+                        <p>The syntax is as follows:</p><pre class="pre codeblock"><code>DNFS_READBUFFERS = <span class="variable" translate="no">n
+</span></code></pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A7FC04ED-D624-4B9B-A200-3CFE240CC300__GUID-99BAE437-4178-4A13-8F34-86A0ACCEF3EE">Usage Notes</p>
+                        
+                        
+                        <p>Using values larger than the default can compensate for inconsistent I/O
+                from the Direct NFS Client file server, but using larger values can also result in
+                increased memory usage.</p>
+                        
+                        <p>To use this parameter without also specifying the
+                    <code class="codeph">DNFS_ENABLE</code> parameter, the input file must be larger than 1
+                GB.
+                        </p>
+                        
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL3994"></a><a id="SUTIL3995"></a><a id="SUTIL3996"></a><a id="SUTIL3997"></a><a id="SUTIL3993"></a><div class="props_rev_3"><a id="GUID-A58EAA9D-AB1B-4F3F-8D80-6297F2CDAC4D" name="GUID-A58EAA9D-AB1B-4F3F-8D80-6297F2CDAC4D"></a><h4 id="SUTIL-GUID-A58EAA9D-AB1B-4F3F-8D80-6297F2CDAC4D" class="sect4"><span class="enumeration_section">13.3.10 </span>ENCLOSED_BY
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">ENCLOSED_BY</code> parameter specifies a field
+        enclosure string.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A58EAA9D-AB1B-4F3F-8D80-6297F2CDAC4D__GUID-E15E7A2D-1626-4ABD-B711-426EE37C8106">Default</p>
+                        
+                        <p>The default is that there is no enclosure character.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A58EAA9D-AB1B-4F3F-8D80-6297F2CDAC4D__GUID-C0AE7D4C-36CF-4F85-9A0B-D6BED2AF0A25">Purpose</p>
+                        
+                        <p>The <code class="codeph">ENCLOSED_BY</code> parameter specifies a field enclosure
+                string.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A58EAA9D-AB1B-4F3F-8D80-6297F2CDAC4D__GUID-C8776EB0-2621-4308-AF33-4C6F6122B952">Syntax</p>
+                        <pre class="oac_no_warn" dir="ltr">ENCLOSED_BY=['<span class="variable" translate="no">string</span>'|x'hex-string']
+</pre>
+                        <p>The enclosure character must be a string or a hexadecimal string.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A58EAA9D-AB1B-4F3F-8D80-6297F2CDAC4D__GUID-A28819FC-16D2-4735-A124-5FF29C88AE30">Usage Notes</p>
+                        
+                        <p>The same string must be used to signify both the beginning and the
+                ending of the enclosure.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A58EAA9D-AB1B-4F3F-8D80-6297F2CDAC4D__GUID-95FA94D5-B868-44BF-82A7-E8FC5FED0A27">Example</p>
+                        
+                        <p>In the following example, the field data is enclosed by the
+                    '<code class="codeph">/</code>' character (forward slash).
+                        </p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees ENCLOSED_BY='/'</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL3999"></a><a id="SUTIL4000"></a><a id="SUTIL4001"></a><a id="SUTIL4002"></a><a id="SUTIL3998"></a><div class="props_rev_3"><a id="GUID-51843558-56ED-4E6D-B100-5EB316D554E2" name="GUID-51843558-56ED-4E6D-B100-5EB316D554E2"></a><h4 id="SUTIL-GUID-51843558-56ED-4E6D-B100-5EB316D554E2" class="sect4"><span class="enumeration_section">13.3.11 </span>EXTERNAL_TABLE
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">EXTERNAL_TABLE</code> parameter
+        determines whether to load data using the external tables option.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-51843558-56ED-4E6D-B100-5EB316D554E2__GUID-F50F5CBE-8EFC-4BEF-9054-1EA5006BBFC1">Default</p>
+                        
+                        <p><code class="codeph">EXECUTE</code></p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-51843558-56ED-4E6D-B100-5EB316D554E2__GUID-73C23A6E-5805-4902-BE3E-843C926AF49B">Purpose</p>
+                        
+                        <p>The <code class="codeph">EXTERNAL_TABLE</code> parameter instructs SQL*Loader
+                whether to load data using the external tables option.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-51843558-56ED-4E6D-B100-5EB316D554E2__GUID-AFD9FED9-60DE-43F7-BAA5-D3ED43DD78F5">Syntax</p>
+                        <pre class="pre codeblock"><code>EXTERNAL_TABLE=[NOT_USED | GENERATE_ONLY | EXECUTE]
+</code></pre>
+                        <p> There are three possible values:</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-51843558-56ED-4E6D-B100-5EB316D554E2__UL_FSL_YJH_W3B">
+                           <li>
+                              
+                              <p><code class="codeph">NOT_USED</code> — It means the load is performed using
+                        either conventional or direct path mode.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><code class="codeph">GENERATE_ONLY</code> — places all the SQL statements
+                        needed to do the load using external tables in the SQL*Loader log file.
+                        These SQL statements can be edited and customized. The actual load can be
+                        done later without the use of SQL*Loader by executing these statements in
+                        SQL*Plus. 
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><code class="codeph">EXECUTE</code> — the default value in SQL*Loader
+                        express mode. Attempts to execute the SQL statements that are needed to do
+                        the load using external tables. However, if any of the SQL statements
+                        returns an error, then the attempt to load stops. Statements are placed in
+                        the log file as they are executed. This means that if a SQL statement
+                        returns an error, then the remaining SQL statements required for the load
+                        will not be placed in the log file.
+                              </p>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-51843558-56ED-4E6D-B100-5EB316D554E2__GUID-272AFBBC-F3D5-496D-AB67-E92C7C95D70D">Usage Notes</p>
+                        
+                        <p>The external table option uses directory objects in the database to indicate where
+                all data files are stored, and to indicate where output files, such as bad files and
+                discard files, are created. You must have <code class="codeph">READ</code> access to the
+                directory objects containing the data files, and you must have
+                    <code class="codeph">WRITE</code> access to the directory objects where the output files
+                are created. If there are no existing directory objects for the location of a data
+                file or output file, then SQL*Loader will generate the SQL statement to create one.
+                Therefore, when the <code class="codeph">EXECUTE</code> option is specified, you must have the
+                    <code class="codeph">CREATE ANY DIRECTORY</code> privilege. If you want the directory
+                object to be deleted at the end of the load, then you must also have the
+                    <code class="codeph">DROP ANY DIRECTORY</code> privilege.
+                        </p>
+                        <div class="infoboxnote" id="GUID-51843558-56ED-4E6D-B100-5EB316D554E2__GUID-4BB13981-5215-414D-913F-5EBC90CE0117">
+                           <p class="notep1">Note:</p>
+                           <p>The <code class="codeph">EXTERNAL_TABLE=EXECUTE</code> qualifier tells SQL*Loader to create an
+                    external table that can be used to load data, and then execute the
+                        <code class="codeph">INSERT</code> statement to load the data. All files in the
+                    external table must be identified as being in a directory object. SQL*Loader
+                    attempts to use directory objects that already exist, and that you have
+                    privileges to access. However, if SQL*Loader does not find the matching
+                    directory object, then it attempts to create a temporary directory object. If
+                    you do not have privileges to create new directory objects, then the operation
+                    fails.
+                           </p>
+                           <p>To work around this issue, use <code class="codeph">EXTERNAL_TABLE=GENERATE_ONLY</code> to
+                    create the SQL statements that SQL*Loader would try to execute. Extract those
+                    SQL statements and change references to directory objects to be the directory
+                    object that you have privileges to access. Then, execute those SQL
+                    statements.
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-51843558-56ED-4E6D-B100-5EB316D554E2__GUID-83B97692-65FC-4F26-919D-FD05B09A692F">Example</p>
+                     </div>
+                     <div class="section"><pre class="pre codeblock"><code>sqlldr hr TABLE=employees EXTERNAL_TABLE=NOT_USED</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4004"></a><a id="SUTIL4005"></a><a id="SUTIL4006"></a><a id="SUTIL4007"></a><a id="SUTIL4003"></a><div class="props_rev_3"><a id="GUID-2582B104-2A27-4A2D-94F7-FFC572585C71" name="GUID-2582B104-2A27-4A2D-94F7-FFC572585C71"></a><h4 id="SUTIL-GUID-2582B104-2A27-4A2D-94F7-FFC572585C71" class="sect4"><span class="enumeration_section">13.3.12 </span>FIELD_NAMES
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">FIELD_NAMES</code> parameter overrides the
+        fields being in the order of the columns in the database table. 
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-2582B104-2A27-4A2D-94F7-FFC572585C71__GUID-D2F3B01A-66CE-466C-930F-F1E107803FEE">Default</p>
+                        
+                        <p><code class="codeph">NONE</code></p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-2582B104-2A27-4A2D-94F7-FFC572585C71__GUID-A595A54B-2D73-42C1-95B5-1DAE92869B12">Purpose</p>
+                        
+                        <p>The <code class="codeph">FIELD_NAMES</code> parameter is used to override the fields
+                being in the order of the columns in the database table. (By default, SQL*Loader
+                Express uses the table column definitions found in the
+                    <code class="codeph">ALL_TAB_COLUMNS</code> view to determine the input field order and
+                data types.)
+                        </p>
+                        
+                        <p>An example of when this parameter could be useful is when the data in
+                the input file is not in the same order as the columns in the table. In such a case,
+                you can include a field name record (similar to a column header row for a table) in
+                the data file and use the <code class="codeph">FIELD_NAMES</code> parameter to notify
+                SQL*Loader to process the field names in the first record to determine the order of
+                the fields.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-2582B104-2A27-4A2D-94F7-FFC572585C71__GUID-7C5C8137-E907-489D-A447-8193BDC25353">Syntax</p>
+                     </div>
+                     <div class="section"><pre class="oac_no_warn" dir="ltr">FIELD_NAMES=[ALL | ALL_IGNORE | FIRST | FIRST_IGNORE | NONE]
+</pre><p>The valid options for this parameter are as follows:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">ALL</code> — The field name record is processed for every data file.
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">ALL_IGNORE</code> — Ignore the first (field names) record in all the data files and process the data records normally.
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">FIRST</code> — In the first data file, process the first (field names) record. For all other data files, there is no field names record, so the data file is processed normally.
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">FIRST_IGNORE</code> — In the first data file, ignore the first (field names) record and use table column order for the field order.
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">NONE</code> — There are no field names records in any data file, so the data files are processed normally. This is the default.
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-2582B104-2A27-4A2D-94F7-FFC572585C71__GUID-CA93BC62-2839-45D0-8458-66DBFB2C0DF1">Usage Notes</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-2582B104-2A27-4A2D-94F7-FFC572585C71__UL_RGD_GLH_W3B">
+                           <li>
+                              
+                              <p>If any field name has mixed case or special characters (for
+                        example, spaces), then you must use either the
+                            <code class="codeph">OPTIONALLY_ENCLOSED_BY</code> parameter, or the
+                            <code class="codeph">ENCLOSED_BY</code> parameter to indicate that case should be
+                        preserved, and that special characters should be included as part of the
+                        field name.
+                              </p>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-2582B104-2A27-4A2D-94F7-FFC572585C71__GUID-A00CB798-AAD0-412B-9BAA-8E6691AF927C">Example</p>
+                     </div>
+                     <div class="section">
+                        <p>If you are loading a CSV file that contains column headers into a table, and the fields in each row in the input file are in the same order as the columns in the table, then you could use the following:</p><pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees CSV=WITHOUT_EMBEDDED FIELD_NAMES=FIRST_IGNORE</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4009"></a><a id="SUTIL4010"></a><a id="SUTIL4011"></a><a id="SUTIL4012"></a><a id="SUTIL4008"></a><div class="props_rev_3"><a id="GUID-E2132E3F-F0F1-4C85-8C84-F55539395420" name="GUID-E2132E3F-F0F1-4C85-8C84-F55539395420"></a><h4 id="SUTIL-GUID-E2132E3F-F0F1-4C85-8C84-F55539395420" class="sect4"><span class="enumeration_section">13.3.13 </span>LOAD
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">LOAD</code> specifies the number of records
+        that you want to be loaded.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-E2132E3F-F0F1-4C85-8C84-F55539395420__GUID-E7E3EE90-DC36-46E7-9E85-C9073A2DFBE0">Default</p>
+                        
+                        <p>All records are loaded.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-E2132E3F-F0F1-4C85-8C84-F55539395420__GUID-24BE2C6A-A3E7-438E-8C4D-DAABAEA20CC9">Purpose</p>
+                        
+                        <p>The <code class="codeph">LOAD</code> parameter specifies the number of records that
+                you want to be loaded.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-E2132E3F-F0F1-4C85-8C84-F55539395420__GUID-C7CD3B9E-68B0-412C-B778-502E627B01BB">Syntax</p>
+                        <pre class="pre codeblock"><code>LOAD=<span class="variable" translate="no">n</span>
+</code></pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-E2132E3F-F0F1-4C85-8C84-F55539395420__GUID-015B3A60-5F48-45AA-A523-F2C960D9BEA4">Usage Notes</p>
+                        
+                        <p>To test that all parameters you have specified for the load are set correctly, use the <code class="codeph">LOAD</code> parameter to specify a limited number of records rather than loading all records. No error occurs if fewer than the maximum number of records are found.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-E2132E3F-F0F1-4C85-8C84-F55539395420__GUID-5AF0CC8F-A93A-48FD-970F-DAA238A8CDBD">Example</p>
+                        
+                        <p>The following example specifies that a maximum of 10 records be
+                loaded:</p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees LOAD=10
+</code></pre>
+                        <p>For external tables method loads (the default load method for express
+                mode), only successfully loaded records are counted toward the total. So if there
+                are 15 records in the file and records 2 and 4 are bad, then the following records
+                are loaded into the table, for a total of 10 records - 1, 3, 5, 6, 7, 8, 9, 10, 11,
+                and 12.</p>
+                        
+                        <p>For conventional and direct path loads, both successful and unsuccessful
+                load attempts are counted toward the total. So if there are 15 records in the file
+                and records 2 and 4 are bad, then only the following 8 records are actually loaded
+                into the table - 1, 3, 5, 6, 7, 8, 9, and 10.</p>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4014"></a><a id="SUTIL4015"></a><a id="SUTIL4016"></a><a id="SUTIL4332"></a><a id="SUTIL4013"></a><div class="props_rev_3"><a id="GUID-CCE72650-7C00-4AD1-AC78-02007E61FB37" name="GUID-CCE72650-7C00-4AD1-AC78-02007E61FB37"></a><h4 id="SUTIL-GUID-CCE72650-7C00-4AD1-AC78-02007E61FB37" class="sect4"><span class="enumeration_section">13.3.14 </span>NULLIF
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">NULLIF</code> parameter specifies a
+        value that is used to determine whether a field is loaded as a NULL column.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-CCE72650-7C00-4AD1-AC78-02007E61FB37__GUID-EA8139CE-250B-461A-BF80-68FC24E8DE93">Default</p>
+                        <p>The default is that no <code class="codeph">NULLIF</code> checking is done.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-CCE72650-7C00-4AD1-AC78-02007E61FB37__GUID-EE54F4B2-9A75-49FA-AB2F-E182450C2700">Syntax</p><pre class="pre codeblock"><code>NULLIF = "<span class="variable" translate="no">string</span>"
+</code></pre><p>Or:</p><pre class="pre codeblock"><code>NULLIF != "<span class="variable" translate="no">string</span>"
+</code></pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-CCE72650-7C00-4AD1-AC78-02007E61FB37__GUID-7F0024D7-E5E3-48E7-A2A6-7FA1F7A83662">Usage Notes</p>
+                        
+                        
+                        <p>SQL*Loader checks the specified value against the value of the field in
+                the record. If there is a match using the equal (=) or not equal (!=) specification,
+                then the field is set to <code class="codeph">NULL</code> for that row. Any field that has a
+                length of 0 after blank trimming is also set to <code class="codeph">NULL</code>.
+                        </p>
+                        
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-CCE72650-7C00-4AD1-AC78-02007E61FB37__GUID-DAF6482A-9798-4DA5-9523-04AF8DB6F5DE">Example</p>
+                        <p>In the following example, if there are any fields whose value is a period, then those fields are set to NULL in their respective rows.</p><pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees NULLIF="."</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4019"></a><a id="SUTIL4020"></a><a id="SUTIL4021"></a><a id="SUTIL4022"></a><a id="SUTIL4018"></a><div class="props_rev_3"><a id="GUID-3C000956-3730-4D27-9A46-F7D12BC81540" name="GUID-3C000956-3730-4D27-9A46-F7D12BC81540"></a><h4 id="SUTIL-GUID-3C000956-3730-4D27-9A46-F7D12BC81540" class="sect4"><span class="enumeration_section">13.3.15 </span>OPTIONALLY_ENCLOSED_BY
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">OPTIONALLY_ENCLOSED_BY</code> specifies an
+        optional field enclosure string.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-3C000956-3730-4D27-9A46-F7D12BC81540__GUID-9BD588CA-2C56-4F17-928D-F6C63FB2E289">Default</p>
+                        
+                        <p>The default is that there is no optional field enclosure character.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-3C000956-3730-4D27-9A46-F7D12BC81540__GUID-C5CF58BE-B522-4822-9C14-7961E4C7D73A">Purpose</p>
+                        
+                        
+                        <p>The <code class="codeph">OPTIONALLY_ENCLOSED_BY</code> parameter specifies an
+                optional field enclosure string.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-3C000956-3730-4D27-9A46-F7D12BC81540__GUID-C482D8DB-582E-4859-AA99-72585A0A202C">Syntax</p>
+                        <pre class="pre codeblock"><code>OPTIONALLY_ENCLOSED_BY=['<span class="variable" translate="no">string</span>'| x'hex-string']
+</code></pre>
+                        <p>The enclosure character is a string or a hexadecimal string.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-3C000956-3730-4D27-9A46-F7D12BC81540__GUID-48BAC454-199E-478A-9326-0414628CE131">Usage Notes</p>
+                        
+                        <p>You must use the same string to signify both the beginning and the
+                ending of the enclosure.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-3C000956-3730-4D27-9A46-F7D12BC81540__GUID-F5E9AFAD-6B41-4A31-942F-DCFCEA14B196">Examples</p>
+                        
+                        <p>The following example specifies the optional enclosure character as a
+                double quotation mark (<code class="codeph">"</code>):
+                        </p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees OPTIONALLY_ENCLOSED_BY='"'
+</code></pre>
+                        <p>The following example specifies the optional enclosure character in
+                hexadecimal format:</p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees OPTIONALLY_ENCLOSED_BY=x'22'</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4199"></a><a id="SUTIL4200"></a><a id="SUTIL4201"></a><a id="SUTIL4202"></a><a id="SUTIL4198"></a><div class="props_rev_3"><a id="GUID-A6A5E794-6184-44CA-9746-3C704DAB6DD7" name="GUID-A6A5E794-6184-44CA-9746-3C704DAB6DD7"></a><h4 id="SUTIL-GUID-A6A5E794-6184-44CA-9746-3C704DAB6DD7" class="sect4"><span class="enumeration_section">13.3.16 </span>PARFILE
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">PARFILE</code> parameter specifies the
+        name of a file that contains commonly used command-line parameters.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A6A5E794-6184-44CA-9746-3C704DAB6DD7__GUID-F0E2D789-488B-4DD1-8EC8-4AC8BEDBFA89">Default</p>
+                        <p>There is no default</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A6A5E794-6184-44CA-9746-3C704DAB6DD7__GUID-C4626140-A221-4546-9D95-DDA3027E375E">Syntax</p><pre class="pre codeblock"><code>PARFILE=<span class="variable" translate="no">parameter_file_name</span>
+</code></pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A6A5E794-6184-44CA-9746-3C704DAB6DD7__GUID-49A199F7-6592-4927-91FC-73ECCDEF1254">Usage Notes</p>
+                        
+                        
+                        <p>If any parameter values contain quotation marks, then Oracle recommends
+                that you use a parameter file. </p>
+                        
+                        <div class="infoboxnote" id="GUID-A6A5E794-6184-44CA-9746-3C704DAB6DD7__GUID-294AF6CA-90D2-4961-835D-CBC533141579">
+                           <p class="notep1">Note:</p>Although it is not usually
+                important, on some systems it can be necessary to have no spaces around the equal
+                sign (<code class="codeph">=</code>) in the parameter specifications.
+                        </div>
+                        
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A6A5E794-6184-44CA-9746-3C704DAB6DD7__GUID-BE5A5037-BF82-4249-BA6F-9EFA299914FF">Restrictions</p>
+                        <ul style="list-style-type: disc;" id="GUID-A6A5E794-6184-44CA-9746-3C704DAB6DD7__UL_O4V_K4V_PGB">
+                           <li>
+                              <p>For security reasons, Oracle recommends that you do not include your
+                            <code class="codeph">USERID</code> password in a parameter file. After you specify
+                        the parameter file at the command line, SQL*Loader prompts you for the
+                        password. For example:
+                              </p><pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees PARFILE=daily_report.par
+Password: </code></pre></li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A6A5E794-6184-44CA-9746-3C704DAB6DD7__GUID-A07F1A8C-87F8-4D08-B7DF-5A411A899416">Example</p>
+                        <p>Suppose you have the following parameter file, <code class="codeph">test.par</code>:
+                        </p><pre class="pre codeblock"><code>table=employees
+data='mydata*.dat'
+enclosed_by='"'
+</code></pre><p>When you run the following command, any fields enclosed by double quotation marks, in
+                any data files that match <code class="codeph">mydata*.dat</code>, are loaded into table
+                    <code class="codeph">employees</code>:
+                        </p><pre class="pre codeblock"><code>&gt; sqlldr hr PARFILE=test.par
+Password:</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4204"></a><a id="SUTIL4205"></a><a id="SUTIL4206"></a><a id="SUTIL4203"></a><div class="props_rev_3"><a id="GUID-BF357B3C-A06F-4F94-91EB-6B3B5954F137" name="GUID-BF357B3C-A06F-4F94-91EB-6B3B5954F137"></a><h4 id="SUTIL-GUID-BF357B3C-A06F-4F94-91EB-6B3B5954F137" class="sect4"><span class="enumeration_section">13.3.17 </span>SILENT
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">SILENT</code> parameter suppresses some content
+        that is written to the screen during a SQL*Loader operation.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-BF357B3C-A06F-4F94-91EB-6B3B5954F137__GUID-061E053A-0C79-4EF1-A276-D34E36943E14">Default</p>
+                        
+                        <p>\\If this parameter is not specified, then no content is suppressed.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-BF357B3C-A06F-4F94-91EB-6B3B5954F137__GUID-EBE6B006-8A9C-41BF-9D3C-57932D1642FD">Purpose</p>
+                        
+                        <p>The <code class="codeph">SILENT</code> parameter suppresses some of the content
+                that is written to the screen during a SQL*Loader operation. 
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-BF357B3C-A06F-4F94-91EB-6B3B5954F137__GUID-E569DE48-8B0A-4125-A140-DCC7C8A0073A">Syntax</p>
+                     </div>
+                     <div class="section">
+                        <p>The syntax is as follows:</p><span class="variable" translate="no">SILENT={HEADER | FEEDBACK | ERRORS | DISCARDS | PARTITIONS | ALL} </span><p>Use the appropriate values to suppress one or more of the following (if
+                more than one option is specified, they must be separated by commas):</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              
+                              <p><code class="codeph">HEADER</code> — Suppresses the SQL*Loader header
+                        messages that normally appear on the screen. Header messages still appear in
+                        the log file.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><code class="codeph">FEEDBACK</code> — Suppresses the "commit point reached"
+                        messages and the status messages for the load that normally appear on the
+                        screen.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><code class="codeph">ERRORS</code> — Suppresses the data error messages in
+                        the log file that occur when a record generates an Oracle error that causes
+                        it to be written to the bad file. A count of rejected records still
+                        appears.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><code class="codeph">DISCARDS</code> — Suppresses the messages in the log
+                        file for each record written to the discard file. This option is ignored in
+                        express mode.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><code class="codeph">PARTITIONS</code> — Disables writing the per-partition
+                        statistics to the log file during a direct load of a partitioned table. This
+                        option is meaningful only in a forced direct path operation.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><code class="codeph">ALL</code> — Implements all of the suppression
+                        options.
+                              </p>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-BF357B3C-A06F-4F94-91EB-6B3B5954F137__GUID-8AE32FD2-8B3D-4752-97D3-580C9BF6BAFE">Example</p>
+                        
+                        <p>For example, you can suppress the header and feedback messages that
+                normally appear on the screen with the following command-line argument:</p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees SILENT=HEADER, FEEDBACK</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4024"></a><a id="SUTIL4025"></a><a id="SUTIL4026"></a><a id="SUTIL4027"></a><a id="SUTIL4023"></a><div class="props_rev_3"><a id="GUID-5D02DA3B-334D-470F-AE48-2099FDE6B5F6" name="GUID-5D02DA3B-334D-470F-AE48-2099FDE6B5F6"></a><h4 id="SUTIL-GUID-5D02DA3B-334D-470F-AE48-2099FDE6B5F6" class="sect4"><span class="enumeration_section">13.3.18 </span>TABLE
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">TABLE</code> parameter activates
+        SQL*Loader express mode.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-5D02DA3B-334D-470F-AE48-2099FDE6B5F6__GUID-B7A8C10D-8D26-4098-A47D-93E7D8BB495F">Default</p>
+                        <p>There is no default.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-5D02DA3B-334D-470F-AE48-2099FDE6B5F6__GUID-60E317B4-8D8F-4841-832D-7F45F6100604">Syntax</p><pre class="pre codeblock"><code>TABLE=[<span class="variable" translate="no">schema-name.</span>]<span class="variable" translate="no">table-name</span>
+</code></pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-5D02DA3B-334D-470F-AE48-2099FDE6B5F6__GUID-1319704F-E178-408B-9C11-8B4B6FBA2E1C">Usage Notes</p>
+                        
+                        
+                        <p>If the schema name or table name includes lower case characters, spaces,
+                or other special characters, then the names must be enclosed in double quotation
+                marks and that entire string enclosed within single quotation marks. For
+                example:</p>
+                        <pre class="pre codeblock"><code>TABLE='"hr.Employees"'</code></pre>
+                        </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-5D02DA3B-334D-470F-AE48-2099FDE6B5F6__GUID-AD171C74-6604-4C76-9646-11930CB19894">Restrictions</p>
+                        
+                        <p>The <code class="codeph">TABLE</code> parameter is valid only in SQL*Loader express
+                mode.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-5D02DA3B-334D-470F-AE48-2099FDE6B5F6__GUID-BA97FE8A-F16B-407C-8379-9C32B14F11BC">Example</p>
+                        <p>The following example loads the table employees in express mode:</p><pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4029"></a><a id="SUTIL4030"></a><a id="SUTIL4031"></a><a id="SUTIL4032"></a><a id="SUTIL4028"></a><div class="props_rev_3"><a id="GUID-A8779EFE-D245-4E5A-953B-F384760F9054" name="GUID-A8779EFE-D245-4E5A-953B-F384760F9054"></a><h4 id="SUTIL-GUID-A8779EFE-D245-4E5A-953B-F384760F9054" class="sect4"><span class="enumeration_section">13.3.19 </span>TERMINATED_BY
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">TERMINATED_BY</code> specifies a field
+        terminator that overrides the default. 
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A8779EFE-D245-4E5A-953B-F384760F9054__GUID-7161F039-5AB6-46FC-A049-AFBCCD32F9E1">Default</p>
+                        
+                        <p>By default, comma is the field terminator. </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A8779EFE-D245-4E5A-953B-F384760F9054__GUID-7F03895C-D51A-416A-BCFE-BBCD9EC88102">Purpose</p>
+                        
+                     </div>
+                     <div class="section">
+                        <p>The <code class="codeph">TERMINATED_BY</code> parameter specifies a field terminator that overrides the default.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A8779EFE-D245-4E5A-953B-F384760F9054__GUID-D24F2520-5E1D-4D00-8C0B-5FF852D5CEC3">Syntax</p>
+                        
+                        <pre class="pre codeblock"><code>TERMINATED_BY=['<span class="variable" translate="no">string</span>'| x'hex-string' | WHITESPACE]
+</code></pre>
+                        <p>The field terminator must be a string or a hexadecimal string. </p>
+                        
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A8779EFE-D245-4E5A-953B-F384760F9054__GUID-42727828-7A74-4F3F-B9D7-06AA6D2DA037">Usage Notes</p>
+                        
+                        <p>If you specify <code class="codeph">TERMINATED_BY=WHITESPACE</code>, then data is read until
+                the first occurrence of a whitespace character (spaces, tabs, blanks, line feeds,
+                form feeds, or carriage returns). Then the current position is advanced until no
+                more adjacent whitespace characters are found. This method allows field values to be
+                delimited by varying amounts of whitespace.
+                        </p>
+                        <p>If you specify <code class="codeph">TERMINATED_BY=WHITESPACE</code>, then null fields cannot
+                contain just blanks or other whitespace, because the blanks and whitespace are
+                skipped, which can result in an error being reported. With this option, if you have
+                null fields in the data, then consider using another string to indicate the null
+                field, and use the <code class="codeph">NULLIF</code> parameter to indicate the
+                    <code class="codeph">NULLIF</code> string. For example, you can use the string
+                    <code class="codeph">"NoData"</code> to indicate a null field, and then insert the string
+                    <code class="codeph">"NoData"</code> in the data to indicate a null field. Specify
+                    <code class="codeph">NULLIF="NoData"</code> to tell SQL*Loader to set fields with the
+                string <code class="codeph">"NoData"</code> to <code class="codeph">NULL</code>.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A8779EFE-D245-4E5A-953B-F384760F9054__GUID-44C6550B-7FDC-4D69-8862-437A2670A831">Example</p>
+                        
+                        <p>In the following example, fields are terminated by the <code class="codeph">|</code>
+                character.
+                        </p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees TERMINATED_BY="|"</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4034"></a><a id="SUTIL4035"></a><a id="SUTIL4036"></a><a id="SUTIL4037"></a><a id="SUTIL4033"></a><div class="props_rev_3"><a id="GUID-AE4A0EA9-F417-4E5F-87EF-A19CE68765C1" name="GUID-AE4A0EA9-F417-4E5F-87EF-A19CE68765C1"></a><h4 id="SUTIL-GUID-AE4A0EA9-F417-4E5F-87EF-A19CE68765C1" class="sect4"><span class="enumeration_section">13.3.20 </span>TIMESTAMP_FORMAT
+                  </h4>
+                  <div>
+                     <p>The <code class="codeph">TIMESTAMP_FORMAT</code> parameter specifies a timestamp format
+        that you want to use for the load.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-AE4A0EA9-F417-4E5F-87EF-A19CE68765C1__GUID-158241DF-DABB-4FF4-A29F-1B1F9E2CBE78">Default</p>
+                        <p>The default is taken from the value of the <code class="codeph">NLS_TIMESTAMP_FORMAT</code> environment variable. If <code class="codeph">NLS_TIMESTAMP_FORMAT</code> is not set up, then timestamps use the default format defined in the <code class="codeph">NLS_TERRITORY</code> environment variable, with 6 digits of fractional precision.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-AE4A0EA9-F417-4E5F-87EF-A19CE68765C1__GUID-73067937-5C49-46A9-B9B7-46DADC110EB7">Syntax</p><pre class="pre codeblock"><code>TIMESTAMP_FORMAT=<span class="variable" translate="no">"timestamp_format"</span></code></pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-AE4A0EA9-F417-4E5F-87EF-A19CE68765C1__GUID-63FC3C88-608D-4510-9FC7-0383227ADF7F">Example</p>
+                        <p>The following is an example of specifying a timestamp format:</p><pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees TIMESTAMP_FORMAT="MON-DD-YYYY HH:MI:SSXFF AM"
+</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4039"></a><a id="SUTIL4040"></a><a id="SUTIL4041"></a><a id="SUTIL4042"></a><a id="SUTIL4038"></a><div class="props_rev_3"><a id="GUID-9149B77F-8FE4-4988-A310-5ADCDB49D08A" name="GUID-9149B77F-8FE4-4988-A310-5ADCDB49D08A"></a><h4 id="SUTIL-GUID-9149B77F-8FE4-4988-A310-5ADCDB49D08A" class="sect4"><span class="enumeration_section">13.3.21 </span>TRIM
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">TRIM</code> parameter specifies the type of
+        field trimming that you want to use during the load.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-9149B77F-8FE4-4988-A310-5ADCDB49D08A__GUID-BFA8014C-881A-467F-AFDD-2C33DBFBFC69">Default</p>
+                        
+                        <p>The default for conventional and direct path loads is <code class="codeph">LDRTRIM</code>. The
+                default for external tables loads is <code class="codeph">LRTRIM</code>.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-9149B77F-8FE4-4988-A310-5ADCDB49D08A__GUID-6E289FC9-7510-4D0A-B5F6-890E5252EFA6">Purpose</p>
+                        
+                        <p>The <code class="codeph">TRIM</code> parameter specifies the type of field trimming
+                that you want to use during the load. Use <code class="codeph">TRIM</code> to specify that you
+                want spaces trimmed from the beginning of a text field, or the end of a text field,
+                or both. Spaces include blanks and other nonprinting characters, such as tabs, line
+                feeds, and carriage returns. 
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-9149B77F-8FE4-4988-A310-5ADCDB49D08A__GUID-4E9331DB-B9C2-4684-BB11-9E97F5DF5BC8">Syntax</p>
+                        <pre class="pre codeblock"><code>TRIM=[LRTRIM | NOTRIM | LTRIM | RTRIM |LDRTRIM]
+</code></pre>
+                        <p>Options:</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-9149B77F-8FE4-4988-A310-5ADCDB49D08A__UL_ZNW_JWN_W3B">
+                           <li><code class="codeph">LRTRIM</code> specifies that you want both leading and trailing spaces
+                    trimmed. 
+                           </li>
+                           <li><code class="codeph">NOTRIM</code> specifies that you want no characters trimmed from the
+                    field. This setting generally yields the fastest performance.
+                           </li>
+                           <li><code class="codeph">LTRIM</code> specifies that you want leading spaces trimmed.
+                           </li>
+                           <li><code class="codeph">RTRIM</code> specifies that you want trailing spaces trimmed.
+                           </li>
+                           <li><code class="codeph">LDRTRIM</code> is the same as <code class="codeph">NOTRIM</code>unless the field
+                    is a delimited field with <code class="codeph">OPTIONALLY_ENCLOSED_BY</code> specified, and
+                    the optional enclosures are missing for a particular instance. In that case
+                    spaces are trimmed from the left.
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-9149B77F-8FE4-4988-A310-5ADCDB49D08A__GUID-EF790708-E680-457A-804B-2973C4A7952A">Usage Notes</p>
+                        
+                        <p>If you specify trimming for a field that is all spaces, then the field is set to
+                    <code class="codeph">NULL</code>.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-9149B77F-8FE4-4988-A310-5ADCDB49D08A__GUID-EF77ECD2-507E-4885-923F-B0FAAB980B02">Restrictions</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-9149B77F-8FE4-4988-A310-5ADCDB49D08A__UL_K4B_5XN_W3B">
+                           <li>
+                              
+                              <p>Only <code class="codeph">LDRTRIM</code> is supported for forced conventional path and
+                        forced direct path loads. Any time you specify the <code class="codeph">TRIM</code>
+                        parameter, for any value, you receive a message reminding you of this.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>If the load is a default external tables load and an error
+                        occurs that causes SQL*Loader express mode to use direct path load instead,
+                        then <code class="codeph">LDRTRM</code> is used as the trimming method, even if you
+                        specified a different method or had accepted the external tables default of
+                            <code class="codeph">LRTRIM</code>. A message is displayed alerting you to this
+                        change.
+                              </p>
+                              
+                              <p>To use <code class="codeph">NOTRIM</code>, use a control file with the
+                            <code class="codeph">PRESERVE BLANKS</code> clause.
+                              </p>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section"></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-9149B77F-8FE4-4988-A310-5ADCDB49D08A__GUID-62586056-C1F9-45BB-AC3B-00A386D37FEC">Example</p>
+                        
+                        <p>The following example reads the fields, trimming all spaces on the right
+                (trailing spaces).</p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr hr TABLE=employees TRIM=RTRIM</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL4208"></a><a id="SUTIL4209"></a><a id="SUTIL4210"></a><a id="SUTIL4333"></a><a id="SUTIL4207"></a><div class="props_rev_3"><a id="GUID-C58AB08F-A4C8-4085-AF5F-E10110CABEAA" name="GUID-C58AB08F-A4C8-4085-AF5F-E10110CABEAA"></a><h4 id="SUTIL-GUID-C58AB08F-A4C8-4085-AF5F-E10110CABEAA" class="sect4"><span class="enumeration_section">13.3.22 </span>USERID
+                  </h4>
+                  <div>
+                     <p>The SQL*Loader express mode <code class="codeph">USERID</code> enables you to provide provide
+        your Oracle username and password, so that you are not prompted for it. 
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-C58AB08F-A4C8-4085-AF5F-E10110CABEAA__GUID-2669DF54-864F-47E0-B0F9-8750DA2D5E92">Default</p>
+                        
+                        <p>None.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-C58AB08F-A4C8-4085-AF5F-E10110CABEAA__GUID-369EF468-F66F-4EB0-8CB4-2F1724D66F12">Purpose</p>
+                     </div>
+                     <div class="section">
+                        <p>The <code class="codeph">USERID</code> parameter enables you to to provide your Oracle username
+                and password.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-C58AB08F-A4C8-4085-AF5F-E10110CABEAA__GUID-9924AF38-92BC-4E5D-B974-863B7C791FE4">Syntax</p>
+                        <pre class="pre codeblock"><code>USERID = [username | / | SYS]
+</code></pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-C58AB08F-A4C8-4085-AF5F-E10110CABEAA__GUID-93B71FD8-7FC0-4FF2-A278-7E4F8F632D8E">Usage Notes</p>
+                        
+                        <p>If you do not specify the <code class="codeph">USERID</code> parameter, then you are prompted for it. If only a slash is used, then <code class="codeph">USERID</code> defaults to your operating system login. 
+                        </p>
+                        <p>If you connect as user <code class="codeph">SYS</code>, then you must also specify <code class="codeph">AS SYSDBA</code> in the connect string.
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-C58AB08F-A4C8-4085-AF5F-E10110CABEAA__GUID-0634E85B-B15E-4B43-A362-0BAB1E6F090A">Restrictions</p>
+                     </div>
+                     <div class="section">
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>Because the string, <code class="codeph">AS SYSDBA,</code> contains a blank, some operating
+                        systems can require that you place the entire connect string in quotation
+                        marks, or marked as a literal by some other method. Some operating systems
+                        also require that you precede quotation marks on the command line using an
+                        escape character, such as backslashes.
+                              </p>
+                              <p>Refer to your operating system documentation for information about special and
+                        reserved characters on your system.</p>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-C58AB08F-A4C8-4085-AF5F-E10110CABEAA__GUID-11D75ACE-779E-4515-9B42-F7DA2D379551">Example</p>
+                        
+                        <p>The following example starts the job for user <code class="codeph">hr</code>:
+                        </p>
+                        <pre class="pre codeblock"><code>&gt; sqlldr USERID=hr TABLE=employees
+  Password:</code></pre></div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-9F3BD8B7-BE9B-4CE9-8F68-7A1936E498BC" title="This section provides descriptions of the parameters available in SQL*Loader express mode.">SQL*Loader Express Mode Parameter Reference</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div>
+            </div><a id="SUTIL4314"></a><a id="SUTIL4315"></a><a id="SUTIL4316"></a><a id="SUTIL4226"></a><div class="props_rev_3"><a id="GUID-E6C91A9F-06BE-4D63-972A-974FE752C065" name="GUID-E6C91A9F-06BE-4D63-972A-974FE752C065"></a><h3 id="SUTIL-GUID-E6C91A9F-06BE-4D63-972A-974FE752C065" class="sect3"><span class="enumeration_section">13.4 </span>SQL*Loader Express Mode Syntax Diagrams
+               </h3>
+               <div>
+                  <p>To understand SQL*Loader express mode options, refer to these graphic form
+        syntax guides (sometimes called railroad diagrams or DDL diagrams). </p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-E6C91A9F-06BE-4D63-972A-974FE752C065__GUID-DFDA537B-E38C-4029-9A55-A6101B978D49">Understanding Graphic Syntax
+                Notation</p>
+                     
+                     <p>For information about the syntax notation used, see:</p>
+                     
+                     <p><a href="../sqlrf/How-to-Read-Syntax-Diagrams.html#SQLRF-GUID-6DFBA035-DBCB-4F37-984D-37E9EBC1038B" target="_blank">How to Read Syntax Diagrams</a></p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-E6C91A9F-06BE-4D63-972A-974FE752C065__GUID-EC00B13A-B163-4A3A-B92C-F42CE00792A6">express_init</p>
+                     
+                     <div class="figure" id="GUID-E6C91A9F-06BE-4D63-972A-974FE752C065__GUID-72E6A72C-06FA-49E3-ADCA-96149C5778A8"><img id="GUID-E6C91A9F-06BE-4D63-972A-974FE752C065__IMAGE_MDD_F14_W3B" height="530" width="530" src="img/express_init.gif" alt="Description of express_init.eps follows" title="Description of express_init.eps follows" longdesc="img_text/express_init.html"><br><a href="img_text/express_init.html">Description of the illustration express_init.eps</a></div>
+                     
+                     <p>The following syntax diagrams show the parameters included in
+                    <code class="codeph">express_options</code> in the previous syntax diagram. SQL*Loader
+                express mode parameters shown in the following syntax diagrams are all optional and
+                can appear in any order on the SQL*Loader command line. Therefore, they are
+                presented in simple alphabetical order.
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-E6C91A9F-06BE-4D63-972A-974FE752C065__GUID-1EB7DAAF-8CBB-4B60-B39F-7BC27FBABBC0">express_options</p>
+                     
+                     <div class="figure" id="GUID-E6C91A9F-06BE-4D63-972A-974FE752C065__GUID-DD7D3EF6-05F1-40D5-A853-647BD37F01F3"><img id="GUID-E6C91A9F-06BE-4D63-972A-974FE752C065__IMAGE_CVH_G14_W3B" height="329" width="329" src="img/express_options.gif" alt="Description of express_options.eps follows" title="Description of express_options.eps follows" longdesc="img_text/express_options.html"><br><a href="img_text/express_options.html">Description of the illustration express_options.eps</a></div>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-E6C91A9F-06BE-4D63-972A-974FE752C065__GUID-120F647D-0AA7-4DE7-823B-E3DF0DDF5C1A">express_options_cont</p>
+                     
+                     <div class="figure" id="GUID-E6C91A9F-06BE-4D63-972A-974FE752C065__GUID-5D9173C6-7633-43D0-8294-91BE19DB1B08"><img id="GUID-E6C91A9F-06BE-4D63-972A-974FE752C065__IMAGE_GGL_H14_W3B" height="380" width="380" src="img/express_options_cont.gif" alt="Description of express_options_cont.eps follows" title="Description of express_options_cont.eps follows" longdesc="img_text/express_options_cont.html"><br><a href="img_text/express_options_cont.html">Description of the illustration express_options_cont.eps</a></div>
+                  </div>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-sql-loader-express-mode.html#GUID-8C235861-2A8B-4196-9705-E6FFED0C0C99" title="SQL*Loader express mode allows you to quickly and easily use SQL*Loader to load simple data types.">SQL*Loader Express</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

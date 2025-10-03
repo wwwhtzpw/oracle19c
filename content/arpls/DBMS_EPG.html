@@ -1,0 +1,1920 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="DBMS_EPG">
+      <meta name="abstract" content="The DBMS_EPG package implements the embedded PL/SQL gateway that enables a Web browser to invoke a PL/SQL stored procedure through an HTTP listener.">
+      <meta name="description" content="The DBMS_EPG package implements the embedded PL/SQL gateway that enables a Web browser to invoke a PL/SQL stored procedure through an HTTP listener.">
+      <meta name="DC.subject" content="DBMS_EPG package, AUTHORIZE_DAD Procedure, CREATE_DAD Procedure, DEAUTHORIZE_DAD Procedure, DELETE_DAD_ATTRIBUTE Procedure, DROP_DAD Procedure, GET_ALL_DAD_ATTRIBUTES Procedure, GET_ALL_DAD_MAPPINGS Procedure, GET_ALL_GLOBAL_ATTRIBUTES Procedure, GET_DAD_ATTRIBUTE Function, GET_DAD_LIST Procedure, GET_GLOBAL_ATTRIBUTE Function, MAP_DAD Procedure, SET_DAD_ATTRIBUTE Procedure, SET_GLOBAL_ATTRIBUTE Procedure, UNMAP_DAD Procedure">
+      <meta name="keywords" content="DBMS_EPG package, AUTHORIZE_DAD Procedure, CREATE_DAD Procedure, DEAUTHORIZE_DAD Procedure, DELETE_DAD_ATTRIBUTE Procedure, DROP_DAD Procedure, GET_ALL_DAD_ATTRIBUTES Procedure, GET_ALL_DAD_MAPPINGS Procedure, GET_ALL_GLOBAL_ATTRIBUTES Procedure, GET_DAD_ATTRIBUTE Function, GET_DAD_LIST Procedure, GET_GLOBAL_ATTRIBUTE Function, MAP_DAD Procedure, SET_DAD_ATTRIBUTE Procedure, SET_GLOBAL_ATTRIBUTE Procedure, UNMAP_DAD Procedure">
+      <meta name="DC.Creator" content="Gunjan Jain">
+      <meta name="DC.Contributor" content="Prashant Kannan">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Denis Raphaely">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Contributor" content="Drue Baker">
+      <meta name="DC.Contributor" content="Donna Carver">
+      <meta name="DC.Contributor" content="Maitreyee Chaliha">
+      <meta name="DC.Contributor" content="Beethoven Cheng">
+      <meta name="DC.Contributor" content="Rhonda Day">
+      <meta name="DC.Contributor" content="Steve Fogel">
+      <meta name="DC.Contributor" content="Bryn Llewellyn">
+      <meta name="DC.Contributor" content="Paul Lane">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Tony Morales">
+      <meta name="DC.Contributor" content="Anne Murphy">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Sue Pelski">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Antonio Romero">
+      <meta name="DC.Contributor" content="Vivian Schupmann">
+      <meta name="DC.Contributor" content="Cathy Shea">
+      <meta name="DC.Contributor" content="Margaret Taft">
+      <meta name="DC.Contributor" content="Kathy Taylor">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Contributor" content="Pat Huey">
+      <meta name="DC.Contributor" content="Drew Adams">
+      <meta name="DC.Contributor" content="Sarika Surumpudi">
+      <meta name="DC.Contributor" content="Rodney Ward">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Tanmay Choudhury">
+      <meta name="DC.Contributor" content="Roopesh Ashok Kumar">
+      <meta name="DC.Contributor" content="Atif Chaudhry">
+      <meta name="DC.Creator" content="Gunjan Jain">
+      <meta name="DC.Contributor" content="Prashant Kannan">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Denis Raphaely">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Contributor" content="Drue Baker">
+      <meta name="DC.Contributor" content="Donna Carver">
+      <meta name="DC.Contributor" content="Maitreyee Chaliha">
+      <meta name="DC.Contributor" content="Beethoven Cheng">
+      <meta name="DC.Contributor" content="Rhonda Day">
+      <meta name="DC.Contributor" content="Steve Fogel">
+      <meta name="DC.Contributor" content="Bryn Llewellyn">
+      <meta name="DC.Contributor" content="Paul Lane">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Tony Morales">
+      <meta name="DC.Contributor" content="Anne Murphy">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Sue Pelski">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Antonio Romero">
+      <meta name="DC.Contributor" content="Vivian Schupmann">
+      <meta name="DC.Contributor" content="Cathy Shea">
+      <meta name="DC.Contributor" content="Margaret Taft">
+      <meta name="DC.Contributor" content="Kathy Taylor">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Contributor" content="Pat Huey">
+      <meta name="DC.Contributor" content="Drew Adams">
+      <meta name="DC.Contributor" content="Sarika Surumpudi">
+      <meta name="DC.Contributor" content="Rodney Ward">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Tanmay Choudhury">
+      <meta name="DC.Contributor" content="Roopesh Ashok Kumar">
+      <meta name="DC.Contributor" content="Atif Chaudhry">
+      <meta name="DC.Contributor" content="Prashant Kannan">
+      <meta name="DC.Contributor" content="Louise Morin">
+      <meta name="DC.Contributor" content="Denis Raphaely">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Contributor" content="Drue Baker">
+      <meta name="DC.Contributor" content="Donna Carver">
+      <meta name="DC.Contributor" content="Maitreyee Chaliha">
+      <meta name="DC.Contributor" content="Beethoven Cheng">
+      <meta name="DC.Contributor" content="Rhonda Day">
+      <meta name="DC.Contributor" content="Steve Fogel">
+      <meta name="DC.Contributor" content="Bryn Llewellyn">
+      <meta name="DC.Contributor" content="Paul Lane">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Tony Morales">
+      <meta name="DC.Contributor" content="Anne Murphy">
+      <meta name="DC.Contributor" content="Chuck Murray">
+      <meta name="DC.Contributor" content="Sue Pelski">
+      <meta name="DC.Contributor" content="Kathy Rich">
+      <meta name="DC.Contributor" content="Antonio Romero">
+      <meta name="DC.Contributor" content="Vivian Schupmann">
+      <meta name="DC.Contributor" content="Cathy Shea">
+      <meta name="DC.Contributor" content="Margaret Taft">
+      <meta name="DC.Contributor" content="Kathy Taylor">
+      <meta name="DC.Contributor" content="Randy Urbano">
+      <meta name="DC.Contributor" content="Pat Huey">
+      <meta name="DC.Contributor" content="Drew Adams">
+      <meta name="DC.Contributor" content="Sarika Surumpudi">
+      <meta name="DC.Contributor" content="Rodney Ward">
+      <meta name="DC.Contributor" content="Rajesh Bhatiya">
+      <meta name="DC.Contributor" content="Tanmay Choudhury">
+      <meta name="DC.Contributor" content="Roopesh Ashok Kumar">
+      <meta name="DC.Contributor" content="Atif Chaudhry">
+      <meta name="DC.Creator" content="Gunjan Jain">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-096F2D39-CDDB-4850-820B-09F12B2EA8F6">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The DBMS_EPG package implements the embedded PL/SQL gateway that enables a Web browser to invoke a PL/SQL stored procedure through an HTTP listener.">
+      <meta name="description" content="The DBMS_EPG package implements the embedded PL/SQL gateway that enables a Web browser to invoke a PL/SQL stored procedure through an HTTP listener.">
+      <title>DBMS_EPG</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="PL/SQL Packages and Types Reference">
+      <meta property="og:description" content="The DBMS_EPG package implements the embedded PL/SQL gateway that enables a Web browser to invoke a PL/SQL stored procedure through an HTTP listener.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="PL/SQL Packages and Types Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-packages-and-types-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-17T01:44:29-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96430-32">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="DBMS_EDITIONS_UTILITIES.html" title="Previous" type="text/html">
+      <link rel="next" href="DBMS_ERRLOG.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database PL/SQL Packages and Types Reference">
+    <meta name="dcterms.isVersionOf" content="ARPLS">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"DBMS_EPG","description":"The DBMS_EPG package implements the embedded PL/SQL gateway that enables a Web browser to invoke a PL/SQL stored procedure through an HTTP listener.","datePublished":"2025-07-17 CST","dateModified":"2025-07-17 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="DBMS_EDITIONS_UTILITIES.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="DBMS_ERRLOG.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-096F2D39-CDDB-4850-820B-09F12B2EA8F6" name="GUID-096F2D39-CDDB-4850-820B-09F12B2EA8F6"></a><a id="ARPLS193"></a><a id="ARPLS193"></a><a id="ARPLS193"></a>
+         
+         <h2 id="ARPLS-GUID-096F2D39-CDDB-4850-820B-09F12B2EA8F6" class="sect2"><span class="enumeration_chapter">70 </span> DBMS_EPG
+         </h2>
+         <div class="ind">
+            <div>
+               <p>The <code class="codeph">DBMS_EPG</code> package implements the embedded PL/SQL gateway that enables a Web browser to invoke a PL/SQL stored procedure through an HTTP listener. 
+               </p>
+               <p>This chapter contains the following topics:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="DBMS_EPG.html#GUID-A8099753-DF89-45D9-BC78-527C0F6DFA38" title="The DBMS_EPG package is a platform on which PL/SQL users develop and deploy PL/SQL Web applications. The embedded PL/SQL gateway is an embedded version of the gateway that runs in the XML database HTTP server in the Oracle database. It provides the core features of mod_plsql in the database but does not require the Oracle HTTP server powered by Apache.">Overview</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_EPG.html#GUID-36F69C4E-31DE-407D-8DD1-5F81C113FF3A" title='The XDBADMIN role is required to invoke the configuration interface. It may invoked by the database user "XDB".'>Security Model</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_EPG.html#GUID-50D6434E-C557-4D5D-B35C-BFBE2019EE03" title="The table in this topic lists the exceptions raised by the DBMS_EPG package.">Exceptions</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_EPG.html#GUID-DB82B10B-D4EF-40E0-B25F-8A9FC7237FC3" title="The DBMS_EPG package defines a TABLE type.">Data Structures</a></p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="DBMS_EPG.html#GUID-DB82B10B-D4EF-40E0-B25F-8A9FC7237FC3__BEJHAGAE">VARCHAR2_TABLE Table Type</a></p>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_EPG.html#GUID-71E6BAD7-7BBB-4B0A-A484-EE40D649775D" title="The DBMS_EPG consists of two interfaces: configuration subprograms and authorization subprograms.">Subprogram Groups</a></p>
+                  </li>
+                  <li>
+                     <p><a href="DBMS_EPG.html#GUID-3CC03617-90CB-4610-ADFE-BC495D100BA8" title="This table lists the DBMS_ALERT subprograms and briefly describes them.">Summary of DBMS_EPG Subprograms</a></p>
+                  </li>
+               </ul>
+            </div><a id="ARPLS66274"></a><a id="ARPLS66274"></a><a id="ARPLS66274"></a><div class="props_rev_3"><a id="GUID-A8099753-DF89-45D9-BC78-527C0F6DFA38" name="GUID-A8099753-DF89-45D9-BC78-527C0F6DFA38"></a><h3 id="ARPLS-GUID-A8099753-DF89-45D9-BC78-527C0F6DFA38" class="sect3"><span class="enumeration_section">70.1 </span>DBMS_EPG Overview
+               </h3>
+               <div>
+                  <p>The <code class="codeph">DBMS_EPG</code> package is a platform on which PL/SQL users develop and deploy PL/SQL Web applications. The embedded PL/SQL gateway is an embedded version of the gateway that runs in the XML database HTTP server in the Oracle database. It provides the core features of <code class="codeph">mod_plsql</code> in the database but does not require the Oracle HTTP server powered by Apache.
+                  </p>
+                  <div class="section">
+                     <p><a id="d466066e630" class="indexterm-anchor"></a>In order to make a PL/SQL application accessible from a browser by way of HTTP, a Database Access Descriptor (DAD) must be created and mapped to a virtual path. A DAD is a set of configuration values used for database access and the virtual path mapping makes the application accessible under a virtual path of the XML DB HTTP Server. A DAD is represented as a servlet in XML DB HTTP Server.
+                     </p>
+                  </div>
+               </div>
+            </div><a id="ARPLS66275"></a><a id="ARPLS66275"></a><a id="ARPLS66275"></a><div class="props_rev_3"><a id="GUID-36F69C4E-31DE-407D-8DD1-5F81C113FF3A" name="GUID-36F69C4E-31DE-407D-8DD1-5F81C113FF3A"></a><h3 id="ARPLS-GUID-36F69C4E-31DE-407D-8DD1-5F81C113FF3A" class="sect3"><span class="enumeration_section">70.2 </span>DBMS_EPG Security Model
+               </h3>
+               <div>
+                  <p>The <code class="codeph">XDBADMIN</code> role is required to invoke the configuration interface. It may invoked by the database user "<code class="codeph">XDB</code>".
+                  </p>
+                  <div class="section">
+                     <p>The authorization interface can be invoked by any user.</p>
+                  </div>
+               </div>
+            </div><a id="ARPLS66276"></a><a id="ARPLS66277"></a><a id="ARPLS66277"></a><a id="ARPLS66276"></a><a id="ARPLS66277"></a><a id="ARPLS66276"></a><div class="props_rev_3"><a id="GUID-50D6434E-C557-4D5D-B35C-BFBE2019EE03" name="GUID-50D6434E-C557-4D5D-B35C-BFBE2019EE03"></a><h3 id="ARPLS-GUID-50D6434E-C557-4D5D-B35C-BFBE2019EE03" class="sect3"><span class="enumeration_section">70.3 </span>DBMS_EPG Exceptions
+               </h3>
+               <div>
+                  <p>The table in this topic lists the exceptions raised by the <code class="codeph">DBMS_EPG</code> package.
+                  </p>
+                  <div class="tblformal" id="GUID-50D6434E-C557-4D5D-B35C-BFBE2019EE03__GUID-C5B9E410-5F99-4E79-B526-A6BD36959187">
+                     <p class="titleintable">Table 70-1 DBMS_EPG Exceptions</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="DBMS_EPG Exceptions" summary="The table describes the exceptions raised by the DBMS_EPG package." width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="25%" id="d466066e1266">Exception</th>
+                              <th align="left" valign="bottom" width="18%" id="d466066e1269">Error Code</th>
+                              <th align="left" valign="bottom" width="58%" id="d466066e1272">Description</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="25%" id="d466066e1277" headers="d466066e1266 ">
+                                 <p><code class="codeph">DAD_NOT_FOUND</code></p>
+                              </td>
+                              <td align="left" valign="top" width="18%" headers="d466066e1277 d466066e1269 ">
+                                 <p>20000</p>
+                              </td>
+                              <td align="left" valign="top" width="58%" headers="d466066e1277 d466066e1272 ">
+                                 <p>Database Access Descriptor (DAD) %s not found. Ensure that the name of the DAD is correct and that it exists.</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div><a id="ARPLS66278"></a><a id="ARPLS66278"></a><a id="ARPLS66278"></a><div class="props_rev_3"><a id="GUID-DB82B10B-D4EF-40E0-B25F-8A9FC7237FC3" name="GUID-DB82B10B-D4EF-40E0-B25F-8A9FC7237FC3"></a><h3 id="ARPLS-GUID-DB82B10B-D4EF-40E0-B25F-8A9FC7237FC3" class="sect3"><span class="enumeration_section">70.4 </span>DBMS_EPG Data Structures
+               </h3>
+               <div>
+                  <p>The <code class="codeph">DBMS_EPG</code> package defines a <code class="codeph">TABLE</code> type.
+                  </p>
+                  <div class="section" id="GUID-DB82B10B-D4EF-40E0-B25F-8A9FC7237FC3__BEJHAGAE">
+                     <p class="subhead2" id="GUID-DB82B10B-D4EF-40E0-B25F-8A9FC7237FC3__GUID-654B3426-CEBD-4981-A4DF-CC4C9008353B">VARCHAR2_TABLE Table Type</p>
+                     <p>This type is used by the procedures <code class="codeph">GET_ALL_GLOBAL_ATTRIBUTES</code>, <code class="codeph">GET_ALL_DAD_ATTRIBUTES</code>, <code class="codeph">GET_ALL_DAD_MAPPINGS</code>, and <code class="codeph">GET_DAD_LIST</code> to return lists of attribute names, attribute values, virtual paths, and database access descriptors (DAD).
+                     </p><pre class="oac_no_warn" dir="ltr">TYPE VARCHAR2_TABLE IS TABLE OF VARCHAR2(4000) INDEX BY BINARY_INTEGER;</pre></div>
+               </div>
+            </div><a id="ARPLS66279"></a><a id="ARPLS66279"></a><a id="ARPLS66279"></a><div class="props_rev_3"><a id="GUID-71E6BAD7-7BBB-4B0A-A484-EE40D649775D" name="GUID-71E6BAD7-7BBB-4B0A-A484-EE40D649775D"></a><h3 id="ARPLS-GUID-71E6BAD7-7BBB-4B0A-A484-EE40D649775D" class="sect3"><span class="enumeration_section">70.5 </span>DBMS_EPG Subprogram Groups
+               </h3>
+               <div>
+                  <p>The DBMS_EPG consists of two interfaces: configuration subprograms and authorization subprograms.</p>
+                  <div class="section">
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a></p>
+                        </li>
+                        <li>
+                           <p><a href="DBMS_EPG.html#GUID-2E5362D9-9A8D-4ACD-B362-C5C64D02558F" title="The Authorization subprogram group contains the subprogram interfaces to authorize and deauthorize the use of a database user's privileges by the embedded PL/SQL gateway through a specific database access descriptor (DAD)">Authorization Subprograms</a></p>
+                        </li>
+                     </ul>
+                  </div>
+               </div><a id="ARPLS66280"></a><a id="ARPLS66281"></a><a id="ARPLS66281"></a><a id="ARPLS66280"></a><a id="ARPLS66281"></a><a id="ARPLS66280"></a><div class="props_rev_3"><a id="GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" name="GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35"></a><h4 id="ARPLS-GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" class="sect4"><span class="enumeration_section">70.5.1 </span>DBMS_EPG Configuration Subprograms
+                  </h4>
+                  <div>
+                     <p>The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.</p>
+                     <div class="tblformal" id="GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35__GUID-39112D8E-30D5-4CE1-8845-56B19C7B8C17">
+                        <p class="titleintable">Table 70-2  Configuration Subprogram Group</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title=" Configuration Subprogram Group" summary="This table lists the Configuration&gt; subprograms of DBMS_EPG in alphabetical order and briefly describes them." width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="46%" id="d466066e2322">Subprogram</th>
+                                 <th align="left" valign="bottom" width="54%" id="d466066e2325">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2330" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-262EC395-DE46-47D2-A510-8640CFAE4E2E" title="This procedure creates a new DAD.">CREATE_DAD Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2330 d466066e2325 ">
+                                    <p>Creates a new DAD</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2342" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-308E656D-4204-45FF-ABA3-D8A6547209CD" title="This procedure deletes a DAD attribute.">DELETE_DAD_ATTRIBUTE Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2342 d466066e2325 ">
+                                    <p>Deletes a DAD attribute</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2354" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-A70F309D-A19B-4D63-BA30-3B39EA29D54F" title="This procedure deletes a global attribute.">DELETE_GLOBAL_ATTRIBUTE Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2354 d466066e2325 ">
+                                    <p>Deletes a global attribute</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2366" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-34345742-67AE-4B49-AC74-B517B555D622" title="This procedure drops a DAD. All the virtual-path mappings of the DAD will be dropped also.">DROP_DAD Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2366 d466066e2325 ">
+                                    <p>Drops a DAD</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2378" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-35331B5C-2CD8-41B5-9EE9-8268A443B26C" title="This procedure retrieves all the attributes of a DAD. The outputs are 2 correlated index-by tables of the name/value pairs.">GET_ALL_DAD_ATTRIBUTES Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2378 d466066e2325 ">
+                                    <p>Retrieves all the attributes of a DAD.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2390" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-C9B0FD8C-A007-497A-9ACC-8A3CA1F64516" title="This procedure retrieves all the virtual paths to which the specified DAD is mapped.">GET_ALL_DAD_MAPPINGS Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2390 d466066e2325 ">
+                                    <p>Retrieves all virtual paths to which the specified DAD is mapped.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2402" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-3A16E199-0442-40F1-B31B-0C82D1151FEA" title="This procedure retrieves all global attributes and values. The outputs are 2 correlated index-by tables of the name/value pairs.">GET_ALL_GLOBAL_ATTRIBUTES Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2402 d466066e2325 ">
+                                    <p>Retrieves all global attributes and values</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2414" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-9848B5B4-38EA-4CFB-9B8F-CA9E6969F367" title="This procedure retrieves the value of a DAD attribute.">GET_DAD_ATTRIBUTE Function</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2414 d466066e2325 ">
+                                    <p>Retrieves the value of a DAD attribute</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2426" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-4DFBBC86-CECB-404F-8050-0CF4BB56BD5A" title="This procedure retrieves a list of all DADs for an Embedded Gateway instance.">GET_DAD_LIST Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2426 d466066e2325 ">
+                                    <p>Retrieves a list of all DADs for an Embedded Gateway instance.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2438" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-B786ABD3-5435-42AC-B25E-9354B6C0D087" title="This function retrieves the value of a global attribute.">GET_GLOBAL_ATTRIBUTE Function</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2438 d466066e2325 ">
+                                    <p>Retrieves the value of a global attribute</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2450" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-4CE056C4-18C0-4AE9-B8A6-5D3B5E55831C" title="This procedure maps a DAD to the specified virtual path. If the virtual path exists already, the old virtual-path mapping will be overridden.">MAP_DAD Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2450 d466066e2325 ">
+                                    <p>Maps a DAD to the specified virtual path.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2463" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765" title="This procedure sets the value for a DAD.">SET_DAD_ATTRIBUTE Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2463 d466066e2325 ">
+                                    <p>Sets the value for a DAD</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2475" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA" title="This procedure sets the value of a global attribute.">SET_GLOBAL_ATTRIBUTE Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2475 d466066e2325 ">
+                                    <p>Sets the value of a global attribute</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2487" headers="d466066e2322 ">
+                                    <p><a href="DBMS_EPG.html#GUID-A1549EB3-3405-4885-95F6-605977652AB5" title="This procedure unmaps a DAD from the specified virtual path. If path is NULL, the procedure removes all virtual-path mappings for the DAD but keeps the DAD.">UNMAP_DAD Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2487 d466066e2325 ">
+                                    <p>Unmaps a DAD from the specified virtual path</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div><a id="ARPLS66282"></a><a id="ARPLS66283"></a><a id="ARPLS66283"></a><a id="ARPLS66282"></a><a id="ARPLS66283"></a><a id="ARPLS66282"></a><div class="props_rev_3"><a id="GUID-2E5362D9-9A8D-4ACD-B362-C5C64D02558F" name="GUID-2E5362D9-9A8D-4ACD-B362-C5C64D02558F"></a><h4 id="ARPLS-GUID-2E5362D9-9A8D-4ACD-B362-C5C64D02558F" class="sect4"><span class="enumeration_section">70.5.2 </span>DBMS_EPG Authorization Subprograms
+                  </h4>
+                  <div>
+                     <p>The Authorization subprogram group contains the subprogram interfaces to authorize and deauthorize the use of a database user's privileges by the embedded PL/SQL gateway through a specific database access descriptor (DAD)</p>
+                     <div class="tblformal" id="GUID-2E5362D9-9A8D-4ACD-B362-C5C64D02558F__GUID-D32F47E1-DB86-4ED3-AB48-7A0554C7466D">
+                        <p class="titleintable">Table 70-3  Authorization Subprogram Group</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title=" Authorization Subprogram Group" summary="This table lists the DBMS_EPG subprograms in alphabetical order and briefly describes them." width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="46%" id="d466066e2887">Subprogram</th>
+                                 <th align="left" valign="bottom" width="54%" id="d466066e2890">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2895" headers="d466066e2887 ">
+                                    <p><a href="DBMS_EPG.html#GUID-D9C71356-B91F-4A24-AA0E-36D578DDE336" title="This procedure authorizes a DAD to invoke procedures and access document tables with a database user's privileges. The invoker can always authorize the use of her/his own privileges.">AUTHORIZE_DAD Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2895 d466066e2890 ">
+                                    <p>Authorizes a DAD to invoke procedures and access document tables with a database user's privileges</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="46%" id="d466066e2907" headers="d466066e2887 ">
+                                    <p><a href="DBMS_EPG.html#GUID-56C21AFD-607A-4193-B308-B99E161874E5" title="This procedure deauthorizes a DAD with regard to invoking procedures and accessing document tables with a database user's privileges. The invoker can always deauthorize the use of his own privileges.">DEAUTHORIZE_DAD Procedure</a></p>
+                                 </td>
+                                 <td align="left" valign="top" width="54%" headers="d466066e2907 d466066e2890 ">
+                                    <p>Deauthorizes a DAD with regard to invoking procedures and accessing document tables with a database user's privileges</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="ARPLS66284"></a><a id="ARPLS66285"></a><a id="ARPLS66285"></a><a id="ARPLS66284"></a><a id="ARPLS66285"></a><a id="ARPLS66284"></a><div class="props_rev_3"><a id="GUID-3CC03617-90CB-4610-ADFE-BC495D100BA8" name="GUID-3CC03617-90CB-4610-ADFE-BC495D100BA8"></a><h3 id="ARPLS-GUID-3CC03617-90CB-4610-ADFE-BC495D100BA8" class="sect3"><span class="enumeration_section">70.6 </span>Summary of DBMS_EPG Subprograms
+               </h3>
+               <div>
+                  <p>This table lists the <code class="codeph">DBMS_ALERT</code> subprograms and briefly describes them.
+                  </p>
+                  <div class="tblformal" id="GUID-3CC03617-90CB-4610-ADFE-BC495D100BA8__GUID-DB81657D-1B7B-47AE-AAA9-80C7F86F6BA6">
+                     <p class="titleintable">Table 70-4  DBMS_EPG Package Subprograms</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title=" DBMS_EPG Package Subprograms" summary="This table lists the DBMS_ALERT subprograms in alphabetical order and briefly describes them." width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="46%" id="d466066e3237">Subprogram</th>
+                              <th align="left" valign="bottom" width="54%" id="d466066e3240">Description</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3245" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-D9C71356-B91F-4A24-AA0E-36D578DDE336" title="This procedure authorizes a DAD to invoke procedures and access document tables with a database user's privileges. The invoker can always authorize the use of her/his own privileges.">AUTHORIZE_DAD Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3245 d466066e3240 ">
+                                 <p>authorizes a DAD to invoke procedures and access document tables with a database user's privileges</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3257" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-262EC395-DE46-47D2-A510-8640CFAE4E2E" title="This procedure creates a new DAD.">CREATE_DAD Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3257 d466066e3240 ">
+                                 <p>Creates a new DAD</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3269" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-56C21AFD-607A-4193-B308-B99E161874E5" title="This procedure deauthorizes a DAD with regard to invoking procedures and accessing document tables with a database user's privileges. The invoker can always deauthorize the use of his own privileges.">DEAUTHORIZE_DAD Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3269 d466066e3240 ">
+                                 <p>Deauthorizes a DAD with regard to invoking procedures and accessing document tables with a database user's privileges</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3281" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-308E656D-4204-45FF-ABA3-D8A6547209CD" title="This procedure deletes a DAD attribute.">DELETE_DAD_ATTRIBUTE Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3281 d466066e3240 ">
+                                 <p>Deletes a DAD attribute</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3293" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-A70F309D-A19B-4D63-BA30-3B39EA29D54F" title="This procedure deletes a global attribute.">DELETE_GLOBAL_ATTRIBUTE Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3293 d466066e3240 ">
+                                 <p>Deletes a global attribute</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3305" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-34345742-67AE-4B49-AC74-B517B555D622" title="This procedure drops a DAD. All the virtual-path mappings of the DAD will be dropped also.">DROP_DAD Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3305 d466066e3240 ">
+                                 <p>Drops a DAD</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3317" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-35331B5C-2CD8-41B5-9EE9-8268A443B26C" title="This procedure retrieves all the attributes of a DAD. The outputs are 2 correlated index-by tables of the name/value pairs.">GET_ALL_DAD_ATTRIBUTES Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3317 d466066e3240 ">
+                                 <p>Retrieves all the attributes of a DAD.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3329" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-C9B0FD8C-A007-497A-9ACC-8A3CA1F64516" title="This procedure retrieves all the virtual paths to which the specified DAD is mapped.">GET_ALL_DAD_MAPPINGS Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3329 d466066e3240 ">
+                                 <p>Retrieves all virtual paths to which the specified DAD is mapped.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3341" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-3A16E199-0442-40F1-B31B-0C82D1151FEA" title="This procedure retrieves all global attributes and values. The outputs are 2 correlated index-by tables of the name/value pairs.">GET_ALL_GLOBAL_ATTRIBUTES Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3341 d466066e3240 ">
+                                 <p>Retrieves all global attributes and values</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3353" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-9848B5B4-38EA-4CFB-9B8F-CA9E6969F367" title="This procedure retrieves the value of a DAD attribute.">GET_DAD_ATTRIBUTE Function</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3353 d466066e3240 ">
+                                 <p>Retrieves the value of a DAD attribute</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3365" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-4DFBBC86-CECB-404F-8050-0CF4BB56BD5A" title="This procedure retrieves a list of all DADs for an Embedded Gateway instance.">GET_DAD_LIST Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3365 d466066e3240 ">
+                                 <p>Retrieves a list of all DADs for an Embedded Gateway instance.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3378" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-B786ABD3-5435-42AC-B25E-9354B6C0D087" title="This function retrieves the value of a global attribute.">GET_GLOBAL_ATTRIBUTE Function</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3378 d466066e3240 ">
+                                 <p>Retrieves the value of a global attribute</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3390" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-4CE056C4-18C0-4AE9-B8A6-5D3B5E55831C" title="This procedure maps a DAD to the specified virtual path. If the virtual path exists already, the old virtual-path mapping will be overridden.">MAP_DAD Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3390 d466066e3240 ">
+                                 <p>Maps a DAD to the specified virtual path.</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3402" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765" title="This procedure sets the value for a DAD.">SET_DAD_ATTRIBUTE Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3402 d466066e3240 ">
+                                 <p>Sets the value for a DAD</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3414" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA" title="This procedure sets the value of a global attribute.">SET_GLOBAL_ATTRIBUTE Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3414 d466066e3240 ">
+                                 <p>Sets the value of a global attribute</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="46%" id="d466066e3426" headers="d466066e3237 ">
+                                 <p><a href="DBMS_EPG.html#GUID-A1549EB3-3405-4885-95F6-605977652AB5" title="This procedure unmaps a DAD from the specified virtual path. If path is NULL, the procedure removes all virtual-path mappings for the DAD but keeps the DAD.">UNMAP_DAD Procedure</a></p>
+                              </td>
+                              <td align="left" valign="top" width="54%" headers="d466066e3426 d466066e3240 ">
+                                 <p>Unmaps a DAD from the specified virtual path</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div><a id="ARPLS66286"></a><a id="ARPLS66287"></a><a id="ARPLS66287"></a><a id="ARPLS66286"></a><a id="ARPLS66287"></a><a id="ARPLS66286"></a><div class="props_rev_3"><a id="GUID-D9C71356-B91F-4A24-AA0E-36D578DDE336" name="GUID-D9C71356-B91F-4A24-AA0E-36D578DDE336"></a><h4 id="ARPLS-GUID-D9C71356-B91F-4A24-AA0E-36D578DDE336" class="sect4"><span class="enumeration_section">70.6.1 </span>AUTHORIZE_DAD Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure authorizes a DAD to invoke procedures and access document tables with a database user's privileges. The invoker can always authorize the use of her/his own privileges. </p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-D9C71356-B91F-4A24-AA0E-36D578DDE336__GUID-280647C4-1781-43F7-82B9-0A839BB9B225">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-2E5362D9-9A8D-4ACD-B362-C5C64D02558F" title="The Authorization subprogram group contains the subprogram interfaces to authorize and deauthorize the use of a database user's privileges by the embedded PL/SQL gateway through a specific database access descriptor (DAD)">Authorization Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D9C71356-B91F-4A24-AA0E-36D578DDE336__GUID-2670477A-03F4-4766-B9F6-D824369F6258">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.AUTHORIZE_DAD (
+   dad_name  IN  VARCHAR2,
+   path     IN  VARCHAR2 DEFAULT NULL);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D9C71356-B91F-4A24-AA0E-36D578DDE336__GUID-1E5AACAE-FEB1-4AF1-87B2-9F367C837E36">Parameters</p>
+                        <div class="tblformal" id="GUID-D9C71356-B91F-4A24-AA0E-36D578DDE336__GUID-4B187465-3003-4A1E-A084-B7189F99DEC3">
+                           <p class="titleintable">Table 70-5 AUTHORIZE_DAD Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="AUTHORIZE_DAD Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.AUTHORIZE.DAD." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e3847">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e3850">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e3855" headers="d466066e3847 ">
+                                       <p><code class="codeph">dad_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e3855 d466066e3850 ">
+                                       <p>The name of the DAD to create</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e3863" headers="d466066e3847 ">
+                                       <p><code class="codeph">user</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e3863 d466066e3850 ">
+                                       <p>The user whose privileges to deauthorize. If use, the invoker is assumed.</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D9C71356-B91F-4A24-AA0E-36D578DDE336__GUID-AD03D7A1-B1BF-40A0-B0B9-A4DE402B614D">Usage Notes</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>To authorize the use of another user's privileges, the invoker must have the <code class="codeph">ALTER</code> <code class="codeph">USER</code> system privilege. 
+                              </p>
+                           </li>
+                           <li>
+                              <p>The DAD must exist but its "database-username" DAD attribute does not have to be set to user to authorize.</p>
+                           </li>
+                           <li>
+                              <p>Multiple users can authorize the same DAD and it is up to the DAD's "database-username" setting to decide which user's privileges to use. </p>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D9C71356-B91F-4A24-AA0E-36D578DDE336__GUID-425B024C-6DF0-493E-B169-6A4206196AC6">Exceptions</p>
+                        <p>Raises an error if the DAD or user does not exist, or the invoker does not have the needed system privilege.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-D9C71356-B91F-4A24-AA0E-36D578DDE336__GUID-6B28E541-6DA3-4AD6-89B2-FC6ACAB11D48">Examples</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.AUTHORIZE_DAD('HR');</pre></div>
+                  </div>
+               </div><a id="ARPLS66288"></a><a id="ARPLS66289"></a><a id="ARPLS66289"></a><a id="ARPLS66288"></a><a id="ARPLS66289"></a><a id="ARPLS66288"></a><div class="props_rev_3"><a id="GUID-262EC395-DE46-47D2-A510-8640CFAE4E2E" name="GUID-262EC395-DE46-47D2-A510-8640CFAE4E2E"></a><h4 id="ARPLS-GUID-262EC395-DE46-47D2-A510-8640CFAE4E2E" class="sect4"><span class="enumeration_section">70.6.2 </span>CREATE_DAD Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure creates a new DAD. </p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-262EC395-DE46-47D2-A510-8640CFAE4E2E__GUID-0CC07E7B-7C82-4BBC-8E0E-88CE21C22C5F">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-262EC395-DE46-47D2-A510-8640CFAE4E2E__GUID-C72323D2-EFA5-4B6A-B104-7E6D902E4C68">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.CREATE_DAD (
+   dad_name  IN  VARCHAR2,
+   path      IN  VARCHAR2 DEFAULT NULL);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-262EC395-DE46-47D2-A510-8640CFAE4E2E__GUID-58FB9E68-D626-4597-AABD-185FEC384FE6">Parameters</p>
+                        <div class="tblformal" id="GUID-262EC395-DE46-47D2-A510-8640CFAE4E2E__GUID-3472D3DF-131D-445F-B708-CAD9A675238B">
+                           <p class="titleintable">Table 70-6 CREATE_DAD Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="CREATE_DAD Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.CREATE_DAD." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e4307">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e4310">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e4315" headers="d466066e4307 ">
+                                       <p><code class="codeph">dad_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e4315 d466066e4310 ">
+                                       <p>The name of the DAD to create</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e4323" headers="d466066e4307 ">
+                                       <p><code class="codeph">path</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e4323 d466066e4310 ">
+                                       <p>The virtual path to which to map the DAD</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div><a id="ARPLS66290"></a><a id="ARPLS66291"></a><a id="ARPLS66291"></a><a id="ARPLS66290"></a><a id="ARPLS66291"></a><a id="ARPLS66290"></a><div class="props_rev_3"><a id="GUID-56C21AFD-607A-4193-B308-B99E161874E5" name="GUID-56C21AFD-607A-4193-B308-B99E161874E5"></a><h4 id="ARPLS-GUID-56C21AFD-607A-4193-B308-B99E161874E5" class="sect4"><span class="enumeration_section">70.6.3 </span>DEAUTHORIZE_DAD Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure deauthorizes a DAD with regard to invoking procedures and accessing document tables with a database user's privileges. The invoker can always deauthorize the use of his own privileges. </p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-56C21AFD-607A-4193-B308-B99E161874E5__GUID-C9E52766-F5BE-4E04-9366-2043623E66D8">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-2E5362D9-9A8D-4ACD-B362-C5C64D02558F" title="The Authorization subprogram group contains the subprogram interfaces to authorize and deauthorize the use of a database user's privileges by the embedded PL/SQL gateway through a specific database access descriptor (DAD)">Authorization Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-56C21AFD-607A-4193-B308-B99E161874E5__GUID-39FBACC7-067C-46C3-AF8D-38EEC6D14318">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.DEAUTHORIZE_DAD (
+   dad_name  IN  VARCHAR2,
+   path      IN  VARCHAR2 DEFAULT NULL);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-56C21AFD-607A-4193-B308-B99E161874E5__GUID-81F08FF2-898A-42E5-8230-BE3540DA1728">Parameters</p>
+                        <div class="tblformal" id="GUID-56C21AFD-607A-4193-B308-B99E161874E5__GUID-FC12B7E3-A61E-42DF-9247-1D7C0188665C">
+                           <p class="titleintable">Table 70-7 DEAUTHORIZE_DAD Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="DEAUTHORIZE_DAD Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.DEAUTHORIZE.DAD." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e4737">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e4740">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e4745" headers="d466066e4737 ">
+                                       <p><code class="codeph">dad_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e4745 d466066e4740 ">
+                                       <p>The name of the DAD for which to deauthorize use</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e4753" headers="d466066e4737 ">
+                                       <p><code class="codeph">user</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e4753 d466066e4740 ">
+                                       <p>The user whose privileges to deauthorize. If use, the invoker is assumed.</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-56C21AFD-607A-4193-B308-B99E161874E5__GUID-5FDD661A-A29A-4049-93EA-BFC4165F9B87">Usage Notes</p>
+                        <p>To deauthorize the use of another user's privileges, the invoker must have the <code class="codeph">ALTER</code> <code class="codeph">USER</code> system privilege. 
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-56C21AFD-607A-4193-B308-B99E161874E5__GUID-05308A69-51CB-465C-A069-653F03C07EF3">Exceptions</p>
+                        <p>Raises an error if the DAD or user does not exist, or the invoker does not have the needed system privilege.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-56C21AFD-607A-4193-B308-B99E161874E5__GUID-772C71CC-4B7B-46B8-891D-E05075C4D29E">Examples</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.DEAUTHORIZE_DAD('HR');</pre></div>
+                  </div>
+               </div><a id="ARPLS66292"></a><a id="ARPLS66293"></a><a id="ARPLS66293"></a><a id="ARPLS66292"></a><a id="ARPLS66293"></a><a id="ARPLS66292"></a><div class="props_rev_3"><a id="GUID-308E656D-4204-45FF-ABA3-D8A6547209CD" name="GUID-308E656D-4204-45FF-ABA3-D8A6547209CD"></a><h4 id="ARPLS-GUID-308E656D-4204-45FF-ABA3-D8A6547209CD" class="sect4"><span class="enumeration_section">70.6.4 </span>DELETE_DAD_ATTRIBUTE Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure deletes a DAD attribute. </p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-308E656D-4204-45FF-ABA3-D8A6547209CD__GUID-DC2D34FD-F930-4C00-83F8-5D9BF6493C7E">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-308E656D-4204-45FF-ABA3-D8A6547209CD__GUID-9E63ACC3-65B1-4138-99F0-E254DE9644EE">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.DELETE_DAD_ATTRIBUTE (
+   dad_name      IN  VARCHAR2,
+   attr_name     IN  VARCHAR2);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-308E656D-4204-45FF-ABA3-D8A6547209CD__GUID-30E5E10A-5BCC-4F00-91B4-429ABEAF68C4">Parameters</p>
+                        <div class="tblformal" id="GUID-308E656D-4204-45FF-ABA3-D8A6547209CD__GUID-45050AE1-E7C6-4ABE-997A-21B5039949F2">
+                           <p class="titleintable">Table 70-8 DELETE_DAD_ATTRIBUTE Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="DELETE_DAD_ATTRIBUTE Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.DELETE_DAD_ATTRIBUTE." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="25%" id="d466066e5188">Parameter</th>
+                                    <th align="left" valign="bottom" width="75%" id="d466066e5191">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e5196" headers="d466066e5188 ">
+                                       <p><code class="codeph">dad_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="75%" headers="d466066e5196 d466066e5191 ">
+                                       <p>The name of the DAD for which to delete a DAD attribute</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e5204" headers="d466066e5188 ">
+                                       <p><code class="codeph">attr_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="75%" headers="d466066e5204 d466066e5191 ">
+                                       <p>The name of the DAD attribute to delete</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-308E656D-4204-45FF-ABA3-D8A6547209CD__GUID-5A55B74E-7551-4421-94E9-7BABD227B29C">Exceptions</p>
+                        <p>Raises an error if DAD does not exist</p>
+                     </div>
+                  </div>
+               </div><a id="ARPLS66294"></a><a id="ARPLS66295"></a><a id="ARPLS66295"></a><a id="ARPLS66294"></a><a id="ARPLS66295"></a><a id="ARPLS66294"></a><div class="props_rev_3"><a id="GUID-A70F309D-A19B-4D63-BA30-3B39EA29D54F" name="GUID-A70F309D-A19B-4D63-BA30-3B39EA29D54F"></a><h4 id="ARPLS-GUID-A70F309D-A19B-4D63-BA30-3B39EA29D54F" class="sect4"><span class="enumeration_section">70.6.5 </span>DELETE_GLOBAL_ATTRIBUTE Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure deletes a global attribute. </p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-A70F309D-A19B-4D63-BA30-3B39EA29D54F__GUID-BBE2719B-309C-4017-B8A1-5D74608F43B8">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A70F309D-A19B-4D63-BA30-3B39EA29D54F__GUID-224AB849-5BA3-45D8-8DCE-823292761D33">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.DELETE_GLOBAL_ATTRIBUTE (
+   attr_name     IN  VARCHAR2);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A70F309D-A19B-4D63-BA30-3B39EA29D54F__GUID-B6EE8219-BA21-4119-8F03-899343B601D3">Parameters</p>
+                        <div class="tblformal" id="GUID-A70F309D-A19B-4D63-BA30-3B39EA29D54F__GUID-17CCCA4C-13F8-46A7-9DE1-28B2B3F2E7EC">
+                           <p class="titleintable">Table 70-9 DELETE_GLOBAL_ATTRIBUTE Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="DELETE_GLOBAL_ATTRIBUTE Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.DELETE_GLOBAL_ATTRIBUTE." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e5624">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e5627">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e5632" headers="d466066e5624 ">
+                                       <p><code class="codeph">attr_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e5632 d466066e5627 ">
+                                       <p>The global attribute to delete</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div><a id="ARPLS66296"></a><a id="ARPLS66297"></a><a id="ARPLS66297"></a><a id="ARPLS66296"></a><a id="ARPLS66297"></a><a id="ARPLS66296"></a><div class="props_rev_3"><a id="GUID-34345742-67AE-4B49-AC74-B517B555D622" name="GUID-34345742-67AE-4B49-AC74-B517B555D622"></a><h4 id="ARPLS-GUID-34345742-67AE-4B49-AC74-B517B555D622" class="sect4"><span class="enumeration_section">70.6.6 </span>DROP_DAD Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure drops a DAD. All the virtual-path mappings of the DAD will be dropped also.</p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-34345742-67AE-4B49-AC74-B517B555D622__GUID-D44F33D0-AF02-46C1-8FB7-BC789B39D731">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-34345742-67AE-4B49-AC74-B517B555D622__GUID-6C5AFE04-F6DB-48DF-895D-BEAA440A78D5">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.DROP_DAD (
+   dadname  IN  VARCHAR2);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-34345742-67AE-4B49-AC74-B517B555D622__GUID-F7F46BBE-743F-43FF-AEBA-FD460E46772F">Parameters</p>
+                        <div class="tblformal" id="GUID-34345742-67AE-4B49-AC74-B517B555D622__GUID-05059460-480E-4925-B03F-39711A29C38B">
+                           <p class="titleintable">Table 70-10 DROP_DAD Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="DROP_DAD Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.DROP_DAD." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e6046">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e6049">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e6054" headers="d466066e6046 ">
+                                       <p><code class="codeph">dad_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e6054 d466066e6049 ">
+                                       <p>The DAD to drop</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-34345742-67AE-4B49-AC74-B517B555D622__GUID-913CF1A6-B6AE-4F52-A028-7FB089067DAA">Exceptions</p>
+                        <p>Raises an error if the DAD does not exist.</p>
+                     </div>
+                  </div>
+               </div><a id="ARPLS66298"></a><a id="ARPLS66299"></a><a id="ARPLS66299"></a><a id="ARPLS66298"></a><a id="ARPLS66299"></a><a id="ARPLS66298"></a><div class="props_rev_3"><a id="GUID-35331B5C-2CD8-41B5-9EE9-8268A443B26C" name="GUID-35331B5C-2CD8-41B5-9EE9-8268A443B26C"></a><h4 id="ARPLS-GUID-35331B5C-2CD8-41B5-9EE9-8268A443B26C" class="sect4"><span class="enumeration_section">70.6.7 </span>GET_ALL_DAD_ATTRIBUTES Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure retrieves all the attributes of a DAD. The outputs are 2 correlated index-by tables of the name/value pairs.</p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-35331B5C-2CD8-41B5-9EE9-8268A443B26C__GUID-F383E03B-F071-4B32-89E4-A83B996172C3">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-35331B5C-2CD8-41B5-9EE9-8268A443B26C__GUID-A84223B3-E7BC-48E1-B17A-36803AA381D7">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.GET_ALL_DAD_ATTRIBUTES (
+   dad_name      IN          VARCHAR2,
+   attr_names    OUT NOCOPY  VARCHAR2_TABLE,                       
+   attr_values   OUT NOCOPY  VARCHAR2_TABLE);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-35331B5C-2CD8-41B5-9EE9-8268A443B26C__GUID-8B71FE96-1111-4B96-A733-0C6864CDC519">Parameters</p>
+                        <div class="tblformal" id="GUID-35331B5C-2CD8-41B5-9EE9-8268A443B26C__GUID-88DF2587-A283-47FA-B0CB-62809D1D2535">
+                           <p class="titleintable">Table 70-11 GET_ALL_DAD_ATTRIBUTES Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="GET_ALL_DAD_ATTRIBUTES Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.GET_ALL_DAD_ATTRIBUTES." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e6473">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e6476">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e6481" headers="d466066e6473 ">
+                                       <p><code class="codeph">dad_name</code>s
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e6481 d466066e6476 ">
+                                       <p>The name of the DAD</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e6490" headers="d466066e6473 ">
+                                       <p><code class="codeph">attr_names</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e6490 d466066e6476 ">
+                                       <p>The attribute names</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e6498" headers="d466066e6473 ">
+                                       <p><code class="codeph">attr_values</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e6498 d466066e6476 ">
+                                       <p>The attribute values</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-35331B5C-2CD8-41B5-9EE9-8268A443B26C__GUID-94078158-75E9-4724-A25F-900DF20199AA">Exceptions</p>
+                        <p>Raises an error if DAD does not exist.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-35331B5C-2CD8-41B5-9EE9-8268A443B26C__GUID-BFE0B761-10A6-42B4-A4C4-2CD7E3F5F8E7">Usage Notes</p>
+                        <p>If the DAD has no attributes set, then <code class="codeph">attr_names</code> and <code class="codeph">attr_values</code> will be set to empty arrays.
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="ARPLS66300"></a><a id="ARPLS66301"></a><a id="ARPLS66301"></a><a id="ARPLS66300"></a><a id="ARPLS66301"></a><a id="ARPLS66300"></a><div class="props_rev_3"><a id="GUID-C9B0FD8C-A007-497A-9ACC-8A3CA1F64516" name="GUID-C9B0FD8C-A007-497A-9ACC-8A3CA1F64516"></a><h4 id="ARPLS-GUID-C9B0FD8C-A007-497A-9ACC-8A3CA1F64516" class="sect4"><span class="enumeration_section">70.6.8 </span>GET_ALL_DAD_MAPPINGS Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure retrieves all the virtual paths to which the specified DAD is mapped.</p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-C9B0FD8C-A007-497A-9ACC-8A3CA1F64516__GUID-B4B4CBA6-4338-483A-83E9-2B37C3ECD177">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-C9B0FD8C-A007-497A-9ACC-8A3CA1F64516__GUID-647B1B31-4554-46DE-ACE5-6227E069A801">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.GET_ALL_DAD_MAPPINGS (
+   dad_name      IN          VARCHAR2,
+   paths         OUT NOCOPY  VARCHAR2_TABLE);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-C9B0FD8C-A007-497A-9ACC-8A3CA1F64516__GUID-FBAEB014-6C9B-4C0B-80F7-4AE47AFA4708">Parameters</p>
+                        <div class="tblformal" id="GUID-C9B0FD8C-A007-497A-9ACC-8A3CA1F64516__GUID-9670318A-7C0B-466E-98E5-764582F37292">
+                           <p class="titleintable">Table 70-12 GET_ALL_DAD_MAPPINGS Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="GET_ALL_DAD_MAPPINGS Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.GET_ALL_DAD_MAPPINGS." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e6929">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e6932">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e6937" headers="d466066e6929 ">
+                                       <p><code class="codeph">dad_name</code>s
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e6937 d466066e6932 ">
+                                       <p>The name of the DAD</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e6946" headers="d466066e6929 ">
+                                       <p><code class="codeph">paths</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e6946 d466066e6932 ">
+                                       <p>The virtual paths to which h the DAD is mapped</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-C9B0FD8C-A007-497A-9ACC-8A3CA1F64516__GUID-5AFF42BE-706B-41B8-8734-E5235D73FBCE">Exceptions</p>
+                        <p>Raises an error if DAD does not exist.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-C9B0FD8C-A007-497A-9ACC-8A3CA1F64516__GUID-60418505-35F5-4360-B09A-C5C4E72FE3E0">Usage Notes</p>
+                        <p>If the DAD is not mapped to any virtual path, <code class="codeph">paths</code> will be set to empty arrays.
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="ARPLS66302"></a><a id="ARPLS66303"></a><a id="ARPLS66303"></a><a id="ARPLS66302"></a><a id="ARPLS66303"></a><a id="ARPLS66302"></a><div class="props_rev_3"><a id="GUID-3A16E199-0442-40F1-B31B-0C82D1151FEA" name="GUID-3A16E199-0442-40F1-B31B-0C82D1151FEA"></a><h4 id="ARPLS-GUID-3A16E199-0442-40F1-B31B-0C82D1151FEA" class="sect4"><span class="enumeration_section">70.6.9 </span>GET_ALL_GLOBAL_ATTRIBUTES Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure retrieves all global attributes and values. The outputs are 2 correlated index-by tables of the name/value pairs.</p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-3A16E199-0442-40F1-B31B-0C82D1151FEA__GUID-3EA347B0-4F45-43C6-A387-217CC1E60DFA">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-3A16E199-0442-40F1-B31B-0C82D1151FEA__GUID-B6F56DE5-4280-4DE3-B092-5575D4F85FC1">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.GET_ALL_GLOBAL_ATTRIBUTES (
+   attr_names     OUT   NOCOPY  VARCHAR2_TABLE,
+   attr_values    OUT   NOCOPY  VARCHAR2_TABLE);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-3A16E199-0442-40F1-B31B-0C82D1151FEA__GUID-F8CF559D-2F9C-4924-80D0-93DCDF68DA73">Parameters</p>
+                        <div class="tblformal" id="GUID-3A16E199-0442-40F1-B31B-0C82D1151FEA__GUID-E1399B23-C0F5-4F6B-B1DC-0DE3EC429777">
+                           <p class="titleintable">Table 70-13 GET_ALL_GLOBAL_ATTRIBUTES Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="GET_ALL_GLOBAL_ATTRIBUTES Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.GET_ALL_GLOBAL_ATTRIBUTES." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e7373">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e7376">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e7381" headers="d466066e7373 ">
+                                       <p><code class="codeph">attr_name</code>s
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e7381 d466066e7376 ">
+                                       <p>The global attribute names </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e7390" headers="d466066e7373 ">
+                                       <p><code class="codeph">attr_values</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e7390 d466066e7376 ">
+                                       <p>The values of the global attributes</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-3A16E199-0442-40F1-B31B-0C82D1151FEA__GUID-722E273D-9C2B-46FB-A904-E3C68A630920">Usage Notes</p>
+                        <p>If the gateway instance has no global attributes set, then <code class="codeph">attr_names</code> and <code class="codeph">attr_values</code> will be set to empty arrays.
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="ARPLS66304"></a><a id="ARPLS66305"></a><a id="ARPLS66305"></a><a id="ARPLS66304"></a><a id="ARPLS66305"></a><a id="ARPLS66304"></a><div class="props_rev_3"><a id="GUID-9848B5B4-38EA-4CFB-9B8F-CA9E6969F367" name="GUID-9848B5B4-38EA-4CFB-9B8F-CA9E6969F367"></a><h4 id="ARPLS-GUID-9848B5B4-38EA-4CFB-9B8F-CA9E6969F367" class="sect4"><span class="enumeration_section">70.6.10 </span>GET_DAD_ATTRIBUTE Function
+                  </h4>
+                  <div>
+                     <p>This procedure retrieves the value of a DAD attribute.</p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-9848B5B4-38EA-4CFB-9B8F-CA9E6969F367__GUID-55CE8558-2EC5-4C38-8330-866E0FD70A7D">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-9848B5B4-38EA-4CFB-9B8F-CA9E6969F367__GUID-3880941F-FF82-41A3-870F-A32F8286B289">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.GET_DAD_ATTRIBUTE (
+   dad_name     IN  VARCHAR2,
+   attr_name    IN  VARCHAR2)
+ RETURN VARCHAR2;</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-9848B5B4-38EA-4CFB-9B8F-CA9E6969F367__GUID-EF4C7778-8430-42DD-AC79-D2C6612E2C7E">Parameters</p>
+                        <div class="tblformal" id="GUID-9848B5B4-38EA-4CFB-9B8F-CA9E6969F367__GUID-53789C14-172D-424F-8FEB-770242FDAD54">
+                           <p class="titleintable">Table 70-14 GET_DAD_ATTRIBUTE Function Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="GET_DAD_ATTRIBUTE Function Parameters" summary="This table describes the parameters of DBMS_EPG.GET_DAD_ATTRIBUTE." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e7815">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e7818">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e7823" headers="d466066e7815 ">
+                                       <p><code class="codeph">dad_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e7823 d466066e7818 ">
+                                       <p>The name of the DAD for which to delete an attribute</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e7831" headers="d466066e7815 ">
+                                       <p><code class="codeph">attr_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e7831 d466066e7818 ">
+                                       <p>The name of the attribute to delete</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-9848B5B4-38EA-4CFB-9B8F-CA9E6969F367__GUID-F5FB2AEB-43BF-4E10-8B80-8007FC89D09F">Return values</p>
+                        <p>Returns the DAD attribute value. Returns <code class="codeph">NULL</code> if attribute is unknown or has not been set. 
+                        </p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-9848B5B4-38EA-4CFB-9B8F-CA9E6969F367__GUID-ED834530-036E-4744-A704-5C4394C857B4">Exceptions</p>
+                        <p>Raises an error if DAD does not exist. </p>
+                     </div>
+                  </div>
+               </div><a id="ARPLS66306"></a><a id="ARPLS66307"></a><a id="ARPLS66307"></a><a id="ARPLS66306"></a><a id="ARPLS66307"></a><a id="ARPLS66306"></a><div class="props_rev_3"><a id="GUID-4DFBBC86-CECB-404F-8050-0CF4BB56BD5A" name="GUID-4DFBBC86-CECB-404F-8050-0CF4BB56BD5A"></a><h4 id="ARPLS-GUID-4DFBBC86-CECB-404F-8050-0CF4BB56BD5A" class="sect4"><span class="enumeration_section">70.6.11 </span>GET_DAD_LIST Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure retrieves a list of all DADs for an Embedded Gateway instance.</p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-4DFBBC86-CECB-404F-8050-0CF4BB56BD5A__GUID-AA088B56-273D-4B4C-8090-CB427A4775BA">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4DFBBC86-CECB-404F-8050-0CF4BB56BD5A__GUID-3BBA2025-271D-4931-A054-B71E3AE0415C">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.GET_DAD_LIST (
+   dad_names     OUT NOCOPY  VARCHAR2_TABLE);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4DFBBC86-CECB-404F-8050-0CF4BB56BD5A__GUID-55C6CF6E-9852-41C4-A3B8-8973A594FDE1">Parameters</p>
+                        <div class="tblformal" id="GUID-4DFBBC86-CECB-404F-8050-0CF4BB56BD5A__GUID-853ADAC8-BDF8-48FF-B3D9-2EC52ED37A0B">
+                           <p class="titleintable">Table 70-15 GET_DAD_LIST Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="GET_DAD_LIST Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.GET_DAD_LIST." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e8259">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e8262">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e8267" headers="d466066e8259 ">
+                                       <p><code class="codeph">dad_names</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e8267 d466066e8262 ">
+                                       <p>The list of all DADs</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4DFBBC86-CECB-404F-8050-0CF4BB56BD5A__GUID-1CB37429-CA71-4C88-A042-71D40B481C2D">Usage Notes</p>
+                        <p>If no DADs exist then <code class="codeph">dad_names</code> will be set to an empty array.
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="ARPLS66308"></a><a id="ARPLS66309"></a><a id="ARPLS66309"></a><a id="ARPLS66308"></a><a id="ARPLS66309"></a><a id="ARPLS66308"></a><div class="props_rev_3"><a id="GUID-B786ABD3-5435-42AC-B25E-9354B6C0D087" name="GUID-B786ABD3-5435-42AC-B25E-9354B6C0D087"></a><h4 id="ARPLS-GUID-B786ABD3-5435-42AC-B25E-9354B6C0D087" class="sect4"><span class="enumeration_section">70.6.12 </span>GET_GLOBAL_ATTRIBUTE Function
+                  </h4>
+                  <div>
+                     <p>This function retrieves the value of a global attribute.</p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-B786ABD3-5435-42AC-B25E-9354B6C0D087__GUID-422E12F6-12D7-4560-8512-4FBD4F1E80E2">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B786ABD3-5435-42AC-B25E-9354B6C0D087__GUID-CA5174EF-D60B-4A42-A76E-663AF99845A7">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.GET_GLOBAL_ATTRIBUTE (
+   attr_name  IN  VARCHAR2)
+ RETURN VARCHAR2;</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B786ABD3-5435-42AC-B25E-9354B6C0D087__GUID-AB7C8945-563D-4485-8FDC-94BB8D0C2282">Parameters</p>
+                        <div class="tblformal" id="GUID-B786ABD3-5435-42AC-B25E-9354B6C0D087__GUID-1AEA0E2A-61CF-4B7C-A8E5-67C64F7CEB26">
+                           <p class="titleintable">Table 70-16 GET_GLOBAL_ATTRIBUTE Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="GET_GLOBAL_ATTRIBUTE Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.GET_GLOBAL_ATTRIBUTE." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e8689">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e8692">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e8697" headers="d466066e8689 ">
+                                       <p><code class="codeph">attr_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e8697 d466066e8692 ">
+                                       <p>The global attribute to retrieve</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-B786ABD3-5435-42AC-B25E-9354B6C0D087__GUID-347ADBAD-E763-4E1C-8914-10440DF4BD64">Return Values</p>
+                        <p>Returns the global attribute value. Returns <code class="codeph">NULL</code> if attribute has not been set or is not a valid attribute.
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="ARPLS66310"></a><a id="ARPLS66311"></a><a id="ARPLS66311"></a><a id="ARPLS66310"></a><a id="ARPLS66311"></a><a id="ARPLS66310"></a><div class="props_rev_3"><a id="GUID-4CE056C4-18C0-4AE9-B8A6-5D3B5E55831C" name="GUID-4CE056C4-18C0-4AE9-B8A6-5D3B5E55831C"></a><h4 id="ARPLS-GUID-4CE056C4-18C0-4AE9-B8A6-5D3B5E55831C" class="sect4"><span class="enumeration_section">70.6.13 </span>MAP_DAD Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure maps a DAD to the specified virtual path. If the virtual path exists already, the old virtual-path mapping will be overridden.</p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-4CE056C4-18C0-4AE9-B8A6-5D3B5E55831C__GUID-F6D647C3-7B79-49F8-8A89-766C820BE92E">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4CE056C4-18C0-4AE9-B8A6-5D3B5E55831C__GUID-4FE7D138-B860-474A-80CD-C2A3A6B12AC6">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.MAP_DAD (
+   dad_name  IN  VARCHAR2,
+   path      IN  VARCHAR2);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4CE056C4-18C0-4AE9-B8A6-5D3B5E55831C__GUID-8DEB19F5-7645-4E1E-9355-EA2587F2C001">Parameters</p>
+                        <div class="tblformal" id="GUID-4CE056C4-18C0-4AE9-B8A6-5D3B5E55831C__GUID-9E044257-E977-442B-99A9-D68A4B5B7B17">
+                           <p class="titleintable">Table 70-17 MAP_DAD Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="MAP_DAD Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.MAP_DAD." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e9119">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e9122">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e9127" headers="d466066e9119 ">
+                                       <p><code class="codeph">dad_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e9127 d466066e9122 ">
+                                       <p>The name of the DAD to map </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e9135" headers="d466066e9119 ">
+                                       <p><code class="codeph">path</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e9135 d466066e9122 ">
+                                       <p>The virtual path to map </p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-4CE056C4-18C0-4AE9-B8A6-5D3B5E55831C__GUID-FFC4AFFF-0E7D-4F17-9DC8-5FC3655E22B1">Exceptions</p>
+                        <p>Raises and error if the DAD does not exist.</p>
+                     </div>
+                  </div>
+               </div><a id="ARPLS66312"></a><a id="ARPLS66313"></a><a id="ARPLS66314"></a><a id="ARPLS66313"></a><a id="ARPLS66314"></a><a id="ARPLS66312"></a><a id="ARPLS66313"></a><a id="ARPLS66314"></a><a id="ARPLS66312"></a><div class="props_rev_3"><a id="GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765" name="GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765"></a><h4 id="ARPLS-GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765" class="sect4"><span class="enumeration_section">70.6.14 </span>SET_DAD_ATTRIBUTE Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure sets the value for a DAD.</p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765__GUID-FCE0B262-B214-4F40-8FB9-D091CFE553BD">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765__GUID-C3E0DA29-1599-4938-9312-5B0C9615A87F">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.SET_DAD_ATTRIBUTE (
+   dad_name    IN  VARCHAR2,
+   attr_name   IN  VARCHAR2,   attr_value  IN  VARCHAR2);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765__GUID-DAF4A40B-9D2B-4EA9-9CDF-CFE9284F8144">Parameters</p>
+                        <div class="tblformal" id="GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765__GUID-4C7ED090-2213-48F5-9959-B603CB0A40A8">
+                           <p class="titleintable">Table 70-18 SET_DAD_ATTRIBUTE Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="SET_DAD_ATTRIBUTE Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.SET_DAD_ATTRIBUTE." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="30%" id="d466066e9559">Parameter</th>
+                                    <th align="left" valign="bottom" width="70%" id="d466066e9562">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="30%" id="d466066e9567" headers="d466066e9559 ">
+                                       <p><code class="codeph">dad_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="70%" headers="d466066e9567 d466066e9562 ">
+                                       <p>The name of the DAD for which to set the attribute</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="30%" id="d466066e9575" headers="d466066e9559 ">
+                                       <p><code class="codeph">attr_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="70%" headers="d466066e9575 d466066e9562 ">
+                                       <p>The name of the attribute to set</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="30%" id="d466066e9583" headers="d466066e9559 ">
+                                       <p><code class="codeph">attr_value</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="70%" headers="d466066e9583 d466066e9562 ">
+                                       <p>The attribute value to set</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <div class="tblformal" id="GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765__GUID-6A126C25-50CA-463D-B810-8FE347A359EE">
+                           <p class="titleintable">Table 70-19 Mapping Between mod_plsql and Embedded PL/SQL Gateway DAD Attributes</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="Mapping Between mod_plsql and Embedded PL/SQL Gateway DAD Attributes" summary="This tables summarizes the Mapping Between mod_plsql and Embedded PL/SQL Gateway DAD Attributes." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="25%" id="d466066e9602">mod_plsql DAD Attribute</th>
+                                    <th align="left" valign="bottom" width="25%" id="d466066e9605">Embedded PL/SQL Gateway DAD Attribute</th>
+                                    <th align="left" valign="bottom" width="10%" id="d466066e9608">Allows Multiple Occurr-ences</th>
+                                    <th align="left" valign="bottom" width="40%" id="d466066e9611">Legal Values</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9616" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlAfterProcedure</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9616 d466066e9605 ">
+                                       <p><code class="codeph">after-procedure</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9616 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9616 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9631" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlAlwaysDescribeProcedure</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9631 d466066e9605 ">
+                                       <p><code class="codeph">always-describe-procedure</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9631 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9631 d466066e9611 ">
+                                       <p>Enumeration of On, Off</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9646" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlAuthenticationMode</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9646 d466066e9605 ">
+                                       <p><code class="codeph">authentication-mode</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9646 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9646 d466066e9611 ">
+                                       <p>Enumeration of Basic, SingleSignOn, GlobalOwa, CustomOwa, PerPackageOwa</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9661" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlBeforeProcedure</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9661 d466066e9605 ">
+                                       <p><code class="codeph">before-procedure</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9661 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9661 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9676" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlBindBucketLengths</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9676 d466066e9605 ">
+                                       <p><code class="codeph">bind-bucket-lengths</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9676 d466066e9608 ">
+                                       <p>Yes</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9676 d466066e9611 ">
+                                       <p>Unsigned integer</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9691" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlBindBucketWidths</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9691 d466066e9605 ">
+                                       <p><code class="codeph">bind-bucket-widths</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9691 d466066e9608 ">
+                                       <p>Yes</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9691 d466066e9611 ">
+                                       <p>Unsigned integer</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9706" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlCGIEnvironmentList</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9706 d466066e9605 ">
+                                       <p><code class="codeph">cgi-environment-list</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9706 d466066e9608 ">
+                                       <p>Yes</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9706 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9721" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlCompatibilityMode</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9721 d466066e9605 ">
+                                       <p><code class="codeph">compatibility-mode</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9721 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9721 d466066e9611 ">
+                                       <p>Unsigned integer</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9736" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlDatabaseUsername</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9736 d466066e9605 ">
+                                       <p><code class="codeph">database-usernam</code>e
+                                       </p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9736 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9736 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9752" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlDefaultPage</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9752 d466066e9605 ">
+                                       <p><code class="codeph">default-page</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9752 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9752 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9767" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlDocumentPath</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9767 d466066e9605 ">
+                                       <p><code class="codeph">document-path</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9767 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9767 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9783" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlDocumentProcedure</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9783 d466066e9605 ">
+                                       <p><code class="codeph">document-procedure</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9783 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9783 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9798" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlDocumentTablename</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9798 d466066e9605 ">
+                                       <p><code class="codeph">document-table-name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9798 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9798 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9813" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlErrorStyle</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9813 d466066e9605 ">
+                                       <p><code class="codeph">error-style</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9813 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9813 d466066e9611 ">
+                                       <p>Enumeration of ApacheStyle, ModplsqlStyle, DebugStyle</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9828" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlExclusionList</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9828 d466066e9605 ">
+                                       <p><code class="codeph">exclusion-list</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9828 d466066e9608 ">
+                                       <p>Yes</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9828 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9843" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlFetchBufferSize</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9843 d466066e9605 ">
+                                       <p><code class="codeph">fetch-buffer-size</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9843 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9843 d466066e9611 ">
+                                       <p>Unsigned integer</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9858" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlInfoLogging</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9858 d466066e9605 ">
+                                       <p>i<code class="codeph">nfo-logging</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9858 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9858 d466066e9611 ">
+                                       <p>Enumeration of InfoDebug</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9874" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlOWADebugEnable</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9874 d466066e9605 ">
+                                       <p><code class="codeph">owa-debug-enable</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9874 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9874 d466066e9611 ">
+                                       <p>Enumeration of On, Off</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9889" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlMaxRequestsPerSession</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9889 d466066e9605 ">
+                                       <p><code class="codeph">max-requests-per-session</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9889 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9889 d466066e9611 ">
+                                       <p>Unsigned integer</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9904" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlNLSLanguage</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9904 d466066e9605 ">
+                                       <p><code class="codeph">nls-language</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9904 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9904 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9919" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlPathAlias</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9919 d466066e9605 ">
+                                       <p><code class="codeph">path-alias</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9919 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9919 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9934" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlPathAliasProcedure</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9934 d466066e9605 ">
+                                       <p><code class="codeph">path-alias-procedure</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9934 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9934 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9950" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlRequestValidationFunction</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9950 d466066e9605 ">
+                                       <p><code class="codeph">request-validation-function</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9950 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9950 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9965" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlSessionCookieName</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9965 d466066e9605 ">
+                                       <p><code class="codeph">session-cookie-name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9965 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9965 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9980" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlSessionStateManagement</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9980 d466066e9605 ">
+                                       <p><code class="codeph">session-state-management</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9980 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9980 d466066e9611 ">
+                                       <p>Enumeration of StatelessWithResetPackageState, StatelessWithFastRestPackageState, StatelessWithPreservePackageState</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e9995" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlTransferMode</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e9995 d466066e9605 ">
+                                       <p><code class="codeph">transfer-mode</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e9995 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e9995 d466066e9611 ">
+                                       <p>Enumeration of Char, Raw</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="25%" id="d466066e10010" headers="d466066e9602 ">
+                                       <p><code class="codeph">PlsqlUploadAsLongRaw</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="25%" headers="d466066e10010 d466066e9605 ">
+                                       <p><code class="codeph">upload-as-long-raw</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="10%" headers="d466066e10010 d466066e9608 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="40%" headers="d466066e10010 d466066e9611 ">
+                                       <p>String</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765__GUID-B8CF64B1-7A2C-44C9-8D32-E22613BC424B">Exceptions</p>
+                        <p>Raises an error if DAD does not exist or the attribute is unknown.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765__GUID-4E921394-DF74-4D6A-A4D0-CEEACBED7868">Usage Notes</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>If <code class="codeph">attr_name</code> attribute has been set before, then the old value will be overwritten with the new <code class="codeph">attr_value</code> argument.
+                              </p>
+                           </li>
+                           <li>
+                              <p>The embedded gateway assumes default values when the attributes are not set. The default values of the DAD attributes should be sufficient for most users of the embedded gateway. mod_plsql users should note the following</p>
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p>The <code class="codeph">PlsqlDatabasePassword</code> attribute is not needed.
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <p>The <code class="codeph">PlsqlDatabaseConnectString</code> attribute is not needed because the embedded gateway does not support logon to external databases.
+                                    </p>
+                                 </li>
+                              </ul>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-0C15699A-9E12-4AF0-8B43-2390CF06E765__GUID-3A0D830F-F9CD-44E1-A567-035E7A18F9D0">Examples</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.SET_DAD_ATTRIBUTE('HR', 'default-page', 'HRApp.home');</pre></div>
+                  </div>
+               </div><a id="ARPLS66315"></a><a id="ARPLS66316"></a><a id="ARPLS66317"></a><a id="ARPLS66316"></a><a id="ARPLS66317"></a><a id="ARPLS66315"></a><a id="ARPLS66316"></a><a id="ARPLS66317"></a><a id="ARPLS66315"></a><div class="props_rev_3"><a id="GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA" name="GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA"></a><h4 id="ARPLS-GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA" class="sect4"><span class="enumeration_section">70.6.15 </span>SET_GLOBAL_ATTRIBUTE Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure sets the value of a global attribute.</p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA__GUID-E51B0062-731A-47DF-A062-A0EB9AA7563D">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA__GUID-6118B71E-9384-4F13-931A-E5B17F234794">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.SET_GLOBAL_ATTRIBUTE (
+   attr_name    IN VARCHAR2,                     
+   attr_value   IN VARCHAR2);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA__GUID-25EEECAC-4994-4F35-A6F6-EC2ACD73E71C">Parameters</p>
+                        <div class="tblformal" id="GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA__GUID-FA691585-026A-49C7-9DFA-D4D487F250EC">
+                           <p class="titleintable">Table 70-20 SET_GLOBAL_ATTRIBUTE Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="SET_GLOBAL_ATTRIBUTE Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.SET_GLOBAL_ATTRIBUTE." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e10474">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e10477">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e10482" headers="d466066e10474 ">
+                                       <p><code class="codeph">attr_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e10482 d466066e10477 ">
+                                       <p>The global attribute to set</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e10490" headers="d466066e10474 ">
+                                       <p><code class="codeph">attr_value</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e10490 d466066e10477 ">
+                                       <p>The attribute value to set</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <div class="tblformal" id="GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA__GUID-EEA60875-6836-449C-9E49-55A2596C759C">
+                           <p class="titleintable">Table 70-21 Mapping Between mod_plsql and Embedded PL/SQL Gateway Global Attributes</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="Mapping Between mod_plsql and Embedded PL/SQL Gateway Global Attributes" summary="This tables summarizes the Mapping Between mod_plsql and Embedded PL/SQL Gateway Global Attributes." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="33%" id="d466066e10509">mod_plsql Global Attribute</th>
+                                    <th align="left" valign="bottom" width="33%" id="d466066e10512">Embedded PL/SQL Gateway Global Attribute</th>
+                                    <th align="left" valign="bottom" width="11%" id="d466066e10515">Allows Multiple Occurr-ences</th>
+                                    <th align="left" valign="bottom" width="23%" id="d466066e10518">Legal Values</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="33%" id="d466066e10523" headers="d466066e10509 ">
+                                       <p><code class="codeph">PlsqlLogLevel</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="33%" headers="d466066e10523 d466066e10512 ">
+                                       <p><code class="codeph">log-level</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="11%" headers="d466066e10523 d466066e10515 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="23%" headers="d466066e10523 d466066e10518 ">
+                                       <p>Unsigned integer</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="33%" id="d466066e10538" headers="d466066e10509 ">
+                                       <p><code class="codeph">PlsqlMaxParameters</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="33%" headers="d466066e10538 d466066e10512 ">
+                                       <p><code class="codeph">max-parameters</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="11%" headers="d466066e10538 d466066e10515 ">
+                                       <p>No</p>
+                                    </td>
+                                    <td align="left" valign="top" width="23%" headers="d466066e10538 d466066e10518 ">
+                                       <p>Unsigned integer</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA__GUID-016AE843-1857-4D48-B3F1-9212F7038663">Usage Notes</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>The attribute name is case sensitive. The value may or may not be case-sensitive depending on the attribute.</p>
+                           </li>
+                           <li>
+                              <p>If <code class="codeph">attr_name</code> attribute has been set before, then the old value will be overwritten with the new <code class="codeph">attr_value</code> argument.
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA__GUID-32751963-C40C-4786-A917-B270644A7365">Exceptions</p>
+                        <p>Raises an error if the attribute is unknown.</p>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-03736FB0-420C-4F8B-8BF6-4C7522C5F8AA__GUID-44781C4A-92CB-40C1-A085-6C10823281E9">Examples</p><pre class="oac_no_warn" dir="ltr">dbms_epg.set_global_attribute('max-parameters', '100');</pre></div>
+                  </div>
+               </div><a id="ARPLS66318"></a><a id="ARPLS66319"></a><a id="ARPLS66319"></a><a id="ARPLS66318"></a><a id="ARPLS66319"></a><a id="ARPLS66318"></a><div class="props_rev_3"><a id="GUID-A1549EB3-3405-4885-95F6-605977652AB5" name="GUID-A1549EB3-3405-4885-95F6-605977652AB5"></a><h4 id="ARPLS-GUID-A1549EB3-3405-4885-95F6-605977652AB5" class="sect4"><span class="enumeration_section">70.6.16 </span>UNMAP_DAD Procedure
+                  </h4>
+                  <div>
+                     <p>This procedure unmaps a DAD from the specified virtual path. If path is <code class="codeph">NULL</code>, the procedure removes all virtual-path mappings for the DAD but keeps the DAD.
+                     </p>
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-A1549EB3-3405-4885-95F6-605977652AB5__GUID-77E271D8-FDF0-4086-A319-69F2D8A878C7">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="DBMS_EPG.html#GUID-F2AE3CA1-D06C-4F47-ACDA-15960B868D35" title="The Configuration subprogram group contain the subprogram interfaces to examine and modify the global and database access descriptor (DAD) specific settings of the embedded PL/SQL gateway.">Configuration Subprograms</a> for other subprograms in this group
+                           </p>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A1549EB3-3405-4885-95F6-605977652AB5__GUID-586B9C1E-1D6C-41D4-9779-7FF96595F537">Syntax</p><pre class="oac_no_warn" dir="ltr">DBMS_EPG.UNMAP_DAD (
+   dad_name IN VARCHAR2,
+   path     IN VARCHAR2 DEFAULT NULL);</pre></div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A1549EB3-3405-4885-95F6-605977652AB5__GUID-070A305A-6E9E-48D2-A130-A73819706543">Parameters</p>
+                        <div class="tblformal" id="GUID-A1549EB3-3405-4885-95F6-605977652AB5__GUID-64B68596-A9DF-458E-BBBE-5F33813C1881">
+                           <p class="titleintable">Table 70-22 UNMAP_DAD Procedure Parameters</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="UNMAP_DAD Procedure Parameters" summary="This table describes the parameters of DBMS_EPG.UNMAP_DAD." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d466066e10988">Parameter</th>
+                                    <th align="left" valign="bottom" width="69%" id="d466066e10991">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e10996" headers="d466066e10988 ">
+                                       <p><code class="codeph">dad_name</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e10996 d466066e10991 ">
+                                       <p>The name of the DAD to unmap</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d466066e11004" headers="d466066e10988 ">
+                                       <p><code class="codeph">path</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d466066e11004 d466066e10991 ">
+                                       <p>The virtual path to unmap</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A1549EB3-3405-4885-95F6-605977652AB5__GUID-19402E1E-1842-422D-B9D9-822D1BB77F0F">Usage Notes</p>
+                        <p>Raises and error if the DAD does not exist.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Oracle Sharding Overview">
+      <meta name="abstract" content="Learn about what Oracle Sharding can do in this high level conceptual discussion.">
+      <meta name="description" content="Learn about what Oracle Sharding can do in this high level conceptual discussion.">
+      <meta name="DC.Creator" content="Roopam Jain">
+      <meta name="DC.Creator" content="Shailesh Dwivedi">
+      <meta name="DC.Creator" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Pankaj Chandiramani">
+      <meta name="DC.Creator" content="Mark Dilman">
+      <meta name="DC.Creator" content="Nourdine Benadjaoud">
+      <meta name="DC.Creator" content="Rennie Sreekumar Ranjit Kumar">
+      <meta name="DC.Creator" content="David Colello">
+      <meta name="DC.Creator" content="Steve Ball">
+      <meta name="DC.Creator" content="Abhishek Srivastava">
+      <meta name="DC.Creator" content="Sebastian Binek">
+      <meta name="DC.Creator" content="Shahab Hamid">
+      <meta name="DC.Creator" content="Virginia Beecher">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-0F39B1FB-DCF9-4C8A-A2EA-88705B90C5BF">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Learn about what Oracle Sharding can do in this high level conceptual discussion.">
+      <meta name="description" content="Learn about what Oracle Sharding can do in this high level conceptual discussion.">
+      <title>Oracle Sharding Overview</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Using Oracle Sharding">
+      <meta property="og:description" content="Learn about what Oracle Sharding can do in this high level conceptual discussion.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Using Oracle Sharding">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-globally-distributed-database-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-24T13:16:05-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2018, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E87088-15">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="changes-in-this-release.html" title="Previous" type="text/html">
+      <link rel="next" href="architecture-and-concepts1.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Globally Distributed Database Guide">
+    <meta name="dcterms.isVersionOf" content="SHARD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Oracle Sharding Overview","description":"Learn about what Oracle Sharding can do in this high level conceptual discussion.","datePublished":"2025-06-25 CST","dateModified":"2025-06-25 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="changes-in-this-release.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="architecture-and-concepts1.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-0F39B1FB-DCF9-4C8A-A2EA-88705B90C5BF" name="GUID-0F39B1FB-DCF9-4C8A-A2EA-88705B90C5BF"></a>
+         
+         <h2 id="SHARD-GUID-0F39B1FB-DCF9-4C8A-A2EA-88705B90C5BF" class="sect2"><span class="enumeration_chapter">1 </span>Oracle Sharding Overview
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Learn about what Oracle Sharding can do in this high level conceptual
+                discussion.</p>
+               <p>Oracle Sharding capabilities and benefits are described in the following topics:</p>
+            </div>
+            <div class="sect2"><a id="GUID-60536817-38C5-440A-8404-F2CC810BBF3B" name="GUID-60536817-38C5-440A-8404-F2CC810BBF3B"></a><h3 id="SHARD-GUID-60536817-38C5-440A-8404-F2CC810BBF3B" class="sect3">What is Sharding</h3>
+               <div>
+                  <p>Hyperscale computing is a computing architecture that can scale up or down
+        quickly to meet increased demand on the system. This architecture innovation was originally
+        driven by internet giants that run distributed sites and has been adopted by large-scale
+        cloud providers.</p>
+                  <p>Companies often achieve hyperscale computing using a technology called database sharding,
+            in which they distribute segments of a data set—a shard—across lots of databases on lots
+            of different computers. </p>
+                  <p>Sharding uses a <span class="italic">shared-nothing</span> architecture in which shards share no hardware or
+            software. All of the shards together make up a single logical database, called a
+                <span class="italic">sharded database</span>.
+                  </p>
+                  <p>From the perspective of the application, a sharded database looks like a single database:
+            the number of shards, and the distribution of data across those shards, are
+                <span class="italic">completely transparent</span> to database applications. From the perspective of a
+            database administrator, a sharded database consists of multiple databases that can be
+            managed collectively.
+                  </p>
+                  <div class="figure" id="GUID-60536817-38C5-440A-8404-F2CC810BBF3B__FIG_SPM_XGR_HLB">
+                     <p class="titleinfigure">Figure 1-1 Distribution of a Table Across
+                Database Shards</p><br><div class="imageleft"><img class="imageleft" id="GUID-60536817-38C5-440A-8404-F2CC810BBF3B__IMAGE_TPM_XGR_HLB" src="img/admin_3v_134a.png" alt="Description of Figure 1-1 follows" title="Description of Figure 1-1 follows" longdesc="img_text/admin_3v_134a.html"><br><a href="img_text/admin_3v_134a.html">Description of "Figure 1-1 Distribution of a Table Across
+                Database Shards"</a></div><br></div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-82BA92CE-67B3-4A0F-B6A4-8FE30587CB99" name="GUID-82BA92CE-67B3-4A0F-B6A4-8FE30587CB99"></a><h3 id="SHARD-GUID-82BA92CE-67B3-4A0F-B6A4-8FE30587CB99" class="sect3">About Oracle Sharding</h3>
+               <div>
+                  <p>Oracle Sharding is a feature of Oracle Database that lets you automatically
+        distribute and replicate data across a pool of Oracle databases that share no hardware or
+        software. Oracle Sharding provides the best features and capabilities of mature RDBMS and
+        NoSQL databases, as described here.</p>
+                  <ul style="list-style-type: disc;" id="GUID-82BA92CE-67B3-4A0F-B6A4-8FE30587CB99__UL_WRJ_LP3_SKB">
+                     <li>
+                        
+                        <p>SQL language used for object creation, strict data consistency,
+                    complex joins, ACID transaction properties, distributed transactions, relational
+                    data store, security, encryption, robust performance optimizer, backup and
+                    recovery, and patching with Oracle Database</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Oracle innovations and enterprise-level features, including Advanced
+                    Security, Automatic Storage Management (ASM), Advanced Compression,
+                    partitioning, high-performance storage engine, SMP scalability, Oracle RAC,
+                    Exadata, in-memory columnar, online redefinition, JSON document store, and so
+                    on</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Sharding-aware Oracle Database tools, such as SQL Developer,
+                    Enterprise Manager Cloud Control, Recovery Manager (RMAN), and Data Pump, for
+                    sharded database application development and management</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Programmatic interfaces, such as Java Database Connectivity (JDBC),
+                    Oracle Call Interface (OCI), Universal Connection Pool (UCP), Oracle Data
+                    Provider for .NET (ODP.NET), and PL/SQL, including extensions for sharded
+                    application development</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Extreme availability with Oracle Data Guard and Active Data
+                    Guard.</p>
+                        
+                        <div class="infoboxnote" id="GUID-82BA92CE-67B3-4A0F-B6A4-8FE30587CB99__GUID-07231C72-D12B-43A4-8E36-49F5B4768B84">
+                           <p class="notep1">Note:</p><span>Oracle GoldenGate replication support for Oracle Sharding High
+                    Availability is deprecated in Oracle Database 21c. </span></div>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Support for multi-model data like relational, text, and JSON</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Existing life-cycle management and operational processes can be
+                    kept, leveraging in-house and world-wide Oracle database administrator skill
+                    sets</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Enterprise-level support</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Extreme scalability and availability of NoSQL databases</p>
+                        
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-C3C02452-820C-4A00-BAAB-3C0CBCE5F7C4" name="GUID-C3C02452-820C-4A00-BAAB-3C0CBCE5F7C4"></a><h3 id="SHARD-GUID-C3C02452-820C-4A00-BAAB-3C0CBCE5F7C4" class="sect3">Oracle Sharding as Distributed
+        Partitioning</h3>
+               <div>
+                  <p>Sharding is a database scaling technique based on horizontal partitioning of data across multiple independent physical databases. Each physical database in such a configuration is called a shard.</p>
+                  <p>From the perspective of an application, a sharded database in Oracle
+            Sharding looks like a single database; the number of shards, and the distribution of
+            data across those shards, are <span class="italic">completely transparent</span> to the application.
+                  </p>
+                  <p>Even though a sharded database looks like a single database to applications and
+            application developers, from the perspective of a database administrator, a sharded
+            database consists of a set of discrete Oracle databases, each of which is a single
+            shard, that can be managed collectively. </p>
+                  <p>A sharded table is partitioned across all shards of the sharded database.
+            Table partitions on each shard are not different from partitions that could be used in
+            an Oracle database that is not sharded.</p>
+                  <p>The following figure shows the difference between partitioning on a single logical database and partitions distributed across multiple shards.</p>
+                  <div class="figure" id="GUID-C3C02452-820C-4A00-BAAB-3C0CBCE5F7C4__GUID-3FEF288D-FE20-4143-B8A2-DF4A3B876D7A">
+                     <p class="titleinfigure">Figure 1-2 Sharding as Distributed Partitioning</p><img src="img/admin_3v_124a.png" alt="Description of Figure 1-2 follows" title="Description of Figure 1-2 follows" longdesc="img_text/admin_3v_124a.html"><br><a href="img_text/admin_3v_124a.html">Description of "Figure 1-2 Sharding as Distributed Partitioning"</a></div>
+                  <p>Oracle Sharding automatically distributes the partitions across shards when you execute the <code class="codeph">CREATE SHARDED TABLE</code> statement, and the distribution of partitions is transparent to applications. The figure above shows the logical view of a sharded table and its physical implementation.
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-EFF6D86D-1DB5-408B-9FEB-856908647851" name="GUID-EFF6D86D-1DB5-408B-9FEB-856908647851"></a><h3 id="SHARD-GUID-EFF6D86D-1DB5-408B-9FEB-856908647851" class="sect3">Benefits of Oracle
+        Sharding</h3>
+               <div>
+                  <p>Oracle Sharding provides linear scalability, complete fault isolation, and
+        global data distribution for the most demanding applications.</p>
+                  <p>Key benefits of Oracle Sharding include:</p>
+                  <ul style="list-style-type: disc;" id="GUID-EFF6D86D-1DB5-408B-9FEB-856908647851__UL_ITC_SP3_SKB">
+                     <li>
+                        <p><span class="bold">Linear Scalability</span></p>
+                        <p>The Oracle Sharding shared&#x2013;nothing architecture eliminates performance bottlenecks
+                    and provides unlimited scalability. Oracle Sharding supports scaling up to 1000
+                    shards.</p>
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Extreme Availability and Fault Isolation</span></p>
+                        
+                        <p>Single points of failure are eliminated because shards do not share
+                    resources such as software, CPU, memory, or storage devices. The failure or
+                    slow-down of one shard does not affect the performance or availability of other
+                    shards.</p>
+                        
+                        <p>Shards are protected by Oracle MAA best practice solutions, such as
+                    Oracle Data Guard and Oracle RAC.</p>
+                        
+                        <p>An unplanned outage or planned maintenance of a shard impacts only
+                    the availability of the data on that shard, so only the users of that small
+                    portion of the data are affected, for example, during a failover brownout.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Geographical Distribution of Data</span></p>
+                        
+                        <p>Sharding enables Global Database where a single logical database could be
+                    distributed over multiple geographies. This makes it possible to satisfy data
+                    privacy regulatory requirements (Data Sovereignty) as well as allows to store
+                    particular data close to its consumers (Data Proximity).</p>
+                        
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-A8F3DE2F-99AB-4608-AB51-F31F39FCB2CE" name="GUID-A8F3DE2F-99AB-4608-AB51-F31F39FCB2CE"></a><h3 id="SHARD-GUID-A8F3DE2F-99AB-4608-AB51-F31F39FCB2CE" class="sect3">Example Applications using
+        Database Sharding</h3>
+               <div>
+                  <p>Oracle Sharding provides benefits for a variety of use cases.</p>
+                  <p><span class="bold">Real Time OLTP</span></p>
+                  <p>Real time OLTP applications have a very high transaction processing throughput, a large
+            user population, huge amounts of data, and require strict data consistency and
+            management at scale. Some examples include internet-facing consumer applications,
+            financial applications such as mobile payments, large scale SaaS applications such as
+            billing and medical applications. The benefits of using Oracle Sharding for such
+            applications include:</p>
+                  <ul style="list-style-type: disc;" id="GUID-A8F3DE2F-99AB-4608-AB51-F31F39FCB2CE__UL_CYB_1Q3_SKB">
+                     <li>Linear scalability of transactions per second, with response time staying constant
+                as new shards are added to support larger data volume</li>
+                     <li>Better application SLAs, because planned and unplanned outages on any given shard
+                does not impact the data stored and available on other shards</li>
+                     <li>Strict data consistency for transactional applications</li>
+                     <li>Transactions spanning multiple shards</li>
+                     <li>Support for complex joins, triggers, and stored procedures</li>
+                     <li>Simplified manageability at scale</li>
+                  </ul>
+                  <p><span class="bold">Global Applications</span></p>
+                  <p>Many enterprise applications are global in nature, where the same application serves
+            customers in multiple geographic locations. Such applications typically use a single
+            logical global database which is shared across multiple geographical regions. The
+            benefits of a shared global database include:</p>
+                  <ul style="list-style-type: disc;" id="GUID-A8F3DE2F-99AB-4608-AB51-F31F39FCB2CE__UL_N2J_BQ3_SKB">
+                     <li>Strict enforcement of data sovereignty, where data privacy regulations require data
+                to stay in a certain geographic location, region, country, or even state.</li>
+                     <li>Reduction of data replication across locations</li>
+                     <li>Better application SLAs, because planned and unplanned outages in one region do not
+                impact other regions</li>
+                  </ul>
+                  <p><span class="bold">Internet of Things and Data Streaming Applications</span></p>
+                  <p>Typically such applications collect large amounts of data and stream it at a
+            very high speed. Oracle Sharding has optimized data stream libraries which use Oracle
+            Database's direct path I/O technology to load data into the sharded database with
+            extremely high speed. Data load requirements for these applications can be in to 100s of
+            millions of records per second. Once the data is loaded directly into the database, it
+            is available for immediate processing with advanced query processing and analytic
+            capabilities.</p>
+                  <p><span class="bold">Machine Learning</span></p>
+                  <p>Many machine learning applications require training and scoring of models in
+            real time. Model training and scoring for many applications using algorithms like
+            anomaly detection, and clustering is specific to a given entity (for example, a given
+            user's financial transaction patterns or specific device metrics at a certain time of
+            the day). This kind of data can easily be shared by using a sharding key specific to the
+            user or devices. Additionally, Oracle Database Machine Learning algorithms can be
+            applied directly in the database obviating the need for a separate data pipeline and
+            machine learning processing infrastructure.</p>
+                  <p><span class="bold">Big Data Analytics</span></p>
+                  <p>When you have terabytes of data, sharding means you don't have to warehouse
+            data to do analytics on it. With up to 1000 shards in capacity, Oracle Sharding can turn
+            a relational database into a warehouse-sized data store. With the Federated Sharding
+            solution, multiple database installations in different locations that run the same
+            application can be converted into a federated sharded database so that you can run data
+            analytics without moving the data.</p>
+                  <p><span class="bold">NoSQL Alternative</span></p>
+                  <p>NoSQL solutions lack major RDBMS features, such as relational schema, SQL, complex data
+            types, online schema changes, multi-core scalability, security, ACID properties, CR for
+            single-shard operations, and so on. With Oracle Sharding you get the nearly limitless
+            scaling and sharding you had with NoSQL <span class="italic">and</span> all of the features and benefits of
+            Oracle Database.
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-C8454E23-9A1D-4901-83C7-A91D7F34597E" name="GUID-C8454E23-9A1D-4901-83C7-A91D7F34597E"></a><h3 id="SHARD-GUID-C8454E23-9A1D-4901-83C7-A91D7F34597E" class="sect3">Flexible Deployment Models</h3>
+               <div>
+                  <p>The shared-nothing architecture of Oracle Sharding lets you keep your data
+        on-premises, in the cloud, or on a hybrid of cloud and on-premises systems. Because the
+        database shards do not share any resources, the shards can exist anywhere on a variety of
+        on-premises and cloud systems.</p>
+                  <p>You can choose to deploy all of the shards on-premises, have them all in the cloud, or
+            you can split them up between cloud and on-premises systems to suit your needs.</p>
+                  <p>Shards can be deployed on all database deployment models such as single
+            instance, Exadata, and Oracle RAC.</p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-47DC07C0-40C8-444C-8338-6A142D9EF05D" name="GUID-47DC07C0-40C8-444C-8338-6A142D9EF05D"></a><h3 id="SHARD-GUID-47DC07C0-40C8-444C-8338-6A142D9EF05D" class="sect3">High Availability in Oracle
+        Sharding</h3>
+               <div>
+                  <p>Oracle Sharding is tightly integrated with Oracle Data Guard to provide high
+        availability and disaster recovery. Replication is automatically configured and deployed
+        when the sharded database is created.</p>
+                  <p>Oracle Data Guard replication maintains one or more synchronized copies (standbys) of a
+            shard (the primary) for high availability and data protection. Standbys can be deployed
+            locally or remotely, and when using Oracle Active Data Guard can also be open for
+            read-only access. Use this option when application needs strict data consistency and
+            zero data loss.</p>
+                  <p>Oracle GoldenGate is used for fine-grained active-active replication. Though
+            applications must be able to deal with conflicts and data loss upon potential failover. </p>
+                  <div class="infoboxnote" id="GUID-47DC07C0-40C8-444C-8338-6A142D9EF05D__GUID-9FF161A5-9399-4EB4-81C9-99C31D1DE91F">
+                     <p class="notep1">Note:</p><span>Oracle GoldenGate replication support for Oracle Sharding High
+                    Availability is deprecated in Oracle Database 21c. </span></div>
+                  <p>Optionally, you can use Oracle RAC for shard-level high availability,
+            complemented by replication, to maintain shard-level data availability in the event of a
+            cluster outage. Each shard can be deployed on an Oracle RAC cluster to give it instant
+            protection from node failure. For example, each shard could be a two node Oracle RAC
+            cluster.</p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-3427DEDA-39E8-4E92-9A47-D0C65A240223" name="GUID-3427DEDA-39E8-4E92-9A47-D0C65A240223"></a><h3 id="SHARD-GUID-3427DEDA-39E8-4E92-9A47-D0C65A240223" class="sect3">Sharding Methods</h3>
+               <div>
+                  <p>Because Oracle Sharding is based on table partitioning, all of the
+        sub-partitioning methods provided by Oracle Database are also supported by Oracle Sharding.
+        A data sharding <span class="italic">method</span> controls the placement of the data on the shards. Oracle
+        Sharding supports system-managed, user defined, or composite sharding methods.
+                  </p>
+                  <ul style="list-style-type: disc;" id="GUID-3427DEDA-39E8-4E92-9A47-D0C65A240223__UL_X3P_R53_SKB">
+                     <li>
+                        
+                        <p><span class="bold">System-managed sharding</span> does not require you to map data to
+                    shards. The data is automatically distributed across shards using partitioning
+                    by consistent hash. The partitioning algorithm uniformly and randomly
+                    distributes data across shards.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">User-defined sharding</span> lets you explicitly specify the mapping of data to
+                    individual shards. It is used when, because of performance, regulatory, or other
+                    reasons, certain data needs to be stored on a particular shard, and the
+                    administrator needs to have full control over moving data between shards.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Composite sharding</span> allows you to use two levels of sharding. First the
+                    data is sharded by range or list and then it is sharded further by consistent
+                    hash.
+                        </p>
+                        
+                        <p>In many use cases, especially for data sovereignty and data proximity
+                    requirements, the composite sharding method offers the best of both
+                    system-managed and user-defined sharding methods, giving you the automation you
+                    want and the control over data placement you need.</p>
+                        
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-C85EC46E-AF31-46A4-8069-33458BF9C707" name="GUID-C85EC46E-AF31-46A4-8069-33458BF9C707"></a><h3 id="SHARD-GUID-C85EC46E-AF31-46A4-8069-33458BF9C707" class="sect3">Client Request Routing</h3>
+               <div>
+                  <p>Oracle Sharding supports direct, key-based routing from an application to a
+        shard, routing by proxy with the shard catalog, and routing to middle tiers, such as
+        application containers, web containers, and so on, which are affinitized with shards. Oracle
+        Database client drivers and connection pools are sharding aware.</p>
+                  <ul style="list-style-type: disc;" id="GUID-C85EC46E-AF31-46A4-8069-33458BF9C707__UL_N4N_353_SKB">
+                     <li>
+                        
+                        <p><span class="bold">Key-based routing.</span> Oracle client-side drivers (JDBC, OCI, UCP, ODP.NET)
+                    can recognize sharding keys specified in the connection string for high
+                    performance data dependent routing. A shard routing cache in the connection
+                    layer is used to route database requests directly to the shard where the data
+                    resides.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Routing by proxy.</span> Oracle Sharding supports routing for queries that do not
+                    specify a sharding key, giving any database application the flexibility to run
+                    SQL statements, without specifying the shards on which the query should be
+                    executed. Proxy routing can handle single-shard queries and multi-shard
+                    queries.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Middle-tier routing.</span> In addition to sharding the data tier, you can shard
+                    the web tier and application tier, distributing the shards of those middle tiers
+                    to service a particular set of database shards, creating a pattern known as a
+                        <span class="italic">swim lane</span>. A smart router can route client requests based on specific
+                    sharding keys to the appropriate swim lane, which in turn establishes
+                    connections on its subset of shards.
+                        </p>
+                        
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-9C096807-7CC1-4A06-B3E4-6CA7CBD33A7D" name="GUID-9C096807-7CC1-4A06-B3E4-6CA7CBD33A7D"></a><h3 id="SHARD-GUID-9C096807-7CC1-4A06-B3E4-6CA7CBD33A7D" class="sect3">Query Execution</h3>
+               <div>
+                  <p>No changes to query and DML statements are required to support Oracle
+                Sharding. Most existing DDL statements will work the same way on a sharded database
+                with the same syntax and semantics as they do on a non-sharded Oracle
+                Database.</p>
+                  <p>In the same way that DDL statements can be executed on all shards in
+                        a configuration, so too can certain Oracle-provided PL/SQL procedures.</p>
+                  <p>Oracle Sharding also has its own keywords in the SQL DDL statements,
+                        which can only be run against a sharded database.</p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-F26E4BE2-B727-4C02-8108-798D1B9AA5A0" name="GUID-F26E4BE2-B727-4C02-8108-798D1B9AA5A0"></a><h3 id="SHARD-GUID-F26E4BE2-B727-4C02-8108-798D1B9AA5A0" class="sect3">High Speed Data Ingest</h3>
+               <div>
+                  <p>SQL*Loader enables direct data loading into the database shards for a high
+                speed data ingest.</p>
+                  <p>SQL*Loader is a bulk loader utility used for moving data from external files into
+                        the Oracle database. Its syntax is similar to that of the DB2 load utility,
+                        but comes with more options. SQL*Loader supports various load formats,
+                        selective loading, and multi-table loads. Other benefits include:</p>
+                  <ul style="list-style-type: disc;" id="GUID-F26E4BE2-B727-4C02-8108-798D1B9AA5A0__OL_WZF_KX3_SKB">
+                     <li>Streaming capability lets you receive data from a large
+                                group of clients without blocking</li>
+                     <li>Group records according to Oracle RAC shard affinity using
+                                native UCP</li>
+                     <li>Optimize CPU allocation while decoupling record processing
+                                from I/O</li>
+                     <li>Fastest insert method for the Oracle Database through
+                                Direct Path Insert, bypassing SQL and writing directly in the
+                                database files</li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-92D759F9-23AB-4D59-A0B7-191B782001CA" name="GUID-92D759F9-23AB-4D59-A0B7-191B782001CA"></a><h3 id="SHARD-GUID-92D759F9-23AB-4D59-A0B7-191B782001CA" class="sect3">Deployment Automation</h3>
+               <div>
+                  <p>Sharded database deployment is highly automated with Terraform, Kubernetes,
+        and Ansible scripts.</p>
+                  <p>The deployment scripts take a simple input file describing your desired
+            deployment topology, and run from a single host to deploy shards to all of the sharded
+            database hosts. Pause, resume, and cleanup operations are included in the scripts in
+            case of errors.</p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-0EE59F89-FFA4-4B95-90E1-5B489BE1CC3A" name="GUID-0EE59F89-FFA4-4B95-90E1-5B489BE1CC3A"></a><h3 id="SHARD-GUID-0EE59F89-FFA4-4B95-90E1-5B489BE1CC3A" class="sect3">Data Pump Migration</h3>
+               <div>
+                  <p>Oracle Data Pump is sharding aware and is used to migrate data from a
+        non-sharded Oracle database to a sharded Oracle database.</p>
+                  <p>You can load data directly into the shards by running Oracle Data Pump on each shard.
+            This method is very fast because the entire data loading operation can complete within
+            the period of time needed to load the shard with the maximum subset of the entire data
+            set.</p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-5A34433F-8AA7-4E40-8C14-47853D32BCCC" name="GUID-5A34433F-8AA7-4E40-8C14-47853D32BCCC"></a><h3 id="SHARD-GUID-5A34433F-8AA7-4E40-8C14-47853D32BCCC" class="sect3">Lifecycle Management of
+                Shards</h3>
+               <div>
+                  <p>The Oracle Sharding command-line interface and Oracle Enterprise Manager
+                help you manage your sharded database.</p>
+                  <p>Using the tools provided you can:</p>
+                  <ul style="list-style-type: disc;" id="GUID-5A34433F-8AA7-4E40-8C14-47853D32BCCC__UL_SV3_QW3_SKB">
+                     <li><span class="bold">Provision</span> new sharded databases with scripts
+                     </li>
+                     <li><span class="bold">Scale out</span> as needed by adding more shards online and take
+                                advantage of automatic rebalancing
+                     </li>
+                     <li><span class="bold">Scale in</span> by moving data and consolidating hardware when loads are
+                                low
+                     </li>
+                     <li><span class="bold">Monitor</span> performance statistics using Enterprise Manager
+                     </li>
+                     <li><span class="bold">Back up</span> for disaster recovery using Cloud Backup
+                                Service, RMAN, and Zero Data Loss Recovery Appliance
+                     </li>
+                     <li><span class="bold">Patches and Upgrades</span> automated with oPatchAuto in
+                                rolling mode
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

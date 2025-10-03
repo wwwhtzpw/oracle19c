@@ -1,0 +1,176 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Task 2 - Configure the Oracle Database for GoldenGate">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Task">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-2501E5A9-B709-4328-BCBD-1519F2DF1502">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <title>Task 2 - Configure the Oracle Database for GoldenGate</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="task-1-you-begin-oggma-cloud-rac-adg.html" title="Previous" type="text/html">
+      <link rel="next" href="task-3-configure-oracle-database-file-system.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Task 2 - Configure the Oracle Database for GoldenGate","description":"","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="task-1-you-begin-oggma-cloud-rac-adg.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="task-3-configure-oracle-database-file-system.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-2501E5A9-B709-4328-BCBD-1519F2DF1502" name="GUID-2501E5A9-B709-4328-BCBD-1519F2DF1502"></a>
+         
+         <h2 id="HAOVW-GUID-2501E5A9-B709-4328-BCBD-1519F2DF1502" class="sect2">Task 2 - Configure the Oracle Database for
+        GoldenGate</h2>
+         <div class="ind">
+            <div>
+               <p>
+                  
+                  
+               </p>
+               <div class="section">
+                  <p>Perform the following steps to complete this
+                task:</p>
+                  <ul style="list-style-type: disc;" id="GUID-2501E5A9-B709-4328-BCBD-1519F2DF1502__UL_OTT_VG3_TYB">
+                     <li>Step 2.1 - Configure the Standby Database for Oracle GoldenGate</li>
+                     <li>Step 2.2 - Modify the Primary Database Service</li>
+                     <li>Step 2.3 - Create the Standby Database Service</li>
+                  </ul>
+                  <p><span class="bold">Step 2.1 - Configure the Standby Database for Oracle
+                    GoldenGate</span></p>
+                  <p>The standby database initialization parameters should match
+                those of the primary database, as specified in <a href="ogg-microservices-cloud1.html#GUID-ADF0293B-DD0F-43AC-8DD9-13340B318DF7" title="Use these best practices for configuring Oracle GoldenGate Microservices Architecture to work with Oracle Exadata Database Service on Dedicated Infrastructure (ExaDB-D) or Oracle Exadata Database Service on Cloud@Customer (ExaDB-C@C), and with Oracle Database File System (DBFS) or Oracle ASM Cluster File System (ACFS).">Cloud: Oracle GoldenGate Microservices Architecture on Oracle Exadata Database Service Configuration Best Practices</a>.
+                  </p>
+                  <p>This includes the following parameters:</p>
+                  <ul style="list-style-type: disc;" id="GUID-2501E5A9-B709-4328-BCBD-1519F2DF1502__UL_LQC_3H3_TYB">
+                     <li>
+                        
+                        <p><code class="codeph">ENABLE_GOLDENGATE_REPLICATION=TRUE</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>For Oracle GoldenGate source databases, enable <code class="codeph">FORCE LOGGING</code>
+                        mode and enable minimal supplemental logging.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>If an Oracle GoldenGate source database or running integrated Replicat
+                        (parallel or non-parallel), configure the
+                        <code class="codeph">STREAMS_POOL_SIZE</code>.
+                        </p>
+                        
+                     </li>
+                  </ul>
+                  <p><span class="bold">Step 2.2 - Modify the Primary Database Service</span></p>
+                  <p>On the primary
+                database server, validate the existing database services that were created as part
+                of the original Oracle GoldenGate on Oracle Exadata Database Service configuration.
+                </p>
+                  <p>By default, the service role is defined as <code class="codeph">PRIMARY</code>, so that
+                the service is only started when the database becomes the Data Guard primary
+                database role after a role transition.
+                  </p>
+                  <p>As the <code class="codeph">oracle</code> OS user
+                on the primary system, validate the service role using the following
+                command:
+                  </p><pre class="pre codeblock"><code>[opc@exapri-node1 ~]$ sudo su - oracle
+[oracle@exapri-node1 ~]$ source &lt;db_name&gt;.env
+[oracle@exapri-node1 ~]$ srvctl config service -db $ORACLE_UNQNAME |
+ egrep 'Service name|role|Pluggable database name'
+Service name: &lt;CDB_SERVICE_NAME&gt;
+Service role: PRIMARY
+Pluggable database name:
+Service name: &lt;PDB_SERVICE_NAME&gt;
+Service role: PRIMARY
+Pluggable database name: &lt;PDB_NAME&gt;</code></pre><p>If
+                the roles is not <code class="codeph">PRIMARY</code>, modify the service using the following
+                command:
+                  </p><pre class="pre codeblock"><code>[oracle@exapri-node1 ~]$ srvctl modify service -db $ORACLE_UNQNAME
+ -service &lt;service_name&gt; -role PRIMARY</code></pre><p>If
+                your database is part of a multitenant environment, remember to modify both the
+                multitenant container database (CDB) and pluggable database (PDB)
+                services.</p><span class="bold">Step 2.3 - Create the Standby Database Service</span><p>On the standby
+                Oracle Exadata Database Service, a database service is required for the standby
+                database so that the Oracle Grid Infrastructure Agent will automatically start the
+                Oracle GoldenGate deployment when the database is opened with the primary role.
+                </p>
+                  <p>When a source database is in a multitenant environment, a separate service is
+                required for the root container database (CDB) and the pluggable database (PDB) that
+                contains the schema being replicated. For a multitenant environment target database,
+                a single service is required for the PDB.</p>
+                  <p>Create the service in the standby
+                database as it was created on the primary database. It is recommended that you use
+                the same service name as was specified on the primary system. The service must be
+                created as a singleton service, using the -preferred option, because the application
+                Virtual IP address (VIP), DBFS, and Oracle GoldenGate will run on the system node
+                where the service is running.</p>
+                  <ol id="GUID-2501E5A9-B709-4328-BCBD-1519F2DF1502__OL_X3X_B33_TYB">
+                     <li>As the <code class="codeph">oracle</code> OS user, get the Fully Qualified Domain Name
+                    (FQDN):<pre class="pre codeblock"><code>[opc@exadb-node1 ~]$ sudo su - oracle
+[oracle@exadb-node1 ~]$ hostname -f
+exadb-node1.&lt;FQDN&gt;</code></pre></li>
+                     <li>As the oracle OS user on the standby system, create the service using the
+                    following
+                    command:<pre class="pre codeblock"><code>[opc@exastb-node1 ~]$ sudo su - oracle
+[oracle@exastb-node1 ~]$ source &lt;db_name&gt;.env
+[oracle@exastb-node1 ~]$ srvctl add service -db $ORACLE_UNQNAME
+ -service &lt;CDB_SERVICE_NAME&gt;.&lt;FQDN&gt; -preferred &lt;SID1&gt; -available &lt;SID2&gt;
+ -role PRIMARY
+[oracle@exastb-node1 ~]$ srvctl add service -db $ORACLE_UNQNAME
+ -service &lt;PDB_SERVICE_NAME&gt;.&lt;FQDN&gt; -preferred &lt;SID1&gt; -available &lt;SID2&gt;
+ -pdb &lt;PDB name&gt; -role PRIMARY</code></pre></li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

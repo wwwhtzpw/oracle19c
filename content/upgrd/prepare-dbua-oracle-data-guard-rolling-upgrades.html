@@ -1,0 +1,190 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Preparing for Database Rolling Upgrades Using Oracle Data Guard">
+      <meta name="abstract" content="If you perform your upgrade using Oracle Data Guard to carry out a rolling upgrade, then you must move the Data Guard broker configuration files before starting your upgrade.">
+      <meta name="description" content="If you perform your upgrade using Oracle Data Guard to carry out a rolling upgrade, then you must move the Data Guard broker configuration files before starting your upgrade.">
+      <meta name="DC.subject" content="troubleshooting, ORA-45415, Oracle Data Guard, rolling upgrades with DBUA">
+      <meta name="keywords" content="troubleshooting, ORA-45415, Oracle Data Guard, rolling upgrades with DBUA">
+      <meta name="DC.Relation" scheme="URI" content="tasks-prepare-upgrade-oracle-database.html#GUID-733D2563-A42D-4366-9FCD-DABD25D0E2DF">
+      <meta name="DC.Relation" scheme="URI" content="https://docs.oracle.com/pls/topic/lookup?ctx=en/database/oracle/oracle-database/19/upgrd&amp;id=DGBKR-GUID-73036514-7061-4B0D-83E5-C257EE59D791">
+      <meta name="DC.Creator" content="Drew Adams">
+      <meta name="DC.Creator" content="Pablo Sainz Albanez">
+      <meta name="DC.Creator" content="Frederick Alvarez">
+      <meta name="DC.Creator" content="Yasin Baskan">
+      <meta name="DC.Creator" content="Subhransu Basu">
+      <meta name="DC.Creator" content="Rae Burns">
+      <meta name="DC.Creator" content="Rhonda Day">
+      <meta name="DC.Creator" content="Mike Dietrich">
+      <meta name="DC.Creator" content="Joseph Errede">
+      <meta name="DC.Creator" content="Daniel Overby Hansen">
+      <meta name="DC.Creator" content="Yuan Hao">
+      <meta name="DC.Creator" content="Subrahmanyam Kodavaluru">
+      <meta name="DC.Creator" content="Jai Krisnani">
+      <meta name="DC.Creator" content="Cindy Lim">
+      <meta name="DC.Creator" content="Valarie Moore">
+      <meta name="DC.Creator" content="Byron Motta">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Geetha Ravi">
+      <meta name="DC.Creator" content="Carol Tagliaferri">
+      <meta name="DC.Creator" content="Hector Vieyra">
+      <meta name="DC.Creator" content="Douglas Williams">
+      <meta name="DC.Publisher" content="April2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-4C56C03E-671E-4518-830A-81B1F5EAFF76">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="If you perform your upgrade using Oracle Data Guard to carry out a rolling upgrade, then you must move the Data Guard broker configuration files before starting your upgrade.">
+      <meta name="description" content="If you perform your upgrade using Oracle Data Guard to carry out a rolling upgrade, then you must move the Data Guard broker configuration files before starting your upgrade.">
+      <title>Preparing for Database Rolling Upgrades Using Oracle Data Guard</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Upgrade Guide">
+      <meta property="og:description" content="If you perform your upgrade using Oracle Data Guard to carry out a rolling upgrade, then you must move the Data Guard broker configuration files before starting your upgrade.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Upgrade Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-database-upgrade-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-04-29T15:37:34-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96252-69">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="database-preparation-tasks-to-complete-before-upgrades.html" title="Previous" type="text/html">
+      <link rel="next" href="preparing-new-oracle-home-for-upgrade.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Database Upgrade Guide">
+    <meta name="dcterms.isVersionOf" content="UPGRD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Preparing for Database Rolling Upgrades Using Oracle Data Guard","description":"If you perform your upgrade using Oracle Data Guard to carry out a rolling upgrade, then you must move the Data Guard broker configuration files before starting your upgrade.","datePublished":"2025-04-29 CST","dateModified":"2025-04-29 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="database-preparation-tasks-to-complete-before-upgrades.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="preparing-new-oracle-home-for-upgrade.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-4C56C03E-671E-4518-830A-81B1F5EAFF76" name="GUID-4C56C03E-671E-4518-830A-81B1F5EAFF76"></a>
+         
+         <h2 id="UPGRD-GUID-4C56C03E-671E-4518-830A-81B1F5EAFF76" class="sect2">Preparing for Database Rolling Upgrades Using Oracle Data Guard</h2>
+         <div class="ind">
+            <div>
+               <p>If you perform your upgrade using Oracle Data Guard to carry out a rolling
+        upgrade, then you must move the Data Guard broker configuration files before starting your
+        upgrade.</p>
+               <p>The default location for the <code class="codeph">DB_BROKER_CONFIG</code> files is in the
+                <code class="codeph">dbs</code> directory in the earlier release Oracle Database Oracle home.
+            When you perform a rolling upgrade of database instances using Oracle Data Guard, you
+            must move the <code class="codeph">DG_BROKER_CONFIG</code> files to a mount point location outside
+            of the earlier release Oracle home. Also ensure that the
+                <code class="codeph">DG_BROKER_CONFIG_FILE</code><span class="variable" translate="no">n</span> parameters
+            specify that location, instead of a location in the earlier release Oracle home. During
+            database upgrade, don't migrate the listener. After the upgrade is complete, stop the
+            listener, shut down the database, copy over the <code class="codeph">listener.ora</code> and
+                <code class="codeph">tnsnames.ora</code> from the earlier source Oracle Database release
+            environment to the new Oracle Database release environment, and start the listener and
+            database
+               </p>
+               <div class="section">
+                  <p class="subhead1" id="GUID-4C56C03E-671E-4518-830A-81B1F5EAFF76__GUID-4050D3B6-F364-400E-BE41-3803FFC2F85D">Tasks Before Starting Your Upgrade</p>
+                  <p>To enable access to the <code class="codeph">DB_BROKER_CONFIG</code> files during a rolling
+                upgrade, you must complete the following tasks before starting the upgrade
+                  </p>
+                  <ol>
+                     <li>
+                        
+                        <p>Before you start the upgrade, if you are not using Oracle Automatic Storage
+                        Management (Oracle ASM) for storage, then set the Oracle Data Guard files
+                            <code class="codeph">DG_BROKER_CONFIG_FILE1</code> and
+                            <code class="codeph">DG_BROKER_CONFIG_FILE2</code> to a separate mount point on
+                        your server that is outside of the Oracle home path for either the source or
+                        target Oracle Database Oracle homes. 
+                        </p>
+                        
+                        <div class="infoboxnote" id="GUID-4C56C03E-671E-4518-830A-81B1F5EAFF76__GUID-81202551-4902-4B3F-943B-5120EE3298AF">
+                           <p class="notep1">Note:</p>
+                           
+                           <p>Prior to Oracle Database 21c, the default ORACLE_HOME layout
+                            combined ORACLE_HOME, ORACLE_BASE_HOME and ORACLE_BASE_CONFIG into a
+                            single location. Starting with Oracle Database 21c, the only available
+                            configuration is a read-only ORACLE_HOME where ORACLE_BASE_HOME and
+                            ORACLE_BASE_CONFIG are located separately from ORACLE_HOME. Files such
+                            as the Oracle Data Guard Files, which were previously located in the
+                            folder <code class="codeph">dbs</code>, are now located in
+                                <code class="codeph">ORACLE_BASE_CONFIG/dbs</code>.
+                           </p>
+                           
+                        </div>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Complete a successful upgrade of your earlier release Oracle home to the new
+                        Oracle Database release. </p>
+                        
+                     </li>
+                  </ol>
+               </div>
+               <div class="section">
+                  <p class="subhead1" id="GUID-4C56C03E-671E-4518-830A-81B1F5EAFF76__GUID-A869FFDC-DD1C-4408-98B1-BB2B80D108A5">Tasks During the Upgrade</p>
+                  <p>Do not migrate the listener during the upgrade.</p>
+                  
+                  <p>Oracle recommends that you use AutoUpgrade to complete the upgrade. See:</p>
+                  
+                  <p><a href="autoupgrade-oracle-database-config-options.html#UPGRD-GUID-7985739B-B33B-4BA6-A9FE-FEFC7721FFE8" target="_blank">AutoUpgrade and Oracle Data Guard</a></p>
+               </div>
+               <div class="section">
+                  <p class="subhead1" id="GUID-4C56C03E-671E-4518-830A-81B1F5EAFF76__GUID-319CA42B-8F34-4D53-8E8E-9C1128887517">Tasks After Completing Your Upgrade</p>
+                  <ol>
+                     <li>Stop the listener for the new release Oracle Database.</li>
+                     <li>Shut down the new release Oracle Database.</li>
+                     <li>Copy over the <code class="codeph">listener.ora</code> and <code class="codeph">tnsnames.ora</code> files
+                    from the earlier release Oracle Database to the new release Oracle Database. 
+                     </li>
+                     <li>Start the listener and new release Oracle Database</li>
+                  </ol>
+                  <p>Refer to <cite>Oracle Data Guard Broker</cite> for information about moving your Data Guard broker configuration files. 
+                  </p>
+               </div>
+            </div>
+            <div>
+               <div class="relinfo">
+                  <p><strong>Related Topics</strong></p>
+                  <ul>
+                     <li><a href="../dgbkr/managing-oracle-data-guard-broker-configurations.html#DGBKR-GUID-73036514-7061-4B0D-83E5-C257EE59D791" target="_blank">Renaming the Broker Configuration Files</a></li>
+                  </ul>
+               </div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="tasks-prepare-upgrade-oracle-database.html#GUID-733D2563-A42D-4366-9FCD-DABD25D0E2DF" title="Complete preupgrade tasks and checks to assist you with completing a successful upgrade.">Preparing to Upgrade Oracle Database</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

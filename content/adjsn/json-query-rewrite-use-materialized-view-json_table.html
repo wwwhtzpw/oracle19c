@@ -1,0 +1,247 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="JSON Query Rewrite To Use a Materialized View Over JSON_TABLE">
+      <meta name="abstract" content="You can enhance the performance of queries that access particular JSON fields by creating, and indexing, a materialized view over such data that's defined using SQL/JSON function json_table.">
+      <meta name="description" content="You can enhance the performance of queries that access particular JSON fields by creating, and indexing, a materialized view over such data that's defined using SQL/JSON function json_table.">
+      <meta name="DC.subject" content="materialized view of JSON data, rewriting automatically, materialized view of JSON data, indexing, query rewrite to a materialized view, rewrite of JSON queries to a materialized view">
+      <meta name="keywords" content="materialized view of JSON data, rewriting automatically, materialized view of JSON data, indexing, query rewrite to a materialized view, rewrite of JSON queries to a materialized view">
+      <meta name="DC.Relation" scheme="URI" content="performance-tuning-for-json-data.html#GUID-D3A3F17B-8372-43A7-83A3-E37C22E9011E">
+      <meta name="DC.Creator" content="Oracle JSON development, product management, and quality assurance teams.">
+      <meta name="DC.Creator" content="Drew Adams">
+      <meta name="DC.Publisher" content="November2023">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-8B0922ED-C0D1-45BD-9588-B7719BE4ECF0">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="You can enhance the performance of queries that access particular JSON fields by creating, and indexing, a materialized view over such data that's defined using SQL/JSON function json_table.">
+      <meta name="description" content="You can enhance the performance of queries that access particular JSON fields by creating, and indexing, a materialized view over such data that's defined using SQL/JSON function json_table.">
+      <title>JSON Query Rewrite To Use a Materialized View Over JSON_TABLE</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="JSON Developer's Guide">
+      <meta property="og:description" content="You can enhance the performance of queries that access particular JSON fields by creating, and indexing, a materialized view over such data that's defined using SQL/JSON function json_table.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="JSON Developer's Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="json-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2023-11-16T20:38:34-08:00">
+      <meta name="dcterms.title" content="JSON Developer's Guide">
+      <meta name="dcterms.dateCopyrighted" content="2015, 2023">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96227-18">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="in-memory-json-data.html" title="Previous" type="text/html">
+      <link rel="next" href="oracle-json-restrictions.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="ADJSN">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","name":"JSON Query Rewrite To Use a Materialized View Over JSON_TABLE","description":"You can enhance the performance of queries that access particular JSON fields by creating, and indexing, a materialized view over such data that's defined using SQL/JSON function json_table.","datePublished":"2019-01-11 21:19:45 GMT","dateModified":"2023-11-17 04:43:40 GMT"} </script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="in-memory-json-data.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="oracle-json-restrictions.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">JSON Developer's Guide</span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="performance-tuning-for-json-data.html" property="item" typeof="WebPage"><span property="name">Performance Tuning for JSON</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">JSON Query Rewrite To Use a Materialized View
+                Over JSON_TABLE</li>
+            </ol>
+            <a id="GUID-8B0922ED-C0D1-45BD-9588-B7719BE4ECF0" name="GUID-8B0922ED-C0D1-45BD-9588-B7719BE4ECF0"></a>
+            
+            <h2 id="ADJSN-GUID-8B0922ED-C0D1-45BD-9588-B7719BE4ECF0" class="sect2"><span class="enumeration_chapter">30 </span>JSON Query Rewrite To Use a Materialized View
+                Over JSON_TABLE
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>You can enhance the performance of queries that access particular JSON
+                fields by creating, and indexing, a materialized view over such data that's defined
+                using SQL/JSON function <code class="codeph">json_table</code>.
+               </p>
+               <p><a href="function-JSON_TABLE.html#GUID-BFA1FB9A-0F18-4ED2-B504-6855DC6705B5__CREATINGAMATERIALIZEDVIEWOVERJSONDA-E3D169D5">Example 20-10</a> shows how to create a materialized view over JSON data using function
+                                <code class="codeph">json_table</code>. That example creates a virtual column
+                        for each JSON field expected in the data.
+               </p>
+               <p>You can instead create a materialized view that projects only certain
+                        fields that you query often. If you do that, and if the following conditions
+                        are <span class="italic">all</span> satisfied, then queries that match the column data types of
+                        any of the projected fields can be <span class="italic">rewritten automatically</span> to go
+                        against the materialized view.
+               </p>
+               <ul style="list-style-type: disc;" id="GUID-8B0922ED-C0D1-45BD-9588-B7719BE4ECF0__UL_C1D_3RT_H4B">
+                  <li>
+                     
+                     <p>The materialized view is created with <code class="codeph">REFRESH FAST ON
+                                                STATEMENT</code>.
+                     </p>
+                     
+                  </li>
+                  <li>
+                     
+                     <p>The materialized view definition includes either <code class="codeph">WITH
+                                                PRIMARY KEY</code> or <code class="codeph">WITH ROWID</code>
+                                        (if there is no primary key).
+                     </p>
+                     
+                  </li>
+                  <li>
+                     
+                     <p>The materialized view joins the master table and only one virtual
+                                        table defined by <code class="codeph">json_table</code>.
+                     </p>
+                     
+                  </li>
+                  <li>
+                     
+                     <p>The columns projected by <code class="codeph">json_table</code>
+                                        use <code class="codeph">ERROR ON ERROR</code>. 
+                     </p>
+                     
+                  </li>
+               </ul>
+               <p>Automatic query rewrite is supported if those conditions are
+                        satisfied. You do not need to specify <code class="codeph">ENABLE QUERY REWRITE</code>
+                        in the view definition. Rewriting applies to queries that use any of the
+                        following in a <code class="codeph">WHERE</code> clause: simple dot notation, condition
+                                <code class="codeph">json_exists</code>, or function
+                                <code class="codeph">json_value</code>.
+               </p>
+               <p>Columns that do not specify <code class="codeph">ERROR ON ERROR</code> are also
+                        allowed, but queries are not rewritten to use those columns. If you use
+                                <code class="codeph">ERROR ON ERROR</code> for the <code class="codeph">json_table</code>
+                        row pattern, the effect is the same as if you specify <code class="codeph">ERROR ON
+                                ERROR</code> for <span class="italic">each</span> column.
+               </p>
+               <p>If some of your JSON data lacks a given projected field, using
+                                <code class="codeph">NULL ON EMPTY</code> allows that field to nevertheless be
+                        picked up when it is present — no error is raised when it is missing.
+               </p>
+               <p>Automatic query rewrite to use a materialized view can enhance
+                        performance. Performance can be further enhanced if you also create an index
+                        on the materialized view.</p>
+               <p><a href="json-query-rewrite-use-materialized-view-json_table.html#GUID-8B0922ED-C0D1-45BD-9588-B7719BE4ECF0__GUID-6271E73E-20E0-4627-AFBB-6FF5D48CF121">Example 30-1</a> creates such a materialized view. <a href="json-query-rewrite-use-materialized-view-json_table.html#GUID-8B0922ED-C0D1-45BD-9588-B7719BE4ECF0__GUID-E9B504C3-706D-438B-AABB-537249CE1A74">Example 30-2</a> creates an index for it.
+               </p>
+               <div class="example" id="GUID-8B0922ED-C0D1-45BD-9588-B7719BE4ECF0__GUID-6271E73E-20E0-4627-AFBB-6FF5D48CF121">
+                  <p class="titleinexample">Example 30-1 Creating a
+                                Materialized View of JSON Data To Support Query Rewrite</p>
+                  
+                  
+                  <p>This example creates materialized view
+                                        <code class="codeph">mv_for_query_rewrite</code>, which projects
+                                several JSON fields to relational columns. Queries that access those
+                                fields in a <code class="codeph">WHERE</code> clause using simple dot notation,
+                                condition <code class="codeph">json_exists</code>, or function
+                                        <code class="codeph">json_value</code>  can be automatically rewritten
+                                to instead go against the corresponding view columns.
+                  </p>
+                  
+                  <p>An example of such a query is that of <a href="condition-JSON_EXISTS.html#GUID-8A0043D5-95F8-4918-9126-F86FB0E203F0__GUID-A13E5291-41FF-4E0E-A2D6-61117B0DC67E">Example 17-5</a>, which has comparisons for fields
+                                        <code class="codeph">User</code>, <code class="codeph">UPCCode</code>, and
+                                        <code class="codeph">Quantity</code>. All of these comparisons are
+                                rewritten to use the materialized view.
+                  </p>
+                  
+                  <p>In order for the materialized view to be used for a given comparison of a
+                                query, the type of that comparison must be the same as the SQL data
+                                type for the corresponding view column. See <a href="indexes-for-json-data.html#GUID-E3721DDA-23C9-4859-B13B-FAA8544C32F8" title="An index created using SQL/JSON function json_value with ERROR ON ERROR can be used for a query involving SQL/JSON condition json_exists, provided the query path expression has a filter expression that contains only a path-expression comparison or multiple such comparisons separated by &amp;&amp;.">Using a JSON_VALUE Function-Based Index with JSON_EXISTS Queries</a> for information about the type of a comparison.
+                  </p>
+                  
+                  <p>For example, view <code class="codeph">mv_for_query_rewrite</code> can be used for a
+                                query that checks whether field <code class="codeph">UPCCode</code> has numeric
+                                value <code class="codeph">85391628927</code>, because the view column
+                                projected from that field has SQL type <code class="codeph">NUMBER</code>. But
+                                the view cannot be used for a query that checks whether that field
+                                has string value <code class="codeph">"85391628927"</code>.
+                  </p>
+                  <pre class="pre codeblock"><code>CREATE MATERIALIZED VIEW mv_for_query_rewrite
+  <span class="bold">BUILD IMMEDIATE</span>
+  <span class="bold">REFRESH FAST ON STATEMENT</span> <span class="bold">WITH PRIMARY KEY</span>
+  AS SELECT <span class="bold">po.id</span>, jt.*
+       FROM j_purchaseorder po,
+            json_table(po.po_document, '$' <span class="bold">ERROR ON ERROR NULL ON EMPTY</span>
+              COLUMNS (
+                po_number       NUMBER         PATH '$.PONumber',
+                userid          VARCHAR2(10)   PATH '$.User',
+                NESTED PATH '$.LineItems[*]'
+                  COLUMNS (
+                    itemno      NUMBER         PATH '$.ItemNumber',
+                    description VARCHAR2(256)  PATH '$.Part.Description',
+                    upc_code    NUMBER         PATH '$.Part.UPCCode',
+                    quantity    NUMBER         PATH '$.Quantity',
+                    unitprice   NUMBER         PATH '$.Part.UnitPrice'))) jt;
+</code></pre>
+                  <p>You can tell whether the materialized view is used for a
+                                particular query by examining the execution plan. If it is, then the
+                                plan refers to <code class="codeph">mv_for_query_rewrite</code>. For example: 
+                  </p>
+                  <pre class="pre codeblock"><code>|* 4| <span class="bold">MAT_VIEW ACCESS FULL</span> | <span class="bold">MV_FOR_QUERY_REWRITE</span> |1|51|3(0)|00:00:01|</code></pre>
+                  </div>
+               <!-- class="example" -->
+               <div class="example" id="GUID-8B0922ED-C0D1-45BD-9588-B7719BE4ECF0__GUID-E9B504C3-706D-438B-AABB-537249CE1A74">
+                  <p class="titleinexample">Example 30-2 Creating an Index Over
+                                a Materialized View of JSON Data</p>
+                  
+                  
+                  <p>This example creates composite relational index
+                                        <code class="codeph">mv_idx</code> on columns <code class="codeph">userid</code>,
+                                        <code class="codeph">upc_code</code>, and <code class="codeph">quantity</code> of
+                                the materialized view <code class="codeph">mv_for_query_rewrite</code> created
+                                in <a href="json-query-rewrite-use-materialized-view-json_table.html#GUID-8B0922ED-C0D1-45BD-9588-B7719BE4ECF0__GUID-6271E73E-20E0-4627-AFBB-6FF5D48CF121">Example 30-1</a>.
+                  </p>
+                  
+                  <pre class="pre codeblock"><code>CREATE INDEX <span class="bold">mv_idx</span> ON mv_for_query_rewrite(userid, upc_code, quantity);</code></pre>
+                  <p>The execution plan snippet in <a href="json-query-rewrite-use-materialized-view-json_table.html#GUID-8B0922ED-C0D1-45BD-9588-B7719BE4ECF0__GUID-6271E73E-20E0-4627-AFBB-6FF5D48CF121">Example 30-1</a> shows a full table scan (<code class="codeph">MAT_VIEW
+                                        ACCESS FULL</code>) of the materialized view. Defining
+                                index <code class="codeph">mv_idx</code> can result in a better plan for the
+                                query. This is indicated by the presence of <code class="codeph">INDEX RANGE
+                                        SCAN</code> (as well as the name of the index,
+                                        <code class="codeph">MV_IDX</code>, and the material view,
+                                        <code class="codeph">MV_FOR_QUERY_REWRITE</code>).
+                  </p>
+                  <pre class="pre codeblock"><code>|  4| <span class="bold">MAT_VIEW ACCESS BY INDEX ROWID BATCHED</span> | <span class="bold">MV_FOR_QUERY_REWRITE</span> |1|51|2(0)|00:00:01|
+
+|* 5|                       <span class="bold">INDEX RANGE SCAN</span> | <span class="bold">MV_IDX</span>               |1|  |1(0)|00:00:01|</code></pre>
+                  </div>
+               <!-- class="example" -->
+            </div>
+            <div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="performance-tuning-for-json-data.html#GUID-D3A3F17B-8372-43A7-83A3-E37C22E9011E" title="To tune query performance you can index JSON fields in several ways, store their values in the In-Memory Column Store (IM column store), or expose them as non-JSON data using materialized views.">Performance Tuning for JSON</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

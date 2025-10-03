@@ -1,0 +1,779 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Oracle Data Provider for .NET, Unmanaged Driver Configuration</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="InstallConfig.html" title="Previous" type="text/html">
+      <link rel="next" href="InstallManagedConfig.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="InstallConfig.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="InstallManagedConfig.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="install.html" property="item" typeof="WebPage"><span property="name">Installing and Configuring Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Oracle Data Provider for .NET, Unmanaged Driver Configuration</li>
+            </ol>
+            <a id="GUID-6F3A5287-F255-4583-8B03-6A8D9D12A3E3" name="GUID-6F3A5287-F255-4583-8B03-6A8D9D12A3E3"></a><a id="ODPNT8154"></a>
+            
+            <h2 id="ODPNT-GUID-6F3A5287-F255-4583-8B03-6A8D9D12A3E3" class="sect2">Oracle Data Provider for .NET, Unmanaged Driver Configuration</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>The following sections explain how to configure ODP.NET, Unmanaged Driver. </p>
+               <p>ODP.NET can be configured using an XML file named <code class="codeph">web.config</code>, <code class="codeph">app.config</code>, or <code class="codeph">machine.config</code>. These config files contain sections specific to ODP.NET configuration.
+               </p>
+               <p>For unmanaged ODP.NET, developers use either the traditional <code class="codeph">&lt;oracle.dataaccess.client&gt;</code> section or the newer <code class="codeph">&lt;oracle.unmanageddataaccess.client&gt;</code> section. Oracle recommends applications use <code class="codeph">&lt;oracle.unmanageddataaccess.client&gt;</code> when possible. For managed ODP.NET, developers use <code class="codeph">&lt;oracle.manageddataaccess.client&gt;</code>.
+               </p>
+               <p><code class="codeph">&lt;oracle.unmanageddataaccess.client&gt;</code> is a superset of <code class="codeph">&lt;oracle.manageddataaccess.client&gt;</code> as unmanaged ODP.NET supports some features not available in the managed driver. For features both providers have in common, they share the same structure, properties, and nearly all values. Programmers will find using either provider interchangeably or migrating between unmanaged and managed ODP.NET is easier with the shared format.
+               </p>
+               <p>This documentation section covers unmanaged ODP.NET configuration settings in the Windows registry, <code class="codeph">&lt;oracle.dataaccess.client&gt;</code>, or unique <code class="codeph">&lt;oracle.unmanageddataaccess.client&gt;</code> settings. For shared settings with <code class="codeph">&lt;oracle.manageddataaccess.client&gt;</code>.
+               </p>
+               <div class="infoboxnotealso" id="GUID-6F3A5287-F255-4583-8B03-6A8D9D12A3E3__GUID-9D2665BD-2D04-4651-B733-2471C0844DBB">
+                  <p class="notep1">See Also:</p>
+                  <p><a href="InstallManagedConfig.html#GUID-29A85CBD-948D-4C9F-A89D-A96A99EFF2D7" title="ODP.NET enables ONS communications to occur over TCP/IP with SSL/TLS (TCPS), which is more secure than just TCP/IP. As TCPS requires using a wallet for storing keys and certificates, ODP.NET can use one wallet for both ONS and ODP.NET connections or have separate wallets for each.">Oracle Data Provider for .NET, Managed Driver Configuration</a></p>
+               </div>
+            </div><a id="ODPNT8156"></a><a id="ODPNT8155"></a><div class="props_rev_3"><a id="GUID-140DDC35-8380-4BF7-8855-273D317C610D" name="GUID-140DDC35-8380-4BF7-8855-273D317C610D"></a><h3 id="ODPNT-GUID-140DDC35-8380-4BF7-8855-273D317C610D" class="sect3">Supported Configuration Settings</h3>
+               <div>
+                  <p>ODP.NET, Unmanaged Driver supports the configuration of an attribute as follows:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>In the Windows registry.</p>
+                     </li>
+                     <li>
+                        <p>In an XML file.</p>
+                     </li>
+                     <li>
+                        <p>Through a different mechanism such as a connection string or programmatically through an ODP.NET class, if applicable.</p>
+                     </li>
+                  </ul>
+                  <p><a href="InstallUnmanagedConfig.html#GUID-140DDC35-8380-4BF7-8855-273D317C610D__BABFBCBB" title="rows are attributes, column 1 is name, column 2 is description">Table 2-3</a> describes each configurable attribute that is supported by ODP.NET. In the table, the term Configuration Support is followed by the types of configuration support (Windows registry, XML file, and so on) that are available for that attribute.
+                  </p>
+                  <p>The table describes valid values as well as the default for each attribute. </p>
+                  <div class="infoboxnote" id="GUID-140DDC35-8380-4BF7-8855-273D317C610D__GUID-62233DA0-57AC-49B6-B3C6-F26B1BFD0AAE">
+                     <p class="notep1">Note:</p>
+                     <p>The default values shown are the values used for an attribute if the registry key does not exist or if it is not configured anywhere.</p>
+                  </div>
+                  <div class="tblformal" id="GUID-140DDC35-8380-4BF7-8855-273D317C610D__BABFBCBB">
+                     <p class="titleintable">Table 2-3 Configuration Attributes</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="Configuration Attributes" summary="rows are attributes, column 1 is name, column 2 is description" width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" id="d52111e102">Attribute/Setting Name</th>
+                              <th align="left" valign="bottom" id="d52111e105">Description</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e110" headers="d52111e102 ">
+                                 <p><code class="codeph">CheckConStatus</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e110 d52111e105 ">
+                                 <p>Specifies whether the status of the connection is checked or not before putting the connection back into the connection pool. This registry entry is not created by the installation of ODP.NET. However, the default value <code class="codeph">1</code> is used.
+                                 </p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry and XML file</p>
+                                 <p>Valid Values:</p>
+                                 <p><code class="codeph">1</code>: Check the status of the connection.
+                                 </p>
+                                 <p><code class="codeph">0</code>: Do not check the status of the connection.
+                                 </p>
+                                 <p>Default: <code class="codeph">1</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e139" headers="d52111e102 ">
+                                 <p><code class="codeph">DbNotificationPort</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e139 d52111e105 ">
+                                 <p>Specifies the port number which ODP.NET listens to, for all notifications sent by the database for change notification, HA, or RLB features. ODP.NET does not throw any errors if an invalid or used port number is specified. The port can also be set to override the Windows registry and XML configuration file by setting the <code class="codeph">OracleDependency.Port</code> static field.
+                                 </p>
+                                 <p>Configuration Support:</p>
+                                 <p>XML file, and ODP.NET class</p>
+                                 <p>Valid Values:</p>
+                                 <p><code class="codeph">-1</code>: Open a random unused port to listen to.
+                                 </p>
+                                 <p><span class="italic"><code class="codeph">n</code></span> <code class="codeph">&gt;</code> <code class="codeph">=</code> <code class="codeph">0</code>: Listen on port <span class="italic"><code class="codeph">n</code></span>.
+                                 </p>
+                                 <p>Default: <code class="codeph">-1</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e182" headers="d52111e102 ">
+                                 <p><code class="codeph">DemandOraclePermission</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e182 d52111e105 ">
+                                 <p>Specifies whether ODP.NET demands <code class="codeph">OraclePermission</code> from the .NET application that is trying to access the database using ODP.NET.
+                                 </p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry and XML file</p>
+                                 <p>Valid Values:</p>
+                                 <p>0: Disables demands for <code class="codeph">OraclePermission</code>.
+                                 </p>
+                                 <p>1: Enables demands for <code class="codeph">OraclePermission</code></p>
+                                 <p>Default: 0</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e210" headers="d52111e102 ">
+                                 <p><code class="codeph">DllPath</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e210 d52111e105 ">
+                                 <p>Specifies the location where dependent unmanaged Oracle Client binaries load from.</p>
+                                 <p>Configuration Support: Windows Registry and XML file</p>
+                                 <p>Valid Values:</p>
+                                 <p>The path where dependent unmanaged Oracle Client binaries reside.</p>
+                                 <p> Default: <span class="italic"><code class="codeph">ORACLE_BASE\\ORACLE_HOME</code></span><code class="codeph">\bin</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e231" headers="d52111e102 ">
+                                 <p><code class="codeph">DynamicEnlistment</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e231 d52111e105 ">
+                                 <p>Due to a behavior change with the ODAC 12c Release 3 version of ODP.NET connection string attribute <code class="codeph">enlist=dynamic</code>, <code class="codeph">DynamicEnlistment</code> has no operation now.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e245" headers="d52111e102 ">
+                                 <p><code class="codeph">FetchSize</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e245 d52111e105 ">
+                                 <p>Specifies the total memory size, in bytes, that ODP.NET allocates to cache the data fetched from a database round-trip. This value can be set on the <code class="codeph">OracleCommand</code> and the <code class="codeph">OracleDataReader</code> <code class="codeph">FetchSize</code> property as well.
+                                 </p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry, XML file, and ODP.NET class</p>
+                                 <p>Valid Values:</p>
+                                 <p><code class="codeph">0 &lt;=</code> <span class="italic"><code class="codeph">n</code></span> <code class="codeph">&lt;= int.MaxValue</code>:  <span class="italic"><code class="codeph">n</code></span> is the size of the cache in bytes.
+                                 </p>
+                                 <p>Default: <code class="codeph">131072</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e287" headers="d52111e102 ">
+                                 <p><code class="codeph">LegacyEntireLobFetch</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e287 d52111e105 ">
+                                 <p>Returns either <code class="codeph">OracleBlob</code> and <code class="codeph">OracleClob</code> types or <code class="codeph">OracleBinary</code> and <code class="codeph">OracleString</code> types from Oracle Database <code class="codeph">BLOB</code> and <code class="codeph">CLOB</code> columns. This setting only applies when <code class="codeph">InitialLobFetchSize</code> is set to <code class="codeph">-1</code>.
+                                 </p>
+                                 <p>Valid Values:</p>
+                                 <p><code class="codeph">0</code>: Returns <code class="codeph">OracleBlob</code> and <code class="codeph">OracleClob</code></p>
+                                 <p><code class="codeph">1</code>: Returns <code class="codeph">OracleBinary</code> and <code class="codeph">OracleString</code></p>
+                                 <p>Default: <code class="codeph">0</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e344" headers="d52111e102 ">
+                                 <p id="GUID-140DDC35-8380-4BF7-8855-273D317C610D__BABJBHIJ"><code class="codeph">LegacyTransactionBindingBehavior</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e344 d52111e105 ">
+                                 <p>Specifies when a database connection detaches from a <code class="codeph">System.Transactions</code> transaction. By default, connections detach from a transaction only when explicitly unbound as is the case when the connection closes or implicitly unbound when the transaction is disposed. Alternatively, this attribute can be set so that the connection detaches whenever the transaction ends (commits, aborts, or times out), the connection closes, or the transaction is disposed.
+                                 </p>
+                                 <p>In ODP.NET 11.2.0.3.20 and earlier releases, the latter was the default behavior. Oracle recommends using the current default behavior.</p>
+                                 <p>In the earlier default behavior, when the timeout elapses before the transaction completes, the connection unbinds itself from the transaction and all subsequent executions on this connection execute in <code class="codeph">AutoCommit</code> mode. Any operations prior to the timeout roll back, but operations performed after the timeout commit.
+                                 </p>
+                                 <p>In the current default setting, users receive an exception when the transaction times out and additional operations execute on the connection.</p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry and XML file</p>
+                                 <p>Valid Values:</p>
+                                 <p><code class="codeph">0:</code> Connections detach from transaction when the connection closes or the transaction is disposed.
+                                 </p>
+                                 <p><code class="codeph">1</code>: Connections detach from transaction when the connection closes, the transaction is disposed, or the transaction completes (commits, rolls back, times out).
+                                 </p>
+                                 <p>Default: <code class="codeph">0</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e382" headers="d52111e102 ">
+                                 <p><code class="codeph">MaxStatementCacheSize</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e382 d52111e105 ">
+                                 <p>Specifies the maximum number of statements that can be cached when self-tuning is enabled.</p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry and XML file</p>
+                                 <p>Valid Values:</p>
+                                 <p>0 to <code class="codeph">System.Int32.MaxValue</code>.
+                                 </p>
+                                 <p>Default: <code class="codeph">OPEN_CURSORS</code> setting value of the database
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e406" headers="d52111e102 ">
+                                 <p><code class="codeph">MetaDataXml</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e406 d52111e105 ">
+                                 <p>Specifies the name of the XML file that customizes the queries to obtain the metadata the ADO.NET 2.0 <code class="codeph">GetSchema</code> method returns. <code class="codeph">MetaDataXml</code> can only be set in a configuration file.
+                                 </p>
+                                 <p>Configuration Support:</p>
+                                 <p>XML file only</p>
+                                 <p>Valid Values:</p>
+                                 <p>A complete file name for the XML file.</p>
+                                 <p>Default: <span class="italic">none</span></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e432" headers="d52111e102 ">
+                                 <p><code class="codeph">PerformanceCounters</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e432 d52111e105 ">
+                                 <p>Enables or disables publishing performance counters for connection pooling. Multiple performance counters can be obtained by adding the valid values.</p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry and XML file</p>
+                                 <p>Valid Values: </p>
+                                 <p><code class="codeph">0</code>: Not Enabled
+                                 </p>
+                                 <p><code class="codeph">1</code>: Number of sessions being established with Oracle Database every second.
+                                 </p>
+                                 <p><code class="codeph">2</code>: Number of sessions being severed from Oracle Database every second.
+                                 </p>
+                                 <p><code class="codeph">4</code>: Number of active connections originating from connection pools every second.
+                                 </p>
+                                 <p><code class="codeph">8</code>: Number of active connections going back to the connection pool every second.
+                                 </p>
+                                 <p><code class="codeph">16</code>: Total number of active connections.
+                                 </p>
+                                 <p><code class="codeph">32</code>: Number of inactive connection pools.
+                                 </p>
+                                 <p><code class="codeph">64</code>: Total number of connections in use.
+                                 </p>
+                                 <p><code class="codeph">128</code>: Total number of connections available for use in all the connection pools.
+                                 </p>
+                                 <p><code class="codeph">256</code>: Total number of pooled active and free connections.
+                                 </p>
+                                 <p><code class="codeph">512</code>: Number of non-pooled active connections
+                                 </p>
+                                 <p><code class="codeph">1024</code>: Number of connections which were garbage-collected implicitly.
+                                 </p>
+                                 <p><code class="codeph">2048</code>: Number of connections that will be soon available in the pool. User has closed these connections, but they are currently awaiting actions, such transaction completion, before they can be placed back into the pool as free connections.
+                                 </p>
+                                 <p><code class="codeph">4095</code>: All the above
+                                 </p>
+                                 <p>Default: <code class="codeph">0</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e508" headers="d52111e102 ">
+                                 <p><code class="codeph">PromotableTransaction</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e508 d52111e105 ">
+                                 <p>Specifies the type of transaction to use when the first connection participates in the <code class="codeph">TransactionScope</code> object.
+                                 </p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry, XML file, and <span class="italic">promotable</span> <span class="italic">transaction</span> connection string attribute
+                                 </p>
+                                 <p>Valid Values: </p>
+                                 <p><code class="codeph">local</code>: The first connection opened in the <code class="codeph">TransactionScope</code> object uses a local transaction.
+                                 </p>
+                                 <p><code class="codeph">promotable</code>: The first connection and all subsequent connections opened in the same <code class="codeph">TransactionScope</code> object enlist in the same distributed transaction.
+                                 </p>
+                                 <p>Default: <code class="codeph">promotable</code></p>
+                                 <p><span class="italic">This property has been deprecated in 12.2.0.1. It will be desupported in a future release.</span></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e552" headers="d52111e102 ">
+                                 <p><code class="codeph">SelfTuning</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e552 d52111e105 ">
+                                 <p>Specifies whether self-tuning is enabled for an ODP.NET application. </p>
+                                 <p>Configuration Support: </p>
+                                 <p>Windows Registry, XML file, and <code class="codeph">Self Tuning</code> connection string attribute
+                                 </p>
+                                 <p>Valid Values:</p>
+                                 <p>0: Self Tuning is disabled. Used in the registry or XML file.</p>
+                                 <p><code class="codeph">false</code>: Self Tuning is disabled. Used for the <code class="codeph">Self Tuning</code> connection string attribute.
+                                 </p>
+                                 <p>1: Self Tuning is enabled. Used in the registry or XML file.</p>
+                                 <p><code class="codeph">true</code>: Self Tuning is enabled. Used for the <code class="codeph">Self Tuning</code> connection string attribute.
+                                 </p>
+                                 <p>Default: 1</p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e589" headers="d52111e102 ">
+                                 <p><code class="codeph">StatementCacheSize</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e589 d52111e105 ">
+                                 <p>Specifies the number of cursors or statements to be cached on the database for each connection. This setting corresponds to <span class="italic">Statement Cache Size</span> attribute in the connection string. A value greater than zero also enables statement caching.
+                                 </p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry, XML file, and <span class="italic">Statement Cache Size</span> connection string attribute
+                                 </p>
+                                 <p>Valid Values:</p>
+                                 <p><code class="codeph">0 &lt;=</code> <span class="italic"><code class="codeph">n</code></span> <code class="codeph">&lt;=</code> the value of <code class="codeph">OPEN_CURSORS</code> parameter set in <code class="codeph">init.ora</code> database config file.
+                                 </p>
+                                 <p><span class="italic"><code class="codeph">n</code></span> is the number to set.
+                                 </p>
+                                 <p>Default: <code class="codeph">0</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e635" headers="d52111e102 ">
+                                 <p><code class="codeph">StatementCacheWithUdts</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e635 d52111e105 ">
+                                 <p>Specifies whether or not Oracle UDTs retrieved by executing a <code class="codeph">SELECT</code> statement are cached along with the statement in the statement cache. This setting affects the memory usage and performance of the application.
+                                 </p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry and XML file</p>
+                                 <p>Valid Values:</p>
+                                 <p><code class="codeph">0</code>: Oracle UDTs are not cached with statements.
+                                 </p>
+                                 <p><code class="codeph">1</code>: Oracle UDTs are cached along with statements.
+                                 </p>
+                                 <p>Default: <code class="codeph">1</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e664" headers="d52111e102 ">
+                                 <p><code class="codeph">ThreadPoolMaxSize</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e664 d52111e105 ">
+                                 <p>Specifies the default maximum size of worker threads for each available processor in a process. This value may affect the performance of ODP.NET connection creation, command execution timeout, and external procedures (<code class="codeph">extproc</code>) that use the thread pool. However, unnecessarily increasing thread pool maximum size can also cause performance problems.
+                                 </p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry and XML file</p>
+                                 <p>Valid Values:</p>
+                                 <p><code class="codeph">0 &lt;=</code> <span class="italic"><code class="codeph">n</code></span> <code class="codeph">&lt;= int.MaxValue</code>: Allows ODP.NET to reset thread pool maximum size with the value <span class="italic"><code class="codeph">n</code></span>. The ODP.NET reset operation may be ignored if the value is invalid. For example, if <span class="italic">n</span> is less than the number of available processors of the system. In this case, the result is the same as the value <code class="codeph">-1</code>.
+                                 </p>
+                                 <p><code class="codeph">-1</code>: Leave the thread pool max size as is.
+                                 </p>
+                                 <p>Default: <code class="codeph">-1</code> (this registry entry is not created by default)
+                                 </p>
+                                 <p>Note that prior to ODAC 2007 or version 11.1.0.6.20, ODP.NET resets the thread pool maximum size to <code class="codeph">int.MaxValue</code> when the <code class="codeph">OracleCommand.CommandTimeout</code> property is set to a value greater than 0. This erroneous behavior has been corrected. <code class="codeph">OracleCommand.CommandTimeout</code> does not change thread pool maximum size.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e722" headers="d52111e102 ">
+                                 <p><code class="codeph">TraceFileName</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e722 d52111e105 ">
+                                 <p>Specifies the file name to be used for logging trace information.</p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry and XML file</p>
+                                 <p>Valid Values:</p>
+                                 <p>Any valid directory location and file name.</p>
+                                 <p>Default: <code class="codeph">c:\odpnet2.trc</code> (for .NET Framework 2.0)
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e743" headers="d52111e102 ">
+                                 <p><code class="codeph">TraceLevel</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e743 d52111e105 ">
+                                 <p>Specifies the level of tracing in ODP.NET. Because tracing all the entry and exit calls for all the objects can be excessive, <code class="codeph">TraceLevel</code> is provided to limit tracing to certain areas of the provider. Each valid value indicates a possible tracing level. Compounded tracing levels can be obtained by adding the valid values.
+                                 </p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry and XML file</p>
+                                 <p>Valid Values:</p>
+                                 <p><code class="codeph">0</code>: None
+                                 </p>
+                                 <p><code class="codeph">1</code>: Entry, exit, and SQL statement information
+                                 </p>
+                                 <p><code class="codeph">2</code>: Connection pooling statistics
+                                 </p>
+                                 <p><code class="codeph">4</code>: Distributed transactions (enlistment and delistment)
+                                 </p>
+                                 <p><code class="codeph">8</code>: User-mode dump creation upon unmanaged exception
+                                 </p>
+                                 <p><code class="codeph">16</code>: HA Event Information
+                                 </p>
+                                 <p><code class="codeph">32</code>: Load Balancing Information
+                                 </p>
+                                 <p><code class="codeph">64</code>: Self Tuning Information
+                                 </p>
+                                 <p><code class="codeph">127</code>: All the above
+                                 </p>
+                                 <p>Default: 0</p>
+                                 <p><span class="bold">Note:</span> ODP.NET does bit-wise checking on the value. When tracing is enabled, logging to the trace file can affect ODP.NET performance.
+                                 </p>
+                                 <p><span class="bold">Note:</span> The user-mode dump creation requires <code class="codeph">dbghelp.dll</code> version 5.1.2600.0 or later.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e810" headers="d52111e102 ">
+                                 <p><code class="codeph">TraceOption</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e810 d52111e105 ">
+                                 <p>Specifies whether to log trace information in single or multiple files for different threads. If a single trace file is specified, the file name specified in <code class="codeph">TraceFileName</code> is used. If the multiple trace files option is requested, a Thread ID is appended to the file name provided to create a trace file for each thread.
+                                 </p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry and XML file</p>
+                                 <p>Valid Values:</p>
+                                 <p><code class="codeph">0</code>: Single trace file
+                                 </p>
+                                 <p><code class="codeph">1</code>: Multiple trace files
+                                 </p>
+                                 <p>Default: <code class="codeph">0</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e839" headers="d52111e102 ">
+                                 <p><code class="codeph">UdtCacheSize</code></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e839 d52111e105 ">
+                                 <p>Specifies the size of the object cache for each connection in kilobytes (KB) that ODP.NET uses to retrieve and manipulate Oracle UDTs.</p>
+                                 <p>Configuration Support:</p>
+                                 <p>Windows Registry and XML file</p>
+                                 <p>Valid Values:</p>
+                                 <p><code class="codeph">0 &lt;=</code> <span class="italic"><code class="codeph">n</code></span> <code class="codeph">&lt;= 4194303</code>, <span class="italic"><code class="codeph">n</code></span> is the number to set.
+                                 </p>
+                                 <p>Default: <code class="codeph">4096</code></p>
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" id="d52111e872" headers="d52111e102 ">
+                                 <p> <span class="italic"><code class="codeph">UDT Mapping</code></span></p>
+                              </td>
+                              <td align="left" valign="top" headers="d52111e872 d52111e105 ">
+                                 <p>Specifies a mapping between a custom type and an Oracle UDT in the database. The mappings can be specified in configuration files and custom type factories. However, if the mapping is specified in both places, mappings specified in the configuration files takes precedence over mappings specified using custom type factories.</p>
+                                 <p>Configuration Support:</p>
+                                 <p>XML file and Custom Type Factory Classes</p>
+                                 <p>Valid Values:</p>
+                                 <p>Any valid mapping.</p>
+                                 <p>Default: <span class="italic">none</span></p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <!-- class="inftblhruleinformal" -->
+               </div>
+            </div><a id="ODPNT8157"></a><div class="props_rev_3"><a id="GUID-D39AE78F-35A0-4680-9500-2144952C906D" name="GUID-D39AE78F-35A0-4680-9500-2144952C906D"></a><h3 id="ODPNT-GUID-D39AE78F-35A0-4680-9500-2144952C906D" class="sect3">Windows Registry</h3>
+               <div>
+                  <p>Upon installation, ODP.NET creates entries for configuration and tracing within the Windows Registry. Configuration and tracing registry values apply across all ODP.NET applications running in that Oracle client installation. Individual ODP.NET applications can override some of these values by configuring them within the ODP.NET application itself (for example, <code class="codeph">FetchSize</code>). Applications can also use the .NET configuration files to override some of the ODP.NET Windows Registry values.
+                  </p>
+                  <p>The ODP.NET registry values are located under <code class="codeph">HKEY_LOCAL_MACHINE\Software\Oracle\ODP.NET\</code><span class="italic"><code class="codeph">version</code></span><code class="codeph">\</code>. There is one key for .NET Framework 3.5, and one key for .NET Framework 4 and later.
+                  </p>
+                  <div class="infoboxnote" id="GUID-D39AE78F-35A0-4680-9500-2144952C906D__GUID-0E20DB34-41F3-43D1-B75E-FF7991EEACEF">
+                     <p class="notep1">Note:</p>
+                     <p>32-bit applications running on an x64-based version of Windows use the registry subkey, <code class="codeph">HKEY_LOCAL_MACHINE\Software\WOW6432node</code> in place of <code class="codeph">HKEY_LOCAL_MACHINE\Software</code>. If such applications use Oracle Data Provider for .NET (32-bit), then the ODP.NET registry values are located under <code class="codeph">HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Oracle\ODP.NET\version\</code>.
+                     </p>
+                  </div>
+               </div>
+            </div><a id="ODPNT8158"></a><div class="props_rev_3"><a id="GUID-3D393AF4-2271-443C-97C6-42E0D29333E3" name="GUID-3D393AF4-2271-443C-97C6-42E0D29333E3"></a><h3 id="ODPNT-GUID-3D393AF4-2271-443C-97C6-42E0D29333E3" class="sect3">Configuration File Support</h3>
+               <div>
+                  <p>For customers who have numerous applications on a computer that depends on a single version of ODP.NET, the Windows Registry settings for a given version of ODP.NET may not necessarily be applicable for all applications that use that version of ODP.NET. To provide more granular control, ODP.NET Configuration File Support allows developers to specify ODP.NET configuration settings in an application config, <code class="codeph">web.config</code>, or a <code class="codeph">machine.config</code> file.
+                  </p>
+                  <p>If a computer does not require granular control beyond configuration settings at the ODP.NET version level, there is no need to specify ODP.NET configuration settings through configuration files.</p>
+                  <p>The following is an example of a <code class="codeph">web.config</code> file for .NET Framework 2.0 and later:
+                  </p><pre class="oac_no_warn" dir="ltr">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+  &lt;oracle.dataaccess.client&gt;
+    &lt;settings&gt;
+      &lt;add name="DllPath"               value="C:\oracle\bin"/&gt;
+      &lt;add name="FetchSize"             value="131072"/&gt;
+      &lt;add name="StatementCacheSize"    value="10"/&gt;
+      &lt;add name="TraceFileName"         value="D:\odpnet2.trc"/&gt;
+      &lt;add name="TraceLevel"            value="63"/&gt;
+      &lt;add name="TraceOption"           value="1"/&gt;
+    &lt;/settings&gt;
+  &lt;/oracle.dataaccess.client&gt;
+&lt;/configuration&gt;
+</pre><p>The following is an example of <code class="codeph">app.config</code> for ODP.NET, Unmanaged Driver using .NET Framework 2.0, which sets some additional attributes as well as two UDT type mappings:
+                  </p><pre class="oac_no_warn" dir="ltr">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+ &lt;oracle.dataaccess.client&gt;
+   &lt;settings&gt;
+     &lt;add name="DbNotificationPort" value="-1"/&gt;
+     &lt;add name="DllPath" value="C:\app\user\product\11.1.0\client_1\bin"/&gt;
+     &lt;add name="DynamicEnlistment" value="0"/&gt;
+     &lt;add name="FetchSize" value="131072"/&gt;
+     &lt;add name="MetaDataXml" value="CustomMetaData.xml"/&gt;
+     &lt;add name="PerformanceCounters" value="4095"/&gt;
+     &lt;add name="StatementCacheSize" value="50"/&gt;
+     &lt;add name="ThreadPoolMaxSize" value="30"/&gt;
+     &lt;add name="TraceFileName" value="D:\odpnet2.trc"/&gt;
+     &lt;add name="TraceLevel" value="0"/&gt;
+     &lt;add name="TraceOption" value="0"/&gt;
+     &lt;add name="Person" value="udtMapping factoryName='PersonFactory, Sample,
+       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' typeName='PERSON'
+       schemaName='SCOTT' dataSource='oracle'"/&gt;
+     &lt;add name="Student" value="udtMapping factoryName='StudentFactory, Sample,
+       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' typeName='STUDENT'
+       schemaName='SCOTT'"/&gt;
+   &lt;/settings&gt;
+ &lt;/oracle.dataaccess.client&gt;
+&lt;/configuration&gt;
+</pre><p>ODP.NET, Unmanaged Driver now has the option of using the same configuration file format as ODP.NET, Managed Driver. The format simplifies configuration by using a single unified scheme. To utilize this format, the existing unmanaged ODP.NET configuration section should be renamed from <code class="codeph">&lt;oracle.dataaccess.client&gt;</code> to <code class="codeph">&lt;oracle.unmanageddataaccess.client&gt;</code>. The existing unmanaged ODP.NET elements and values are supported within the new section using the same format as with ODP.NET, Managed Driver. To see how to set the elements and values, see <span class="q">"<a href="InstallManagedConfig.html#GUID-29A85CBD-948D-4C9F-A89D-A96A99EFF2D7" title="ODP.NET enables ONS communications to occur over TCP/IP with SSL/TLS (TCPS), which is more secure than just TCP/IP. As TCPS requires using a wallet for storing keys and certificates, ODP.NET can use one wallet for both ONS and ODP.NET connections or have separate wallets for each.">Oracle Data Provider for .NET, Managed Driver Configuration</a>"</span> for more information.
+                  </p>
+                  <p>For example, converting the <code class="codeph">FetchSize</code> element and value from the traditional to the new format would be done as follows:
+                  </p><pre class="oac_no_warn" dir="ltr">&lt;oracle.dataaccess.client&gt;
+   &lt;settings&gt;
+     &lt;add name="FetchSize" value="131072" /&gt;
+   &lt;/settings&gt;
+&lt;/oracle.dataaccess.client&gt;  
+</pre><pre class="oac_no_warn" dir="ltr">&lt;oracle.unmanageddataaccess.client&gt;
+   &lt;version number="*"&gt;
+     &lt;settings&gt;
+       &lt;setting name="FetchSize" value="131072" /&gt;
+     &lt;/settings&gt;
+   &lt;/version&gt;
+&lt;/oracle.unmanageddataaccess.client&gt; 
+</pre><p>The traditional ODP.NET, Unmanaged Driver configuration file format will continue to be supported.</p>
+               </div><a id="ODPNT8448"></a><a id="ODPNT8454"></a><a id="ODPNT8455"></a><a id="ODPNT8456"></a><a id="ODPNT8457"></a><a id="ODPNT8449"></a><a id="ODPNT8450"></a><a id="ODPNT8451"></a><a id="ODPNT8452"></a><a id="ODPNT8453"></a><a id="ODPNT8447"></a><div class="props_rev_3"><a id="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4" name="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4"></a><h4 id="ODPNT-GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4" class="sect4">SQL Translation Framework Configuration</h4>
+                  <div>
+                     <p></p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4__GUID-092E96E4-9C35-412B-9916-B32F6BE9237F">Configuring the SQL Translation Profile</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p>The default SQL Translation Profile can be set in the .NET config file, either for all connections across the application, or it is also possible to limit the scope of a profile based on optional <code class="codeph">dataSource</code> and <code class="codeph">userId</code> XML attributes. Please note that these <code class="codeph">dataSource</code> and <code class="codeph">userId</code> XML attributes directly correspond to the <code class="codeph">Data Source</code> and <code class="codeph">User Id</code> attributes in the connection string used to open a database connection.
+                        </p>
+                        <div class="infoboxnote" id="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4__GUID-8BE77FC6-8808-4A67-9774-2686163B8829">
+                           <p class="notep1">Note:</p>
+                           <p>SQL Translation Profile settings are only supported in the <code class="codeph">&lt;oracle.unmanageddataaccess.client&gt;</code> section. It is not supported in the &lt;<code class="codeph">oracle.dataaccess.client&gt;</code> section nor the <code class="codeph">&lt;oracle.manageddataaccess.client&gt;</code> section.
+                           </p>
+                        </div>
+                        <p>This would be used for all connections to the <code class="codeph">Data Source</code>s and <code class="codeph">User Id</code>s.
+                        </p>
+                        <p>This would be used for all connections to the specified <code class="codeph">Data Source</code>.
+                        </p>
+                        <p>This would be used for all connections to the specified <code class="codeph">User Id</code>.
+                        </p>
+                        <p>This would be used for all connections to the specified <code class="codeph">Data Source</code> and <code class="codeph">User Id</code>.
+                        </p>
+                        <p>It is possible to configure multiple default profile entries which allow configuring default profiles for different <code class="codeph">dataSource</code> and <code class="codeph">userId</code> attributes, but while selecting a profile, the profile with maximum matching attributes will be selected. 
+                        </p>
+                        <p>In case there are 2 matching entries, one with <code class="codeph">dataSource</code> only and the other with <code class="codeph">userId</code> only then the entry with matching the <code class="codeph">userId</code> would be given priority over the entry with matching <code class="codeph">dataSource</code>.
+                        </p>
+                        <p>With the above configuration, if we try to connect with a connection string which has <code class="codeph">stf_ds</code> for <code class="codeph">Data Source</code> and <code class="codeph">stf_user</code> for <code class="codeph">User Id</code> attributes, then both the entries given above will match and in such cases, we will give priority to the entry with a matching <code class="codeph">User Id</code> attribute which means <code class="codeph">profile_user</code> will be selected as the default profile.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4__GUID-59CDDF2A-2F5B-4B12-87D1-C003A49A0C3A">Configuring the Error Mapping</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p>Applications can configure the connection related error mapping in their application configuration file. The error mapping can also be scoped based on <code class="codeph">Data Source</code> name, <code class="codeph">User Id</code> and the profile name itself.
+                        </p>
+                        <p>Here is an example of providing error mapping with all three attributes.</p><pre class="oac_no_warn" dir="ltr">&lt;configuration&gt;
+  &lt;oracle.unmanageddataaccess.client&gt;
+   &lt;version number="*"&gt;
+   &lt;sqlTranslation&gt;
+     &lt;defaultProfiles&gt;
+      &lt;defaultProfile dataSource="stf_ds" userId="stf_user" profile=" Profile4"/&gt;
+     &lt;/defaultProfiles&gt;
+     &lt;ErrorMappings&gt;
+        &lt;ErrorMapping dataSource="stf_ds" userId="stf_user" profile="Profile4"&gt;
+          &lt;add oracleErrorNumber="1017" translatedErrorCode="222" /&gt;
+          &lt;add oracleErrorNumber="1005" translatedErrorCode="888" /&gt;
+        &lt;/ErrorMapping&gt;
+     &lt;/ErrorMappings&gt;
+    &lt;/sqlTranslation&gt;
+   &lt;/version&gt;
+  &lt;/oracle.unmanageddataaccess.client&gt;
+&lt;/configuration&gt;
+</pre><p>Please note that <code class="codeph">dataSource</code> and <code class="codeph">userId</code> attributes are optional but can be used to scope the mapping.
+                        </p>
+                        <p>It is also possible to provide an error mapping which could be used for all profiles. Here is an example:</p><pre class="oac_no_warn" dir="ltr">&lt;ErrorMappings&gt;
+  &lt;ErrorMapping profile="*"&gt;
+    &lt;add oracleErrorNumber="1017" translatedErrorCode="222" /&gt;
+    &lt;add oracleErrorNumber="1018" translatedErrorCode="888" /&gt;
+  &lt;/ErrorMapping&gt;
+&lt;/ErrorMappings&gt;
+</pre></div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4__GUID-D250E2D0-94F4-4F46-8E2E-A4D1D5E56A1B">Configuring the Default Error Mapping Profile</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p>The default error mapping profile can be configured through the <code class="codeph">defaultErrorMappingProfile</code> setting. This is to be used to specify the default error mapping profile, especially in scenarios when the default profile is not specified through the .NET configuration file, but specified on the server side. In this case, if connectivity related errors occur, then ODP.NET will be able to properly use error mappings specified in the .NET configuration file for the profile specified by the <code class="codeph">defaultErrorMappingProfile</code> setting.
+                        </p>
+                        <p>Here is an example to configure the default error mapping profile:</p><pre class="oac_no_warn" dir="ltr">&lt;sqlTranslation&gt;
+  &lt;settings&gt;
+    &lt;add name="defaultErrorMappingProfile" value="error_mapping_profile" /&gt;
+  &lt;settings&gt;
+&lt;/sqlTranslation&gt;
+</pre></div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4__GUID-8095A8E0-FBF7-4321-A800-02F9C67E7423">Configuring the SQL Translation Framework Statement Cache Size</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p>Client can configure the number of translated statements that ODP.NET can cache internally to avoid translations, which can be an expensive operation.</p>
+                        <p>Here is an example to configure default error mapping profile:</p><pre class="oac_no_warn" dir="ltr">&lt;sqlTranslation&gt;
+    &lt;settings&gt;
+      &lt;add name="translatedStatementCacheSize" value="50" /&gt;
+      &lt;settings&gt;
+&lt;/sqlTranslation&gt;
+</pre></div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4__GUID-3518843F-8D1A-43EF-BDAA-3F0C2598C106">Sample SQL Translation Framework configuration file</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p>Here is a sample configuration file with all possible elements that can be used:</p><pre class="oac_no_warn" dir="ltr">&lt;sqlTranslation&gt;
+  &lt;settings&gt;
+    &lt;add name="translatedStatementCacheSize" value="50" /&gt;
+    &lt;add name="defaultErrorMappingProfile" value="def_Profile" /&gt;
+  &lt;settings&gt;
+  &lt;defaultProfiles&gt;
+    &lt;defaultProfile profile="STF.NO_DS_NO_USERID"/&gt;
+    &lt;defaultProfile userId="stf" profile="STF_NO_DS"/&gt;
+    &lt;defaultProfile dataSource="stf_inst" profile="STF_NO_USERID"/&gt;
+    &lt;defaultProfile dataSource="stf_inst" userId="stf" profile="STF.STF_X"/&gt;
+  &lt;/defaultProfiles&gt;
+  &lt;ErrorMappings&gt;
+    &lt;ErrorMapping profile="def_profile"&gt;
+      &lt;add oracleErrorNumber="1017" translatedErrorCode="444" /&gt;
+    &lt;/ErrorMapping&gt;
+    &lt;ErrorMapping dataSource="stf_inst" userId="stf" profile=" STF.STF_X "&gt;
+      &lt;add oracleErrorNumber="1018" translatedErrorCode="88888" /&gt;
+    &lt;/ErrorMapping&gt;
+  &lt;/ErrorMappings&gt;
+&lt;/sqlTranslation&gt;
+</pre></div>
+                     <!-- class="section" -->
+                     <div class="example" id="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4__GUID-1F99C9CF-9E13-4CFB-883E-21CF07813025">
+                        <p class="titleinexample">Example 2-1 Setting the profile which could be used for all connections</p><pre class="oac_no_warn" dir="ltr">&lt;configuration&gt;
+  &lt;oracle.unmanageddataaccess.client&gt;
+   &lt;version number="*"&gt;
+    &lt;sqlTranslation&gt;
+     &lt;defaultProfiles&gt;
+       &lt;defaultProfile profile="Profile1"/&gt;
+      &lt;/defaultProfiles&gt;
+     &lt;/sqlTranslation&gt;
+   &lt;/version&gt;
+  &lt;/oracle.unmanageddataaccess.client&gt;
+&lt;/configuration&gt;
+</pre></div>
+                     <!-- class="example" -->
+                     <div class="example" id="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4__GUID-2B55E7CB-D258-4221-B688-B739BD7FA5EA">
+                        <p class="titleinexample">Example 2-2 Setting the Profile for a Specific Data Source</p><pre class="oac_no_warn" dir="ltr">&lt;defaultProfiles&gt;
+  &lt;defaultProfile dataSource="stf_ds" profile="Profile2"/&gt;
+&lt;/defaultProfiles&gt;
+</pre></div>
+                     <!-- class="example" -->
+                     <div class="example" id="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4__GUID-2DB12EC4-15A7-4008-BE44-FF39F7611C18">
+                        <p class="titleinexample">Example 2-3 Setting the Profile for a Specific User Id</p><pre class="oac_no_warn" dir="ltr">&lt;defaultProfiles&gt;
+  &lt;defaultProfile userId="stf_user" profile="Profile3"/&gt;
+&lt;/defaultProfiles&gt;
+</pre></div>
+                     <!-- class="example" -->
+                     <div class="example" id="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4__GUID-19970739-2C65-4D80-BFA5-C25B7AF46593">
+                        <p class="titleinexample">Example 2-4 Setting the Profile for a Specific Data Source and User Id'</p><pre class="oac_no_warn" dir="ltr">&lt;defaultProfiles&gt;
+  &lt;defaultProfile dataSource="stf_ds" userId="stf_user" profile="Profile4"/&gt;
+&lt;/defaultProfiles&gt;
+</pre></div>
+                     <!-- class="example" -->
+                     <div class="example" id="GUID-A7B206D8-FDE0-4672-8AB1-EF13370A69C4__GUID-8629F412-4073-4F18-8B95-BB69F33C5165">
+                        <p class="titleinexample">Example 2-5 Configuring Multiple Default Profile Entries </p><pre class="oac_no_warn" dir="ltr">&lt;defaultProfiles&gt;
+  &lt;defaultProfile dataSource="stf_ds" profile="profile_ds"/&gt;
+  &lt;defaultProfile userId="stf_user" profile="profile_user"/&gt;
+&lt;/defaultProfiles&gt;
+</pre></div>
+                     <!-- class="example" -->
+                  </div>
+               </div><a id="ODPNT8458"></a><div class="props_rev_3"><a id="GUID-56E10DF7-B37F-4F02-9CD5-F32DA1376EA7" name="GUID-56E10DF7-B37F-4F02-9CD5-F32DA1376EA7"></a><h4 id="ODPNT-GUID-56E10DF7-B37F-4F02-9CD5-F32DA1376EA7" class="sect4">Specifying UDT Mappings with Unified Configuration for Unmanaged ODP.NET </h4>
+                  <div>
+                     <div class="section">
+                        <p>As UDT mapping is not currently supported by ODP.NET, Managed Driver, a new section within the <code class="codeph">&lt;version&gt;</code> section is used to support custom UDT mappings for unmanaged ODP.NET in the unified configuration format. This new section is identified as <code class="codeph">&lt;udtmappings&gt;</code> and each mapping is identified using a <code class="codeph">&lt;udtmapping&gt;</code> element. The following attributes may be specified for each <code class="codeph">udtMapping</code> element: 
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">typeName</code> (required)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">factoryName</code> (required)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">dataSource</code> (optional)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">schemaName</code> (optional)
+                              </p>
+                           </li>
+                        </ul>
+                        <p>These elements retain the same name and meaning as when used with the traditional configuration format.</p>
+                        <p>Example of converting traditional format to unified format: </p><pre class="oac_no_warn" dir="ltr">&lt;configuration&gt;
+   &lt;oracle.dataaccess.client&gt;
+     &lt;settings&gt;
+       &lt;add name="Person" value="udtMapping factoryName='PersonFactory, Sample, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' typeName='PERSON' schemaName='SCOTT' dataSource='oracle'" /&gt;
+     &lt;/settings&gt;
+   &lt;/oracle.dataaccess.client&gt;
+&lt;/configuration&gt;
+</pre><pre class="oac_no_warn" dir="ltr">&lt;configuration&gt;
+   &lt;oracle.unmanageddataaccess.client&gt;
+     &lt;udtmappings&gt;
+       &lt;udtmapping typename="PERSON" factoryname="PersonFactory, Sample, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" schemaname="SCOTT" datasource="oracle" /&gt;
+     &lt;/udtmappings&gt;
+   &lt;/oracle.unmanageddataaccess.client&gt;
+&lt;/configuration&gt; 
+</pre></div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <div class="infoboxnotealso" id="GUID-56E10DF7-B37F-4F02-9CD5-F32DA1376EA7__GUID-C8F14DE2-0FDE-4056-AEDB-71A6C8F9BBC8">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="featUDTs.html#GUID-2A2F1C93-7BD8-4E48-B48A-F0EF6E63EC8B">Oracle User-Defined Types (UDTs) and .NET Custom Types</a></p>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

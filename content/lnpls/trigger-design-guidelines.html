@@ -1,0 +1,182 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Trigger Design Guidelines">
+      <meta name="DC.subject" content="UPDATE statement, BEFORE statement trigger and, DELETE statement, ROLLBACK statement, transparent, recursive trigger, trigger, recursive">
+      <meta name="keywords" content="UPDATE statement, BEFORE statement trigger and, DELETE statement, ROLLBACK statement, transparent, recursive trigger, trigger, recursive">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-78B64011-B288-4EDD-B595-2DDBB3835ACA">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Trigger Design Guidelines</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="exception-handling-triggers.html" title="Previous" type="text/html">
+      <link rel="next" href="trigger-restrictions.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Trigger Design Guidelines","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="exception-handling-triggers.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="trigger-restrictions.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-78B64011-B288-4EDD-B595-2DDBB3835ACA" name="GUID-78B64011-B288-4EDD-B595-2DDBB3835ACA"></a><a id="LNPLS2002"></a>
+         
+         <h2 id="LNPLS-GUID-78B64011-B288-4EDD-B595-2DDBB3835ACA" class="sect2"><span class="enumeration_section">9.9 </span>Trigger Design Guidelines
+         </h2>
+         <div class="ind">
+            <div>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p>Use triggers to ensure that whenever a specific event occurs, any necessary actions are done (regardless of which user or application issues the triggering statement).</p>
+                     <p>For example, use a trigger to ensure that whenever anyone updates a table, its log file is updated.</p>
+                  </li>
+                  <li>
+                     <p>Do not create triggers that duplicate database features.</p>
+                     <p>For example, do not create a trigger to reject invalid data if you can do the same with constraints (see <span class="q">"<a href="reasons-use-triggers.html#GUID-C08EA160-8FD2-4A10-9733-6F2D20C83E93__CIHCEBAE">How Triggers and Constraints Differ</a>"</span>).
+                     </p>
+                  </li>
+                  <li>
+                     <p>Do not create triggers that depend on the order in which a SQL statement processes rows (which can vary).</p>
+                     <p>For example, do not assign a value to a global package variable in a row trigger if the current value of the variable depends on the row being processed by the row trigger. If a trigger updates global package variables, initialize those variables in a <code class="codeph">BEFORE</code> statement trigger.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Use <code class="codeph">BEFORE</code> row triggers to modify the row before writing the row data to disk.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Use <code class="codeph">AFTER</code> row triggers to obtain the row ID and use it in operations.
+                     </p>
+                     <p>An <code class="codeph">AFTER</code> row trigger fires when the triggering statement results in ORA-02292.
+                     </p>
+                     <div class="infoboxnote" id="GUID-78B64011-B288-4EDD-B595-2DDBB3835ACA__GUID-4B436E08-F9DF-4557-AA87-FDAA21DC4DE4">
+                        <p class="notep1">Note:</p>
+                        <p><code class="codeph">AFTER</code> row triggers are slightly more efficient than <code class="codeph">BEFORE</code> row triggers. With <code class="codeph">BEFORE</code> row triggers, affected data blocks are read first for the trigger and then for the triggering statement. With <code class="codeph">AFTER</code> row triggers, affected data blocks are read only for the trigger.
+                        </p>
+                     </div>
+                  </li>
+                  <li>
+                     
+                     <p>If the triggering statement of a <code class="codeph">BEFORE</code> row trigger is an
+            <code class="codeph">UPDATE</code> or <code class="codeph">DELETE</code> statement that conflicts with an
+            <code class="codeph">UPDATE</code> statement that is running, then the database does a transparent
+            <code class="codeph">ROLLBACK</code> to <code class="codeph">SAVEPOINT</code> and restarts the triggering
+          statement. The database can do this many times before the triggering statement completes
+          successfully. Each time the database restarts the triggering statement, the trigger fires.
+          The <code class="codeph">ROLLBACK</code> to <code class="codeph">SAVEPOINT</code> does not undo changes to
+          package variables that the trigger references. To ensure that there are no unwanted side
+          effects with each restart, make sure that the <code class="codeph">BEFORE</code> row trigger is
+          idempotent, meaning the trigger should be written so that the result remains the same with
+          each subsequent execution. Any additional work that should not be repeated can be handled
+          in an <code class="codeph">AFTER</code> row trigger. To detect this situation, you can also include a
+          counter variable in the package.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Do not create recursive triggers.</p>
+                     <p>For example, do not create an <code class="codeph">AFTER</code> <code class="codeph">UPDATE</code> trigger that issues an <code class="codeph">UPDATE</code> statement on the table on which the trigger is defined. The trigger fires recursively until it runs out of memory.
+                     </p>
+                  </li>
+                  <li>
+                     <p>If you create a trigger that includes a statement that accesses a remote database, then put the exception handler for that statement in a stored subprogram and invoke the subprogram from the trigger.</p>
+                     <p>For more information, see <span class="q">"<a href="exception-handling-triggers.html#GUID-FA7A16B6-F94D-4E4C-A326-F602FE9FE3E8__CIHEAHFI">Remote Exception Handling</a>"</span>.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Use <code class="codeph">DATABASE</code> triggers judiciously. They fire every time any database user initiates a triggering event.
+                     </p>
+                  </li>
+                  <li>
+                     <p> If a trigger runs the following statement, the statement returns the owner of the trigger, not the user who is updating the table:</p><pre class="oac_no_warn" dir="ltr">SELECT Username FROM USER_USERS;
+</pre></li>
+                  <li>
+                     <p>Only committed triggers fire.</p>
+                     <p>A trigger is committed, implicitly, after the <code class="codeph">CREATE</code> <code class="codeph">TRIGGER</code> statement that creates it succeeds. Therefore, the following statement cannot fire the trigger that it creates:
+                     </p><pre class="oac_no_warn" dir="ltr">CREATE OR REPLACE TRIGGER my_trigger
+  AFTER CREATE ON DATABASE
+BEGIN
+  NULL;
+END;
+/
+</pre></li>
+                  <li>
+                     <p>To allow the modular installation of applications that have triggers on the same tables, create multiple triggers of the same type, rather than a single trigger that runs a sequence of operations.</p>
+                     <p>Each trigger sees the changes made by the previously fired triggers. Each trigger can see <code class="codeph">OLD</code> and <code class="codeph">NEW</code> values.
+                     </p>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

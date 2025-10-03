@@ -1,0 +1,242 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="PL/SQL Optimizer">
+      <meta name="DC.subject" content="optimizer, PL/SQL, PL/SQL optimizer, PLSQL_OPTIMIZE_LEVEL compilation parameter, subprogram, inlining, subprogram invocation, optimization of, INLINE pragma, pragma, INLINE, overloaded subprogram, INLINE pragma and">
+      <meta name="keywords" content="optimizer, PL/SQL, PL/SQL optimizer, PLSQL_OPTIMIZE_LEVEL compilation parameter, subprogram, inlining, subprogram invocation, optimization of, INLINE pragma, pragma, INLINE, overloaded subprogram, INLINE pragma and">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-8BC4231B-2E5C-47D6-BE14-6D75CE14C57E">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>PL/SQL Optimizer</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="plsql-optimization-and-tuning.html" title="Previous" type="text/html">
+      <link rel="next" href="candidates-tuning.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"PL/SQL Optimizer","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="plsql-optimization-and-tuning.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="candidates-tuning.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-8BC4231B-2E5C-47D6-BE14-6D75CE14C57E" name="GUID-8BC4231B-2E5C-47D6-BE14-6D75CE14C57E"></a><a id="LNPLS01201"></a>
+         
+         <h2 id="LNPLS-GUID-8BC4231B-2E5C-47D6-BE14-6D75CE14C57E" class="sect2"><span class="enumeration_section">12.1 </span>PL/SQL Optimizer
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Prior to Oracle Database 10g release 1, the PL/SQL compiler translated your source text to system code without applying many changes to improve performance. Now, PL/SQL uses an optimizer that can rearrange code for better performance.</p>
+               <p>The optimizer is enabled by default. In rare cases, if the overhead of the optimizer makes compilation of very large applications too slow, you can lower the optimization by setting the compilation parameter <code class="codeph">PLSQL_OPTIMIZE_LEVEL=1</code> instead of its default value 2. In even rarer cases, PL/SQL might raise an exception earlier than expected or not at all. Setting <code class="codeph">PLSQL_OPTIMIZE_LEVEL=1</code> prevents the code from being rearranged.
+               </p>
+               <div class="infoboxnotealso" id="GUID-8BC4231B-2E5C-47D6-BE14-6D75CE14C57E__GUID-DA5E60E8-C791-4F4F-8002-47500C9D691C">
+                  <p class="notep1">See Also:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="../refrn/PLSQL_OPTIMIZE_LEVEL.html#REFRN10255" target="_blank"><span class="italic">Oracle Database Reference</span></a> for information about the <code class="codeph">PLSQL_OPTIMIZE_LEVEL</code> compilation parameter
+                        </p>
+                     </li>
+                     <li>
+                        <p><a href="../adfns/coding-subprograms-and-packages.html#ADFNS1422" target="_blank"><span class="italic">Oracle Database Development Guide</span></a> for examples of changing the <code class="codeph">PLSQL_OPTIMIZE_LEVEL</code> compilation parameter
+                        </p>
+                     </li>
+                     <li>
+                        <p><a href="../refrn/ALL_PLSQL_OBJECT_SETTINGS.html#REFRN20385" target="_blank"><span class="italic">Oracle Database Reference</span></a> for information about the static dictionary view <code class="codeph">ALL_PLSQL_OBJECT_SETTINGS</code></p>
+                     </li>
+                  </ul>
+               </div>
+            </div><a id="LNPLS1219"></a><a id="LNPLS1220"></a><a id="LNPLS1221"></a><a id="LNPLS1222"></a><a id="LNPLS99951"></a><div class="props_rev_3"><a id="GUID-2E78813E-CF29-409D-9F8B-AA24B294BFA2" name="GUID-2E78813E-CF29-409D-9F8B-AA24B294BFA2"></a><h3 id="LNPLS-GUID-2E78813E-CF29-409D-9F8B-AA24B294BFA2" class="sect3"><span class="enumeration_section">12.1.1 </span>Subprogram Inlining
+               </h3>
+               <div>
+                  <p>One optimization that the compiler can perform is <span class="bold">subprogram inlining</span>.
+                  </p>
+                  <p> Subprogram inlining replaces a subprogram invocation with a copy of the invoked subprogram (if the invoked and invoking subprograms are in the same program unit). To allow subprogram inlining, either accept the default value of the <code class="codeph">PLSQL_OPTIMIZE_LEVEL</code> compilation parameter (which is 2) or set it to 3.
+                  </p>
+                  <p>With <code class="codeph">PLSQL_OPTIMIZE_LEVEL=2</code>, you must specify each subprogram to be inlined with the <code class="codeph">INLINE</code> pragma:
+                  </p><pre class="oac_no_warn" dir="ltr">PRAGMA INLINE (<span class="italic">subprogram</span>, 'YES')
+</pre><p>If <span class="italic"><code class="codeph">subprogram</code></span> is overloaded, then the preceding pragma applies to every subprogram with that name.
+                  </p>
+                  <p>With <code class="codeph">PLSQL_OPTIMIZE_LEVEL=3</code>, the PL/SQL compiler seeks opportunities to inline subprograms. You need not specify subprograms to be inlined. However, you can use the <code class="codeph">INLINE</code> pragma (with the preceding syntax) to give a subprogram a high priority for inlining, and then the compiler inlines it unless other considerations or limits make the inlining undesirable.
+                  </p>
+                  <p>If a particular subprogram is inlined, performance almost always improves. However, because the compiler inlines subprograms early in the optimization process, it is possible for subprogram inlining to preclude later, more powerful optimizations.</p>
+                  <p>If subprogram inlining slows the performance of a particular PL/SQL program, then use the PL/SQL hierarchical profiler to identify subprograms for which you want to turn off inlining. To turn off inlining for a subprogram, use the <code class="codeph">INLINE</code> pragma:
+                  </p><pre class="oac_no_warn" dir="ltr">PRAGMA INLINE (<span class="italic">subprogram</span>, 'NO')
+</pre><p>The <code class="codeph">INLINE</code> pragma affects only the immediately following declaration or statement, and only some kinds of statements.
+                  </p>
+                  <p>When the <code class="codeph">INLINE</code> pragma immediately precedes a declaration, it affects:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Every invocation of the specified subprogram in that declaration</p>
+                     </li>
+                     <li>
+                        <p>Every initialization value in that declaration except the default initialization values of records</p>
+                     </li>
+                  </ul>
+                  <p>When the <code class="codeph">INLINE</code> pragma immediately precedes one of these statements, the pragma affects every invocation of the specified subprogram in that statement:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Assignment</p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">CALL</code></p>
+                     </li>
+                     <li>
+                        <p>Conditional</p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">CASE</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">CONTINUE</code> <code class="codeph">WHEN</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">EXECUTE</code> <code class="codeph">IMMEDIATE</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">EXIT</code> <code class="codeph">WHEN</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">LOOP</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">RETURN</code></p>
+                     </li>
+                  </ul>
+                  <p>The <code class="codeph">INLINE</code> pragma does not affect statements that are not in the preceding list.
+                  </p>
+                  <p>Multiple pragmas can affect the same declaration or statement. Each pragma applies its own effect to the statement. If <code class="codeph">PRAGMA</code> <code class="codeph">INLINE(</code><span class="italic"><code class="codeph">subprogram,</code></span><code class="codeph">'YES')</code> and <code class="codeph">PRAGMA</code> <code class="codeph">INLINE(</code><span class="italic"><code class="codeph">identifier,</code></span><code class="codeph">'NO')</code> have the same <span class="italic"><code class="codeph">subprogram</code></span>, then <code class="codeph">'NO'</code> overrides <code class="codeph">'YES'</code>. One <code class="codeph">PRAGMA</code> <code class="codeph">INLINE(</code><span class="italic"><code class="codeph">subprogram,</code></span><code class="codeph">'NO')</code> overrides any number of occurrences of <code class="codeph">PRAGMA</code> <code class="codeph">INLINE(</code><span class="italic"><code class="codeph">subprogram,</code></span><code class="codeph">'YES')</code>, and the order of these pragmas is not important.
+                  </p>
+                  <div class="infoboxnotealso" id="GUID-2E78813E-CF29-409D-9F8B-AA24B294BFA2__GUID-9E10AC95-93E9-4F66-9D91-9E2E77F0853C">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="../adfns/hierarchical-profiler.html#ADFNS023" target="_blank"><span class="italic">Oracle Database Development Guide</span></a> for more information about PL/SQL hierarchical profiler 
+                           </p>
+                        </li>
+                        <li>
+                           <p><a href="../refrn/PLSQL_OPTIMIZE_LEVEL.html#REFRN10255" target="_blank"><span class="italic">Oracle Database Reference</span></a> for information about the <code class="codeph">PLSQL_OPTIMIZE_LEVEL</code> compilation parameter
+                           </p>
+                        </li>
+                        <li>
+                           <p><a href="../refrn/ALL_PLSQL_OBJECT_SETTINGS.html#REFRN20385" target="_blank"><span class="italic">Oracle Database Reference</span></a> for information about the static dictionary view <code class="codeph">ALL_PLSQL_OBJECT_SETTINGS</code></p>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="example" id="GUID-2E78813E-CF29-409D-9F8B-AA24B294BFA2__CHDBGJDJ">
+                     <p class="titleinexample">Example 12-1 Specifying that Subprogram Is To Be Inlined</p>
+                     <p>In this example, if <code class="codeph">PLSQL_OPTIMIZE_LEVEL=2</code>, the <code class="codeph">INLINE</code> pragma affects the procedure invocations <code class="codeph">p1(1)</code> and <code class="codeph">p1(2)</code>, but not the procedure invocations <code class="codeph">p1(3)</code> and <code class="codeph">p1(4)</code>.
+                     </p><pre class="oac_no_warn" dir="ltr">PROCEDURE p1 (x PLS_INTEGER) IS ...
+...
+<span class="bold">PRAGMA INLINE (p1, 'YES');</span>
+x:= p1(1) + p1(2) + 17;    -- These 2 invocations to p1 are inlined
+...
+x:= p1(3) + p1(4) + 17;    -- These 2 invocations to p1 are not inlined
+...
+</pre></div>
+                  <div class="example" id="GUID-2E78813E-CF29-409D-9F8B-AA24B294BFA2__CHDIJCGI">
+                     <p class="titleinexample">Example 12-2 Specifying that Overloaded Subprogram Is To Be Inlined</p>
+                     <p>In this example, if <code class="codeph">PLSQL_OPTIMIZE_LEVEL=2</code>, the <code class="codeph">INLINE</code> pragma affects both functions named <code class="codeph">p2</code>.
+                     </p><pre class="oac_no_warn" dir="ltr">FUNCTION p2 (p boolean) return PLS_INTEGER IS ...
+FUNCTION p2 (x PLS_INTEGER) return PLS_INTEGER IS ...
+...
+<span class="bold">PRAGMA INLINE(p2, 'YES');</span>
+x := p2(true) + p2(3);</pre><pre class="oac_no_warn" dir="ltr">...
+</pre></div>
+                  <div class="example" id="GUID-2E78813E-CF29-409D-9F8B-AA24B294BFA2__CHDGAGBH">
+                     <p class="titleinexample">Example 12-3 Specifying that Subprogram Is Not To Be Inlined</p>
+                     <p>In this example, the <code class="codeph">INLINE</code> pragma affects the procedure invocations <code class="codeph">p1(1)</code> and <code class="codeph">p1(2)</code>, but not the procedure invocations <code class="codeph">p1(3)</code> and <code class="codeph">p1(4)</code>.
+                     </p><pre class="oac_no_warn" dir="ltr">PROCEDURE p1 (x PLS_INTEGER) IS ...
+...
+<span class="bold">PRAGMA INLINE (p1, 'NO');</span>
+x:= p1(1) + p1(2) + 17;    -- These 2 invocations to p1 are not inlined
+...
+x:= p1(3) + p1(4) + 17;    -- These 2 invocations to p1 might be inlined
+...
+</pre></div>
+                  <div class="example" id="GUID-2E78813E-CF29-409D-9F8B-AA24B294BFA2__CHDJCIEJ">
+                     <p class="titleinexample">Example 12-4 PRAGMA INLINE ... 'NO' Overrides PRAGMA INLINE ... 'YES'</p>
+                     <p>In this example, the second <code class="codeph">INLINE</code> pragma overrides both the first and third <code class="codeph">INLINE</code> pragmas.
+                     </p><pre class="oac_no_warn" dir="ltr">PROCEDURE p1 (x PLS_INTEGER) IS ...
+...
+<span class="bold">PRAGMA INLINE (p1, 'YES');</span>
+<span class="bold">PRAGMA INLINE (p1, 'NO');</span>
+<span class="bold">PRAGMA INLINE (p1, 'YES');</span>
+x:= p1(1) + p1(2) + 17;    -- These 2 invocations to p1 are not inlined
+...</pre></div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

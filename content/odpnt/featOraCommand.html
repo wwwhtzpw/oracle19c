@@ -1,0 +1,2170 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>OracleCommand Object</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="featDataSharding.html" title="Previous" type="text/html">
+      <link rel="next" href="featTypes.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="featDataSharding.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="featTypes.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="features.html" property="item" typeof="WebPage"><span property="name">Features of Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">OracleCommand Object</li>
+            </ol>
+            <a id="GUID-FB17153B-9E21-4EAF-B694-D08B07ECC448" name="GUID-FB17153B-9E21-4EAF-B694-D08B07ECC448"></a><a id="ODPNT250"></a>
+            
+            <h2 id="ODPNT-GUID-FB17153B-9E21-4EAF-B694-D08B07ECC448" class="sect2">OracleCommand Object</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>The <code class="codeph">OracleCommand</code> object represents SQL statements or stored procedures executed on Oracle Database.
+               </p>
+               <div class="infoboxnote" id="GUID-FB17153B-9E21-4EAF-B694-D08B07ECC448__GUID-421422BE-E042-468B-8F1B-BD0177551D19">
+                  <p class="notep1">Note:</p>
+                  <p>Optimizer hint syntax in the form <code class="codeph">--+ ...</code> is not supported. ODP.NET supports this syntax:  <code class="codeph">/*+ ... */</code>.
+                  </p>
+               </div>
+               <p>This section includes the following topics:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="featOraCommand.html#GUID-D442C521-6FF1-49A4-BBE2-F3682A84D527">Transactions</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featOraCommand.html#GUID-72DCCA0E-FCBD-4F1A-9760-742EF9F1CA68">System.Transactions and Promotable Transactions</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featOraCommand.html#GUID-4D32E59C-1BC0-4567-994E-B0EF3D61D3C4">Parameter Binding</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featOraCommand.html#GUID-77398E42-70B8-4863-B67F-E27FCA28F620">Batch Processing</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featOraCommand.html#GUID-A1573B48-71B1-47C7-B3E9-5DEA64B715EF">Statement Caching</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featOraCommand.html#GUID-C13C1675-7291-4C5F-BB9C-33C2C5F25CED">Self-Tuning</a></p>
+                  </li>
+               </ul>
+            </div><a id="ODPNT251"></a><div class="props_rev_3"><a id="GUID-D442C521-6FF1-49A4-BBE2-F3682A84D527" name="GUID-D442C521-6FF1-49A4-BBE2-F3682A84D527"></a><h3 id="ODPNT-GUID-D442C521-6FF1-49A4-BBE2-F3682A84D527" class="sect3">Transactions </h3>
+               <div>
+                  <p>Oracle Database starts a transaction only in the context of a connection. Once a transaction starts, all the successive command execution on that connection run in the context of that transaction. Transactions can be started only on an <code class="codeph">OracleConnection</code> object, and the read-only <code class="codeph">Transaction</code> property on the <code class="codeph">OracleCommand</code> object is implicitly set by the <code class="codeph">OracleConnection</code> object. Therefore, the application cannot set the <code class="codeph">Transaction</code> property, nor does it need to.
+                  </p>
+                  <div class="infoboxnote" id="GUID-D442C521-6FF1-49A4-BBE2-F3682A84D527__GUID-815F4E48-93D6-4AF4-8F87-A438C0DBE8CD">
+                     <p class="notep1">Note:</p>
+                     <p>Transactions are not supported in a .NET stored procedure.</p>
+                  </div>
+                  <p>Explicit transactions are required with SQL statements containing <code class="codeph">"FOR</code> <code class="codeph">UPDATE"</code> and <code class="codeph">"RETURNING"</code> clauses. This is not necessary if global transactions are used.
+                  </p>
+               </div>
+            </div><a id="ODPNT0026"></a><div class="props_rev_3"><a id="GUID-72DCCA0E-FCBD-4F1A-9760-742EF9F1CA68" name="GUID-72DCCA0E-FCBD-4F1A-9760-742EF9F1CA68"></a><h3 id="ODPNT-GUID-72DCCA0E-FCBD-4F1A-9760-742EF9F1CA68" class="sect3">System.Transactions and Promotable Transactions</h3>
+               <div>
+                  <p>ODP.NET supports <code class="codeph">System.Transactions</code>. A local transaction is created for the first connection opened in the <code class="codeph">System.Transactions</code> scope to Oracle Database 11<span class="italic">g</span> release 1 (11.1), or higher. When a second connection is opened, this transaction is automatically promoted to a distributed transaction. This functionality provides enhanced performance and scalability.
+                  </p>
+                  <p>Connections created within a transaction context, such as <code class="codeph">TransactionScope</code> or <code class="codeph">ServicedComponent</code>, can be established to different versions of Oracle Database. However, in order to enable the local transaction to be promotable, the following must be true:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>The first connection in the transaction context must be established to an Oracle Database 11<span class="italic">g</span> release 1(11.1) instance or higher.
+                        </p>
+                     </li>
+                     <li>
+                        <p>All connections opened within the transaction context must have the <code class="codeph">"Promotable Transaction"</code> setting set to <code class="codeph">"promotable"</code>. If you try to open a subsequent connection in the same transaction context with the <code class="codeph">"Promotable Transaction"</code> setting set to <code class="codeph">"local"</code>, an exception is thrown.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Promoting local transactions requires Oracle Services for Microsoft Transaction Server 11.1.0.7.20, or higher. If this requirement is not met, then a second connection request in the same transaction context throws an exception.</p>
+                     </li>
+                  </ul>
+                  <p>Transaction promotion will throw an ORA-24797 error when the database transaction is already distributed due to the use of database links.</p>
+                  <p>Setting <code class="codeph">"local"</code> as the value of  <code class="codeph">"PromotableTransaction"</code> in the registry, configuration file (machine/Web/application), or the <code class="codeph">"Promotable Transaction"</code> connection string attribute allows only one connection to be opened in the transaction context, which is associated with a local transaction. Such local transactions cannot be promoted. Starting with ODP.NET 12.1.0.2, connections with the <code class="codeph">Promotable Transaction</code> setting set to <code class="codeph">local</code> will begin as and remain a local transaction. If a second connection attempts to join the transaction, an exception will be thrown.
+                  </p>
+                  <p>If applications use <code class="codeph">System.Transactions</code>, it is required that the <code class="codeph">enlist</code> connection string attribute is set to either <code class="codeph">true</code> (default) or <code class="codeph">dynamic</code>. However, <code class="codeph">enlist=dynamic</code> cannot be used with <code class="codeph">TransactionScope</code> because auto-enlistment requires <code class="codeph">enlist=true</code>.
+                  </p>
+                  <p>ODP.NET supports the following <code class="codeph">System.Transactions</code> programming models for applications using distributed transactions.
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="featOraCommand.html#GUID-B41DD6C5-6A33-4D23-992E-527BB4DEF37F">Implicit Transaction Enlistment Using TransactionScope</a></p>
+                     </li>
+                     <li>
+                        <p><a href="featOraCommand.html#GUID-E1923F25-B4BC-4CF2-888B-8BB236072FFA">Explicit Transaction Enlistment Using CommittableTransaction</a>.
+                        </p>
+                     </li>
+                     <li>
+                        <p><a href="featOraCommand.html#GUID-A5DCC9CF-2047-4A87-BE6D-517A1A9B8899">Local Transaction Support for Older Databases</a></p>
+                     </li>
+                  </ul>
+                  <div class="infoboxnotealso" id="GUID-72DCCA0E-FCBD-4F1A-9760-742EF9F1CA68__GUID-A8710A21-AFB7-42B3-A3EF-2F8EFADA8927">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>For applications connecting to a pre-Oracle Database 11<span class="italic">g</span> release 1 (11.1) instance, refer to <span class="q">"<a href="featOraCommand.html#GUID-A5DCC9CF-2047-4A87-BE6D-517A1A9B8899">Local Transaction Support for Older Databases</a>"</span>. This section describes how ODP.NET behavior can be controlled using the "Promotable Transaction" setting.
+                           </p>
+                        </li>
+                        <li>
+                           <p>ODP.NET Core does not support distributed transactions</p>
+                        </li>
+                     </ul>
+                  </div>
+               </div><a id="ODPNT207"></a><div class="props_rev_3"><a id="GUID-B41DD6C5-6A33-4D23-992E-527BB4DEF37F" name="GUID-B41DD6C5-6A33-4D23-992E-527BB4DEF37F"></a><h4 id="ODPNT-GUID-B41DD6C5-6A33-4D23-992E-527BB4DEF37F" class="sect4">Implicit Transaction Enlistment Using TransactionScope</h4>
+                  <div>
+                     <p>The <code class="codeph">TransactionScope</code> class provides a mechanism to write transactional applications where the applications do not need to explicitly enlist in transactions.To accomplish this, the application uses the <code class="codeph">TransactionScope</code> object to define the transactional code. Connections created within this transactional scope will enlist in a local transaction that can be promoted to a distributed transaction.
+                     </p>
+                     <div class="infoboxnote" id="GUID-B41DD6C5-6A33-4D23-992E-527BB4DEF37F__GUID-8BC79292-D210-4CEF-A34D-DE5156F07F4B">
+                        <p class="notep1">Note:</p>
+                        <p></p>
+                        <p>If the first connection is opened to a pre-Oracle Database 11<span class="italic">g</span> release 1 (11.1) instance, then the connection enlists as a distributed transaction, by default. 
+                        </p>
+                        <p>You can optionally create the transaction as a local transaction by using the procedure described in <span class="q">"<a href="featOraCommand.html#GUID-A5DCC9CF-2047-4A87-BE6D-517A1A9B8899">Local Transaction Support for Older Databases</a>"</span>. However, these transactions cannot be promoted to distributed transactions.
+                        </p>
+                     </div>
+                     <p>Note that the application must call the <code class="codeph">Complete</code> method on the <code class="codeph">TransactionScope</code> object to commit the changes. Otherwise, the transaction is aborted by default.
+                     </p><pre class="oac_no_warn" dir="ltr">// C#
+ 
+using System;
+using Oracle.DataAccess.Client;
+using System.Data;
+using System.Data.Common;
+using System.Transactions;
+ 
+class psfTxnScope
+{
+  static void Main()
+  {
+    int retVal = 0;
+    string providerName = "Oracle.DataAccess.Client";
+    string constr = 
+           @"User Id=scott;Password=tiger;Data Source=oracle;enlist=true";
+ 
+    // Get the provider factory.
+    DbProviderFactory factory = DbProviderFactories.GetFactory(providerName);
+ 
+    try
+    {
+      // Create a TransactionScope object, (It will start an ambient
+      // transaction automatically).
+      using (TransactionScope scope = new TransactionScope())
+      {
+        // Create first connection object.
+        using (DbConnection conn1 = factory.CreateConnection())
+        {
+          // Set connection string and open the connection. this connection 
+          // will be automatically enlisted in a promotable local transaction.
+          conn1.ConnectionString = constr;
+          conn1.Open();
+ 
+          // Create a command to execute the sql statement.
+          DbCommand  cmd1 = factory.CreateCommand();
+          cmd1.Connection = conn1;
+          cmd1.CommandText = @"insert into emp (empno, ename, job) values 
+                                                     (1234, 'emp1', 'dev1')";
+ 
+          // Execute the SQL statement to insert one row in DB.
+          retVal = cmd1.ExecuteNonQuery();
+          Console.WriteLine("Rows to be affected by cmd1: {0}", retVal);
+ 
+          // Close the connection and dispose the command object.
+          conn1.Close();
+          conn1.Dispose();
+          cmd1.Dispose();
+        }
+ 
+        // The Complete method commits the transaction. If an exception has
+        // been thrown or Complete is not called then the transaction is 
+        // rolled back.
+        scope.Complete();
+      }
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex.Message);
+      Console.WriteLine(ex.StackTrace);
+    }
+  }
+}</pre></div>
+               </div><a id="ODPNT208"></a><div class="props_rev_3"><a id="GUID-E1923F25-B4BC-4CF2-888B-8BB236072FFA" name="GUID-E1923F25-B4BC-4CF2-888B-8BB236072FFA"></a><h4 id="ODPNT-GUID-E1923F25-B4BC-4CF2-888B-8BB236072FFA" class="sect4">Explicit Transaction Enlistment Using CommittableTransaction </h4>
+                  <div>
+                     <p>The instantiation of the <code class="codeph">CommittableTransaction</code> object and the <code class="codeph">EnlistTransaction</code> method provides an explicit way to create and enlist in a transaction. Note that the application must call <code class="codeph">Commit</code> or <code class="codeph">Rollback</code> on the <code class="codeph">CommittableTransaction</code> object. 
+                     </p><pre class="oac_no_warn" dir="ltr">// C#
+ 
+using System;
+using Oracle.DataAccess.Client;
+using System.Data;
+using System.Data.Common;
+using System.Transactions;
+ 
+class psfEnlistTransaction
+{
+  static void Main()
+  {
+    int retVal = 0;
+    string providerName = "Oracle.DataAccess.Client";
+    string constr = 
+           @"User Id=scott;Password=tiger;Data Source=oracle;enlist=dynamic";
+ 
+    // Get the provider factory.
+    DbProviderFactory factory = DbProviderFactories.GetFactory(providerName);
+ 
+    try
+    {
+      // Create a committable transaction object.
+      CommittableTransaction cmtTx = new CommittableTransaction();
+ 
+      // Open a connection to the DB.
+      DbConnection conn1 = factory.CreateConnection();
+      conn1.ConnectionString = constr;
+      conn1.Open();
+ 
+      // enlist the connection with the commitable transaction.
+      conn1.EnlistTransaction(cmtTx);
+ 
+      // Create a command to execute the sql statement.
+      DbCommand cmd1 = factory.CreateCommand();
+      cmd1.Connection = conn1;
+      cmd1.CommandText = @"insert into emp (empno, ename, job) values 
+                                                     (1234, 'emp1', 'dev1')";
+ 
+      // Execute the SQL statement to insert one row in DB.
+      retVal = cmd1.ExecuteNonQuery();
+      Console.WriteLine("Rows to be affected by cmd1: {0}", retVal);
+ 
+      // commit/rollback the transaction.
+      cmtTx.Commit();   // commits the txn.
+      //cmtTx.Rollback(); // rolls back the txn.
+ 
+      // close and dispose the connection
+      conn1.Close();
+      conn1.Dispose();
+      cmd1.Dispose();
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex.Message);
+      Console.WriteLine(ex.StackTrace);
+    }
+  }
+}</pre><div class="infoboxnotealso" id="GUID-E1923F25-B4BC-4CF2-888B-8BB236072FFA__GUID-6977B0C1-368F-4113-B09F-7E44D4B870DE">
+                        <p class="notep1">See Also:</p>
+                        <p><span class="q">"<a href="ConnectionEnlistTransaction.html#GUID-6FCB0092-9D08-4E2A-A552-EF9F85BC470C">EnlistTransaction</a>"</span></p>
+                     </div>
+                  </div>
+               </div><a id="ODPNT209"></a><div class="props_rev_3"><a id="GUID-A5DCC9CF-2047-4A87-BE6D-517A1A9B8899" name="GUID-A5DCC9CF-2047-4A87-BE6D-517A1A9B8899"></a><h4 id="ODPNT-GUID-A5DCC9CF-2047-4A87-BE6D-517A1A9B8899" class="sect4">Local Transaction Support for Older Databases</h4>
+                  <div>
+                     <p>If the first connection in a <code class="codeph">TransactionScope</code> is opened to a pre-Oracle Database 11<span class="italic">g</span> release 1 (11.1) instance, then the connection creates a distributed transaction, by default. You can optionally have the first connection create a local transaction by using the procedure described in this section.
+                     </p>
+                     <p>To create local transactions in a <code class="codeph">System.Transactions</code> scope, either the <code class="codeph">PromotableTransaction</code> setting in the registry, machine/Web/application configuration file, or the <code class="codeph">"Promotable Transaction"</code> connection string attribute must be set to <code class="codeph">"local"</code>. 
+                     </p>
+                     <p>If <code class="codeph">"local"</code> is specified, the first connection opened in the <code class="codeph">TransactionScope</code> uses a local transaction. If any subsequent connections are opened within the same <code class="codeph">TransactionScope</code>, an exception is thrown. If there are connections already opened in the <code class="codeph">TransactionScope</code>, and an <code class="codeph">OracleConnection</code> with <code class="codeph">"Promotable Transaction=local"</code> attempts to open within the same <code class="codeph">TransactionScope</code>, an exception is thrown.
+                     </p>
+                     <p>If <code class="codeph">"promotable"</code> is specified, the first and all subsequent connections opened in the same <code class="codeph">TransactionScope</code> enlist in the same distributed transaction. 
+                     </p>
+                     <p>If both the registry and the connection string attribute are used and set to different values, the connection string attribute overrides the registry entry value. If neither are set, <code class="codeph">"promotable"</code> is used. This is the default value and is equivalent to previous versions of ODP.NET which only supported distributed transactions.
+                     </p>
+                     <p>The registry entry for a particular version of ODP.NET applies for all applications using that version of ODP.NET. </p>
+                  </div>
+               </div>
+            </div><a id="ODPNT252"></a><div class="props_rev_3"><a id="GUID-4D32E59C-1BC0-4567-994E-B0EF3D61D3C4" name="GUID-4D32E59C-1BC0-4567-994E-B0EF3D61D3C4"></a><h3 id="ODPNT-GUID-4D32E59C-1BC0-4567-994E-B0EF3D61D3C4" class="sect3">Parameter Binding</h3>
+               <div>
+                  <p>When the <code class="codeph">DbType</code> property of an <code class="codeph">OracleParameter</code> object is set, the <code class="codeph">OracleDbType</code> property of the <code class="codeph">OracleParameter</code> object changes accordingly, or vice versa. The parameter set last prevails.An application can bind the data and have ODP.NET infer both the <code class="codeph">DbType</code> and <code class="codeph">OracleDbType</code> properties from the .NET type of the parameter value.ODP.NET allows applications to obtain an output parameter as either a .NET Framework type or an ODP.NET type. The application can specify which type to return for an output parameter by setting the <code class="codeph">DbType</code> property of the output parameter (.NET type) or the <code class="codeph">OracleDbType</code> property (ODP.NET type) of the <code class="codeph">OracleParameter</code> object. For example, if the output parameter is set as a <code class="codeph">DbType.String</code> type by setting the <code class="codeph">DbType</code> property, the output data is returned as a .NET String type. On the other hand, if the parameter is set as an <code class="codeph">OracleDbType.Char</code> type by setting the <code class="codeph">OracleDbType</code> property, the output data is returned as an <code class="codeph">OracleString</code> type. If both <code class="codeph">DbType</code> and <code class="codeph">OracleDbType</code> properties are set before the command execution, the last setting takes affect.
+                  </p>
+                  <p>ODP.NET populates <code class="codeph">InputOutput</code>, <code class="codeph">Output</code>, and <code class="codeph">ReturnValue</code> parameters with the Oracle data, through the execution of the following <code class="codeph">OracleCommand</code> methods:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><code class="codeph">ExecuteReader</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">ExecuteNonQuery</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">ExecuteScalar</code></p>
+                     </li>
+                  </ul>
+                  <p>An application should not bind a value for output parameters; it is the responsibility of ODP.NET to create the value object and populate the <code class="codeph">OracleParameter</code> <code class="codeph">Value</code> property with the object. 
+                  </p>
+                  <p>When binding by position (default) to a function, ODP.NET expects the return value to be bound first, before any other parameters.</p>
+                  <p>This section describes the following:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="featOraCommand.html#GUID-4700FBD2-62CD-44ED-B1E1-4BAE1851E126">OracleDbType Enumeration Type</a></p>
+                     </li>
+                     <li>
+                        <p><a href="featOraCommand.html#GUID-D282F945-B645-4509-AE67-C649F154C046">Inference of DbType, OracleDbType, and .NET Types</a></p>
+                     </li>
+                     <li>
+                        <p><a href="featOraCommand.html#GUID-05A6D391-E77F-41AF-83A2-FE86A3D98872">PL/SQL Associative Array Binding</a></p>
+                     </li>
+                     <li>
+                        <p><a href="featOraCommand.html#GUID-FACB870D-6F8B-46EA-95EA-65C6C6536B9E">Array Binding</a></p>
+                     </li>
+                  </ul>
+                  <div class="infoboxnotealso" id="GUID-4D32E59C-1BC0-4567-994E-B0EF3D61D3C4__GUID-4546E781-61C7-424E-9D83-5290545AA9B8">
+                     <p class="notep1">See Also:</p>
+                     <p> <span class="q">"<a href="OracleDbTypeEnumerationType.html#GUID-E5D6E666-49EA-4A8D-822A-A190101C33D7">OracleDbType Enumeration</a>"</span><span class="italic"> </span></p>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-BC7245EB-4594-4237-A4FE-D3A04ACD5621" name="GUID-BC7245EB-4594-4237-A4FE-D3A04ACD5621"></a><h4 id="ODPNT-GUID-BC7245EB-4594-4237-A4FE-D3A04ACD5621" class="sect4">Command Timeouts</h4>
+                  <div>
+                     <p>The <code class="codeph">OracleCommand</code> <code class="codeph">CommandTimeout</code> property limits how long a command is allowed to execute before terminating with an exception. This setting prevents long running commands from consuming excessive resources or from blocking other necessary operations from occurring.
+                     </p>
+                     <p>The database server can be interrupted via either TCP/IP urgent data or normal TCP/IP data, called out of band (OOB) or in band data, respectively. Windows-based database servers only support in band breaks, whereas all other (predominantly UNIX-based) database servers can support OOB or in band breaks.</p>
+                     <p>ODP.NET, Managed Driver uses OOB breaks by default with database servers that support it. For certain network topologies, the routers or firewalls involved in the route to the database may have been configured to drop urgent data or in band the data. If the routers or firewalls can not be changed to handle urgent data appropriately, then the ODP.NET, Managed Driver can be configured to utilize in band breaks by setting the .NET configuration parameter <code class="codeph">Disable_Oob</code> to <code class="codeph">on</code>. 
+                     </p>
+                     <div class="infoboxnotealso" id="GUID-BC7245EB-4594-4237-A4FE-D3A04ACD5621__GUID-53815E96-B0A0-48BE-BC2E-C3B7812DB982">
+                        <p class="notep1">See Also:</p>
+                        <p><a href="InstallManagedConfig.html#GUID-A9EF5624-1828-46DD-84D1-CC5F40BFB6F5">settings section</a> in the <a href="InstallManagedConfig.html#GUID-29A85CBD-948D-4C9F-A89D-A96A99EFF2D7" title="ODP.NET enables ONS communications to occur over TCP/IP with SSL/TLS (TCPS), which is more secure than just TCP/IP. As TCPS requires using a wallet for storing keys and certificates, ODP.NET can use one wallet for both ONS and ODP.NET connections or have separate wallets for each.">Oracle Data Provider for .NET, Managed Driver Configuration</a> section for more information.
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="ODPNT255"></a><a id="ODPNT254"></a><div class="props_rev_3"><a id="GUID-4700FBD2-62CD-44ED-B1E1-4BAE1851E126" name="GUID-4700FBD2-62CD-44ED-B1E1-4BAE1851E126"></a><h4 id="ODPNT-GUID-4700FBD2-62CD-44ED-B1E1-4BAE1851E126" class="sect4">OracleDbType Enumeration Type</h4>
+                  <div>
+                     <p><code class="codeph">OracleDbType</code> enumerated values are used to explicitly specify the <code class="codeph">OracleDbType</code> value of an <code class="codeph">OracleParameter</code> object.
+                     </p>
+                     <p><a href="featOraCommand.html#GUID-4700FBD2-62CD-44ED-B1E1-4BAE1851E126__G1025072" title="rows are OracleDbType enumeration values. first column is name, second column is description">Table 3-7</a> lists all the <code class="codeph">OracleDbType</code> enumeration values with a description of each enumerated value.
+                     </p>
+                     <div class="tblformal" id="GUID-4700FBD2-62CD-44ED-B1E1-4BAE1851E126__G1025072">
+                        <p class="titleintable">Table 3-7 OracleDbType Enumeration Values </p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="OracleDbType Enumeration Values " summary="rows are OracleDbType enumeration values. first column is name, second column is description" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="31%" id="d72001e613">Member Name</th>
+                                 <th align="left" valign="bottom" width="69%" id="d72001e616">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e621" headers="d72001e613 ">
+                                    <p><code class="codeph">Array</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e621 d72001e616 ">
+                                    <p>Oracle Collection (<code class="codeph">VArray</code> or Nested Table)
+                                    </p>
+                                    <p><span class="italic">Not Available in ODP.NET, Managed Driver and ODP.NET Core</span></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e635" headers="d72001e613 ">
+                                    <p><code class="codeph">BFile</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e635 d72001e616 ">
+                                    <p>Oracle <code class="codeph">BFILE</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e646" headers="d72001e613 ">
+                                    <p><code class="codeph">BinaryFloat</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e646 d72001e616 ">
+                                    <p>Oracle <code class="codeph">BINARY_FLOAT</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e657" headers="d72001e613 ">
+                                    <p><code class="codeph">BinaryDouble</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e657 d72001e616 ">
+                                    <p>Oracle <code class="codeph">BINARY_DOUBLE</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e668" headers="d72001e613 ">
+                                    <p><code class="codeph">Blob</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e668 d72001e616 ">
+                                    <p>Oracle <code class="codeph">BLOB</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e679" headers="d72001e613 ">
+                                    <p><code class="codeph">Boolean</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e679 d72001e616 ">
+                                    <p>Oracle <code class="codeph">BOOLEAN</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e690" headers="d72001e613 ">
+                                    <p><code class="codeph">Byte</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e690 d72001e616 ">
+                                    <p><code class="codeph">byte</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e700" headers="d72001e613 ">
+                                    <p><code class="codeph">Char</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e700 d72001e616 ">
+                                    <p>Oracle <code class="codeph">CHAR</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e711" headers="d72001e613 ">
+                                    <p><code class="codeph">Clob</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e711 d72001e616 ">
+                                    <p>Oracle <code class="codeph">CLOB</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e722" headers="d72001e613 ">
+                                    <p><code class="codeph">Date</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e722 d72001e616 ">
+                                    <p>Oracle <code class="codeph">DATE</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e733" headers="d72001e613 ">
+                                    <p><code class="codeph">Decimal</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e733 d72001e616 ">
+                                    <p>Oracle <code class="codeph">NUMBER</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e745" headers="d72001e613 ">
+                                    <p><code class="codeph">Double</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e745 d72001e616 ">
+                                    <p>8-byte <code class="codeph">FLOAT</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e756" headers="d72001e613 ">
+                                    <p><code class="codeph">Int16</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e756 d72001e616 ">
+                                    <p>2-byte <code class="codeph">INTEGER</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e767" headers="d72001e613 ">
+                                    <p><code class="codeph">Int32</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e767 d72001e616 ">
+                                    <p>4-byte <code class="codeph">INTEGER</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e778" headers="d72001e613 ">
+                                    <p><code class="codeph">Int64</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e778 d72001e616 ">
+                                    <p>8-byte <code class="codeph">INTEGER</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e789" headers="d72001e613 ">
+                                    <p><code class="codeph">IntervalDS</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e789 d72001e616 ">
+                                    <p>Oracle <code class="codeph">INTERVAL</code> <code class="codeph">DAY</code> <code class="codeph">TO</code> <code class="codeph">SECOND</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e809" headers="d72001e613 ">
+                                    <p><code class="codeph">IntervalYM</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e809 d72001e616 ">
+                                    <p>Oracle <code class="codeph">INTERVAL</code> <code class="codeph">YEAR</code> <code class="codeph">TO</code> <code class="codeph">MONTH</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e829" headers="d72001e613 ">
+                                    <p><code class="codeph">Long</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e829 d72001e616 ">
+                                    <p>Oracle <code class="codeph">LONG</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e840" headers="d72001e613 ">
+                                    <p><code class="codeph">LongRaw</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e840 d72001e616 ">
+                                    <p>Oracle <code class="codeph">LONG</code> <code class="codeph">RAW</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e854" headers="d72001e613 ">
+                                    <p><code class="codeph">NChar</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e854 d72001e616 ">
+                                    <p>Oracle <code class="codeph">NCHAR</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e865" headers="d72001e613 ">
+                                    <p><code class="codeph">Object</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e865 d72001e616 ">
+                                    <p>Oracle Object type</p>
+                                    <p><span class="italic">Not Available in ODP.NET, Managed Driver and ODP.NET Core</span></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e876" headers="d72001e613 ">
+                                    <p><code class="codeph">NClob</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e876 d72001e616 ">
+                                    <p>Oracle <code class="codeph">NCLOB</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e888" headers="d72001e613 ">
+                                    <p><code class="codeph">NVarchar2</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e888 d72001e616 ">
+                                    <p>Oracle <code class="codeph">NVARCHAR2</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e899" headers="d72001e613 ">
+                                    <p><code class="codeph">Raw</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e899 d72001e616 ">
+                                    <p>Oracle <code class="codeph">RAW</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e910" headers="d72001e613 ">
+                                    <p><code class="codeph">Ref</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e910 d72001e616 ">
+                                    <p>Oracle <code class="codeph">REF</code> type
+                                    </p>
+                                    <p><span class="italic">Not Available in ODP.NET, Managed Driver and ODP.NET Core</span></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e924" headers="d72001e613 ">
+                                    <p><code class="codeph">RefCursor</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e924 d72001e616 ">
+                                    <p>Oracle <code class="codeph">REF</code> <code class="codeph">CURSOR</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e938" headers="d72001e613 ">
+                                    <p><code class="codeph">Single</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e938 d72001e616 ">
+                                    <p>4-byte <code class="codeph">FLOAT</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e949" headers="d72001e613 ">
+                                    <p><code class="codeph">TimeStamp</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e949 d72001e616 ">
+                                    <p>Oracle <code class="codeph">TIMESTAMP</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e960" headers="d72001e613 ">
+                                    <p><code class="codeph">TimeStampLTZ</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e960 d72001e616 ">
+                                    <p>Oracle <code class="codeph">TIMESTAMP</code> <code class="codeph">WITH</code> <code class="codeph">LOCAL</code> <code class="codeph">TIME</code> <code class="codeph">ZONE</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e983" headers="d72001e613 ">
+                                    <p><code class="codeph">TimeStampTZ</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e983 d72001e616 ">
+                                    <p>Oracle <code class="codeph">TIMESTAMP</code> <code class="codeph">WITH</code> <code class="codeph">TIME</code> <code class="codeph">ZONE</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e1003" headers="d72001e613 ">
+                                    <p><code class="codeph">Varchar2</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e1003 d72001e616 ">
+                                    <p>Oracle <code class="codeph">VARCHAR2</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d72001e1014" headers="d72001e613 ">
+                                    <p><code class="codeph">XmlType</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d72001e1014 d72001e616 ">
+                                    <p>Oracle <code class="codeph">XMLType</code> type
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                     <div class="infoboxnote" id="GUID-4700FBD2-62CD-44ED-B1E1-4BAE1851E126__GUID-5E826990-AE03-4A6E-918F-A17F9B1B57A7">
+                        <p class="notep1">Note:</p>
+                        <p>PL/SQL <code class="codeph">LONG, LONG RAW, RAW,</code> and <code class="codeph">VARCHAR</code> data types can be bound with a size up to 32512 bytes.
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="ODPNT256"></a><div class="props_rev_3"><a id="GUID-D282F945-B645-4509-AE67-C649F154C046" name="GUID-D282F945-B645-4509-AE67-C649F154C046"></a><h4 id="ODPNT-GUID-D282F945-B645-4509-AE67-C649F154C046" class="sect4">Inference of DbType, OracleDbType, and .NET Types  </h4>
+                  <div>
+                     <p>This section explains the <a id="d72001e1061" class="indexterm-anchor"></a><a id="d72001e1063" class="indexterm-anchor"></a><a id="d72001e1065" class="indexterm-anchor"></a>inference from the <code class="codeph">System.Data.DbType</code>, <code class="codeph">OracleDbType</code>, and <code class="codeph">Value</code> properties in the <code class="codeph">OracleParameter</code> class. 
+                     </p>
+                     <p>In the <code class="codeph">OracleParameter</code> class, <code class="codeph">DbType</code>, <code class="codeph">OracleDbType</code>, and <code class="codeph">Value</code> properties are linked. Specifying the value of any of these properties infers the value of one or more of the other properties. 
+                     </p>
+                  </div><a id="ODPNT258"></a><a id="ODPNT257"></a><div class="props_rev_3"><a id="GUID-F308270A-42B6-48AC-B6DB-C9ED2AE55B93" name="GUID-F308270A-42B6-48AC-B6DB-C9ED2AE55B93"></a><h5 id="ODPNT-GUID-F308270A-42B6-48AC-B6DB-C9ED2AE55B93" class="sect5">Inference of DbType from OracleDbType</h5>
+                     <div>
+                        <p>In the <code class="codeph">OracleParameter</code> class, specifying the value of <code class="codeph">OracleDbType</code> infers the value of <code class="codeph">DbType</code> as shown in <a href="featOraCommand.html#GUID-F308270A-42B6-48AC-B6DB-C9ED2AE55B93__G1025157" title="rows are OracleDbTypes. first column is name, second column is System.Data.DbType">Table 3-8</a>.
+                        </p>
+                        <div class="tblformal" id="GUID-F308270A-42B6-48AC-B6DB-C9ED2AE55B93__G1025157">
+                           <p class="titleintable">Table 3-8 Inference of System.Data.DbType from OracleDbType </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="Inference of System.Data.DbType from OracleDbType " summary="rows are OracleDbTypes. first column is name, second column is System.Data.DbType" width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d72001e1137">OracleDbType</th>
+                                    <th align="left" valign="bottom" width="69%" id="d72001e1140">System.Data.DbType</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1145" headers="d72001e1137 ">
+                                       <p><code class="codeph">Array</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1145 d72001e1140 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1154" headers="d72001e1137 ">
+                                       <p><code class="codeph">BFile</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1154 d72001e1140 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1163" headers="d72001e1137 ">
+                                       <p><code class="codeph">Blob</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1163 d72001e1140 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1172" headers="d72001e1137 ">
+                                       <p><code class="codeph">BinaryFloat</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1172 d72001e1140 ">
+                                       <p><code class="codeph">Single</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1181" headers="d72001e1137 ">
+                                       <p><code class="codeph">BinaryDouble</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1181 d72001e1140 ">
+                                       <p><code class="codeph">Double</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1190" headers="d72001e1137 ">
+                                       <p><code class="codeph">Boolean</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1190 d72001e1140 ">
+                                       <p><code class="codeph">Boolean</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1199" headers="d72001e1137 ">
+                                       <p><code class="codeph">Byte</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1199 d72001e1140 ">
+                                       <p><code class="codeph">Byte</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1208" headers="d72001e1137 ">
+                                       <p><code class="codeph">Char</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1208 d72001e1140 ">
+                                       <p><code class="codeph">StringFixedLength</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1217" headers="d72001e1137 ">
+                                       <p><code class="codeph">Clob</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1217 d72001e1140 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1226" headers="d72001e1137 ">
+                                       <p><code class="codeph">Date</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1226 d72001e1140 ">
+                                       <p><code class="codeph">Date</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1235" headers="d72001e1137 ">
+                                       <p><code class="codeph">Decimal</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1235 d72001e1140 ">
+                                       <p><code class="codeph">Decimal</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1245" headers="d72001e1137 ">
+                                       <p><code class="codeph">Double</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1245 d72001e1140 ">
+                                       <p><code class="codeph">Double</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1254" headers="d72001e1137 ">
+                                       <p><code class="codeph">Int16</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1254 d72001e1140 ">
+                                       <p><code class="codeph">Int16</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1263" headers="d72001e1137 ">
+                                       <p><code class="codeph">Int32</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1263 d72001e1140 ">
+                                       <p><code class="codeph">Int32</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1272" headers="d72001e1137 ">
+                                       <p><code class="codeph">Int64</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1272 d72001e1140 ">
+                                       <p><code class="codeph">Int64</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1281" headers="d72001e1137 ">
+                                       <p><code class="codeph">IntervalDS</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1281 d72001e1140 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1290" headers="d72001e1137 ">
+                                       <p><code class="codeph">IntervalYM</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1290 d72001e1140 ">
+                                       <p><code class="codeph">Int64</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1299" headers="d72001e1137 ">
+                                       <p><code class="codeph">Long</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1299 d72001e1140 ">
+                                       <p><code class="codeph">String</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1308" headers="d72001e1137 ">
+                                       <p><code class="codeph">LongRaw</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1308 d72001e1140 ">
+                                       <p><code class="codeph">Binary</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1317" headers="d72001e1137 ">
+                                       <p><code class="codeph">NChar</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1317 d72001e1140 ">
+                                       <p><code class="codeph">StringFixedLength</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1326" headers="d72001e1137 ">
+                                       <p><code class="codeph">NClob</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1326 d72001e1140 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1335" headers="d72001e1137 ">
+                                       <p><code class="codeph">NVarchar2</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1335 d72001e1140 ">
+                                       <p><code class="codeph">String</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1345" headers="d72001e1137 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1345 d72001e1140 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1354" headers="d72001e1137 ">
+                                       <p><code class="codeph">Raw</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1354 d72001e1140 ">
+                                       <p><code class="codeph">Binary</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1363" headers="d72001e1137 ">
+                                       <p><code class="codeph">Ref</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1363 d72001e1140 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1372" headers="d72001e1137 ">
+                                       <p><code class="codeph">RefCursor</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1372 d72001e1140 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1381" headers="d72001e1137 ">
+                                       <p><code class="codeph">Single</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1381 d72001e1140 ">
+                                       <p><code class="codeph">Single</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1390" headers="d72001e1137 ">
+                                       <p><code class="codeph">TimeStamp</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1390 d72001e1140 ">
+                                       <p><code class="codeph">DateTime</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1399" headers="d72001e1137 ">
+                                       <p><code class="codeph">TimeStampLTZ</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1399 d72001e1140 ">
+                                       <p><code class="codeph">DateTime</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1408" headers="d72001e1137 ">
+                                       <p><code class="codeph">TimeStampTZ</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1408 d72001e1140 ">
+                                       <p><code class="codeph">DateTime</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1417" headers="d72001e1137 ">
+                                       <p><code class="codeph">Varchar2</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1417 d72001e1140 ">
+                                       <p><code class="codeph">String</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e1426" headers="d72001e1137 ">
+                                       <p><code class="codeph">XmlType</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e1426 d72001e1140 ">
+                                       <p><code class="codeph">String</code></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <!-- class="inftblhruleinformal" -->
+                     </div>
+                  </div><a id="ODPNT260"></a><a id="ODPNT259"></a><div class="props_rev_3"><a id="GUID-BBEF52D9-E4E3-4A9C-93F5-3E408A83FC04" name="GUID-BBEF52D9-E4E3-4A9C-93F5-3E408A83FC04"></a><h5 id="ODPNT-GUID-BBEF52D9-E4E3-4A9C-93F5-3E408A83FC04" class="sect5">Inference of OracleDbType from DbType</h5>
+                     <div>
+                        <p>In the <code class="codeph">OracleParameter</code> class, specifying the value of <code class="codeph">DbType</code> infers the value of <code class="codeph">OracleDbType</code> as shown in <a href="featOraCommand.html#GUID-BBEF52D9-E4E3-4A9C-93F5-3E408A83FC04__G1025242" title="rows are System.Data.DbType. first column is name, second column is OracleDbType.">Table 3-9</a>.
+                        </p>
+                        <div class="tblformal" id="GUID-BBEF52D9-E4E3-4A9C-93F5-3E408A83FC04__G1025242">
+                           <p class="titleintable">Table 3-9 Inference of OracleDbType from DbType </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="Inference of OracleDbType from DbType " summary="rows are System.Data.DbType. first column is name, second column is OracleDbType." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="34%" id="d72001e1474">System.Data.DbType</th>
+                                    <th align="left" valign="bottom" width="66%" id="d72001e1477">OracleDbType</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1482" headers="d72001e1474 ">
+                                       <p><code class="codeph">Binary</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1482 d72001e1477 ">
+                                       <p><code class="codeph">Raw</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1491" headers="d72001e1474 ">
+                                       <p><code class="codeph">Boolean</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1491 d72001e1477 ">
+                                       <p><code class="codeph">Boolean</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1500" headers="d72001e1474 ">
+                                       <p><code class="codeph">Byte</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1500 d72001e1477 ">
+                                       <p><code class="codeph">Byte</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1509" headers="d72001e1474 ">
+                                       <p><code class="codeph">Currency</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1509 d72001e1477 ">
+                                       <p><span class="italic">Not Supported</span></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1518" headers="d72001e1474 ">
+                                       <p><code class="codeph">Date</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1518 d72001e1477 ">
+                                       <p><code class="codeph">Date</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1527" headers="d72001e1474 ">
+                                       <p><code class="codeph">DateTime</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1527 d72001e1477 ">
+                                       <p><code class="codeph">TimeStamp</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1536" headers="d72001e1474 ">
+                                       <p><code class="codeph">Decimal</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1536 d72001e1477 ">
+                                       <p><code class="codeph">Decimal</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1545" headers="d72001e1474 ">
+                                       <p><code class="codeph">Double</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1545 d72001e1477 ">
+                                       <p><code class="codeph">Double</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1554" headers="d72001e1474 ">
+                                       <p><code class="codeph">Guid</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1554 d72001e1477 ">
+                                       <p><span class="italic">Not Supported</span></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1563" headers="d72001e1474 ">
+                                       <p><code class="codeph">Int16</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1563 d72001e1477 ">
+                                       <p><code class="codeph">Int16</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1572" headers="d72001e1474 ">
+                                       <p><code class="codeph">Int32</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1572 d72001e1477 ">
+                                       <p><code class="codeph">Int32</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1582" headers="d72001e1474 ">
+                                       <p><code class="codeph">Int64</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1582 d72001e1477 ">
+                                       <p><code class="codeph">Int64 </code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1591" headers="d72001e1474 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1591 d72001e1477 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1600" headers="d72001e1474 ">
+                                       <p><code class="codeph">Sbyte</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1600 d72001e1477 ">
+                                       <p><span class="italic">Not Supported</span></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1609" headers="d72001e1474 ">
+                                       <p><code class="codeph">Single</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1609 d72001e1477 ">
+                                       <p><code class="codeph">Single</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1618" headers="d72001e1474 ">
+                                       <p><code class="codeph">String</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1618 d72001e1477 ">
+                                       <p><code class="codeph">Varchar2</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1627" headers="d72001e1474 ">
+                                       <p><code class="codeph">StringFixedLength</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1627 d72001e1477 ">
+                                       <p><code class="codeph">Char</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1636" headers="d72001e1474 ">
+                                       <p><code class="codeph">Time</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1636 d72001e1477 ">
+                                       <p><code class="codeph">TimeStamp</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1645" headers="d72001e1474 ">
+                                       <p><code class="codeph">UInt16</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1645 d72001e1477 ">
+                                       <p><span class="italic">Not Supported</span></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1654" headers="d72001e1474 ">
+                                       <p><code class="codeph">UInt32</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1654 d72001e1477 ">
+                                       <p><span class="italic">Not Supported</span></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1663" headers="d72001e1474 ">
+                                       <p><code class="codeph">Uint64</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1663 d72001e1477 ">
+                                       <p><span class="italic">Not Supported</span></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1672" headers="d72001e1474 ">
+                                       <p><code class="codeph">VarNumeric</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="66%" headers="d72001e1672 d72001e1477 ">
+                                       <p><span class="italic">Not Supported</span></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <!-- class="inftblhruleinformal" -->
+                     </div>
+                  </div><a id="ODPNT262"></a><a id="ODPNT263"></a><a id="ODPNT261"></a><div class="props_rev_3"><a id="GUID-B31017F3-B497-4477-B261-3D4078B8489A" name="GUID-B31017F3-B497-4477-B261-3D4078B8489A"></a><h5 id="ODPNT-GUID-B31017F3-B497-4477-B261-3D4078B8489A" class="sect5">Inference of DbType and OracleDbType from Value</h5>
+                     <div>
+                        <p>In the <code class="codeph">OracleParameter</code> class, <code class="codeph">Value</code> is an object type that can be of any .NET Framework data type or ODP.NET type. If the <code class="codeph">OracleDbType</code> and <code class="codeph">DbType</code> properties of the <code class="codeph">OracleParameter</code> class are not specified, the <code class="codeph">OracleDbType</code> property is inferred from the type of the <code class="codeph">Value</code> property.   
+                        </p>
+                        <p><a href="featOraCommand.html#GUID-B31017F3-B497-4477-B261-3D4078B8489A__G1025315" title="rows are values as .NET Datatypes. first column is name, second column is System.Data.DbType. third column is OracleDbType.">Table 3-10</a> shows the inference of <code class="codeph">DbType</code> and <code class="codeph">OracleDbType</code> properties from the <code class="codeph">Value</code> property when the type of <code class="codeph">Value</code> is one of the .NET Framework data types.
+                        </p>
+                        <div class="tblformal" id="GUID-B31017F3-B497-4477-B261-3D4078B8489A__G1025315">
+                           <p class="titleintable">Table 3-10 Inference of DbType and OracleDbType from Value (.NET Datatypes) </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="Inference of DbType and OracleDbType from Value (.NET Datatypes) " summary="rows are values as .NET Datatypes. first column is name, second column is  System.Data.DbType. third column is  OracleDbType." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="34%" id="d72001e1749">Value (.NET Datatypes)</th>
+                                    <th align="left" valign="bottom" width="36%" id="d72001e1752">System.Data.DbType</th>
+                                    <th align="left" valign="bottom" width="30%" id="d72001e1755">OracleDbType</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1760" headers="d72001e1749 ">
+                                       <p><code class="codeph">Boolean</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1760 d72001e1752 ">
+                                       <p><code class="codeph">Boolean</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1760 d72001e1755 ">
+                                       <p><code class="codeph">Boolean</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1773" headers="d72001e1749 ">
+                                       <p><code class="codeph">Byte</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1773 d72001e1752 ">
+                                       <p><code class="codeph">Byte</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1773 d72001e1755 ">
+                                       <p><code class="codeph">Byte</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1786" headers="d72001e1749 ">
+                                       <p><code class="codeph">Byte[]</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1786 d72001e1752 ">
+                                       <p><code class="codeph">Binary</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1786 d72001e1755 ">
+                                       <p><code class="codeph">Raw</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1799" headers="d72001e1749 ">
+                                       <p><code class="codeph">Char / Char []</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1799 d72001e1752 ">
+                                       <p><code class="codeph">String</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1799 d72001e1755 ">
+                                       <p><code class="codeph">Varchar2</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1812" headers="d72001e1749 ">
+                                       <p><code class="codeph">DateTime</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1812 d72001e1752 ">
+                                       <p><code class="codeph">DateTime</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1812 d72001e1755 ">
+                                       <p><code class="codeph">TimeStamp</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1825" headers="d72001e1749 ">
+                                       <p><code class="codeph">Decimal</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1825 d72001e1752 ">
+                                       <p><code class="codeph">Decimal</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1825 d72001e1755 ">
+                                       <p><code class="codeph">Decimal</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1838" headers="d72001e1749 ">
+                                       <p><code class="codeph">Double</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1838 d72001e1752 ">
+                                       <p><code class="codeph">Double</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1838 d72001e1755 ">
+                                       <p><code class="codeph">Double</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1851" headers="d72001e1749 ">
+                                       <p><code class="codeph">Float</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1851 d72001e1752 ">
+                                       <p><code class="codeph">Single</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1851 d72001e1755 ">
+                                       <p><code class="codeph">Single</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1864" headers="d72001e1749 ">
+                                       <p><code class="codeph">Int16</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1864 d72001e1752 ">
+                                       <p><code class="codeph">Int16</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1864 d72001e1755 ">
+                                       <p><code class="codeph">Int16</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1877" headers="d72001e1749 ">
+                                       <p><code class="codeph">Int32</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1877 d72001e1752 ">
+                                       <p><code class="codeph">Int32</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1877 d72001e1755 ">
+                                       <p><code class="codeph">Int32</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1890" headers="d72001e1749 ">
+                                       <p><code class="codeph">Int64</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1890 d72001e1752 ">
+                                       <p><code class="codeph">Int64</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1890 d72001e1755 ">
+                                       <p><code class="codeph">Int64</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1904" headers="d72001e1749 ">
+                                       <p><code class="codeph">IOracleCustomType</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1904 d72001e1752 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1904 d72001e1755 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1917" headers="d72001e1749 ">
+                                       <p><code class="codeph">Single</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1917 d72001e1752 ">
+                                       <p><code class="codeph">Single</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1917 d72001e1755 ">
+                                       <p><code class="codeph">Single</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1930" headers="d72001e1749 ">
+                                       <p><code class="codeph">String</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1930 d72001e1752 ">
+                                       <p><code class="codeph">String</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1930 d72001e1755 ">
+                                       <p><code class="codeph">Varchar2</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="34%" id="d72001e1943" headers="d72001e1749 ">
+                                       <p><code class="codeph">TimeSpan</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e1943 d72001e1752 ">
+                                       <p>Object</p>
+                                    </td>
+                                    <td align="left" valign="top" width="30%" headers="d72001e1943 d72001e1755 ">
+                                       <p><code class="codeph">IntervalDS</code></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <!-- class="inftblhruleinformal" -->
+                        <div class="infoboxnote" id="GUID-B31017F3-B497-4477-B261-3D4078B8489A__GUID-8B7530F2-3EE5-4C5E-ACAC-DE00D2E7550F">
+                           <p class="notep1">Note:</p>
+                           <p>Using other .NET Framework data types as values for the <code class="codeph">OracleParameter</code> class without specifying either the <code class="codeph">DbType</code> or the <code class="codeph">OracleDbType</code> properties raises an exception because inferring <code class="codeph">DbType</code> and <code class="codeph">OracleDbType</code> properties from other .NET Framework data types is not supported.
+                           </p>
+                        </div>
+                        <p><a href="featOraCommand.html#GUID-B31017F3-B497-4477-B261-3D4078B8489A__G1025379" title="rows are values as OracleDbType first column is name, second column is System.Data.DbType. third column is OracleDbType .">Table 3-11</a> shows the inference of <code class="codeph">DbType</code> and <code class="codeph">OracleDbType</code> properties from the <code class="codeph">Value</code> property when type of <code class="codeph">Value</code> is one of <code class="codeph">Oracle.DataAccess.Types</code>.
+                        </p>
+                        <div class="tblformal" id="GUID-B31017F3-B497-4477-B261-3D4078B8489A__G1025379">
+                           <p class="titleintable">Table 3-11 Inference of DbType and OracleDbType from Value (ODP.NET Types) </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="Inference of DbType and OracleDbType from Value (ODP.NET Types) " summary="rows are values as OracleDbType first column is name, second column is  System.Data.DbType. third column is OracleDbType ." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="37%" id="d72001e2004">Value (Oracle.DataAccess.Types)</th>
+                                    <th align="left" valign="bottom" width="27%" id="d72001e2007">System.Data.DbType</th>
+                                    <th align="left" valign="bottom" width="36%" id="d72001e2010">OracleDbType</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2015" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleBFile</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2015 d72001e2007 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2015 d72001e2010 ">
+                                       <p><code class="codeph">BFile</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2028" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleBinary</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2028 d72001e2007 ">
+                                       <p><code class="codeph">Binary</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2028 d72001e2010 ">
+                                       <p><code class="codeph">Raw</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2041" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleBlob</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2041 d72001e2007 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2041 d72001e2010 ">
+                                       <p><code class="codeph">Blob</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2054" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleBoolean</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2054 d72001e2007 ">
+                                       <p><code class="codeph">Boolean</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2054 d72001e2010 ">
+                                       <p><code class="codeph">Boolean</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2067" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleClob</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2067 d72001e2007 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2067 d72001e2010 ">
+                                       <p><code class="codeph">Clob</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2080" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleDate</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2080 d72001e2007 ">
+                                       <p><code class="codeph">Date</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2080 d72001e2010 ">
+                                       <p><code class="codeph">Date</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2093" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleDecimal</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2093 d72001e2007 ">
+                                       <p><code class="codeph">Decimal</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2093 d72001e2010 ">
+                                       <p><code class="codeph">Decimal</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2106" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleIntervalDS</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2106 d72001e2007 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2106 d72001e2010 ">
+                                       <p><code class="codeph">IntervalDS</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2119" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleIntervalYM</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2119 d72001e2007 ">
+                                       <p><code class="codeph">Int64</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2119 d72001e2010 ">
+                                       <p><code class="codeph">IntervalYM</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2132" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleRef</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2132 d72001e2007 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2132 d72001e2010 ">
+                                       <p><code class="codeph">Ref</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2145" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleRefCursor</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2145 d72001e2007 ">
+                                       <p><code class="codeph">Object</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2145 d72001e2010 ">
+                                       <p><code class="codeph">RefCursor</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2159" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleString</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2159 d72001e2007 ">
+                                       <p><code class="codeph">String</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2159 d72001e2010 ">
+                                       <p><code class="codeph">Varchar2</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2172" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleTimeStamp</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2172 d72001e2007 ">
+                                       <p><code class="codeph">DateTime</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2172 d72001e2010 ">
+                                       <p><code class="codeph">TimeStamp</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2185" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleTimeStampLTZ</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2185 d72001e2007 ">
+                                       <p><code class="codeph">DateTime</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2185 d72001e2010 ">
+                                       <p><code class="codeph">TimeStampLTZ</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2198" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleTimeStampTZ</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2198 d72001e2007 ">
+                                       <p><code class="codeph">DateTime</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2198 d72001e2010 ">
+                                       <p><code class="codeph">TimeStampTZ</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="37%" id="d72001e2211" headers="d72001e2004 ">
+                                       <p><code class="codeph">OracleXmlType</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="27%" headers="d72001e2211 d72001e2007 ">
+                                       <p><code class="codeph">String</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="36%" headers="d72001e2211 d72001e2010 ">
+                                       <p><code class="codeph">XmlType</code></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <!-- class="inftblhruleinformal" -->
+                     </div>
+                  </div>
+               </div><a id="ODPNT265"></a><a id="ODPNT264"></a><div class="props_rev_3"><a id="GUID-05A6D391-E77F-41AF-83A2-FE86A3D98872" name="GUID-05A6D391-E77F-41AF-83A2-FE86A3D98872"></a><h4 id="ODPNT-GUID-05A6D391-E77F-41AF-83A2-FE86A3D98872" class="sect4">PL/SQL Associative Array Binding</h4>
+                  <div>
+                     <p>ODP.NET supports PL/SQL Associative Arrays (formerly known as PL/SQL Index-By Tables) binding.</p>
+                     <p>An application can bind an <code class="codeph">OracleParameter</code> object, as a PL/SQL Associative Array, to a PL/SQL stored procedure. The following <code class="codeph">OracleParameter</code> properties are used for this feature:
+                     </p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><code class="codeph">CollectionType</code><a id="d72001e2258" class="indexterm-anchor"></a><a id="d72001e2262" class="indexterm-anchor"></a></p>
+                           <p>This property must be set to <code class="codeph">OracleCollectionType.PLSQLAssociativeArray</code> to bind a PL/SQL Associative Array.
+                           </p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">ArrayBindSize</code><a id="d72001e2273" class="indexterm-anchor"></a><a id="d72001e2277" class="indexterm-anchor"></a></p>
+                           <p>This property is ignored for the fixed-length element types (such as <code class="codeph">Int32</code>).
+                           </p>
+                           <p>For variable-length element types (such as <code class="codeph">Varchar2</code>), each element in the <code class="codeph">ArrayBindSize</code> property specifies the size of the corresponding element in the <code class="codeph">Value</code> property.
+                           </p>
+                           <p>For <code class="codeph">Output</code> parameters, <code class="codeph">InputOutput</code> parameters, and return values, this property must be set for variable-length variables.
+                           </p>
+                           <p>If the database server supports up to <code class="codeph">32 KB VARCHAR2</code>, then each ODP.NET array element can store up to <code class="codeph">32 KB</code> characters or binary data. If the database server supports up to <code class="codeph">4 KB VARCHAR2</code>, then each ODP.NET array element can store up to <code class="codeph">4 KB</code> characters or <code class="codeph">2 KB</code> binary data.
+                           </p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">ArrayBindStatus</code><a id="d72001e2324" class="indexterm-anchor"></a><a id="d72001e2328" class="indexterm-anchor"></a></p>
+                           <p>This property specifies the execution status of each element in the <code class="codeph">OracleParameter.Value</code> property.
+                           </p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">Size</code><a id="d72001e2339" class="indexterm-anchor"></a><a id="d72001e2343" class="indexterm-anchor"></a></p>
+                           <p>This property specifies the maximum number of elements to be bound in the PL/SQL Associative Array.</p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">Value</code><a id="d72001e2351" class="indexterm-anchor"></a><a id="d72001e2355" class="indexterm-anchor"></a></p>
+                           <p>This property must be set to an array of values, <code class="codeph">null</code>, or the <code class="codeph">DBNull.Value</code> property.
+                           </p>
+                        </li>
+                     </ul>
+                     <p>ODP.NET supports binding parameters of PL/SQL Associative Arrays which contain the following data types.</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><code class="codeph">BINARY_FLOAT</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">CHAR</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">DATE</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">NCHAR</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">NUMBER</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">NVARCHAR2</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">RAW</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">ROWID</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">UROWID</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">VARCHAR2</code></p>
+                        </li>
+                     </ul>
+                     <p>Using unsupported data types with associative arrays can cause an ORA-600 error.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-05A6D391-E77F-41AF-83A2-FE86A3D98872__GUID-4287DDDD-80D4-4F50-9E24-61B332CF14A6">Example of PL/SQL Associative Arrays</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p>This example binds three <code class="codeph">OracleParameter</code> objects as PL/SQL Associative Arrays: <code class="codeph">Param1</code> as an <code class="codeph">In</code> parameter, <code class="codeph">Param2</code> as an <code class="codeph">InputOutput</code> parameter, and <code class="codeph">Param3</code> as an <code class="codeph">Output</code> parameter. 
+                        </p>
+                        <p><span>PL/SQL Package: MYPACK</span></p><pre class="oac_no_warn" dir="ltr">/* Setup the tables and required PL/SQL:
+ 
+   connect scott/tiger@oracle
+   CREATE TABLE T1(COL1 number, COL2 varchar2(20));
+ 
+   CREATE or replace PACKAGE MYPACK AS 
+     TYPE AssocArrayVarchar2_t is table of VARCHAR(20) index by BINARY_INTEGER;
+     PROCEDURE TestVarchar2(
+       Param1 IN     AssocArrayVarchar2_t,
+       Param2 IN OUT AssocArrayVarchar2_t,
+       Param3    OUT AssocArrayVarchar2_t);
+     END MYPACK;
+/
+ 
+   CREATE or REPLACE package body MYPACK as
+     PROCEDURE TestVarchar2(
+       Param1 IN     AssocArrayVarchar2_t,
+       Param2 IN OUT AssocArrayVarchar2_t,
+       Param3    OUT AssocArrayVarchar2_t)
+     IS
+     i integer;
+     BEGIN
+       -- copy a few elements from Param2 to Param1\n
+       Param3(1) := Param2(1);
+       Param3(2) := NULL;
+       Param3(3) := Param2(3);
+       -- copy all elements from Param1 to Param2\n
+       Param2(1) := Param1(1);
+       Param2(2) := Param1(2);
+       Param2(3) := Param1(3);
+       -- insert some values to db\n
+       FOR i IN 1..3 LOOP
+         insert into T1 values(i,Param2(i));
+       END LOOP;
+     END TestVarchar2;
+   END MYPACK;
+/
+ */
+ 
+// C#
+ 
+using System;
+using System.Data;
+using Oracle.DataAccess.Client; 
+ 
+class AssociativeArraySample
+{
+  static void Main()
+  {
+    OracleConnection con = new OracleConnection();
+ 
+    con.ConnectionString = "User Id=scott;Password=tiger;Data Source=oracle";
+    con.Open();
+    Console.WriteLine("Connected to Oracle" + con.ServerVersion);
+    
+    OracleCommand cmd = new OracleCommand(
+      "begin MyPack.TestVarchar2(:1, :2, :3); end;", con);
+ 
+    OracleParameter Param1 = cmd.Parameters.Add("1", OracleDbType.Varchar2);
+    OracleParameter Param2 = cmd.Parameters.Add("2", OracleDbType.Varchar2);
+    OracleParameter Param3 = cmd.Parameters.Add("3", OracleDbType.Varchar2);
+ 
+    Param1.Direction = ParameterDirection.Input;
+    Param2.Direction = ParameterDirection.InputOutput;
+    Param3.Direction = ParameterDirection.Output;
+ 
+    // Specify that we are binding PL/SQL Associative Array
+    Param1.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+    Param2.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+    Param3.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+ 
+    // Setup the values for PL/SQL Associative Array
+    Param1.Value = new string[3] {
+      "First Element", "Second Element ", "Third Element "
+    };
+    Param2.Value = new string[3] {
+      "First Element", "Second Element ", "Third Element "
+    };
+    Param3.Value = null;
+ 
+    // Specify the maximum number of elements in the PL/SQL Associative Array
+    Param1.Size = 3;
+    Param2.Size = 3;
+    Param3.Size = 3;
+ 
+    // Setup the ArrayBindSize for Param1
+    Param1.ArrayBindSize = new int[3] { 13, 14, 13 };
+ 
+    // Setup the ArrayBindStatus for Param1
+    Param1.ArrayBindStatus = new OracleParameterStatus[3] {
+      OracleParameterStatus.Success, OracleParameterStatus.Success, 
+      OracleParameterStatus.Success};
+ 
+    // Setup the ArrayBindSize for Param2
+    Param2.ArrayBindSize = new int[3] { 20, 20, 20 };
+ 
+    // Setup the ArrayBindSize for Param3
+    Param3.ArrayBindSize = new int[3] { 20, 20, 20 };
+ 
+    // execute the cmd
+    cmd.ExecuteNonQuery();
+ 
+    //print out the parameter's values
+    Console.WriteLine("parameter values after executing the PL/SQL block");
+    for (int i = 0; i &lt; 3; i++)
+      Console.WriteLine("Param2[{0}] = {1} ", i, 
+        (cmd.Parameters[1].Value as Array).GetValue(i));
+ 
+    for (int i = 0; i &lt; 3; i++)
+      Console.WriteLine("Param3[{0}] = {1} ", i, 
+        (cmd.Parameters[2].Value as Array).GetValue(i));
+ 
+    // Close and Dispose OracleConnection object
+    con.Close();
+    con.Dispose();
+    Console.WriteLine("Disconnected");
+  }         
+}
+</pre></div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT266"></a><div class="props_rev_3"><a id="GUID-FACB870D-6F8B-46EA-95EA-65C6C6536B9E" name="GUID-FACB870D-6F8B-46EA-95EA-65C6C6536B9E"></a><h4 id="ODPNT-GUID-FACB870D-6F8B-46EA-95EA-65C6C6536B9E" class="sect4">Array Binding</h4>
+                  <div>
+                     <p>The array bind feature enables applications to bind arrays of a type using the <code class="codeph">OracleParameter</code> class. Using the array bind feature, an application can insert multiple rows into a table in a single database round-trip.
+                     </p>
+                     <p>The following example inserts three rows into the <code class="codeph">Dept</code> table with a single database round-trip. The <code class="codeph">OracleCommand</code> <code class="codeph">ArrayBindCount</code> property defines the number of elements of the array to use when executing the statement. 
+                     </p><pre class="oac_no_warn" dir="ltr">// C#
+ 
+using System;
+using System.Data;
+using Oracle.DataAccess.Client; 
+ 
+class ArrayBindSample
+{
+  static void Main()
+  {
+    OracleConnection con = new OracleConnection();
+    con.ConnectionString = "User Id=scott;Password=tiger;Data Source=oracle;";
+    con.Open();
+    Console.WriteLine("Connected successfully");
+ 
+    int[] myArrayDeptNo = new int[3] { 10, 20, 30 };
+    OracleCommand cmd = new OracleCommand();
+ 
+    // Set the command text on an OracleCommand object
+    cmd.CommandText = "insert into dept(deptno) values (:deptno)";
+    cmd.Connection = con;
+ 
+    // Set the ArrayBindCount to indicate the number of values
+    cmd.ArrayBindCount = 3;
+ 
+    // Create a parameter for the array operations
+    OracleParameter prm = new OracleParameter("deptno", OracleDbType.Int32);
+ 
+    prm.Direction = ParameterDirection.Input;
+    prm.Value = myArrayDeptNo;
+ 
+    // Add the parameter to the parameter collection
+    cmd.Parameters.Add(prm);
+ 
+    // Execute the command
+    cmd.ExecuteNonQuery();
+    Console.WriteLine("Insert Completed Successfully");
+ 
+    // Close and Dispose OracleConnection object
+    con.Close();
+    con.Dispose();
+  }
+}
+</pre><div class="infoboxnotealso" id="GUID-FACB870D-6F8B-46EA-95EA-65C6C6536B9E__GUID-0F1E0D84-EE9E-44BE-B5D0-DA0395037CB3">
+                        <p class="notep1">See Also:</p>
+                        <p><span class="q">"<a href="ParameterValue.html#GUID-0709F4DD-4EC4-451A-A61C-27B08C40FC8F">Value</a>"</span> for more information 
+                        </p>
+                     </div>
+                  </div><a id="ODPNT267"></a><div class="props_rev_3"><a id="GUID-FD80B013-476C-4623-9280-77900E17FC45" name="GUID-FD80B013-476C-4623-9280-77900E17FC45"></a><h5 id="ODPNT-GUID-FD80B013-476C-4623-9280-77900E17FC45" class="sect5">OracleParameter Array Bind Properties</h5>
+                     <div>
+                        <div class="section">
+                           <p>The <code class="codeph">OracleParameter</code> class provides two properties for granular control when using the array bind feature:
+                           </p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><code class="codeph">ArrayBindSize</code><a id="d72001e2524" class="indexterm-anchor"></a><a id="d72001e2526" class="indexterm-anchor"></a></p>
+                                 <p>The <code class="codeph">ArrayBindSize</code> property is an array of integers specifying the maximum size for each corresponding value in an array. The <code class="codeph">ArrayBindSize</code> property is similar to the <code class="codeph">Size</code> property of an <code class="codeph">OracleParameter</code> object, except the <code class="codeph">ArrayBindSize</code> property specifies the size for each value in an array. 
+                                 </p>
+                                 <p>Before the execution, the application must populate the <code class="codeph">ArrayBindSize</code> property; after the execution, ODP.NET populates it. 
+                                 </p>
+                                 <p>The <code class="codeph">ArrayBindSize</code> property is used only for parameter types that have variable length such as <code class="codeph">Clob</code>, <code class="codeph">Blob</code>, and <code class="codeph">Varchar2</code>. The size is represented in bytes for binary data types, and characters for the Unicode string types. The count for string types does not include the terminating character. The size is inferred from the actual size of the value, if it is not explicitly set. For an output parameter, the size of each value is set by ODP.NET. The <code class="codeph">ArrayBindSize</code> property is ignored for fixed-length data types.
+                                 </p>
+                                 <p>The maximum <code class="codeph">ArrayBindSize</code> size is <code class="codeph">2 GB</code> for both character and binary data.
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><code class="codeph">ArrayBindStatus</code><a id="d72001e2581" class="indexterm-anchor"></a><a id="d72001e2583" class="indexterm-anchor"></a></p>
+                                 <p>The <code class="codeph">ArrayBindStatus</code> property is an array of <code class="codeph">OracleParameterStatus</code> values that specify the status of each corresponding value in an array for a parameter. This property is similar to the <code class="codeph">Status</code> property of the <code class="codeph">OracleParameter</code> object, except that the <code class="codeph">ArrayBindStatus</code> property specifies the status for each array value. 
+                                 </p>
+                                 <p>Before the execution, the application must populate the <code class="codeph">ArrayBindStatus</code> property. After the execution, ODP.NET populates the property. Before the execution, an application using the <code class="codeph">ArrayBindStatus</code> property can specify a <code class="codeph">NULL</code> value for the corresponding element in the array for a parameter. After the execution, ODP.NET populates the <code class="codeph">ArrayBindStatus</code> property, indicating whether the corresponding element in the array has a <code class="codeph">null</code> value, or if data truncation occurred when the value was fetched.
+                                 </p>
+                              </li>
+                           </ul>
+                        </div>
+                        <!-- class="section" -->
+                     </div>
+                  </div><a id="ODPNT268"></a><div class="props_rev_3"><a id="GUID-AB68A40C-FF5A-471D-AF4C-61D1096E9B3A" name="GUID-AB68A40C-FF5A-471D-AF4C-61D1096E9B3A"></a><h5 id="ODPNT-GUID-AB68A40C-FF5A-471D-AF4C-61D1096E9B3A" class="sect5">Error Handling for Array Binding</h5>
+                     <div>
+                        <div class="section">
+                           <p>If an error occurs during an array bind execution, it can be difficult to determine which element in the <code class="codeph">Value</code> property caused the error. ODP.NET provides a way to determine the row where the error occurred, making it easier to find the element in the row that caused the error.
+                           </p>
+                           <p>When an <code class="codeph">OracleException</code> object is thrown during an array bind execution, the <code class="codeph">OracleErrorCollection</code> object contains one or more <code class="codeph">OracleError</code> objects. Each of these <code class="codeph">OracleError</code> objects represents an individual error that occurred during the execution, and contains a provider-specific property, <code class="codeph">ArrayBindIndex</code>, which indicates the row number at which the error occurred.
+                           </p>
+                           <p>The following example demonstrates error handling for array binding:</p><pre class="oac_no_warn" dir="ltr">/* Database Setup
+connect scott/tiger@oracle
+drop table depttest;
+create table depttest(deptno number(2));
+*/
+ 
+// C#
+ 
+using System;
+using System.Data;
+using Oracle.DataAccess.Client; 
+ 
+class ArrayBindExceptionSample
+{
+  static void Main()
+  {
+    OracleConnection con = new OracleConnection();
+    con.ConnectionString = "User Id=scott;Password=tiger;Data Source=oracle;";
+    con.Open();
+ 
+    OracleCommand cmd = new OracleCommand();
+ 
+    // Start a transaction
+    OracleTransaction txn = con.BeginTransaction(IsolationLevel.ReadCommitted);
+ 
+    try
+    {
+      int[] myArrayDeptNo = new int[3] { 10, 200000, 30 };
+      // int[] myArrayDeptNo = new int[3]{ 10,20,30};
+ 
+      // Set the command text on an OracleCommand object
+      cmd.CommandText = "insert into depttest(deptno) values (:deptno)";
+      cmd.Connection = con;
+ 
+      // Set the ArrayBindCount to indicate the number of values
+      cmd.ArrayBindCount = 3;
+ 
+      // Create a parameter for the array operations
+      OracleParameter prm = new OracleParameter("deptno", OracleDbType.Int32);
+ 
+      prm.Direction = ParameterDirection.Input;
+      prm.Value = myArrayDeptNo;
+ 
+      // Add the parameter to the parameter collection
+      cmd.Parameters.Add(prm);
+ 
+      // Execute the command
+      cmd.ExecuteNonQuery();
+    }
+    catch (OracleException e)
+    {
+      Console.WriteLine("OracleException {0} occured", e.Message);
+      if (e.Number == 24381)
+        for (int i = 0; i &lt; e.Errors.Count; i++)
+          Console.WriteLine("Array Bind Error {0} occured at Row Number {1}", 
+            e.Errors[i].Message, e.Errors[i].ArrayBindIndex);
+ 
+      txn.Commit();
+    }
+    cmd.Parameters.Clear();
+    cmd.CommandText = "select count(*) from depttest";
+ 
+    decimal rows = (decimal)cmd.ExecuteScalar();
+ 
+    Console.WriteLine("{0} row have been inserted", rows);
+    con.Close();
+    con.Dispose();
+  }
+}
+</pre><div class="infoboxnotealso" id="GUID-AB68A40C-FF5A-471D-AF4C-61D1096E9B3A__GUID-91B297A0-9C4A-4C1F-A026-B07D716A3EB7">
+                              <p class="notep1">See Also:</p>
+                              <p><span class="q">"<a href="ArrayBindIndex.html#GUID-CA0B6274-CCD8-40E7-86F8-739DDDCE3378">ArrayBindIndex</a>"</span> for more information 
+                              </p>
+                           </div>
+                        </div>
+                        <!-- class="section" -->
+                     </div>
+                  </div><a id="ODPNT270"></a><a id="ODPNT269"></a><div class="props_rev_3"><a id="GUID-9D10975D-7550-4A10-8E67-E3EFD787FA99" name="GUID-9D10975D-7550-4A10-8E67-E3EFD787FA99"></a><h5 id="ODPNT-GUID-9D10975D-7550-4A10-8E67-E3EFD787FA99" class="sect5">OracleParameterStatus Enumeration Types</h5>
+                     <div>
+                        <div class="section">
+                           <p><a href="featOraCommand.html#GUID-9D10975D-7550-4A10-8E67-E3EFD787FA99__G1025447" title="rows are OracleParameterStatus members. first column is member name, second column is description">Table 3-12</a> lists <code class="codeph">OracleParameterStatus</code> enumeration values.
+                           </p>
+                        </div>
+                        <!-- class="section" -->
+                        <div class="tblformal" id="GUID-9D10975D-7550-4A10-8E67-E3EFD787FA99__G1025447">
+                           <p class="titleintable">Table 3-12 OracleParameterStatus Members </p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="OracleParameterStatus Members " summary="rows are OracleParameterStatus members. first column is member name, second column is  description" width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d72001e2706">Member Names</th>
+                                    <th align="left" valign="bottom" width="69%" id="d72001e2709">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e2714" headers="d72001e2706 ">
+                                       <p><code class="codeph">Success</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e2714 d72001e2709 ">
+                                       <p>For input parameters, indicates that the input value has been assigned to the column.</p>
+                                       <p>For output parameters, indicates that the provider assigned an intact value to the parameter.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e2724" headers="d72001e2706 ">
+                                       <p><code class="codeph">NullFetched</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e2724 d72001e2709 ">
+                                       <p>Indicates that a <code class="codeph">NULL</code> value has been fetched from a column or an <code class="codeph">OUT</code> parameter.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e2738" headers="d72001e2706 ">
+                                       <p><code class="codeph">NullInsert</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e2738 d72001e2709 ">
+                                       <p>Indicates that a <code class="codeph">NULL</code> value is to be inserted into a column.
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d72001e2749" headers="d72001e2706 ">
+                                       <p><code class="codeph">Truncation</code></p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d72001e2749 d72001e2709 ">
+                                       <p>Indicates that truncation has occurred when fetching the data from the column.</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <!-- class="inftblhruleinformal" -->
+                     </div>
+                  </div>
+               </div>
+            </div><a id="ODPNT210"></a><div class="props_rev_3"><a id="GUID-77398E42-70B8-4863-B67F-E27FCA28F620" name="GUID-77398E42-70B8-4863-B67F-E27FCA28F620"></a><h3 id="ODPNT-GUID-77398E42-70B8-4863-B67F-E27FCA28F620" class="sect3">Batch Processing</h3>
+               <div>
+                  <p>The <code class="codeph">OracleDataAdapter</code> <code class="codeph">UpdateBatchSize</code> property enables batch processing when the <code class="codeph">OracleDataAdapter.Update</code> method is called. <code class="codeph">UpdateBatchSize</code> is a numeric property that indicates how many DataSet rows to update the Oracle database for each round-trip. 
+                  </p>
+                  <p>This enables the developer to reduce the number of round-trips to the database.</p>
+                  <div class="infoboxnotealso" id="GUID-77398E42-70B8-4863-B67F-E27FCA28F620__GUID-32749AC1-0FC3-491B-B19F-617309DA9E9D">
+                     <p class="notep1">See Also:</p>
+                     <p><span class="q">"<a href="DataAdapterUpdateBatchSize.html#GUID-D412C947-FA09-448E-ABFA-B68946B096D5">UpdateBatchSize</a>"</span></p>
+                  </div>
+               </div>
+            </div><a id="ODPNT271"></a><div class="props_rev_3"><a id="GUID-A1573B48-71B1-47C7-B3E9-5DEA64B715EF" name="GUID-A1573B48-71B1-47C7-B3E9-5DEA64B715EF"></a><h3 id="ODPNT-GUID-A1573B48-71B1-47C7-B3E9-5DEA64B715EF" class="sect3">Statement Caching</h3>
+               <div>
+                  <p>Statement caching eliminates the need to parse each SQL or PL/SQL statement before execution by caching server cursors created during the initial statement execution. Subsequent executions of the same statement can reuse the parsed information from the cursor, and then execute the statement without reparsing, for better performance.</p>
+                  <p>In order to see performance gains from statement caching, Oracle recommends caching only those statements that will be repeatedly executed. Furthermore, SQL or PL/SQL statements should use parameters rather than literal values. Doing so takes full advantage of statement caching, because parsed information from parameterized statements can be reused even if the parameter values change in subsequent executions. However, if the literal values in the statements are different, the parsed information cannot be reused unless the subsequent statements also have the same literal values.</p>
+               </div><a id="ODPNT272"></a><div class="props_rev_3"><a id="GUID-B1B322DC-1F75-444E-89CC-12AE71132BA9" name="GUID-B1B322DC-1F75-444E-89CC-12AE71132BA9"></a><h4 id="ODPNT-GUID-B1B322DC-1F75-444E-89CC-12AE71132BA9" class="sect4">Statement Caching Connection String Attributes</h4>
+                  <div>
+                     <div class="section">
+                        <p>The following connection string attributes control the behavior of the ODP.NET statement caching feature:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">Statement</code> <code class="codeph">Cache</code> <code class="codeph">Size</code></p>
+                              <p>This attribute enables or disables ODP.NET statement caching. By default, this attribute is set to <code class="codeph">0</code> (disabled). If it is set to a value greater than <code class="codeph">0</code>, ODP.NET statement caching is enabled and the value specifies the maximum number of statements that can be cached for a connection. Once a connection has cached up to the specified maximum cache size, the least recently used cursor is freed to make room to cache the newly created cursor.
+                              </p>
+                              <p>If self tuning is enabled, then statement caching  is enabled as well. The <code class="codeph">Statement Cache Size</code> is configured automatically in such cases.
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">Statement</code> <code class="codeph">Cache</code> <code class="codeph">Purge</code> 
+                              </p>
+                              <p>This attribute provides a way for connections to purge all statements that are cached when a connection is closed or placed back into the connection pool. By default, this attribute is set to <code class="codeph">false</code>, which means that cursors are not freed when connections are placed back into the pool.
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT273"></a><div class="props_rev_3"><a id="GUID-E7BC9B17-AD8C-4F59-A124-7741020DC5E1" name="GUID-E7BC9B17-AD8C-4F59-A124-7741020DC5E1"></a><h4 id="ODPNT-GUID-E7BC9B17-AD8C-4F59-A124-7741020DC5E1" class="sect4">Enabling Statement Caching through the Registry</h4>
+                  <div>
+                     <div class="section">
+                        <p>To enable statement caching by default for all ODP.NET applications running in a system, without changing the application, set the registry key of <code class="codeph">HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\ODP.NET\</code><span class="italic"><code class="codeph">Assembly_Version</code></span> <code class="codeph">\StatementCacheSize</code> to a value greater than <code class="codeph">0</code>. This value specifies the number of cursors that are to be cached on the server. 
+                        </p>
+                        <p>The default value for the system can be overridden at the connection pool level. The <code class="codeph">Statement</code> <code class="codeph">Cache</code> <code class="codeph">Size</code> attribute can be set to a different size than the registry value or it can be turned off. The <code class="codeph">Statement</code> <code class="codeph">Cache</code> <code class="codeph">Size</code> can also be configured through an XML configuration file. 
+                        </p>
+                        <div class="infoboxnotealso" id="GUID-E7BC9B17-AD8C-4F59-A124-7741020DC5E1__GUID-AA2B3039-8A96-43A8-A073-F9F909737B0D">
+                           <p class="notep1">See Also:</p><a href="InstallConfig.html#GUID-1F689B90-2CC4-4907-B8FE-A5F4EE36F673" title="Automatic ODP.NET machine-wide configuration upon installation is no longer available as of ODAC 18c. This change improves compatibility when applications on the same machine use different ODP.NET versions and/or depend on application-specific configuration settings instead of machine-wide assembly registration and configuration.">Configuring Oracle Data Provider for .NET</a> for more details.
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT274"></a><div class="props_rev_3"><a id="GUID-341BDC66-935E-484B-944E-BD7C1CA5A51A" name="GUID-341BDC66-935E-484B-944E-BD7C1CA5A51A"></a><h4 id="ODPNT-GUID-341BDC66-935E-484B-944E-BD7C1CA5A51A" class="sect4">Statement Caching Methods and Properties</h4>
+                  <div>
+                     <div class="section">
+                        <p>The following property and method are relevant only when statement caching is enabled:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">OracleCommand.AddToStatementCache</code> property 
+                              </p>
+                              <p>If statement caching is enabled, having this property set to <code class="codeph">true</code> (default) adds statements to the cache when they are executed. If statement caching is disabled or if this property is set to <code class="codeph">false</code>, the executed statement is not cached. 
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleConnection.PurgeStatementCache</code> method 
+                              </p>
+                              <p>This method purges all the cached statements by closing all open cursors on the database that are associated with the particular connection. Note that statement caching remains enabled after this call.</p>
+                           </li>
+                        </ul>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT275"></a><div class="props_rev_3"><a id="GUID-16760C5A-F103-4D4A-B3A2-104575C2C925" name="GUID-16760C5A-F103-4D4A-B3A2-104575C2C925"></a><h4 id="ODPNT-GUID-16760C5A-F103-4D4A-B3A2-104575C2C925" class="sect4">Connections and Statement Caching</h4>
+                  <div>
+                     <div class="section">
+                        <p>Statement caching is managed separately for each connection. Therefore, executing the same statement on different connections requires parsing once for each connection and caching a separate cursor for each connection.</p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT276"></a><div class="props_rev_3"><a id="GUID-056C2F76-454A-43FD-82A0-0553E59E8B8F" name="GUID-056C2F76-454A-43FD-82A0-0553E59E8B8F"></a><h4 id="ODPNT-GUID-056C2F76-454A-43FD-82A0-0553E59E8B8F" class="sect4">Pooling and Statement Caching</h4>
+                  <div>
+                     <div class="section">
+                        <p>Pooling and statement caching can be used in conjunction. If connection pooling is enabled and the <code class="codeph">Statement</code> <code class="codeph">Cache</code> <code class="codeph">Purge</code> attribute is set to <code class="codeph">false</code>, statements executed on each separate connection are cached throughout the lifetime of the pooled connection.
+                        </p>
+                        <p>If the <code class="codeph">Statement</code> <code class="codeph">Cache</code> <code class="codeph">Purge</code> attribute is set to <code class="codeph">true</code>, all the cached cursors are freed when the connection is placed back into the pool. When connection pooling is disabled, cursors are cached during the lifetime of the connection, but the cursors are closed when the <code class="codeph">OracleConnection</code> object is closed or disposed of.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div><a id="ODPNT277"></a><div class="props_rev_3"><a id="GUID-C13C1675-7291-4C5F-BB9C-33C2C5F25CED" name="GUID-C13C1675-7291-4C5F-BB9C-33C2C5F25CED"></a><h3 id="ODPNT-GUID-C13C1675-7291-4C5F-BB9C-33C2C5F25CED" class="sect3">Self-Tuning</h3>
+               <div>
+                  <p>ODP.NET applications can be self-tuned for performance optimization. ODP.NET dynamically monitors application queries during runtime. </p>
+                  <div class="infoboxnote" id="GUID-C13C1675-7291-4C5F-BB9C-33C2C5F25CED__GUID-A92A1C7F-3172-4015-8ADE-6374661F8CA9">
+                     <p class="notep1">Note:</p>
+                     <p>Self-tuning for applications does not take place if the <code class="codeph">Pooling</code> connection string attribute is set to <code class="codeph">false</code>. Self-tuning is also not supported inside .NET stored procedures.
+                     </p>
+                  </div>
+                  <p>The statement cache size (<a href="ConnectionStatementCacheSize.html#GUID-9ED659C9-2C1C-494B-A090-B8AE6DADFCC5">StatementCacheSize</a>) is tuned automatically by monitoring the statements that are executed by the application. The following sections discuss self-tuning in applications:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="featOraCommand.html#GUID-27E843E7-6065-4B00-B703-3ABE9E62E8EF">Self-Tuning Statement Caching</a></p>
+                     </li>
+                     <li>
+                        <p><a href="featOraCommand.html#GUID-ABA049AC-05EF-47F8-ACD7-356F4038373E">Enabling or Disabling Self-Tuning for Applications</a></p>
+                     </li>
+                     <li>
+                        <p><a href="featOraCommand.html#GUID-5CDA2361-BA75-469C-BF94-28EE74C8A5C3">Tracing Optimization Changes</a></p>
+                     </li>
+                  </ul>
+               </div><a id="ODPNT278"></a><div class="props_rev_3"><a id="GUID-27E843E7-6065-4B00-B703-3ABE9E62E8EF" name="GUID-27E843E7-6065-4B00-B703-3ABE9E62E8EF"></a><h4 id="ODPNT-GUID-27E843E7-6065-4B00-B703-3ABE9E62E8EF" class="sect4">Self-Tuning Statement Caching</h4>
+                  <div>
+                     <p>Statement caching helps improve performance by eliminating the need to re-parse each SQL or PL/SQL statement before execution. </p>
+                     <p>If self-tuning is enabled for an application, then ODP.NET continuously monitors application behavior in order to determine the optimum value for the statement cache size. Any statement cache size value specified in the connection string, configuration file, or registry is ignored.</p>
+                     <p>When the application first initializes, it uses the default value of statement cache size. As the application executes statements, ODP.NET collects statistics that are used to self-tune the value of statement cache size. Self-tuning of statement cache size results in increased performance. </p>
+                     <div class="infoboxnote" id="GUID-27E843E7-6065-4B00-B703-3ABE9E62E8EF__GUID-F2972826-320E-42F3-9EF2-8098E9C3A05D">
+                        <p class="notep1">Note:</p>
+                        <p>To take full advantage of statement caching, you should not dynamically generate statements, with different inline values, for every statement execution. Instead, use parameterized commands to minimize the number of unique statements that need to be executed and cached. This is because only one statement needs to be cached for every unique command text, regardless of the parameter values and the number of times that the statement is executed.</p>
+                     </div>
+                     <p>The maximum number of statements that can be cached per connection is determined by the <code class="codeph">MaxStatementCacheSize</code> configuration attribute. The <code class="codeph">MaxStatementCacheSize</code> value can be specified in the Windows registry or XML configuration file.
+                     </p>
+                     <p>The <code class="codeph">MaxStatementCacheSize</code> setting is useful in limiting the number of cached statements, as well as the number of open cursors. This is because a cached statement equates to a cursor being opened on the server. For this reason, you should not set <code class="codeph">MaxStatementCacheSize</code> to a value that is greater than the database <code class="codeph">OPEN_CURSORS</code> setting.
+                     </p>
+                     <p>The following Windows registry key is used to configure the <code class="codeph">MaxStatementCacheSize</code> configuration attribute:
+                     </p><pre class="oac_no_warn" dir="ltr">HKLM\Software\Oracle\ODP.NET\<span class="italic">version</span>\MaxStatementCacheSize
+</pre><p>The <code class="codeph">MaxStatementCacheSize</code> key is of type <code class="codeph">REG_SZ</code>. It can be set to an integer value between 0 and <code class="codeph">System.Int32.MaxValue</code>.
+                     </p>
+                     <p>The following example sets the <code class="codeph">MaxStatementCacheSize</code> property in an ADO.NET 2.0, or above, configuration file:
+                     </p><pre class="oac_no_warn" dir="ltr">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+  &lt;oracle.dataaccess.client&gt;
+    &lt;settings&gt;
+      &lt;add name="MaxStatementCacheSize" value="300"/&gt;
+    &lt;/settings&gt;
+  &lt;/oracle.dataaccess.client&gt;
+&lt;/configuration&gt;
+</pre><p>If self-tuning is disabled for an application, then the value of statement cache size is determined by the settings in the connection string, configuration file, or the registry. If statement cache size is not specified in any of these sources, then the default value of statement cache size is set to 0. To have ODP.NET configured with the same default settings as previous releases of ODP.NET, disable self-tuning and set the <code class="codeph">StatementCacheSize</code> value to 10.
+                     </p>
+                     <div class="infoboxnotealso" id="GUID-27E843E7-6065-4B00-B703-3ABE9E62E8EF__GUID-51D500B8-B499-449F-BFC7-531743BD1F17">
+                        <p class="notep1">See Also:</p>
+                        <p><span class="q">"<a href="featOraCommand.html#GUID-A1573B48-71B1-47C7-B3E9-5DEA64B715EF">Statement Caching</a>"</span> 
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="ODPNT279"></a><div class="props_rev_3"><a id="GUID-ABA049AC-05EF-47F8-ACD7-356F4038373E" name="GUID-ABA049AC-05EF-47F8-ACD7-356F4038373E"></a><h4 id="ODPNT-GUID-ABA049AC-05EF-47F8-ACD7-356F4038373E" class="sect4">Enabling or Disabling Self-Tuning for Applications</h4>
+                  <div>
+                     <div class="section">
+                        <p>Self-tuning for ODP.NET applications is enabled by default. An application can enable or disable self-tuning using one of the following methods:</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>Self-Tuning Connection String Attribute</p>
+                              <p>An application can modify the <code class="codeph">Self Tuning</code> connection string attribute to enable or disable self-tuning for a particular connection pool. The default value for<code class="codeph"> Self Tuning</code> is <code class="codeph">true</code>. 
+                              </p>
+                           </li>
+                           <li>
+                              <p>Windows Registry</p>
+                              <p> An application can enable or disable self-tuning for a particular version of ODP.NET by modifying the following registry entry:</p><pre class="oac_no_warn" dir="ltr">HKLM\Software\Oracle\ODP.NET\<span class="italic">version</span>\SelfTuning
+</pre><p>The <code class="codeph">SelfTuning</code> key is of type <code class="codeph">REG_SZ</code>. It can be set to either <code class="codeph">1</code> (enabled) or <code class="codeph">0</code> (disabled).
+                              </p>
+                           </li>
+                           <li>
+                              <p>Configuration File</p>
+                              <p>An ODP.NET application can modify the application configuration file (<code class="codeph">app.config</code>) or Web configuration file (<code class="codeph">web.config</code>) to enable or disable self-tuning. 
+                              </p>
+                              <p>The following example shows how to enable self-tuning in an ADO.NET 2.0 application configuration file:</p><pre class="oac_no_warn" dir="ltr">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+  &lt;oracle.dataaccess.client&gt;
+    &lt;settings&gt;
+      &lt;add name="SelfTuning" value="1"/&gt;
+    &lt;/settings&gt;
+  &lt;/oracle.dataaccess.client&gt;
+&lt;/configuration&gt;</pre><div class="infoboxnote" id="GUID-ABA049AC-05EF-47F8-ACD7-356F4038373E__GUID-6F4FF8A8-FB8C-4A4B-8254-9F9DA42AA010">
+                                 <p class="notep1">Note:</p>
+                                 <p>If the optimal statement cache size is known for an application, then you can disable self-tuning and set <code class="codeph">StatementCacheSize</code> to its optimum value in the registry, configuration file, or the application. If self-tuning is disabled and <code class="codeph">StatementCacheSize</code> is not set at all, then the default value of 0 is used for <code class="codeph">StatementCacheSize</code>.
+                                 </p>
+                              </div>
+                           </li>
+                        </ul>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT280"></a><div class="props_rev_3"><a id="GUID-5CDA2361-BA75-469C-BF94-28EE74C8A5C3" name="GUID-5CDA2361-BA75-469C-BF94-28EE74C8A5C3"></a><h4 id="ODPNT-GUID-5CDA2361-BA75-469C-BF94-28EE74C8A5C3" class="sect4">Tracing Optimization Changes</h4>
+                  <div>
+                     <div class="section">
+                        <p>Applications can trace optimization changes made by self-tuning. All changes to <code class="codeph">StatementCacheSize</code> are traced. Errors, if any, are also traced. 
+                        </p>
+                        <p>The <code class="codeph">TraceLevel</code> used for tracing self-tuning is <code class="codeph">64</code>.
+                        </p>
+                        <div class="infoboxnotealso" id="GUID-5CDA2361-BA75-469C-BF94-28EE74C8A5C3__GUID-D1711817-B653-41AA-91F5-2295FE9253B7">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="InstallUnmanagedConfig.html#GUID-140DDC35-8380-4BF7-8855-273D317C610D__BABFBCBB" title="rows are attributes, column 1 is name, column 2 is description">Table 2-3</a> for details on <code class="codeph">TraceLevel</code> values
+                           </p>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

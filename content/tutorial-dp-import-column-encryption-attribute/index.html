@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Part number: F13700-02 -->
+    <!-- Published date: February 2019 -->
+    <!-- See this link for directions on getting a part number: https://confluence.oraclecorp.com/confluence/display/DLPP/Archive+an+OBE -->
+    <!-- Template date: October 15, 2018 -->
+    <meta name="contentid" content="26709">
+    <title>Omit the Column Encryption Attribute During Data Pump Import</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Learn how to omit the column encryption attribute during Data Pump import.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+  
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+    <meta name="dcterms.created" content="2019-06-06T14:17:52+00:00">
+    <meta name="dcterms.title" content="Omit the Column Encryption Attribute During Data Pump Import">
+    <meta name="dcterms.category" content="database">
+    <meta name="dcterms.isVersionOf" content="TUTORIAL-DP-IMPORT-COLUMN-ENCRYPTION-ATTRIBUTE">
+    <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+    <meta name="dcterms.identifier" content="F13700-02">
+    <meta name="dcterms.release" content="Release 19">
+  <script id="ssot-metadata" type="application/json"> {"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}} </script>
+    </head>
+  <body>
+    <header>
+      <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo"> <img src="./img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a>
+      </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+      <h1><img src="./img/obe_tag.png" alt="Oracle by Example branding" align="middle">Omit
+        the Column Encryption Attribute During Data Pump Import</h1>
+      <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+          <div class="left-nav-tut"><!-- -->
+            <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+            <div id="navbar" class="left-nav-w"><!-- -->
+              <div id="toc" class="tocify"><!-- --></div>
+            </div>
+          </div>
+        </div>
+        <div id="bookContainer">
+          <article>
+            <section>
+              <h2><img src="./img/32_begin.png" alt="section 0" class="num_circ" height="32" width="32"> Before You Begin</h2>
+              <p>This 5-minute tutorial shows you how to import tables with
+                encrypted columns in a database that does not support the
+                encrypted column feature as is the case in the Oracle Public
+                Cloud environment.</p>
+              <h3>Background</h3>
+              <p>In the Oracle Public Cloud environment, data is encrypted by
+                default using Transparent Data Encryption (TDE) and the
+                encrypted tablespace feature, but not the encrypted column
+                feature. If an exported table holds encrypted columns, there
+                must be a method to import the table and suppress the encryption
+                clause associated with the table creation during the import
+                operation.</p>
+              <h3>What Do You Need?</h3>
+              <ul>
+                <li>Oracle Database 19c installed</li>
+                <li>A database, either non-CDB or CDB with a PDB</li>
+                <li>The <code><a href="files/tab.dmp" target="_blank">tab.dmp</a></code>
+                  dump file. Download the dump file to the labs directory
+                  created on your server <code>/home/oracle/labs</code></li>
+              </ul>
+            </section>
+            <!-- ========================================================================================================================= -->
+            <section>
+              <hr>
+              <h2 id="section_1" style="text-align: left;"><img src="./img/32_1.png" alt="section 1" class="num_circ" height="32" width="32">Display
+                The Table Column ENCRYPT Attribute Before Import</h2>
+              <p>Before importing the table without its <code>ENCRYPT</code>
+                column attribute, verify that the table exported in the <code>/home/oracle/labs/tab.dmp</code>
+                dump file has an encrypted column.</p>
+              <ol>
+                <li>Log in to a test non-CDB and create the directory to point
+                  to the location of the dump file.
+                  <pre>sqlplus system
+Enter password: <em>password</em></pre>
+                  <pre>CREATE DIRECTORY dp AS '/home/oracle/labs';</pre>
+                  <pre>EXIT</pre>
+                </li>
+                <li>Generate the SQL file from the Data Pump export <code>/home/oracle/labs/tab.dmp</code>
+                  dump file by simulating an import into the non-CDB.
+                  <pre>impdp system DIRECTORY=dp DUMPFILE=tab.dmp SQLFILE=tabenc1 LOGFILE=enc.log
+Enter password: <em>password</em></pre>
+                </li>
+                <li>Read the resulting SQL file.
+                  <pre>cat /home/oracle/labs/tabenc1.sql</pre>
+                  <pre>...
+CREATE TABLE "TEST"."TABENC" 
+("C1" NUMBER, "LABEL" VARCHAR2(50 BYTE) <strong>ENCRYPT</strong> USING 'AES192' 'SHA-1') 
+ SEGMENT CREATION IMMEDIATE  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+</pre> The <code>CREATE TABLE</code> command displays the <code>ENCRYPT</code>
+                  attribute of the <code>LABEL</code> column. </li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_2" role="button" style="text-align: left;"><img src="./img/32_2.png" alt="section 2" class="num_circ" height="32" width="32">Import
+                The Table Without The ENCRYPT Attribute </h2>
+              <ol>
+                <li>Generate the SQL file from the Data Pump export <code>/home/oracle/labs/tab.dmp</code>
+                  dump file by simulating an import into the non-CDB omitting
+                  the <code>ENCRYPT</code> attribute of the <code>LABEL</code>
+                  column of the <code>TEST.TABENC</code> table into an
+                  encrypted tablespace such as <code>TEST</code>.
+                  <pre>impdp system DIRECTORY=dp DUMPFILE=tab.dmp SQLFILE=tabenc2 TRANSFORM=OMIT_ENCRYPTION_CLAUSE:Y REMAP_TABLESPACE=system:test LOGFILE=enc2.log
+Enter password: <em>password</em></pre>
+                </li>
+                <li>Read the resulting SQL file.
+                  <pre>cat /home/oracle/labs/tabenc2.sql</pre>
+                  <pre>...
+CREATE TABLE "TEST"."TABENC" 
+("C1" NUMBER, "LABEL" VARCHAR2(50 BYTE)) 
+ SEGMENT CREATION IMMEDIATE  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+</pre> The <code>ENCRYPT</code> attribute of the <code>LABEL</code> column in
+                  the <code>TEST.TABENC</code> table is not set.</li>
+              </ol>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_3" role="button" style="text-align: left;"><img src="./img/32_3.png" alt="section 3" class="num_circ" height="32" width="32">Clean
+                Up the Environment</h2>
+              <ol>
+                <li>Remove the dump file, the SQL files, and the log files.
+                  <pre>cd /home/oracle/labs</pre>
+                  <pre>rm tab.dmp  tabenc*.sql  enc*.log</pre>
+                </li>
+              </ol>
+            </section>
+          </article>
+        </div>
+      </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+      <div style="max-width: 994px; padding:10px 0 0 17px;">
+        <footer class="footer-list">
+          <ul>
+            <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                Oracle</a> </li>
+            <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                Notices</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                of Use</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your
+                Privacy Rights</a> </li>
+            <li><a href="./sp_common/en/cpyr.htm">Copyright
+                © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>
+          </ul>
+        </footer>
+      </div>
+      <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+      <!-- Modal hdr and body -->
+      <div id="obe_dialog" class="modal-content">
+        <div class="modal-header"> <a href="#" class="close"> <span class="close">×</span>
+          </a>
+          <h1>Associated Learning Paths</h1>
+        </div>
+        <div id="dialog-content"> </div>
+        <div id="dialog-close" class="closeBtn"> <a href="#" class="close2">
+            <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+          </a> </div>
+      </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+  </body>
+</html>

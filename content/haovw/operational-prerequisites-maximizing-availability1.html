@@ -1,0 +1,817 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Operational Prerequisites to Maximizing Availability">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-A8552B07-E65C-482A-AF1B-8F15B9ADFA06">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Operational Prerequisites to Maximizing Availability</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="enabling-continuous-service-applications.html" title="Previous" type="text/html">
+      <link rel="next" href="oracle-database-high-availability-best-practices.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Operational Prerequisites to Maximizing Availability","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="enabling-continuous-service-applications.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="oracle-database-high-availability-best-practices.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-A8552B07-E65C-482A-AF1B-8F15B9ADFA06" name="GUID-A8552B07-E65C-482A-AF1B-8F15B9ADFA06"></a>
+         
+         <h2 id="HAOVW-GUID-A8552B07-E65C-482A-AF1B-8F15B9ADFA06" class="sect2"><span class="enumeration_chapter">7 </span>Operational Prerequisites to Maximizing Availability 
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Use the following operational best practices to provide a successful MAA
+            implementation.</p>
+            </div>
+            <div class="props_rev_3"><a id="GUID-90F572E9-FEC8-443E-82E3-AA813A59471D" name="GUID-90F572E9-FEC8-443E-82E3-AA813A59471D"></a><h3 id="HAOVW-GUID-90F572E9-FEC8-443E-82E3-AA813A59471D" class="sect3">Understand High Availability and Performance
+        Service-Level Agreements</h3>
+               <div>
+                  <p>Understand and document your high availability (HA) and performance service-level
+            agreements (SLAs):</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Understand the attributes of High Availability and various causes of downtime as described in <a href="overview-of-ha.html#GUID-3EEA3E07-3A50-4189-BCFE-5B50811FBDFF" title="Availability is the degree to which an application and database service is available.The importance of high availability varies among applications. Databases and the internet have enabled worldwide collaboration and information sharing by extending the reach of database applications throughout organizations and communities.The need to deliver increasing levels of availability continues to accelerate as enterprises reengineer their solutions to gain competitive advantage. Most often, these new solutions rely on immediate access to critical business data.One of the challenges in designing a high availability solution is examining and addressing all of the possible causes of downtime.Maximum Availability Architecture leverages Chaos Engineering throughout its testing and development life cycles to ensure that end-to-end application and database availability is preserved or at its optimal levels for any fault or maintenance event.Oracle high availability solutions and sound operational practices are the key to successful implementation of an IT infrastructure. However, technology alone is not enough.">Overview of High Availability</a>.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Establish high availability and performance SLAs from lines of business, upper
+                    management, and technical teams as described in <a href="ha-requirements-architecture.html#GUID-6ED61A85-FBD9-4EE0-A62F-9DA25EA60D51" title="Any effort to design and implement a high availability strategy for Oracle Database begins by performing a thorough business impact analysis to identify the consequences to the enterprise of downtime and data loss, whether caused by unplanned or planned outages.">High Availability Requirements</a>, and <a href="ha-requirements-architecture.html#GUID-52141511-C087-4B30-A474-59B0127F2A14" title="The business impact analysis categorizes the business processes based on the severity of the impact of IT-related outages.A complete business impact analysis provides the insight needed to quantify the cost of unplanned and planned downtime.The business impact analysis determines your tolerance to downtime, also known as the recovery time objective (RTO).The business impact analysis also determines your tolerance to data loss, also known as a recovery point objective (RPO).A manageability goal is more subjective than either the RPO or the RTO. You must make an objective evaluation of the skill sets, management resources, and tools available in an organization, and the degree to which the organization can successfully manage all elements of a high availability architecture.Understanding the total cost of ownership (TCO) and objectives for return on investment (ROI) are essential to selecting a high availability architecture that also achieves the business goals of your organization.">A Methodology for Documenting High Availability Requirements</a>.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-D45E02A3-2A29-4564-A168-D7A2C3091F4A" name="GUID-D45E02A3-2A29-4564-A168-D7A2C3091F4A"></a><h3 id="HAOVW-GUID-D45E02A3-2A29-4564-A168-D7A2C3091F4A" class="sect3">Implement and Validate a High Availability Architecture That Meets Your SLAs</h3>
+               <div>
+                  <p>When you have agreement on your high availability and performance service level
+            requirements:</p>
+                  <ul style="list-style-type: disc;" id="GUID-D45E02A3-2A29-4564-A168-D7A2C3091F4A__UL_FWD_XVL_1KB">
+                     <li><span class="bold">Map</span> the requirements to one of the Oracle MAA standard and
+                validated MAA reference architectures, as described in <a href="ha-requirements-architecture.html#GUID-7EB6D827-A30E-4E76-BAF8-0AF4DDCAD2C2" title='Any effort to design and implement a high availability strategy for Oracle Database begins by performing a thorough business impact analysis to identify the consequences to the enterprise of downtime and data loss, whether caused by unplanned or planned outages.The business impact analysis categorizes the business processes based on the severity of the impact of IT-related outages.A complete business impact analysis provides the insight needed to quantify the cost of unplanned and planned downtime.The business impact analysis determines your tolerance to downtime, also known as the recovery time objective (RTO).The business impact analysis also determines your tolerance to data loss, also known as a recovery point objective (RPO).A manageability goal is more subjective than either the RPO or the RTO. You must make an objective evaluation of the skill sets, management resources, and tools available in an organization, and the degree to which the organization can successfully manage all elements of a high availability architecture.Understanding the total cost of ownership (TCO) and objectives for return on investment (ROI) are essential to selecting a high availability architecture that also achieves the business goals of your organization.The business impact analysis will help you document what is already known. The outcome of the business impact analysis provides the insight you need to group databases having similar RTO and RPO objectives together.Oracle MAA best practices define high availability reference architectures that address the complete range of availability and data protection required by enterprises of all sizes and lines of business.The Bronze tier is appropriate for databases where simple restart of a failed component (e.g. listener, database instance, or database) or restore from backup is "HA and DR enough."The Silver tier provides an additional level of high availability for databases that require minimal or zero downtime in the event of database instance or server failure, as well as most common planned maintenance events, such as hardware and software updates.The Gold tier raises the stakes substantially for business-critical applications that cannot tolerate high RTO and RPO for any disasters such as database, cluster, corruptions, or site failures. Additionally, major database upgrades or site migrations can be done in seconds.The Platinum tier introduces several new Oracle Database capabilities, including Oracle GoldenGate for zero-downtime upgrades and migrations.Each MAA reference architecture delivers known and tested levels of downtime and data protection.'>High Availability and Data Protection &#x2013; Getting From Requirements to Architecture</a></li>
+                     <li><span class="bold">Evaluate</span> the outage and planned maintenance matrices relevant to
+                your reference architecture in <a href="ha-unplanned-downtime.html#GUID-6BA130B7-0D88-4051-90D2-6F63D8F1D101" title="Oracle Database offers an integrated suite of high availability solutions that increase availability.">Oracle Database High Availability Solutions for Unplanned Downtime</a> and <a href="ha-planned-downtime.html#GUID-34361475-4DC8-4F7A-9C6C-3AA3AEA57015" title="Oracle provides high availability solutions for all planned maintenance.Oracle MAA recommends several solutions for reducing downtime due to database migration.">Oracle Database High Availability Solutions for Planned Downtime</a></li>
+                     <li><span class="bold">Learn</span> about the database features required to implement your MAA
+                architecture in <a href="https://docs.oracle.com/en/database/oracle/oracle-database/21/haiad/" target="_blank">High
+                    Availability Architectures</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-A273F0F3-5628-4530-A9BA-F3EB85FBA953" name="GUID-A273F0F3-5628-4530-A9BA-F3EB85FBA953"></a><h3 id="HAOVW-GUID-A273F0F3-5628-4530-A9BA-F3EB85FBA953" class="sect3">Establish Test Practices and Environment </h3>
+               <div>
+                  <p>You must <span class="bold">validate</span> or <span class="bold">automate</span> the following to ensure that
+            your high availability SLAs are met:
+                  </p>
+                  <ul style="list-style-type: disc;" id="GUID-A273F0F3-5628-4530-A9BA-F3EB85FBA953__UL_BF3_BWL_1KB">
+                     <li>All software update and upgrade maintenance events</li>
+                     <li>All repair operations, including those for various types of unplanned outages</li>
+                     <li>Backup, restore, and recovery operations</li>
+                  </ul>
+                  <p>If you use Oracle Data Guard for disaster recovery and data protection, Oracle recommends
+            that you:</p>
+                  <ul style="list-style-type: disc;" id="GUID-A273F0F3-5628-4530-A9BA-F3EB85FBA953__UL_CF3_BWL_1KB">
+                     <li>Perform periodic switchover operations, or conduct full application and database
+                failover tests</li>
+                     <li>Validate end-to-end role transition procedures by performing application and Data
+                Guard switchovers periodically</li>
+                  </ul>
+                  <p>A good test environment and proper test practices are essential prerequisites to
+            achieving the highest stability and availability in your production environment. By
+            validating every change in your test environment thoroughly, you can proactively detect,
+            prevent, and avoid problems before applying the same change on your production
+            systems.</p>
+                  <p>These practices involve the following:</p>
+               </div>
+               <div class="props_rev_3"><a id="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356" name="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356"></a><h4 id="HAOVW-GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356" class="sect4">Configuring Test and QA Environments</h4>
+                  <div>
+                     <p>The test environment should be a replica of the production MAA environment
+            (for example, using the MAA Gold reference architecture.) There will be trade offs if
+            the test system is not identical to the MAA service-level driven standard reference
+            architecture that you plan to implement. It is recommended that you perform functional,
+            performance, and availability tests with a workload that mimics production. Evaluate if
+            availability and performance SLAs are maintained after each change, and ensure that
+            clear fallback or repair procedures are in place if things go awry, while applying the
+            change on the production environment.</p>
+                     <p>With a properly configured test system, many problems can be avoided, because changes are
+            validated with an equivalent production and standby database configuration containing a
+            full data set and using a workload framework to mimic production (for example, using
+            Oracle Real Application Testing.)</p>
+                     <p>Do not try to reduce costs by eliminating the test system, because that decision
+            ultimately affects the stability and the availability of your production applications.
+            Using only a subset of system resources for testing and QA has the tradeoffs shown in
+            the following table, which is an example of the MAA Gold reference architecture.</p>
+                     <div class="tblformal" id="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356__GUID-5A3CC6C8-C09A-4CC2-B048-B6AE6DDE43C0">
+                        <p class="titleintable">Table 7-1 Tradeoffs for Different Test and QA Environments</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Tradeoffs for Different Test and QA Environments" summary="Tradeoffs for Different Test and QA Environments" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="31%" id="d17200e179">Test Environment</th>
+                                 <th align="left" valign="bottom" width="69%" id="d17200e182">Benefits and Tradeoffs</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d17200e187" headers="d17200e179 ">
+                                    <p>Full Replica of Production and Standby Systems</p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d17200e187 d17200e182 ">
+                                    
+                                    <p><span class="bold">Validate:</span></p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356__UL_ZCY_GWL_1KB">
+                                       <li>All software updates and upgrades</li>
+                                       <li>All functional tests</li>
+                                       <li>Full performance at production scale</li>
+                                       <li>Full high availability and disaster recovery
+                                    testing</li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d17200e207" headers="d17200e179 ">
+                                    <p>Full Replica of Production Systems</p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d17200e207 d17200e182 ">
+                                    
+                                    <p><span class="bold">Validate:</span></p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356__UL_XPZ_HWL_1KB">
+                                       <li>All software updates and upgrades</li>
+                                       <li>All functional tests</li>
+                                       <li>Full performance at production scale</li>
+                                       <li>Full high availability minus the standby system</li>
+                                    </ul>
+                                    
+                                    <p><span class="bold">Cannot Validate:</span></p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356__UL_MBK_2MQ_41C">
+                                       <li>Disaster recovery testing </li>
+                                       <li>Any standby redo apply or read only workload performance
+                                    testing</li>
+                                       <li>Redo transport performance and impact on production system
+                                    resources due to redo transport</li>
+                                       <li>Any use case using the standby database such as Database Rolling
+                                    Upgrade, Snapshot Standby, and so on.</li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d17200e241" headers="d17200e179 ">
+                                    <p>Standby System</p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d17200e241 d17200e182 ">
+                                    
+                                    <p><span class="bold">Validate:</span></p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356__UL_TD5_3WL_1KB">
+                                       <li>Most software update changes</li>
+                                       <li>All read-only functional tests</li>
+                                       <li>Full performance--if using Data Guard Snapshot
+                                    Standby, but this can extend recovery time if a failover is
+                                    required</li>
+                                       <li>Resource management and scheduling--required if
+                                    standby and test databases exist on the same system</li>
+                                    </ul>
+                                    
+                                    <p><span class="bold">Cannot Validate:</span></p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356__UL_B2Q_3PQ_41C">
+                                       <li>Role transition and disaster recovery testing </li>
+                                       <li>Any use case using the standby database such as Database Rolling
+                                    Upgrade, Snapshot Standby, and so on.</li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d17200e271" headers="d17200e179 ">
+                                    <p>Shared System Resource</p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d17200e271 d17200e182 ">
+                                    
+                                    <p><span class="bold">Validate:</span></p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356__UL_ABS_JWL_1KB">
+                                       <li>Most software update changes</li>
+                                       <li>All functional tests</li>
+                                    </ul>
+                                    
+                                    <p><span class="bold">Cannot Validate:</span></p>
+                                    
+                                    <p>This environment may be suitable for performance testing
+                                if enough system resources can be allocated to mimic production.
+                                Typically, however, the environment includes a subset of production
+                                system resources, compromising performance validation. Resource
+                                management and scheduling is required. Standby or disaster recovery
+                                testing may not be possible or limited.</p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d17200e294" headers="d17200e179 ">
+                                    <p>Smaller or Subset of the system resources</p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d17200e294 d17200e182 ">
+                                    
+                                    <p><span class="bold">Validate:</span></p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356__UL_XHN_KWL_1KB">
+                                       <li>All software update changes</li>
+                                       <li>All functional tests</li>
+                                       <li>Limited full-scale high availability evaluations</li>
+                                    </ul>
+                                    
+                                    <p><span class="bold">Cannot Validate:</span></p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356__UL_YHN_KWL_1KB">
+                                       <li>Performance testing at production scale</li>
+                                       <li>Standby or disaster recovery testing may not be possible or
+                                    limited.</li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="31%" id="d17200e322" headers="d17200e179 ">
+                                    <p>Different hardware or platform system resources but same operating system</p>
+                                 </td>
+                                 <td align="left" valign="top" width="69%" headers="d17200e322 d17200e182 ">
+                                    
+                                    <p><span class="bold">Validate:</span></p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356__UL_WPP_LWL_1KB">
+                                       <li>Some software update changes</li>
+                                       <li>Limited firmware patching test</li>
+                                       <li>All functional tests unless limited by new hardware
+                                    features</li>
+                                       <li>Limited production scale performance tests</li>
+                                       <li>Limited full-scale high availability evaluations</li>
+                                       <li>Standby or disaster recovery testing may not be possible or
+                                    limited.</li>
+                                    </ul>
+                                    
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="infoboxnotealso" id="GUID-22DAA5C1-3BA0-4759-ADD9-F41490B21356__GUID-C3274B3F-7E8C-4654-8CEB-C8E358228A96">
+                        <p class="notep1">See Also:</p>
+                        <p><a href="../ratug/introduction-to-oracle-database-testing.html#RATUG101" target="_blank"><span><cite>Oracle Database Testing Guide</cite></span></a></p>
+                     </div>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-8F7CC643-5B79-4A15-A2EB-E255AD9E8D55" name="GUID-8F7CC643-5B79-4A15-A2EB-E255AD9E8D55"></a><h4 id="HAOVW-GUID-8F7CC643-5B79-4A15-A2EB-E255AD9E8D55" class="sect4">Performing Preproduction Validation Steps</h4>
+                  <div>
+                     <p>Pre-production validation and testing of hardware, software, database, application or any
+            changes is an important way to maintain stability. The high-level pre-production
+            validation steps are:</p>
+                     <ol id="GUID-8F7CC643-5B79-4A15-A2EB-E255AD9E8D55__OL_M5Z_4WL_1KB">
+                        <li>
+                           
+                           <p>Review the patch or upgrade documentation or any document relevant to that
+                    change. Evaluate the possibility of performing a rolling upgrade if your SLAs
+                    require zero or minimal downtime. Evaluate any rolling upgrade opportunities to
+                    minimize or eliminate planned downtime. Evaluate whether the patch or the change
+                    qualifies for Standby-First Patching.</p>
+                           
+                           <p>Note:</p>
+                           
+                           <p>Standby-First Patch enables you to apply a patch initially to a physical standby
+                    database while the primary database remains at the previous software release
+                    (this applies to certain types of software updates and does not apply to major
+                    release upgrades; use the Data Guard transient logical standby and DBMS_ROLLING
+                    method for patch sets and major releases). Once you are satisfied with the
+                    change, then perform a switchover to the standby database. The fallback is to
+                    switchback if required. Alternatively, you can proceed to the following step and
+                    apply the change to your production environment. For more information, see
+                    "Oracle Patch Assurance - Data Guard Standby-First Patch Apply" in My Oracle
+                    Support Note 1265700.1 at <a href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;id=1265700.1" target="_blank">https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;id=1265700.1</a></p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Validate the application in a test environment and ensure the change meets or
+                    exceeds your functionality, performance, and availability requirements. Automate
+                    the procedure and be sure to also document and test a fallback procedure. This
+                    requires comparing metrics captured before and after patch application on the
+                    test and against metrics captured on the production system. Real Application
+                    Testing may be used to capture the workload on the production system and replay
+                    it on the test system. AWR and SQL Performance Analyzer may be used to assess
+                    performance improvement or regression resulting from the patch.</p>
+                           
+                           <p>Validate the new software on a test system that mimics your production
+                    environment, and ensure the change meets or exceeds your functionality,
+                    performance, and availability requirements. Automate the patch or upgrade
+                    procedure and ensure fallback. Being thorough during this step eliminates most
+                    critical issues during and after the patch or upgrade.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Use Oracle Real Application Testing and test data management features to
+                    comprehensively validate your application while also complying with any security
+                    restrictions your line of business may have. Oracle Real Application Testing (a
+                    separate database option) enables you to perform real-world testing of Oracle
+                    Database. By capturing production workloads and assessing the impact of system
+                    changes on these workloads before production deployment, Oracle Real Application
+                    Testing minimizes the risk of instabilities associated with system changes. SQL
+                    Performance Analyzer and Database Replay are key components of Oracle Real
+                    Application Testing. Depending on the nature and impact of the system change
+                    being tested, and on the type of system on which the test will be performed, you
+                    can use either or both components to perform your testing.</p>
+                           
+                           <p>When performing real-world testing there is a risk of exposing sensitive data to
+                    non-production users in a test environment. The test data management features of
+                    Oracle Database help to minimize this risk by enabling you to perform data
+                    masking and data subsetting on the test data.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>If applicable, perform final pre-production validation of all changes on a Data
+                    Guard standby database before applying them to production. Apply the change in a
+                    Data Guard environment, if applicable.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Apply the change in your production environment.</p>
+                           
+                        </li>
+                     </ol>
+                     <div class="infoboxnotealso" id="GUID-8F7CC643-5B79-4A15-A2EB-E255AD9E8D55__GUID-B1D02B36-3BBF-49B1-A6E4-958E656F1D4C">
+                        <p class="notep1">See Also:</p>
+                        <p><a href="ha-features.html#GUID-9CA2BA9C-4654-43C7-9BFD-3F455FA90706" title="Beginning with Oracle Database 10g, there has been increased flexibility in cross-platform support using Data Guard Redo Apply.">Data Guard Redo Apply and Standby-First Patching</a> and <a href="ha-features.html#GUID-77BEF1C2-A3F4-41E6-91B4-33CAB7DC793E">Data Guard Transient Logical Rolling Upgrades</a></p>
+                        
+                        <p><a href="../sbydb/managing-oracle-data-guard-physical-standby-databases.html#GUID-63245504-B67C-4DF2-B8E5-752C0A67FEE7" target="_blank">Converting a Physical Standby Database into a
+                    Snapshot Standby Database</a> and <a href="../sbydb/using-sql-apply-to-perform-rolling-upgrade.html#GUID-C5DF6148-C1E9-4ADF-A975-AC95FC64E0C4" target="_blank">Performing a Rolling Upgrade With an Existing
+                    Physical Standby Database</a> in Oracle Data Guard Concepts and
+                Administration
+                        </p>
+                        
+                        <p><a href="https://www.oracle.com/technetwork/database/availability/database-upgrade-dbms-rolling-4126957.pdf" target="_blank">Oracle Database Rolling Upgrades: Using a Data
+                    Guard Physical Standby Database</a> on <a href="http://www.oracle.com/goto/maa" target="_blank">http://www.oracle.com/goto/maa</a></p>
+                        
+                        <p><a href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;id=1265700.1" target="_blank">Oracle Patch Assurance - Data Guard Standby-First
+                    Patch Apply (Doc ID 1265700.1)</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-B2316BA7-87CC-4CA2-AF6B-995B44F65112" name="GUID-B2316BA7-87CC-4CA2-AF6B-995B44F65112"></a><h3 id="HAOVW-GUID-B2316BA7-87CC-4CA2-AF6B-995B44F65112" class="sect3">Set Up and Use Security Best Practices</h3>
+               <div>
+                  <p>Corporate data can be at grave risk if placed on a system or database that does not have
+            proper security measures in place. A well-defined security policy can help protect your
+            systems from unwanted access and protect sensitive corporate information from sabotage.
+            Proper data protection reduces the chance of outages due to security breaches.</p>
+                  <div class="infoboxnotealso" id="GUID-B2316BA7-87CC-4CA2-AF6B-995B44F65112__GUID-C0137A29-AAB4-409E-B452-ED1BB613C588">
+                     <p class="notep1">See Also:</p>
+                     <p><a href="../dbseg/introduction-to-oracle-database-security.html#DBSEG99774" target="_blank"><span><cite>Oracle Database Security Guide</cite></span></a>.
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-7B4FAC9D-16E1-41E6-9554-269A94D12B65" name="GUID-7B4FAC9D-16E1-41E6-9554-269A94D12B65"></a><h3 id="HAOVW-GUID-7B4FAC9D-16E1-41E6-9554-269A94D12B65" class="sect3">Establish Change Control Procedures</h3>
+               <div>
+                  <p>Institute procedures that manage and control changes as a way to maintain the stability
+            of the system and to ensure that no changes are incorporated in the primary database
+            unless they have been rigorously evaluated on your test systems, or any one of the base
+            architectures in the MAA service-level tiers.</p>
+                  <p>Review the changes and get feedback and approval from your change management team.</p>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-2F504DA5-08EC-4A7F-A45E-C43A11E6FF91" name="GUID-2F504DA5-08EC-4A7F-A45E-C43A11E6FF91"></a><h3 id="HAOVW-GUID-2F504DA5-08EC-4A7F-A45E-C43A11E6FF91" class="sect3">Apply Recommended Software Updates and
+        Security Updates Periodically</h3>
+               <div>
+                  <p>Maintaining software at current or recent versions provides many benefits, such as better
+            software security, improved resource utilization and stability, continued compatibility
+            with newer related software, better support and faster resolution of issues, and the
+            ability to receive fixes for newly discovered issues.</p>
+                  <p>Update all software on a regular basis. Oracle recommends following these practices:</p>
+                  <ul style="list-style-type: disc;" id="GUID-2F504DA5-08EC-4A7F-A45E-C43A11E6FF91__UL_M3Q_XTQ_41C">
+                     <li>
+                        
+                        <p>Learn the release and support timelines for all software that your MAA
+                    environment depends upon in order to develop a plan for upgrade to a new major
+                    software release and a plan for installing proactive updates for current
+                    releases. </p>
+                        
+                        <p>For example, Oracle Database release and support timelines is available in My
+                    Oracle Support Note 742060.1 “Release Schedule of Current Database
+                    Releases”.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Upgrade to a later major software release before proactive software updates for
+                    your current release cease.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Install proactive software updates for your current release as they become
+                    available, typically on a monthly or quarterly basis. </p>
+                        
+                        <p>However, business requirements may dictate that the adoption of certain proactive
+                    updates is delayed or skipped. In such cases Oracle recommends that the
+                    currently running software never lags the most recently released proactive
+                    update by more than 12 months.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Install reactive software patches (also known as interim or one-off patches) for
+                    critical issues published in My Oracle Support Alerts as soon as feasible.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Validate the software update process and perform soak testing on a test system
+                    before updating software on production systems.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Use Oracle health check tools, Orachk and Exachk, to provide Oracle software
+                    upgrade and proactive update advice, critical issue software update
+                    recommendations, patching and upgrading pre-checks, database and system health
+                    checks, and MAA recommendations. </p>
+                        
+                        <p>Orachk supports non-engineered systems and Oracle Database Appliance. Exachk
+                    supports engineered systems Oracle Exadata Database Machine and Oracle Zero Data
+                    Loss Recovery Appliance.</p>
+                        
+                     </li>
+                  </ul>
+                  <p><span class="bold">See also:</span></p>
+                  <p>For Oracle Database and Grid Infrastructure:</p>
+                  <ul style="list-style-type: disc;" id="GUID-2F504DA5-08EC-4A7F-A45E-C43A11E6FF91__UL_O3Q_XTQ_41C">
+                     <li>“Release Schedule of Current Database Releases” in My Oracle Support Note <a href="https://support.oracle.com/rs?type=doc&amp;id=742060.1" target="_blank">742060.1</a></li>
+                     <li>"Primary Note for Database Proactive Patch Program" in My Oracle Support Note <a href="https://support.oracle.com/rs?type=doc&amp;id=888.1" target="_blank">888.1</a></li>
+                     <li>"Oracle Database 19c Important Recommended One-off Patches" in My Oracle Support
+                Note <a href="https://support.oracle.com/rs?type=doc&amp;id=555.1" target="_blank">555.1</a></li>
+                  </ul>
+                  <p>For engineered systems (Exadata Database Machine and Zero Data Loss Recovery
+            Appliance):</p>
+                  <ul style="list-style-type: disc;" id="GUID-2F504DA5-08EC-4A7F-A45E-C43A11E6FF91__UL_P3Q_XTQ_41C">
+                     <li>"Exadata Database Machine and Exadata Storage Server Supported Versions" in My
+                Oracle Support Note <a href="https://support.oracle.com/rs?type=doc&amp;id=888828.1" target="_blank">888828.1</a></li>
+                     <li>“Exadata Critical Issues” in My Oracle Support Note <a href="https://support.oracle.com/rs?type=doc&amp;id=1270094.1" target="_blank">1270094.1</a></li>
+                     <li>"Oracle Exadata: Exadata and Linux Important Recommended Fixes" in My Oracle Support
+                Note <a href="https://support.oracle.com/rs?type=doc&amp;id=556.1" target="_blank">556.1</a></li>
+                     <li>"Oracle Exadata Database Machine Exachk" in My Oracle Support Note <a href="https://support.oracle.com/rs?type=doc&amp;id=1070954.1" target="_blank">1070954.1</a></li>
+                  </ul>
+                  <p>For non-engineered systems:</p>
+                  <ul style="list-style-type: disc;" id="GUID-2F504DA5-08EC-4A7F-A45E-C43A11E6FF91__UL_Q3Q_XTQ_41C">
+                     <li>"Autonomous Health Framework (AHF) - Including TFA and Orachk/Exachk" in My Oracle
+                Support Note <a href="https://support.oracle.com/rs?type=doc&amp;id=2550798.1" target="_blank">2550798.1</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-BC7A5F50-13E3-4AB8-868C-9523F60C1778" name="GUID-BC7A5F50-13E3-4AB8-868C-9523F60C1778"></a><h3 id="HAOVW-GUID-BC7A5F50-13E3-4AB8-868C-9523F60C1778" class="sect3">Establish Disaster Recovery
+        Environment</h3>
+               <div>
+                  <p>To achieve the same performance and HA characteristics as the source or
+        primary database, the disaster recovery environment or target should be symmetric or
+        similarly configured to the production system.</p>
+                  <div class="section">
+                     
+                     <p>If the disaster recovery target is a standby database or Oracle GoldenGate replica,
+                symmetric or similar database compute CPU, memory, and throughput is required to
+                match the same performance. Similarly, the storage should be able to handle the same
+                IOPS, throughput, and response time. </p>
+                     
+                     <p>When the disaster recovery target is used by other applications or databases for
+                database consolidation and cost efficiency, additional resources will be required to
+                ensure acceptable performance with other concurrent workloads. </p>
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-40C3054F-D67D-401F-AFC2-7F3B75C77C04" name="GUID-40C3054F-D67D-401F-AFC2-7F3B75C77C04"></a><h3 id="HAOVW-GUID-40C3054F-D67D-401F-AFC2-7F3B75C77C04" class="sect3">Establish and Validate Disaster Recovery
+        Practices&nbsp;</h3>
+               <div>
+                  <p>Disaster recovery validation is required to ensure that you meet your disaster recovery service level requirements such as RTO and RPO.</p>
+                  <p>Whether you have a standby database, Oracle GoldenGate replica, or leverage
+            database backups from Zero Data Loss Recovery Appliance (Recovery Appliance), ZFS
+            Storage, or another third party, it is important to ensure that the operations and
+            database administration teams are well prepared to failover or restore the database and
+            application any time the primary database is down or underperforming. The concerned
+            teams should be able to detect and decide to failover or restore as required. Such
+            efficient preparation before disasters will significantly reduce overall downtime.</p>
+                  <p>If you use Data Guard or Oracle GoldenGate for high availability, disaster recovery, and
+            data protection, Oracle recommends that you perform regular application and database
+            switchover operations <span class="bold">every three to six months,</span> or conduct full application and
+            database failover tests.
+                  </p>
+                  <p>Periodic RMAN cross checks, RMAN backup validations, and complete database restore and
+            recovery are required to validate your disaster recovery solution through backups.
+            Inherent backup checks and validations are done automatically with the Recovery
+            Appliance, but periodic restore and recovery tests are still recommended.</p>
+                  <p>See also: <a href="tune-and-troubleshoot-oracle-data-guard.html#GUID-CBA9FC61-9894-4D62-9569-EFBD7960267F" title="With thorough planning, configuration, and tuning, Oracle Data Guard role transitions can effectively minimize downtime and ensure that the database environment is restored with minimal impact on the business.">Role Transition, Assessment, and Tuning</a></p>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-58C6BF5E-2E6A-478D-B5D0-9B831FAF022A" name="GUID-58C6BF5E-2E6A-478D-B5D0-9B831FAF022A"></a><h3 id="HAOVW-GUID-58C6BF5E-2E6A-478D-B5D0-9B831FAF022A" class="sect3">Establish Escalation Management Procedures</h3>
+               <div>
+                  <p>Establish escalation management procedures so repair is not hindered. Most repair
+            solutions, when conducted properly are automatic and transparent with the MAA solution.
+            The challenges occur when the primary database or system is not meeting availability or
+            performance SLAs and failover procedures are not automatic as in the case with some Data
+            Guard failover scenarios. Downtime can be prolonged if proper escalation policies are
+            not followed and decisions are not made quickly.</p>
+                  <p><span class="bold">If availability is the top priority, perform failover and repair
+                operations first</span> and then proceed with gathering logs and information for Root
+            Cause Analysis (RCA) after the application service has been reestablished. For simple
+            data gathering, use the Trace File Analyzer Collector (TFA).
+                  </p>
+                  <div class="infoboxnotealso" id="GUID-58C6BF5E-2E6A-478D-B5D0-9B831FAF022A__GUID-78E0646F-F5D2-4C3C-86D5-9991A2F86EB6">
+                     <p class="notep1">See Also:</p>
+                     <p>MAA web page at <a href="http://www.oracle.com/goto/maa" target="_blank"><code class="codeph">http://www.oracle.com/goto/maa</code></a></p>
+                     <p>My Oracle Support note 1513912.2 “TFA Collector - Tool for Enhanced Diagnostic Gathering” at <a href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;id=1513912.2" target="_blank">1513912.2</a></p>
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-B83C60AD-7D11-44EA-A44B-DDB273FD2C9B" name="GUID-B83C60AD-7D11-44EA-A44B-DDB273FD2C9B"></a><h3 id="HAOVW-GUID-B83C60AD-7D11-44EA-A44B-DDB273FD2C9B" class="sect3">Configure Monitoring and Service Request Infrastructure for High Availability</h3>
+               <div>
+                  <p>To maintain your High Availability environment, you should configure the monitoring
+        infrastructure that can detect and react to performance and high availability related
+        thresholds before any downtime has occurred.</p>
+                  <p>Also, where available, Oracle can detect failures, dispatch field engineers, and replace
+            failed hardware components such as disks, flash cards, fans, or power supplies without
+            customer involvement.</p>
+               </div>
+               <div class="props_rev_3"><a id="GUID-D9BC40AB-76F9-44B9-934B-C42C792608F9" name="GUID-D9BC40AB-76F9-44B9-934B-C42C792608F9"></a><h4 id="HAOVW-GUID-D9BC40AB-76F9-44B9-934B-C42C792608F9" class="sect4">Run Database Health Checks
+        Periodically</h4>
+                  <div>
+                     <p>Oracle Database health checks are designed to evaluate your hardware and software
+        configuration and MAA compliance to best practices.</p>
+                     <p>All of the Oracle health check tools will evaluate Oracle Grid Infrastructure, Oracle
+            Database, and provide an automated MAA scorecard or review that highlights when key
+            architectural and configuration settings are not enabled for tolerance of failures or
+            fast recovery. For Oracle's engineered systems such as Exadata Database Machine, there
+            may be hundreds of additional software, fault and configuration checks.</p>
+                     <p>Oracle recommends periodically (for example, monthly for Exadata Database
+            Machine) downloading the latest database health check, running the health check, and
+            addressing the key FAILURES, WARNINGS, and INFO messages. Use Exachk for Engineered
+            Systems such as Oracle Exadata Database Machine and Oracle Zero Data Loss Recovery
+            Appliance, and use Orachk for non-engineered systems and Oracle Database Appliance.</p>
+                     <p>Furthermore, it is recommended that you run the health check prior to and after any
+            planned maintenance activity.</p>
+                     <p>You must evaluate:</p>
+                     <ul style="list-style-type: disc;" id="GUID-D9BC40AB-76F9-44B9-934B-C42C792608F9__UL_SF3_C4M_1KB">
+                        <li>
+                           
+                           <p>Existing or new critical health check alerts prior to planned maintenance
+                    window</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Existing software or critical software recommendations</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Adding any new recommendations to the planned maintenance window after
+                    testing</p>
+                           
+                        </li>
+                     </ul>
+                     <div class="infoboxnotealso" id="GUID-D9BC40AB-76F9-44B9-934B-C42C792608F9__GUID-E5B9A714-F7EF-4B89-989B-83C76B3854DD">
+                        <p class="notep1">See Also:</p>
+                        <p>My Oracle Support Note 1268927.2 "ORAchk - Health Checks for the Oracle Stack" at <a href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;id=1268927.2" target="_blank"><code class="codeph">https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;id=1268927.2</code></a></p>
+                        <p>My Oracle Support Note 1070954.1 "Oracle Exadata Database Machine exachk or HealthCheck" at <a href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;id=1070954.1" target="_blank"><code class="codeph">https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;id=1070954.1</code></a></p>
+                     </div>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184" name="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184"></a><h4 id="HAOVW-GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184" class="sect4">Configure Monitoring</h4>
+                  <div>
+                     <p>When deciding on the best route for monitoring your Exadata fleet, you
+        need to consider how the fleet you are monitoring is deployed (On-Premises, Cloud@Customer,
+        Oracle Cloud Infrastructure) and where your monitoring is or can be deployed.</p>
+                     <ul style="list-style-type: disc;" id="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184__UL_N1X_GHW_41C">
+                        <li>
+                           
+                           <p><span class="bold">On-Premises</span></p>
+                           
+                           <p>For fleets including on-premises Exadata, Enterprise Manager includes necessary
+                    monitoring for responsibilities spanning all three deployment types and is the
+                    MAA Best Practice.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><span class="bold">Cloud</span></p>
+                           
+                           <p>For fleets only in Cloud@Customer and/or OCI, who do not currently have
+                    Enterprise Manager or On-Premises monitoring deployment options, the OCI
+                    Observability &amp; Management services provide various options for basic and
+                    advanced monitoring and manageability.</p>
+                           
+                        </li>
+                     </ul>
+                     <p><span class="bold">Configure Oracle Enterprise Manager Monitoring</span></p>
+                     <p>If your Exadata fleet includes On-Premises deployment, you should configure and use
+            Enterprise Manager and the monitoring infrastructure that detects and reacts to
+            performance and high availability related thresholds to avoid potential downtime.</p>
+                     <p>The monitoring infrastructure assists you with monitoring for High
+            Availability and enables you to do the following:</p>
+                     <ul style="list-style-type: disc;" id="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184__UL_R3N_34M_1KB">
+                        <li>
+                           
+                           <p>Monitor system, network, application, database and storage
+                    statistics</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Monitor performance and service statistics</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Create performance and high availability thresholds as early warning
+                    indicators of system or application problems</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Provide performance and availability advice</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Established alerts and tools and database performance</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Receive alerts for engineered systems hardware faults</p>
+                           
+                        </li>
+                     </ul>
+                     <p>Enterprise Manager provides monitoring and management for Exadata and Databases deployed
+            on-premises, on Cloud@Customer, and OCI.</p>
+                     <ul style="list-style-type: disc;" id="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184__UL_UJV_YHW_41C">
+                        <li>For on-premises Exadata deployments, see <a href="https://docs.oracle.com/en/enterprise-manager/cloud-control/enterprise-manager-cloud-control/13.5/emxig/oracle-exadata-database-machine-administration.html#GUID-045490C8-F951-4673-AE3A-DC84596CDDA4" target="_blank">Oracle Exadata Database Machine Getting Started
+                    Guide</a>.
+                        </li>
+                        <li>For Cloud@Customer and OCI Exadata deployments, see <a href="https://docs.oracle.com/en/enterprise-manager/cloud-control/enterprise-manager-cloud-control/13.5/emxcs/introduction-monitoring-exadata-cloud-service.html#GUID-1D4FF933-7ECC-4650-99A4-FC16FCEB97DF" target="_blank">Oracle Enterprise Manager Cloud Control for
+                    Oracle Exadata Cloud</a></li>
+                     </ul>
+                     <p>Configure Enterprise Manager for high availability to ensure that the manageability
+            solution is as highly available as the systems that you're monitoring.</p>
+                     <p>For configuration details for HA see <a href="https://docs.oracle.com/en/enterprise-manager/cloud-control/enterprise-manager-cloud-control/13.5/emadv/high-availability-solutions.html#GUID-5AEB4464-DCAA-4C3D-9A02-D5D51FD262B1" target="_blank">Oracle Enterprise Manager Cloud Control Advanced
+                Installation and Configuration Guide</a>. For additional MAA Best Practices for
+            Enterprise Manager see <a href="http://www.oracle.com/goto/maa" target="_blank">http://www.oracle.com/goto/maa</a><span class="bold">.</span></p>
+                     <p>Oracle Observability and Management Services can be used in conjunction with Enterprise
+            Manager to provide additional Exadata manageability features. For details, see the
+            following:</p>
+                     <ul style="list-style-type: disc;" id="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184__UL_VJV_YHW_41C">
+                        <li>Operations Insights <a href="https://docs.oracle.com/iaas/operations-insights/doc/exadata-insights.html" target="_blank">Exadata Insights</a></li>
+                        <li><a href="https://docs.oracle.com/iaas/logging-analytics/doc/harvest-entity-model-data-enterprise-manager-cloud-control-and-collect-logs.html" target="_blank">Harvest Entity Model Data from Enterprise Manager
+                    Cloud Control Collect Logs</a></li>
+                     </ul>
+                     <p><span class="bold">Configure OCI Observability and Management Services Monitoring</span></p>
+                     <p>If your Exadata fleet includes only Cloud@Customer and/or OCI deployment, and you do not
+            currently have Enterprise Manager or on-premises monitoring deployment options, you
+            should configure and use the OCI Observability and Management platform of services that
+            work together to provide monitoring and management of Oracle Cloud targets.</p>
+                     <p>Basic default metrics and events for performance, high availability, and health are
+            available in the OCI console. For details see the following documentation:</p>
+                     <ul style="list-style-type: disc;" id="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184__UL_Z4G_T3W_41C">
+                        <li>Exadata Database Service on Dedicated Infrastructure
+                           <ul style="list-style-type: disc;" id="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184__UL_APG_T3W_41C">
+                              <li>Metrics for <a href="https://docs.oracle.com/iaas/exadatacloud/exacs/monitor-metrics-for-vmcluster-resources.html" target="_blank">VM Clusters</a> and <a href="https://docs.oracle.com/iaas/exadatacloud/exacs/metrics-for-exadata-database-service-on-dedicated-infrastructure-in-the-monitoring-service.html#GUID-B82F2A9D-56C4-459A-9EEE-A3330741F31F" target="_blank">Exadata Database Service on Dedicated
+                            Infrastructure</a> available in the Monitoring Service 
+                              </li>
+                              <li><a href="https://docs.oracle.com/iaas/exadatacloud/exacs/ecs-events.html#GUID-2D522773-82F2-49B3-8DDF-6B2928AC5DB9" target="_blank">Events</a></li>
+                           </ul>
+                        </li>
+                        <li>Exadata Database Service on Cloud@Customer
+                           <ul style="list-style-type: disc;" id="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184__UL_BPG_T3W_41C">
+                              <li>Metrics for <a href="https://docs.oracle.com/iaas/exadata/doc/monitor-metrics-for-vm-cluster-resources.html" target="_blank">VM Clusters</a> and <a href="https://docs.oracle.com/en/engineered-systems/exadata-cloud-at-customer/ecccm/metrics-for-exacc-in-the-monitoring-service.html#GUID-07C62351-92DB-45B6-A661-315A88B5F049" target="_blank">Exadata Database Service on
+                            Cloud@Customer</a> available in the Monitoring Service
+                              </li>
+                              <li><a href="https://docs.oracle.com/iaas/exadata/doc/ecc-customer-events.html" target="_blank">Events</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                     <p>Advanced metrics and management features are available in the Database Management
+            service:</p>
+                     <ul style="list-style-type: disc;" id="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184__UL_CPG_T3W_41C">
+                        <li>Exadata Database Service on Dedicated Infrastructure
+                           <ul style="list-style-type: disc;" id="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184__UL_DPG_T3W_41C">
+                              <li>Metrics available in the <a href="https://docs.oracle.com/iaas/database-management/doc/database-management-oracle-databases.html" target="_blank">Database Management Service</a>
+                                 
+                              </li>
+                              <li><a href="https://docs.oracle.com/iaas/exadatacloud/exacs/monitor-metrics-to-diagnose-and-troubleshoot-problems-with-pdbs.html" target="_blank">Diagnose and Troubleshoot Problems with
+                            Pluggable Databases </a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                     <p>Advanced analytics features are available in the Operations Insights Service:</p>
+                     <ul style="list-style-type: disc;" id="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184__UL_EPG_T3W_41C">
+                        <li>Exadata Database Service on Dedicated Infrastructure
+                           <ul style="list-style-type: disc;" id="GUID-8EAF9181-2023-4ECF-9D4D-A288A5199184__UL_FPG_T3W_41C">
+                              <li><a href="https://docs.oracle.com/iaas/exadatacloud/exacs/ecs-operational-insights.html" target="_blank">Operations Insights for Oracle
+                            Databases</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                     <p>See also: <a href="https://www.oracle.com/manageability/" target="_blank">Oracle Cloud Observability and Management Platform</a></p>
+                  </div>
+               </div>
+               <div class="props_rev_3"><a id="GUID-C41F22A7-075C-437D-AF81-3930E09D702B" name="GUID-C41F22A7-075C-437D-AF81-3930E09D702B"></a><h4 id="HAOVW-GUID-C41F22A7-075C-437D-AF81-3930E09D702B" class="sect4">Configure Automatic Service Request Infrastructure</h4>
+                  <div>
+                     <p>In addition to monitoring infrastructure with Enterprise Manager, Oracle
+        can detect failures, dispatch field engineers, and replace failing hardware without customer
+        involvement.</p>
+                     <p>For example, Oracle Automatic Service Request (ASR) is a secure, scalable,
+            customer-installable software solution available as a feature. The software resolves
+            problems faster by using auto-case generation for Oracle's server and storage systems
+            when specific hardware faults occur.</p>
+                     <p>See also: <a href="https://support.oracle.com/rs?type=doc&amp;id=1185493.1" target="_blank">Oracle Automatic Service Request (Doc ID
+                1185493.1)</a></p>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-5C40E5F1-3E48-41ED-AFF0-5DC1D51229CD" name="GUID-5C40E5F1-3E48-41ED-AFF0-5DC1D51229CD"></a><h3 id="HAOVW-GUID-5C40E5F1-3E48-41ED-AFF0-5DC1D51229CD" class="sect3">Exercise Capacity Planning</h3>
+               <div>
+                  <p>Periodically perform capacity planning exercises to ensure that your current
+        hardware resources can accommodate existing workload and projected growth.</p>
+                  <div class="section">
+                     
+                     <p>With database consolidation, this exercise should be done before migrating or adding
+                a new database to the existing system. </p>
+                     
+                     <p>Note that concurrent workloads can interfere with each other and can cause
+                unpredictable behavior at times, so performance and HA testing may be required. </p>
+                     
+                     <p>Using Database multitenant container databases, database resource management, or
+                Exadata consolidation practices can help optimize existing system resources and
+                constrain workload usage to meet expectations.</p>
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-62DCA320-6A72-40CD-887C-9D21D0DB56E3" name="GUID-62DCA320-6A72-40CD-887C-9D21D0DB56E3"></a><h3 id="HAOVW-GUID-62DCA320-6A72-40CD-887C-9D21D0DB56E3" class="sect3">Check the Latest MAA Best Practices</h3>
+               <div>
+                  <p>The MAA solution encompasses the full stack of Oracle technologies, so
+        you can find MAA best practices for Oracle Database, Oracle Cloud, Oracle Exadata, Zero Data
+        Loss Recovery Appliance, Oracle Fusion Middleware, Oracle Applications Unlimited, and Oracle
+        Enterprise Manager on the MAA pages.</p>
+                  <p>MAA solutions and best practices continue to be developed and published on <a href="http://www.oracle.com/goto/maa" target="_blank">http://www.oracle.com/goto/maa</a>.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

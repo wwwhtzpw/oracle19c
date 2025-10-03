@@ -1,0 +1,1846 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Oracle Data Guard Hybrid Cloud Configuration">
+      <meta name="abstract" content="A hybrid Oracle Data Guard configuration consists of a primary database and one or more standby databases residing partially on-premises and partially in the Oracle OCI cloud or Oracle multicloud (for example, Oracle@Azure, Oracle@Google, or Oracle@AWS).">
+      <meta name="description" content="A hybrid Oracle Data Guard configuration consists of a primary database and one or more standby databases residing partially on-premises and partially in the Oracle OCI cloud or Oracle multicloud (for example, Oracle@Azure, Oracle@Google, or Oracle@AWS).">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-0E8E646B-A182-4C45-AA42-D0AAB6A392F9">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="A hybrid Oracle Data Guard configuration consists of a primary database and one or more standby databases residing partially on-premises and partially in the Oracle OCI cloud or Oracle multicloud (for example, Oracle@Azure, Oracle@Google, or Oracle@AWS).">
+      <meta name="description" content="A hybrid Oracle Data Guard configuration consists of a primary database and one or more standby databases residing partially on-premises and partially in the Oracle OCI cloud or Oracle multicloud (for example, Oracle@Azure, Oracle@Google, or Oracle@AWS).">
+      <title>Oracle Data Guard Hybrid Cloud Configuration</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content="A hybrid Oracle Data Guard configuration consists of a primary database and one or more standby databases residing partially on-premises and partially in the Oracle OCI cloud or Oracle multicloud (for example, Oracle@Azure, Oracle@Google, or Oracle@AWS).">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="oracle-maximum-availability-architecture-oracle-databasegoogle-cloud.html" title="Previous" type="text/html">
+      <link rel="next" href="continuous-availability-applications.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Oracle Data Guard Hybrid Cloud Configuration","description":"A hybrid Oracle Data Guard configuration consists of a primary database and one or more standby databases residing partially on-premises and partially in the Oracle OCI cloud or Oracle multicloud (for example, Oracle@Azure, Oracle@Google, or Oracle@AWS).","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="oracle-maximum-availability-architecture-oracle-databasegoogle-cloud.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="continuous-availability-applications.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-0E8E646B-A182-4C45-AA42-D0AAB6A392F9" name="GUID-0E8E646B-A182-4C45-AA42-D0AAB6A392F9"></a>
+         
+         <h2 id="HAOVW-GUID-0E8E646B-A182-4C45-AA42-D0AAB6A392F9" class="sect2"><span class="enumeration_chapter">36 </span>Oracle Data Guard Hybrid Cloud
+        Configuration
+         </h2>
+         <div class="ind">
+            <div>
+               <p>A hybrid Oracle Data Guard configuration consists of a primary database
+        and one or more standby databases residing partially on-premises and partially in the Oracle
+        OCI cloud or Oracle multicloud (for example, Oracle@Azure, Oracle@Google, or
+        Oracle@AWS).</p>
+               <p>Note that the term <strong class="term">Oracle cloud</strong> refers to both Oracle OCI and Oracle
+            multicloud going forward.
+               </p>
+               <p>The process detailed in this topic uses the Oracle Database as a Service (DBaaS) tools to
+            create a cloud standby database from an existing on-premises primary database. Oracle
+            DBaaS tools streamline and simplify the process of creating the standby database in
+            Oracle Cloud while incorporating MAA best practices.</p>
+               <p>After establishing the cloud standby database as described here, you can perform a role
+            transition so that the primary database runs in the cloud instead of on-premises, and
+            Oracle Data Guard life-cycle operations (switchover, failover, and reinstate) are
+            available using the <code class="codeph">dbaascli</code> commands.
+               </p>
+               <div class="infoboxnote" id="GUID-0E8E646B-A182-4C45-AA42-D0AAB6A392F9__GUID-D0C3397C-A805-4A56-B126-2FF694CC723E">
+                  <p class="notep1">Note:</p>Additional manual steps may be required during configuration if there are standby
+            databases residing on-premises.
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-F89C3FFC-CC20-4B8C-8886-D08AB4ECB408" name="GUID-F89C3FFC-CC20-4B8C-8886-D08AB4ECB408"></a><h3 id="HAOVW-GUID-F89C3FFC-CC20-4B8C-8886-D08AB4ECB408" class="sect3">Benefits Of Hybrid Data Guard in
+        the Oracle Cloud</h3>
+               <div>
+                  <p>The following are the primary benefits to using a hybrid Data Guard
+        configuration in the Oracle Cloud.</p>
+                  <ul style="list-style-type: disc;" id="GUID-F89C3FFC-CC20-4B8C-8886-D08AB4ECB408__OL_YWR_KFB_HWB">
+                     <li>
+                        
+                        <p>Flexibility to use Oracle Cloud Infrastructure data centers to supplement an
+                    on-premises data center footprint for disaster recovery or other purposes</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Oracle manages the cloud data center and infrastructure</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Ability to switch over (planned events) or fail over (unplanned
+                    events) production to the standby database in the cloud during scheduled
+                    maintenance or unplanned outages.</p>
+                        
+                        <p>Once a failed on-premises database is repaired, it can be synchronized with the
+                    current production database in the cloud. Then, production can be switched back
+                    to the on-premises database if required.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Use the same Oracle MAA best practices as the on-premises
+                    deployment. Additional Oracle MAA best practices specific to hybrid Data Guard
+                    deployments are specified in the topics that follow. When configured with MAA
+                    best practices, a hybrid Data Guard configuration provides:</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-F89C3FFC-CC20-4B8C-8886-D08AB4ECB408__UL_AXR_KFB_HWB">
+                           <li>Recovery Time Objective (RTO) of seconds when configured with
+                        Data Guard fast-start failover and its automatic failover benefits</li>
+                           <li>Recovery Point Objective (RPO) less than a second for Data Guard with ASYNC
+                        transport</li>
+                           <li>RPO zero for Data Guard in a Maximum Availability protection
+                        mode that leverages a SYNC or FAR SYNC configuration</li>
+                        </ul>
+                        
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-F32D6561-A01E-4692-9B29-811B2B3E50E3" name="GUID-F32D6561-A01E-4692-9B29-811B2B3E50E3"></a><h3 id="HAOVW-GUID-F32D6561-A01E-4692-9B29-811B2B3E50E3" class="sect3">MAA Recommendations for Using
+        Exadata Cloud for Disaster Recovery</h3>
+               <div>
+                  <p>When deploying Exadata Cloud for Disaster Recovery, Oracle MAA
+        recommends:</p>
+                  <ul style="list-style-type: disc;" id="GUID-F32D6561-A01E-4692-9B29-811B2B3E50E3__UL_OYX_VFB_HWB">
+                     <li>
+                        
+                        <p>Create a cloud database system target that is symmetric or similar to the
+                    on-premises primary database to ensure performance SLAs can be met after a role
+                    transition. For example, create an Oracle RAC target for an Oracle RAC source,
+                    Exadata for Exadata, and so on.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Ensure that network bandwidth can handle peak redo rates in addition to existing
+                    network traffic. </p>
+                        
+                        <p>My Oracle Support document <a href="https://support.oracle.com/rs?type=doc&amp;id=2064368.1" target="_blank">Assessing and Tuning Network Performance for Data Guard and
+                        RMAN (Doc ID 2064368.1)</a> provides additional network bandwidth
+                    troubleshooting guidance for assessing and tuning network performance for Data
+                    Guard and RMAN.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Ensure network reliability and security between on-premises and the Cloud
+                    environment.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Use Oracle Active Data Guard for additional automatic block repair, data
+                    protection, and offloading benefits.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Use Oracle Transparent Data Encryption (TDE) for both primary and standby
+                    databases. </p>
+                        
+                        <p>My Oracle Support document <a href="https://support.oracle.com/rs?type=doc&amp;id=2359020.1" target="_blank">Oracle Database Tablespace Encryption Behavior in Oracle
+                        Cloud (Doc ID 2359020.1)</a> has additional details on TDE behavior in
+                    cloud configurations.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Configure backups to Autonomous Recovery Service or Object Storage
+                    for the Oracle databases, in primary or standby role. See <a href="https://docs.oracle.com/iaas/exadatacloud/exacs/ecs-managing-db-backup-and-recovery.html#ECSCM-GUID-07D1B1D6-4A06-4859-B7DF-4C3A681A6B40" target="_blank">Manage Database Backup and
+                        Recovery on Oracle Exadata Database Service on Dedicated
+                        Infrastructure</a> and <a href="https://docs.public.oneportal.content.oci.oraclecloud.com/iaas/recovery-service/doc/overview-recovery-service.html" target="_blank">Database Autonomous Recovery
+                        Service</a>.
+                        </p>
+                        
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-27DFC686-8FC0-49EC-AF6E-485E53AF6FB7" name="GUID-27DFC686-8FC0-49EC-AF6E-485E53AF6FB7"></a><h3 id="HAOVW-GUID-27DFC686-8FC0-49EC-AF6E-485E53AF6FB7" class="sect3">Security Requirements and
+        Considerations</h3>
+               <div>
+                  <p>Oracle MAA best practices recommend using Oracle Transparent Data Encryption
+        (TDE) to encrypt the primary and standby databases to ensure that data is encrypted
+        at-rest.</p>
+                  <p>Using TDE to protect data is an essential part of improving the security of
+            the system. Note the following variables that need to be considered when evaluating
+            TDE.</p>
+                  <ul style="list-style-type: disc;" id="GUID-27DFC686-8FC0-49EC-AF6E-485E53AF6FB7__UL_PNF_TKB_HWB">
+                     <li>
+                        
+                        <p><span class="bold">CPU overhead</span> - Encryption requires additional CPU cycles to
+                    calculate encrypted and decrypted values. TDE, however, is optimized to minimize
+                    the overhead by taking advantage of database caching capabilities and leveraging
+                    hardware acceleration within Exadata. Most TDE users see little performance
+                    impact on their production systems after enabling TDE.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Lower data compression</span> - Encrypted data compresses less
+                    efficiently than non-encrypted data, so any compression applied to data
+                    encrypted with TDE results in lower compression ratios. When TDE encryption is
+                    used, redo transport compression is not recommended or typically required since
+                    data in the redo is already encrypted; however, when TDE is used in conjunction
+                    with Oracle Database compression technologies such as Advanced Compression or
+                    Hybrid Columnar Compression, compression is performed before the encryption
+                    occurs, and the benefits of compression and encryption are both achieved.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><span class="bold">Key management</span> - Encryption is only as strong as the encryption key used
+                    and the loss of the encryption key is tantamount to losing all data protected by
+                    that key. 
+                        </p>
+                        
+                        <p>If encryption is enabled on a few databases, keeping track of the key and its
+                    life cycle is relatively easy. As the number of encrypted databases grows,
+                    managing keys becomes an increasingly difficult problem. If you are managing a
+                    large number of encrypted databases, it is recommended that Oracle Key Vault be
+                    used on-premises to store and manage TDE master keys.</p>
+                        
+                     </li>
+                  </ul>
+                  <p>Data can be converted during the migration process, but it is recommended
+            that TDE be enabled before beginning the migration to provide the most secure Oracle
+            Data Guard environment. A VPN connection or Oracle Net encryption is also required for
+            inflight encryption for any other database payload that is not encrypted by TDE, such as
+            data file or redo headers for example. See My Oracle Support document <a href="https://support.oracle.com/rs?type=doc&amp;id=2359020.1" target="_blank">Oracle Database Tablespace Encryption Behavior in
+                Oracle Cloud (Doc ID 2359020.1)</a> for more information.
+                  </p>
+                  <p>If the on-premises database is not already enabled with TDE, see My Oracle
+            Support document <a href="https://support.oracle.com/rs?type=doc&amp;id=1228046.1" target="_blank">Primary Note For Transparent Data
+                Encryption ( TDE ) (Doc ID 1228046.1)</a> to enable TDE and create wallet
+            files.
+                  </p>
+                  <p>If TDE cannot be enabled for the on-premises database, see <a href="../asoag/using-transparent-data-encryption-with-other-oracle-features.html#ASOAG-GUID-6B769BE8-5312-406F-BD28-51C3C0CCC33D" target="_blank">Encryption of Tablespaces in an Oracle Data Guard
+                Environment</a> in <cite>Oracle Database Advanced Security
+                Guide</cite> for information about decrypting redo operations in hybrid cloud
+            disaster recovery configurations where the Cloud database is encrypted with TDE and the
+            on-premises database is not.
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-A928F73E-79F2-4555-BA81-B86E0A96DD57" name="GUID-A928F73E-79F2-4555-BA81-B86E0A96DD57"></a><h3 id="HAOVW-GUID-A928F73E-79F2-4555-BA81-B86E0A96DD57" class="sect3">Platform, Database, and Network
+        Prerequisites</h3>
+               <div>
+                  <p>The following requirements must be met to ensure a successful migration to a
+        Cloud standby database.</p>
+                  <div class="tblformalwide" id="GUID-A928F73E-79F2-4555-BA81-B86E0A96DD57__TABLE_UNG_JGG_HWB">
+                     <table cellpadding="4" cellspacing="0" class="FormalWide" title summary="requirements for on-premises and cloud system and database are listed" width="100%" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d98720e248">Requirement Type</th>
+                              <th align="left" valign="bottom" width="0%" id="d98720e250">On-Premises Requirements</th>
+                              <th align="left" valign="bottom" width="0%" id="d98720e252">Oracle Cloud Requirements</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d98720e256" headers="d98720e248 ">
+                                 
+                                 <p>Operating System</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e256 d98720e250 ">
+                                 
+                                 <p>Linux, Windows or Solaris X86 (My Oracle Support Note 413484.1 for
+                                Data Guard cross-platform compatibility)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e256 d98720e252 ">
+                                 
+                                 <p>Oracle Enterprise Linux (64-bit)</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d98720e272" headers="d98720e248 ">
+                                 
+                                 <p>Oracle Database Version*</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e272 d98720e250 ">
+                                 
+                                 <p>Extreme performance / BYOL*</p>
+                                 
+                                 <p>See <a href="https://docs.oracle.com/en-us/iaas/dbcs/doc/bare-metal-and-virtual-machine-db-systems.html#DBSCB-GUID-AFDF235F-FED1-4FF4-A10D-D067ACD80C9D" target="_blank">Supported Database
+                                    Editions and Versions</a> for information about database
+                                service options in Oracle Cloud.
+                                 </p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e272 d98720e252 ">
+                                 
+                                 <p>Extreme performance / BYOL*</p>
+                                 
+                                 <p>See <a href="https://docs.oracle.com/en-us/iaas/dbcs/doc/bare-metal-and-virtual-machine-db-systems.html#DBSCB-GUID-AFDF235F-FED1-4FF4-A10D-D067ACD80C9D" target="_blank">Supported Database Editions and
+                                    Versions</a> for information about database service options
+                                in Oracle Cloud.
+                                 </p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d98720e302" headers="d98720e248 ">
+                                 
+                                 <p>Oracle Database Architecture</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e302 d98720e250 ">
+                                 
+                                 <p>Oracle RAC or single-instance</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e302 d98720e252 ">
+                                 
+                                 <p>Oracle RAC or single-instance</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d98720e318" headers="d98720e248 ">
+                                 
+                                 <p>Oracle Multitenant</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e318 d98720e250 ">
+                                 
+                                 <p>For Oracle 12.1 and above, the primary database must be a multitenant
+                                container database (CDB)</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e318 d98720e252 ">
+                                 
+                                 <p>Multitenant container database (CDB) or non-CDB</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d98720e334" headers="d98720e248 ">
+                                 
+                                 <p>Physical or Virtual Host</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e334 d98720e250 ">
+                                 
+                                 <p>Physical or Virtual</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e334 d98720e252 ">
+                                 
+                                 <p>Exadata Virtual</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d98720e350" headers="d98720e248 ">
+                                 
+                                 <p>Database Size</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e350 d98720e250 ">
+                                 
+                                 <p>Any size</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e350 d98720e252 ">
+                                 
+                                 <p>Any size. </p>
+                                 
+                                 <p>For shape limits please consult Exadata Cloud documentation</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d98720e369" headers="d98720e248 ">
+                                 
+                                 <p>TDE Encryption</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e369 d98720e250 ">
+                                 
+                                 <p>Recommended</p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d98720e369 d98720e252 ">
+                                 
+                                 <p>Mandatory for Cloud databases</p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <p>* The Oracle Database release on the primary and standby databases should be
+            the same database major release and database release update (RU) during initial standby
+            instantiation. For database software updates that are standby-first compatible, the
+            primary and standby database Oracle Home software can be different (for example, 19RU vs
+            19 RU+1). For the standby instantiation in the Oracle cloud, the standby database Oracle
+            Home software must be the same or a later RU. See <a href="https://support.oracle.com/rs?type=doc&amp;id=1265700.1" target="_blank">Oracle Patch Assurance - Data Guard Standby-First
+                Patch Apply (Doc ID 1265700.1)</a>.
+                  </p>
+               </div>
+               <div class="sect3"><a id="GUID-DCBE3439-32A7-4DF8-8F05-7E47029EE3B3" name="GUID-DCBE3439-32A7-4DF8-8F05-7E47029EE3B3"></a><h4 id="HAOVW-GUID-DCBE3439-32A7-4DF8-8F05-7E47029EE3B3" class="sect4">Cloud Network
+        Prerequisites</h4>
+                  <div>
+                     <p>Data transfers from on-premises to Oracle Cloud use the public network, VPN,
+        and/or the high bandwidth option provided by Oracle FastConnect. </p>
+                     <p>In an Oracle Data Guard configuration, the primary and standby databases must be able to
+            communicate bi-directionally. This requires additional network configuration to allow
+            access to ports between the systems.</p>
+                     <div class="infoboxnote" id="GUID-DCBE3439-32A7-4DF8-8F05-7E47029EE3B3__GUID-3C508DF1-CC5D-4DC9-B692-AA8FC9C5DB9D">
+                        <p class="notep1">Note:</p>Network connectivity configuration is
+            not required for Oracle Exadata Database Service on Cloud@Customer because it is
+            deployed on the on-premises network. Skip to <a href="oracle-data-guard-hybrid-cloud-configuration1.html#GUID-EB730292-1358-4C5B-90D8-FD5E42BA74D2" title="The following prerequisites must be met before instantiating the standby database.">On-Premises Prerequisites</a> if you are using ExaDB-C@C.
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-DCBE3439-32A7-4DF8-8F05-7E47029EE3B3__GUID-A419F2B3-0454-4EBD-9302-318B1EF246BD">Secure Connectivity</p>
+                        
+                        
+                        <p>For Oracle Exadata Database Service (not required for ExaDB-C@C) there
+                are two options to privately connect the virtual cloud network to the on-premises
+                network: FastConnect and IPSec VPN. Both methods require a Dynamic Routing Gateway
+                (DRG) to connect to the private Virtual Cloud Network (VCN).</p>
+                        
+                        <p>See <a href="https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/connectivityonprem.htm" target="_blank">Access to Your On-Premises
+                    Network</a> for details about creating a DRG.
+                        </p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-DCBE3439-32A7-4DF8-8F05-7E47029EE3B3__UL_DBQ_L3G_HWB">
+                           <li>
+                              
+                              <p><span class="bold">OCI FastConnect</span> - Provides an easy way to create a
+                        dedicated, private connection between the data center and OCI. FastConnect
+                        provides higher bandwidth options and a more reliable and consistent
+                        networking experience compared to internet-based connections. See <a href="https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnectoverview.htm" target="_blank">FastConnect Overview</a>.
+                        (link
+                        https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/fastconnectoverview.htm)
+                        for details.
+                              </p>
+                              
+                           </li>
+                           <li><span class="bold">IPSec VPN</span> - Internet Protocol Security or IP Security (IPSec
+                    ) is a protocol suite that encrypts the entire IP traffic before the packets are
+                    transferred from the source to the destination. See <a href="https://docs.oracle.com/iaas/Content/Network/Tasks/overviewIPsec.htm" target="_blank">Site-to-Site VPN Overview</a>
+                    for an overview of IPSec in OCI.
+                           </li>
+                        </ul>
+                        
+                     </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-DCBE3439-32A7-4DF8-8F05-7E47029EE3B3__GUID-C833BE42-EC3F-4A27-8A3B-232CF4491D24">Public Internet Connectivity</p>
+                        
+                        
+                        <p>Connectivity between OCI and on-premises can also be achieved using the
+                public internet. </p>
+                        
+                        <p>This method is not secure by default; additional steps must be taken to
+                secure transmissions. The steps for hybrid Data Guard configuration assume public
+                internet connectivity.</p>
+                        
+                        <p>By default, cloud security for port 1521 is disabled. Also, this default
+                pre-configured port in the cloud for either a Virtual Machine (VM) or Bare Metal
+                (BM) has open access from the public internet.</p>
+                        
+                        <ol id="GUID-DCBE3439-32A7-4DF8-8F05-7E47029EE3B3__OL_EBQ_L3G_HWB">
+                           <li>
+                              
+                              <p>If a Virtual Cloud Network (VCN) for the standby database doesn't
+                        have an Internet Gateway, one must be added. </p>
+                              
+                              <p>To create an internet gateway see <a href="https://docs.oracle.com/iaas/Content/Network/Tasks/managingIGs.htm" target="_blank">Internet Gateway</a>.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Ingress and egress rules must be configured in the VCN security
+                        list to connect from and to the on-premises database.</p>
+                              
+                              <p>See <a href="https://docs.oracle.com/iaas/Content/Network/Concepts/securitylists.htm" target="_blank">Security Lists</a> for
+                        additional information.
+                              </p>
+                              
+                           </li>
+                        </ol>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-EB730292-1358-4C5B-90D8-FD5E42BA74D2" name="GUID-EB730292-1358-4C5B-90D8-FD5E42BA74D2"></a><h4 id="HAOVW-GUID-EB730292-1358-4C5B-90D8-FD5E42BA74D2" class="sect4">On-Premises Prerequisites</h4>
+                  <div>
+                     <p>The following prerequisites must be met before instantiating the standby
+        database.</p>
+                  </div>
+                  <div class="sect4"><a id="GUID-2B1E962F-E9B8-41BA-9976-7F1860D7D036" name="GUID-2B1E962F-E9B8-41BA-9976-7F1860D7D036"></a><h5 id="HAOVW-GUID-2B1E962F-E9B8-41BA-9976-7F1860D7D036" class="sect5">Evaluate Network Using
+            <code class="codeph">oratcptest</code></h5>
+                     <div>
+                        <p></p>
+                        <div class="section">
+                           
+                           <p>In an Oracle Data Guard configuration, the primary and standby databases
+                transmit information in both directions. This requires basic configuration, network
+                tuning, and opening of ports at both the primary and standby databases. </p>
+                           
+                           <p>It is vital that the bandwidth exists to support the redo generation rate
+                of the primary database.</p>
+                           
+                           <p>Follow instructions in <a href="https://support.oracle.com/rs?type=doc&amp;id=2064368.1" target="_blank">Assessing and Tuning Network Performance for Data
+                    Guard and RMAN (Doc ID 2064368.1)</a> to assess and tune the network link
+                between the on-premises and cloud environments.
+                           </p>
+                           
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-4E671ADF-4A3A-45A7-8322-7B660DCE1E15" name="GUID-4E671ADF-4A3A-45A7-8322-7B660DCE1E15"></a><h5 id="HAOVW-GUID-4E671ADF-4A3A-45A7-8322-7B660DCE1E15" class="sect5">Configuration</h5>
+                     <div>
+                        <p></p>
+                        <div class="section">
+                           
+                           <ul style="list-style-type: disc;" id="GUID-4E671ADF-4A3A-45A7-8322-7B660DCE1E15__UL_MBF_T3G_HWB">
+                              <li>
+                                 
+                                 <p>Name resolution</p>
+                                 
+                                 <ul style="list-style-type: disc;" id="GUID-4E671ADF-4A3A-45A7-8322-7B660DCE1E15__UL_NBF_T3G_HWB">
+                                    <li>
+                                       
+                                       <p>For ExaDB-C@C, because the clusters reside on the
+                                on-premises network, the on-premises DNS should resolve each
+                                cluster, and no further configuration should be necessary.</p>
+                                       
+                                    </li>
+                                    <li>
+                                       
+                                       <p>For Oracle Exadata Database Service, name resolution
+                                between the clusters must be configured. </p>
+                                       
+                                       <p>This can be done either using a static file like
+                                /etc/hosts, or by configuring the on-premises DNS to properly
+                                resolve the public IP address of the OCI instance. In addition, the
+                                on-premises firewall must have Access Control Lists configured to
+                                allow SSH and Oracle Net to be accessed from the on-premises system
+                                to OCI.</p>
+                                       
+                                    </li>
+                                 </ul>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>Oracle Data Guard in a DR configuration requires access from the
+                        Cloud instance to the on-premises database; the primary database listener
+                        port must be opened with restricted access from the Cloud IP addresses using
+                        features like <code class="codeph">iptables</code>. 
+                                 </p>
+                                 
+                                 <p>Because every corporation has different network security
+                        policies, the network administrator must perform operations like the
+                        cloud-side network configuration shown in <a href="oracle-data-guard-hybrid-cloud-configuration1.html#GUID-DCBE3439-32A7-4DF8-8F05-7E47029EE3B3" title="Data transfers from on-premises to Oracle Cloud use the public network, VPN, and/or the high bandwidth option provided by Oracle FastConnect.">Cloud Network Prerequisites</a>.
+                                 </p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>Prompt-less SSH from Oracle Cloud to the on-premises machine.
+                        This is configured both for on-premises to Cloud during the provisioning
+                        process and from the Cloud to on-premises.</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>The configuration of the on-premises firewall to allow inbound
+                        SSH connectivity from the Cloud to the on-premises machine.</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>It is strongly recommended that you complete the network
+                        assessment described above in Evaluate Network Using oratcptest. Setting the
+                        appropriate TCP socket buffers setting is especially important for ASYNC
+                        redo transport.</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>It is recommended that the RDBMS software be the same on the
+                        primary and standby database for instantiation. If the current on-premises
+                        Oracle Database release is not available in Oracle Exadata Database Service,
+                        then the primary database must be on the same major database release and the
+                        same or lower Release Update (RU).</p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-60480A97-3309-4E53-BC14-0B0CB468650B" name="GUID-60480A97-3309-4E53-BC14-0B0CB468650B"></a><h5 id="HAOVW-GUID-60480A97-3309-4E53-BC14-0B0CB468650B" class="sect5">Implement MAA Best Practice Parameter Settings
+        on the Primary Database</h5>
+                     <div>
+                        <p></p>
+                        <div class="section">
+                           
+                           <p>Most MAA best practices for Data Guard are part of the process described
+                here; however, the Standby Redo Log should be created on the primary database before
+                starting this process. </p>
+                           
+                           <p>See <a href="configure-and-deploy-oracle-data-guard.html#GUID-49A57864-51C9-4078-AA5A-91A84E590259" title="The following topics describe Oracle MAA best practices for configuring your Oracle Data Guard configuration.">Oracle Data Guard Configuration Best Practices</a> for information.
+                           </p>
+                           
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-8A1336E5-608C-42E6-84CD-A4205E4165BA" name="GUID-8A1336E5-608C-42E6-84CD-A4205E4165BA"></a><h5 id="HAOVW-GUID-8A1336E5-608C-42E6-84CD-A4205E4165BA" class="sect5">Validating Connectivity between On-Premises
+        and Exadata Cloud Hosts</h5>
+                     <div>
+                        <p></p>
+                        <div class="section">
+                           
+                           <p>After the networking steps are implemented successfully, run the command
+                below to validate that the connection is successful between all sources and all
+                targets in both directions.</p>
+                           
+                           <ol id="GUID-8A1336E5-608C-42E6-84CD-A4205E4165BA__OL_A2X_3WZ_R2C">
+                              <li>
+                                 
+                                 <p>As the <code class="codeph">oracle</code> OS user on all nodes of the on-premises
+                        environment, use <code class="codeph">curl</code> to test connectivity between all
+                        on-premises and all cloud nodes.
+                                 </p>
+                                 <pre class="pre codeblock"><code>[oracle@on-prem1]$ curl -v telnet://&lt;FQDN-CLOUD-HOST1&gt;:22 (or other available port)
+* Rebuilt URL to: telnet://&lt;FQDN-CLOUD-HOST1&gt;:22/
+*   Trying &lt;CLOUD-HOST1-IP&gt;...
+* TCP_NODELAY set
+* Connected to &lt;FQDN-CLOUD-HOST1&gt; (&lt;CLOUD-HOST1-IP&gt;) port 22 (#0)
+SSH-2.0-OpenSSH_8.0
+^C
+[oracle@on-prem1]$</code></pre>
+                                 </li>
+                              <li>
+                                 
+                                 <p>As the <code class="codeph">oracle</code> OS user on all nodes of the cloud environment,
+                        use <code class="codeph">curl</code> to test connectivity between all cloud and all
+                        on-premises nodes.
+                                 </p>
+                                 <pre class="pre codeblock"><code>[oracle@cloud-exadata1]$ curl -v telnet://&lt;FQDN-ON-PREM-HOST1&gt;:22 (or other available port)
+* Rebuilt URL to: telnet://&lt;FQDN-CLOUD-HOST1&gt;:22/
+*   Trying &lt;ON-PREM-HOST1-IP&gt;...
+* TCP_NODELAY set
+* Connected to &lt;FQDN-ON-PREM-HOST1&gt; (&lt;ON-PREM-HOST1-IP&gt;) port 22 (#0)
+SSH-2.0-OpenSSH_8.0
+^C
+[oracle@cloud-exadata1]$</code></pre>
+                                 </li>
+                              <li></li>
+                           </ol>
+                           
+                           <p>If <code class="codeph">curl</code> connection is successful, proceed to the next step.
+                           </p>
+                           
+                           <div class="infoboxnote" id="GUID-8A1336E5-608C-42E6-84CD-A4205E4165BA__GUID-E6B8A1E4-7453-4218-8D92-0DB5B6204509">
+                              <p class="notep1">Note:</p>
+                              
+                              <p>Successful connections will get the message "Connected to &lt;FQDN-HOST1&gt;
+                    (&lt;HOST-IP&gt;) port 22", while unsuccessful connections will get the message
+                    "Failed to connect to &lt;FQDN-HOST1&gt; port 22: Connection refused"</p>
+                              
+                           </div>
+                           
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-A276E993-7E42-4332-AD35-AA4CED996D15" name="GUID-A276E993-7E42-4332-AD35-AA4CED996D15"></a><h4 id="HAOVW-GUID-A276E993-7E42-4332-AD35-AA4CED996D15" class="sect4">Prepare the Primary Database
+        Environment</h4>
+                  <div>
+                     <p>The Hybrid Data Guard configuration process uses the Oracle Cloud DBaaS
+        tools and automation to ensure the process used to create the standby database is the same
+        process as is used in the Oracle Cloud.</p>
+                     <p>This will ensure that the cloud database is visible in the cloud user interface.</p>
+                     <p>Because the on-premises database is not a cloud created database, some steps are required
+            to ensure successful completion.</p>
+                  </div>
+                  <div class="sect4"><a id="GUID-11403C2B-2070-4999-BD61-C7B1197284F4" name="GUID-11403C2B-2070-4999-BD61-C7B1197284F4"></a><h5 id="HAOVW-GUID-11403C2B-2070-4999-BD61-C7B1197284F4" class="sect5">Create an ACFS Mount Point</h5>
+                     <div>
+                        <p>Hybrid Data Guard configurations require an ACFS mount point for sharing
+        files between instances, for example tnsnames.ora and TDE wallets.</p>
+                        <div class="section">
+                           
+                           <p> This mount point exists in cloud platforms in
+                    <code class="codeph">/var/opt/oracle/dbaas_acfs</code>. If there is no existing ACFS mount
+                point for the primary cluster create one using the steps in  <a href="../ostmg/steps-manage-acfs.html#OSTMG-GUID-4C98CF06-8CCC-45F1-9316-C40FB3EFF268" target="_blank">Creating an Oracle ACFS File System</a>. (An existing ACFS
+                mount point can be used)
+                           </p>
+                           
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-628AACF9-C2FA-4CF4-9CBA-C428D5CEF73A" name="GUID-628AACF9-C2FA-4CF4-9CBA-C428D5CEF73A"></a><h5 id="HAOVW-GUID-628AACF9-C2FA-4CF4-9CBA-C428D5CEF73A" class="sect5">Configure Transparent Data Encryption on the
+        Source Database</h5>
+                     <div>
+                        <p>Transparent Data Encryption (TDE) is required on Oracle Cloud databases,
+        including any standby database which is part of a hybrid Data Guard
+        configuration.</p>
+                        <div class="section">
+                           
+                           <p>While it is strongly recommended that the on-premises database also be encrypted,
+                leaving the primary database unencrypted as part of a hybrid Data Guard
+                configuration can be configured and is better supported by new parameters in Oracle
+                Database 19c (19.16) and later releases.</p>
+                           
+                           <p>For all TDE configurations with Oracle Data Guard, the encryption wallet must be
+                created on the primary database and the master key must be set whether or not the
+                primary database will be encrypted with TDE.</p>
+                           
+                           <p>The parameters required for TDE configuration differ depending with Oracle Database
+                releases. The values may be different for each database in the Data Guard
+                configuration.</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-628AACF9-C2FA-4CF4-9CBA-C428D5CEF73A__UL_LYH_DZZ_R2C">
+                              <li>In Oracle Database release 19c (19.16) and later, the parameters
+                        <code class="codeph">TABLESPACE_ENCRYPTION</code>, <code class="codeph">WALLET_ROOT</code>, and
+                        <code class="codeph">TDE_CONFIGURATION</code> are required to properly configure
+                    TDE.
+                              </li>
+                              <li>For Oracle Database 19c releases before 19.16, set parameters
+                        <code class="codeph">WALLET_ROOT</code>, <code class="codeph">TDE_CONFIGURATION</code>, and
+                        <code class="codeph">ENCRYPT_NEW_TABLESPACES</code>.
+                              </li>
+                              <li>For releases earlier than Oracle Database19c, set parameters
+                        <code class="codeph">ENCRYPTION_WALLET_LOCATION</code> and
+                        <code class="codeph">ENCRYPT_NEW_TABLESPACES</code>.
+                              </li>
+                           </ul>
+                           
+                           <div class="infoboxnote" id="GUID-628AACF9-C2FA-4CF4-9CBA-C428D5CEF73A__GUID-6496BA74-98C5-4FB7-A795-389E70DB1BE1">
+                              <p class="notep1">Note:</p>
+                              
+                              <p>Unless otherwise specified by the
+                        <code class="codeph">TABLESPACE_ENCRYPTION=DECRYPT_ONLY</code> parameter, a new
+                    tablespace's encryption on the standby database will be the same as that of the
+                    primary.
+                              </p>
+                              
+                           </div>
+                           
+                           <p>In the following table use the links to find references for setting the primary and
+                standby database parameters.</p>
+                           
+                           <div class="tblformalwide" id="GUID-628AACF9-C2FA-4CF4-9CBA-C428D5CEF73A__TABLE_WQL_KZZ_R2C">
+                              <table cellpadding="4" cellspacing="0" class="FormalWide" title summary="parameters to use for different releases" width="100%" frame="hsides" border="1" rules="rows">
+                                 <thead>
+                                    <tr align="left" valign="top">
+                                       <th align="left" valign="bottom" width="15%" id="d98720e869">Parameter</th>
+                                       <th align="left" valign="bottom" width="40%" id="d98720e871">Definition</th>
+                                       <th align="left" valign="bottom" width="15%" id="d98720e873">All Oracle Database releases before 19c</th>
+                                       <th align="left" valign="bottom" width="15%" id="d98720e875">Oracle Database release 19.15 and earlier</th>
+                                       <th align="left" valign="bottom" width="15%" id="d98720e877">Oracle Database release 19.16 and later</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr align="left" valign="top">
+                                       <td align="left" valign="top" width="15%" id="d98720e881" headers="d98720e869 "><a href="../asoag/using-sqlnet-ora-to-configure-tde-keystores.html#ASOAG-GUID-DF9504EF-BA08-4585-895D-2E5F4BA30E50" target="_blank">ENCRYPTION_WALLET_LOCATION</a></td>
+                                       <td align="left" valign="top" width="40%" headers="d98720e881 d98720e871 ">Defines the location of the wallet</td>
+                                       <td align="left" valign="top" width="15%" headers="d98720e881 d98720e873 ">RECOMMENDED</td>
+                                       <td align="left" valign="top" width="15%" headers="d98720e881 d98720e875 ">DEPRECATED</td>
+                                       <td align="left" valign="top" width="15%" headers="d98720e881 d98720e877 ">DEPRECATED</td>
+                                    </tr>
+                                    <tr align="left" valign="top">
+                                       <td align="left" valign="top" width="15%" id="d98720e894" headers="d98720e869 "><a href="../refrn/WALLET_ROOT.html#REFRN-GUID-37347728-3D24-444A-A9ED-5B981C4EA2D3" target="_blank">WALLET_ROOT</a> and <a href="../refrn/TDE_CONFIGURATION.html#REFRN-GUID-285A9BCE-22AE-4DE4-A76E-1319B7BB91BC" target="_blank">TDE_CONFIGURATION</a></td>
+                                       <td align="left" valign="top" width="40%" headers="d98720e894 d98720e871 ">
+                                          
+                                          <p><code class="codeph">WALLET_ROOT</code> sets the location of the root of the
+                                    directory for wallet storage for each PDB in a CDB.
+                                          </p>
+                                          
+                                          <p><code class="codeph">TDE_CONFIGURATION</code> defines the type of keystore.
+                                    For example, <code class="codeph">FILE</code> for a wallet keystore. The
+                                    keystore type must be set to the same value on the primary and
+                                    standby database.
+                                          </p>
+                                          
+                                       </td>
+                                       <td align="left" valign="top" width="15%" headers="d98720e894 d98720e873 ">N/A</td>
+                                       <td align="left" valign="top" width="15%" headers="d98720e894 d98720e875 ">RECOMMENDED</td>
+                                       <td align="left" valign="top" width="15%" headers="d98720e894 d98720e877 ">RECOMMENDED</td>
+                                    </tr>
+                                    <tr align="left" valign="top">
+                                       <td align="left" valign="top" width="15%" id="d98720e924" headers="d98720e869 "><a href="../refrn/ENCRYPT_NEW_TABLESPACES.html#REFRN-GUID-44EF2AAC-1313-4437-B0F3-A427F45016F2" target="_blank">ENCRYPT_NEW_TABLESPACES</a></td>
+                                       <td align="left" valign="top" width="40%" headers="d98720e924 d98720e871 ">
+                                          
+                                          <p>Indicates whether a new tablespace on the primary database should
+                                    be encrypted</p>
+                                          
+                                          <p>The <code class="codeph">ENCRYPT_NEW_TABLESPACES</code> parameter can be set
+                                    as follows:
+                                          </p>
+                                          
+                                          <ul style="list-style-type: disc;" id="GUID-628AACF9-C2FA-4CF4-9CBA-C428D5CEF73A__UL_XZK_311_S2C">
+                                             <li><code class="codeph">CLOUD_ONLY</code> - Default setting. Any new
+                                        tablespaces created are transparently encrypted with the
+                                        AES128 algorithm, unless a different algorithm is specified
+                                        in the <code class="codeph">ENCRYPTION</code> clause in the
+                                            <code class="codeph">CREATE TABLESPACE</code> statement. For
+                                        on-premises databases, tablespaces are only encrypted if the
+                                            <code class="codeph">CREATE TABLESPACE...ENCRYPTION</code> clause
+                                        is specified. 
+                                             </li>
+                                             <li><code class="codeph">ALWAYS</code> - Any new tablespace created in a
+                                        primary database, on-premises or in the cloud, will be
+                                        transparently encrypted with the AES128 algorithm, unless a
+                                        different encryption algorithm is specified in the
+                                            <code class="codeph">CREATE TABLESPACE ENCRYPTION</code> clause. 
+                                             </li>
+                                             <li><code class="codeph">DDL</code> - Allows you to create tablespaces with
+                                        or without encryption following the <code class="codeph">CREATE
+                                            TABLESPACE</code> command, and also lets you change
+                                        the encryption algorithm. <span class="bold">Note:</span> This value is not
+                                        applicable for cloud primary databases with releases from
+                                        Oracle Database 19c (19.16) and later because tablespace
+                                        encryption is enforced.
+                                             </li>
+                                          </ul>
+                                          
+                                       </td>
+                                       <td align="left" valign="top" width="15%" headers="d98720e924 d98720e873 ">RECOMMENDED</td>
+                                       <td align="left" valign="top" width="15%" headers="d98720e924 d98720e875 ">RECOMMENDED</td>
+                                       <td align="left" valign="top" width="15%" headers="d98720e924 d98720e877 ">
+                                          
+                                          <p>NOT RECOMMENDED</p>
+                                          
+                                          <p>Override with recommended setting for
+                                        <code class="codeph">TABLESPACE_ENCRYPTION</code></p>
+                                          
+                                       </td>
+                                    </tr>
+                                    <tr align="left" valign="top">
+                                       <td align="left" valign="top" width="15%" id="d98720e986" headers="d98720e869 "><a href="../refrn/TABLESPACE_ENCRYPTION.html#REFRN-GUID-42408BFB-1A3F-4BAA-B0E9-1AA0CD48FA5A" target="_blank">TABLESPACE_ENCRYPTION</a> (see
+                                note above)
+                                       </td>
+                                       <td align="left" valign="top" width="40%" headers="d98720e986 d98720e871 ">
+                                          
+                                          <p>Oracle Database 19c (19.16) and later releases - indicates
+                                    whether a new tablespace should be encrypted. Available options
+                                    are <code class="codeph">AUTO_ENABLE</code>,
+                                    <code class="codeph">MANUAL_ENABLE</code>, and
+                                        <code class="codeph">DECRYPT_ONLY</code>.
+                                          </p>
+                                          
+                                          <p>Starting with Oracle Database 19c (19.16), Oracle Cloud forces
+                                    encryption for all tablespaces in the cloud database. This
+                                    cannot be overridden.</p>
+                                          
+                                          <p>To prevent encrypted tablespaces on an on-premises database
+                                    (primary or standby) set the
+                                        <code class="codeph">TABLESPACE_ENCRYPTION</code> parameter to
+                                        <code class="codeph">DECRYPT_ONLY</code>.
+                                          </p>
+                                          
+                                          <p><code class="codeph">DECRYPT_ONLY</code> is only valid in an on-premises
+                                    database.
+                                          </p>
+                                          
+                                       </td>
+                                       <td align="left" valign="top" width="15%" headers="d98720e986 d98720e873 ">N/A</td>
+                                       <td align="left" valign="top" width="15%" headers="d98720e986 d98720e875 ">N/A</td>
+                                       <td align="left" valign="top" width="15%" headers="d98720e986 d98720e877 ">RECOMMENDED</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                           
+                           <p>To configure Transparent Data Encryption using a TDE wallet follow the steps in <a href="../asoag/configuring-transparent-data-encryption.html#ASOAG-GUID-C5D20EAE-3369-411F-9A7E-13AB14139F1D" target="_blank">Configuring Transparent Data Encryption</a>.
+                           </p>
+                           
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-D3234929-E8B2-40A9-9949-65820651E9E4" name="GUID-D3234929-E8B2-40A9-9949-65820651E9E4"></a><h5 id="HAOVW-GUID-D3234929-E8B2-40A9-9949-65820651E9E4" class="sect5">Check the TDE Master Key Before
+        Instantiation</h5>
+                     <div>
+                        <p>Even in cases where the primary database remains unencrypted, TDE must be
+        configured on the primary database. This configuration includes creating the encryption
+        wallet and setting the master key.</p>
+                        <div class="section">
+                           
+                           <p>During the process the wallet is copied to the standby database. The master key
+                stored in the wallet will be used by the standby database for encryption.</p>
+                           
+                           <p>In the event of a switchover where the cloud standby database becomes the primary
+                database, the key is used by the unencrypted on-premises database to decrypt the
+                encrypted redo from the cloud database.</p>
+                           
+                           <p>Failure to set the master key will result in failure of Data Guard managed
+                recovery.</p>
+                           
+                           <p>To confirm the master key is set properly:</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-D3234929-E8B2-40A9-9949-65820651E9E4__UL_SXN_QB1_S2C">
+                              <li>
+                                 
+                                 <p>Verify that the <code class="codeph">MASTERKEYID</code> column in
+                            V$<code class="codeph">DATABASE_KEY_INFO</code> matches a key existing in
+                            <code class="codeph">V$ENCRYPTION_KEYS</code> on the source database.
+                                 </p>
+                                 
+                                 <p>In a multitenant container database (CDB) environment, check
+                            <code class="codeph">CDB$ROOT</code> and all the PDBs except
+                            <code class="codeph">PDB$SEED</code>.
+                                 </p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-6CBEFEA0-9C01-435C-962E-72FF38F42284" name="GUID-6CBEFEA0-9C01-435C-962E-72FF38F42284"></a><h5 id="HAOVW-GUID-6CBEFEA0-9C01-435C-962E-72FF38F42284" class="sect5">Configure Online Redo Logs</h5>
+                     <div>
+                        <p>Redo log switches can have a significant impact on redo transport and apply
+        performance.</p>
+                        <div class="section">
+                           
+                           <p>Follow these best practices for sizing the online redo logs on the primary database
+                before instantiation.</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-6CBEFEA0-9C01-435C-962E-72FF38F42284__UL_MKD_BC1_S2C">
+                              <li>All online redo log groups should have identically sized logs (to the
+                    byte).</li>
+                              <li>Online redo logs should reside on high performing disks (DATA disk groups) and
+                    on high redundancy disk groups if possible.</li>
+                              <li>Create a minimum of three online redo log groups per thread of redo on Oracle
+                    RAC instances.</li>
+                              <li>Create online redo log groups on shared disks in an Oracle RAC environment.</li>
+                              <li>Do not multiplex online redo logs (multiple members per log group) unless they
+                    are not placed on high redundancy disk groups.</li>
+                              <li>Size online redo logs to switch no more than 12 times per hour (every ~5
+                    minutes) during peak workloads. </li>
+                           </ul>
+                           
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-54FDDD22-9FFA-4564-9D79-BE49CEC0F80F" name="GUID-54FDDD22-9FFA-4564-9D79-BE49CEC0F80F"></a><h5 id="HAOVW-GUID-54FDDD22-9FFA-4564-9D79-BE49CEC0F80F" class="sect5">Size Redo Logs</h5>
+                     <div>
+                        <p>Size redo logs based on the peak redo generation rate of the primary
+        database.</p>
+                        <div class="section">
+                           
+                           <p>You can determine the peak rate by running the query below for a time period that
+                includes the peak workload. </p>
+                           
+                           <p>The peak rate could be seen at month-end, quarter-end, or annually. Using the
+                guidance above, size the redo logs to handle the highest rate +10% in order for redo
+                apply to perform consistently during these workloads.</p>
+                           <pre class="pre codeblock"><code>SQL&gt; SELECT thread#,sequence#,blocks*block_size/1024/1024 MB,
+(next_time-first_time)*86400 sec,
+&nbsp;blocks*block_size/1024/1024)/((next_time-first_time)*86400) "MB/s"
+&nbsp;FROM v$archived_log
+&nbsp;WHERE ((next_time-first_time)*86400&lt;&gt;0)
+&nbsp;and first_time between to_date('2015/01/15 08:00:00','YYYY/MM/DD HH24:MI:SS')
+&nbsp;and to_date('2015/01/15 11:00:00','YYYY/MM/DD HH24:MI:SS')
+&nbsp;and dest_id=1 order by first_time;
+
+&nbsp; &nbsp;THREAD# &nbsp;SEQUENCE# &nbsp; &nbsp; &nbsp; &nbsp; MB &nbsp; &nbsp; &nbsp; &nbsp;SEC &nbsp; &nbsp; &nbsp; MB/s&nbsp;
+---------- ---------- ---------- ---------- ----------&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2 &nbsp; &nbsp; &nbsp; 2291 29366.1963 &nbsp; &nbsp; &nbsp; &nbsp;831 &nbsp;35.338383&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; &nbsp; 2565 29365.6553 &nbsp; &nbsp; &nbsp; &nbsp;781 37.6000708&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2 &nbsp; &nbsp; &nbsp; 2292 29359.3403 &nbsp; &nbsp; &nbsp; &nbsp;537 &nbsp;54.672887&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; &nbsp; 2566 29407.8296 &nbsp; &nbsp; &nbsp; &nbsp;813 36.1719921&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2 &nbsp; &nbsp; &nbsp; 2293 29389.7012 &nbsp; &nbsp; &nbsp; &nbsp;678 43.3476418&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2 &nbsp; &nbsp; &nbsp; 2294 29325.2217 &nbsp; &nbsp; &nbsp; 1236 23.7259075&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; &nbsp; 2567 11407.3379 &nbsp; &nbsp; &nbsp; 2658 4.29169973&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2 &nbsp; &nbsp; &nbsp; 2295 29452.4648 &nbsp; &nbsp; &nbsp; &nbsp;477 61.7452093&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2 &nbsp; &nbsp; &nbsp; 2296 29359.4458 &nbsp; &nbsp; &nbsp; &nbsp;954 30.7751004&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2 &nbsp; &nbsp; &nbsp; 2297 29311.3638 &nbsp; &nbsp; &nbsp; &nbsp;586 50.0193921&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; &nbsp; 2568 3867.44092 &nbsp; &nbsp; &nbsp; 5510 .701894903&nbsp;</code></pre>
+                           <p>Choose the redo log size based on the peak generation rate with the following
+                chart.</p>
+                           
+                           <div class="tblformal" id="GUID-54FDDD22-9FFA-4564-9D79-BE49CEC0F80F__TABLE_UBG_M21_S2C">
+                              <table cellpadding="4" cellspacing="0" class="Formal" title summary="recommended redo log size per peak redo rate threshold" frame="hsides" border="1" rules="rows">
+                                 <thead>
+                                    <tr align="left" valign="top">
+                                       <th align="left" valign="bottom" width="0%" id="d98720e1174">Peak Redo Rate</th>
+                                       <th align="left" valign="bottom" width="0%" id="d98720e1176">Recommended Redo Log Size</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr align="left" valign="top">
+                                       <td align="left" valign="top" width="0%" id="d98720e1180" headers="d98720e1174 ">&lt;= 1 MB/s</td>
+                                       <td align="left" valign="top" width="0%" headers="d98720e1180 d98720e1176 ">500 MB</td>
+                                    </tr>
+                                    <tr align="left" valign="top">
+                                       <td align="left" valign="top" width="0%" id="d98720e1185" headers="d98720e1174 ">&lt;= 5 MB/s</td>
+                                       <td align="left" valign="top" width="0%" headers="d98720e1185 d98720e1176 ">1 GB </td>
+                                    </tr>
+                                    <tr align="left" valign="top">
+                                       <td align="left" valign="top" width="0%" id="d98720e1190" headers="d98720e1174 ">&lt;= 25 MB/s</td>
+                                       <td align="left" valign="top" width="0%" headers="d98720e1190 d98720e1176 ">8 GB</td>
+                                    </tr>
+                                    <tr align="left" valign="top">
+                                       <td align="left" valign="top" width="0%" id="d98720e1195" headers="d98720e1174 ">&lt;= 50 MB/s</td>
+                                       <td align="left" valign="top" width="0%" headers="d98720e1195 d98720e1176 ">16 GB </td>
+                                    </tr>
+                                    <tr align="left" valign="top">
+                                       <td align="left" valign="top" width="0%" id="d98720e1200" headers="d98720e1174 ">&gt; 50 MB/s</td>
+                                       <td align="left" valign="top" width="0%" headers="d98720e1200 d98720e1176 ">32 GB </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                           
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-E109246C-9C85-4BE4-BB14-25F2494C3A91" name="GUID-E109246C-9C85-4BE4-BB14-25F2494C3A91"></a><h5 id="HAOVW-GUID-E109246C-9C85-4BE4-BB14-25F2494C3A91" class="sect5">Enable Flashback Database</h5>
+                     <div>
+                        <p>Flashback Database allows reinstatement of the old primary database as a
+        standby database after a failover.</p>
+                        <div class="section">
+                           
+                           <p>Without Flashback Database enabled, the old primary database would have to be
+                recreated as a standby after a failover. If flashback database has not already been
+                enabled, enable it now.</p>
+                           
+                           <p>To enable flashback database, make sure you have sufficient space and I/O throughput
+                in your Fast Recovery Area or RECO disk group, and evaluate any performance
+                impact.</p>
+                           
+                           <p>As the <code class="codeph">oracle</code> OS user on the first node of the on-premises
+                environment, run the command below to enable flashback database on the primary if it
+                is not already enabled.
+                           </p>
+                           <pre class="pre codeblock"><code>[oracle@on-prem1]$ echo "alter database flashback on;" | sqlplus -SILENT "/ as sysdba"
+
+Database altered.</code></pre>
+                           </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-C140172D-5C2E-4302-B4AA-F4E8073C7C91" name="GUID-C140172D-5C2E-4302-B4AA-F4E8073C7C91"></a><h5 id="HAOVW-GUID-C140172D-5C2E-4302-B4AA-F4E8073C7C91" class="sect5">Investigate Log for Errors (TFA)</h5>
+                     <div>
+                        <p></p>
+                        <div class="section">
+                           
+                           <p>As the <code class="codeph">root</code> OS user on the first node of the on-premises
+                environment, use Oracle Trace File Analyzer to analyze all of your logs across your
+                cluster to identify recent database errors. 
+                           </p>
+                           
+                           <p>The Event Summary gives you a real-time report the database status.</p>
+                           <pre class="pre codeblock"><code>[root@on-prem1]# tfactl events -component RDBMS -database [DBname] -last 7d
+
+
+Output from host : on-prem1
+------------------------------
+
+Event Summary:
+INFO &nbsp; &nbsp;:0
+ERROR &nbsp; :0
+WARNING :0
+
+Event Timeline:
+No Events Found
+
+
+Output from host : on-prem2
+------------------------------
+
+Event Summary:
+INFO &nbsp; &nbsp;:0
+ERROR &nbsp; :0
+WARNING :0
+
+Event Timeline:
+No Events Found</code></pre>
+                           <div class="infoboxnote" id="GUID-C140172D-5C2E-4302-B4AA-F4E8073C7C91__GUID-2B9404B1-D257-461F-BDA3-8351E4FA5769">
+                              <p class="notep1">Note:</p>
+                              
+                              <p>Review the result and investigate and any failures before moving forward. Refer
+                    to <a href="https://docs.oracle.com/en/engineered-systems/health-diagnostics/trace-file-analyzer/tfaug/quick-start-guide.html#GUID-A1DBE3D4-6501-47D3-854E-E9978F19F7BA" target="_blank">Collecting and Analyzing Oracle Database
+                        Diagnostic Data</a> for more information.
+                              </p>
+                              
+                           </div>
+                           
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-36B0864D-5971-4A29-B748-5535DD005A7A" name="GUID-36B0864D-5971-4A29-B748-5535DD005A7A"></a><h3 id="HAOVW-GUID-36B0864D-5971-4A29-B748-5535DD005A7A" class="sect3">Instantiate the Standby Using
+        Oracle DBaaS Tools</h3>
+               <div>
+                  <p>Prepare the on-premises environment and instantiate the standby database
+        using the DBaaS Tools <code class="codeph">prepareForStandby</code> and
+            <code class="codeph">configureStandby</code> work flows.
+                  </p>
+               </div>
+               <div class="sect3"><a id="GUID-1908D756-CDB7-4E23-A0CC-815EE3020E8D" name="GUID-1908D756-CDB7-4E23-A0CC-815EE3020E8D"></a><h4 id="HAOVW-GUID-1908D756-CDB7-4E23-A0CC-815EE3020E8D" class="sect4">Task 1: Install DBaaSCA in the On-Premises
+        Environment</h4>
+                  <div>
+                     <p></p>
+                     <div class="section">
+                        
+                        <ol id="GUID-1908D756-CDB7-4E23-A0CC-815EE3020E8D__OL_MCN_XG1_S2C">
+                           <li>
+                              
+                              <p>Copy the <code class="codeph">/var/opt/oracle/dbaastools/dbaasca.zip</code> artifact
+                        from the Cloud environment to the first node of the on-premises environment
+                        as the <code class="codeph">oracle</code> OS user. 
+                              </p>
+                              
+                              <div class="infoboxnote" id="GUID-1908D756-CDB7-4E23-A0CC-815EE3020E8D__GUID-22F04435-C788-4E8D-A698-730E90939F4E">
+                                 <p class="notep1">Note:</p>
+                                 
+                                 <p>A fresh version of <code class="codeph">dbaasca</code> should be downloaded each
+                            time this process is run.
+                                 </p>
+                                 
+                              </div>
+                              <pre class="pre codeblock"><code>[oracle@on-prem1]$ scp 
+&lt;cloud-exadata1&gt;@/var/opt/oracle/dbaastools/dbaasca.zip /tmp</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p>As the <code class="codeph">root</code> OS user on the first node of the on-premises
+                        environment, create the <code class="codeph">dbaasca</code> directory.
+                              </p>
+                              <pre class="pre codeblock"><code>[root@on-prem1]# mkdir -p /var/opt/oracle/dbaastools/dbaasca
+
+[root@on-prem1]# chown -R oracle:oinstall /var/opt/oracle</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p>As the <code class="codeph">oracle</code> OS user on the first node of the on-premises
+                        environment, unzip the <code class="codeph">dbaasca.zip</code> file into
+                            <code class="codeph">/var/opt/oracle/dbaastools/dbaasca</code>.
+                              </p>
+                              <pre class="pre codeblock"><code>[oracle@on-prem1]$ unzip -q
+ /tmp/dbaasca.zip -d /var/opt/oracle/dbaastools/dbaasca</code></pre>
+                              </li>
+                        </ol>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-FE0C08D9-5774-4A88-BF1E-283937F7900E" name="GUID-FE0C08D9-5774-4A88-BF1E-283937F7900E"></a><h4 id="HAOVW-GUID-FE0C08D9-5774-4A88-BF1E-283937F7900E" class="sect4">Task 2: Prepare the Cloud Environment for
+        Instantiation of the Standby Database</h4>
+                  <div>
+                     <p></p>
+                     <div class="section">
+                        
+                        <p>The target <code class="codeph">ORACLE_HOME</code> for the standby database must already exist
+                on the standby system. Use the following steps to create the home if one does not
+                already exist. 
+                        </p>
+                        
+                        <p>It is recommended that the home for the standby database be the same version, RU and
+                include one-off patches. If the same RU is not available, a more recent RU of the
+                same major version can be used.</p>
+                        
+                     </div>
+                     <div class="section">
+                        
+                        <p>To install an Oracle Home for the standby database:</p>
+                        
+                        <ol id="GUID-FE0C08D9-5774-4A88-BF1E-283937F7900E__OL_HXG_QH1_S2C">
+                           <li>
+                              
+                              <p>As the <code class="codeph">oracle</code> OS user on the first node of the on-premises
+                        environment, use <code class="codeph">opatch</code> to list the database release.
+                              </p>
+                              <pre class="pre codeblock"><code>[oracle@on-prem1]$ $ORACLE_HOME/OPatch/opatch lspatches | grep 'Database Release Update'
+
+36912597;Database Release Update : 19.25.0.0.241015 (36912597)</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p>As the <code class="codeph">root</code> OS user on the first node of the cloud
+                        environment, use <code class="codeph">dbaascli</code> to list the available images
+                        matching the on-premises release.
+                              </p>
+                              <pre class="pre codeblock"><code>[root@cloud-exadata1 ~]# dbaascli cswLib showImages | grep -A 1 '19.25'
+
+2.IMAGE_TAG=19.25.0.0.0
+  VERSION=19.25.0.0.0
+&nbsp; DESCRIPTION=19c OCT 2024 DB Image</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p>As the <code class="codeph">root</code> OS user on the first node of the cloud
+                        environment, use <code class="codeph">dbaascli</code> to download the available image
+                        matching the on-premises release.
+                              </p>
+                              <pre class="pre codeblock"><code>[root@cloud-exadata1 ~]# dbaascli cswlib download --version 19.25.0.0.0
+...
+dbaascli execution completed</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p>As the <code class="codeph">root</code> OS user on the first node of the cloud
+                        environment, use <code class="codeph">dbaascli</code> to create the target
+                            <code class="codeph">ORACLE_HOME</code> matching the on-premises release.
+                              </p>
+                              <pre class="pre codeblock"><code>[root@cloud-exadata ~]# dbaascli dbHome create --version 19.25.0.0.0
+
+-----------------
+Running Plugin_initialization job
+...
+---------- START OF PLUGIN RESULT ----------
+{"ORACLE_HOME_NAME":"OraHome4","ORACLE_HOME":"/u02/app/oracle/product/19.0.0.0/dbhome_3"}
+---------- END OF PLUGIN RESULT ----------
+
+dbaascli execution completed</code></pre>
+                              </li>
+                        </ol>
+                        
+                        <div class="infoboxnote" id="GUID-FE0C08D9-5774-4A88-BF1E-283937F7900E__GUID-6C0470D1-E33A-4B0C-A041-A0B632E8E100">
+                           <p class="notep1">Note:</p>
+                           
+                           <p>Take note of the <code class="codeph">ORACLE_HOME_NAME</code>, you will need it for the
+                    migration.
+                           </p>
+                           
+                           <p>The Oracle Home on the cloud system can also be created using the OCI User
+                    Interface.</p>
+                           
+                        </div>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-324411D1-D0E4-4AFB-8F23-F1912C0022EA" name="GUID-324411D1-D0E4-4AFB-8F23-F1912C0022EA"></a><h4 id="HAOVW-GUID-324411D1-D0E4-4AFB-8F23-F1912C0022EA" class="sect4">Task 3: Instantiate the Standby
+        Database</h4>
+                  <div>
+                     <p>After the preparations are complete you can run the Oracle DBaaS Tools
+            <code class="codeph">prepareForStandby</code> and <code class="codeph">configureStandby</code> work flows to
+        instantiate the cloud standby database.
+                     </p>
+                     <div class="section">
+                        
+                        <p>You will actually run two jobs using the Oracle DBaaS Tools:</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-324411D1-D0E4-4AFB-8F23-F1912C0022EA__UL_TCL_N31_S2C">
+                           <li>Run <code class="codeph">dbaasca</code> operation <code class="codeph">prepareForStandby</code> in the
+                    on-premises environment.
+                           </li>
+                           <li>Run <code class="codeph">dbaascli</code> operation <code class="codeph">configureStandby</code> in the
+                    cloud environment.
+                           </li>
+                        </ul>
+                        
+                     </div>
+                     <div class="section"></div>
+                  </div>
+                  <div class="sect4"><a id="GUID-42196DA1-0DEC-4E97-B40D-7C0F984543E1" name="GUID-42196DA1-0DEC-4E97-B40D-7C0F984543E1"></a><h5 id="HAOVW-GUID-42196DA1-0DEC-4E97-B40D-7C0F984543E1" class="sect5">Configure ACFS</h5>
+                     <div>
+                        <p></p>
+                        <div class="section">
+                           
+                           <p>As the root OS user on the first node of the on-premises environment, create the ACFS
+                mount point required to execute prepareForStandby.</p>
+                           <pre class="pre codeblock"><code>[root@on-prem1]# $(grep ^crs_home /etc/oracle/olr.loc |
+ cut -d= -f2)/bin/crsctl stat res -w "TYPE == ora.acfs.type" |grep NAME
+NAME=ora.datac1.acfsvol01.acfs
+
+[root@on-prem1]# $(grep ^crs_home /etc/oracle/olr.loc |
+ cut -d= -f2)/bin/crsctl stat res ora.datac1.acfsvol01.acfs -f |grep ^MOUNTPOINT_PATH
+MOUNTPOINT_PATH=/acfs01
+
+Create a directory for the dbname (oradb1 for this example):
+
+[root@on-prem1]# mkdir /acfs01/oradb1
+[root@on-prem1]# chown oracle:oinstall /acfs01/oradb1</code></pre>
+                           </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-29A48049-69B6-4D67-A2A3-830F56821B85" name="GUID-29A48049-69B6-4D67-A2A3-830F56821B85"></a><h5 id="HAOVW-GUID-29A48049-69B6-4D67-A2A3-830F56821B85" class="sect5">Run dbaasca Operation prepareForStandby in the
+        On-Premises Environment</h5>
+                     <div>
+                        <p></p>
+                        <div class="section">
+                           
+                           <p>Now you are prepared to start the process. First, you will prepare the primary
+                database to become part of a Data Guard configuration. Gather the following
+                information which will be passed to the workflow.</p>
+                           
+                           <ol id="GUID-29A48049-69B6-4D67-A2A3-830F56821B85__OL_WJL_MJ1_S2C">
+                              <li>
+                                 
+                                 <p>As the <code class="codeph">root</code> OS user on the first node of the cloud
+                        environment, collect the <code class="codeph">standbyScanName</code> and
+                            <code class="codeph">standbyScanPort</code> required to execute
+                            <code class="codeph">dbaasca</code>.
+                                 </p>
+                                 <pre class="pre codeblock"><code>[root@cloud-exadata1 ~]# $(grep ^crs_home /etc/oracle/olr.loc | cut -d=
+ -f2)/bin/srvctl config scan |grep 'SCAN name:' | awk '{print $3}'
+cloud-exadata-scan.clientnet.default.oraclevcn.com,
+
+[root@cloud-exadata1 ~]# dbaascli grid getDetails | grep scanListenerTCPPorts |
+ cut -d "[" -f2 | cut -d "]" -f1
+ 1521&nbsp;</code></pre>
+                                 <p>Make note of these pieces of information to be passed to the workflow.</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>As the <code class="codeph">oracle</code> OS user on the first node of the on-premises
+                        environment, collect the primary database unique name required to execute
+                            <code class="codeph">dbaasca</code>.
+                                 </p>
+                                 <pre class="pre codeblock"><code>[oracle@on-prem1]$ echo "select DB_UNIQUE_NAME from v\$database;" |
+ sqlplus -SILENT "/ as sysdba"
+
+DB_UNIQUE_NAME
+------------------------------
+oradb1_onprem</code></pre>
+                                 </li>
+                              <li>
+                                 
+                                 <p>As the <code class="codeph">oracle</code> OS user on the first node of the on-premises
+                        environment, set the environment variable <code class="codeph">ORACLE_HOME</code>
+                        pointing to the on-premises database Oracle Home.
+                                 </p>
+                                 <pre class="pre codeblock"><code>[oracle@on-prem1]$ srvctl config database -home
+oradb1 &nbsp; &nbsp; /u01/app/oracle/product/19.0.0.0/dbhome_1 &nbsp; &nbsp; &nbsp; 19.0.0.0.0
+
+[oracle@on-prem1]$ export ORACLE_HOME=/u01/app/oracle/product/19.0.0.0/dbhome_1</code></pre>
+                                 </li>
+                              <li>
+                                 
+                                 <p>With that information gathered, run the <code class="codeph">prepareForStandby</code>
+                        work flow with the appropriate replacements.
+                                 </p>
+                                 
+                                 <p>As the <code class="codeph">oracle</code> OS user on the first node of the on-premises
+                        environment, run <code class="codeph">dbaasca</code> operation
+                            <code class="codeph">prepareForStandby</code> with corresponding arguments.
+                                 </p>
+                                 <pre class="pre codeblock"><code>[oracle@on-prem1]$ 
+
+/var/opt/oracle/dbaastools/dbaasca/bin/dbca \
+-silent \
+-oui_internal \
+-configureDatabase \
+-prepareForStandby \
+-dgTNSNamesoraFilePath /acfs01/oradb1 \
+-sourceDB oradb1_onprem \
+-standbyDBUniqueName oradb1_cloud \
+-standbyScanName cloud-exadata-scan.clientnet.default.oraclevcn.com \
+-standbyScanPort 1521 \
+-standbyDBDomain clientnet.default.oraclevcn.com \
+-blobFileLocation /tmp 
+
+SYS_PASSWORD_PROMPT
+&lt;ENTER_SYS_PASSWORD&gt;
+
+Session ID of the current execution is: 53
+-----------------
+Running Create_dg_services job
+Completed Create_dg_services job
+25% complete
+-----------------
+Running Update_tnsnames_ora_file job
+Completed Update_tnsnames_ora_file job
+50% complete
+-----------------
+Running Update_ifile_entry job
+Completed Update_ifile_entry job
+75% complete
+-----------------
+Running Prepare_blob_file job
+Completed Prepare_blob_file job
+100% complete
+---------- PLUGIN NOTES ----------
+Successfully created blob file: /tmp/oradb1_2024-11-21_10-59-53AM_137640.tar
+---------- END OF PLUGIN NOTES ----------
+Look at the log file
+ "/u01/app/oracle/cfgtoollogs/dbca/oradb1_onprem/oradb1_onprem.log"
+ for further details.</code></pre>
+                                 <p>The workflow creates a zip file with required files to instantiate the
+                        standby database. For example, <code class="codeph">tnsnames.ora</code>, TDE wallet and
+                        so on. This <code class="codeph">tar</code> file is listed in the output of the command
+                        and must be copied from the to a location on the standby system.
+                                 </p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>As the <code class="codeph">oracle</code> OS user on the first node of the on-premises
+                        environment, copy the generated blob file to the first node of the cloud
+                        environment.
+                                 </p>
+                                 <pre class="pre codeblock"><code>[oracle@on-prem1]$ scp
+ /tmp/oradb1_2024-11-21_10-59-53AM_137640.tar opc@cloud-exadata1:/tmp</code></pre>
+                                 </li>
+                           </ol>
+                           
+                        </div>
+                     </div>
+                  </div>
+                  <div class="sect4"><a id="GUID-FA13DC9B-5AA3-49A1-A9F5-EFE3D4EF8261" name="GUID-FA13DC9B-5AA3-49A1-A9F5-EFE3D4EF8261"></a><h5 id="HAOVW-GUID-FA13DC9B-5AA3-49A1-A9F5-EFE3D4EF8261" class="sect5">Run dbaascli Operation configureStandby in the
+        Cloud Environment</h5>
+                     <div>
+                        <p></p>
+                        <div class="section">
+                           
+                           <ol id="GUID-FA13DC9B-5AA3-49A1-A9F5-EFE3D4EF8261__OL_H25_RK1_S2C">
+                              <li>
+                                 <p>First, gather some information that has to be passed to the
+                            <code class="codeph">configureStandby</code> work flow.
+                                 </p>As the
+                        <code class="codeph">oracle</code> OS user on the first node of the on-premises
+                    environment, collect the <code class="codeph">primaryScanIPAddresses</code>,
+                        <code class="codeph">primaryScanPort</code>, and <code class="codeph">primaryServiceName</code>
+                    required to execute
+                    <code class="codeph">dbaascli</code>.<pre class="pre codeblock"><code>[oracle@on-prem1]$ $(grep ^crs_home /etc/oracle/olr.loc |
+ cut -d= -f2)/bin/srvctl config scan |grep 'SCAN name:' | awk '{print $3}'
+maafra2vm01-oe6ab-scan.clientnet.maafradefault.oraclevcn.com
+
+[oracle@on-prem1]$ srvctl config scan_listener -scannumber 1 |grep Endpoints
+Endpoints: TCP:1521/TCPS:2484
+
+[oracle@on-prem1]$ lsnrctl status | grep oradb1_onprem | cut -d'"' -f 2
+oradb1_onprem.clientnet.maafradefault.oraclevcn.com</code></pre></li>
+                              <li>
+                                 
+                                 <p>As the <code class="codeph">root</code> OS user on the first node of the cloud
+                        environment, run <code class="codeph">dbaascli</code> operation
+                            <code class="codeph">configureStandby</code> with corresponding arguments.
+                                 </p>
+                                 <pre class="pre codeblock"><code>[root@cloud-exadata1]# 
+
+dbaascli dataguard configureStandby \
+--dbname oradb1 \
+--oracleHome /u02/app/oracle/product/19.0.0.0/dbhome_3 \
+--standbyDBUniqueName oradb1_cloud \
+--primaryScanIPAddresses companyxyz.region.com \
+--primaryScanPort 1521 \
+--primaryServiceName oradb1_onprem.companyxyz.region.com \
+--protectionMode MAX_PERFORMANCE \
+--transportType ASYNC \
+--activeDG true \
+--standbyScanIPAddresses cloud-exadata-scan.clientnet.default.oraclevcn.com \
+--standbyScanPort 1521 \
+--standbyBlobFromPrimary /tmp/oradb1_2024-11-21_10-59-53AM_137640.tar
+
+
+Enter PRIMARY_DB_SYS_PASSWORD:
+&lt;ENTER_PRIMARY_DB_SYS_PASSWORD&gt;
+Enter PRIMARY_DB_TDE_PASSWORD:
+&lt;ENTER_PRIMARY_DB_SYS_PASSWORD&gt;
+Enter AWR_ADMIN_PASSWORD:
+&lt;ENTER_AWR_ADMIN_PASSWORD&gt;
+Enter AWR_ADMIN_PASSWORD (reconfirmation):
+&lt;ENTER_AWR_ADMIN_PASSWORD&gt;
+
+Loading PILOT...
+Session ID of the current execution is: 10015
+Log file location:
+ /var/opt/oracle/log/oradb1/dataguard/configureStandby/pilot_2024-11-21_11-28-21-AM_270773
+-----------------
+Running Plugin_initialization job
+Enter PRIMARY_DB_SYS_PASSWORD
+*******************
+Enter PRIMARY_DB_TDE_PASSWORD
+******************
+Enter AWR_ADMIN_PASSWORD
+********************
+Completed Plugin_initialization job
+-----------------
+Running Validate_plugin_inputs job
+Completed Validate_plugin_inputs job
+-----------------
+Running Default_database_values_initialization job
+Completed Default_database_values_initialization job
+-----------------
+...
+-----------------
+Running Generate_dgconfig_details job
+Acquiring native write lock: global_dgsystem_details_generation
+Releasing native lock: global_dgsystem_details_generation
+Completed Generate_dgconfig_details job
+Releasing lock: oradb1
+Releasing lock: _u02_app_oracle_product_19.0.0.0_dbhome_3
+-----------------
+Running Cleanup job
+Completed Cleanup job
+
+dbaascli execution completed</code></pre>
+                                 <div class="infoboxnote" id="GUID-FA13DC9B-5AA3-49A1-A9F5-EFE3D4EF8261__GUID-66F8E0DE-182D-418E-9259-3B968D23309F">
+                                    <p class="notep1">Note:</p>The Oracle MAA best practice is for the standby to be open read-only to
+                        enable Automatic Block Media Recovery; Use the flag <code class="codeph">--activeDG
+                            true</code></div>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>As the <code class="codeph">root</code> OS user on the first node of the cloud
+                        environment, run the following commands to monitor the progress of the
+                            <code class="codeph">dbaascli</code> operation
+                        <code class="codeph">configureStandby</code>.
+                                 </p>
+                                 <pre class="pre codeblock"><code>[root@cloud-exadata1]# export dbName=oradb1
+[root@cloud-exadata1]# export dbUniqueName=oradb1_cloud
+
+[root@cloud-exadata1]# tail -20f `ls -t
+ /var/opt/oracle/log/$dbName/dataguard/configureStandby/pilot_* | head -1`
+
+FINE: [2024-11-21 11:43:38.908 UTC][pool-334-thread-1][DBCAExecutor$DBCAExecutionProcessHandler.logOutput:96]
+ -----------------
+FINE: [2024-11-21 11:43:38.910 UTC][pool-334-thread-1][DBCAExecutor$DBCAExecutionProcessHandler.logOutput:96]
+ Running Open_pdbs job
+FINE: [2024-11-21 11:43:42.661 UTC][pool-334-thread-1][DBCAExecutor$DBCAExecutionProcessHandler.logOutput:96]
+ Completed Open_pdbs job
+FINE: [2024-11-21 11:43:42.668 UTC][pool-334-thread-1][DBCAExecutor$DBCAExecutionProcessHandler.logOutput:96]
+ 90% complete
+FINE: [2024-11-21 11:43:42.692 UTC][pool-334-thread-1][DBCAExecutor$DBCAExecutionProcessHandler.logOutput:96]
+ -----------------
+FINE: [2024-11-21 11:43:42.697 UTC][pool-334-thread-1][DBCAExecutor$DBCAExecutionProcessHandler.logOutput:96]
+ Running Create_services job
+
+[root@cloud-exadata1]# tail -20f `ls -t
+ /var/opt/oracle/log/$dbName/dataguard/configureStandby/$dbUniqueName/trace* | head -1`
+
+[pool-3-thread-4] [ 2024-11-21 12:03:55.015 UTC ] [CRSCache.getAttributesFromCRS:155]
+ &nbsp;CRS: name: ora.oradb1_cloud.oradb1_oradb1p3.paas.oracle.com.svc, type 1, node: null
+[pool-3-thread-4] [ 2024-11-21 12:03:55.015 UTC ] [CRSCache.getAttributesFromCRS:156]
+ &nbsp;attrs: [GLOBAL]
+[pool-3-thread-4] [ 2024-11-21 12:03:55.016 UTC ] [CRSCache.getAttributesFromCRS:163]
+ &nbsp;CRS: [&lt;GLOBAL:false&gt;]
+[pool-3-thread-4] [ 2024-11-21 12:03:55.016 UTC ] [CRSNative.genericStartEntity:668]
+ &nbsp;[MAJOR EVENT] About to start resource:
+ Name: ora.oradb1_cloud.oradb1_oradb1p3.paas.oracle.com.svc, force:false node: null,
+ options: 0, filter null
+[pool-3-thread-4] [ 2024-11-21 12:03:55.016 UTC ] [CRSNative.genericStartEntity:678]
+ &nbsp;filter = null
+[pool-3-thread-4] [ 2024-11-21 12:03:55.016 UTC ] [CRSNative.genericStartEntity:679]
+ &nbsp;node name = null
+
+[root@cloud-exadata1]# tail -20f /u01/app/grid/diag/crs/`hostname`/crs/trace/alert.log 
+
+2024-11-21 12:13:59.362 [CRSD(398369)]
+ CRS-2772: Server 'maafra3vm02-qbi0z1' has been assigned to pool
+ 'ora.oradb1_oradb1_oradb1p3_ro.paas.oracle.com'.
+2024-11-21 12:13:59.363 [CRSD(398369)]
+ CRS-2772: Server 'maafra3vm02-qbi0z2' has been assigned to pool
+ 'ora.oradb1_oradb1_oradb1p3_ro.paas.oracle.com'.
+2024-11-21 12:14:00.420 [CRSD(398369)]
+ CRS-2772: Server 'maafra3vm02-qbi0z1' has been assigned to pool
+ 'ora.oradb1_oradb1_oradb1p4.paas.oracle.com'.
+2024-11-21 12:14:00.421 [CRSD(398369)]
+ CRS-2772: Server 'maafra3vm02-qbi0z2' has been assigned to pool
+ 'ora.oradb1_oradb1_oradb1p4.paas.oracle.com'.
+</code></pre>
+                                 </li>
+                           </ol>
+                           
+                           <div class="infoboxnote" id="GUID-FA13DC9B-5AA3-49A1-A9F5-EFE3D4EF8261__GUID-FBA72402-DF94-44E9-90DB-8ACD7B9E5FD3">
+                              <p class="notep1">Note:</p>
+                              
+                              <p>Once this process completes, delete <code class="codeph">dbaasca</code> and the zip file
+                    from the on-premises system.
+                              </p>
+                              
+                           </div>
+                           
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-F33AE7B9-E625-41FF-B1AB-D08057DD88E7" name="GUID-F33AE7B9-E625-41FF-B1AB-D08057DD88E7"></a><h4 id="HAOVW-GUID-F33AE7B9-E625-41FF-B1AB-D08057DD88E7" class="sect4">Task 4: Validate the Standby Database</h4>
+                  <div>
+                     <p></p>
+                     <div class="section">
+                        
+                        <ol id="GUID-F33AE7B9-E625-41FF-B1AB-D08057DD88E7__OL_JRX_XL1_S2C">
+                           <li>
+                              
+                              <p>As the <code class="codeph">root</code> OS user on the first node of the cloud
+                        environment, check the Oracle database configuration.
+                              </p>
+                              <pre class="pre codeblock"><code>[root@cloud-exadata1]# dbaascli database getDetails --dbname oradb1 |
+ egrep 'dbName|dbRole|dbType|patchVersion'
+&nbsp; "dbName" : "oradb1",
+&nbsp; "dbRole" : "PHYSICAL_STANDBY",
+&nbsp; "dbType" : "RAC",
+&nbsp; "patchVersion" : "19.25.0.0.0",
+&nbsp; &nbsp; &nbsp; "pdbName" : "ORADB1P1",
+&nbsp; &nbsp; &nbsp; "pdbName" : "ORADB1P2",
+&nbsp; &nbsp; &nbsp; "pdbName" : "ORADB1P3",
+&nbsp; &nbsp; &nbsp; "pdbName" : "ORADB1P4",
+&nbsp; &nbsp; &nbsp; "pdbName" : "ORADB1P5",</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p>As the <code class="codeph">root</code> OS user on the first node of the cloud
+                        environment, check the Oracle Data Guard Broker configuration.
+                              </p>
+                              <pre class="pre codeblock"><code>[root@cloud-exadata1]# dbaascli dataguard getDetails --dbName oradb1 |
+ egrep 'protectionMode|"status"|dbUniqueName|dgRole|standbyType|transportType|"switchoverReadiness"|"failoverReadiness"|redoTransportState|databaseStatus'
+
+&nbsp; "protectionMode" : "MAX_PERFORMANCE",
+&nbsp; "status" : "SUCCESS",
+&nbsp; &nbsp; &nbsp; "dbUniqueName" : "oradb1_onprem",
+&nbsp; &nbsp; &nbsp; "dgRole" : "PRIMARY",
+&nbsp; &nbsp; &nbsp; "standbyType" : null,
+&nbsp; &nbsp; &nbsp; "transportType" : "ASYNC",
+&nbsp; &nbsp; &nbsp; "switchoverReadiness" : "HEALTHY",
+&nbsp; &nbsp; &nbsp; "failoverReadiness" : "HEALTHY",
+&nbsp; &nbsp; &nbsp; "redoTransportState" : "ON",
+&nbsp; &nbsp; &nbsp; "databaseStatus" : "SUCCESS",
+&nbsp; &nbsp; &nbsp; "dbUniqueName" : "oradb1_cloud",
+&nbsp; &nbsp; &nbsp; "dgRole" : "STANDBY",
+&nbsp; &nbsp; &nbsp; "standbyType" : "PHYSICAL_STANDBY",
+&nbsp; &nbsp; &nbsp; "transportType" : "ASYNC",
+&nbsp; &nbsp; &nbsp; "switchoverReadiness" : "HEALTHY",
+&nbsp; &nbsp; &nbsp; "failoverReadiness" : "HEALTHY",
+&nbsp; &nbsp; &nbsp; "redoTransportState" : null,
+&nbsp; &nbsp; &nbsp; "databaseStatus" : "SUCCESS",</code></pre>
+                              <p>'status' should be SUCCESS. If any other status is shown, re-run the command
+                        after waiting 2 minutes to give the Broker time to update. If issues
+                        persist, see the Oracle Data Guard Broker documentation to diagnose and
+                        correct any issues.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>As the <code class="codeph">oracle</code> OS user on the first node of the cloud
+                        environment, validate the standby database.
+                              </p>
+                              <pre class="pre codeblock"><code>[oracle@cloud-exadata1]$ dgmgrl / 'validate database oradb1_cloud'
+
+DGMGRL for Linux: Release 19.0.0.0.0 - Production on Thu Nov 21 15:26:55 2024
+Version 19.25.0.0.0
+
+Copyright (c) 1982, 2019, Oracle and/or its affiliates. &nbsp;All rights reserved.
+
+Welcome to DGMGRL, type "help" for information.
+Connected to "oradb1_cloud"
+Connected as SYSDG.
+
+&nbsp; Database Role: &nbsp; &nbsp; Physical standby database
+&nbsp; Primary Database: &nbsp;oradb1_onprem
+
+&nbsp; Ready for Switchover: &nbsp;Yes
+&nbsp; Ready for Failover: &nbsp; &nbsp;Yes (Primary Running)
+
+&nbsp; Managed by Clusterware:
+&nbsp; &nbsp; oradb1_onprem &nbsp;: &nbsp;YES &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; oradb1_cloud: &nbsp;YES &nbsp; &nbsp; &nbsp; </code></pre>
+                              </li>
+                        </ol>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-412CA014-DE6D-4E53-8305-F442FF559E97" name="GUID-412CA014-DE6D-4E53-8305-F442FF559E97"></a><h4 id="HAOVW-GUID-412CA014-DE6D-4E53-8305-F442FF559E97" class="sect4">Task 5: Implement Recommended MAA Best
+        Practices</h4>
+                  <div>
+                     <p> After standby instantiation, evaluate implementing the following Oracle MAA
+        best practices to achieve better data protection and availability. </p>
+                     <div class="section">
+                        
+                        <p>While many of the recommended best practices are implemented as part of the
+                workflows, some additional recommendations are not implemented as they may have a
+                performance impact.</p>
+                        
+                        <p>The additional key best practices are listed below. Also see <a href="configure-and-deploy-oracle-data-guard.html#GUID-49A57864-51C9-4078-AA5A-91A84E590259" title="The following topics describe Oracle MAA best practices for configuring your Oracle Data Guard configuration.">Oracle Data Guard Configuration Best Practices</a> for details about Oracle MAA recommended best practices for
+                Oracle Data Guard.
+                        </p>
+                        
+                        <p><span class="bold">Set Data Protection Parameters</span></p>
+                        
+                        <p>MAA best practice recommendations include the following settings on the
+                primary and standby databases.</p>
+                        
+                        <p><code class="codeph">db_block_checksum=TYPICAL</code></p>
+                        
+                        <p><code class="codeph">db_lost_write_protect=TYPICAL</code></p>
+                        
+                        <p><code class="codeph">db_block_checking=MEDIUM</code></p>
+                        <pre class="pre codeblock"><code>SQL&gt; show parameter db_block_checksum
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+db_block_checksum                    string      TYPICAL
+
+SQL&gt; alter system set db_block_checksum=TYPICAL scope=both sid='*';
+
+SQL&gt; show parameter db_lost_write_protect
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+db_lost_write_protect                string      typical
+
+SQL&gt; alter system set db_lost_write_protect=TYPICAL scope=both sid='*';
+
+SQL&gt; show parameter db_block_checking
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+db_block_checking                    string      OFF
+
+SQL&gt; alter system set db_block_checking=MEDIUM scope=both sid='*';</code></pre>
+                        <p>Note that the <code class="codeph">db_block_checking</code> setting has an impact on
+                primary database performance and should be thoroughly tested with a production
+                workload in a lower, production-like environment. 
+                        </p>
+                        
+                        <p>If the performance impact is determined to be unacceptable on the primary database,
+                the standby database should set <code class="codeph">db_block_checking=MEDIUM</code> with the
+                primary set to <code class="codeph">NONE</code> and set the <code class="codeph">cloudautomation</code>
+                Data Guard Broker property to '1' for both databases so that the value will be
+                automatically changed accordingly after a role transition swapping values of the
+                primary and standby databases.
+                        </p>
+                        <pre class="pre codeblock"><code>DGMGRL&gt; edit database <span class="variable" translate="no">primary-unique-name</span> set property cloudautomation=1;
+Property "cloudautomation" updated
+
+DGMGRL&gt; edit database <span class="variable" translate="no">standby-unique-name</span> set property cloudautomation=1;
+Property "cloudautomation" updated</code></pre>
+                        <p>Note that the <code class="codeph">cloudautomation</code> property must be set on
+                both databases to work properly.
+                        </p>
+                        
+                        <p><span class="bold">Configure Redo Transport - Oracle Net Encryption</span></p>
+                        
+                        <p>To protect against plain text or unencrypted tablespace redo from being visible on
+                the WAN, place the following entries in the <code class="codeph">sqlnet.ora</code> file on all
+                on-premises database nodes.
+                        </p>
+                        
+                        <p>These values should already be set by the deployment tool in cloud
+                configurations.</p>
+                        <pre class="pre codeblock"><code>#SQLNET.ORA ON ON-PREMISES HOST(S)
+SQLNET.ENCRYPTION_SERVER=REQUIRED
+SQLNET.CRYPTO_CHECKSUM_SERVER=REQUESTED
+SQLNET.ENCRYPTION_TYPES_SERVER=(AES256,AES192,AES128)
+SQLNET.CRYPTO_CHECKSUM_TYPES_SERVER=(SHA1)
+SQLNET.ENCRYPTION_CLIENT=REQUESTED
+SQLNET.CRYPTO_CHECKSUM_CLIENT=REQUIRED
+SQLNET.ENCRYPTION_TYPES_CLIENT=(AES256,AES192,AES128)
+SQLNET.CRYPTO_CHECKSUM_TYPES_CLIENT=(SHA1)</code></pre>
+                        <p><span class="bold">Configure Backups</span></p>
+                        
+                        <p>Optionally, configure automatic backups for the Oracle cloud database,
+                for primary or standby role, using Autonomous Recovery Service or object storage. </p>
+                        
+                        <p>Autonomous Recovery Service allows you to offload backup processing and
+                storage in addition to the following benefits:</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-412CA014-DE6D-4E53-8305-F442FF559E97__UL_WVM_QCC_KBC">
+                           <li>Significantly reduce dependencies on backup infrastructure</li>
+                           <li>Develop a centralized backup management strategy for all the
+                    supported OCI database services</li>
+                           <li>Retain backups with Recovery Service for a maximum period of 95
+                    days</li>
+                           <li>Leverage real-time data protection capabilities to eliminate data
+                    loss</li>
+                           <li>Significantly reduce backup processing overhead for your production
+                    databases</li>
+                           <li>Implement a dedicated network for Recovery Service operations in
+                    each virtual cloud network (VCN)</li>
+                           <li>Automate backup validation to ensure recoverability</li>
+                           <li>Implement a policy-driven backup life-cycle management</li>
+                        </ul>
+                        
+                        <p>See <a href="https://docs.oracle.com/iaas/exadatacloud/exacs/ecs-managing-db-backup-and-recovery.html#ECSCM-GUID-07D1B1D6-4A06-4859-B7DF-4C3A681A6B40" target="_blank">Manage Database Backup and Recovery
+                    on Oracle Exadata Database Service on Dedicated Infrastructure</a> and <a href="https://docs.public.oneportal.content.oci.oraclecloud.com/iaas/recovery-service/doc/overview-recovery-service.html" target="_blank">Database Autonomous Recovery
+                    Service</a> for more information.
+                        </p>
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-E4382805-9A29-4548-93C8-1E9B41B60B21" name="GUID-E4382805-9A29-4548-93C8-1E9B41B60B21"></a><h3 id="HAOVW-GUID-E4382805-9A29-4548-93C8-1E9B41B60B21" class="sect3">Data Guard Life Cycle Operations</h3>
+               <div>
+                  <p></p>
+                  <div class="section">
+                     
+                     <p>When the configuration is complete, Data Guard life-cycle operations, failover,
+                switchover, and reinstate can be performed by <code class="codeph">dbaascli</code> commands.
+                See the <a href="https://docs.oracle.com/en/cloud/paas/database-dbaas-cloud/csdbi/dbaascli.html" target="_blank">OCI Documentation</a> for details.
+                     </p>
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-7EA0E91C-D0BD-4234-9711-0494092FA946" name="GUID-7EA0E91C-D0BD-4234-9711-0494092FA946"></a><h3 id="HAOVW-GUID-7EA0E91C-D0BD-4234-9711-0494092FA946" class="sect3">Health Check and Monitoring</h3>
+               <div>
+                  <p>After instantiating the standby database, a health check should be performed
+        to ensure that the Oracle Data Guard databases (primary and standby) are compliant with
+        Oracle MAA best practices.</p>
+                  <div class="section">
+                     
+                     <p> It is also recommended that you perform the health check monthly, and
+                before and after database maintenance. Oracle Autonomous Health Framework and
+                automated tools including an Oracle MAA Scorecard using OraChk or ExaChk are
+                recommended for checking the health of a Data Guard configuration. See <a href="https://docs.oracle.com/pls/topic/lookup?ctx=en/engineered-systems/health-diagnostics/autonomous-health-framework&id=AHFUG-GUID-A1DBE3D4-6501-47D3-854E-E9978F19F7BA" target="_blank">Oracle Autonomous Health Framework User's
+                    Guide</a> and <a href="https://docs.oracle.com/en/engineered-systems/health-diagnostics/exachk/index.html" target="_blank">Oracle ORAchk and Oracle EXAchk
+                    documentation</a>.
+                     </p>
+                     
+                     <p>Regular monitoring of the Oracle Data Guard configuration is not
+                provided in a hybrid Data Guard configuration and must be done manually. See <a href="monitor-oracle-data-guard-configuration.html#GUID-0B4778F0-EE81-46A7-9E0C-BB32CDF690B9" title="Use the following Oracle MAA best practice recommendations to monitor an Oracle Data Guard configuration.">Monitor an Oracle Data Guard Configuration</a> for more information.
+                     </p>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

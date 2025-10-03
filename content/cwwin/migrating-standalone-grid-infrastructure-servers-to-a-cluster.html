@@ -1,0 +1,220 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Migrating Standalone Grid Infrastructure Servers to a Cluster">
+      <meta name="abstract" content="If you have an Oracle Database installation using Oracle Restart (an Oracle Grid Infrastructure installation for a standalone server), you can reconfigure that server as a cluster member node, then complete the following tasks.">
+      <meta name="description" content="If you have an Oracle Database installation using Oracle Restart (an Oracle Grid Infrastructure installation for a standalone server), you can reconfigure that server as a cluster member node, then complete the following tasks.">
+      <meta name="DC.subject" content="commands, srvctl, roothas.bat, ASMCA, enabling Oracle Restart disk group volumes">
+      <meta name="keywords" content="commands, srvctl, roothas.bat, ASMCA, enabling Oracle Restart disk group volumes">
+      <meta name="DC.Relation" scheme="URI" content="modifying-or-deinstalling-oracle-grid-infrastructure.html#GUID-17E0E260-1900-4113-A5C6-A3EB2DA690ED">
+      <meta name="DC.Creator" content="Tejas N K">
+      <meta name="DC.Contributor" content="Douglas Williams">
+      <meta name="DC.Contributor" content="Prakash Jashnani">
+      <meta name="DC.Contributor" content="Subhash Chandra">
+      <meta name="DC.Contributor" content="Sunil Surabhi">
+      <meta name="DC.Creator" content="Alex Keh">
+      <meta name="DC.Creator" content="Aneesh Khandelwal">
+      <meta name="DC.Creator" content="Barb Glover">
+      <meta name="DC.Creator" content="David Price">
+      <meta name="DC.Creator" content="Deepak Keswani">
+      <meta name="DC.Creator" content="Eric Belden">
+      <meta name="DC.Creator" content="Esperanza Citlali Garcia Medina">
+      <meta name="DC.Creator" content="Ian Cookson">
+      <meta name="DC.Creator" content="James Williams">
+      <meta name="DC.Creator" content="Jacqueline Sideri">
+      <meta name="DC.Creator" content="Jiangqi Yang">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Joseph Francis">
+      <meta name="DC.Creator" content="Kevin Jernigan">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="Maria Colgan">
+      <meta name="DC.Creator" content="Mark Scardina">
+      <meta name="DC.Creator" content="Michael Coulter">
+      <meta name="DC.Creator" content="Pallavi Kamath">
+      <meta name="DC.Creator" content="Parvathi Subramanian">
+      <meta name="DC.Creator" content="Prasad Bagal">
+      <meta name="DC.Creator" content="Priyanka Sharma">
+      <meta name="DC.Creator" content="Rajesh Dasari">
+      <meta name="DC.Creator" content="Ramesh Chakravarthula">
+      <meta name="DC.Creator" content="Richard Wessman">
+      <meta name="DC.Creator" content="Robert Achacoso">
+      <meta name="DC.Creator" content="Rudregowda Mallegowda">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Srinivas Poovala">
+      <meta name="DC.Creator" content="Suresh Yambari Venkata Naga">
+      <meta name="DC.Creator" content="Tonghua Li">
+      <meta name="DC.Creator" content="Vishal Saxena">
+      <meta name="DC.Creator" content="Yanhua Xia">
+      <meta name="DC.Creator" content="Binika Kumar">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-0A0556D0-409B-4306-BEB6-56494A6D8BD4">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="If you have an Oracle Database installation using Oracle Restart (an Oracle Grid Infrastructure installation for a standalone server), you can reconfigure that server as a cluster member node, then complete the following tasks.">
+      <meta name="description" content="If you have an Oracle Database installation using Oracle Restart (an Oracle Grid Infrastructure installation for a standalone server), you can reconfigure that server as a cluster member node, then complete the following tasks.">
+      <title>Migrating Standalone Grid Infrastructure Servers to a Cluster</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Installation and Upgrade Guide">
+      <meta property="og:description" content="If you have an Oracle Database installation using Oracle Restart (an Oracle Grid Infrastructure installation for a standalone server), you can reconfigure that server as a cluster member node, then complete the following tasks.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Installation and Upgrade Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="grid-infrastructure-installation-and-upgrade-guide-microsoft-windows.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-12T04:15:52-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2012, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96354-07">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="deciding-when-to-deinstall-oracle-clusterware.html" title="Previous" type="text/html">
+      <link rel="next" href="changing-the-oracle-grid-infrastructure-home-path.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Grid Infrastructure Installation and Upgrade Guide for Microsoft Windows">
+    <meta name="dcterms.isVersionOf" content="CWWIN">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Migrating Standalone Grid Infrastructure Servers to a Cluster","description":"If you have an Oracle Database installation using Oracle Restart (an Oracle Grid Infrastructure installation for a standalone server), you can reconfigure that server as a cluster member node, then complete the following tasks.","datePublished":"2025-06-12 CST","dateModified":"2025-06-12 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="deciding-when-to-deinstall-oracle-clusterware.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="changing-the-oracle-grid-infrastructure-home-path.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-0A0556D0-409B-4306-BEB6-56494A6D8BD4" name="GUID-0A0556D0-409B-4306-BEB6-56494A6D8BD4"></a>
+         
+         <h2 id="CWWIN-GUID-0A0556D0-409B-4306-BEB6-56494A6D8BD4" class="sect2">Migrating Standalone Grid Infrastructure Servers to a Cluster</h2>
+         <div class="ind">
+            <div>
+               <p>If you have an Oracle Database installation using Oracle Restart (an Oracle Grid Infrastructure installation for a standalone server), you can reconfigure that server as a cluster member node, then complete the following tasks.</p>
+               <ol>
+                  <li class="stepexpand"><span>Inspect the Oracle Restart configuration with the Server Control (SRVCTL) utility using the following syntax, where <span class="variable" translate="no">db_unique_name</span> is the unique name for the database, and <span class="variable" translate="no">lsnrname</span> is the name of the listener for the database:</span><div><pre class="pre codeblock"><code>srvctl config database -db <span class="variable" translate="no">db_unique_name</span>
+srvctl config service -db <span class="variable" translate="no">db_unique_name</span>
+srvctl config listener -listener <span class="variable" translate="no">lsnrname</span></code></pre></div>
+                     <div>Write down the configuration information for the server; you will need this information in a later step.</div>
+                  </li>
+                  <li class="stepexpand"><span>Stop all of the databases, services, and listeners that you discovered in step 1.</span></li>
+                  <li class="stepexpand"><span>If present, unmount all Oracle Automatic Storage Management Cluster File System (Oracle ACFS) file systems.</span></li>
+                  <li class="stepexpand"><span>Log in as an Administrator user and navigate to the directory <code><span class="variable" translate="no">Grid_home</span>\crs\install</code>, where <span class="variable" translate="no">Grid_home</span> is the location of your Oracle Grid Infrastructure home (Grid home) directory, for example:</span><div><pre class="pre codeblock"><code>C:\&gt; cd app\19.0.0\grid\crs\install</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Unconfigure the Oracle Grid Infrastructure installation for a standalone server (Oracle Restart) using the following command:</span><div><pre class="pre codeblock"><code>C:\..\install&gt; roothas.bat -deconfig -force</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Prepare the server for Oracle Clusterware configuration, as described in Chapter 2 through Chapter 7 of this guide. In addition, choose to install Oracle Grid Infrastructure for a cluster in the same location as Oracle Restart, or in a different location:</span><div>
+                        <div class="tblformal" id="GUID-0A0556D0-409B-4306-BEB6-56494A6D8BD4__GUID-8E6DAB34-66DE-496B-AE79-23F9F5D63686">
+                           <table cellpadding="4" cellspacing="0" class="Formal" title summary="This table lists the choices for where to install Oracle Restart, and the action you must perform for each choice." frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" id="d44480e171">Option</th>
+                                    <th align="left" valign="bottom" id="d44480e173">Description</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d44480e177" headers="d44480e171 ">
+                                       <p>Installing in the Same Location as Oracle Restart</p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d44480e177 d44480e173 ">
+                                       <p>Proceed to step 7.</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d44480e184" headers="d44480e171 ">
+                                       <p>Installing in a Different Location than Oracle Restart</p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d44480e184 d44480e173 ">
+                                       <p>Set up Oracle Grid Infrastructure software in the new Grid home software location, then proceed to step 7.</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>Set the environment variables as follows:</span><div><pre class="pre codeblock"><code>export oracle_install_asm_UseExistingDG=<span class="variable" translate="no">true or false</span>  
+export oracle_install_asm_DiskGroupName=<span class="variable" translate="no">disk_group_name</span>  
+export oracle_install_asm_DiskDiscoveryString=<span class="variable" translate="no">asm_discovery_string</span> 
+export oracle_install_asm_ConfigureGIMRDataDG=<span class="variable" translate="no">true or false</span>
+export oracle_install_asm_GIMRDataDGName=<span class="variable" translate="no">disk_group_name</span></code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>As the Oracle Installation user for Oracle Grid Infrastructure, run the installer.</span><div>
+                        <p>You can complete the installation interactively, or if you want to perform a silent installation, then save and stage the response file. After saving the response file, run the following command. For the <code class="codeph">-responseFile</code> parameter, specify the full path name where the response file was saved, for example:
+                        </p>
+                     </div>
+                     <div><pre class="pre codeblock"><code>C:\&gt; <span class="variable" translate="no">Grid_home</span>\setup.exe -silent -responseFile C:\Users\dba1\scripts\GI.rsp</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Mount the Oracle ASM disk group used by Oracle Restart.</span></li>
+                  <li class="stepexpand"><span>If you used Oracle ACFS with Oracle Restart, then:</span><ol type="a">
+                        <li><span>Start Oracle ASM Configuration Assistant (ASMCA). Run the <code class="codeph">volenable</code> command to enable all Oracle Restart disk group volumes.</span></li>
+                        <li><span>Mount all Oracle ACFS file systems manually.</span></li>
+                     </ol>
+                  </li>
+                  <li class="stepexpand"><span>Add back Oracle ACFS resources to the Oracle Clusterware home, using the information you wrote down in step 1. </span><div>Register the Oracle ACFS resources using a commands similar to the following:</div>
+                     <div><pre class="pre codeblock"><code>C:\&gt; cd app\grid\product\19.0.0\grid\bin
+C:\..bin&gt; srvctl add filesystem -device \\.\ORCLDATADISK4
+-diskgroup ORestartData -volume db1 
+-mountpointpath C:\app\grid\prodcut\19.0.0\dbhome1 -user grid</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Add the Oracle Database for support by Oracle Grid Infrastructure for a cluster, using the configuration information you recorded in step 1. Use the following command syntax, where <span class="variable" translate="no">db_unique_name</span> is the unique name of the database on the node, and <span class="variable" translate="no">nodename</span> is the name of the node:</span><div><pre class="pre codeblock"><code>srvctl add database -db <span class="variable" translate="no">db_unique_name</span> -spfile -pwfile -oraclehome %ORACLE_HOME% -node
+<span class="variable" translate="no">nodename</span></code></pre></div>
+                     <ol type="a">
+                        <li class="substepexpand"><span>Verify that the <code class="codeph">%ORACLE_HOME%</code> environment variable is set to the location of the database home directory. </span></li>
+                        <li class="substepexpand"><span> To add the database name <code class="codeph">mydb</code>, enter the following command:</span><div><pre class="pre codeblock"><code>srvctl add database -db mydb -spfile -pwfile -oraclehome %ORACLE_HOME% -node node1</code></pre></div>
+                        </li>
+                        <li class="substepexpand"><span>Add each service to the database, using the command <code class="codeph">srvctl add service</code>. For example:</span><div><pre class="pre codeblock"><code>srvctl add service -db mydb -service myservice</code></pre></div>
+                        </li>
+                     </ol>
+                  </li>
+                  <li class="stepexpand"><span>Add nodes to your cluster, as required, using the Oracle Grid Infrastructure installer.</span><div>
+                        <div class="infoboxnotealso" id="GUID-0A0556D0-409B-4306-BEB6-56494A6D8BD4__GUID-C979A450-4361-415C-8216-BF4DDE713C2D">
+                           <p class="notep1">See Also:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><a href="recording-response-files.html#GUID-FA34DC51-4296-40DA-B597-C474894DE08C" title="You can use the installer in interactive mode to record response files, which you can then edit and use to complete silent mode or response file mode installations.">Recording Response Files</a> for more information about saving the response file
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><a href="../cwadd/adding-and-deleting-cluster-nodes.html#CWADD1167" target="_blank"><span><cite>Oracle Clusterware Administration and Deployment Guide</cite></span></a> for information about adding nodes to your cluster
+                                 </p>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </li>
+               </ol>
+            </div>
+            <div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="modifying-or-deinstalling-oracle-grid-infrastructure.html#GUID-17E0E260-1900-4113-A5C6-A3EB2DA690ED" title="You must follow a specific procedure when modifying or removing Oracle Clusterware and Oracle Automatic Storage Management (Oracle ASM) software.">Modifying or Deinstalling Oracle Grid Infrastructure</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

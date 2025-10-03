@@ -1,0 +1,229 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Relinking Oracle Restart and Oracle ASM Binaries">
+      <meta name="abstract" content="Relink the Oracle Restart and Oracle ASM binaries every time you apply an operating system patch or after an operating system upgrade.">
+      <meta name="description" content="Relink the Oracle Restart and Oracle ASM binaries every time you apply an operating system patch or after an operating system upgrade.">
+      <meta name="DC.subject" content="roothas.sh">
+      <meta name="keywords" content="roothas.sh">
+      <meta name="DC.Relation" scheme="URI" content="installing-and-configuring-oracle-grid-infrastructure-for-a-standalone-server.html#GUID-DA3B90BE-EE1F-4347-8A5E-ED1BBFF29D93">
+      <meta name="DC.Contributor" content="Douglas Williams">
+      <meta name="DC.Contributor" content="Subhash Chandra">
+      <meta name="DC.Creator" content="Neha Avasthy">
+      <meta name="DC.Creator" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Prasad Bagal">
+      <meta name="DC.Creator" content="Subhranshu Banerjee">
+      <meta name="DC.Creator" content="Mark Bauer">
+      <meta name="DC.Creator" content="Parvathi Subramanian">
+      <meta name="DC.Creator" content="Tammy Bednar">
+      <meta name="DC.Creator" content="Eric Belden">
+      <meta name="DC.Creator" content="Gavin Bowe">
+      <meta name="DC.Creator" content="Gia-Khanh Nguyen">
+      <meta name="DC.Creator" content="Bernard Clouse">
+      <meta name="DC.Creator" content="Darcy Christensen">
+      <meta name="DC.Creator" content="Kiran Chamala">
+      <meta name="DC.Creator" content="Sampath Ravindhran">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Benoit Dageville">
+      <meta name="DC.Creator" content="Sudip Datta">
+      <meta name="DC.Creator" content="Sharad Raju">
+      <meta name="DC.Creator" content="Christopher Jones">
+      <meta name="DC.Creator" content="Rajendra Sahoo">
+      <meta name="DC.Creator" content="Santosh Loke">
+      <meta name="DC.Creator" content="Alta Elstad">
+      <meta name="DC.Creator" content="Peter Dennis">
+      <meta name="DC.Creator" content="Jim Erickson">
+      <meta name="DC.Creator" content="Marcus Fallen">
+      <meta name="DC.Creator" content="Joseph Francis">
+      <meta name="DC.Creator" content="Alan Coopersmith">
+      <meta name="DC.Creator" content="Mark Fuller">
+      <meta name="DC.Creator" content="Allan Graves">
+      <meta name="DC.Creator" content="Barbara Glover">
+      <meta name="DC.Creator" content="Asad Hasan">
+      <meta name="DC.Creator" content="Subrahmanyam Kodavaluru">
+      <meta name="DC.Creator" content="Thirumaleshwara Hasandka">
+      <meta name="DC.Creator" content="Shasank Chavan">
+      <meta name="DC.Creator" content="Lisa Shepherd">
+      <meta name="DC.Creator" content="Clara Jaeckel">
+      <meta name="DC.Creator" content="Aneesh Khandelwal">
+      <meta name="DC.Creator" content="Maria Colgan">
+      <meta name="DC.Creator" content="Eugene Karichkin">
+      <meta name="DC.Creator" content="Jai Krishnani">
+      <meta name="DC.Creator" content="Sangeeth Kumar">
+      <meta name="DC.Creator" content="Ranjith Kundapur">
+      <meta name="DC.Creator" content="Kevin Jernigan">
+      <meta name="DC.Creator" content="Christopher Jones">
+      <meta name="DC.Creator" content="Simon Law">
+      <meta name="DC.Creator" content="Bryn Llewellyn">
+      <meta name="DC.Creator" content="Saar Maoz">
+      <meta name="DC.Creator" content="Sreejith Minnanghat">
+      <meta name="DC.Creator" content="Gopal Mulagund">
+      <meta name="DC.Creator" content="Sue Lee">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Barb Lundhild">
+      <meta name="DC.Creator" content="Prasad Kuruvadi Nagaraj">
+      <meta name="DC.Creator" content="Rudregowda Mallegowda">
+      <meta name="DC.Creator" content="Padmanabhan Manavazhi">
+      <meta name="DC.Creator" content="Mughees Minhas">
+      <meta name="DC.Creator" content="Krishna Mohan">
+      <meta name="DC.Creator" content="Matthew McKerley">
+      <meta name="DC.Creator" content="John McHugh">
+      <meta name="DC.Creator" content="Gurudas Pai">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Rajesh Prasad">
+      <meta name="DC.Creator" content="Rajendra Pingte">
+      <meta name="DC.Creator" content="Prasad K Kulkarni">
+      <meta name="DC.Creator" content="Srinivas Poovala">
+      <meta name="DC.Creator" content="Mohammed Shahnawaz Quadri">
+      <meta name="DC.Creator" content="Hanlin Qian">
+      <meta name="DC.Creator" content="Gurumurthy Ramamurthy">
+      <meta name="DC.Creator" content="Hema Ramamurthy">
+      <meta name="DC.Creator" content="Sunil Ravindrachar">
+      <meta name="DC.Creator" content="Mark Richwine">
+      <meta name="DC.Creator" content="Dipak Saggi">
+      <meta name="DC.Creator" content="Logeshwaran Rajan">
+      <meta name="DC.Creator" content="Rajesh Dasari">
+      <meta name="DC.Creator" content="Angad Gokakkar">
+      <meta name="DC.Creator" content="Anu Natarajan">
+      <meta name="DC.Creator" content="Girdhari Ghantiyala">
+      <meta name="DC.Creator" content="Chandrasekharan Iyer">
+      <meta name="DC.Creator" content="David Jimenez">
+      <meta name="DC.Creator" content="Robert Achacoso">
+      <meta name="DC.Creator" content="Vishal Saxena">
+      <meta name="DC.Creator" content="Vasu Venkatasubramanian">
+      <meta name="DC.Creator" content="Suman Palavalli">
+      <meta name="DC.Creator" content="Sameer Joshi">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="Markus Michalewicz">
+      <meta name="DC.Creator" content="Michael Coulter">
+      <meta name="DC.Creator" content="Trivikrama Samudrala">
+      <meta name="DC.Creator" content="Ramesh Chakravarthula">
+      <meta name="DC.Creator" content="David Schreiner">
+      <meta name="DC.Creator" content="Ara Shakian">
+      <meta name="DC.Creator" content="David Price">
+      <meta name="DC.Creator" content="Mohit Singhal">
+      <meta name="DC.Creator" content="Dharma Sirnapalli">
+      <meta name="DC.Creator" content="Akshay Shah">
+      <meta name="DC.Creator" content="James Spiller">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Binoy Sukumaran">
+      <meta name="DC.Creator" content="Anil Nair">
+      <meta name="DC.Creator" content="Ravi Thammaiah">
+      <meta name="DC.Creator" content="Tak Wang">
+      <meta name="DC.Creator" content="Shekhar Vaggu">
+      <meta name="DC.Creator" content="Ankur Kemkar">
+      <meta name="DC.Creator" content="Ian Cookson">
+      <meta name="DC.Creator" content="Ajesh Viswambharan">
+      <meta name="DC.Creator" content="Peter Wahl">
+      <meta name="DC.Creator" content="Balaji Pagadala">
+      <meta name="DC.Creator" content="Sivaram Soma">
+      <meta name="DC.Creator" content="Sergiusz Wolicki">
+      <meta name="DC.Creator" content="Sivakumar Yarlagadda">
+      <meta name="DC.Creator" content="Alan Tam">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Publisher" content="January2024">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-3A0164E9-8814-4137-808F-CCF5DA32DD26">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Relink the Oracle Restart and Oracle ASM binaries every time you apply an operating system patch or after an operating system upgrade.">
+      <meta name="description" content="Relink the Oracle Restart and Oracle ASM binaries every time you apply an operating system patch or after an operating system upgrade.">
+      <title>Relinking Oracle Restart and Oracle ASM Binaries</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Installation Guide">
+      <meta property="og:description" content="Relink the Oracle Restart and Oracle ASM binaries every time you apply an operating system patch or after an operating system upgrade.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Installation Guide for Oracle Solaris">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-installation-guide-oracle-solaris.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2024-01-17T06:17:11-08:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2015, 2024">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96434-10">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="testing-the-oracle-automatic-storage-management-installation.html" title="Previous" type="text/html">
+      <link rel="next" href="configuring-oracle-asm-disk-groups-manually-using-oracle-asmca.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database Installation Guide for Oracle Solaris">
+    <meta name="dcterms.isVersionOf" content="SSDBI">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","name":"Relinking Oracle Restart and Oracle ASM Binaries","description":"Relink the Oracle Restart and Oracle ASM binaries every time you apply an operating system patch or after an operating system upgrade.","datePublished":"2019-02-22 04:59:06 GMT","dateModified":"2024-01-17 14:21:06 GMT"} </script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="testing-the-oracle-automatic-storage-management-installation.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="configuring-oracle-asm-disk-groups-manually-using-oracle-asmca.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database Installation Guide</span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="installing-and-configuring-oracle-grid-infrastructure-for-a-standalone-server.html" property="item" typeof="WebPage"><span property="name">Installing and Configuring Oracle Grid Infrastructure for a Standalone Server</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Relinking Oracle Restart and Oracle ASM Binaries</li>
+            </ol>
+            <a id="GUID-3A0164E9-8814-4137-808F-CCF5DA32DD26" name="GUID-3A0164E9-8814-4137-808F-CCF5DA32DD26"></a>
+            
+            <h2 id="SSDBI-GUID-3A0164E9-8814-4137-808F-CCF5DA32DD26" class="sect2">Relinking Oracle Restart and Oracle ASM Binaries</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Relink the Oracle Restart and Oracle ASM binaries every time you apply an operating system patch or after an operating system upgrade.</p>
+               <div class="section">
+                  <p></p>
+                  <div class="infobox-caution" id="GUID-3A0164E9-8814-4137-808F-CCF5DA32DD26__GUID-E4D385C9-5192-4978-8265-34778E89DB36">
+                     <p class="notep1">Caution:</p>Before relinking executables, you must shut down all executables that run in the Oracle home directory that you are relinking. In addition, shut down applications linked with Oracle shared libraries.
+                  </div>
+               </div>
+               <!-- class="section" -->
+               <ol>
+                  <li class="stepexpand"><span>Log in as <code class="codeph">root</code> and unlock the grid home:</span><div><pre class="pre codeblock"><code># cd <span class="variable" translate="no">Grid_home</span>/crs/install 
+# roothas.sh -unlock</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Log in as the <code class="codeph">grid </code>user and relink the binaries:</span><div><pre class="pre codeblock"><code>$ export ORACLE_HOME=Grid_home
+$ <span class="variable" translate="no">Grid_home</span>/bin/relink</code></pre></div>
+                  </li>
+                  <li class="stepexpand"><span>Log in as <code class="codeph">root</code> again and perform the following steps:</span><div><pre class="pre codeblock"><code># cd Grid_home/rdbms/install/ 
+# ./rootadd_rdbms.sh 
+# cd Grid_home/crs/install 
+# roothas.sh -lock</code></pre></div>
+                  </li>
+               </ol>
+            </div>
+            <div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="installing-and-configuring-oracle-grid-infrastructure-for-a-standalone-server.html#GUID-DA3B90BE-EE1F-4347-8A5E-ED1BBFF29D93" title="Oracle Grid Infrastructure for a standalone server includes Oracle Restart and Oracle Automatic Storage Management.">Installing and Configuring Oracle Grid Infrastructure for a Standalone Server</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

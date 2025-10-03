@@ -1,0 +1,4950 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>REST APIs for Oracle Database - Get monitoring statistics for a SQL Statement</title>
+		<link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+		<meta name="dcterms.dateCopyrighted" content="2018, 2021">
+		<meta name="dcterms.category" content="database">
+		<meta name="dcterms.identifier" content="E96452-05">
+		
+		<meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+		
+        <link rel="stylesheet" href="/sp_common/rest-template/ohc-rest-template/css/rest.css">
+        <script>
+            document.write('<style type="text/css">');
+            document.write('body > .noscript, body > .noscript ~ * { opacity: 0; }');
+            document.write('</style>');
+        </script>
+        <script data-main="/sp_common/rest-template/ohc-rest-template/js/rest-config" src="/sp_common/rest-template/requirejs/require.js"></script>
+        <script>
+            if(window.require === undefined) {
+                document.write('<script data-main="sp_common/rest-template/ohc-rest-template/js/rest-config" src="sp_common/rest-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/rest-template/ohc-rest-template/css/rest.css" rel="stylesheet">');
+            }
+        </script>
+		
+		<script type="application/json" id="ssot-metadata" space="preserve">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+
+        <meta name="description" content="Provide consumers the ability to perform operations with different Oracle Database features through a web REST API that can be easily adopted.">
+        <meta property="og:site_name" content="Oracle Help Center">
+        <meta property="og:title" content="REST APIs for Oracle Database">
+        <meta property="og:description" content="Provide consumers the ability to perform operations with different Oracle Database features through a web REST API that can be easily adopted.">
+        <meta name="generator" content="Oracle REST API Publisher 1.7.0">
+		<meta name="date" content="2021-01-25 19:53:07 UTC">
+        <link rel="shortcut icon" href="/sp_common/rest-template/ohc-common/img/favicon.ico">
+        <meta name="application-name" content="REST APIs for Oracle Database">
+        <link type="application/swagger+json" title="Swagger 2.0" href="swagger.json" rel="alternate">
+        <link rel="prev" href="op-database-performance-sql_statements-sql_id-monitor-sql_exec_id-sql_exec_start-get.html" title="Previous" type="text/html">
+        <link rel="next" href="op-database-performance-sql_statements-sql_id-monitor-sql_exec_id-sql_exec_start-parallelism-get.html" title="Next" type="text/html">
+    
+    <meta name="dcterms.created" content="2021-01-25T19:55:53+00:00">
+    <meta name="dcterms.title" content="REST APIs for Oracle Database">
+    <meta name="dcterms.isVersionOf" content="DBRST">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+    <body>
+        <div class="noscript alert alert-danger text-center" role="alert">
+            <a class="pull-left" href="op-database-performance-sql_statements-sql_id-monitor-sql_exec_id-sql_exec_start-get.html"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+            <a class="pull-right" href="op-database-performance-sql_statements-sql_id-monitor-sql_exec_id-sql_exec_start-parallelism-get.html">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+            <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        </div>
+        <article>
+
+            
+            <header id="top">
+
+                <ol class="breadcrumb">
+                    <li><a href="index.html">REST APIs for Oracle Database</a></li>
+                    <li>Tasks</li>
+                    
+                    <li class="active">
+                        
+                        <a href="api-performance.html">Performance</a>
+                        
+                    </li>
+                    
+                </ol>
+                
+                <p class="draftsubtitle"></p>
+                
+                
+                <div>
+                	<div class="dropdown btn-group pull-right" style="clear: right;">
+                		<button id="dLabel" class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jump to <span class="caret"></span>
+                		</button>
+      					<ul class="dropdown-menu" aria-labelledby="dLabel">
+          					<li><a href="#request" data-toggle="ignore">Request</a></li>
+          					<li><a href="#response" data-toggle="ignore">Response</a></li>
+          					
+      					</ul>
+    				</div>
+     				<h2>Get monitoring statistics for a SQL Statement</h2>
+     			</div>
+                
+                <div>
+                    <div class="label label-get text-uppercase">get</div>
+                    <p><strong>/database/performance/sql_statements/{sql_id}/monitor/</strong></p>
+                </div>
+            </header>
+            <section>
+
+                <div class="description">Oracle Tuning Pack licence is required for this service. Returns all GV$SQL_MONITOR records for a specified SQL_ID. GV$SQL_MONITOR will contain statistics only for SQL statements whose execution have been (or are being) monitored by Oracle. A client requires SQL Administrator role to invoke this service.</div>
+
+                <h3 id="request">Request</h3>
+                
+
+                
+                
+                <div class="h5">Supported Media Types</div>
+                <ul class="media-types">
+                
+                    <li>application/json</li>
+                
+                </ul>
+                
+                
+
+                
+                <div class="h5">Path Parameters</div>
+                <div class="schema-container">
+                <ul class="schema-properties">
+                
+                    <li><a role="button" data-toggle="collapse" href="#request-path-param-0" aria-expanded="false" aria-controls="request-path-param-0">
+                    sql_id: string
+                    </a>
+                    <div class="collapse" id="request-path-param-0">
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>SQL identifier.</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                    </li>
+                
+                </ul>
+
+                
+                </div>
+                
+
+
+                
+                <div class="h5">Query Parameters</div>
+                <div class="schema-container">
+                    <ul class="schema-properties">
+                        
+                        <li><a role="button" data-toggle="collapse" href="#request-query-param-limit" aria-expanded="false" aria-controls="request-query-param-limit">
+                        limit(optional): integer(int32)
+                        </a>
+                        <div class="collapse" id="request-query-param-limit">
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The maximum number of records to return.</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        </li>
+                        
+                        <li><a role="button" data-toggle="collapse" href="#request-query-param-q" aria-expanded="false" aria-controls="request-query-param-q">
+                        q(optional): string
+                        </a>
+                        <div class="collapse" id="request-query-param-q">
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Filtering is the process of limiting a collection resource by using a per-request dynamic filter definition across multiple page resources, where each page contains a subset of items found in the complete collection. Filtering enables efficient traversal of large collections.</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        </li>
+                        
+                    </ul>
+                    
+                </div>
+                
+
+
+                
+
+
+                
+
+
+                
+
+                
+
+                
+                
+                <a style="float: right" href="#top">Back to Top</a>
+
+                <h3 id="response">Response</h3>
+
+                
+                
+                <div class="h5">Supported Media Types</div>
+                <ul class="media-types">
+                    
+                    <li>application/json</li>
+                    
+                </ul>
+                
+                
+
+
+
+                
+                <div class="response">
+                <h4 class="response-code range-200">200 Response</h4>
+                <div class="response-body">
+                <div>Description of all monitored SQL statements in the database.</div>
+
+                
+
+
+                
+                    <div class="entity">
+                    <div class="h5 hidden-print">Body (<span class="schema-path"></span>)</div>
+
+
+                    <div class="schema-container">
+                    
+                    <div id="200-definitions-PerformanceSQLStatementMonitors" class="swagger-schema">
+    <div class="panel-heading">Root Schema : PerformanceSQLStatementMonitors</div>
+    
+      <div class="schema-type">Type: <code>object</code></div>
+      
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitors-properties-count-properties-count-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitors-properties-count-properties-count-0">
+            count(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitors-properties-count-properties-count-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Total number of records in the current response.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitors-properties-hasMore-properties-hasMore-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitors-properties-hasMore-properties-hasMore-0">
+            hasMore(optional): 
+            boolean</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitors-properties-hasMore-properties-hasMore-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates if there are more records to be retrieved.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitors-properties-items-properties-items-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitors-properties-items-properties-items-0">
+            items(optional): 
+            array </a> <a href="#200-definitions-PerformanceSQLStatementMonitors-properties-items" role="button" class="btn btn-default btn-sm btn-xsm">items</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitors-properties-items-properties-items-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitors-properties-limit-properties-limit-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitors-properties-limit-properties-limit-0">
+            limit(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitors-properties-limit-properties-limit-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The actual page size limit on number of records applied by the server.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitors-properties-links-properties-links-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitors-properties-links-properties-links-0">
+            links(optional): 
+            array </a> <a href="#200-definitions-PerformanceSQLStatementMonitors-properties-links" role="button" class="btn btn-default btn-sm btn-xsm">links</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitors-properties-links-properties-links-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitors-properties-offset-properties-offset-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitors-properties-offset-properties-offset-0">
+            offset(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitors-properties-offset-properties-offset-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The actual index from which the item resources are returned.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;object&quot;,
+    &quot;properties&quot;:{
+        &quot;items&quot;:{
+            &quot;type&quot;:&quot;array&quot;,
+            &quot;items&quot;:{
+                &quot;$ref&quot;:&quot;#/definitions/PerformanceSQLStatementMonitorsItem&quot;
+            }
+        },
+        &quot;hasMore&quot;:{
+            &quot;type&quot;:&quot;boolean&quot;,
+            &quot;description&quot;:&quot;Indicates if there are more records to be retrieved.&quot;
+        },
+        &quot;limit&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;The actual page size limit on number of records applied by the server.&quot;
+        },
+        &quot;offset&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;The actual index from which the item resources are returned.&quot;
+        },
+        &quot;count&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Total number of records in the current response.&quot;
+        },
+        &quot;links&quot;:{
+            &quot;type&quot;:&quot;array&quot;,
+            &quot;items&quot;:{
+                &quot;$ref&quot;:&quot;#/definitions/LinkRelation&quot;
+            }
+        }
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-PerformanceSQLStatementMonitors-properties-items" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : items</div>
+    
+      
+      <div class="schema-type">Type: <code>array</code></div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-items-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-items-0">
+            Array of: 
+                object </a> <a href="#200-definitions-PerformanceSQLStatementMonitorsItem" role="button" class="btn btn-default btn-sm btn-xsm">PerformanceSQLStatementMonitorsItem</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-items-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">This object provides statistics for a single execution of an SQL statement. The list of attributes may vary depending on database version.</div>
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;array&quot;,
+    &quot;items&quot;:{
+        &quot;$ref&quot;:&quot;#/definitions/PerformanceSQLStatementMonitorsItem&quot;
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-PerformanceSQLStatementMonitors-properties-links" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : links</div>
+    
+      
+      <div class="schema-type">Type: <code>array</code></div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-LinkRelation-items-0" aria-expanded="false" aria-controls="200-definitions-LinkRelation-items-0">
+            Array of: 
+                object </a> <a href="#200-definitions-LinkRelation" role="button" class="btn btn-default btn-sm btn-xsm">LinkRelation</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-LinkRelation-items-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;array&quot;,
+    &quot;items&quot;:{
+        &quot;$ref&quot;:&quot;#/definitions/LinkRelation&quot;
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-PerformanceSQLStatementMonitorsItem" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : PerformanceSQLStatementMonitorsItem</div>
+    
+      <div class="schema-type">Type: <code>object</code></div>
+      
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div>This object provides statistics for a single execution of an SQL statement. The list of attributes may vary depending on database version.</div>
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-action-properties-action-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-action-properties-action-0">
+            action(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-action-properties-action-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Name of the executing action when sampled, as set by the DBMS_APPLICATION_INFO.SET_ACTION procedure.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-application_wait_time-properties-application_wait_time-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-application_wait_time-properties-application_wait_time-0">
+            application_wait_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-application_wait_time-properties-application_wait_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Application wait time (in microseconds); updated as the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-binds_xml-properties-binds_xml-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-binds_xml-properties-binds_xml-0">
+            binds_xml(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-binds_xml-properties-binds_xml-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Information about bind variables used with the SQL, such as name, position, value, data type, and so on (stored in XML format).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-buffer_gets-properties-buffer_gets-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-buffer_gets-properties-buffer_gets-0">
+            buffer_gets(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-buffer_gets-properties-buffer_gets-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of buffer get operations; updated as the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-client_identifier-properties-client_identifier-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-client_identifier-properties-client_identifier-0">
+            client_identifier(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-client_identifier-properties-client_identifier-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Client identifier from the user session.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-client_info-properties-client_info-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-client_info-properties-client_info-0">
+            client_info(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-client_info-properties-client_info-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Client information for the user session.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-cluster_wait_time-properties-cluster_wait_time-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-cluster_wait_time-properties-cluster_wait_time-0">
+            cluster_wait_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-cluster_wait_time-properties-cluster_wait_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Cluster wait time (in microseconds); updated as the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-con_id-properties-con_id-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-con_id-properties-con_id-0">
+            con_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-con_id-properties-con_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The ID of the container to which the data pertains.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-con_name-properties-con_name-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-con_name-properties-con_name-0">
+            con_name(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-con_name-properties-con_name-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Container name of the object. The value of this column is NULL in non-CDBs.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-concurrency_wait_time-properties-concurrency_wait_time-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-concurrency_wait_time-properties-concurrency_wait_time-0">
+            concurrency_wait_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-concurrency_wait_time-properties-concurrency_wait_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Concurrency wait time (in microseconds); updated as the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-cpu_time-properties-cpu_time-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-cpu_time-properties-cpu_time-0">
+            cpu_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-cpu_time-properties-cpu_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>CPU time (in microseconds); updated as the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-current_user-properties-current_user-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-current_user-properties-current_user-0">
+            current_user(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-current_user-properties-current_user-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Unique number identifying the current user.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-current_username-properties-current_username-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-current_username-properties-current_username-0">
+            current_username(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-current_username-properties-current_username-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Username for the current user.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-dbop_exec_id-properties-dbop_exec_id-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-dbop_exec_id-properties-dbop_exec_id-0">
+            dbop_exec_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-dbop_exec_id-properties-dbop_exec_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Database operation execution identifier for the current execution. If the type is SQL, the DBOP_EXEC_ID will be NULL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-dbop_name-properties-dbop_name-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-dbop_name-properties-dbop_name-0">
+            dbop_name(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-dbop_name-properties-dbop_name-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Database operation name. If the type is SQL, the DBOP_NAME will be NULL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-direct_writes-properties-direct_writes-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-direct_writes-properties-direct_writes-0">
+            direct_writes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-direct_writes-properties-direct_writes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of direct writes; updated as the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-disk_reads-properties-disk_reads-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-disk_reads-properties-disk_reads-0">
+            disk_reads(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-disk_reads-properties-disk_reads-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of disk reads; updated as the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-ecid-properties-ecid-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-ecid-properties-ecid-0">
+            ecid(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-ecid-properties-ecid-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Execution context identifier (sent by Application Server).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-elapsed_time-properties-elapsed_time-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-elapsed_time-properties-elapsed_time-0">
+            elapsed_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-elapsed_time-properties-elapsed_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Elapsed time (in microseconds); updated as the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-error_facility-properties-error_facility-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-error_facility-properties-error_facility-0">
+            error_facility(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-error_facility-properties-error_facility-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Error facility in case a SQL fails to execute successfully (for example, ORA in case of ORA-00932).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-error_message-properties-error_message-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-error_message-properties-error_message-0">
+            error_message(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-error_message-properties-error_message-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Detailed error message displayed corresponding to the error number and error facility when a SQL fails to execute successfully.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-error_number-properties-error_number-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-error_number-properties-error_number-0">
+            error_number(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-error_number-properties-error_number-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Error number encountered in case a SQL fails to execute successfully (for example, 932 in case of ORA-00932).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-exact_matching_signature-properties-exact_matching_signature-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-exact_matching_signature-properties-exact_matching_signature-0">
+            exact_matching_signature(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-exact_matching_signature-properties-exact_matching_signature-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Signature calculated on the normalized SQL text. The normalization includes the removal of white space and the uppercasing of all non-literal strings.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-fetches-properties-fetches-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-fetches-properties-fetches-0">
+            fetches(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-fetches-properties-fetches-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of fetches associated with the SQL statement; updated as the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-first_refresh_time-properties-first_refresh_time-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-first_refresh_time-properties-first_refresh_time-0">
+            first_refresh_time(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-first_refresh_time-properties-first_refresh_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Time when monitoring of the SQL statement started, generally a few seconds after execution start time.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-force_matching_signature-properties-force_matching_signature-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-force_matching_signature-properties-force_matching_signature-0">
+            force_matching_signature(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-force_matching_signature-properties-force_matching_signature-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Same as EXACT_MATCHING_SIGNATURE but literals in the SQL text are replaced by binds.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-in_dbop_exec_id-properties-in_dbop_exec_id-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-in_dbop_exec_id-properties-in_dbop_exec_id-0">
+            in_dbop_exec_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-in_dbop_exec_id-properties-in_dbop_exec_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>If the SQL that is monitored was executed by a session that was also monitored by a database operation (DBOP), then this column specifies the execution ID of that DBO.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-in_dbop_name-properties-in_dbop_name-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-in_dbop_name-properties-in_dbop_name-0">
+            in_dbop_name(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-in_dbop_name-properties-in_dbop_name-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>If the SQL that is monitored was executed by a session that was also monitored by a database operation (DBOP), then this column specifies the name of that DBOP.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-inst_id-properties-inst_id-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-inst_id-properties-inst_id-0">
+            inst_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-inst_id-properties-inst_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Instance number from which the associated GV$SQL_MONITOR view information was obtained.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-io_cell_offload_eligible_bytes-properties-io_cell_offload_eligible_bytes-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-io_cell_offload_eligible_bytes-properties-io_cell_offload_eligible_bytes-0">
+            io_cell_offload_eligible_bytes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-io_cell_offload_eligible_bytes-properties-io_cell_offload_eligible_bytes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of I/O bytes which can be filtered by the Exadata storage system.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-io_cell_offload_returned_bytes-properties-io_cell_offload_returned_bytes-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-io_cell_offload_returned_bytes-properties-io_cell_offload_returned_bytes-0">
+            io_cell_offload_returned_bytes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-io_cell_offload_returned_bytes-properties-io_cell_offload_returned_bytes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of filtered bytes returned by Exadata cells (that is, the number of bytes returned after  processing has been offloaded on the Exadata cells).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-io_cell_uncompressed_bytes-properties-io_cell_uncompressed_bytes-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-io_cell_uncompressed_bytes-properties-io_cell_uncompressed_bytes-0">
+            io_cell_uncompressed_bytes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-io_cell_uncompressed_bytes-properties-io_cell_uncompressed_bytes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of uncompressed bytes (that is, size after decompression) that are offloaded to the Exadata cells.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-io_interconnect_bytes-properties-io_interconnect_bytes-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-io_interconnect_bytes-properties-io_interconnect_bytes-0">
+            io_interconnect_bytes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-io_interconnect_bytes-properties-io_interconnect_bytes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of I/O bytes exchanged between Oracle Database and the storage system.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-is_adaptive_plan-properties-is_adaptive_plan-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-is_adaptive_plan-properties-is_adaptive_plan-0">
+            is_adaptive_plan(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-is_adaptive_plan-properties-is_adaptive_plan-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether the statistics are from an adaptive plan (Y) or not (N).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-is_final_plan-properties-is_final_plan-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-is_final_plan-properties-is_final_plan-0">
+            is_final_plan(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-is_final_plan-properties-is_final_plan-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether the statistics are from the final plan (Y) or not (N).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-is_full_sqltext-properties-is_full_sqltext-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-is_full_sqltext-properties-is_full_sqltext-0">
+            is_full_sqltext(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-is_full_sqltext-properties-is_full_sqltext-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether the SQL_TEXT column has the entire SQL text (Y) or not (N).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-java_exec_time-properties-java_exec_time-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-java_exec_time-properties-java_exec_time-0">
+            java_exec_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-java_exec_time-properties-java_exec_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Java execution time (in microseconds); updated as the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-key-properties-key-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-key-properties-key-0">
+            key(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-key-properties-key-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Artificial join key to efficiently join GV$SQL_MONITOR with its corresponding plan level monitoring statistics stored in GV$SQL_PLAN_MONITOR.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-last_refresh_time-properties-last_refresh_time-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-last_refresh_time-properties-last_refresh_time-0">
+            last_refresh_time(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-last_refresh_time-properties-last_refresh_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Time when statistics in V$SQL_MONITOR were last updated for the SQL statement. Statistics are generally refreshed every second when the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-links-properties-links-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-links-properties-links-0">
+            links(optional): 
+            array </a> <a href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-links" role="button" class="btn btn-default btn-sm btn-xsm">links</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-links-properties-links-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-module-properties-module-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-module-properties-module-0">
+            module(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-module-properties-module-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Name of the executing module when sampled, as set by the DBMS_APPLICATION_INFO.SET_MODULE procedure.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-other_xml-properties-other_xml-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-other_xml-properties-other_xml-0">
+            other_xml(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-other_xml-properties-other_xml-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Additional information about SQL execution stored in XML format.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-physical_read_bytes-properties-physical_read_bytes-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-physical_read_bytes-properties-physical_read_bytes-0">
+            physical_read_bytes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-physical_read_bytes-properties-physical_read_bytes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of bytes read from disks by the monitored SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-physical_read_requests-properties-physical_read_requests-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-physical_read_requests-properties-physical_read_requests-0">
+            physical_read_requests(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-physical_read_requests-properties-physical_read_requests-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of physical read I/O requests issued by the monitored SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-physical_write_bytes-properties-physical_write_bytes-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-physical_write_bytes-properties-physical_write_bytes-0">
+            physical_write_bytes(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-physical_write_bytes-properties-physical_write_bytes-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of bytes written to disks by the monitored SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-physical_write_requests-properties-physical_write_requests-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-physical_write_requests-properties-physical_write_requests-0">
+            physical_write_requests(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-physical_write_requests-properties-physical_write_requests-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of physical write I/O requests issued by the monitored SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_entry_object_id-properties-plsql_entry_object_id-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_entry_object_id-properties-plsql_entry_object_id-0">
+            plsql_entry_object_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_entry_object_id-properties-plsql_entry_object_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Object ID of the top-most PL/SQL subprogram on the stack; NULL if there is no PL/SQL subprogram on the stack.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_entry_subprogram_id-properties-plsql_entry_subprogram_id-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_entry_subprogram_id-properties-plsql_entry_subprogram_id-0">
+            plsql_entry_subprogram_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_entry_subprogram_id-properties-plsql_entry_subprogram_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Subprogram ID of the top-most PL/SQL subprogram on the stack; NULL if there is no PL/SQL subprogram on the stack.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_exec_time-properties-plsql_exec_time-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_exec_time-properties-plsql_exec_time-0">
+            plsql_exec_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_exec_time-properties-plsql_exec_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>PL/SQL execution time (in microseconds); updated as the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_object_id-properties-plsql_object_id-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_object_id-properties-plsql_object_id-0">
+            plsql_object_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_object_id-properties-plsql_object_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Object ID of the currently executing PL/SQL subprogram; NULL if executing SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_subprogram_id-properties-plsql_subprogram_id-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_subprogram_id-properties-plsql_subprogram_id-0">
+            plsql_subprogram_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-plsql_subprogram_id-properties-plsql_subprogram_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Subprogram ID of the currently executing PL/SQL object; NULL if executing SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-process_name-properties-process_name-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-process_name-properties-process_name-0">
+            process_name(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-process_name-properties-process_name-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Process name identifier executing (or having executed)the statement; ora if the process is foreground, else the background process name (for example, p001 for PX server p001).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-program-properties-program-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-program-properties-program-0">
+            program(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-program-properties-program-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Name of the operating system program that issued the monitored SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_is_cross_instance-properties-px_is_cross_instance-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_is_cross_instance-properties-px_is_cross_instance-0">
+            px_is_cross_instance(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_is_cross_instance-properties-px_is_cross_instance-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Indicates whether the SQL statement ran parallel across multiple instances (Y) or not (N).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_maxdop-properties-px_maxdop-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_maxdop-properties-px_maxdop-0">
+            px_maxdop(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_maxdop-properties-px_maxdop-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Maximum degree of parallelism for any plan operation executed on behalf of the monitored SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_maxdop_instances-properties-px_maxdop_instances-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_maxdop_instances-properties-px_maxdop_instances-0">
+            px_maxdop_instances(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_maxdop_instances-properties-px_maxdop_instances-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of database instances touched at the maximum degree of parallelism.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_qcinst_id-properties-px_qcinst_id-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_qcinst_id-properties-px_qcinst_id-0">
+            px_qcinst_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_qcinst_id-properties-px_qcinst_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Instance identifier where the parallel execution coordinator runs; NULL if PX_SERVER# is NULL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_qcsid-properties-px_qcsid-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_qcsid-properties-px_qcsid-0">
+            px_qcsid(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_qcsid-properties-px_qcsid-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Session identifier for the parallel execution coordinator; NULL if PX_SERVER# is NULL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_server#-properties-px_server#-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_server#-properties-px_server#-0">
+            px_server#(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_server#-properties-px_server#-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Logical parallel execution server process number executing (or having executed) the statement being monitored; NULL if this monitoring entry is not associated with an execution server. This is a logical number within the parallel server set (see SERVER# in V$PX_SESSION).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_server_group-properties-px_server_group-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_server_group-properties-px_server_group-0">
+            px_server_group(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_server_group-properties-px_server_group-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Logical parallel execution server group number to which PX_SERVER# belongs (see SERVER_GROUP in V$PX_SESSION); NULL if this monitoring entry is not associated with a parallel execution server. This value is generally 1 unless the SQL statement has one or more parallel sub-queries.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_server_set-properties-px_server_set-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_server_set-properties-px_server_set-0">
+            px_server_set(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_server_set-properties-px_server_set-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number (1 or 2) of the logical set of parallel execution servers to which PX_SERVER# belongs (see SERVER_SET in V$PX_SESSION); NULL if this monitoring entry is not associated with a parallel execution server.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_servers_allocated-properties-px_servers_allocated-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_servers_allocated-properties-px_servers_allocated-0">
+            px_servers_allocated(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_servers_allocated-properties-px_servers_allocated-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Actual number of parallel execution servers allocated to execute the query</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_servers_requested-properties-px_servers_requested-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_servers_requested-properties-px_servers_requested-0">
+            px_servers_requested(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-px_servers_requested-properties-px_servers_requested-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Total number of parallel execution servers requested to execute the monitored SQL.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-queuing_time-properties-queuing_time-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-queuing_time-properties-queuing_time-0">
+            queuing_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-queuing_time-properties-queuing_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Duration of time (in microseconds) spent by SQL in the statement queue.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-refresh_count-properties-refresh_count-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-refresh_count-properties-refresh_count-0">
+            refresh_count(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-refresh_count-properties-refresh_count-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Number of times V$SQL_MONITOR statistics have been refreshed (generally once every second when the SQL statement executes).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-report_id-properties-report_id-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-report_id-properties-report_id-0">
+            report_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-report_id-properties-report_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Unique ID of the XML report stored in Automatic Workload Repository (AWR) for this monitored entity.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-rm_consumer_group-properties-rm_consumer_group-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-rm_consumer_group-properties-rm_consumer_group-0">
+            rm_consumer_group(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-rm_consumer_group-properties-rm_consumer_group-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The current consumer group for this SQL operation.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-rm_last_action-properties-rm_last_action-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-rm_last_action-properties-rm_last_action-0">
+            rm_last_action(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-rm_last_action-properties-rm_last_action-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The most recent action that was taken on this SQL operation by Resource Manager.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-rm_last_action_reason-properties-rm_last_action_reason-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-rm_last_action_reason-properties-rm_last_action_reason-0">
+            rm_last_action_reason(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-rm_last_action_reason-properties-rm_last_action_reason-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The reason for the most recent action that was taken on this SQL operation by Resource Manager.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-rm_last_action_time-properties-rm_last_action_time-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-rm_last_action_time-properties-rm_last_action_time-0">
+            rm_last_action_time(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-rm_last_action_time-properties-rm_last_action_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>The time of the most recent action that was taken on this SQL operation by Resource Manager.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-service_name-properties-service_name-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-service_name-properties-service_name-0">
+            service_name(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-service_name-properties-service_name-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Service name of the user session.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-session_serial#-properties-session_serial#-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-session_serial#-properties-session_serial#-0">
+            session_serial#(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-session_serial#-properties-session_serial#-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Session serial number executing the statement being monitored.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-sid-properties-sid-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sid-properties-sid-0">
+            sid(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sid-properties-sid-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Session identifier executing (or having executed) the SQL statement being monitored.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_child_address-properties-sql_child_address-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_child_address-properties-sql_child_address-0">
+            sql_child_address(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_child_address-properties-sql_child_address-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Address of the child cursor (can be used with SQL_ID to join with GV$SQL).</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_exec_id-properties-sql_exec_id-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_exec_id-properties-sql_exec_id-0">
+            sql_exec_id(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_exec_id-properties-sql_exec_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Execution identifier. Together, the three columns SQL_ID, SQL_EXEC_START, and SQL_EXEC_ID represent the execution key. The execution key is used to uniquely identify one execution of the SQL statement.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_exec_start-properties-sql_exec_start-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_exec_start-properties-sql_exec_start-0">
+            sql_exec_start(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_exec_start-properties-sql_exec_start-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Time when the execution started.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_full_plan_hash_value-properties-sql_full_plan_hash_value-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_full_plan_hash_value-properties-sql_full_plan_hash_value-0">
+            sql_full_plan_hash_value(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_full_plan_hash_value-properties-sql_full_plan_hash_value-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Numeric representation of the complete SQL plan for this cursor. Comparing one SQL_FULL_PLAN_HASH_VALUE to another easily identifies whether or not two plans are the same (rather than comparing the two plans line by line). Note that the SQL_FULL_PLAN_HASH_VALUE cannot be compared across databases releases. It is not backward compatible.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_id-properties-sql_id-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_id-properties-sql_id-0">
+            sql_id(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_id-properties-sql_id-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>SQL identifier of the statement being monitored.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_plan_hash_value-properties-sql_plan_hash_value-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_plan_hash_value-properties-sql_plan_hash_value-0">
+            sql_plan_hash_value(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_plan_hash_value-properties-sql_plan_hash_value-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>SQL plan hash value.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_text-properties-sql_text-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_text-properties-sql_text-0">
+            sql_text(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-sql_text-properties-sql_text-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>Up to the first 2000 characters of the text of the SQL being monitored.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-status-properties-status-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-status-properties-status-0">
+            status(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-status-properties-status-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>SQL execution status.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-user#-properties-user#-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-user#-properties-user#-0">
+            user#(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-user#-properties-user#-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>User ID of the database user who issued the SQL being monitored.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-user_io_wait_time-properties-user_io_wait_time-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-user_io_wait_time-properties-user_io_wait_time-0">
+            user_io_wait_time(optional): 
+            integer</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-user_io_wait_time-properties-user_io_wait_time-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>User I/O Wait Time (in microseconds); updated as the statement executes.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-PerformanceSQLStatementMonitorsItem-properties-username-properties-username-0" aria-expanded="false" aria-controls="200-definitions-PerformanceSQLStatementMonitorsItem-properties-username-properties-username-0">
+            username(optional): 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-username-properties-username-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>User name of the database user who issued the SQL being monitored.</div>
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;object&quot;,
+    &quot;description&quot;:&quot;This object provides statistics for a single execution of an SQL statement. The list of attributes may vary depending on database version.&quot;,
+    &quot;properties&quot;:{
+        &quot;inst_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Instance number from which the associated GV$SQL_MONITOR view information was obtained.&quot;
+        },
+        &quot;key&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Artificial join key to efficiently join GV$SQL_MONITOR with its corresponding plan level monitoring statistics stored in GV$SQL_PLAN_MONITOR.&quot;
+        },
+        &quot;report_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Unique ID of the XML report stored in Automatic Workload Repository (AWR) for this monitored entity.&quot;
+        },
+        &quot;status&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;SQL execution status.&quot;
+        },
+        &quot;user#&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;User ID of the database user who issued the SQL being monitored.&quot;
+        },
+        &quot;username&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;User name of the database user who issued the SQL being monitored.&quot;
+        },
+        &quot;module&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Name of the executing module when sampled, as set by the DBMS_APPLICATION_INFO.SET_MODULE procedure.&quot;
+        },
+        &quot;action&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Name of the executing action when sampled, as set by the DBMS_APPLICATION_INFO.SET_ACTION procedure.&quot;
+        },
+        &quot;service_name&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Service name of the user session.&quot;
+        },
+        &quot;client_identifier&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Client identifier from the user session.&quot;
+        },
+        &quot;client_info&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Client information for the user session.&quot;
+        },
+        &quot;program&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Name of the operating system program that issued the monitored SQL.&quot;
+        },
+        &quot;plsql_entry_object_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Object ID of the top-most PL/SQL subprogram on the stack; NULL if there is no PL/SQL subprogram on the stack.&quot;
+        },
+        &quot;plsql_entry_subprogram_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Subprogram ID of the top-most PL/SQL subprogram on the stack; NULL if there is no PL/SQL subprogram on the stack.&quot;
+        },
+        &quot;plsql_object_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Object ID of the currently executing PL/SQL subprogram; NULL if executing SQL.&quot;
+        },
+        &quot;plsql_subprogram_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Subprogram ID of the currently executing PL/SQL object; NULL if executing SQL.&quot;
+        },
+        &quot;first_refresh_time&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Time when monitoring of the SQL statement started, generally a few seconds after execution start time.&quot;
+        },
+        &quot;last_refresh_time&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Time when statistics in V$SQL_MONITOR were last updated for the SQL statement. Statistics are generally refreshed every second when the statement executes.&quot;
+        },
+        &quot;refresh_count&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of times V$SQL_MONITOR statistics have been refreshed (generally once every second when the SQL statement executes).&quot;
+        },
+        &quot;dbop_exec_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Database operation execution identifier for the current execution. If the type is SQL, the DBOP_EXEC_ID will be NULL.&quot;
+        },
+        &quot;dbop_name&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Database operation name. If the type is SQL, the DBOP_NAME will be NULL.&quot;
+        },
+        &quot;sid&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Session identifier executing (or having executed) the SQL statement being monitored.&quot;
+        },
+        &quot;process_name&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Process name identifier executing (or having executed)the statement; ora if the process is foreground, else the background process name (for example, p001 for PX server p001).&quot;
+        },
+        &quot;sql_id&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;SQL identifier of the statement being monitored.&quot;
+        },
+        &quot;sql_text&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Up to the first 2000 characters of the text of the SQL being monitored.&quot;
+        },
+        &quot;is_full_sqltext&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates whether the SQL_TEXT column has the entire SQL text (Y) or not (N).&quot;
+        },
+        &quot;sql_exec_start&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Time when the execution started.&quot;
+        },
+        &quot;sql_exec_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Execution identifier. Together, the three columns SQL_ID, SQL_EXEC_START, and SQL_EXEC_ID represent the execution key. The execution key is used to uniquely identify one execution of the SQL statement.&quot;
+        },
+        &quot;sql_plan_hash_value&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;SQL plan hash value.&quot;
+        },
+        &quot;sql_full_plan_hash_value&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Numeric representation of the complete SQL plan for this cursor. Comparing one SQL_FULL_PLAN_HASH_VALUE to another easily identifies whether or not two plans are the same (rather than comparing the two plans line by line). Note that the SQL_FULL_PLAN_HASH_VALUE cannot be compared across databases releases. It is not backward compatible.&quot;
+        },
+        &quot;exact_matching_signature&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Signature calculated on the normalized SQL text. The normalization includes the removal of white space and the uppercasing of all non-literal strings.&quot;
+        },
+        &quot;force_matching_signature&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Same as EXACT_MATCHING_SIGNATURE but literals in the SQL text are replaced by binds.&quot;
+        },
+        &quot;sql_child_address&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Address of the child cursor (can be used with SQL_ID to join with GV$SQL).&quot;
+        },
+        &quot;session_serial#&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Session serial number executing the statement being monitored.&quot;
+        },
+        &quot;px_is_cross_instance&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates whether the SQL statement ran parallel across multiple instances (Y) or not (N).&quot;
+        },
+        &quot;px_maxdop&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Maximum degree of parallelism for any plan operation executed on behalf of the monitored SQL.&quot;
+        },
+        &quot;px_maxdop_instances&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of database instances touched at the maximum degree of parallelism.&quot;
+        },
+        &quot;px_servers_requested&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Total number of parallel execution servers requested to execute the monitored SQL.&quot;
+        },
+        &quot;px_servers_allocated&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Actual number of parallel execution servers allocated to execute the query&quot;
+        },
+        &quot;px_server#&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Logical parallel execution server process number executing (or having executed) the statement being monitored; NULL if this monitoring entry is not associated with an execution server. This is a logical number within the parallel server set (see SERVER# in V$PX_SESSION).&quot;
+        },
+        &quot;px_server_group&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Logical parallel execution server group number to which PX_SERVER# belongs (see SERVER_GROUP in V$PX_SESSION); NULL if this monitoring entry is not associated with a parallel execution server. This value is generally 1 unless the SQL statement has one or more parallel sub-queries.&quot;
+        },
+        &quot;px_server_set&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number (1 or 2) of the logical set of parallel execution servers to which PX_SERVER# belongs (see SERVER_SET in V$PX_SESSION); NULL if this monitoring entry is not associated with a parallel execution server.&quot;
+        },
+        &quot;px_qcinst_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Instance identifier where the parallel execution coordinator runs; NULL if PX_SERVER# is NULL.&quot;
+        },
+        &quot;px_qcsid&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Session identifier for the parallel execution coordinator; NULL if PX_SERVER# is NULL.&quot;
+        },
+        &quot;error_number&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Error number encountered in case a SQL fails to execute successfully (for example, 932 in case of ORA-00932).&quot;
+        },
+        &quot;error_facility&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Error facility in case a SQL fails to execute successfully (for example, ORA in case of ORA-00932).&quot;
+        },
+        &quot;error_message&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Detailed error message displayed corresponding to the error number and error facility when a SQL fails to execute successfully.&quot;
+        },
+        &quot;binds_xml&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Information about bind variables used with the SQL, such as name, position, value, data type, and so on (stored in XML format).&quot;
+        },
+        &quot;other_xml&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Additional information about SQL execution stored in XML format.&quot;
+        },
+        &quot;elapsed_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Elapsed time (in microseconds); updated as the statement executes.&quot;
+        },
+        &quot;queuing_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Duration of time (in microseconds) spent by SQL in the statement queue.&quot;
+        },
+        &quot;cpu_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;CPU time (in microseconds); updated as the statement executes.&quot;
+        },
+        &quot;fetches&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of fetches associated with the SQL statement; updated as the statement executes.&quot;
+        },
+        &quot;buffer_gets&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of buffer get operations; updated as the statement executes.&quot;
+        },
+        &quot;disk_reads&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of disk reads; updated as the statement executes.&quot;
+        },
+        &quot;direct_writes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of direct writes; updated as the statement executes.&quot;
+        },
+        &quot;io_interconnect_bytes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of I/O bytes exchanged between Oracle Database and the storage system.&quot;
+        },
+        &quot;physical_read_requests&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of physical read I/O requests issued by the monitored SQL.&quot;
+        },
+        &quot;physical_read_bytes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of bytes read from disks by the monitored SQL.&quot;
+        },
+        &quot;physical_write_requests&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of physical write I/O requests issued by the monitored SQL.&quot;
+        },
+        &quot;physical_write_bytes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of bytes written to disks by the monitored SQL.&quot;
+        },
+        &quot;application_wait_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Application wait time (in microseconds); updated as the statement executes.&quot;
+        },
+        &quot;concurrency_wait_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Concurrency wait time (in microseconds); updated as the statement executes.&quot;
+        },
+        &quot;cluster_wait_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Cluster wait time (in microseconds); updated as the statement executes.&quot;
+        },
+        &quot;user_io_wait_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;User I/O Wait Time (in microseconds); updated as the statement executes.&quot;
+        },
+        &quot;plsql_exec_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;PL/SQL execution time (in microseconds); updated as the statement executes.&quot;
+        },
+        &quot;java_exec_time&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Java execution time (in microseconds); updated as the statement executes.&quot;
+        },
+        &quot;rm_last_action&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;The most recent action that was taken on this SQL operation by Resource Manager.&quot;
+        },
+        &quot;rm_last_action_reason&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;The reason for the most recent action that was taken on this SQL operation by Resource Manager.&quot;
+        },
+        &quot;rm_last_action_time&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;The time of the most recent action that was taken on this SQL operation by Resource Manager.&quot;
+        },
+        &quot;rm_consumer_group&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;The current consumer group for this SQL operation.&quot;
+        },
+        &quot;con_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;The ID of the container to which the data pertains.&quot;
+        },
+        &quot;con_name&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Container name of the object. The value of this column is NULL in non-CDBs.&quot;
+        },
+        &quot;ecid&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Execution context identifier (sent by Application Server).&quot;
+        },
+        &quot;is_adaptive_plan&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates whether the statistics are from an adaptive plan (Y) or not (N).&quot;
+        },
+        &quot;is_final_plan&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;Indicates whether the statistics are from the final plan (Y) or not (N).&quot;
+        },
+        &quot;in_dbop_name&quot;:{
+            &quot;type&quot;:&quot;string&quot;,
+            &quot;description&quot;:&quot;If the SQL that is monitored was executed by a session that was also monitored by a database operation (DBOP), then this column specifies the name of that DBOP.&quot;
+        },
+        &quot;in_dbop_exec_id&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;If the SQL that is monitored was executed by a session that was also monitored by a database operation (DBOP), then this column specifies the execution ID of that DBO.&quot;
+        },
+        &quot;io_cell_uncompressed_bytes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of uncompressed bytes (that is, size after decompression) that are offloaded to the Exadata cells.&quot;
+        },
+        &quot;io_cell_offload_eligible_bytes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of I/O bytes which can be filtered by the Exadata storage system.&quot;
+        },
+        &quot;io_cell_offload_returned_bytes&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Number of filtered bytes returned by Exadata cells (that is, the number of bytes returned after  processing has been offloaded on the Exadata cells).&quot;
+        },
+        &quot;current_user&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Unique number identifying the current user.&quot;
+        },
+        &quot;current_username&quot;:{
+            &quot;type&quot;:&quot;integer&quot;,
+            &quot;description&quot;:&quot;Username for the current user.&quot;
+        },
+        &quot;links&quot;:{
+            &quot;type&quot;:&quot;array&quot;,
+            &quot;items&quot;:{
+                &quot;$ref&quot;:&quot;#/definitions/LinkRelation&quot;
+            }
+        }
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-PerformanceSQLStatementMonitorsItem-properties-links" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : links</div>
+    
+      
+      <div class="schema-type">Type: <code>array</code></div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-LinkRelation-items-0" aria-expanded="false" aria-controls="200-definitions-LinkRelation-items-0">
+            Array of: 
+                object </a> <a href="#200-definitions-LinkRelation" role="button" class="btn btn-default btn-sm btn-xsm">LinkRelation</a>
+            
+            <div class="collapse schema-summary" id="200-definitions-LinkRelation-items-0">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;array&quot;,
+    &quot;items&quot;:{
+        &quot;$ref&quot;:&quot;#/definitions/LinkRelation&quot;
+    }
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    <div id="200-definitions-LinkRelation" class="swagger-schema">
+    <div class="panel-heading">Nested Schema : LinkRelation</div>
+    
+      <div class="schema-type">Type: <code>object</code></div>
+      
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="#" role="button" data-toggle="schema-view" class="toggle-schema pull-right btn btn-default btn-sm btn-xsm">Show Source</a>
+        <ul class="schema-properties">
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-LinkRelation-properties-href-properties-href-71" aria-expanded="false" aria-controls="200-definitions-LinkRelation-properties-href-properties-href-71">
+            href: 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-LinkRelation-properties-href-properties-href-71">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+            <li><a role="button" data-toggle="prop-collapse" href="#200-definitions-LinkRelation-properties-rel-properties-rel-71" aria-expanded="false" aria-controls="200-definitions-LinkRelation-properties-rel-properties-rel-71">
+            rel: 
+            string</a>
+            <div class="collapse schema-summary" id="200-definitions-LinkRelation-properties-rel-properties-rel-71">
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            </li>
+            
+        </ul>
+        <pre class="schema-source" style="display: none;"><code class="json">{
+    &quot;type&quot;:&quot;object&quot;,
+    &quot;properties&quot;:{
+        &quot;rel&quot;:{
+            &quot;type&quot;:&quot;string&quot;
+        },
+        &quot;href&quot;:{
+            &quot;type&quot;:&quot;string&quot;
+        }
+    },
+    &quot;required&quot;:[
+        &quot;rel&quot;,
+        &quot;href&quot;
+    ]
+}</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+                    
+                    </div>
+
+                    
+                    </div>
+                
+                </div>
+                </div>
+                
+
+				<a style="float: right" href="#top">Back to Top</a>
+				
+                
+
+            </section>
+
+            
+        </article>
+    </body>
+</html>

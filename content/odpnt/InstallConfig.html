@@ -1,0 +1,264 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Configuring Oracle Data Provider for .NET</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="InstallEntityAssemblies.html" title="Previous" type="text/html">
+      <link rel="next" href="InstallUnmanagedConfig.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="InstallEntityAssemblies.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="InstallUnmanagedConfig.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="install.html" property="item" typeof="WebPage"><span property="name">Installing and Configuring Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Configuring Oracle Data Provider for .NET</li>
+            </ol>
+            <a id="GUID-1F689B90-2CC4-4907-B8FE-A5F4EE36F673" name="GUID-1F689B90-2CC4-4907-B8FE-A5F4EE36F673"></a><a id="ODPNT8153"></a>
+            
+            <h2 id="ODPNT-GUID-1F689B90-2CC4-4907-B8FE-A5F4EE36F673" class="sect2">Configuring Oracle Data Provider for .NET</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <div class="section">
+                  <p>The settings for specific versions of ODP.NET, can be configured in several ways for specific effects on precedence:</p>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>The Windows registry entries are machine-wide settings for a particular version of ODP.NET. </p>
+                        <p>Windows registry based configuration is not supported for ODP.NET, Managed Driver.</p>
+                     </li>
+                     <li>
+                        <p>The <code class="codeph">machine.config</code> settings are .NET framework-wide settings that override the Windows registry values. 
+                        </p>
+                     </li>
+                     <li>
+                        <p>The application or web config file settings are application-specific settings that override the <code class="codeph">machine.config</code> settings and the Windows registry settings. 
+                        </p>
+                        <div class="infoboxnote" id="GUID-1F689B90-2CC4-4907-B8FE-A5F4EE36F673__GUID-FDA8B75C-E977-4C93-B5DA-3EC6C581D470">
+                           <p class="notep1">Note:</p>
+                           <p>There is one exception to <code class="codeph">app/web/config</code> settings overriding <code class="codeph">machine.config</code>. For <code class="codeph">oracle.manageddataaccess.client</code> and <code class="codeph">oracle.unmanageddataaccess.client</code> sections, a <code class="codeph">machine.config</code> with a specific ODP.NET version subsection, that is, <code class="codeph">&lt;version number="4.121.2.0"&gt;</code>, will override an <code class="codeph">app/web.config</code> subsection that references all versions generically, that is, <code class="codeph">&lt;version number="*"&gt;</code>. To override the <code class="codeph">machine.config</code> subsection, create a subsection for that version in the <code class="codeph">app/web/config</code> file, that is, <code class="codeph">&lt;version number="4.121.2.0"&gt;</code>.
+                           </p>
+                        </div>
+                     </li>
+                     <li>
+                        <p>Any attribute settings that are equivalent to the connection string override everything.</p>
+                     </li>
+                  </ul>
+                  <p>The application or web config file can be useful and sometimes essential in scenarios where more than one application on a computer use the same version of ODP.NET, but each application needs a different ODP.NET configuration. The Windows registry value settings for a given version of ODP.NET affect all the applications that use that version of ODP.NET. However, having ODP.NET configuration values in the application or web config file assure that these settings are applied only for that application, thus providing more granularities.</p>
+                  <p>For example, if the application or <code class="codeph">web.config</code> file has a <code class="codeph">StatementCacheSize</code> configuration setting of <code class="codeph">100</code>, this application-specific setting forces the version of ODP.NET that is loaded by that application to use <code class="codeph">100</code> for the <code class="codeph">StatementCacheSize</code> and overrides any setting in the <code class="codeph">machine.config</code> and in the registry. Note that for any setting that does not exist in a config file (<code class="codeph">machine.config</code> or application/web config), the value in the registry for a loaded version of ODP.NET is used, as in previous releases.
+                  </p>
+                  <p>Note that ODP.NET reads the <code class="codeph">machine.config</code> files from the version of the .NET Framework on which ODP.NET runs, not from the version of ODP.NET.
+                  </p>
+                  <p>ODP.NET only reads the Windows Registry and the XML configuration file when it is loaded into memory, thus any configuration changes made after that are not read or used until the application is re-started.</p>
+                  <p>All boolean attributes in ODP.NET .NET configuration settings accept <code class="codeph">true</code>, <code class="codeph">false</code>, <code class="codeph">1</code>, and <code class="codeph">0</code> as valid values. <code class="codeph">1</code> is equivalent to <code class="codeph">true</code> and <code class="codeph">0</code> is equivalent to <code class="codeph">false</code>.
+                  </p>
+                  <div class="infoboxnote" id="GUID-1F689B90-2CC4-4907-B8FE-A5F4EE36F673__GUID-3DB7DAFC-DAB7-4FFF-B284-02664C3ED988">
+                     <p class="notep1">Note:</p>
+                     <p>ODP.NET Core does not support the Windows registry nor .NET configuration files. ODP.NET Core configuration can be set using .NET Configuration API, <code class="codeph">sqlnet.ora</code> file, and <code class="codeph">tnsnames.ora</code> file. 
+                     </p>
+                  </div>
+               </div>
+               <!-- class="section" -->
+            </div>
+            <div class="props_rev_3"><a id="GUID-D2EA621C-8C9C-40DE-9C0D-F8E0067AFA66" name="GUID-D2EA621C-8C9C-40DE-9C0D-F8E0067AFA66"></a><h3 id="ODPNT-GUID-D2EA621C-8C9C-40DE-9C0D-F8E0067AFA66" class="sect3">Oracle Client Configuration File Automated Setup During Installation</h3>
+               <div>
+                  <p>When installing Oracle Data Access Components (ODAC) in a new Oracle Home, Oracle Universal Installer (OUI) automatically copies the Oracle local naming (tnsnames.ora), profile (sqlnet.ora), and directory (ldap.ora) parameter files and settings from an existing Oracle home into the newly installed ODAC home, as long as they share the same bitness. That is, they are both 32-bit installations or they are both 64-bit installations.</p>
+                  <p>Alternatively, existing <code class="codeph">*.ora</code> files can be copied over from another existing Oracle home, besides the last active one, to the new ODAC Oracle home. OUI provides location information for these files from up to three other existing Oracle homes if they exist. The <code class="codeph">*.ora</code> files can be customized if the new Oracle home uses a different configuration from the previous Oracle home from which the files were copied over.
+                  </p>
+                  <p>If you install into an existing ODAC or RDBMS Oracle home, then no new <code class="codeph">*.ora</code> files is copied or created.
+                  </p>
+                  <p>If you install onto a computer without any previous Oracle homes present, then OUI prompts the user for the database connection alias information. OUI then automatically creates the <code class="codeph">tnsnames.ora</code> file. If no alias information is provided, then no <code class="codeph">tnsnames.ora</code> file is created. Even if the user does not have all the database connection information readily available, Oracle recommends inserting placeholder values during the install process, then modifying the <code class="codeph">tnsnames.ora</code> file later with actual values to replace the placeholders.
+                  </p>
+               </div>
+            </div>
+            <div class="props_rev_3"><a id="GUID-FB680A9A-1182-4C06-874D-56E44B7857B5" name="GUID-FB680A9A-1182-4C06-874D-56E44B7857B5"></a><h3 id="ODPNT-GUID-FB680A9A-1182-4C06-874D-56E44B7857B5" class="sect3">Oracle Client Configuration File Settings</h3>
+               <div>
+                  <p>ODP.NET <code class="codeph">tnsnames.ora</code>, <code class="codeph">sqlnet.ora</code>, and <code class="codeph">ldap.ora</code> parameter values can be set in a .NET configuration file or within the <code class="codeph">*.ora </code>file itself. The <code class="codeph">*.ora</code> file location can be a location different from the standard <span class="italic"><code class="codeph">ORACLE_HOME</code></span><code class="codeph">/network/admin</code> directory. The <code class="codeph">*.ora</code> settings order of precedence is similar to ODP.NET's settings order of precedence. The main difference is that the <code class="codeph">*.ora</code> files themselves are included in the search order. The <code class="codeph">tnsnames.ora</code> and <code class="codeph">sqlnet.ora</code> precedence order is as follows:
+                  </p>
+                  <ol>
+                     <li>
+                        <p><code class="codeph">app.config </code>or <code class="codeph">web.config</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">machine.config</code></p>
+                     </li>
+                     <li>
+                        <p>File location specified by <code class="codeph">TNS_ADMIN</code> setting
+                        </p>
+                     </li>
+                     <li>
+                        <p>The current <code class="codeph">.EXE </code>or web application root directory
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">%ORACLE_HOME</code><code class="codeph">%\network\admin</code> if using ODP.NET, Unmanaged Driver
+                        </p>
+                     </li>
+                  </ol>
+                  <p>The<code class="codeph"> ldap.ora</code> precedence order is as follows:
+                  </p>
+                  <ol>
+                     <li>
+                        <p><code class="codeph">app.config </code>or <code class="codeph">web.config</code></p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">machine.config</code></p>
+                     </li>
+                     <li>
+                        <p>File location specified by <code class="codeph">TNS_ADMIN</code> setting in .NET config file
+                        </p>
+                     </li>
+                     <li>
+                        <p>File location specified by <code class="codeph">LDAP_ADMIN</code> setting in .NET config file
+                        </p>
+                     </li>
+                     <li>
+                        <p>The current <code class="codeph">.EXE </code>or web application root directory
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">%ORACLE_HOME</code><code class="codeph">%\network\admin</code> if using ODP.NET, Unmanaged Driver
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">%ORACLE_HOME</code><code class="codeph">%\ldap\admin</code> if using ODP.NET, Unmanaged Driver
+                        </p>
+                     </li>
+                  </ol>
+                  <p>Oracle recommends using an <code class="codeph">app.config</code> or <code class="codeph">web.config</code> file to store all these Oracle Client configuration parameter settings.
+                  </p>
+                  <p>Once the first <code class="codeph">tnsnames.ora</code>, <code class="codeph">sqlnet.ora</code>, and <code class="codeph">ldap.ora</code> are found and read, no additional <code class="codeph">*.ora</code> file lower in the precedence order is read. That means all Oracle Client configuration settings must be made in the <code class="codeph">app.config</code>, <code class="codeph">web.config</code>, <code class="codeph">machine.config</code>, or the first set of <code class="codeph">*.ora</code> files found. Additional parameter values set in <code class="codeph">*.ora</code> files lower in the precedence order will not be read.
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-ECDA2778-4835-417C-B81A-E0E1103B5B52" name="GUID-ECDA2778-4835-417C-B81A-E0E1103B5B52"></a><h3 id="ODPNT-GUID-ECDA2778-4835-417C-B81A-E0E1103B5B52" class="sect3">Configuring .NET Framework to Use ODP.NET</h3>
+               <div>
+                  <p>Automatic ODP.NET machine-wide configuration upon installation is no longer available as of ODAC 18c. This change improves compatibility when applications on the same machine use different ODP.NET versions and/or depend on application-specific configuration settings instead of machine-wide assembly registration and configuration. </p>
+                  <p>Nonetheless, administrators can still manually place managed and unmanaged ODP.NET in the Global Assembly Cache (GAC), as well as add configurations for section handler, <code class="codeph">DbProviderFactories</code>, <code class="codeph">TNS_ADMIN</code>, <code class="codeph">LDAP_ADMIN</code>, and assembly redirection (in place of policy DLLs), into <code class="codeph">machine.config</code>, if desired.
+                  </p>
+                  <p>Most ODP.NET settings in machine.config can be overridden by local settings in <code class="codeph">app.config</code> or <code class="codeph">web.config</code>. However, conflicts between the <code class="codeph">machine.config</code> and, <code class="codeph">app.config</code> or <code class="codeph">web.config</code> can prevent applications from running properly. Care should be taken when configuring ODP.NET at both the <code class="codeph">machine.config</code> level and application level using <code class="codeph">app.config</code> or <code class="codeph">web.config</code>.
+                  </p>
+                  <p>To avoid such issues, Oracle recommends ODP.NET application configuration settings reside in the <code class="codeph">app.config</code> or <code class="codeph">web.config</code>. The following sections explore how to set up these ODP.NET configuration sections and provide sample configuration sections and files.
+                  </p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-ECDA2778-4835-417C-B81A-E0E1103B5B52__GUID-43B8480F-CC17-4510-913A-232D54BFC827">Configuration Section Handler</p>
+                     <p>In order for the application to read the ODP.NET configuration section, a section handler must be configured. The following entry should be added to the .NET configuration file to enable applications to add an <code class="codeph">oracle.manageddataaccess.client</code> section for ODP.NET, Managed Driver-specific configuration:
+                     </p><pre class="oac_no_warn" dir="ltr">&lt;configuration&gt;
+  &lt;configSections&gt;
+    &lt;section name="oracle.manageddataaccess.client" type="OracleInternal.Common.ODPMSectionHandler, Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342" /&gt;
+  &lt;/configSections&gt;
+&lt;/configuration&gt;
+</pre><div class="infoboxnote" id="GUID-ECDA2778-4835-417C-B81A-E0E1103B5B52__GUID-4483FACB-DE44-4F92-A56E-0240D5005891">
+                        <p class="notep1">Note:</p>
+                        <p>In all the examples in this section, the version of the ODP.NET assembly is understood to be 4.122.19.1. This version number should be modified appropriately if you are using another version.</p>
+                     </div>
+                     <p>The unmanaged ODP.NET equivalent section handler is as follows:</p><pre class="oac_no_warn" dir="ltr">&lt;configuration&gt;
+  &lt;configSections&gt;
+    &lt;section name="oracle.unmanageddataaccess.client" type="OracleInternal.Common.CustomSectionHandler, Oracle.DataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342" /&gt;
+  &lt;/configSections&gt;
+&lt;/configuration&gt;
+</pre><p>One of the configuration entries that either has to match between <code class="codeph">machine.config</code> and, <code class="codeph">app.config</code> or <code class="codeph">web.config</code>, or only exist in the <code class="codeph">app.config</code> or <code class="codeph">web.config</code> to avoid any conflict is the configuration for the section handler. For example, if your application is a web application and the above entry was added to a <code class="codeph">web.config</code> and the same configuration section handler for <code class="codeph">oracle.manageddataaccess.client</code> also exists in <code class="codeph">machine.config</code> but the <code class="codeph">Version</code> attribute values are different, an error message of "There is a duplicate <code class="codeph">oracle.manageddataaccess.client</code> section defined." may be observed at runtime. To avoid this issue, the configuration section handler entry in the <code class="codeph">machine.config</code> for <code class="codeph">oracle.manageddataaccess.client</code> has to be removed from the <code class="codeph">machine.config</code> or the ODP.NET config section handler entry in <code class="codeph">machine.config</code> and <code class="codeph">web.config</code> has to match exactly. If there are other applications on the machine that depend on this entry in the <code class="codeph">machine.config</code>, then this section handler entry will need to be moved to all local applications’ .NET configuration files.
+                     </p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-ECDA2778-4835-417C-B81A-E0E1103B5B52__GUID-759FEB59-EB6B-4EF0-A608-4BE1F182C1F9">DbProviderFactories</p>
+                     <p>The following entry should be added in the <code class="codeph">app.config</code> or <code class="codeph">web.config</code> for applications that use <code class="codeph">DbProviderFactories</code> and <code class="codeph">DbProviderFactory</code> classes. Also, any <code class="codeph">DbProviderFactories</code> entry for <code class="codeph">Oracle.ManagedDataAccess.Client</code> in the <code class="codeph">machine.config</code> will be ignored due to the <code class="codeph">&lt;remove&gt;</code> entry:
+                     </p><pre class="oac_no_warn" dir="ltr">&lt;configuration&gt;
+  &lt;system.data&gt;
+    &lt;DbProviderFactories&gt;
+      &lt;remove invariant="Oracle.ManagedDataAccess.Client" /&gt;
+      &lt;add name="ODP.NET, Managed Driver" invariant="Oracle.ManagedDataAccess.Client" description="Oracle Data Provider for .NET, Managed Driver" type="Oracle.ManagedDataAccess.Client.OracleClientFactory, Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342" /&gt;
+    &lt;/DbProviderFactories&gt;
+  &lt;/system.data&gt;
+&lt;/configuration&gt;
+</pre><p>The equivalent for unmanaged ODP.NET is as follows:</p><pre class="oac_no_warn" dir="ltr">&lt;configuration&gt;
+  &lt;system.data&gt;
+    &lt;DbProviderFactories&gt;
+      &lt;remove invariant="Oracle.DataAccess.Client" /&gt;
+      &lt;add name="Oracle Data Provider for .NET" invariant="Oracle.DataAccess.Client" description="Oracle Data Provider for .NET" type="Oracle.DataAccess.Client.OracleClientFactory, Oracle.DataAccess, Version=4.122.191, Culture=neutral, PublicKeyToken=89b483f429c47342" /&gt;
+    &lt;/DbProviderFactories&gt;
+  &lt;/system.data&gt;
+&lt;/configuration&gt;
+</pre></div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-ECDA2778-4835-417C-B81A-E0E1103B5B52__GUID-B25750F7-FA9A-433C-A452-0E529A97760C">Dependent Assembly</p>
+                     <p>For users accustomed to the policy DLLs that were registered automatically upon installation, the same can be accomplished through configuration. The following is an example configuration that redirects the application that depends on 4.122 version of ODP.NET and higher to be redirected to use ODP.NET 4.122.19.1. Note that in this example, an entry is added to ignore policy ODP.NET DLLs that are registered in the GAC:</p><pre class="oac_no_warn" dir="ltr">&lt;configuration&gt;
+  &lt;runtime&gt;
+    &lt;assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1"&gt;
+      &lt;dependentAssembly&gt;
+        &lt;publisherPolicy apply="no" /&gt;
+        &lt;assemblyIdentity name="Oracle.ManagedDataAccess" publicKeyToken="89b483f429c47342" culture="neutral" /&gt;
+        &lt;bindingRedirect oldVersion="4.122.0.0 - 4.65535.65535.65535" newVersion="4.122.19.1" /&gt;
+      &lt;/dependentAssembly&gt;
+    &lt;/assemblyBinding&gt;
+  &lt;/runtime&gt;
+&lt;/configuration&gt;
+</pre><p>The equivalent for unmanaged ODP.NET is as follows:</p><pre class="oac_no_warn" dir="ltr">&lt;configuration&gt;
+  &lt;runtime&gt;
+    &lt;assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1"&gt;
+      &lt;dependentAssembly&gt;
+        &lt;publisherPolicy apply="no" /&gt;
+        &lt;assemblyIdentity name="Oracle.DataAccess" publicKeyToken="89b483f429c47342" culture="neutral" /&gt;
+        &lt;bindingRedirect oldVersion="4.122.0.0 - 4.65535.65535.65535" newVersion="4.122.19.1" /&gt;
+      &lt;/dependentAssembly&gt;
+    &lt;/assemblyBinding&gt;
+  &lt;/runtime&gt;
+&lt;/configuration&gt;
+</pre></div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

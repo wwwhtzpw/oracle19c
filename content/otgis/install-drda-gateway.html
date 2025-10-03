@@ -1,0 +1,777 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Installing Oracle Database Gateway for DRDA">
+      <meta name="DC.subject" content="hardware requirements, requirements, hardware, software, software requirements">
+      <meta name="keywords" content="hardware requirements, requirements, hardware, software, software requirements">
+      <meta name="DC.Contributor" content="Vira Goorah">
+      <meta name="DC.Contributor" content="Den Raphaely">
+      <meta name="DC.Contributor" content="Govind Lakkoju">
+      <meta name="DC.Contributor" content="Peter Wong">
+      <meta name="DC.Contributor" content="Juan Pablo Ahues-Vasquez">
+      <meta name="DC.Contributor" content="Peter Castro">
+      <meta name="DC.Contributor" content="Charles Benet">
+      <meta name="DC.Creator" content="Rhonda Day">
+      <meta name="DC.Publisher" content="May2023">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-E91487D1-D6C7-49DC-94E1-9CB70E800BD7">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Installing Oracle Database Gateway for DRDA</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Installation and Configuration Guide">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Installation and Configuration Guide for IBM AIX on POWER Systems (64-Bit), Linux x86-64, Oracle Solaris on SPARC (64-Bit), Oracle Solaris on x86-64 (64-Bit), and HP-UX Itanium">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-gateway-installation-and-configuration-guide-aix-5l-based-systems-64-bit-hp-ux-itanium-solaris-operating-system-sparc-64-bit-linux-x86-and-linux-x86-64.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2023-04-28T15:31:32-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2006, 2023">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F18243-02">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="part-drda-gateway.html" title="Previous" type="text/html">
+      <link rel="next" href="config-drda-server.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database Gateway Installation and Configuration Guide for AIX 5L Based Systems (64-Bit), HP-UX Itanium, Solaris Operating System (SPARC 64-Bit), Linux x86, and Linux x86-64">
+    <meta name="dcterms.isVersionOf" content="OTGIS">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","name":"Installing Oracle Database Gateway for DRDA","datePublished":"2019-04-24 15:35:51 GMT","dateModified":"2023-04-28 22:36:15 GMT"} </script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="part-drda-gateway.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="config-drda-server.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Installation and Configuration Guide</span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="part-drda-gateway.html" property="item" typeof="WebPage"><span property="name">Installing and Configuring Oracle Database Gateway for DRDA </span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem"> Installing Oracle Database Gateway for DRDA</li>
+            </ol>
+            <a id="GUID-E91487D1-D6C7-49DC-94E1-9CB70E800BD7" name="GUID-E91487D1-D6C7-49DC-94E1-9CB70E800BD7"></a><a id="OTGIS120"></a>
+            
+            <h2 id="OTGIS-GUID-E91487D1-D6C7-49DC-94E1-9CB70E800BD7" class="sect2"><span class="enumeration_chapter">12 </span> Installing Oracle Database Gateway for DRDA
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>This section provides information about the hardware and software requirements and the installation procedure of Oracle Database Gateway for DRDA. </p>
+               <p>To install the gateway, follow these steps:</p>
+               <ol>
+                  <li>
+                     <p>Ensure that the system meets all of the hardware and software requirements specified in <a href="install-drda-gateway.html#GUID-03FFCDE5-DA17-4863-86FD-F9F6750B3BEA">System Requirements for Oracle Database Gateway for DRDA</a>.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Run the Oracle Universal Installer.</p>
+                     <p>See <a href="install-drda-gateway.html#GUID-20D78E07-0427-473E-A909-253705FB241C">Step through the Oracle Universal Installer</a> for more information about running the Oracle Universal Installer.
+                     </p>
+                     <p>Oracle Universal Installer is a menu-driven utility that guides you through the installation of the gateway by prompting you with action items. The action items and the sequence in which they appear depend on your platform.</p>
+                     <p>See <a href="install-drda-gateway.html#GUID-20D78E07-0427-473E-A909-253705FB241C__BGBFIJAI" title="Use as a guide to step through the Oracle Universal Installer, performing the actions described in the Response column in order to install the gateway on your UNIX platform">Table 12-3</a> for a description of the installation procedure of Oracle Database Gateway for DRDA.
+                     </p>
+                  </li>
+               </ol>
+            </div><a id="OTGIS1063"></a><div class="props_rev_3"><a id="GUID-03FFCDE5-DA17-4863-86FD-F9F6750B3BEA" name="GUID-03FFCDE5-DA17-4863-86FD-F9F6750B3BEA"></a><h3 id="OTGIS-GUID-03FFCDE5-DA17-4863-86FD-F9F6750B3BEA" class="sect3"><span class="enumeration_section">12.1 </span>System Requirements for Oracle Database Gateway for DRDA
+               </h3>
+               <div>
+                  <p>The following topics provides information about the hardware and software requirements for the gateway:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="install-drda-gateway.html#GUID-D90BBC52-3CEC-44F3-9BCF-C7C3A665E898">Hardware Requirements</a></p>
+                     </li>
+                     <li>
+                        <p><a href="install-drda-gateway.html#GUID-4E0C3D32-3A77-4073-A502-08016E03D71C">Software Requirements</a></p>
+                     </li>
+                  </ul>
+                  <p>Refer to the <a href="../install-and-upgrade.html" target="_blank"><span><cite>Oracle Database Installation Guide</cite></span></a> and to the certification matrix on My Oracle Support for the most up-to-date list of certified hardware platforms and operating system version requirements to operate the gateway for your system. The My Oracle Support Web site can be found at:
+                  </p>
+                  <p><a href="https://support.oracle.com" target="_blank">https://support.oracle.com</a></p>
+               </div><a id="OTGIS1233"></a><a id="OTGIS1064"></a><div class="props_rev_3"><a id="GUID-D90BBC52-3CEC-44F3-9BCF-C7C3A665E898" name="GUID-D90BBC52-3CEC-44F3-9BCF-C7C3A665E898"></a><h4 id="OTGIS-GUID-D90BBC52-3CEC-44F3-9BCF-C7C3A665E898" class="sect4"><span class="enumeration_section">12.1.1 </span>Hardware Requirements
+                  </h4>
+                  <div>
+                     <p><a href="install-drda-gateway.html#GUID-D90BBC52-3CEC-44F3-9BCF-C7C3A665E898__CIAFJIAI" title="Hardware Requirements for Oracle Database Gateway for DRDA">Table 12-1</a> lists the minimum hardware requirements for Oracle Database Gateway for DRDA. 
+                     </p>
+                     <div class="tblformalwide" id="GUID-D90BBC52-3CEC-44F3-9BCF-C7C3A665E898__CIAFJIAI">
+                        <p class="titleintable">Table 12-1 Hardware Requirements for Oracle Database Gateway for DRDA</p>
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title="Hardware Requirements for Oracle Database Gateway for DRDA" summary="Hardware Requirements for Oracle Database Gateway for DRDA" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="16%" id="d33347e183">Hardware Items</th>
+                                 <th align="left" valign="bottom" width="16%" id="d33347e186">Required for IBM AIX on POWER Systems (64-Bit)</th>
+                                 <th align="left" valign="bottom" width="17%" id="d33347e189">Required for Linux x86 64 bit</th>
+                                 <th align="left" valign="bottom" width="17%" id="d33347e192">Required for Oracle Solaris on SPARC (64-Bit)</th>
+                                 <th align="left" valign="bottom" width="18%" id="d33347e195">Required for Oracle Solaris on x86-64 (64-Bit)</th>
+                                 <th align="left" valign="bottom" width="17%" id="d33347e198">Required for HP-UX Itanium</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="16%" id="d33347e203" headers="d33347e183 ">
+                                    <p>Temporary Disk Space</p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d33347e203 d33347e186 ">
+                                    <p>400 MB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e203 d33347e189 ">
+                                    <p>400 MB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e203 d33347e192 ">
+                                    <p>400 MB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d33347e203 d33347e195 ">
+                                    <p>400 MB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e203 d33347e198 ">
+                                    <p>400 MB</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="16%" id="d33347e222" headers="d33347e183 ">
+                                    <p>Disk Space</p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d33347e222 d33347e186 ">
+                                    <p>1.5 GB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e222 d33347e189 ">
+                                    <p>750 MB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e222 d33347e192 ">
+                                    <p>750 MB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d33347e222 d33347e195 ">
+                                    <p>750 MB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e222 d33347e198 ">
+                                    <p>1.5 GB</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="16%" id="d33347e241" headers="d33347e183 ">
+                                    <p>Physical Memory*</p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d33347e241 d33347e186 ">
+                                    <p>512 MB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e241 d33347e189 ">
+                                    <p>512 MB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e241 d33347e192 ">
+                                    <p>512 MB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d33347e241 d33347e195 ">
+                                    <p>512 MB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e241 d33347e198 ">
+                                    <p>512 MB</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="16%" id="d33347e260" headers="d33347e183 ">
+                                    <p>Swap Space</p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d33347e260 d33347e186 ">
+                                    <p>1 GB  </p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e260 d33347e189 ">
+                                    <p>1 GB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e260 d33347e192 ">
+                                    <p>1 GB </p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d33347e260 d33347e195 ">
+                                    <p>1 GB</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e260 d33347e198 ">
+                                    <p>1 GB  </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="16%" id="d33347e279" headers="d33347e183 ">
+                                    <p>Processor</p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d33347e279 d33347e186 ">
+                                    <p>IBM RS/6000 AIX-Based System Processor</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e279 d33347e189 ">
+                                    <p>x86_64</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e279 d33347e192 ">
+                                    <p>Sun Solaris Operating System (SPARC) Processor</p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d33347e279 d33347e195 ">
+                                    <p>x86_64</p>
+                                 </td>
+                                 <td align="left" valign="top" width="17%" headers="d33347e279 d33347e198 ">
+                                    <p>HP Itanium processor for hp-ux 11</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                     <p>* The minimum swap space is 1 GB (or twice the size of RAM). On systems with 2 GB or more of RAM, the swap space can be between one and two times the size of RAM. On AIX systems with 1 GB or more of memory, do not increase the swap space more than 2 GB. </p>
+                     <p>For most installations, a minimum of 256 MB of real memory is recommended for the first user to support the Oracle Database Gateway for DRDA.</p>
+                     <p>The total real memory requirement for each concurrent use of the gateway depends on the following factors:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>Number of <a id="d33347e307" class="indexterm-anchor"></a><a id="d33347e311" class="indexterm-anchor"></a>concurrent TCP/IP connections open by each user
+                           </p>
+                        </li>
+                        <li>
+                           <p>Number of data items being transferred between the gateway and the <a id="d33347e319" class="indexterm-anchor"></a>remote transaction program 
+                           </p>
+                        </li>
+                        <li>
+                           <p>Additional factors such as configured network buffer size</p>
+                        </li>
+                     </ul>
+                  </div>
+               </div><a id="OTGIS1065"></a><div class="props_rev_3"><a id="GUID-BE37C2E9-85F6-43DB-955C-D8E5DBE76005" name="GUID-BE37C2E9-85F6-43DB-955C-D8E5DBE76005"></a><h4 id="OTGIS-GUID-BE37C2E9-85F6-43DB-955C-D8E5DBE76005" class="sect4"><span class="enumeration_section">12.1.2 </span>Checking the Hardware Requirements
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>To ensure that the system meets the minimum requirements, follow these steps:</p>
+                     </div>
+                     <!-- class="section" -->
+                     <ol>
+                        <li class="stepexpand"><span>To determine the physical RAM size, enter one of the following commands:</span><div>
+                              <div class="tblformal" id="GUID-BE37C2E9-85F6-43DB-955C-D8E5DBE76005__GUID-D8604F55-23EB-48DC-B931-F87B838EEC16">
+                                 <table cellpadding="4" cellspacing="0" class="Formal" title summary="summary" width="90%" frame="hsides" border="1" rules="rows">
+                                    <thead>
+                                       <tr align="left" valign="top">
+                                          <th align="left" valign="bottom" width="32%" id="d33347e377">Operating System</th>
+                                          <th align="left" valign="bottom" width="68%" id="d33347e380">Command</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="32%" id="d33347e385" headers="d33347e377 ">
+                                             <p>IBM AIX on POWER Systems (64-Bit)</p>
+                                          </td>
+                                          <td align="left" valign="top" width="68%" headers="d33347e385 d33347e380 ">
+                                             <p># <code class="codeph">/usr/sbin/lsattr -E -l sys0 -a realmem</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="32%" id="d33347e394" headers="d33347e377 ">
+                                             <p>Linux x86 64 bit</p>
+                                          </td>
+                                          <td align="left" valign="top" width="68%" headers="d33347e394 d33347e380 ">
+                                             <p><code class="codeph"># grep MemTotal /proc/meminfo</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="32%" id="d33347e402" headers="d33347e377 ">
+                                             <p>Oracle Solaris on SPARC (64-Bit)</p>
+                                          </td>
+                                          <td align="left" valign="top" width="68%" headers="d33347e402 d33347e380 ">
+                                             <p># /<code class="codeph">usr/sbin/prtconf | grep "Memory size"</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="32%" id="d33347e411" headers="d33347e377 ">
+                                             <p>Oracle Solaris on x86-64 (64-Bit)</p>
+                                          </td>
+                                          <td align="left" valign="top" width="68%" headers="d33347e411 d33347e380 ">
+                                             <p># /<code class="codeph">usr/sbin/prtconf | grep "Memory size"</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="32%" id="d33347e420" headers="d33347e377 ">
+                                             <p>HP-UX Itanium</p>
+                                          </td>
+                                          <td align="left" valign="top" width="68%" headers="d33347e420 d33347e380 ">
+                                             <p><code class="codeph"># /usr/contrib/bin/machinfo | grep -i Memory</code></p>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <!-- class="inftblhruleinformal" -->
+                              <p>If the size of the physical RAM installed in the system is less than the required size, you must install more memory before continuing.</p>
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>To determine the size of the configured swap space, enter one of the following commands:</span><div>
+                              <div class="tblformal" id="GUID-BE37C2E9-85F6-43DB-955C-D8E5DBE76005__GUID-00C10934-0DA4-4A37-95BC-63D39D61D8D5">
+                                 <table cellpadding="4" cellspacing="0" class="Formal" title summary="summary" width="90%" frame="hsides" border="1" rules="rows">
+                                    <thead>
+                                       <tr align="left" valign="top">
+                                          <th align="left" valign="bottom" width="48%" id="d33347e441">Operating System</th>
+                                          <th align="left" valign="bottom" width="52%" id="d33347e444">Command</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="48%" id="d33347e449" headers="d33347e441 ">
+                                             <p>IBM AIX on POWER Systems (64-Bit)</p>
+                                          </td>
+                                          <td align="left" valign="top" width="52%" headers="d33347e449 d33347e444 ">
+                                             <p><code class="codeph"># /usr/sbin/lsps -a</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="48%" id="d33347e457" headers="d33347e441 ">
+                                             <p>Linux x86 64 bit</p>
+                                          </td>
+                                          <td align="left" valign="top" width="52%" headers="d33347e457 d33347e444 ">
+                                             <p><code class="codeph"># grep SwapTotal /proc/meminfo</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="48%" id="d33347e465" headers="d33347e441 ">
+                                             <p>Oracle Solaris on SPARC (64-Bit)</p>
+                                          </td>
+                                          <td align="left" valign="top" width="52%" headers="d33347e465 d33347e444 ">
+                                             <p><code class="codeph"># /usr/sbin/swap -s</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="48%" id="d33347e473" headers="d33347e441 ">
+                                             <p>Oracle Solaris on x86-64 (64-Bit)</p>
+                                          </td>
+                                          <td align="left" valign="top" width="52%" headers="d33347e473 d33347e444 ">
+                                             <p><code class="codeph"># /usr/sbin/swap -s</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="48%" id="d33347e481" headers="d33347e441 ">
+                                             <p>HP-UX Itanium</p>
+                                          </td>
+                                          <td align="left" valign="top" width="52%" headers="d33347e481 d33347e444 ">
+                                             <p><code class="codeph"># /usr/sbin/swapinfo -a</code></p>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <!-- class="inftblhruleinformal" -->
+                              <p>If necessary, see your operating system documentation for information about how to configure additional swap space.</p>
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>To determine the amount of disk space available in the <code class="codeph">/tmp </code>directory enter the following commands:</span><div>
+                              <div class="tblformal" id="GUID-BE37C2E9-85F6-43DB-955C-D8E5DBE76005__GUID-F490755F-2B91-44F1-8F88-CD8428A206D8">
+                                 <table cellpadding="4" cellspacing="0" class="Formal" title summary="summary" width="90%" frame="hsides" border="1" rules="rows">
+                                    <thead>
+                                       <tr align="left" valign="top">
+                                          <th align="left" valign="bottom" width="48%" id="d33347e505">Operating System</th>
+                                          <th align="left" valign="bottom" width="52%" id="d33347e508">Command</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="48%" id="d33347e513" headers="d33347e505 ">
+                                             <p>IBM AIX on POWER Systems (64-Bit)</p>
+                                          </td>
+                                          <td align="left" valign="top" width="52%" headers="d33347e513 d33347e508 ">
+                                             <p><code class="codeph"># df -k /tmp</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="48%" id="d33347e521" headers="d33347e505 ">
+                                             <p>Linux x86 64 bit</p>
+                                          </td>
+                                          <td align="left" valign="top" width="52%" headers="d33347e521 d33347e508 ">
+                                             <p><code class="codeph"># df -k /tmp</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="48%" id="d33347e529" headers="d33347e505 ">
+                                             <p>Oracle Solaris on SPARC (64-Bit)</p>
+                                          </td>
+                                          <td align="left" valign="top" width="52%" headers="d33347e529 d33347e508 ">
+                                             <p><code class="codeph"># df -k /tmp</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="48%" id="d33347e537" headers="d33347e505 ">
+                                             <p>Oracle Solaris on x86-64 (64-Bit)</p>
+                                          </td>
+                                          <td align="left" valign="top" width="52%" headers="d33347e537 d33347e508 ">
+                                             <p><code class="codeph"># df -k /tmp</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="48%" id="d33347e545" headers="d33347e505 ">
+                                             <p>HP-UX Itanium</p>
+                                          </td>
+                                          <td align="left" valign="top" width="52%" headers="d33347e545 d33347e508 ">
+                                             <p><code class="codeph"># bdf /tmp</code></p>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <!-- class="inftblhruleinformal" -->
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>To determine the amount of disk space available on the system enter the following commands:</span><div>
+                              <div class="tblformal" id="GUID-BE37C2E9-85F6-43DB-955C-D8E5DBE76005__GUID-4EBE4C96-BFAF-41E3-A8AD-2CE58EA02952">
+                                 <table cellpadding="4" cellspacing="0" class="Formal" title summary="summary" width="90%" frame="hsides" border="1" rules="rows">
+                                    <thead>
+                                       <tr align="left" valign="top">
+                                          <th align="left" valign="bottom" width="51%" id="d33347e564">Operating System</th>
+                                          <th align="left" valign="bottom" width="49%" id="d33347e567">Command</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="51%" id="d33347e572" headers="d33347e564 ">
+                                             <p>IBM AIX on POWER Systems (64-Bit)</p>
+                                          </td>
+                                          <td align="left" valign="top" width="49%" headers="d33347e572 d33347e567 ">
+                                             <p><code class="codeph"># df -k</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="51%" id="d33347e580" headers="d33347e564 ">
+                                             <p>Linux x86 64 bit</p>
+                                          </td>
+                                          <td align="left" valign="top" width="49%" headers="d33347e580 d33347e567 ">
+                                             <p><code class="codeph"># df -k</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="51%" id="d33347e588" headers="d33347e564 ">
+                                             <p>Oracle Solaris on SPARC (64-Bit)</p>
+                                          </td>
+                                          <td align="left" valign="top" width="49%" headers="d33347e588 d33347e567 ">
+                                             <p><code class="codeph"># df -k</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="51%" id="d33347e596" headers="d33347e564 ">
+                                             <p>Oracle Solaris on x86-64 (64-Bit)</p>
+                                          </td>
+                                          <td align="left" valign="top" width="49%" headers="d33347e596 d33347e567 ">
+                                             <p><code class="codeph"># df -k</code></p>
+                                          </td>
+                                       </tr>
+                                       <tr align="left" valign="top">
+                                          <td align="left" valign="top" width="51%" id="d33347e604" headers="d33347e564 ">
+                                             <p>HP-UX Itanium</p>
+                                          </td>
+                                          <td align="left" valign="top" width="49%" headers="d33347e604 d33347e567 ">
+                                             <p><code class="codeph"># bdf</code></p>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <!-- class="inftblhruleinformal" -->
+                           </div>
+                        </li>
+                     </ol>
+                  </div>
+               </div><a id="OTGIS1066"></a><div class="props_rev_3"><a id="GUID-4E0C3D32-3A77-4073-A502-08016E03D71C" name="GUID-4E0C3D32-3A77-4073-A502-08016E03D71C"></a><h4 id="OTGIS-GUID-4E0C3D32-3A77-4073-A502-08016E03D71C" class="sect4"><span class="enumeration_section">12.1.3 </span>Software Requirements
+                  </h4>
+                  <div>
+                     <p>The following section describes the minimum software requirements for Oracle Database Gateway for DRDA.</p>
+                  </div><a id="OTGIS1234"></a><a id="OTGIS1067"></a><div class="props_rev_3"><a id="GUID-54D41072-364D-48B6-ADA5-D86D3AE9968F" name="GUID-54D41072-364D-48B6-ADA5-D86D3AE9968F"></a><h5 id="OTGIS-GUID-54D41072-364D-48B6-ADA5-D86D3AE9968F" class="sect5"><span class="enumeration_section">12.1.3.1 </span>Operating System
+                     </h5>
+                     <div>
+                        <p></p>
+                        <p><a href="install-drda-gateway.html#GUID-54D41072-364D-48B6-ADA5-D86D3AE9968F__CIADEFIE" title="This 2-column table describes the operating system versions for Oracle Database Gateway for DRDA. The first column is the operating system. The second column is the minimum required version.">Table 12-2</a> lists the minimum operating system version required for Oracle Database Gateway for DRDA. If your operating system is lower than the minimum requirements, upgrade your operating system to meet the specified levels.
+                        </p>
+                        <div class="tblformal" id="GUID-54D41072-364D-48B6-ADA5-D86D3AE9968F__CIADEFIE">
+                           <p class="titleintable">Table 12-2 Operating Systems Version for Oracle Database Gateway for DRDA</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="Operating Systems Version for Oracle Database Gateway for DRDA" summary="This 2-column table describes the operating system versions for Oracle Database Gateway for DRDA. The first column is the operating system. The second column is the minimum required version." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" width="31%" id="d33347e707">Operating System</th>
+                                    <th align="left" valign="bottom" width="69%" id="d33347e710">Version</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d33347e715" headers="d33347e707 ">
+                                       <p>IBM AIX on POWER Systems (64-Bit)</p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d33347e715 d33347e710 ">
+                                       <p>AIX 5L version 5.3 TL9 or higher, AIX 6.1</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d33347e722" headers="d33347e707 ">
+                                       <p>Linux x86 64 bit Red Hat</p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d33347e722 d33347e710 ">
+                                       <p>One of the following operating system versions:</p>
+                                       <ul style="list-style-type: disc;">
+                                          <li>Red Hat Enterprise Linux 4.0, (Update 7 or later)</li>
+                                          <li>Red Hat Enterprise Linux 5 Update 2</li>
+                                          <li>Red Hat Enterprise Linux 6</li>
+                                       </ul>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d33347e736" headers="d33347e707 ">
+                                       <p>Oracle Linux x86 64 bit</p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d33347e736 d33347e710 ">
+                                       <p>One of the following operating system versions:</p>
+                                       <ul style="list-style-type: disc;" id="GUID-54D41072-364D-48B6-ADA5-D86D3AE9968F__UL_IQR_SQG_H4B">
+                                          <li>Oracle Linux x86-64 SLES v12</li>
+                                          <li>Oracle Linux x86-64 SLES v15</li>
+                                          <li>Oracle Linux x86-64 Red Hat Enterprise Linux v7</li>
+                                          <li>Oracle Linux x86-64 Oracle Linux v7</li>
+                                       </ul>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d33347e752" headers="d33347e707 ">
+                                       <p>Asianux Linux 64 bit</p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d33347e752 d33347e710 ">
+                                       <p>One of the following operating system versions:</p>
+                                       <ul style="list-style-type: disc;">
+                                          <li>Asianux Linux 2.0</li>
+                                          <li>Asianux Linux 3.0</li>
+                                       </ul>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d33347e764" headers="d33347e707 ">
+                                       <p>SUSE Linux Enterprise Server 64 bit</p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d33347e764 d33347e710 ">
+                                       <p>SUSE Linux Enterprise Server 10.0</p>
+                                       <p>SUSE Linux Enterprise Server 11.0</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d33347e773" headers="d33347e707 ">
+                                       <p>Oracle Solaris on SPARC (64-Bit)</p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d33347e773 d33347e710 ">
+                                       <p>Solaris 10, (Update 6 or later)</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d33347e780" headers="d33347e707 ">
+                                       <p>Oracle Solaris on x86-64 (64-Bit)</p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d33347e780 d33347e710 ">
+                                       <ul style="list-style-type: disc;">
+                                          <li>Oracle Solaris 10 U6 (5.10-2008.10)</li>
+                                          <li>Oracle Solaris 11 11/11 X86 and higher</li>
+                                       </ul>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" width="31%" id="d33347e790" headers="d33347e707 ">
+                                       <p>HP-UX Itanium</p>
+                                    </td>
+                                    <td align="left" valign="top" width="69%" headers="d33347e790 d33347e710 ">
+                                       <p>HP-UX 11i V3 patch Bundle Sep/ 2008 (B.11.31.0809.326a) or higher</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <!-- class="inftblhruleinformal" -->
+                     </div>
+                  </div><a id="OTGIS1069"></a><div class="props_rev_3"><a id="GUID-391BF24E-BA48-4987-B2AA-53E2518422EF" name="GUID-391BF24E-BA48-4987-B2AA-53E2518422EF"></a><h5 id="OTGIS-GUID-391BF24E-BA48-4987-B2AA-53E2518422EF" class="sect5"><span class="enumeration_section">12.1.3.2 </span>Certified Configuration
+                     </h5>
+                     <div>
+                        <p>The gateway supports DB2 UDB for Linux, Unix and Windows, DB2 UDB for z/OS, and DB2 UDB for iSeries. For the latest versions supported refer to the OTN Web site:</p>
+                        <p><a href="http://www.oracle.com/technetwork/database/gateways/index.html" target="_blank"><code class="codeph">http://www.oracle.com/technetwork/database/gateways/index.html</code></a></p>
+                     </div>
+                  </div>
+               </div><a id="OTGIS1068"></a><div class="props_rev_3"><a id="GUID-63A1ED71-AFEA-4AAA-9878-AE9A61B0C11E" name="GUID-63A1ED71-AFEA-4AAA-9878-AE9A61B0C11E"></a><h4 id="OTGIS-GUID-63A1ED71-AFEA-4AAA-9878-AE9A61B0C11E" class="sect4"><span class="enumeration_section">12.1.4 </span>Checking the Software Requirements
+                  </h4>
+                  <div>
+                     <div class="section">
+                        <p>To ensure that the system meets the minimum requirements, follow these steps:</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>To determine which version of IBM AIX on POWER Systems (64-Bit) is installed, enter the following command:</p><pre class="oac_no_warn" dir="ltr"># oslevel -r
+</pre></li>
+                           <li>
+                              <p>To determine which distribution and version of Linux x86 64 bit is installed, enter the following command:</p><pre class="oac_no_warn" dir="ltr"># cat /proc/version
+</pre></li>
+                           <li>
+                              <p>To determine which version of Oracle Solaris on SPARC (64-Bit) is installed, enter the following command:</p><pre class="oac_no_warn" dir="ltr"># uname -r
+</pre></li>
+                           <li>
+                              <p>To determine which version of Oracle Solaris on x86-64 (64-Bit) is installed, enter the following command:</p><pre class="oac_no_warn" dir="ltr"># uname -r
+</pre></li>
+                           <li>
+                              <p>To determine which version of HP-UX Itanium is installed, enter the following command:</p><pre class="oac_no_warn" dir="ltr"># uname -a
+</pre></li>
+                        </ul>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div><a id="OTGIS1235"></a><a id="OTGIS1070"></a><div class="props_rev_3"><a id="GUID-20D78E07-0427-473E-A909-253705FB241C" name="GUID-20D78E07-0427-473E-A909-253705FB241C"></a><h3 id="OTGIS-GUID-20D78E07-0427-473E-A909-253705FB241C" class="sect3"><span class="enumeration_section">12.2 </span>Step through the Oracle Universal Installer
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>Start the Installer with the following command:</p><pre class="oac_no_warn" dir="ltr">$ ./runInstaller
+</pre><p><a href="install-drda-gateway.html#GUID-20D78E07-0427-473E-A909-253705FB241C__BGBFIJAI" title="Use as a guide to step through the Oracle Universal Installer, performing the actions described in the Response column in order to install the gateway on your UNIX platform">Table 12-3</a> describes the installation procedure for Oracle Database Gateway for DRDA.
+                     </p>
+                     <div class="tblformalwide" id="GUID-20D78E07-0427-473E-A909-253705FB241C__BGBFIJAI">
+                        <p class="titleintable">Table 12-3 The Oracle Universal Installer: Steps for Installing Oracle Database Gateway for DRDA</p>
+                        <table cellpadding="4" cellspacing="0" class="FormalWide" title="The Oracle Universal Installer: Steps for Installing Oracle Database Gateway for DRDA" summary="Use as a guide to step through the Oracle Universal Installer, performing the actions described in the Response column in order to install the gateway on your UNIX platform" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="33%" id="d33347e951">Screen</th>
+                                 <th align="left" valign="bottom" width="67%" id="d33347e954">Response</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="33%" id="d33347e959" headers="d33347e951 ">
+                                    <p>Oracle Universal Installer: Welcome</p>
+                                 </td>
+                                 <td align="left" valign="top" width="67%" headers="d33347e959 d33347e954 ">
+                                    <p> Click <span class="bold">Next</span>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="33%" id="d33347e969" headers="d33347e951 ">
+                                    <p>Oracle Universal Installer: Specify Home Details</p>
+                                 </td>
+                                 <td align="left" valign="top" width="67%" headers="d33347e969 d33347e954 ">
+                                    <p>Specify a name for the installation in the Name field. You can also choose not to edit the default setting of the Name field of the Specify Home Details screen.</p>
+                                    <p>The Path field in the Specify Home Details screen is where you specify the destination for your installation. You need not edit the path specification in the Path field. The default setting for this field points to <code class="codeph">ORACLE_HOME</code>. After you set the fields in the Specify Home Details screen as necessary, click <span class="bold">Next</span> to continue. After loading the necessary information from the installation, the Oracle Universal Installer displays the Available Products screen.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="33%" id="d33347e984" headers="d33347e951 ">
+                                    <p>Oracle Universal Installer: Available Product Components</p>
+                                 </td>
+                                 <td align="left" valign="top" width="67%" headers="d33347e984 d33347e954 ">
+                                    <p><span class="bold">a. </span>Select <span class="bold">Oracle Database Gateway for DRDA 12.1</span>.
+                                    </p>
+                                    <p><span class="bold">b.</span> Click <span class="bold">Next</span>. 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="33%" id="d33347e1003" headers="d33347e951 ">
+                                    <p>Oracle Universal Installer: DB2 UDB Server hostname or IP address</p>
+                                 </td>
+                                 <td align="left" valign="top" width="67%" headers="d33347e1003 d33347e954 ">
+                                    <p>Specify the host name or the IP address of the machine hosting the DB2 UDB database server. This release supports IPv6 format.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="33%" id="d33347e1010" headers="d33347e951 ">
+                                    <p>Oracle Universal Installer: DB2 UDB DRDA server listener port</p>
+                                 </td>
+                                 <td align="left" valign="top" width="67%" headers="d33347e1010 d33347e954 ">
+                                    <p>Specify the port number DB2 DRDA process listens on.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="33%" id="d33347e1017" headers="d33347e951 ">
+                                    <p>Oracle Universal Installer: DB2 UDB Database Name</p>
+                                 </td>
+                                 <td align="left" valign="top" width="67%" headers="d33347e1017 d33347e954 ">
+                                    <p>Specify the DB2 UDB database name.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="33%" id="d33347e1024" headers="d33347e951 ">
+                                    <p>Oracle Universal Installer: DB2 UDB target type</p>
+                                 </td>
+                                 <td align="left" valign="top" width="67%" headers="d33347e1024 d33347e954 ">
+                                    <p>For DB2 UDB running on z/OS specify <span class="bold">ZOS</span>.
+                                    </p>
+                                    <p>For DB2 UDB running on iSeries or AS/400 machines specify <span class="bold">IOS</span>.
+                                    </p>
+                                    <p>For DB2 UDB running on Linux, Unix, or Windows platforms specify <span class="bold">LUW</span>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="33%" id="d33347e1044" headers="d33347e951 ">
+                                    <p>Oracle Universal Installer: Summary</p>
+                                 </td>
+                                 <td align="left" valign="top" width="67%" headers="d33347e1044 d33347e954 ">
+                                    <p>The Installation Summary screen enables you to review a tree list of options and components for this installation. Click <span class="bold">Install</span> to start installation.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="33%" id="d33347e1054" headers="d33347e951 ">
+                                    <p>Oracle Net Configuration                                Assistant: Welcome</p>
+                                 </td>
+                                 <td align="left" valign="top" width="67%" headers="d33347e1054 d33347e954 ">
+                                    <p>Click <span class="bold">OK</span>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="33%" id="d33347e1064" headers="d33347e951 ">
+                                    <p>Oracle Net Configuration Assistant: </p>
+                                 </td>
+                                 <td align="left" valign="top" width="67%" headers="d33347e1064 d33347e954 ">
+                                    <p>Click <span class="bold">Typical configuration</span>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="33%" id="d33347e1074" headers="d33347e951 ">
+                                    <p>Oracle Universal Installer: Configuration Tools</p>
+                                 </td>
+                                 <td align="left" valign="top" width="67%" headers="d33347e1074 d33347e954 ">
+                                    <p>Click <span class="bold">Exit</span>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="33%" id="d33347e1085" headers="d33347e951 ">
+                                    <p>Exit</p>
+                                 </td>
+                                 <td align="left" valign="top" width="67%" headers="d33347e1085 d33347e954 ">
+                                    <p>The final screen of the Oracle Universal Installer is the End of Installation screen. Click <span class="bold">Exit</span> to exit the installer.
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

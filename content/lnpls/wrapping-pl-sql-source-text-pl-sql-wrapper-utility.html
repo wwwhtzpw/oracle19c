@@ -1,0 +1,418 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Wrapping PL/SQL Source Text with PL/SQL Wrapper Utility">
+      <meta name="abstract" content="The PL/SQL Wrapper utility takes a single SQL file (such as a SQL*Plus script) and produces an equivalent text file in which the PL/SQL source text of each wrappable PL/SQL unit is wrapped.">
+      <meta name="description" content="The PL/SQL Wrapper utility takes a single SQL file (such as a SQL*Plus script) and produces an equivalent text file in which the PL/SQL source text of each wrappable PL/SQL unit is wrapped.">
+      <meta name="DC.subject" content="PL/SQL Wrapper utility, wrap utility, comment, PL/SQL Wrapper utility and">
+      <meta name="keywords" content="PL/SQL Wrapper utility, wrap utility, comment, PL/SQL Wrapper utility and">
+      <meta name="DC.Contributor" content="L. Morin">
+      <meta name="DC.Contributor" content="S. Moore">
+      <meta name="DC.Contributor" content="L. Jayapalan">
+      <meta name="DC.Contributor" content="P. Huey">
+      <meta name="DC.Contributor" content="E. Belden">
+      <meta name="DC.Contributor" content="K. Rich">
+      <meta name="DC.Contributor" content="V. Moore">
+      <meta name="DC.Creator" content="D. Alpern">
+      <meta name="DC.Creator" content="S. Agrawal">
+      <meta name="DC.Creator" content="H. Baer">
+      <meta name="DC.Creator" content="S. Castledine">
+      <meta name="DC.Creator" content="T. Chang">
+      <meta name="DC.Creator" content="B. Cheng">
+      <meta name="DC.Creator" content="R. Dani">
+      <meta name="DC.Creator" content="R. Decker">
+      <meta name="DC.Creator" content="C. Iyer">
+      <meta name="DC.Creator" content="A. Kruglikov">
+      <meta name="DC.Creator" content="N. Le">
+      <meta name="DC.Creator" content="W. Li">
+      <meta name="DC.Creator" content="B. Llewellyn">
+      <meta name="DC.Creator" content="A. Popescu">
+      <meta name="DC.Creator" content="T. Raney">
+      <meta name="DC.Creator" content="R. Rajagopalan">
+      <meta name="DC.Creator" content="I. Stocks">
+      <meta name="DC.Creator" content="C. Wetherell">
+      <meta name="DC.Creator" content="S. Wolicki">
+      <meta name="DC.Creator" content="G. Viswanathan">
+      <meta name="DC.Creator" content="M. Yang">
+      <meta name="DC.Creator" content="Sarah Hirschfeld">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-4C024F24-F054-4E11-BCAD-ACA9D6B745D2">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The PL/SQL Wrapper utility takes a single SQL file (such as a SQL*Plus script) and produces an equivalent text file in which the PL/SQL source text of each wrappable PL/SQL unit is wrapped.">
+      <meta name="description" content="The PL/SQL Wrapper utility takes a single SQL file (such as a SQL*Plus script) and produces an equivalent text file in which the PL/SQL source text of each wrappable PL/SQL unit is wrapped.">
+      <title>Wrapping PL/SQL Source Text with PL/SQL Wrapper Utility</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database PL/SQL Language Reference ">
+      <meta property="og:description" content="The PL/SQL Wrapper utility takes a single SQL file (such as a SQL*Plus script) and produces an equivalent text file in which the PL/SQL source text of each wrappable PL/SQL unit is wrapped.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database PL/SQL Language Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-pl-sql-language-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-23T13:59:48-07:00">
+      <meta name="dcterms.title" content="Database PL/SQL Language Reference ">
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96448-08">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="pl-sql-source-text-wrapping-guidelines.html" title="Previous" type="text/html">
+      <link rel="next" href="wrapping-pl-sql-source-text-dbms_ddl-subprograms.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="LNPLS">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Wrapping PL/SQL Source Text with PL/SQL Wrapper Utility","description":"The PL/SQL Wrapper utility takes a single SQL file (such as a SQL*Plus script) and produces an equivalent text file in which the PL/SQL source text of each wrappable PL/SQL unit is wrapped.","datePublished":"2025-07-24 CST","dateModified":"2025-07-24 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="pl-sql-source-text-wrapping-guidelines.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="wrapping-pl-sql-source-text-dbms_ddl-subprograms.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-4C024F24-F054-4E11-BCAD-ACA9D6B745D2" name="GUID-4C024F24-F054-4E11-BCAD-ACA9D6B745D2"></a><a id="LNPLS2149"></a><a id="LNPLS2150"></a><a id="LNPLS2151"></a><a id="LNPLS01602"></a>
+         
+         <h2 id="LNPLS-GUID-4C024F24-F054-4E11-BCAD-ACA9D6B745D2" class="sect2"><span class="enumeration_section">A.3 </span>Wrapping PL/SQL Source Text with PL/SQL Wrapper Utility
+         </h2>
+         <div class="ind">
+            <div>
+               <p>The PL/SQL Wrapper utility takes a single SQL file (such as a SQL*Plus script) and produces an equivalent text file in which the PL/SQL source text of each wrappable PL/SQL unit is wrapped. </p>
+               <div class="section">
+                  <div class="infoboxnote" id="GUID-4C024F24-F054-4E11-BCAD-ACA9D6B745D2__GUID-BBBE49D6-CDFC-4075-AB97-EDDD17F42832">
+                     <p class="notep1">Note:</p>
+                     <p>Oracle recommends using PL/SQL Wrapper Utility version 10 or later.</p>
+                  </div>
+                  <p>For the list of wrappable PL/SQL units, see the introduction to <span class="q">"<a href="plsql-source-text-wrapping.html#GUID-AB6FFBAD-DE20-4197-A885-AF81F3766FA2">PL/SQL Source Text Wrapping</a>"</span>.
+                  </p>
+                  <p>The PL/SQL Wrapper utility cannot connect to Oracle Database. To run the PL/SQL Wrapper utility, enter this command at the operating system prompt (with no spaces around the equal signs):</p><pre class="oac_no_warn" dir="ltr">wrap iname=<span class="italic">input_file</span> [ oname=<span class="italic">output_file</span> ] [ keep_comments=yes ]
+</pre><p><span class="italic"><code class="codeph">input_file</code></span> is the name of an existing file that contains any combination of SQL statements. <span class="italic"><code class="codeph">output_file</code></span> is the name of the file that the PL/SQL Wrapper utility creates—the wrapped file.
+                  </p>
+                  <div class="infoboxnote" id="GUID-4C024F24-F054-4E11-BCAD-ACA9D6B745D2__GUID-88AA92F0-FB95-41E5-9210-0A3EC2655E46">
+                     <p class="notep1">Note:</p>
+                     <p><span class="italic"><code class="codeph">input_file</code></span> cannot include substitution variables specified with the SQL*Plus <code class="codeph">DEFINE</code> notation, because <span class="italic"><code class="codeph">output_file</code></span> is parsed by the PL/SQL compiler, not by SQL*Plus.
+                     </p>
+                  </div>
+                  <p>The PL/SQL Wrapper utility deletes  all comments from the wrapped file unless <code class="codeph">keep_comments=yes</code> is specified. When <code class="codeph">keep_comments=yes</code> is specified, only the comments outside the source are kept.
+                  </p>
+               </div>
+               <div class="section">
+                  <div class="infoboxnote" id="GUID-4C024F24-F054-4E11-BCAD-ACA9D6B745D2__GUID-6D155B76-8039-49A3-9ECC-E946F02D2063">
+                     <p class="notep1">Note:</p>
+                     <p>If <span class="italic"><code class="codeph">input_file</code></span> is a wrapped file, then <span class="italic"><code class="codeph">input_file</code></span> and <span class="italic"><code class="codeph">output_file</code></span> have identical contents.
+                     </p>
+                  </div>
+                  <p>The default file extension for <span class="italic"><code class="codeph">input_file</code></span> is <code class="codeph">sql</code>. The default name of <span class="italic"><code class="codeph">output_file</code></span> is <span class="italic"><code class="codeph">input_file</code></span><code class="codeph">.plb</code>. Therefore, these commands are equivalent:
+                  </p><pre class="oac_no_warn" dir="ltr">wrap iname=/mydir/myfile
+wrap iname=/mydir/myfile.sql oname=/mydir/myfile.plb
+</pre><p>This example specifies a different file extension for <span class="italic"><code class="codeph">input_file</code></span> and a different name for <span class="italic"><code class="codeph">output_file</code></span>:
+                  </p><pre class="oac_no_warn" dir="ltr">wrap iname=/mydir/myfile<span class="bold">.src</span> oname=<span class="bold">/yourdir/yourfile.out</span> keep_comments=yes
+
+</pre><p>You can run <span class="italic"><code class="codeph">output_file</code></span> as a script in SQL*Plus. For example:
+                  </p><pre class="oac_no_warn" dir="ltr">SQL&gt; @myfile.plb;
+</pre></div>
+               <div class="example" id="GUID-4C024F24-F054-4E11-BCAD-ACA9D6B745D2__CEGCHAJJ">
+                  <p class="titleinexample">Example A-1 SQL File with Two Wrappable PL/SQL Units</p>
+                  <p>This example shows the text of a SQL file, <code class="codeph">wraptest2.sql</code>, that contains two wrappable PL/SQL units—the procedure <code class="codeph">wraptest</code> and the function <code class="codeph">fibonacci</code>. The file also contains comments and a SQL <code class="codeph">SELECT</code> statement.
+                  </p><pre class="oac_no_warn" dir="ltr"><span class="bold">-- The following statement will not change.</span>
+ 
+SELECT COUNT(*) FROM EMPLOYEES
+/
+ 
+<span class="bold">/* The PL/SQL source text of the following two CREATE statements will be wrapped. */</span>
+ 
+CREATE PROCEDURE wraptest AUTHID CURRENT_USER /* C style comment in procedure declaration */ IS
+  TYPE emp_tab IS TABLE OF employees%ROWTYPE INDEX BY PLS_INTEGER;
+  all_emps  emp_tab;
+BEGIN
+  SELECT * BULK COLLECT INTO all_emps FROM employees;
+  FOR i IN 1..10 LOOP /* C style in pl/sql source */
+    DBMS_OUTPUT.PUT_LINE('Emp Id: ' || all_emps(i).employee_id);
+  END LOOP;
+END;
+/
+ 
+CREATE OR REPLACE FUNCTION fibonacci (
+  n PLS_INTEGER
+) RETURN PLS_INTEGER
+AUTHID CURRENT_USER -- PL/SQL style comment inside fibonacci function spec
+IS
+  fib_1 PLS_INTEGER := 0;
+  fib_2 PLS_INTEGER := 1;
+BEGIN
+  IF n = 1 THEN                              -- terminating condition
+    RETURN fib_1;
+  ELSIF n = 2 THEN
+    RETURN fib_2;                           -- terminating condition
+  ELSE
+    RETURN fibonacci(n-2) + fibonacci(n-1);  -- recursive invocations
+  END IF;
+END;
+/
+</pre></div>
+               <div class="example" id="GUID-4C024F24-F054-4E11-BCAD-ACA9D6B745D2__CEGGEEFH">
+                  <p class="titleinexample">Example A-2 Wrapping File with PL/SQL Wrapper Utility</p>
+                  <p>This example uses the PL/SQL Wrapper utility to wrap <code class="codeph">wraptest2.sql</code> and shows the wrapped file, <code class="codeph">wraptest2.plb</code>. The wrapped file shows that the utility deleted the comments inside the code and wrapped (made unreadable) the PL/SQL source text of the procedure <code class="codeph">wraptest</code> and the function <code class="codeph">fibonacci</code>, but kept the comments outside the wrapped source.
+                  </p>
+                  <p>Assume that the operating system prompt is <code class="codeph">&gt;</code>. Wrap the file <code class="codeph">wraptest.sql</code>:
+                  </p><pre class="oac_no_warn" dir="ltr">&gt; wrap keep_comments=yes iname=wraptest2.sql
+</pre><p>Result:</p><pre class="oac_no_warn" dir="ltr"> Processing wraptest2.sql to wraptest2.plb
+</pre><p>Contents of <code class="codeph">wraptest.plb</code>:
+                  </p><pre class="oac_no_warn" dir="ltr">-- The following statement will not change. 
+ 
+SELECT COUNT(*) FROM EMPLOYEES
+/
+ 
+/* The PL/SQL source text of the following two CREATE statements will be wrapped. */
+CREATE OR REPLACE PROCEDURE wraptest wrapped 
+a000000
+1
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+7
+129 138
+qf4HggDBeNMPlWAsPn6pGf+2LGwwg+nwJK5qZ3SVWE4+GayDZaL1bF7RwYm2/zr1qjZY3FrN
+48M1bKc/MG5aY9YB+DrtT4SJN370Rpq7ck5D0sc1D5sKAwTyX13HYvRmjwkdXa0vEZ4q/mCU
+EQusX23UZbZjxha7CtlCDCx8guGw/M/oHZXc8wDHXL8V8OsqQMv/Hj7z68gINl7OstalRScr
+uSZ/l/W1YaaA9Lj8Fbx5/nJw96ZNy1SCY8VsB/G6O5f/65+EDxdThpnfU4e1vrrE9iB3/IpI
++7fE1Tv29fwc+aZq3S7O
+
+/
+ 
+CREATE OR REPLACE FUNCTION fibonacci wrapped 
+a000000
+1
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+8
+150 ff
+BFDvTL9OR04SJbx+qOy5H/h8IcwwgxDcAJnWZ3TNz51mjAmegdQcpNJfq8hUuQtv1Y5xg7Wd
+KqMH/HBANhnZ+E1mBWekavYjPxlqV9zIFqZAgB4SBqkqe42sai9Vb0cLEU02/ZCEyxDSfWf3
+H1Lp6U9ztRXNy+oDZSNykWCUVLaZro0UmeFrNUBqzE6j9mI3AyRhPw1QbZX5oRMLgLOG3OtS
+SGJsz7M+bnhnp+xP4ww+SIlxx5LhDtnyPw==
+
+/
+</pre></div>
+               <div class="example" id="GUID-4C024F24-F054-4E11-BCAD-ACA9D6B745D2__CEGGHABG">
+                  <p class="titleinexample">Example A-3 Running Wrapped File and Viewing Wrapped PL/SQL Units</p>
+                  <p>In SQL*Plus, this example runs the wrapped file <code class="codeph">wraptest.plb</code>, creating the procedure <code class="codeph">wraptest</code> and the function <code class="codeph">fibonacci</code>; selects the text of the subprograms (which is wrapped and therefore unreadable), and then invokes the subprograms.
+                  </p><pre class="oac_no_warn" dir="ltr">SQL&gt; <span class="bold">-- Run wrapped file:</span>
+SQL&gt; 
+SQL&gt; <span class="bold">@wraptest2.plb</span>
+SQL&gt; -- The following statement will not change.
+SQL&gt; 
+SQL&gt; SELECT COUNT(*) FROM EMPLOYEES
+  2  /
+ 
+  COUNT(*)
+----------
+       107
+ 
+1 row selected.
+
+SQL&gt; /* The PL/SQL source text of the following two CREATE statements will be wrapped. */
+ 
+SQL&gt; CREATE PROCEDURE wraptest wrapped
+   2  a000000
+  3  1
+  4  abcd
+  5  abcd
+  6  abcd
+  7  abcd
+  8  abcd
+  9  abcd
+ 10  abcd
+ 11  abcd
+ 12  abcd
+ 13  abcd
+ 14  abcd
+ 15  abcd
+ 16  abcd
+ 17  abcd
+ 18  abcd
+ 19  7
+ 20  129 138
+ 21  qf4HggDBeNMPlWAsPn6pGf+2LGwwg+nwJK5qZ3SVWE4+GayDZaL1bF7RwYm2/zr1qjZY3FrN
+ 22  48M1bKc/MG5aY9YB+DrtT4SJN370Rpq7ck5D0sc1D5sKAwTyX13HYvRmjwkdXa0vEZ4q/mCU
+ 23  EQusX23UZbZjxha7CtlCDCx8guGw/M/oHZXc8wDHXL8V8OsqQMv/Hj7z68gINl7OstalRScr
+ 24  uSZ/l/W1YaaA9Lj8Fbx5/nJw96ZNy1SCY8VsB/G6O5f/65+EDxdThpnfU4e1vrrE9iB3/IpI
+ 25  +7fE1Tv29fwc+aZq3S7O
+ 26  
+ 27  /
+ 
+<span class="bold">Procedure created.</span>
+ 
+SQL&gt; CREATE OR REPLACE FUNCTION fibonacci wrapped
+ 2  a000000
+  3  1
+  4  abcd
+  5  abcd
+  6  abcd
+  7  abcd
+  8  abcd
+  9  abcd
+ 10  abcd
+ 11  abcd
+ 12  abcd
+ 13  abcd
+ 14  abcd
+ 15  abcd
+ 16  abcd
+ 17  abcd
+ 18  abcd
+ 19  8
+ 20  150 ff
+ 21  BFDvTL9OR04SJbx+qOy5H/h8IcwwgxDcAJnWZ3TNz51mjAmegdQcpNJfq8hUuQtv1Y5xg7Wd
+ 22  KqMH/HBANhnZ+E1mBWekavYjPxlqV9zIFqZAgB4SBqkqe42sai9Vb0cLEU02/ZCEyxDSfWf3
+ 23  H1Lp6U9ztRXNy+oDZSNykWCUVLaZro0UmeFrNUBqzE6j9mI3AyRhPw1QbZX5oRMLgLOG3OtS
+ 24  SGJsz7M+bnhnp+xP4ww+SIlxx5LhDtnyPw==
+ 25  
+ 26  /
+ 
+<span class="bold">Function created.</span>
+ 
+SQL&gt; 
+SQL&gt; <span class="bold">-- Try to display procedure source text:</span>
+SQL&gt; 
+SQL&gt; <span class="bold">SELECT text FROM USER_SOURCE WHERE name='WRAPTEST';</span>
+ 
+TEXT
+--------------------------------------------------------------------------------
+PROCEDURE wraptest <span class="bold">wrapped</span>
+a000000
+1
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+7
+129 138
+qf4HggDBeNMPlWAsPn6pGf+2LGwwg+nwJK5qZ3SVWE4+GayDZaL1bF7RwYm2/zr1qjZY3FrN
+48M1bKc/MG5aY9YB+DrtT4SJN370Rpq7ck5D0sc1D5sKAwTyX13HYvRmjwkdXa0vEZ4q/mCU
+EQusX23UZbZjxha7CtlCDCx8guGw/M/oHZXc8wDHXL8V8OsqQMv/Hj7z68gINl7OstalRScr
+uSZ/l/W1YaaA9Lj8Fbx5/nJw96ZNy1SCY8VsB/G6O5f/65+EDxdThpnfU4e1vrrE9iB3/IpI
++7fE1Tv29fwc+aZq3S7O
+ 
+ 
+1 row selected.
+ 
+SQL&gt; 
+SQL&gt; <span class="bold">-- Try to display function source text:</span>
+SQL&gt; 
+SQL&gt; <span class="bold">SELECT text FROM USER_SOURCE WHERE name='FIBONACCI';</span>
+ 
+TEXT
+--------------------------------------------------------------------------------
+FUNCTION fibonacci <span class="bold">wrapped</span>
+a000000
+1
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+8
+150 ff
+BFDvTL9OR04SJbx+qOy5H/h8IcwwgxDcAJnWZ3TNz51mjAmegdQcpNJfq8hUuQtv1Y5xg7Wd
+KqMH/HBANhnZ+E1mBWekavYjPxlqV9zIFqZAgB4SBqkqe42sai9Vb0cLEU02/ZCEyxDSfWf3
+H1Lp6U9ztRXNy+oDZSNykWCUVLaZro0UmeFrNUBqzE6j9mI3AyRhPw1QbZX5oRMLgLOG3OtS
+SGJsz7M+bnhnp+xP4ww+SIlxx5LhDtnyPw==
+ 
+ 
+1 row selected.
+ 
+SQL&gt; 
+SQL&gt; BEGIN
+  2    <span class="bold">wraptest;  -- invoke procedure</span>
+  3    <span class="bold">DBMS_OUTPUT.PUT_LINE('fibonacci(5) = ' || fibonacci(5));</span>
+  4  END;
+  5  /
+Emp Id: 100
+Emp Id: 101
+Emp Id: 102
+Emp Id: 103
+Emp Id: 104
+Emp Id: 105
+Emp Id: 106
+Emp Id: 107
+Emp Id: 108
+Emp Id: 109
+fibonacci(5) = 3
+ 
+PL/SQL procedure successfully completed.
+ 
+SQL&gt; </pre></div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

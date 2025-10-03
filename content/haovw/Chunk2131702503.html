@@ -1,0 +1,174 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="reference">
+      <meta name="DC.Title" content="Oracle Net TNS String Parameters">
+      <meta name="abstract" content="The parameters used in the connect string are explained here.">
+      <meta name="description" content="The parameters used in the connect string are explained here.">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Reference">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-E2003E3B-0316-4CD4-B153-37EF080F1858">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The parameters used in the connect string are explained here.">
+      <meta name="description" content="The parameters used in the connect string are explained here.">
+      <title>Oracle Net TNS String Parameters</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content="The parameters used in the connect string are explained here.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="Chunk636638251.html" title="Previous" type="text/html">
+      <link rel="next" href="Chunk1438672314.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Oracle Net TNS String Parameters","description":"The parameters used in the connect string are explained here.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="Chunk636638251.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="Chunk1438672314.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-E2003E3B-0316-4CD4-B153-37EF080F1858" name="GUID-E2003E3B-0316-4CD4-B153-37EF080F1858"></a>
+         
+         <h2 id="HAOVW-GUID-E2003E3B-0316-4CD4-B153-37EF080F1858" class="sect2">Oracle Net TNS String Parameters</h2>
+         <div class="ind">
+            <div>
+               <p>The parameters used in the connect string are explained here.</p>
+               <div class="section">
+                  <p class="subhead1" id="GUID-E2003E3B-0316-4CD4-B153-37EF080F1858__GUID-344D35E7-7C8E-43E8-BD6C-C141829EAAA5">CONNECT_TIMEOUT</p>
+                  
+                  
+                  <p>Applies when a connection to a listener address is attempted.</p>
+                  
+                  <p>This setting represents the maximum time in which a connection using a specific
+                    <code class="codeph">ADDRESS</code> endpoint has to complete. It includes the transport
+                connection time and any other actions that must happen (redirection from SCAN VIP to
+                listener VIP and finally to the foreground spawned process).
+                  </p>
+                  
+                  <p><code class="codeph">CONNECT_TIMEMOUT</code> should be larger than
+                    <code class="codeph">TRANSPORT_CONNECT_TIMEOUT</code>, otherwise
+                    <code class="codeph">TRANSPORT_CONNECT_TIMEOUT</code> is effectively capped by
+                    <code class="codeph">CONNECT_TIMEOUT</code>. When
+                    <code class="codeph">TRANSPORT_CONNECT_TIMEOUT</code> is not specified, then
+                    <code class="codeph">CONNECT_TIMEOUT</code> acts as the timeout for the entire connection
+                attempt to an <code class="codeph">ADDRESS</code> endpoint, both transport and final connection
+                to the database foreground.
+                  </p>
+                  
+                  <p>Oracle recommends the value for <code class="codeph">CONNECT_TIMEOUT</code> be large enough to
+                account for the value of <code class="codeph">TRANSPORT_CONNECT_TIMEOUT</code>, in addition to
+                potential delays that may occur when connecting to busy listeners and hosts. The
+                value of 90 seconds in the example connect string is very generous and might need to
+                be shortened in some cases. But, if it is too short, then the setting could be
+                counter-productive because it causes additional attempts that can also fail, and can
+                introduce more unproductive workload on the servers to handle connection requests
+                that might be prematurely abandoned.
+                  </p>
+                  
+               </div>
+               <div class="section">
+                  <p class="subhead1" id="GUID-E2003E3B-0316-4CD4-B153-37EF080F1858__GUID-2DF0AE4B-7CBF-47BF-AAD0-37643C272D77">RETRY_COUNT</p>
+                  
+                  
+                  <p>If a connection attempt fails across all <code class="codeph">ADDRESS_LISTS</code>, then
+                additional attempts to connect beginning with the first
+                    <code class="codeph">ADDRESS_LIST</code> will be made <code class="codeph">RETRY_COUNT</code> times. 
+                  </p>
+                  
+                  <p>This is useful when a switchover or failover to a standby is in progress and the
+                connection needs to keep trying until the operation is complete.</p>
+                  
+               </div>
+               <div class="section">
+                  <p class="subhead1" id="GUID-E2003E3B-0316-4CD4-B153-37EF080F1858__GUID-8C64DA4D-39F8-421F-B6D6-3278D4C68097">RETRY_DELAY</p>
+                  
+                  
+                  <p>Seconds in between retry attempts.</p>
+                  
+                  <p>A short amount of time is given to allow the new primary database time to open. This
+                parameter is used with RETRY_COUNT to wait a reasonable amount of time to connect to
+                a newly opened database.</p>
+                  
+                  <p>It is better to have short retry delays with many retry counts so the connection can
+                complete close to the time the primary database opened.</p>
+                  
+               </div>
+               <div class="section">
+                  <p class="subhead1" id="GUID-E2003E3B-0316-4CD4-B153-37EF080F1858__GUID-4451DBF6-C5A6-45DC-95A3-D71359402B0E">TRANSPORT_CONNECT_TIMEOUT=1000ms</p>
+                  
+                  
+                  <p>Allow up to 1000 milliseconds to connect to the listener using TCP hosts in the
+                ADDRESS. If no connection is made, then try the next ADDRESS.</p>
+                  
+                  <p>When an Oracle RAC SCAN host name is used, each IP in the SCAN address is expanded
+                internally into a separate ADDRESS string. Each ADDRESS is then attempted if a
+                connection attempt fails.</p>
+                  
+                  <p>Adjust this parameter for your environment to minimize the time spent waiting for the
+                listener endpoint connection to succeed. If the time is too short, you might give up
+                on a connection attempt too soon, causing more delays and potentially a failure to
+                connect. If the time is too long, then if the listener endpoint is unreachable, you
+                might spend too much time waiting before giving up and trying another endpoint.</p>
+                  
+                  <p>The host names specify SCAN VIPs. They are always available when using a cluster.
+                This means that if a node or network is down, the VIP sends an instant reply, so
+                that when connecting, the next address is used immediately if the service is not
+                offered at the VIP address.</p>
+                  
+               </div>
+               <div class="section">
+                  <p class="subhead1" id="GUID-E2003E3B-0316-4CD4-B153-37EF080F1858__GUID-73CB633B-BAF4-4B0A-BBD5-4E012E6989DD">LOAD_BALANCE=ON within ADDRESS_LIST</p>
+                  
+                  
+                  <p>When a <code class="codeph">HOST</code> inside an <code class="codeph">ADDRESS</code> resolves to multiple
+                addresses for Oracle RAC SCAN, then all of the addresses are tried in a random
+                order.
+                  </p>
+                  
+                  <p>If you set <code class="codeph">LOAD_BALANCE=OFF</code>, then the order is the same every time,
+                which might overburden one of the SCAN listeners, so its recommended to set it to
+                    <code class="codeph">ON</code>.
+                  </p>
+                  
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

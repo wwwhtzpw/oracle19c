@@ -1,0 +1,139 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="reference">
+      <meta name="DC.Title" content="Example Distribution Path Target Change Script">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Reference">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-8C692EE7-827F-4A71-8521-A48D9A172C4E">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <title>Example Distribution Path Target Change Script</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="task-10-configure-oracle-goldengate-processes1.html" title="Previous" type="text/html">
+      <link rel="next" href="managing-planned-and-unplanned-outages-oracle-goldengate-hub1.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Example Distribution Path Target Change Script","description":"","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="task-10-configure-oracle-goldengate-processes1.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="managing-planned-and-unplanned-outages-oracle-goldengate-hub1.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-8C692EE7-827F-4A71-8521-A48D9A172C4E" name="GUID-8C692EE7-827F-4A71-8521-A48D9A172C4E"></a>
+         
+         <h2 id="HAOVW-GUID-8C692EE7-827F-4A71-8521-A48D9A172C4E" class="sect2">Example Distribution Path Target Change
+        Script</h2>
+         <div class="ind">
+            <div>
+               <p>
+                  
+                  
+               </p>
+               <div class="section">
+                  
+                  <p>The following example script can be used to change a source GoldenGate deployment
+        distribution path target address to reflect the new location of the receiver server after a
+        Data Guard role transition. This example assumes the source GoldenGate deployment is
+        configured in an MAA architecture with Data Guard, such that the distribution server can
+        relocate between a primary and standby cluster. </p>
+                  <pre class="pre codeblock"><code>#!/bin/bash
+
+# change_path_target.sh - changes the target host of a GG Distribution Path when the target
+#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; moves between primary/standby clusters.
+# Example usage:
+# ./change_path_target.sh &lt;primary source VIP&gt;:443 &lt;standby source VIP&gt;:443 &lt;path target VIP&gt; &lt;path name&gt; &lt;deployment name&gt; &lt;credentials file&gt;
+
+SOURCE1=$1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # PRIMARY Distribution Server VIP
+SOURCE2=$2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # STANDBY Distribution Server VIP
+TARGET=$3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Distribution path target VIP
+DPATH=$4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Distribution path name
+DEP=$5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Deployment name
+ACCESS=$6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # access.cfg file containing the deployment credentials. Example contents:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # user = "oggadmin:&lt;password&gt;"
+
+CONNECT=0
+
+#echo "#${i} - `date`:"
+LOGFILE=/tmp/ogg_dpatch_change.txt
+
+result=$(curl -si -K $ACCESS https://$SOURCE1/$DEP/distsrvr/services/v2/sources/$DPATH -X GET| grep HTTP |&nbsp; awk '{print $2}')
+
+# Will return NULL of nginx not running, 502 if cannot contact server, 200 if contact to server good, and others (404) for other bad reasons:
+
+if [[ -z $result || $result -ne 200 ]]; then&nbsp; # Managed to access the Distr Server
+&nbsp; echo "`date` - Couldn't contact Distribution Server at $SOURCE1 Deployment $DEP ****" &gt;&gt; $LOGFILE
+else # Try the other source host:
+&nbsp; echo "`date` - Got status of Distribution Server at $SOURCE1 Deployment $DEP ***"&nbsp; &gt;&gt; $LOGFILE
+&nbsp; SOURCE=$SOURCE1
+&nbsp; CONNECT=1
+fi
+
+if [ $CONNECT -eq 1 ]; then
+# For secure NGINX patch destination (wss)
+&nbsp; PAYLOAD='{"target":{"uri":"wss://'${TARGET}'/services/ggnorth/v2/targets?trail=bb"}}'
+&nbsp; curl -s -K $ACCESS https://$SOURCE/$DEP/distsrvr/services/v2/sources/$DPATH -X PATCH --data '{"status": "stopped"}'
+
+# Set new target for path:
+&nbsp; curl -s -K $ACCESS https://$SOURCE/$DEP/distsrvr/services/v2/sources/$DPATH -X PATCH --data "$PAYLOAD"
+&nbsp; echo "`date` - Set path $DPATH on $SOURCE deployment $DEP:" &gt;&gt; $LOGFILE
+
+&nbsp; curl -s -K $ACCESS https://$SOURCE/$DEP/distsrvr/services/v2/sources/$DPATH -X GET | python -m json.tool | grep uri &gt;&gt; $LOGFILE
+&nbsp; curl -s -K $ACCESS https://$SOURCE/$DEP/distsrvr/services/v2/sources/$DPATH -X PATCH --data '{"status": "running"}'
+
+exit 0
+else
+&nbsp; echo "`date` - ERROR: COULDN'T CHANGE DISTRIBUTION PATH ($DPATH) in Deployement $DEP at $SOURCE! ***" &gt;&gt; $LOGFILE
+fi
+
+# If here, means we couldn't connect to either Distribution Servers
+exit 1</code></pre>
+                  </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

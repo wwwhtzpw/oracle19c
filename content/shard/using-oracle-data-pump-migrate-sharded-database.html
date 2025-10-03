@@ -1,0 +1,643 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Using Oracle Data Pump to Migrate to a Sharded Database">
+      <meta name="abstract" content="Using the examples and guidelines provided in the following topics, you can extract DDL definitions and data from the source database with the Oracle Data Pump export utility, and then use the Data Pump import utility against the database export files to populate the target sharded database.">
+      <meta name="description" content="Using the examples and guidelines provided in the following topics, you can extract DDL definitions and data from the source database with the Oracle Data Pump export utility, and then use the Data Pump import utility against the database export files to populate the target sharded database.">
+      <meta name="DC.Creator" content="Roopam Jain">
+      <meta name="DC.Creator" content="Shailesh Dwivedi">
+      <meta name="DC.Creator" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Pankaj Chandiramani">
+      <meta name="DC.Creator" content="Mark Dilman">
+      <meta name="DC.Creator" content="Nourdine Benadjaoud">
+      <meta name="DC.Creator" content="Rennie Sreekumar Ranjit Kumar">
+      <meta name="DC.Creator" content="David Colello">
+      <meta name="DC.Creator" content="Steve Ball">
+      <meta name="DC.Creator" content="Abhishek Srivastava">
+      <meta name="DC.Creator" content="Sebastian Binek">
+      <meta name="DC.Creator" content="Shahab Hamid">
+      <meta name="DC.Creator" content="Virginia Beecher">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-041069C8-FA7B-4BA5-BFB8-B5A949DA12A9">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Using the examples and guidelines provided in the following topics, you can extract DDL definitions and data from the source database with the Oracle Data Pump export utility, and then use the Data Pump import utility against the database export files to populate the target sharded database.">
+      <meta name="description" content="Using the examples and guidelines provided in the following topics, you can extract DDL definitions and data from the source database with the Oracle Data Pump export utility, and then use the Data Pump import utility against the database export files to populate the target sharded database.">
+      <title>Using Oracle Data Pump to Migrate to a Sharded Database</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Using Oracle Sharding">
+      <meta property="og:description" content="Using the examples and guidelines provided in the following topics, you can extract DDL definitions and data from the source database with the Oracle Data Pump export utility, and then use the Data Pump import utility against the database export files to populate the target sharded database.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Using Oracle Sharding">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-globally-distributed-database-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-24T13:16:05-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2018, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E87088-15">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="migration1.html" title="Previous" type="text/html">
+      <link rel="next" href="using-external-tables-load-data-sharded-database.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Globally Distributed Database Guide">
+    <meta name="dcterms.isVersionOf" content="SHARD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Using Oracle Data Pump to Migrate to a Sharded Database","description":"Using the examples and guidelines provided in the following topics, you can extract DDL definitions and data from the source database with the Oracle Data Pump export utility, and then use the Data Pump import utility against the database export files to populate the target sharded database.","datePublished":"2025-06-25 CST","dateModified":"2025-06-25 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="migration1.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="using-external-tables-load-data-sharded-database.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-041069C8-FA7B-4BA5-BFB8-B5A949DA12A9" name="GUID-041069C8-FA7B-4BA5-BFB8-B5A949DA12A9"></a>
+         
+         <h2 id="SHARD-GUID-041069C8-FA7B-4BA5-BFB8-B5A949DA12A9" class="sect2">Using Oracle Data Pump to Migrate
+        to a Sharded Database</h2>
+         <div class="ind">
+            <div>
+               <p>Using the examples and guidelines provided in the following topics, you can
+        extract DDL definitions and data from the source database with the Oracle Data Pump export
+        utility, and then use the Data Pump import utility against the database export files to
+        populate the target sharded database.</p>
+               <p>If you already created the schema for your sharded database, you can go
+            directly to the data migration topic.</p>
+            </div>
+            <div class="sect2"><a id="GUID-DCECD3DD-423B-4740-8067-39B3E6C88977" name="GUID-DCECD3DD-423B-4740-8067-39B3E6C88977"></a><h3 id="SHARD-GUID-DCECD3DD-423B-4740-8067-39B3E6C88977" class="sect3">Migrating a Schema to a Sharded
+        Database</h3>
+               <div>
+                  <p>Transition from a non-sharded database to a sharded database requires some
+        schema changes. At a minimum, the keyword <code class="codeph">SHARDED</code> or
+            <code class="codeph">DUPLICATED</code> should be added to <code class="codeph">CREATE TABLE</code> statements.
+        In some cases, the partitioning of tables should be changed as well, or a column with the
+        shading key added.
+                  </p>
+                  <p>To properly design the sharded database schema, you must analyze the schema and workload
+            of the non-sharded database and make the following decisions.</p>
+                  <ul style="list-style-type: disc;" id="GUID-DCECD3DD-423B-4740-8067-39B3E6C88977__UL_BZM_2K4_RNB">
+                     <li>Which tables should be sharded and which should be duplicated</li>
+                     <li>What are the parent-child relationships between the sharded tables in the table
+                family</li>
+                     <li>Which sharding method is used on the sharded tables</li>
+                     <li>What to use as the sharding key</li>
+                  </ul>
+                  <p>If these decisions are not straightforward, you can use the Sharding Advisor to help you
+            to make them. Sharding Advisor is a tool that you run against a non-sharded Oracle
+            Database that you are considering to migrate to an Oracle Sharding environment.</p>
+                  <p>To illustrate schema and data migration from a non-sharded to sharded database, we will
+            use a sample data model shown in the following figure.</p>
+                  <div class="figure" id="GUID-DCECD3DD-423B-4740-8067-39B3E6C88977__GUID-3D6A995B-26D2-4857-9631-8FCFBE978202">
+                     <p class="titleinfigure">Figure 7-1 Schema Migration Example Data
+                Model</p><img id="GUID-DCECD3DD-423B-4740-8067-39B3E6C88977__IMAGE_SWQ_WX4_BLB" height="344" width="574" src="img/sample_schema.png" alt="Description of Figure 7-1 follows" title="Description of Figure 7-1 follows" longdesc="img_text/sample_schema.html"><br><a href="img_text/sample_schema.html">Description of "Figure 7-1 Schema Migration Example Data
+                Model"</a></div>
+                  <p>The data model consists of four tables, Customers, Orders, StockItems, and
+            LineItems, and the data model enforces the following primary key constraints.</p>
+                  <ul style="list-style-type: disc;" id="GUID-DCECD3DD-423B-4740-8067-39B3E6C88977__UL_TWQ_WX4_BLB">
+                     <li>
+                        
+                        <p><code class="codeph">Customer.(CustNo)</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">Orders.(PONo)</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">StockItems.(StockNo)</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">LineItems.(LineNo, PONo)</code></p>
+                        
+                     </li>
+                  </ul>
+                  <p>The data model defines the following referential integrity constraints.</p>
+                  <ul style="list-style-type: disc;" id="GUID-DCECD3DD-423B-4740-8067-39B3E6C88977__UL_UWQ_WX4_BLB">
+                     <li>
+                        
+                        <p><code class="codeph">Customers.CustNo -&gt; Orders.CustNo</code>
+                           
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">Orders.PONo -&gt; LineItems.PONo</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p><code class="codeph">StockItems.StockNo -&gt; LineItems.StockNo</code></p>
+                        
+                     </li>
+                  </ul>
+                  <p>The following DDL statements create the example non-sharded schema
+            definitions.</p><pre class="pre codeblock"><code>CREATE TABLE Customers (
+ CustNo     NUMBER(3) NOT NULL,
+ CusName    VARCHAR2(30) NOT NULL,
+ Street     VARCHAR2(20) NOT NULL,
+ City       VARCHAR2(20) NOT NULL,
+ State      CHAR(2) NOT NULL,
+ Zip        VARCHAR2(10) NOT NULL,
+ Phone      VARCHAR2(12),
+ PRIMARY KEY (CustNo)
+);
+
+CREATE TABLE Orders (
+ PoNo       NUMBER(5),
+ CustNo     NUMBER(3) REFERENCES Customers,
+ OrderDate  DATE,
+ ShipDate   DATE,
+ ToStreet   VARCHAR2(20),
+ ToCity     VARCHAR2(20),
+ ToState    CHAR(2),
+ ToZip      VARCHAR2(10),
+ PRIMARY KEY (PoNo)
+);
+
+CREATE TABLE LineItems (
+ LineNo      NUMBER(2),
+ PoNo        NUMBER(5) REFERENCES Orders,
+ StockNo     NUMBER(4) REFERENCES StockItems,
+ Quantity    NUMBER(2),
+ Discount    NUMBER(4,2),
+ PRIMARY KEY (LineNo, PoNo)
+);
+
+CREATE TABLE StockItems (
+ StockNo     NUMBER(4) PRIMARY KEY,
+ Description VARCHAR2(20),
+ Price       NUMBER(6,2)
+);
+</code></pre></div>
+            </div>
+            <div class="sect2"><a id="GUID-87E61A9D-F57A-4A7B-A5CC-96FFD48A0C53" name="GUID-87E61A9D-F57A-4A7B-A5CC-96FFD48A0C53"></a><h3 id="SHARD-GUID-87E61A9D-F57A-4A7B-A5CC-96FFD48A0C53" class="sect3">Migrating the Sample Schema</h3>
+               <div>
+                  <p>As an example, to migrate the sample schema described above to a sharded
+        database, do the following steps.</p>
+                  <ol>
+                     <li class="stepexpand"><span>Get access to the source database export directory.</span><div>
+                           
+                           <p>The database administrator has to authorize the database user for required
+                        access to the database export directory, as shown here.</p>
+                           <pre class="pre codeblock"><code>CREATE OR REPLACE DIRECTORY expdir AS ‘/some/directory’; 
+GRANT READ, WRITE ON DIRECTORY expdir TO uname;
+GRANT EXP_FULL_DATABASE TO uname;
+</code></pre>
+                           <p>With a full database export, the database administrator must grant you the
+                            <code class="codeph">EXP_FULL_DATABASE</code> role, <code class="codeph">uname</code>. No
+                        additional role is required for a table level export.
+                           </p>
+                           
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Extract the DDL definitions from the source database.</span><div>
+                           
+                           <p>A convenient way to extract the DDL statements is to create a Data Pump
+                        extract file. You can export only metadata, or only a part of the schema
+                        containing the set of tables you are interested in migrating, as shown in
+                        this example.</p>
+                           <pre class="pre codeblock"><code>expdp uname/pwd directory=EXPDIR dumpfile=sample_mdt.dmp logfile=sample_mdt.log INCLUDE=TABLE:\"IN \( \'CUSTOMERS\', \'ORDERS\', \'STOCKITEMS\', \'LINEITEMS\' \) \" CONTENT=METADATA_ONLY FLASHBACK_TIME=SYSTIMESTAMP</code></pre>
+                           <p>Then, use the Data Pump import utility against this database export file.</p>
+                           <pre class="pre codeblock"><code>impdp uname/pwd@orignode directory=expdir dumpfile=sample_mdt.dmp sqlfile=sample_ddl.sql</code></pre>
+                           <p>In this example, the <code class="codeph">impdp</code> command does not actually perform
+                        an import of the contents of the dump file. Rather, the
+                            <code class="codeph">sqlfile</code> parameter triggers the creation of a script
+                        named <code class="codeph">sample_ddl.sql</code> which contains all of the DDL from
+                        within the export dump file.
+                           </p>
+                           
+                           <p>Trimming down the export in this way more efficiently captures a consistent
+                        image of the database metadata without a possibly lengthy database data dump
+                        process. You still must get the DDL statements in text format to perform the
+                        DDL modifications required by your sharded database schema design.</p>
+                           
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Modify the extracted DDL statements for the sharded database.</span><div>
+                           
+                           <p>For the sample schema shown above, the corresponding DDL statements for the
+                        sharded database may look like the following. This is an example with
+                        system-managed sharding.</p>
+                           <pre class="pre codeblock"><code>CREATE SHARDED TABLE Customers (
+ CustNo     NUMBER(3) NOT NULL,
+ CusName    VARCHAR2(30) NOT NULL,
+ Street     VARCHAR2(20) NOT NULL,
+ City       VARCHAR2(20) NOT NULL,
+ State      CHAR(2) NOT NULL,
+ Zip        VARCHAR2(10) NOT NULL,
+ Phone      VARCHAR2(12),
+ CONSTRAINT RootPK PRIMARY KEY (CustNo)
+)
+PARTITION BY CONSISTENT HASH (CustNo)
+PARTITIONS AUTO
+TABLESPACE SET ts1
+;
+
+CREATE SHARDED TABLE Orders (
+ PoNo       NUMBER(5) NOT NULL,
+ CustNo     NUMBER(3) NOT NULL,
+ OrderDate  DATE,
+ ShipDate   DATE,
+ ToStreet   VARCHAR2(20),
+ ToCity     VARCHAR2(20),
+ ToState    CHAR(2),
+ ToZip      VARCHAR2(10),
+ CONSTRAINT OrderPK PRIMARY KEY (CustNo, PoNo),
+ CONSTRAINT CustFK Foreign Key (CustNo) REFERENCES Customers (CustNo)
+)
+PARTITION BY REFERENCE (CustFK)
+;
+CREATE SHARDED TABLE LineItems (
+ LineNo      NUMBER(2) NOT NULL,
+ PoNo        NUMBER(5) NOT NULL,
+ CustNo      NUMBER(3) NOT NULL,
+ StockNo     NUMBER(4) NOT NULL,
+ Quantity    NUMBER(2),
+ Discount    NUMBER(4,2),
+ CONSTRAINT LinePK PRIMARY KEY (CustNo, LineNo, PoNo),
+ CONSTRAINT LineFK FOREIGN KEY (CustNo, PoNo) REFERENCES Orders (CustNo, PoNo)
+)
+PARTITION BY REFERENCE (LineFK)
+;
+
+CREATE DUPLICATED TABLE StockItems (
+ StockNo     NUMBER(4) PRIMARY KEY,
+ Description VARCHAR2(20),
+ Price       NUMBER(6,2)
+);
+</code></pre>
+                           <p>Here are some observations about the schema of the sharded database.</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-87E61A9D-F57A-4A7B-A5CC-96FFD48A0C53__UL_SBJ_5M4_RNB">
+                              <li>
+                                 
+                                 <p>Customers-Orders-LineItems form a table family of
+                                    <code class="codeph">SHARDED</code> tables, with Customers as the root
+                                table and child tables are partitioned by reference. StockItems is a
+                                    <code class="codeph">DUPLICATED</code> table.
+                                 </p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p><code class="codeph">CustNo</code> is chosen as the sharding key. Hence, this
+                                column must be included in all the tables of the table family. Note
+                                that in the non-sharded database, the LineItems table did not have a
+                                    <code class="codeph">CustNo</code> column, but it was included in the
+                                sharded version on the table. The sharding key column also needs to
+                                be present in all primary and foreign key constraints in sharded
+                                tables.
+                                 </p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>StockItems is now a duplicated table. The master copy of a duplicated
+                                table resides on the shard catalog database. Thus, the foreign key
+                                constraint in the LineItems table referencing StockItems table
+                                cannot be enforced and is removed.</p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Run the modified DDLs against the target database.</span><div>
+                           
+                           <p>Connect to the shard catalog database and run</p>
+                           <pre class="pre codeblock"><code>ALTER SESSION ENABLE SHARD DDL;</code></pre>
+                           <p>Then run the DDLs listed above to create the sharded and duplicated
+                        tables.</p>
+                           
+                           <p>It is recommended that you validate the sharding configuration using the
+                            <code class="codeph">GDSCTL VALIDATE</code> command, before loading the data.
+                           </p>
+                           <pre class="pre codeblock"><code>gdsctl&gt; validate</code></pre>
+                           <p>If you see inconsistencies or errors, you must correct the problem using the
+                            <code class="codeph">GDSCTL</code> commands <code class="codeph">SHOW DDL</code> and
+                            <code class="codeph">RECOVER</code>. After successful validation, the sharded
+                        database is ready for data loading.
+                           </p>
+                           
+                        </div>
+                     </li>
+                  </ol>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-6E455646-F4AA-4992-B50B-58A1290355FE" name="GUID-6E455646-F4AA-4992-B50B-58A1290355FE"></a><h3 id="SHARD-GUID-6E455646-F4AA-4992-B50B-58A1290355FE" class="sect3">Migrating Data to a Sharded
+        Database</h3>
+               <div>
+                  <p>Transitioning from a non-sharded database to a sharded database involves
+        moving the data from non-sharded tables in the source database to sharded and duplicated
+        tables in the target database.</p>
+                  <p>Moving data from non-sharded tables to duplicated tables is straightforward, but moving
+            data from non-sharded tables to sharded tables requires special attention.</p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-6E455646-F4AA-4992-B50B-58A1290355FE__GUID-4C5D6A0D-884E-4B75-8BC6-DDFBEB05E343">Loading Data into Duplicated Tables</p>
+                     
+                     <p>You can load data into a duplicated table using any existing database tools, such as
+                Data Pump, SQL Loader, or plain SQL. The data must be loaded to the shard catalog
+                database. Then it gets automatically replicated to all shards. </p>
+                     
+                     <p>Because the contents of the duplicated table is fully replicated to the database
+                shards using materialized views, loading a duplicated table may take longer than
+                loading the same data into a regular table.</p>
+                     
+                     <div class="figure" id="GUID-6E455646-F4AA-4992-B50B-58A1290355FE__FIG_JCC_F5G_5GB">
+                        <p class="titleinfigure">Figure 7-2 Loading Duplicated Tables</p><br><div class="imageleft"><img class="imageleft" id="GUID-6E455646-F4AA-4992-B50B-58A1290355FE__IMAGE_KCC_F5G_5GB" src="img/load_duplicate_tables.png" alt="Description of Figure 7-2 follows" title="Description of Figure 7-2 follows" longdesc="img_text/load_duplicate_tables.html"><br><a href="img_text/load_duplicate_tables.html">Description of "Figure 7-2 Loading Duplicated Tables"</a></div><br></div>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-6E455646-F4AA-4992-B50B-58A1290355FE__GUID-51AE4E26-A9F9-4055-AFD7-EE916519E5B1">Loading Data into Sharded Tables</p>
+                     
+                     <p>When loading a sharded table, each database shard accommodates a distinct subset of
+                the data set, so the data in each table must be split (partitioned) across shards
+                during the load.</p>
+                     
+                     <p>You can use the Oracle Data Pump utility to load the data across database shards in
+                subsets. Data from the source database can be exported into a Data Pump dump file.
+                Then Data Pump import can be run on each shard concurrently by using the same dump
+                file. </p>
+                     
+                     <p>The dump file can be either placed on shared storage accessible to all shards, or
+                copied to the local storage of each shard. When importing to individual shards, Data
+                Pump import ignores the rows that do not belong to the current shard.</p>
+                     <div class="figure" id="GUID-6E455646-F4AA-4992-B50B-58A1290355FE__FIG_GY2_TVG_5GB">
+                        <p class="titleinfigure">Figure 7-3 Loading Sharded Tables Directly to the Database Shards</p><br><div class="imageleft"><img class="imageleft" id="GUID-6E455646-F4AA-4992-B50B-58A1290355FE__IMAGE_HY2_TVG_5GB" src="img/load_sharded_tables_direct.png" alt="Description of Figure 7-3 follows" title="Description of Figure 7-3 follows" longdesc="img_text/load_sharded_tables_direct.html"><br><a href="img_text/load_sharded_tables_direct.html">Description of "Figure 7-3 Loading Sharded Tables Directly to the Database Shards"</a></div><br></div>
+                     
+                     <p>Loading the data directly into the shards is much faster, because all shards are
+                loaded in parallel. It also provides linear scalability; the more shards there are
+                in the sharded database, the higher data ingestion rate is achieved.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-FBFDFE83-FF7C-4EB0-9013-23501188612E" name="GUID-FBFDFE83-FF7C-4EB0-9013-23501188612E"></a><h3 id="SHARD-GUID-FBFDFE83-FF7C-4EB0-9013-23501188612E" class="sect3">Loading the Sample Schema Data</h3>
+               <div>
+                  <p></p>
+                  <div class="section">
+                     
+                     <p>As an example, the following steps illustrate how to move the sample schema data from
+                a non-sharded to sharded database. The syntax examples are based on the sample
+                Customers-Orders-LineItems-StockItems schema introduced in the previous topics.</p>
+                     
+                  </div>
+                  <ol>
+                     <li class="stepexpand"><span>Export the data from your database tables.</span><div>
+                           <pre class="pre codeblock"><code>expdp uname/pwd@non_sharded_db directory=expdir dumpfile=original_tables.dmp logfile=original_tables.log SCHEMAS=UNAME INCLUDE=TABLE:\"IN \( \'CUSTOMERS\', \'ORDERS\', \'STOCKITEMS\' ) \" FLASHBACK_TIME=SYSTIMESTAMP CONTENT=DATA_ONLY</code></pre>
+                           <p>If the source table (in the non-sharded database) is partitioned, then export
+                        to dump files in non-partitioned format
+                            (<code class="codeph">data_options=group_partition_table_data</code>).
+                           </p>
+                           
+                           <p> Example, if the Orders table is a partitioned table on the source database,
+                        export it as follows.</p>
+                           <pre class="pre codeblock"><code>$ cat ordexp.par
+directory=expdir
+logfile=ordexp.log
+dumpfile=ord_%U.dmp
+tables=ORDERS
+parallel=8
+COMPRESSION=ALL
+content=data_only
+DATA_OPTIONS=GROUP_PARTITION_TABLE_DATA
+
+$ expdp user/password parfile=ordexp.par
+</code></pre>
+                           <p>Because the <code class="codeph">SHARDED</code> and <code class="codeph">DUPLICATED</code> tables
+                        were already created in the target database, you only export the table
+                        content (<code class="codeph">DATA_ONLY</code>). 
+                           </p>
+                           
+                           <p>Data Pump export utility files are consistent on a per table basis. If you
+                        want all of the tables in the export to be consistent at the same point in
+                        time, you must use the <code class="codeph">FLASHBACK_SCN</code> or
+                            <code class="codeph">FLASHBACK_TIME</code> parameters as shown in the example
+                        above. Having a consistent “as of” point in time database export files is
+                        recommended.
+                           </p>
+                           
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Make the export file (<code class="codeph">original_tables.dmp</code>) accessible by the
+                    target database nodes before you start importing the data to the sharded
+                    database. </span><div>
+                           
+                           <p>You can either move this file (or multiple files in the case of parallel
+                        export) to the target database system or share the file over the
+                        network.</p>
+                           
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Prepare all the target databases (shard catalog and shards) for import.</span><div>
+                           
+                           <p>The database administrator has to authorize the database user for required
+                        access to the database import directory, as shown here.</p>
+                           <pre class="pre codeblock"><code>CREATE OR REPLACE DIRECTORY expdir AS ‘/some/directory’; 
+GRANT READ, WRITE ON DIRECTORY expdir TO uname;
+GRANT IMP_FULL_DATABASE TO uname;
+</code></pre>
+                           </div>
+                     </li>
+                     <li class="stepexpand"><span>Load the <code class="codeph">DUPLICATED</code> table (StockItems) using the shard
+                    catalog.</span><div>
+                           
+                           <p>The following is an example of the import command.</p>
+                           <pre class="pre codeblock"><code>impdp uname/pwd@catnode:1521/ctlg directory=expdir dumpfile=original_tables.dmp logfile=imp_dup.log tables=StockItems content=DATA_ONLY</code></pre>
+                           </div>
+                     </li>
+                     <li class="stepexpand"><span>Load the <code class="codeph">SHARDED</code> tables on the shards directly.</span><div>
+                           
+                           <p>The best way to load the exported <code class="codeph">SHARDED</code> tables (Customers,
+                        Orders) is to run the Data Pump on each shard (shrd1,2,…, N) directly. The
+                        following is an example of the import command on the first shard.
+                           </p>
+                           <pre class="pre codeblock"><code>impdp uname/pwd@shrdnode:1521/shrd1 directory=expdir DUMPFILE=original_tables.dmp LOGFILE=imp_shd1.log TABLES=”Customers, Orders, LineItems” CONTENT=DATA_ONLY</code></pre>
+                           <p>Repeat this step on all of the other shards. Note that the same dump file
+                            (<code class="codeph">original_tables.dmp</code>) is used to load data for all of
+                        the shards. Data Pump import will ignore rows that do not belong to the
+                        current shard. This operation can be run in parallel on all shards.
+                           </p>
+                           
+                           <p>To benefit from fast loading into very large partitioned tables
+                        with parallelism, the data pump parameter <code class="codeph">DATA_OPTIONS</code>
+                        should include the value <code class="codeph">_FORCE_PARALLEL_DML</code>.
+                           </p>
+                           <pre class="pre codeblock"><code>$ cat ordimp.par
+directory=expdir
+logfile=ordimp.log
+dumpfile=ord_%U.dmp
+tables=ORDERS
+parallel=8
+content=data_only
+DATA_OPTIONS=_force_parallel_dml
+$ impdp user/password parfile=ordimp.par
+</code></pre>
+                           <p>You can
+                        alternatively migrate data using an external table of type <code class="codeph">DATA
+                            PUMP</code>, as shown in the following example.
+                           </p>
+                           
+                           <ol type="a" id="GUID-FBFDFE83-FF7C-4EB0-9013-23501188612E__OL_MCZ_VT4_RNB">
+                              <li>
+                                 
+                                 <p>Export on the source database.</p>
+                                 <pre class="pre codeblock"><code>CREATE TABLE ORDERS_EXT 
+ ORGANIZATION EXTERNAL 
+    ( TYPE ORACLE_DATAPUMP 
+      DEFAULT DIRECTORY "expdir" 
+      ACCESS PARAMETERS ( DEBUG = (3 , 33489664)) 
+      LOCATION ('ord1.dat',
+                'ord2.dat',
+                'ord3.dat',
+                'ord4.dat') 
+    ) 
+PARALLEL 8 
+REJECT LIMIT UNLIMITED
+AS SELECT * FROM user.ORDERS;
+</code></pre>
+                                 </li>
+                              <li>
+                                 
+                                 <p>Import into each target shard.</p>
+                                 <pre class="pre codeblock"><code>CREATE TABLE ORDERS_EXT 
+ ORGANIZATION EXTERNAL 
+    ( TYPE ORACLE_DATAPUMP 
+      DEFAULT DIRECTORY "expdir" 
+      ACCESS PARAMETERS ( DEBUG = (3 , 33489664)) 
+      LOCATION ('ord1.dat',
+                'ord2.dat',
+                'ord3.dat',
+                'ord4.dat') 
+    ) 
+PARALLEL 8 
+REJECT LIMIT UNLIMITED
+;
+INSERT /*+ APPEND ENABLE_PARALLEL_DML PARALLEL(a,12) pq_distribute(a, random) */ INTO "user"."ORDERS" a
+SELECT /*+ full(b) parallel(b,12) pq_distribute(b, random)*/ 
+* 
+FROM "ORDERS_EXT" 
+WHERE &lt;predicate*&gt;;
+Commit;
+</code></pre>
+                                 <p>(*) The predicate in the <code class="codeph">WHERE</code> clause
+                                depends on the sharding method. For user-defined sharding by range,
+                                for example, it will be based on the range of CustNo on a particular
+                                shard. For system-managed (consistent hash-based) sharding, see the
+                                use case in <a href="using-external-tables-load-data-sharded-database.html#GUID-D2CD7510-79CE-44B1-A91A-8A96EE2EF62E" title="Using the examples and guidelines in the following topics, you can load data into a sharded database by creating external tables and then loading the data from the external tables into sharded or duplicated tables.">Using External Tables to Load Data into a Sharded Database</a>.
+                                 </p>
+                                 
+                              </li>
+                           </ol>
+                           
+                        </div>
+                     </li>
+                  </ol>
+                  <div class="section">
+                     
+                     <div class="infoboxnote" id="GUID-FBFDFE83-FF7C-4EB0-9013-23501188612E__GUID-EBCA95CF-C5C5-4DA3-AABD-CC6531A0BDBA">
+                        <p class="notep1">Note:</p>
+                        
+                        <p>You can make Data Pump run faster by using the <code class="codeph">PARALLEL</code>
+                    parameter in the <code class="codeph">expdp</code> and <code class="codeph">impdp</code> commands. For
+                    export, this parameter should be used in conjunction with the %U wild card in
+                    the <code class="codeph">DUMPFILE</code> parameter to allow multiple dump files be created,
+                    as shown in this example.
+                        </p>
+                        <pre class="pre codeblock"><code>expdp uname/pwd@orignode SCHEMAS=uname directory=expdir dumpfile=samp_%U.dmp logfile=samp.log FLASHBACK_TIME=SYSTIMESTAMP PARALLEL=4 </code></pre>
+                        <p>The above command uses four parallel workers and creates four dump files with
+                    suffixes _01, _02, _03, and _04. The same wild card can be used during the
+                    import to allow you to reference multiple input files. </p>
+                        
+                     </div>
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-A9C8592E-4D41-4FDC-8B4B-C8FB6EE4E941" name="GUID-A9C8592E-4D41-4FDC-8B4B-C8FB6EE4E941"></a><h3 id="SHARD-GUID-A9C8592E-4D41-4FDC-8B4B-C8FB6EE4E941" class="sect3">Migrating Data Without a Sharding Key </h3>
+               <div>
+                  <p>As an example, the following steps illustrate how to migrate data to a
+        sharded table from a source table that does not contain the sharding key.</p>
+                  <div class="section">
+                     
+                     <p>The examples of the Data Pump export and import commands in the previous topic do not
+                include the LineItems table. The reason is that this table in the non-sharded
+                database does not contain the sharding key column (CustNo). However, this column is
+                required in the sharded version of the table.</p>
+                     
+                     <p>Because of the schema mismatch between the non-sharded and sharded versions of the
+                table, data migration for LineItems must be handled differently, as shown in the
+                following steps.</p>
+                     
+                  </div>
+                  <ol>
+                     <li class="stepexpand"><span>On the source, non-sharded, database, create a temporary view with the missing
+                    column and SQL expression to generate value for this column.</span><div>
+                           <pre class="pre codeblock"><code>CREATE OR REPLACE VIEW Lineitems_View AS
+  SELECT l.*,
+        (SELECT o.CustNo From Orders o WHERE l.PoNo=o.PoNo) CustNo
+FROM LineItems l;
+</code></pre>
+                           <p>This creates a view <code class="codeph">LineItems_View</code> with the column
+                            <code class="codeph">CustNo</code> populated based on the foreign key relationship
+                        with the Orders table.
+                           </p>
+                           
+                        </div>
+                     </li>
+                     <li class="stepexpand"><span>Export the new view with VIEWS_AS_TABLES option of the data pump export
+                    utility. </span><div>
+                           <pre class="pre codeblock"><code>expdp uname/pwd@non_sharded_db directory=expdir DUMPFILE=original_tables_vat.dmp LOGFILE=original_tables_vat.log FLASHBACK_TIME=SYSTIMESTAMP CONTENT=DATA_ONLY TABLES=Uname.Customers,Uname.Orders,Uname.StockItems  VIEWS_AS_TABLES=Uname.LineItems_</code></pre>
+                           </div>
+                     </li>
+                     <li class="stepexpand"><span>Import the data to sharded tables by directly running the data pump import on
+                    individual shards (shrd1, shrd2,.., shrdN).</span><div>
+                           
+                           <p>The following is an example of running the import on the first shard.</p>
+                           <pre class="pre codeblock"><code>impdp uname/pwd@shrdnode:1521/shrd1 directory=expdir DUMPFILE=original_tables_vat.dmp LOGFILE=imp_shd_vat1.log CONTENT=DATA_ONLY TABLES=Uname.Customers,Uname.Orders,Uname.LineItems_View VIEWS_AS_TABLES=Uname.LineItems_View REMAP_TABLE=Lineitems_View:Lineitems</code></pre>
+                           <p>The examples uses the <code class="codeph">impdp</code> tool
+                            <code class="codeph">VIEWS_AS_TABLES</code> option to import the view
+                            <code class="codeph">LineItems_View</code> exported as a table during export
+                        operation. And the parameter <code class="codeph">REMAP_TABLE</code> is used to
+                        indicate that this data should actually be inserted in the original table
+                        LineItems.
+                           </p>
+                           
+                        </div>
+                     </li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

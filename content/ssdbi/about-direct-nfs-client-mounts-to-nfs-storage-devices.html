@@ -1,0 +1,283 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="About Direct NFS Client Mounts to NFS Storage Devices">
+      <meta name="abstract" content="Direct NFS Client integrates the NFS client functionality directly in the Oracle software to optimize the I/O path between Oracle and the NFS server. This integration can provide significant performance improvements.">
+      <meta name="description" content="Direct NFS Client integrates the NFS client functionality directly in the Oracle software to optimize the I/O path between Oracle and the NFS server. This integration can provide significant performance improvements.">
+      <meta name="DC.subject" content="NFS mounts, oranfstab, mtab, Direct NFS Client, requirements">
+      <meta name="keywords" content="NFS mounts, oranfstab, mtab, Direct NFS Client, requirements">
+      <meta name="DC.Relation" scheme="URI" content="supported-storage-options-for-oracle-database-and-oracle-grid-infrastructure.html#GUID-D5A3B718-FB00-420F-BE8B-FA111B1482E6">
+      <meta name="DC.Relation" scheme="URI" content="configuring-nfs-buffer-size-parameters-for-oracle-database.html#GUID-5F14F816-445B-4EBB-BBA2-E9DFD7E5EF96">
+      <meta name="DC.Relation" scheme="URI" content="creating-an-oranfstab-file-for-direct-nfs-client.html#GUID-C16A1AF8-CCC5-46C2-875E-4276C2CCCF22">
+      <meta name="DC.Contributor" content="Douglas Williams">
+      <meta name="DC.Contributor" content="Subhash Chandra">
+      <meta name="DC.Creator" content="Neha Avasthy">
+      <meta name="DC.Creator" content="Jean-Francois Verrier">
+      <meta name="DC.Creator" content="Prasad Bagal">
+      <meta name="DC.Creator" content="Subhranshu Banerjee">
+      <meta name="DC.Creator" content="Mark Bauer">
+      <meta name="DC.Creator" content="Parvathi Subramanian">
+      <meta name="DC.Creator" content="Tammy Bednar">
+      <meta name="DC.Creator" content="Eric Belden">
+      <meta name="DC.Creator" content="Gavin Bowe">
+      <meta name="DC.Creator" content="Gia-Khanh Nguyen">
+      <meta name="DC.Creator" content="Bernard Clouse">
+      <meta name="DC.Creator" content="Darcy Christensen">
+      <meta name="DC.Creator" content="Kiran Chamala">
+      <meta name="DC.Creator" content="Sampath Ravindhran">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Benoit Dageville">
+      <meta name="DC.Creator" content="Sudip Datta">
+      <meta name="DC.Creator" content="Sharad Raju">
+      <meta name="DC.Creator" content="Christopher Jones">
+      <meta name="DC.Creator" content="Rajendra Sahoo">
+      <meta name="DC.Creator" content="Santosh Loke">
+      <meta name="DC.Creator" content="Alta Elstad">
+      <meta name="DC.Creator" content="Peter Dennis">
+      <meta name="DC.Creator" content="Jim Erickson">
+      <meta name="DC.Creator" content="Marcus Fallen">
+      <meta name="DC.Creator" content="Joseph Francis">
+      <meta name="DC.Creator" content="Alan Coopersmith">
+      <meta name="DC.Creator" content="Mark Fuller">
+      <meta name="DC.Creator" content="Allan Graves">
+      <meta name="DC.Creator" content="Barbara Glover">
+      <meta name="DC.Creator" content="Asad Hasan">
+      <meta name="DC.Creator" content="Subrahmanyam Kodavaluru">
+      <meta name="DC.Creator" content="Thirumaleshwara Hasandka">
+      <meta name="DC.Creator" content="Shasank Chavan">
+      <meta name="DC.Creator" content="Lisa Shepherd">
+      <meta name="DC.Creator" content="Clara Jaeckel">
+      <meta name="DC.Creator" content="Aneesh Khandelwal">
+      <meta name="DC.Creator" content="Maria Colgan">
+      <meta name="DC.Creator" content="Eugene Karichkin">
+      <meta name="DC.Creator" content="Jai Krishnani">
+      <meta name="DC.Creator" content="Sangeeth Kumar">
+      <meta name="DC.Creator" content="Ranjith Kundapur">
+      <meta name="DC.Creator" content="Kevin Jernigan">
+      <meta name="DC.Creator" content="Christopher Jones">
+      <meta name="DC.Creator" content="Simon Law">
+      <meta name="DC.Creator" content="Bryn Llewellyn">
+      <meta name="DC.Creator" content="Saar Maoz">
+      <meta name="DC.Creator" content="Sreejith Minnanghat">
+      <meta name="DC.Creator" content="Gopal Mulagund">
+      <meta name="DC.Creator" content="Sue Lee">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Barb Lundhild">
+      <meta name="DC.Creator" content="Prasad Kuruvadi Nagaraj">
+      <meta name="DC.Creator" content="Rudregowda Mallegowda">
+      <meta name="DC.Creator" content="Padmanabhan Manavazhi">
+      <meta name="DC.Creator" content="Mughees Minhas">
+      <meta name="DC.Creator" content="Krishna Mohan">
+      <meta name="DC.Creator" content="Matthew McKerley">
+      <meta name="DC.Creator" content="John McHugh">
+      <meta name="DC.Creator" content="Gurudas Pai">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Rajesh Prasad">
+      <meta name="DC.Creator" content="Rajendra Pingte">
+      <meta name="DC.Creator" content="Prasad K Kulkarni">
+      <meta name="DC.Creator" content="Srinivas Poovala">
+      <meta name="DC.Creator" content="Mohammed Shahnawaz Quadri">
+      <meta name="DC.Creator" content="Hanlin Qian">
+      <meta name="DC.Creator" content="Gurumurthy Ramamurthy">
+      <meta name="DC.Creator" content="Hema Ramamurthy">
+      <meta name="DC.Creator" content="Sunil Ravindrachar">
+      <meta name="DC.Creator" content="Mark Richwine">
+      <meta name="DC.Creator" content="Dipak Saggi">
+      <meta name="DC.Creator" content="Logeshwaran Rajan">
+      <meta name="DC.Creator" content="Rajesh Dasari">
+      <meta name="DC.Creator" content="Angad Gokakkar">
+      <meta name="DC.Creator" content="Anu Natarajan">
+      <meta name="DC.Creator" content="Girdhari Ghantiyala">
+      <meta name="DC.Creator" content="Chandrasekharan Iyer">
+      <meta name="DC.Creator" content="David Jimenez">
+      <meta name="DC.Creator" content="Robert Achacoso">
+      <meta name="DC.Creator" content="Vishal Saxena">
+      <meta name="DC.Creator" content="Vasu Venkatasubramanian">
+      <meta name="DC.Creator" content="Suman Palavalli">
+      <meta name="DC.Creator" content="Sameer Joshi">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="Markus Michalewicz">
+      <meta name="DC.Creator" content="Michael Coulter">
+      <meta name="DC.Creator" content="Trivikrama Samudrala">
+      <meta name="DC.Creator" content="Ramesh Chakravarthula">
+      <meta name="DC.Creator" content="David Schreiner">
+      <meta name="DC.Creator" content="Ara Shakian">
+      <meta name="DC.Creator" content="David Price">
+      <meta name="DC.Creator" content="Mohit Singhal">
+      <meta name="DC.Creator" content="Dharma Sirnapalli">
+      <meta name="DC.Creator" content="Akshay Shah">
+      <meta name="DC.Creator" content="James Spiller">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Binoy Sukumaran">
+      <meta name="DC.Creator" content="Anil Nair">
+      <meta name="DC.Creator" content="Ravi Thammaiah">
+      <meta name="DC.Creator" content="Tak Wang">
+      <meta name="DC.Creator" content="Shekhar Vaggu">
+      <meta name="DC.Creator" content="Ankur Kemkar">
+      <meta name="DC.Creator" content="Ian Cookson">
+      <meta name="DC.Creator" content="Ajesh Viswambharan">
+      <meta name="DC.Creator" content="Peter Wahl">
+      <meta name="DC.Creator" content="Balaji Pagadala">
+      <meta name="DC.Creator" content="Sivaram Soma">
+      <meta name="DC.Creator" content="Sergiusz Wolicki">
+      <meta name="DC.Creator" content="Sivakumar Yarlagadda">
+      <meta name="DC.Creator" content="Alan Tam">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Publisher" content="January2024">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-31591084-74BD-4B66-8C5B-68BF0FEE8750">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Direct NFS Client integrates the NFS client functionality directly in the Oracle software to optimize the I/O path between Oracle and the NFS server. This integration can provide significant performance improvements.">
+      <meta name="description" content="Direct NFS Client integrates the NFS client functionality directly in the Oracle software to optimize the I/O path between Oracle and the NFS server. This integration can provide significant performance improvements.">
+      <title>About Direct NFS Client Mounts to NFS Storage Devices</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Installation Guide">
+      <meta property="og:description" content="Direct NFS Client integrates the NFS client functionality directly in the Oracle software to optimize the I/O path between Oracle and the NFS server. This integration can provide significant performance improvements.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Installation Guide for Oracle Solaris">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-installation-guide-oracle-solaris.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2024-01-17T06:17:11-08:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2015, 2024">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96434-10">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="about-nfs-storage-for-data-files.html" title="Previous" type="text/html">
+      <link rel="next" href="configuring-file-system-storage-for-oracle-database.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database Installation Guide for Oracle Solaris">
+    <meta name="dcterms.isVersionOf" content="SSDBI">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","name":"About Direct NFS Client Mounts to NFS Storage Devices","description":"Direct NFS Client integrates the NFS client functionality directly in the Oracle software to optimize the I/O path between Oracle and the NFS server. This integration can provide significant performance improvements.","datePublished":"2019-02-22 04:59:06 GMT","dateModified":"2024-01-17 14:21:05 GMT"} </script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="about-nfs-storage-for-data-files.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="configuring-file-system-storage-for-oracle-database.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database Installation Guide</span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="supported-storage-options-for-oracle-database-and-oracle-grid-infrastructure.html" property="item" typeof="WebPage"><span property="name">Supported Storage
+Options for Oracle Database and Oracle Grid Infrastructure</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">About Direct NFS Client Mounts to NFS Storage Devices</li>
+            </ol>
+            <a id="GUID-31591084-74BD-4B66-8C5B-68BF0FEE8750" name="GUID-31591084-74BD-4B66-8C5B-68BF0FEE8750"></a>
+            
+            <h2 id="SSDBI-GUID-31591084-74BD-4B66-8C5B-68BF0FEE8750" class="sect2">About Direct NFS Client Mounts to NFS Storage Devices</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Direct NFS Client integrates the NFS client functionality directly in the Oracle software to optimize the I/O path between Oracle and the NFS server. This integration can provide significant performance improvements. </p>
+               <p>Direct NFS Client supports NFSv3, NFSv4, NFSv4.1, and pNFS protocols to access the NFS server. Direct NFS Client also simplifies, and in many cases automates, the performance optimization of the NFS client configuration for database workloads.</p>
+               <p>Starting with Oracle Database 12c Release 2, when you enable Direct NFS, you can also enable the Direct NFS dispatcher. The Direct NFS dispatcher consolidates the number of TCP connections that are created from a database instance to the NFS server. In large database deployments, using Direct NFS dispatcher improves scalability and network performance. Parallel NFS deployments also require a large number of connections. Hence, the Direct NFS dispatcher is recommended with Parallel NFS deployments too.</p>
+               <p>Direct NFS Client can obtain NFS mount points either from the operating system mount entries, or from the <code class="codeph">oranfstab</code> file. 
+               </p>
+               <div class="section">
+                  <p class="subhead1" id="GUID-31591084-74BD-4B66-8C5B-68BF0FEE8750__GUID-E7F9F598-B2B1-4FC4-B421-597E04D6C79E">Direct NFS Client Requirements</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>NFS servers must have write size values (<span class="parmname" translate="no">wtmax</span>) of 32768 or greater to work with Direct NFS Client.
+                        </p>
+                     </li>
+                     <li>
+                        <p>NFS mount points must be mounted both by the operating system kernel NFS client and Direct NFS Client, even though you configure Direct NFS Client to provide file service. </p>
+                        <p>If Oracle Database cannot connect to an NFS server using Direct NFS Client, then Oracle Database connects to the NFS server using the operating system kernel NFS client. When Oracle Database fails to connect to NAS storage though Direct NFS Client, it logs an informational message about the Direct NFS Client connect error in the Oracle alert and trace files. </p>
+                     </li>
+                     <li>
+                        <p>Follow standard guidelines for maintaining integrity of Oracle Database files mounted by both operating system NFS and by Direct NFS Client. </p>
+                     </li>
+                  </ul>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <p class="subhead1" id="GUID-31591084-74BD-4B66-8C5B-68BF0FEE8750__GUID-D5901BD7-C327-41CE-8620-5E73A887336C">Direct NFS Mount Point Search Order</p>
+                  <p>Direct NFS Client searches for mount entries in the following order:</p>
+                  <ol>
+                     <li>
+                        <p><code class="codeph">$ORACLE_HOME/dbs/oranfstab</code></p>
+                     </li>
+                     <li>
+                        <p><span><code class="codeph">/var/opt/oracle/oranfstab</code></span></p>
+                     </li>
+                     <li>
+                        <p><span><code class="codeph">/etc/mnttab</code></span></p>
+                     </li>
+                  </ol>
+                  <p>Direct NFS Client uses the first matching entry as the mount point. </p>
+                  <div class="infoboxnote" id="GUID-31591084-74BD-4B66-8C5B-68BF0FEE8750__GUID-BA4C397A-9601-4DB6-B9A7-CE1D5E18EF86">
+                     <p class="notep1">Note:</p>
+                     <p>You can have only one active NFS Client implementation for each instance. Enabling
+                    Direct NFS Client on an instance prevents you from using another NFS Client
+                    implementation, such as kernel NFS Client.</p>
+                  </div>
+               </div>
+               <!-- class="section" -->
+               <div class="example" id="GUID-31591084-74BD-4B66-8C5B-68BF0FEE8750__GUID-87D65A75-26D5-424C-8F47-F91912EC03D9">
+                  <div class="infoboxnotealso" id="GUID-31591084-74BD-4B66-8C5B-68BF0FEE8750__GUID-96DEEFE4-9350-4F9C-AB70-A01AA7AEC58C">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="../refrn/ENABLE_DNFS_DISPATCHER.html#REFRN-GUID-2209E40B-1280-4C38-ADD8-324EAACF3501" target="_blank"><span><cite>Oracle Database Reference</cite></span></a> for information about setting the <code class="codeph">enable_dnfs_dispatcher</code> parameter in the initialization parameter file to enable Direct NFS dispatcher 
+                           </p>
+                        </li>
+                        <li>
+                           <p><a href="../tgdba/managing-operating-system-resources.html#TGDBA95342" target="_blank"><span><cite>Oracle Database Performance Tuning Guide</cite></span></a> for performance benefits of enabling Parallel NFS and Direct NFS dispatcher
+                           </p>
+                        </li>
+                        <li>
+                           <p><a href="../ostmg/considerations-asm-storage.html#OSTMG02150" target="_blank"><span><cite>Oracle Automatic Storage Management Administrator's Guide</cite></span></a> for guidelines about managing Oracle Database data files created with Direct NFS Client or kernel NFS
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <!-- class="example" -->
+            </div>
+            <div>
+               <div class="relinfo">
+                  <p><strong>Related Topics</strong></p>
+                  <ul>
+                     <li><a href="configuring-nfs-buffer-size-parameters-for-oracle-database.html#GUID-5F14F816-445B-4EBB-BBA2-E9DFD7E5EF96" title="Set the values for the NFS buffer size parameters rsize and wsize to at least 32768.">Configuring NFS Buffer Size Parameters for Oracle Database</a></li>
+                     <li><a href="creating-an-oranfstab-file-for-direct-nfs-client.html#GUID-C16A1AF8-CCC5-46C2-875E-4276C2CCCF22" title="Direct NFS uses a configuration file, oranfstab, to determine the available mount points.">Creating an oranfstab File for Direct NFS Client</a></li>
+                  </ul>
+               </div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="supported-storage-options-for-oracle-database-and-oracle-grid-infrastructure.html#GUID-D5A3B718-FB00-420F-BE8B-FA111B1482E6" title="Review supported storage options as part of your installation planning process.">Supported Storage Options for Oracle Database and Oracle Grid Infrastructure</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

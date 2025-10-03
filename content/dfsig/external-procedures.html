@@ -1,0 +1,281 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="External Procedures">
+      <meta name="DC.subject" content="Loading External Procedures">
+      <meta name="keywords" content="Loading External Procedures">
+      <meta name="DC.Contributor" content="Bharathi Jayathirtha">
+      <meta name="DC.Contributor" content="Walter Moser">
+      <meta name="DC.Contributor" content="Wolfgang Schmidt">
+      <meta name="DC.Contributor" content="Helmut Tronberend">
+      <meta name="DC.Contributor" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Binika Kumar">
+      <meta name="DC.Publisher" content="January2021">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-C61A9DAF-FE6B-4B0E-B6D7-BA61B0ECE0D6">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>External Procedures</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Installation and Administration Guide">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Installation and Administration Guide for Fujitsu BS2000">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-database-installation-and-administration-guide-fujitsu-bs2000.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2021-01-25T04:28:50-08:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2007, 2021">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F28348-02">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="database-applications.html" title="Previous" type="text/html">
+      <link rel="next" href="globalization-support.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Database Installation and Administration Guide for Fujitsu BS2000">
+    <meta name="dcterms.isVersionOf" content="DFSIG">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="database-applications.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="globalization-support.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database Installation and Administration Guide</span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="application-development.html" property="item" typeof="WebPage"><span property="name">Application Development</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">External Procedures </li>
+            </ol>
+            <a id="GUID-C61A9DAF-FE6B-4B0E-B6D7-BA61B0ECE0D6" name="GUID-C61A9DAF-FE6B-4B0E-B6D7-BA61B0ECE0D6"></a>
+            
+            <h2 id="DFSIG-GUID-C61A9DAF-FE6B-4B0E-B6D7-BA61B0ECE0D6" class="sect2"><span class="enumeration_chapter">15 </span>External Procedures 
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>This chapter describes how to create an environment on BS2000, where <a id="d33359e27" class="indexterm-anchor"></a>external C procedure calls can operate. External JAVA methods are not supported on BS2000.
+               </p>
+               <p>This chapter complements the chapter about External Procedures in the <a href="../adfns/design_basics.html#ADFNS321" target="_blank"><span class="italic">Oracle Database Development Guide</span></a>.
+               </p>
+               <div class="infoboxnote" id="GUID-C61A9DAF-FE6B-4B0E-B6D7-BA61B0ECE0D6__GUID-C3FA1683-5D15-4675-B268-05D70617318D">
+                  <p class="notep1">Note:</p>
+                  <p>The default configuration for external procedures does not require a network listener to work with Oracle Database and the <code class="codeph">extproc</code> agent. The <code class="codeph">extproc</code> agent is spawned directly by Oracle Database and eliminates the risks that the <code class="codeph">extproc</code> agent might be spawned by Oracle Listener unexpectedly. This default configuration is recommended for maximum security. 
+                  </p>
+                  <p>You can change the default configuration for external procedures and have the <code class="codeph">extproc</code> agent spawned by Oracle Listener. To do this, you must perform additional network configuration steps.
+                  </p>
+                  <p>Having the <code class="codeph">extproc</code> agent spawned by Oracle Listener is necessary if you use: 
+                  </p>
+                  <p>The <code class="codeph">AGENT</code> clause of the LIBRARY specification or the <code class="codeph">AGENT IN</code> clause of the PROCEDURE specification such that you can redirect external procedures to a different <code class="codeph">extproc</code> agent. 
+                  </p>
+               </div>
+            </div><a id="DFSIG274"></a><div class="props_rev_3"><a id="GUID-C5A57823-C811-4352-9271-117313E9071D" name="GUID-C5A57823-C811-4352-9271-117313E9071D"></a><h3 id="DFSIG-GUID-C5A57823-C811-4352-9271-117313E9071D" class="sect3"><span class="enumeration_section">15.1 </span>Loading External Procedures
+               </h3>
+               <div>
+                  <div class="section">
+                     <p>This section complements the corresponding part in <a href="../adfns/external-procedures.html#ADFNS1404" target="_blank"><span><cite>Oracle Database Development Guide</cite></span></a>. It shows how to use an external C procedure stored in a dynamic load library (DLL) with Oracle on BS2000. In this context a DLL is specified as a LMS library in the BS2000 environment or a shared object in the POSIX environment. 
+                     </p>
+                     <p>Perform the following steps to load external procedures:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><a href="external-procedures.html#GUID-9A875F72-1B79-4D66-8A5A-2BAEA8A37825" title="Define the C procedures using one of the prototypes.">Define C Procedures</a></p>
+                        </li>
+                        <li>
+                           <p><a href="external-procedures.html#GUID-B1C47BC7-0E20-420C-B2DE-CDB049E2A2CA">Set Up the Environment</a></p>
+                        </li>
+                        <li>
+                           <p><a href="external-procedures.html#GUID-5F82A80F-D5D1-4CF2-BBCB-E07BEF4DB9DE">Identify the DLL</a></p>
+                        </li>
+                        <li>
+                           <p><a href="external-procedures.html#GUID-FB1A5B08-0BB3-4CAE-B29B-2A71AB828C65" title="Oracle Database can use only external procedures that are published through a call specification, which maps names, parameter types, and return types for your C external procedures to their SQL counterparts. It is written like any other PL/SQL stored procedure except that, in its body, instead of declarations and a BEGIN END block, you code the AS LANGUAGE clause.">Publish External Procedures</a></p>
+                        </li>
+                        <li>
+                           <p><a href="external-procedures.html#GUID-1AD73C23-5726-41A9-BF3D-544E8C0EF8FE" title="Calling an external C procedure depends on the type of publishing the external procedure as a PL/SQL procedure, package, or function.">Run External Procedures</a></p>
+                        </li>
+                     </ul>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+               <div class="sect3"><a id="GUID-9A875F72-1B79-4D66-8A5A-2BAEA8A37825" name="GUID-9A875F72-1B79-4D66-8A5A-2BAEA8A37825"></a><h4 id="DFSIG-GUID-9A875F72-1B79-4D66-8A5A-2BAEA8A37825" class="sect4"><span class="enumeration_section">15.1.1 </span>Define C Procedures
+                  </h4>
+                  <div>
+                     <p>Define the C procedures using one of the prototypes.</p>
+                     <div class="section">Refer to <a href="../adfns/external-procedures.html#ADFNS-GUID-D8EF7373-DD76-4D68-AC5D-6BEF0CBD0BBA" target="_blank"><span><cite>Oracle Database Development Guide</cite></span></a> for the prototypes. Compile the C procedures either in the BS2000 environment or in the POSIX program environment.
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-9A875F72-1B79-4D66-8A5A-2BAEA8A37825__GUID-C945A7B6-732D-4EDA-B1E4-D9CFC642C016">BS2000 Program Environment</p>
+                        <p>Compile the program using the BS2000 C/C++ compiler. The created LLM object must be stored in a LMS library. You must consider the default settings <code class="codeph">LOWER-CASE-NAMES=*NO</code> and <code class="codeph">SPECIAL-CHARACTERS=*CONVERT-TO-DOLLAR</code> of the C/C++ compiler option <code class="codeph">MODULE-PROPERTIES</code>. These default settings cause the conversion of all lowercase letters in the entry names to uppercase and of all underscores (_) in the entry names to dollar signs (<code class="codeph">$</code>).
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-9A875F72-1B79-4D66-8A5A-2BAEA8A37825__GUID-84A5FE26-57CB-4EB3-9D8A-293A688409B5">POSIX Program Environment</p>
+                        <p>Use the POSIX installation of the BS2000 C/C++ compiler to compile the program in the POSIX shell. You must consider that on default lower case letters in entry names will be translated to upper case letters and underscores in entry names will be translated to dollar signs. Use the option <code class="codeph">&#x2013;K llm_case_lower,llm_keep</code> to retain lower case letters and underscore characters when entry names are generated.
+                        </p>
+                        <div class="p">The example shows how to compile the source
+                <code class="codeph">C_concat.c</code>:<pre class="pre codeblock"><code>$ /usr/bin/cc -c -K llm_case_lower,llmcase_lower -B extended_external_names -D_OSD_POSIX &#x2013;I 
+/u01/app/oracle/product/19.3.0/dbhome_1/rdbms/public C_concat.c</code></pre></div>
+                        <p>Use the tool <code class="codeph">genso</code> to generate a shared object. The following
+                example illustrates how to create the shared object <code class="codeph">C_utils.so</code> for
+                the C procedure,  
+                        </p>
+                        
+                        <p><code class="codeph">char *concat(ctx, str1, str1_i, str2, str2_i, ret_i, ret_l)</code></p>
+                        
+                        <p>in the source file <code class="codeph">C_concat.c</code> :
+                        </p><pre class="pre codeblock"><code>$ /usr/bin/genso -o lib/C_utils.so C_concat.o</code></pre><p>Refer to <a href="../adfns/external-procedures.html#ADFNS749" target="_blank"><span><cite>Oracle Database Development Guide</cite></span></a> for the C code example.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-B1C47BC7-0E20-420C-B2DE-CDB049E2A2CA" name="GUID-B1C47BC7-0E20-420C-B2DE-CDB049E2A2CA"></a><h4 id="DFSIG-GUID-B1C47BC7-0E20-420C-B2DE-CDB049E2A2CA" class="sect4"><span class="enumeration_section">15.1.2 </span>Set Up the Environment
+                  </h4>
+                  <div>
+                     <p></p>
+                     <div class="section">
+                        <p>When you use the default configuration for external procedures, Oracle Database spawns <code class="codeph">extproc</code> directly. You need not make configuration changes for <code class="codeph">listener.ora</code> and <code class="codeph">tnsnames.ora</code>. Define the environment variables to be used by external procedures in the file <code class="codeph">extproc.ora</code> located at <code class="codeph">$ORACLE_HOME/hs/admin</code> using this syntax:
+                        </p><pre class="pre codeblock"><code>SET <span class="italic">name</span>=<span class="italic">value</span> (<span class="italic">environment_variable_name=value</span>)</code></pre><p>If the load library is a BS2000 LMS library you must set the variable <code class="codeph">EXTPROC_DLLS</code> to <code class="codeph">ANY</code>, For example:
+                        </p><pre class="pre codeblock"><code>SET EXTPROC_DLLS=ANY</code></pre><p>If the load library is a POSIX shared object you can set the variable <code class="codeph">EXTPROC_DLLS</code> as described in <a href="../adfns/external-procedures.html#ADFNS-GUID-7C9FA34E-893C-4DFA-B285-674122C00D62" target="_blank"><span><cite>Oracle Database Development Guide</cite></span></a>. If you have not specified the full qualified file path for the shared object then you must set the variable <code class="codeph">LD_LIBRARY_PATH</code>. Following is an example of an <code class="codeph">extproc.ora</code> file for the shared object file <code class="codeph">C_utils.so</code>, which resides in the <code class="codeph">/home/oracle/lib</code> directory:
+                        </p><pre class="pre codeblock"><code>SET EXTPROC_DLLS=ONLY:C_utils.so
+SET LD_LIBRARY_PATH=/home/oracle/lib</code></pre><p>To change the default configuration for external procedures and have your <code class="codeph">extproc</code> agent spawned by Oracle Listener, configure your <code class="codeph">listener.ora</code> and <code class="codeph">tnsnames.ora</code> as follows. The <code class="codeph">listener.ora</code> file must have the following entries:
+                        </p><pre class="pre codeblock"><code>EXTPLSNR=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=ipc)(KEY=extp))))
+
+SID_LIST_EXTPLSNR=
+  (SID_LIST=
+    (SID_DESC=
+      (SID_NAME=ep_agt1)
+      (ORACLE_HOME=<span class="italic">/u01/app/oracbase/product/19.3.0/dbhome_1</span>)
+      (ENVS=”EXTPROC_DLLS=ANY LD_LIBRARY_PATH=/home/oracle/lib”)
+      (ORACLE_SID=<span class="italic">extp</span>)
+      (PROGRAM= extproc)))
+</code></pre><p>Assign the environment variables to be used by external procedures to the parameter <code class="codeph">ENVS</code>. When <code class="codeph">extproc.ora</code> is in use, it precedes the same environment variables of <code class="codeph">ENVS</code> in <code class="codeph">listener.ora</code> file.
+                        </p>
+                        <p>The <code class="codeph">tnsnames.ora</code> file must have the following entry:
+                        </p><pre class="pre codeblock"><code>extproc_agent=
+  (DESCRIPTION=
+    (ADDRESS=PROTOCOL=ipc)(KEY=extp))
+    (CONNECT_DATA=
+      (PRESENTATION=RO)
+      (SID=ep_agt1)))
+</code></pre><p>Now, you can start the <code class="codeph">extproc</code> listener.
+                        </p>
+                        <div class="infoboxnotealso" id="GUID-B1C47BC7-0E20-420C-B2DE-CDB049E2A2CA__GUID-7877D0B0-4B6D-4DD1-9559-571EB566AF4D">
+                           <p class="notep1">See Also:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><a href="../adfns/external-procedures.html#ADFNS1404" target="_blank"><span><cite>Oracle Database Development Guide</cite></span></a></p>
+                              </li>
+                              <li>
+                                 <p><a href="../addci/implementing-data-cartridges-in-C-CPP-and-java.html#ADDCI4342" target="_blank"><span><cite>Oracle Database Data Cartridge Developer's Guide</cite></span></a></p>
+                              </li>
+                              <li>
+                                 <p><a href="../netag/enabling-advanced-features.html#NETAG-GUID-CFDD995D-54F5-4CD9-8CA1-345609A0113A" target="_blank"><span><cite>Oracle Database Net Services Administrator's Guide</cite></span></a></p>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-5F82A80F-D5D1-4CF2-BBCB-E07BEF4DB9DE" name="GUID-5F82A80F-D5D1-4CF2-BBCB-E07BEF4DB9DE"></a><h4 id="DFSIG-GUID-5F82A80F-D5D1-4CF2-BBCB-E07BEF4DB9DE" class="sect4"><span class="enumeration_section">15.1.3 </span>Identify the DLL
+                  </h4>
+                  <div>
+                     <p></p>
+                     <div class="section">
+                        <p>The objects in the DLL contain the functions called as external procedures. When <code class="codeph">extproc</code> is loaded, these functions are dynamically linked to the program. Use the <code class="codeph">CREATE LIBRARY</code> statement to create a schema object called an alias library, which represents the DLL. The name of the DLL must match the filename specified in the value of the <code class="codeph">extproc.ora</code> variable <code class="codeph">EXTPROC_DLLS</code>. 
+                        </p><pre class="pre codeblock"><code>CREATE LIBRARY [schema_name.]library_name
+  {IS | AS} 'file_path'
+  [AGENT 'agent_link'];
+</code></pre><p>For the default configuration you must not specify the parameter <code class="codeph">AGENT</code>. An example for a BS2000 LMS library is as follows:
+                        </p><pre class="pre codeblock"><code>CREATE LIBRARY C_utils AS '[$<span class="italic">extp_userid</span>.]C.UTILS.MODLIB';</code></pre><p>An example for a POSIX shared object is:</p><pre class="pre codeblock"><code>CREATE LIBRARY C_utils AS '[<span class="italic">path</span>/]C_utils.so';</code></pre><p>If you want to change the default configuration for external procedures and have your <code class="codeph">extproc</code> spawned by an Oracle Listener, then you must define a database link which is used with the <code class="codeph">AGENT</code> parameter of the <code class="codeph">CREATE LIBRARY</code> statement.
+                        </p><pre class="pre codeblock"><code>CREATE DATABASE LINK agent_link USING 'extproc_agent';
+CREATE OR REPLACE LIBRARY C_utils IS 'C.UTILS.MODLIB' agent 'agent_link';
+</code></pre><div class="infoboxnotealso" id="GUID-5F82A80F-D5D1-4CF2-BBCB-E07BEF4DB9DE__GUID-6F60318E-38ED-43E1-A136-FCCF6C43F50F">
+                           <p class="notep1">See Also:</p>
+                           <p><a href="../adfns/external-procedures.html#ADFNS-GUID-A329C35E-F941-4341-A320-74C55358641B" target="_blank"><span><cite>Oracle Database Development Guide</cite></span></a></p>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-FB1A5B08-0BB3-4CAE-B29B-2A71AB828C65" name="GUID-FB1A5B08-0BB3-4CAE-B29B-2A71AB828C65"></a><h4 id="DFSIG-GUID-FB1A5B08-0BB3-4CAE-B29B-2A71AB828C65" class="sect4"><span class="enumeration_section">15.1.4 </span>Publish External Procedures
+                  </h4>
+                  <div>
+                     <p>Oracle Database can use only external procedures that are published through a call specification, which maps names, parameter types, and return types for your C external procedures to their SQL counterparts. It is written like any other PL/SQL stored procedure except that, in its body, instead of declarations and a <code class="codeph">BEGIN END</code> block, you code the <code class="codeph">AS LANGUAGE</code> clause.
+                     </p>
+                     <div class="section">
+                        <p>The following example illustrates how you can publish an External Procedure as a PL/SQL function: </p><pre class="pre codeblock"><code>CREATE OR REPLACE FUNCTION plsToC_concat_func ( 
+   str1 IN VARCHAR2,  
+   str2 IN VARCHAR2)  
+RETURN VARCHAR2 AS LANGUAGE C 
+NAME "concat" 
+LIBRARY C_utils 
+WITH CONTEXT 
+PARAMETERS ( 
+CONTEXT,  
+str1   STRING,  
+str1   INDICATOR short,  
+str2   STRING,  
+str2   INDICATOR short,  
+RETURN INDICATOR short,  
+RETURN LENGTH short,  
+RETURN STRING);
+</code></pre><div class="infoboxnotealso" id="GUID-FB1A5B08-0BB3-4CAE-B29B-2A71AB828C65__GUID-231CB56A-EE49-424F-9E26-95FE25B3106C">
+                           <p class="notep1">See Also:</p><a href="../adfns/external-procedures.html#ADFNS749" target="_blank"><span><cite>Oracle Database Development Guide</cite></span></a></div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-1AD73C23-5726-41A9-BF3D-544E8C0EF8FE" name="GUID-1AD73C23-5726-41A9-BF3D-544E8C0EF8FE"></a><h4 id="DFSIG-GUID-1AD73C23-5726-41A9-BF3D-544E8C0EF8FE" class="sect4"><span class="enumeration_section">15.1.5 </span>Run External Procedures
+                  </h4>
+                  <div>
+                     <p>Calling an external C procedure depends on the type of publishing the
+        external procedure as a PL/SQL procedure, package, or function. </p>
+                     <div class="section">
+                        <p>An example of how to publish the external C procedure as a PL/SQL function is described in the <a href="../adfns/external-procedures.html#ADFNS748" target="_blank"><span><cite>Oracle Database Development Guide</cite></span>.</a></p>
+                        <p>You can also run this function within a select statement as follows:</p><pre class="pre codeblock"><code>select plsToC_concat_func('hello ', 'world') from DUAL;</code></pre><p>If your external procedure writes messages to <code class="codeph">STDOUT</code>, then you can
+                find these messages in the <code class="codeph">L.<span class="codeinlineitalic">sid</span>.EXTP.SYSOUT.<span class="codeinlineitalic">tsn</span></code>
+                file. Set the environment variable <code class="codeph">BGJOUT</code> to <code class="codeph">KEEP</code>
+                to avoid the cleanup of the <code class="codeph">L.<span class="codeinlineitalic">sid</span>.EXTP.SYSOUT.<span class="codeinlineitalic">tsn</span></code>
+                file.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

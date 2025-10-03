@@ -1,0 +1,349 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Overview of Oracle RAC and Clusterware Best Practices">
+      <meta name="abstract" content="Oracle Clusterware and Oracle Real Application Clusters (RAC) are Oracle's strategic high availability and resource management database framework in a cluster environment, and an integral part of the Oracle MAA Silver reference architecture.">
+      <meta name="description" content="Oracle Clusterware and Oracle Real Application Clusters (RAC) are Oracle's strategic high availability and resource management database framework in a cluster environment, and an integral part of the Oracle MAA Silver reference architecture.">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-5E57CE71-C9E6-4255-BF0F-117F4003D361">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Oracle Clusterware and Oracle Real Application Clusters (RAC) are Oracle's strategic high availability and resource management database framework in a cluster environment, and an integral part of the Oracle MAA Silver reference architecture.">
+      <meta name="description" content="Oracle Clusterware and Oracle Real Application Clusters (RAC) are Oracle's strategic high availability and resource management database framework in a cluster environment, and an integral part of the Oracle MAA Silver reference architecture.">
+      <title>Overview of Oracle RAC and Clusterware Best Practices</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content="Oracle Clusterware and Oracle Real Application Clusters (RAC) are Oracle's strategic high availability and resource management database framework in a cluster environment, and an integral part of the Oracle MAA Silver reference architecture.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="oracle-rac-and-clusterware-best-practices.html" title="Previous" type="text/html">
+      <link rel="next" href="oracle-data-guard-best-practices.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Overview of Oracle RAC and Clusterware Best Practices","description":"Oracle Clusterware and Oracle Real Application Clusters (RAC) are Oracle's strategic high availability and resource management database framework in a cluster environment, and an integral part of the Oracle MAA Silver reference architecture.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="oracle-rac-and-clusterware-best-practices.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="oracle-data-guard-best-practices.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-5E57CE71-C9E6-4255-BF0F-117F4003D361" name="GUID-5E57CE71-C9E6-4255-BF0F-117F4003D361"></a>
+         
+         <h2 id="HAOVW-GUID-5E57CE71-C9E6-4255-BF0F-117F4003D361" class="sect2"><span class="enumeration_chapter">12 </span>Overview of Oracle RAC and
+    Clusterware Best Practices
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Oracle Clusterware and Oracle Real Application Clusters (RAC) are Oracle's
+    strategic high availability and resource management database framework in a cluster environment,
+    and an integral part of the Oracle MAA Silver reference architecture.</p>
+               <p>Adding Oracle RAC to a Bronze MAA reference architecture elevates it to a Silver MAA
+      reference architecture. The Silver MAA reference architecture is designed for databases that
+      can’t afford to wait for a cold restart or a restore from backup, should there be an
+      unrecoverable database instance or server failure.</p>
+               <p>The Silver reference architecture has the potential to provide zero downtime for node or
+      instance failures, and zero downtime for most database and system software updates, that are
+      not achievable with the Bronze architecture. To learn more about the Silver MAA reference
+      architecture, see <a href="../haiad/index.html" target="_blank">High Availability Reference Architectures</a>.
+               </p>
+               <p>Oracle Clusterware and Oracle RAC provide the following benefits:</p>
+               <ul style="list-style-type: disc;" id="GUID-5E57CE71-C9E6-4255-BF0F-117F4003D361__UL_P2R_YS5_4SB">
+                  <li>High availability framework and cluster management solution
+                     <ul style="list-style-type: disc;" id="GUID-5E57CE71-C9E6-4255-BF0F-117F4003D361__UL_Q2R_YS5_4SB">
+                        <li>Manages resources, such as Virtual Internet Protocol (VIP) addresses, databases,
+            listeners, and services</li>
+                        <li>Provides HA framework for Oracle database resources and non-Oracle database resources,
+            such as third party agents</li>
+                     </ul>
+                  </li>
+                  <li>
+                     
+                     <p>Active-active clustering for scalability and availability</p>
+                     
+                     <div class="p">
+                        
+                        <ul style="list-style-type: disc;" id="GUID-5E57CE71-C9E6-4255-BF0F-117F4003D361__UL_R2R_YS5_4SB">
+                           <li><span class="bold">High Availability</span> If a server or database instance fails, connections to
+              surviving instances are not affected; connections to the failed instance quickly
+              failover to surviving instances that are already running and open on other servers in
+              the Oracle RAC cluster
+                           </li>
+                           <li><span class="bold">Scalability and Performance</span> Oracle RAC is ideal for high-volume applications
+              or consolidated environments where scalability and the ability to dynamically add or
+              re-prioritize capacity across more than a single server are required. An individual
+              database may have instances running on one or more nodes of a cluster. Similarly, a
+              database service may be available on one or more database instances. Additional nodes,
+              database instances, and database services can be provisioned online. The ability to
+              easily distribute workload across the cluster makes Oracle RAC the ideal complement
+              for Oracle Multitenant when consolidating many databases.
+                           </li>
+                        </ul>
+                        
+                     </div>
+                     
+                  </li>
+               </ul>
+               <p>The following table highlights various Oracle Clusterware and Real Application Cluster
+      configuration best practices.</p>
+               <div class="tblformalwide" id="GUID-5E57CE71-C9E6-4255-BF0F-117F4003D361__TABLE_XYX_LT5_4SB">
+                  <p class="titleintable">Table 12-1 Oracle RAC HA Use Cases and Best Practices</p>
+                  <table cellpadding="4" cellspacing="0" class="FormalWide" title="Oracle RAC HA Use Cases and Best Practices" summary="the two columns identify a use case and then outline the best practices for that use&#xA;        case" width="100%" frame="hsides" border="1" rules="rows">
+                     <thead>
+                        <tr align="left" valign="top">
+                           <th align="left" valign="bottom" width="0%" id="d28810e63">Use Case</th>
+                           <th align="left" valign="bottom" width="0%" id="d28810e65">Best Practices</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="0%" id="d28810e69" headers="d28810e63 ">Certified and validated Clusterware software stack</td>
+                           <td align="left" valign="top" width="0%" headers="d28810e69 d28810e65 ">
+                              
+                              <p>Use Oracle Clusterware and avoid third-party Clusterware. </p>
+                              
+                              <p>See  <a href="../cwadd/introduction-to-oracle-clusterware.html#CWADD-GUID-58F85575-7D88-4D45-B097-6274FBBBB646" target="_blank"><span class="italic">Oracle Database Clusterware Administration and Deployment
+                    Guide</span></a></p>
+                              
+                              <p>Clusterware is built-in to all Oracle Exadata Systems.</p>
+                              
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="0%" id="d28810e87" headers="d28810e63 ">Certified and validated storage architecture</td>
+                           <td align="left" valign="top" width="0%" headers="d28810e87 d28810e65 ">
+                              
+                              <p>Use Oracle Automatic Storage Management (Oracle ASM) and Oracle ASM Cluster File
+                System (Oracle ACFS) instead of third party volume managers and cluster file systems
+                for the following MAA benefits:</p>
+                              
+                              <ul style="list-style-type: disc;" id="GUID-5E57CE71-C9E6-4255-BF0F-117F4003D361__UL_JFZ_GT5_4SB">
+                                 <li>Eliminate hot spots by distributing work across all disks</li>
+                                 <li>Scale and adjust storage capacity by adding and dropping disks and storage
+                  online</li>
+                                 <li>Reduce complexity by providing a simplified and uniform method (ASMCMD, ASMCA,
+                  ExaCLI, or oeadacli) to manage database storage</li>
+                                 <li>Inherent data corruption detection and repair when using ASM diskgroups</li>
+                                 <li>Simple management, patching and maintenance with an integrated Oracle Grid
+                  Infrastructure (Clusterware +ASM) without any additional drivers</li>
+                              </ul>
+                              
+                              <p>When using ASM with external redundancy, ensure that the underlying storage and
+                network is highly available with no single point of failure.</p>
+                              
+                              <p>When using ASM native redundancy, high redundancy diskgroups are recommended to
+                provide maximum protection for unplanned outages and during storage software
+                updates. By default Exadata deployments use high redundancy for all diskgroups (both
+                for data and recovery destinations).</p>
+                              
+                              <p>Oracle Automatic Storage Management Cluster File System (Oracle ACFS) is a
+                multi-platform, scalable file system and storage management technology that extends
+                Oracle Automatic Storage Management (Oracle ASM) functionality to support all
+                customer files and can be leveraged for non-database files.</p>
+                              
+                              <p>These best practices are built-in to all Oracle Exadata Systems.</p>
+                              
+                              <p>See <a href="../ostmg/asm-intro.html#OSTMG-GUID-BC612D35-5399-4A35-843E-CF76E3D3CDB5" target="_blank">Introducing Oracle Automatic Storage
+                  Management</a></p>
+                              
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="0%" id="d28810e126" headers="d28810e63 ">Certified and validated network architecture</td>
+                           <td align="left" valign="top" width="0%" headers="d28810e126 d28810e65 ">
+                              
+                              <p>Ensure that the entire database and storage network topology has multiple network
+                paths with no single point of failure.</p>
+                              
+                              <p>When connecting to the database service, use built-in Virtual Internet Protocol
+                (VIP) addresses, Single Client Access Name (SCAN), and multiple local SCAN listeners
+                configured over a bonded client network.</p>
+                              
+                              <p>Use a separate high bandwidth, bonded network for backup or Data Guard traffic.</p>
+                              
+                              <p>For the private network used as the cluster interconnect, Oracle recommends that
+                non-Exadata customers use Oracle HAIP for network redundancy instead of using bonded
+                networks. Bonding configurations have various attributes that behave differently
+                with different network cards and switch settings. This recommendation does not apply
+                to the private cluster interconnect in Exadata environments, because the bond setup
+                has been properly configured and validated. Further, Exadata uses the
+                  <code class="codeph">CLUSTER_INTERCONNECT</code> parameter over the highly available bonded
+                network. Generic systems should NOT use the <code class="codeph">CLUSTER_INTERCONNECT</code>
+                and bonding but rather use Oracle HAIP.
+                              </p>
+                              
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="0%" id="d28810e149" headers="d28810e63 ">Cluster configuration checks</td>
+                           <td align="left" valign="top" width="0%" headers="d28810e149 d28810e65 ">
+                              
+                              <p>Use Cluster Verification Utility (CVU) at monthly intervals to
+                validate a range of cluster and Oracle RAC components such as shared storage
+                devices, networking configurations, system requirements, and Oracle Clusterware. See
+                  <a href="../cwadd/cluster-verification-utility-reference.html#CWADD-GUID-B445A858-9F00-4423-990E-109545AC11C3" target="_blank">Cluster Verification Utility Reference</a></p>
+                              
+                              <p>To perform a holistic, proactive health check and to evaluate if Oracle RAC or
+                Exadata best practices are being followed, use <code class="codeph">exachk</code> for Exadata
+                RAC systems, or use <code class="codeph">orachk</code> for non-Exadata RAC systems, at monthly
+                intervals and before and after any software update. 
+                              </p>
+                              
+                              <p>See <a href="https://support.oracle.com/rs?type=doc&amp;id=1268927.2" target="_blank">ORAchk - Health Checks for the Oracle Stack (Doc ID
+                  1268927.2)</a>and <a href="https://support.oracle.com/rs?type=doc&amp;id=1070954.1" target="_blank">Oracle Exadata Database Machine exachk or HealthCheck (Doc ID
+                  1070954.1)</a>.
+                              </p>
+                              
+                              <p>Note that both <code class="codeph">exachk</code> and <code class="codeph">orachk</code> include CVU
+                checks. <code class="codeph">Exachk</code> covers software and configuration best practices and
+                critical alerts for Storage, Network, Clusterware, ASM, and Database.
+                              </p>
+                              
+                              <p>Incorporate configuration recommendations from CVU, <code class="codeph">exachk</code>, or
+                  <code class="codeph">orachk</code>.
+                              </p>
+                              
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="0%" id="d28810e201" headers="d28810e63 ">Reduce downtime for database node or instance failures</td>
+                           <td align="left" valign="top" width="0%" headers="d28810e201 d28810e65 ">
+                              
+                              <p>Typically, the default settings are sufficient for most use cases. If node
+                detection and instance recovery need to be expedited, evaluate lower values for
+                  <code class="codeph">FAST_START_MTTR_TARGET</code></p>
+                              
+                              <p>Reducing <code class="codeph">FAST_START_MTTR_TARGET</code> can increase database writer
+                activity significantly, so additional I/O bandwidth is required.
+                              </p>
+                              
+                              <p>For Exadata systems, Instant Failure Detection capabilities use remote direct
+                memory access (RDMA) to quickly confirm server failures in less than 2 seconds
+                compared to typical 30 seconds detection found in most Oracle RAC clusters.</p>
+                              
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="0%" id="d28810e220" headers="d28810e63 ">Eliminate downtime for software updates</td>
+                           <td align="left" valign="top" width="0%" headers="d28810e220 d28810e65 ">
+                              
+                              <p>Use Oracle RAC rolling updates for Clusterware or database software updates (for
+                example, Release Updates) to avoid downtime. </p>
+                              
+                              <p>Use out-of-place software updates when possible, so rollback and fallback use cases
+                are simplified.</p>
+                              
+                              <p>Use software gold images to eliminate the complexity of running database
+                  <code class="codeph">opatch</code> utility.
+                              </p>
+                              
+                              <p>For a fleet of databases on a single Oracle RAC cluster or multiple
+                clusters, use <a href="../fppad/fleet-patching-provisioning.html#GUID-CCEC5960-EDA4-4A3F-9643-0CA308EA49AA" target="_blank">Oracle Fleet Patching and Provisioning</a></p>
+                              
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="0%" id="d28810e243" headers="d28810e63 ">Make application and processes highly available on the cluster</td>
+                           <td align="left" valign="top" width="0%" headers="d28810e243 d28810e65 ">
+                              
+                              <p>When an application, process, or server fails in a cluster, you want the disruption
+                to be as short as possible and transparent to users. For example, when an
+                application fails on a server, that application can be restarted on another server
+                in the cluster, minimizing or negating any disruption in the use of that
+                application. Similarly, if a server in a cluster fails, then all of the applications
+                and processes running on that server must failover to another server to continue
+                providing service to the users. Using the built-in
+                  <code class="codeph">generic_application</code> resource type, Oracle Clusterware can manage
+                all of these entities to ensure high availability, resource types or customizable
+                scripts and application agent programs, and resource attributes that you assign to
+                applications and processes. 
+                              </p>
+                              
+                              <p>Use Oracle Clusterware to manage third-party resources and agents that reside on
+                the cluster. </p>
+                              
+                              <p>See <a href="../cwadd/making-applications-highly-available-using-oracle-clusterware.html#CWADD-GUID-13400D83-3FF4-482E-B7A7-41C864A491DC" target="_blank">Making Applications Highly Available Using Oracle
+                  Clusterware</a></p>
+                              
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="0%" id="d28810e263" headers="d28810e63 ">Reduce application downtime for planned and unplanned outages</td>
+                           <td align="left" valign="top" width="0%" headers="d28810e263 d28810e65 ">
+                              
+                              <p>Leverage Clusterware-managed services and application best practices to achieve
+                zero application downtime.</p>
+                              
+                              <p>Use <code class="codeph">SRVCTL</code> to manage services for your PDB. Never use default
+                service for application connectivity. Always have at least one preferred Oracle RAC
+                instance and at least one additional available Oracle RAC instance for High
+                Availability.
+                              </p>
+                              
+                              <p>Applications should subscribe to HA Fast Application Notifications (FAN) and be
+                configured to respond and failover if required. </p>
+                              
+                              <p>See <a href="enabling-continuous-service-applications.html#GUID-32101B48-4ED7-4F2F-848F-89CA3D8A2824" title="Applications achieve continuous service easily when the underlying network, systems, and databases are always available.">Enabling Continuous Service for Applications</a> and <a href="https://www.oracle.com/a/tech/docs/application-checklist-for-continuous-availability-for-maa.pdf" target="_blank">Continuous Availability - Application
+                  Checklist for Continuous Service for MAA Solutions</a></p>
+                              
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="0%" id="d28810e292" headers="d28810e63 ">Capacity planning</td>
+                           <td align="left" valign="top" width="0%" headers="d28810e292 d28810e65 ">
+                              
+                              <p>Capacity planning and sizing should be done before deployment, and periodically
+                afterward, to ensure that there are sufficient system resources to meet application
+                performance requirements.</p>
+                              
+                              <p>Capacity planning needs to accommodate growth or consolidation of databases,
+                additional application workloads, additional processes, or anything that strains
+                existing system resources. </p>
+                              
+                              <p>Evaluating if performance requirements are still met during an unplanned outage or
+                planned maintenance events is also crucial.</p>
+                              
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

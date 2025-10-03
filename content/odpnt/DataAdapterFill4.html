@@ -1,0 +1,173 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Fill(DataSet, int, int, string, OracleRefCursor)</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="DataAdapterFill3.html" title="Previous" type="text/html">
+      <link rel="next" href="DataAdapterEvents.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="DataAdapterFill3.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="DataAdapterEvents.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="odp-dot-net-classes.html" property="item" typeof="WebPage"><span property="name">Oracle Data Provider for .NET Classes</span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="OracleDataAdapterClass.html" property="item" typeof="WebPage"><span property="name">OracleDataAdapter Class </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="DataAdapterPublicMethods.html" property="item" typeof="WebPage"><span property="name">OracleDataAdapter Public Methods</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Fill(DataSet, int, int, string, OracleRefCursor)</li>
+            </ol>
+            <a id="GUID-F8AD883F-39F8-4C88-AB4E-C67BFDD2F094" name="GUID-F8AD883F-39F8-4C88-AB4E-C67BFDD2F094"></a><a id="ODPNT1119"></a><a id="ODPNT1120"></a><a id="ODPNT1121"></a><a id="ODPNT1122"></a><a id="ODPNT1123"></a><a id="ODPNT1118"></a>
+            
+            <h2 id="ODPNT-GUID-F8AD883F-39F8-4C88-AB4E-C67BFDD2F094" class="sect2">Fill(DataSet, int, int, string, OracleRefCursor)</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <div class="section">
+                  <p>This method adds or refreshes rows in a specified range in the <code class="codeph">DataSet</code> to match rows in the provided <code class="codeph">OracleRefCursor</code> object.
+                  </p>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <p class="subhead1" id="GUID-F8AD883F-39F8-4C88-AB4E-C67BFDD2F094__GUID-CBC13F25-4895-42CC-B9C0-7C7C2CE75FA7">Declaration</p>
+               </div>
+               <!-- class="section" -->
+               <div class="section"><pre class="oac_no_warn" dir="ltr">// C#
+public int Fill(DataSet <span class="italic">dataSet</span>, int <span class="italic">startRecord</span>, int <span class="italic">maxRecords</span>, 
+   string <span class="italic">srcTable</span>, OracleRefCursor <span class="italic">refCursor</span>);</pre></div>
+               <!-- class="section" -->
+               <div class="section">
+                  <p class="subhead1" id="GUID-F8AD883F-39F8-4C88-AB4E-C67BFDD2F094__GUID-C36445CF-C85A-4680-A390-0042CAE7CE28">Parameters</p>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><span class="italic"><code class="codeph">dataSet</code></span> 
+                        </p>
+                        <p>The <code class="codeph">DataSet</code> object being populated.
+                        </p>
+                     </li>
+                     <li>
+                        <p><span class="italic"><code class="codeph">startRecord</code></span> 
+                        </p>
+                        <p>The record number to start with. </p>
+                     </li>
+                     <li>
+                        <p><span class="italic"><code class="codeph">maxRecords</code></span> 
+                        </p>
+                        <p>The maximum number of records to obtain. </p>
+                     </li>
+                     <li>
+                        <p><span class="italic"><code class="codeph">srcTable</code></span> 
+                        </p>
+                        <p>The name of the source table used in the table mapping. </p>
+                     </li>
+                     <li>
+                        <p><span class="italic"><code class="codeph">refCursor</code></span> 
+                        </p>
+                        <p>The <code class="codeph">OracleRefCursor</code> that rows are being retrieved from.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <p class="subhead1" id="GUID-F8AD883F-39F8-4C88-AB4E-C67BFDD2F094__GUID-220E7DA6-0E8C-41C5-833A-414D28259500">Return Value</p>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <p>This method returns the number of rows added or refreshed in the <code class="codeph">DataSet</code>. This does not include rows affected by statements that do not return rows.
+                  </p>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <p class="subhead1" id="GUID-F8AD883F-39F8-4C88-AB4E-C67BFDD2F094__GUID-0C0CD84E-6A75-493F-B98A-B702533E0F67">Exceptions</p>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <p><code class="codeph">ArgumentNullException</code> - The <span class="italic"><code class="codeph">dataSet</code></span> or <span class="italic"><code class="codeph">refCursor</code></span> parameter is null.
+                  </p>
+                  <p><code class="codeph">InvalidOperationException</code> - The <code class="codeph">OracleRefCursor</code> is already being used to fetch data or the source table name is invalid.
+                  </p>
+                  <p><code class="codeph">NotSupportedException</code> - The <code class="codeph">SafeMapping</code> type is not supported.
+                  </p>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <p class="subhead1" id="GUID-F8AD883F-39F8-4C88-AB4E-C67BFDD2F094__GUID-C22B4324-3CF6-45AC-99C1-94322B531EBB">Remarks</p>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <p>No schema or key information is provided, even if the <code class="codeph">Fill</code> method is called with <code class="codeph">MissingSchemaAction</code> set to <code class="codeph">MissingSchemaAction.AddWithKey</code>.
+                  </p>
+                  <div class="infoboxnotealso" id="GUID-F8AD883F-39F8-4C88-AB4E-C67BFDD2F094__GUID-9228FAA8-5E43-4B13-9B96-D1B675AE50B3">
+                     <p class="notep1">See Also:</p>
+                     <p></p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><span class="q">"<a href="intro003.html#GUID-2A5A5F0B-E6C9-45AF-9477-FBD55F7FCDC5">Oracle.DataAccess.Client and Oracle.ManagedDataAccess.Client Namespaces</a>"</span></p>
+                        </li>
+                        <li>
+                           <p><a href="OracleDataAdapterClass.html#GUID-76F427CE-BC13-4266-B5FC-87D5183D6E6B">OracleDataAdapter Class</a></p>
+                        </li>
+                        <li>
+                           <p><a href="DataAdapterMembers.html#GUID-D9FFFA32-046C-4F4A-B15E-0DDC299736BF">OracleDataAdapter Members</a> 
+                           </p>
+                        </li>
+                        <li>
+                           <p><span class="q">"<a href="featRequery.html#GUID-D7A62257-0676-4B30-A85A-AEBD62D904B2">OracleDataAdapter Requery Property</a>"</span></p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <!-- class="section" -->
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

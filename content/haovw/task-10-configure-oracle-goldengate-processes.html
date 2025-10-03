@@ -1,0 +1,274 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Task 10: Configure Oracle GoldenGate Processes">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Task">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content>
+      <meta name="description" content>
+      <title>Task 10: Configure Oracle GoldenGate Processes</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="task-9-create-oracle-net-tns-alias-oracle-goldengate-database-connections.html" title="Previous" type="text/html">
+      <link rel="next" href="task-11-configure-autostart-extract-and-replicat-processes.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Task 10: Configure Oracle GoldenGate Processes","description":"","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="task-9-create-oracle-net-tns-alias-oracle-goldengate-database-connections.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="task-11-configure-autostart-extract-and-replicat-processes.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A" name="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A"></a>
+         
+         <h2 id="HAOVW-GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A" class="sect2">Task 10: Configure Oracle GoldenGate
+        Processes</h2>
+         <div class="ind">
+            <div>
+               <p></p>
+               <div class="section">
+                  
+                  <p>When creating Extract, Distribution Paths, and Replicat processes with Oracle
+                GoldenGate Microservices Architecture, all files that need to be shared between
+                Oracle RAC nodes are already shared with the deployment files stored on a shared
+                file system (DBFS or ACFS).</p>
+                  
+                  <p>Listed below are important configuration details that are recommended for running
+                Oracle GoldenGate Microservices on Oracle RAC for Extract, Distribution Paths and
+                Replicat processes.</p>
+                  
+                  <p><span class="bold">Extract Configuration</span></p>
+                  
+                  <ol id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__OL_BMF_G1M_BZB">
+                     <li>
+                        
+                        <p>When creating an Extract using the Oracle GoldenGate Administration Server
+                        GUI interface, leave the <span class="bold">Trail SubDirectory</span> parameter blank, so that
+                        the trail files are automatically created in the deployment directories
+                        stored on the shared file system. 
+                        </p>
+                        
+                        <p>The default location for trail files is the <code class="codeph">/&lt;deployment
+                            directory&gt;/var/lib/data</code></p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>If you are using DBFS for shared storage, and the deployment
+                            <code class="codeph">var/temp</code> directory was moved to local storage as
+                        described in <a href="task-6-create-oracle-goldengate-deployment.html#GUID-40C94BE4-1773-4413-93D7-31A5689AF267" title="Once the Oracle GoldenGate software has been installed, the next step is to create a deployment using the Oracle GoldenGate Configuration Assistant (oggca).">Task 6: Create the Oracle GoldenGate Deployment</a>, it is recommended that you use the Extract <code class="codeph">CACHEMGR</code>
+                        parameter to place the temporary cache files on the shared storage.
+                        </p>
+                        
+                     </li>
+                  </ol>
+                  
+                  <p>Create a new directory under the DBFS deployment mount point. For example:</p>
+                  <pre class="pre codeblock"><code>$ mkdir &#x2013;p /mnt/dbfs/goldengate/deployments/ggnorth/temp_cache</code></pre>
+                  <p>Set the Extract parameter to the new directory:</p>
+                  <pre class="pre codeblock"><code>CACHEMGR CACHEDIRECTORY /mnt/dbfs/goldengate/deployments/ggnorth/temp_cache</code></pre>
+                  <p>Shown below is an example of how the parameters specified for an integrated Extract
+                with the Oracle GoldenGate Administration Server GUI looks in the UI.</p>
+                  
+                  <div class="figure" id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__FIG_BRC_3CM_BZB">
+                     <p class="titleinfigure">Figure 26-1 Extract parameters for defining the temporary cache files</p><br><div class="imageleft"><img class="imageleft" id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__IMAGE_CRC_3CM_BZB" height="470" width="882" src="img/ogg-onprem-add-extract.png" alt="Extract parameters for defining the temporary cache files" title="Extract parameters for defining the temporary cache files"></div><br></div>
+                  
+                  <p><span class="bold">Distribution Path Configuration</span></p>
+                  
+                  <p>When using Oracle GoldenGate distribution paths with the NGINX Reverse Proxy, there
+                are additional steps that must be performed to ensure that the path server
+                certificates are configured.</p>
+                  
+                  <p>Follow the instructions provided in the following video to correctly configure the
+                certificates: <a href="https://apexapps.oracle.com/pls/apex/f?p=44785:112:0::::P112_CONTENT_ID:31380" target="_blank">https://apexapps.oracle.com/pls/apex/f?p=44785:112:0::::P112_CONTENT_ID:31380</a></p>
+                  
+                  <p>Configuration highlights presented in this video:</p>
+                  
+                  <ol id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__OL_XDZ_4CM_BZB">
+                     <li>
+                        
+                        <p>Create a client certificate for the source deployment and add the client
+                        certificate to the source deployment Service Manager. (This is not required
+                        when using Oracle GoldenGate 21c or later releases.)</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Download the target deployment server’s root certificate and add the CA
+                        certificate to the source deployment Service Manager.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Create a user in the target deployment for the distribution path to connect
+                        to.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Create a credential in the source deployment connecting to the target
+                        deployment with the user created in the previous step. </p>
+                        
+                        <p>For example, a domain of <code class="codeph">GGNORTH_to_GGSOUTH</code> and an alias of
+                            <code class="codeph">PathReceiver</code>.
+                        </p>
+                        
+                     </li>
+                  </ol>
+                  
+                  <p>After configuring the client and server certificates, the following configuration
+                options need to be set. Refer to the figures below to see where these options are
+                set in the UI.</p>
+                  
+                  <ol id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__OL_YDZ_4CM_BZB">
+                     <li>
+                        
+                        <p>Change the <span class="bold">Generated Source URI</span> specifying <code class="codeph">localhost</code>
+                        for the server name. 
+                        </p>
+                        
+                        <p>This allows the distribution path to be started on any of the Oracle RAC
+                        nodes.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Set the <span class="bold">Target Authentication Method</span> to <code class="codeph">UserID Alias</code>
+                        and the <span class="bold">Target</span> transfer protocol to <code class="codeph">wss</code> (secure web
+                        socket). 
+                        </p>
+                        
+                        <p>Set the <span class="bold">Target Host</span> to the target host name/VIP that will be used for
+                        connecting to the target system along with the <span class="bold">Port Number</span> that NGINX
+                        was configured with (default is 443). 
+                        </p>
+                        
+                        <p>The target host name/VIP should match the common name in the CA signed
+                        certificate used by NGINX.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Set the <span class="bold">Domain</span> to the credential domain created above in step 4 and
+                        presented in the video, for example <code class="codeph">GGNORTH_to_GGSOUTH</code>. 
+                        </p>
+                        
+                        <p>The <span class="bold">Alias</span> is set to the credential alias, also created in step 4 in
+                        the video.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Set the distribution path to automatically restart when the Distribution
+                        Server starts. </p>
+                        
+                        <p>This is required so that manual intervention is not required after an Oracle
+                        RAC node relocation of the Distribution Server. It is recommended that you
+                        set the number of <span class="bold">Retries</span> to 10. Set the <span class="bold">Delay</span>, which is the
+                        amount of time in minutes to pause between restart attempts, to 1.
+                        </p>
+                        
+                     </li>
+                  </ol>
+                  
+                  <div class="figure" id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__FIG_VCM_QNM_BZB">
+                     <p class="titleinfigure">Figure 26-2 Distribution Path Creation steps 1-3</p><br><div class="imageleft"><img class="imageleft" id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__IMAGE_WCM_QNM_BZB" height="918" width="827" src="img/ogg-onprem-distpath.png" alt="Distribution Path Creation steps 1-3" title="Distribution Path Creation steps 1-3"></div><br></div>
+                  
+                  <div class="figure" id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__FIG_NLY_RNM_BZB">
+                     <p class="titleinfigure">Figure 26-3 Distribution Path Creation step 4</p><br><div class="imageleft"><img class="imageleft" id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__IMAGE_OLY_RNM_BZB" height="133" width="790" src="img/ogg-onprem-distpath-b.png" alt="Distribution Path Creation step 4" title="Distribution Path Creation step 4"></div><br></div>
+                  
+                  <p><span class="bold">Replicat Configuration</span></p>
+                  
+                  <ol id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__OL_J34_C4M_BZB">
+                     <li>
+                        
+                        <p>The checkpoint table is a required component for GoldenGate Replicat
+                        processes. Make sure that a checkpoint table has been created in the
+                        database GoldenGate administrator (GGADMIN) schema.</p>
+                        
+                        <p>The checkpoint table can be created using the Oracle GoldenGate
+                        Administration Server GUI, clicking on the ‘+’ button and entering the
+                        checkpoint table name in the format of schema.tablename. This is shown in
+                        the image below</p>
+                        
+                        <div class="figure" id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__FIG_AW2_L4M_BZB">
+                           <p class="titleinfigure">Figure 26-4 Creating the checkpoint table for Replicat processes</p><br><div class="imageleft"><img class="imageleft" id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__IMAGE_BW2_L4M_BZB" height="654" width="1077" src="img/ogg-onprem-checkpoint-table.png" alt="Creating the checkpoint table for Replicat processes" title="Creating the checkpoint table for Replicat processes"></div><br></div>
+                        
+                        <p>See <a href="https://docs.oracle.com/en/middleware/goldengate/core/21.3/oracle-db/configuring-oracle-goldengate-apply.html#GUID-3DFBE2BE-20C5-48AA-B96A-7697126D77FE" target="_blank">About Checkpoint Table</a> for more
+                        information about creating a checkpoint table.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>When creating a Replicat using the Oracle GoldenGate Administration Server
+                        GUI interface, set the <span class="bold">Trail SubDirectory</span> parameter to the location
+                        where the distribution path or local Extract are creating the trail
+                        files.
+                        </p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>If a checkpoint table was created previously, select the table name from the
+                            <span class="bold">Checkpoint Table</span> pulldown list.
+                        </p>
+                        
+                        <div class="figure" id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__FIG_TNB_DPM_BZB">
+                           <p class="titleinfigure">Figure 26-5 Replicat creation with Trail SubDirectory and Checkpoint
+                            Table</p><br><div class="imageleft"><img class="imageleft" id="GUID-236EAD58-58E3-444C-AF72-DB1F2B88443A__IMAGE_UNB_DPM_BZB" height="867" width="1147" src="img/ogg-onprem-checkpoint-table-b.png" alt="Replicat creation with Trail SubDirectory and Checkpoint Table" title="Replicat creation with Trail SubDirectory and Checkpoint Table"></div><br></div>
+                        
+                     </li>
+                  </ol>
+                  
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

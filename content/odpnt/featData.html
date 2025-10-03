@@ -1,0 +1,1405 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Obtaining Data from an OracleDataReader Object</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="featTypes.html" title="Previous" type="text/html">
+      <link rel="next" href="featRefCursor.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="featTypes.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="featRefCursor.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="features.html" property="item" typeof="WebPage"><span property="name">Features of Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Obtaining Data from an OracleDataReader Object</li>
+            </ol>
+            <a id="GUID-E962F3D3-6434-46DF-BFE4-42B9085B539D" name="GUID-E962F3D3-6434-46DF-BFE4-42B9085B539D"></a><a id="ODPNT283"></a>
+            
+            <h2 id="ODPNT-GUID-E962F3D3-6434-46DF-BFE4-42B9085B539D" class="sect2">Obtaining Data from an OracleDataReader Object</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <div class="section">
+                  <p>The <code class="codeph">ExecuteReader</code> method of the <code class="codeph">OracleCommand</code> object returns an <code class="codeph">OracleDataReader</code> object, which is a read-only, forward-only result set.
+                  </p>
+                  <p>This section provides the following information about the <code class="codeph">OracleDataReader</code> object:
+                  </p>
+               </div>
+               <!-- class="section" -->
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="featData.html#GUID-A0467E6C-E5A3-45BB-87E6-9B99E252F79C">Typed OracleDataReader Accessors</a></p>
+                     </li>
+                     <li>
+                        <p><a href="featData.html#GUID-20DB5E62-F366-47D4-85A1-17BB55DFDA8B">Obtaining LONG and LONG RAW Data</a></p>
+                     </li>
+                     <li>
+                        <p><a href="featData.html#GUID-BAF19837-79C6-4CD8-A099-242CA3CFC34A">Obtaining LOB Data</a></p>
+                     </li>
+                     <li>
+                        <p><a href="featData.html#GUID-1C5F9FA6-2161-4B61-A33C-3426EE0D98F3">Controlling the Number of Rows Fetched in One Database Round-Trip</a></p>
+                     </li>
+                  </ul>
+               </div>
+               <!-- class="section" -->
+            </div><a id="ODPNT284"></a><div class="props_rev_3"><a id="GUID-A0467E6C-E5A3-45BB-87E6-9B99E252F79C" name="GUID-A0467E6C-E5A3-45BB-87E6-9B99E252F79C"></a><h3 id="ODPNT-GUID-A0467E6C-E5A3-45BB-87E6-9B99E252F79C" class="sect3">Typed OracleDataReader Accessors</h3>
+               <div>
+                  <p>The <code class="codeph">OracleDataReader</code> class provides two types of typed accessors:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><a href="featData.html#GUID-4C1109FB-AE52-4EDF-96C3-6733A8A05EB5">.NET Type Accessors</a> 
+                        </p>
+                     </li>
+                     <li>
+                        <p><a href="featData.html#GUID-E91C77D1-6E47-4AC2-9880-82A2F19BB040">ODP.NET Type Accessors</a></p>
+                     </li>
+                  </ul>
+               </div><a id="ODPNT286"></a><a id="ODPNT285"></a><div class="props_rev_3"><a id="GUID-4C1109FB-AE52-4EDF-96C3-6733A8A05EB5" name="GUID-4C1109FB-AE52-4EDF-96C3-6733A8A05EB5"></a><h4 id="ODPNT-GUID-4C1109FB-AE52-4EDF-96C3-6733A8A05EB5" class="sect4">.NET Type Accessors</h4>
+                  <div>
+                     <p><a href="featData.html#GUID-4C1109FB-AE52-4EDF-96C3-6733A8A05EB5__G1024876" title="rows are Oracle native types. first column is name, second column is .NET type, and third column is typed accessor">Table 3-14</a> lists all the <a id="d83188e100" class="indexterm-anchor"></a>Oracle native database types that ODP.NET supports, and the corresponding .NET types that can represent the Oracle native type. If more than one .NET type can be used to represent an Oracle native type, the first entry is the .NET type that best represents the Oracle native type. The third column indicates the valid typed accessor that can be invoked for an Oracle native type to be obtained as a .NET type. If an invalid typed accessor is used for a column, an <code class="codeph">InvalidCastException</code> is thrown. Oracle native data types depend on the version of the database; therefore, some data types are not available in earlier versions of Oracle Database.
+                     </p>
+                     <div class="infoboxnotealso" id="GUID-4C1109FB-AE52-4EDF-96C3-6733A8A05EB5__GUID-597CB06C-9C00-47D2-9B5E-1877B3DACC9D">
+                        <p class="notep1">See Also:</p>
+                        <p></p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><span class="q">"<a href="OracleDataAdapterClass.html#GUID-76F427CE-BC13-4266-B5FC-87D5183D6E6B">OracleDataAdapter Class</a>"</span> 
+                              </p>
+                           </li>
+                           <li>
+                              <p><span class="q">"<a href="OracleDataReaderClass.html#GUID-6A8F1309-277F-4DA7-B463-642D81DDCB1C">OracleDataReader Class</a>"</span></p>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="tblformal" id="GUID-4C1109FB-AE52-4EDF-96C3-6733A8A05EB5__G1024876">
+                        <p class="titleintable">Table 3-14 .NET Type Accessors </p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title=".NET Type Accessors " summary="rows are Oracle native types. first column is name, second column is .NET type, and third column is typed accessor" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="42%" id="d83188e133">Oracle Native Data Type </th>
+                                 <th align="left" valign="bottom" width="35%" id="d83188e136">.NET Type</th>
+                                 <th align="left" valign="bottom" width="23%" id="d83188e139">Typed Accessor</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e144" headers="d83188e133 ">
+                                    <p><code class="codeph">BFILE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e144 d83188e136 ">
+                                    <p><code class="codeph">System.Byte[]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e144 d83188e139 ">
+                                    <p><code class="codeph">GetBytes</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e157" headers="d83188e133 ">
+                                    <p><code class="codeph">BINARY_DOUBLE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e157 d83188e136 ">
+                                    <p><code class="codeph">System.Double</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e157 d83188e139 ">
+                                    <p><code class="codeph">GetDouble</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e170" headers="d83188e133 ">
+                                    <p><code class="codeph">BINARY_FLOAT</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e170 d83188e136 ">
+                                    <p><code class="codeph">System.Single</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e170 d83188e139 ">
+                                    <p><code class="codeph">GetFloat</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e183" headers="d83188e133 ">
+                                    <p><code class="codeph">BLOB</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e183 d83188e136 ">
+                                    <p><code class="codeph">System.Byte[]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e183 d83188e139 ">
+                                    <p><code class="codeph">GetBytes</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e196" headers="d83188e133 ">
+                                    <p><code class="codeph">CHAR</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e196 d83188e136 ">
+                                    <p><code class="codeph">System.String</code></p>
+                                    <p><code class="codeph">System.Char[]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e196 d83188e139 ">
+                                    <p><code class="codeph">GetString</code></p>
+                                    <p><code class="codeph">GetChars</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e215" headers="d83188e133 ">
+                                    <p><code class="codeph">CLOB</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e215 d83188e136 ">
+                                    <p><code class="codeph">System.String</code></p>
+                                    <p><code class="codeph">System.Char[]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e215 d83188e139 ">
+                                    <p><code class="codeph">GetString</code></p>
+                                    <p><code class="codeph">GetChars</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e234" headers="d83188e133 ">
+                                    <p><code class="codeph">DATE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e234 d83188e136 ">
+                                    <p><code class="codeph">System.DateTime</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e234 d83188e139 ">
+                                    <p><code class="codeph">GetDateTime</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e247" headers="d83188e133 ">
+                                    <p><code class="codeph">INTERVAL</code> <code class="codeph">DAY</code> <code class="codeph">TO</code> <code class="codeph">SECOND</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e247 d83188e136 ">
+                                    <p><code class="codeph">System.Timespan</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e247 d83188e139 ">
+                                    <p><code class="codeph">GetTimeSpan</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e270" headers="d83188e133 ">
+                                    <p><code class="codeph">INTERVAL</code> <code class="codeph">YEAR</code> <code class="codeph">TO</code> <code class="codeph">MONTH</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e270 d83188e136 ">
+                                    <p><code class="codeph">System.Int64</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e270 d83188e139 ">
+                                    <p><code class="codeph">GetInt64</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e293" headers="d83188e133 ">
+                                    <p><code class="codeph">LONG</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e293 d83188e136 ">
+                                    <p><code class="codeph">System.String</code></p>
+                                    <p><code class="codeph">System.Char[]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e293 d83188e139 ">
+                                    <p><code class="codeph">GetString</code></p>
+                                    <p><code class="codeph">GetChars</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e312" headers="d83188e133 ">
+                                    <p><code class="codeph">LONG RAW</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e312 d83188e136 ">
+                                    <p><code class="codeph">System.Byte[</code><code class="codeph">]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e312 d83188e139 ">
+                                    <p><code class="codeph">GetBytes</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e328" headers="d83188e133 ">
+                                    <p><code class="codeph">NCHAR</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e328 d83188e136 ">
+                                    <p><code class="codeph">System.String</code></p>
+                                    <p><code class="codeph">System.Char[]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e328 d83188e139 ">
+                                    <p><code class="codeph">GetString</code></p>
+                                    <p><code class="codeph">GetChars</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e347" headers="d83188e133 ">
+                                    <p><code class="codeph">NCLOB</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e347 d83188e136 ">
+                                    <p><code class="codeph">System.String</code></p>
+                                    <p><code class="codeph">System.Char[]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e347 d83188e139 ">
+                                    <p><code class="codeph">GetString</code></p>
+                                    <p><code class="codeph">GetChars</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e366" headers="d83188e133 ">
+                                    <p><code class="codeph">NUMBER</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e366 d83188e136 ">
+                                    <p><code class="codeph">System.Decimal</code></p>
+                                    <p><code class="codeph">System.Byte</code></p>
+                                    <p><code class="codeph">System.Int16</code></p>
+                                    <p><code class="codeph">System.Int32</code> 
+                                    </p>
+                                    <p><code class="codeph">System.Int64 </code></p>
+                                    <p><code class="codeph">System.Single</code></p>
+                                    <p><code class="codeph">System.Double</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e366 d83188e139 ">
+                                    <p><code class="codeph">GetDecimal</code></p>
+                                    <p><code class="codeph">GetByte</code></p>
+                                    <p><code class="codeph">GetInt16</code></p>
+                                    <p><code class="codeph">GetInt32</code></p>
+                                    <p><code class="codeph">GetInt64</code></p>
+                                    <p><code class="codeph">GetFloat</code></p>
+                                    <p><code class="codeph">GetDouble</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e416" headers="d83188e133 ">
+                                    <p><code class="codeph">NVARCHAR2</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e416 d83188e136 ">
+                                    <p><code class="codeph">System.String</code></p>
+                                    <p><code class="codeph">System.Char[]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e416 d83188e139 ">
+                                    <p><code class="codeph">GetString</code></p>
+                                    <p><code class="codeph">GetChars</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e435" headers="d83188e133 ">
+                                    <p><code class="codeph">RAW</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e435 d83188e136 ">
+                                    <p><code class="codeph">System.Byte[</code><code class="codeph">]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e435 d83188e139 ">
+                                    <p><code class="codeph">GetBytes</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e450" headers="d83188e133 ">
+                                    <p><code class="codeph">REF</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e450 d83188e136 ">
+                                    <p><code class="codeph">System.String</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e450 d83188e139 ">
+                                    <p><code class="codeph">GetString</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e463" headers="d83188e133 ">
+                                    <p><code class="codeph">ROWID</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e463 d83188e136 ">
+                                    <p><code class="codeph">System.String</code></p>
+                                    <p><code class="codeph">System.Char[]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e463 d83188e139 ">
+                                    <p><code class="codeph">GetString</code></p>
+                                    <p><code class="codeph">GetChars</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e482" headers="d83188e133 ">
+                                    <p><code class="codeph">TIMESTAMP</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e482 d83188e136 ">
+                                    <p><code class="codeph">System.DateTime</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e482 d83188e139 ">
+                                    <p><code class="codeph">GetDateTime</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e495" headers="d83188e133 ">
+                                    <p><code class="codeph">TIMESTAMP</code> <code class="codeph">WITH</code> <code class="codeph">LOCAL</code> <code class="codeph">TIME</code> <code class="codeph">ZONE</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e495 d83188e136 ">
+                                    <p><code class="codeph">System.DateTime</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e495 d83188e139 ">
+                                    <p><code class="codeph">GetDateTime</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e521" headers="d83188e133 ">
+                                    <p><code class="codeph">TIMESTAMP</code> <code class="codeph">WITH</code> <code class="codeph">TIME</code> <code class="codeph">ZONE</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e521 d83188e136 ">
+                                    <p><code class="codeph">System.DateTime</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e521 d83188e139 ">
+                                    <p><code class="codeph">GetDateTime</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e544" headers="d83188e133 ">
+                                    <p><code class="codeph">UROWID</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e544 d83188e136 ">
+                                    <p><code class="codeph">System.String</code></p>
+                                    <p><code class="codeph">System.Char[]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e544 d83188e139 ">
+                                    <p><code class="codeph">GetString</code></p>
+                                    <p><code class="codeph">GetChars</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e564" headers="d83188e133 ">
+                                    <p><code class="codeph">VARCHAR2</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e564 d83188e136 ">
+                                    <p><code class="codeph">System.String</code></p>
+                                    <p><code class="codeph">System.Char[]</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e564 d83188e139 ">
+                                    <p><code class="codeph">GetString</code></p>
+                                    <p><code class="codeph">GetChars</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="42%" id="d83188e583" headers="d83188e133 ">
+                                    <p><code class="codeph">XMLType</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="35%" headers="d83188e583 d83188e136 ">
+                                    <p><code class="codeph">System.String</code></p>
+                                    <p><code class="codeph">System.Xml.XmlReader</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="23%" headers="d83188e583 d83188e139 ">
+                                    <p><code class="codeph">GetString</code></p>
+                                    <p><code class="codeph">GetXmlReader</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                     <p>Certain methods and properties of the <code class="codeph">OracleDataReader</code> object require ODP.NET to map a <code class="codeph">NUMBER</code> column to a .NET type based on the precision and scale of the column. These members are:
+                     </p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><code class="codeph">Item</code> property
+                           </p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">GetFieldType</code> method
+                           </p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">GetValue</code> method
+                           </p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">GetValues</code> method
+                           </p>
+                        </li>
+                     </ul>
+                     <p>ODP.NET determines the appropriate .NET type by considering the following .NET types in order, and selecting the first .NET type from the list that can represent the entire range of values of the column:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><code class="codeph">System.Byte</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">System.Int16</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">System.Int32</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">System.Int64</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">System.Single</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">System.Double</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">System.Decimal</code></p>
+                        </li>
+                     </ul>
+                     <p>If no .NET type exists that can represent the entire range of values of the column, then an attempt is made to represent the column values as a <code class="codeph">System.Decimal</code> type. If the value in the column cannot be represented as <code class="codeph">System.Decimal</code>, then an exception is raised.
+                     </p>
+                     <p>For example, consider two columns defined as <code class="codeph">NUMBER(4,0)</code> and <code class="codeph">NUMBER(10,2)</code>. The first .NET types from the previous list that can represent the entire range of values of the columns are <code class="codeph">System.Int16</code> and <code class="codeph">System.Double</code>, respectively. However, consider a column defined as <code class="codeph">NUMBER(20,10)</code>. In this case, there is no .NET type that can represent the entire range of values on the column, so an attempt is made to return values in the column as a <code class="codeph">System.Decimal</code> type. If a value in the column cannot be represented as a <code class="codeph">System.Decimal type</code>, then an exception is raised.
+                     </p>
+                     <p>The <code class="codeph">Fill</code> method of the <code class="codeph">OracleDataAdapter</code> class uses the <code class="codeph">OracleDataReader</code> object to populate or refresh a <code class="codeph">DataTable</code> or <code class="codeph">DataSet</code> with .NET types. As a result, the .NET type used to represent a <code class="codeph">NUMBER</code> column in the <code class="codeph">DataTable</code> or <code class="codeph">DataSet</code> also depends on the precision and scale of the column.
+                     </p>
+                     <div class="infoboxnotealso" id="GUID-4C1109FB-AE52-4EDF-96C3-6733A8A05EB5__GUID-B418B066-A694-46FE-A4E7-DA102477279E">
+                        <p class="notep1">See Also:</p>
+                        <p></p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><span class="q">"<a href="OracleDataReaderClass.html#GUID-6A8F1309-277F-4DA7-B463-642D81DDCB1C">OracleDataReader Class</a>"</span></p>
+                           </li>
+                           <li>
+                              <p><span class="q">"<a href="OracleDataAdapterClass.html#GUID-76F427CE-BC13-4266-B5FC-87D5183D6E6B">OracleDataAdapter Class</a>"</span></p>
+                           </li>
+                           <li>
+                              <p><span class="q">"<a href="DataReaderItemOverloads.html#GUID-C6972B72-1AEC-48C7-B988-8AF367A84FDE">Item</a>"</span></p>
+                           </li>
+                           <li>
+                              <p><span class="q">"<a href="DataReaderGetFieldType.html#GUID-EDFC8C7D-C636-4DC8-8234-007D42606D65">GetFieldType</a>"</span></p>
+                           </li>
+                           <li>
+                              <p><span class="q">"<a href="DataReaderGetValues.html#GUID-F6C185FA-C147-4D48-B844-B3D3607B0684">GetValues</a>"</span></p>
+                           </li>
+                           <li>
+                              <p><span class="q">"<a href="DataReaderGetValue.html#GUID-27587006-D091-465D-8942-27BE72F8A41A">GetValue</a>"</span></p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div><a id="ODPNT288"></a><a id="ODPNT287"></a><div class="props_rev_3"><a id="GUID-E91C77D1-6E47-4AC2-9880-82A2F19BB040" name="GUID-E91C77D1-6E47-4AC2-9880-82A2F19BB040"></a><h4 id="ODPNT-GUID-E91C77D1-6E47-4AC2-9880-82A2F19BB040" class="sect4">ODP.NET Type Accessors</h4>
+                  <div>
+                     <p>ODP.NET exposes provider-specific types that natively represent the data types in the database. In some cases, these ODP.NET types provide better performance and functioning than the corresponding .NET types. The ODP.NET types can be obtained from the <code class="codeph">OracleDataReader</code> object by calling their respective typed accessor.
+                     </p>
+                     <p><a href="featData.html#GUID-E91C77D1-6E47-4AC2-9880-82A2F19BB040__G1024972" title="rows are Oracle native types. first column is name, second column is ODP.NET type, and third column is typed accessor">Table 3-15</a> lists the valid type accessors that ODP.NET uses to obtain ODP.NET types for an Oracle native type.
+                     </p>
+                     <div class="tblformal" id="GUID-E91C77D1-6E47-4AC2-9880-82A2F19BB040__G1024972">
+                        <p class="titleintable">Table 3-15 ODP.NET Type Accessors </p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="ODP.NET Type Accessors " summary="rows are Oracle native types. first column is name, second column is ODP.NET type, and third column is typed accessor" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="34%" id="d83188e789">Oracle Native Data Type </th>
+                                 <th align="left" valign="bottom" width="29%" id="d83188e792">ODP.NET Type</th>
+                                 <th align="left" valign="bottom" width="37%" id="d83188e795">Typed Accessor</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e800" headers="d83188e789 ">
+                                    <p><code class="codeph">BFILE</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e800 d83188e792 ">
+                                    <p><code class="codeph">OracleBFile</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e800 d83188e795 ">
+                                    <p><code class="codeph">GetOracleBFile</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e816" headers="d83188e789 ">
+                                    <p><code class="codeph">BINARY_DOUBLE</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e816 d83188e792 ">
+                                    <p><code class="codeph">OracleDecimal</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e816 d83188e795 ">
+                                    <p><code class="codeph">GetOracleDecimal</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e832" headers="d83188e789 ">
+                                    <p><code class="codeph">BINARY_FLOAT</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e832 d83188e792 ">
+                                    <p><code class="codeph">OracleDecimal</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e832 d83188e795 ">
+                                    <p><code class="codeph">GetOracleDecimal</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e848" headers="d83188e789 ">
+                                    <p><code class="codeph">BLOB</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e848 d83188e792 ">
+                                    <p><code class="codeph">OracleBlob</code> 
+                                    </p>
+                                    <p><code class="codeph">OracleBlob</code> 
+                                    </p>
+                                    <p><code class="codeph">OracleBinary</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e848 d83188e795 ">
+                                    <p><code class="codeph">GetOracleBlob</code> 
+                                    </p>
+                                    <p><code class="codeph">GetOracleBlobForUpdate</code> 
+                                    </p>
+                                    <p><code class="codeph">GetOracleBinary</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e879" headers="d83188e789 ">
+                                    <p><code class="codeph">CHAR</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e879 d83188e792 ">
+                                    <p><code class="codeph">OracleString</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e879 d83188e795 ">
+                                    <p><code class="codeph">GetOracleString</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e895" headers="d83188e789 ">
+                                    <p><code class="codeph">CLOB</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e895 d83188e792 ">
+                                    <p><code class="codeph">OracleClob</code> 
+                                    </p>
+                                    <p><code class="codeph">OracleClob</code> 
+                                    </p>
+                                    <p><code class="codeph">OracleString</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e895 d83188e795 ">
+                                    <p><code class="codeph">GetOracleClob</code> 
+                                    </p>
+                                    <p><code class="codeph">GetOracleClobForUpdate</code> 
+                                    </p>
+                                    <p><code class="codeph">GetOracleString</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e927" headers="d83188e789 ">
+                                    <p><code class="codeph">DATE</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e927 d83188e792 ">
+                                    <p><code class="codeph">OracleDate</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e927 d83188e795 ">
+                                    <p><code class="codeph">GetOracleDate</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e943" headers="d83188e789 ">
+                                    <p><code class="codeph">INTERVAL</code> <code class="codeph">DAY</code> <code class="codeph">TO</code> <code class="codeph">SECOND</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e943 d83188e792 ">
+                                    <p><code class="codeph">OracleIntervalDS</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e943 d83188e795 ">
+                                    <p><code class="codeph">GetOracleIntervalDS</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e968" headers="d83188e789 ">
+                                    <p><code class="codeph">INTERVAL</code> <code class="codeph">YEAR</code> <code class="codeph">TO</code> <code class="codeph">MONTH</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e968 d83188e792 ">
+                                    <p><code class="codeph">OracleIntervalYM</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e968 d83188e795 ">
+                                    <p><code class="codeph">GetOracleIntervalYM</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e993" headers="d83188e789 ">
+                                    <p><code class="codeph">LONG</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e993 d83188e792 ">
+                                    <p><code class="codeph">OracleString</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e993 d83188e795 ">
+                                    <p><code class="codeph">GetOracleString</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1009" headers="d83188e789 ">
+                                    <p><code class="codeph">LONG</code> <code class="codeph">RAW</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1009 d83188e792 ">
+                                    <p><code class="codeph">OracleBinary</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1009 d83188e795 ">
+                                    <p><code class="codeph">GetOracleBinary</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1029" headers="d83188e789 ">
+                                    <p><code class="codeph">NCHAR</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1029 d83188e792 ">
+                                    <p><code class="codeph">OracleString</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1029 d83188e795 ">
+                                    <p><code class="codeph">GetOracleString</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1045" headers="d83188e789 ">
+                                    <p><code class="codeph">NCLOB</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1045 d83188e792 ">
+                                    <p><code class="codeph">OracleString</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1045 d83188e795 ">
+                                    <p><code class="codeph">GetOracleString</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1061" headers="d83188e789 ">
+                                    <p><code class="codeph">NUMBER</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1061 d83188e792 ">
+                                    <p><code class="codeph">OracleDecimal</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1061 d83188e795 ">
+                                    <p><code class="codeph">GetOracleDecimal</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1077" headers="d83188e789 ">
+                                    <p><code class="codeph">NVARCHAR2</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1077 d83188e792 ">
+                                    <p><code class="codeph">OracleString</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1077 d83188e795 ">
+                                    <p><code class="codeph">GetOracleString</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1093" headers="d83188e789 ">
+                                    <p><code class="codeph">RAW</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1093 d83188e792 ">
+                                    <p><code class="codeph">OracleBinary</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1093 d83188e795 ">
+                                    <p><code class="codeph">GetOracleBinary</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1109" headers="d83188e789 ">
+                                    <p><code class="codeph">REF</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1109 d83188e792 ">
+                                    <p>OracleRef</p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1109 d83188e795 ">
+                                    <p><code class="codeph">GetOracleRef</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1121" headers="d83188e789 ">
+                                    <p><code class="codeph">ROWID</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1121 d83188e792 ">
+                                    <p><code class="codeph">OracleString</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1121 d83188e795 ">
+                                    <p><code class="codeph">GetOracleString</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1137" headers="d83188e789 ">
+                                    <p><code class="codeph">TIMESTAMP</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1137 d83188e792 ">
+                                    <p><code class="codeph">OracleTimeStamp</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1137 d83188e795 ">
+                                    <p><code class="codeph">GetOracleTimeStamp</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1153" headers="d83188e789 ">
+                                    <p><code class="codeph">TIMESTAMP</code> <code class="codeph">WITH</code> <code class="codeph">LOCAL</code> <code class="codeph">TIME</code> <code class="codeph">ZONE</code>  
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1153 d83188e792 ">
+                                    <p><code class="codeph">OracleTimeStampLTZ</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1153 d83188e795 ">
+                                    <p><code class="codeph">GetOracleTimeStampLTZ</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1181" headers="d83188e789 ">
+                                    <p><code class="codeph">TIMESTAMP</code> <code class="codeph">WITH</code> <code class="codeph">TIME</code> <code class="codeph">ZONE </code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1181 d83188e792 ">
+                                    <p><code class="codeph">OracleTimeStampTZ</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1181 d83188e795 ">
+                                    <p><code class="codeph">GetOracleTimeStampTZ</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1206" headers="d83188e789 ">
+                                    <p><code class="codeph">UROWID</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1206 d83188e792 ">
+                                    <p><code class="codeph">OracleString</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1206 d83188e795 ">
+                                    <p><code class="codeph">GetOracleString</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1223" headers="d83188e789 ">
+                                    <p><code class="codeph">VARCHAR2</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1223 d83188e792 ">
+                                    <p><code class="codeph">OracleString</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1223 d83188e795 ">
+                                    <p><code class="codeph">GetOracleString</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="34%" id="d83188e1239" headers="d83188e789 ">
+                                    <p><code class="codeph">XMLType</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="29%" headers="d83188e1239 d83188e792 ">
+                                    <p><code class="codeph">OracleString</code> 
+                                    </p>
+                                    <p><code class="codeph">OracleXmlType</code> 
+                                    </p>
+                                 </td>
+                                 <td align="left" valign="top" width="37%" headers="d83188e1239 d83188e795 ">
+                                    <p><code class="codeph">GetOracleString</code> 
+                                    </p>
+                                    <p><code class="codeph">GetOracleXmlType</code> 
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                     <div class="infoboxnotealso" id="GUID-E91C77D1-6E47-4AC2-9880-82A2F19BB040__GUID-3842A45D-1060-436B-9C32-7AD9242A5089">
+                        <p class="notep1">See Also:</p>
+                        <p><span class="q">"<a href="featTypes.html#GUID-9DA46E61-DAA9-424A-A35B-10F36E4B6734">ODP.NET Types Overview</a>"</span> for a list of all ODP.NET types
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="ODPNT289"></a><div class="props_rev_3"><a id="GUID-20DB5E62-F366-47D4-85A1-17BB55DFDA8B" name="GUID-20DB5E62-F366-47D4-85A1-17BB55DFDA8B"></a><h3 id="ODPNT-GUID-20DB5E62-F366-47D4-85A1-17BB55DFDA8B" class="sect3">Obtaining LONG and LONG RAW Data</h3>
+               <div>
+                  <div class="section">
+                     <p>ODP.NET fetches and caches rows from the database during the <code class="codeph">Read</code> method invocations on the <code class="codeph">OracleDataReader</code> object. The amount of <code class="codeph">LONG</code> and <code class="codeph">LONG</code> <code class="codeph">RAW</code> column data that is retrieved from this operation is determined by <code class="codeph">InitialLONGFetchSize</code>. The different behaviors observed when <code class="codeph">InitialLONGFetchSize</code> is set to <code class="codeph">0</code>, greater than <code class="codeph">0</code>, and <code class="codeph">-1</code> are explained in the following sections.
+                     </p>
+                     <div class="infoboxnote" id="GUID-20DB5E62-F366-47D4-85A1-17BB55DFDA8B__GUID-27B89410-2AD0-4F78-A38E-11877F8FA51B">
+                        <p class="notep1">Note:</p>
+                        <p>ODP.NET does not support the <code class="codeph">CommandBehavior.SequentialAccess</code> enumeration value. Therefore, <code class="codeph">LONG</code> and <code class="codeph">LONG</code> <code class="codeph">RAW</code> data can be fetched randomly.
+                        </p>
+                     </div>
+                  </div>
+                  <!-- class="section" -->
+               </div><a id="ODPNT290"></a><div class="props_rev_3"><a id="GUID-0DD894C6-1816-4BAC-859C-71E519E994D8" name="GUID-0DD894C6-1816-4BAC-859C-71E519E994D8"></a><h4 id="ODPNT-GUID-0DD894C6-1816-4BAC-859C-71E519E994D8" class="sect4">Setting InitialLONGFetchSize to Zero or a Value Greater than Zero</h4>
+                  <div>
+                     <div class="section">
+                        <p>The specified amount of <code class="codeph">InitialLONGFetchSize</code> characters or bytes for <code class="codeph">LONG</code> or <code class="codeph">LONG</code> <code class="codeph">RAW</code> column data is retrieved into the cache during the <code class="codeph">Read</code> method invocations on the <code class="codeph">OracleDataReader</code> object.
+                        </p>
+                        <p>By default, <code class="codeph">InitialLONGFetchSize</code> is set to 0. In this case, ODP.NET does not fetch any <code class="codeph">LONG</code> or <code class="codeph">LONG</code> <code class="codeph">RAW</code> column data during the <code class="codeph">Read</code> method invocations on the <code class="codeph">OracleDataReader</code> object. The <code class="codeph">LONG</code> or <code class="codeph">LONG</code> <code class="codeph">RAW</code> data is fetched when the typed accessor method is explicitly invoked for the <code class="codeph">LONG</code> or <code class="codeph">LONG</code> <code class="codeph">RAW</code> column, which incurs a database round-trip because no data is cached.
+                        </p>
+                        <p>If <code class="codeph">InitialLONGFetchSize</code> is set to a value greater than <code class="codeph">0</code>, that amount of specified data is cached by ODP.NET during the <code class="codeph">Read</code> method invocations on the <code class="codeph">OracleDataReader</code> object. If the application requests an amount of data less than or equal to the <code class="codeph">InitialLONGFetchSize</code> through the typed accessor methods, no database round-trip is incurred. However, an additional database round-trip is required to fetch data beyond <code class="codeph">InitialLONGFetchSize</code>.
+                        </p>
+                        <p>To obtain data beyond the <code class="codeph">InitialLONGFetchSize</code> characters or bytes, one of the following must be in the select list:
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p>Primary key</p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">ROWID</code></p>
+                           </li>
+                           <li>
+                              <p>Unique columns - (defined as a set of columns on which a unique constraint has been defined or a unique index has been created, where at least one of the columns in the set has a <code class="codeph">NOT</code> <code class="codeph">NULL</code> constraint defined on it)
+                              </p>
+                           </li>
+                        </ul>
+                        <p>To be able to fetch the entire <code class="codeph">LONG</code> or <code class="codeph">LONG</code> <code class="codeph">RAW</code> data without having a primary key column, a <code class="codeph">ROWID</code>, or unique columns in the select list, set the size of the <code class="codeph">InitialLONGFetchSize</code> property on the <code class="codeph">OracleCommand</code> object to equal or greater than the number of characters or bytes needed to be retrieved. 
+                        </p>
+                        <p>The <code class="codeph">LONG</code> or <code class="codeph">LONG</code> <code class="codeph">RAW</code> data is returned when the appropriate typed accessor method (<code class="codeph">GetChars</code>, <code class="codeph">GetOracleString</code>, or <code class="codeph">GetString</code> for <code class="codeph">LONG</code> or <code class="codeph">GetOracleBinary</code> or <code class="codeph">GetBytes</code> for <code class="codeph">LONG</code> <code class="codeph">RAW</code>) is called on the <code class="codeph">OracleDataReader</code> object. 
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT291"></a><div class="props_rev_3"><a id="GUID-91C604F9-4A14-495C-8850-2B9EC2605F8F" name="GUID-91C604F9-4A14-495C-8850-2B9EC2605F8F"></a><h4 id="ODPNT-GUID-91C604F9-4A14-495C-8850-2B9EC2605F8F" class="sect4">Setting InitialLONGFetchSize to -1</h4>
+                  <div>
+                     <div class="section">
+                        <p>By setting <code class="codeph">InitialLONGFetchSize</code> to <code class="codeph">-1</code>, it is possible to fetch the entire <code class="codeph">LONG</code> or <code class="codeph">LONG</code> <code class="codeph">RAW</code> data from the database for a select query, without requiring a primary key, <code class="codeph">ROWID</code>, or unique column in the select list. 
+                        </p>
+                        <p>When <code class="codeph">InitialLONGFetchSize</code> is set to <code class="codeph">-1</code>, the entire <code class="codeph">LONG</code> or <code class="codeph">LONG</code> <code class="codeph">RAW</code> data is retrieved and cached during <code class="codeph">Read</code> method invocations on the <code class="codeph">OracleDataReader</code> object. Calls to <code class="codeph">GetString</code>, <code class="codeph">GetOracleString</code>, <code class="codeph">GetChars</code>, <code class="codeph">GetBytes</code>, or <code class="codeph">GetOracleBinary</code> in the <code class="codeph">OracleDataReader</code> return the entire column data.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div><a id="ODPNT292"></a><div class="props_rev_3"><a id="GUID-BAF19837-79C6-4CD8-A099-242CA3CFC34A" name="GUID-BAF19837-79C6-4CD8-A099-242CA3CFC34A"></a><h3 id="ODPNT-GUID-BAF19837-79C6-4CD8-A099-242CA3CFC34A" class="sect3">Obtaining LOB Data</h3>
+               <div>
+                  <p>ODP.NET fetches and caches rows from the database during the <code class="codeph">Read</code> method invocations on the <code class="codeph">OracleDataReader</code> object. The amount of LOB column data that is retrieved from this operation is determined by <code class="codeph">InitialLOBFetchSize</code>. 
+                  </p>
+                  <p>The following is a complete list of typed accessor methods that an application can call for the <code class="codeph">CLOB</code> and <code class="codeph">BLOB</code> columns, if <code class="codeph">InitialLOBFetchSize</code> is set to <code class="codeph">0</code>, greater than <code class="codeph">0</code>, or<code class="codeph"> -1</code>:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Methods callable for <code class="codeph">BLOB</code> column
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">GetBytes</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetValue</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetValues</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetOracleBinary</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetOracleBlob</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetOracleBlobForUpdate</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetOracleValue</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetOracleValues</code></p>
+                           </li>
+                        </ul>
+                     </li>
+                     <li>
+                        <p>Methods callable for <code class="codeph">CLOB</code> column
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">GetChars</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetString</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetValue</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetValues</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetOracleString</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetOracleClob</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetOracleClobForUpdate</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetOracleValue</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">GetOracleValues</code></p>
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+                  <p>The following sections explain the different behaviors observed when <code class="codeph">InitialLOBFetchSize</code> is set to <code class="codeph">0</code>, greater than <code class="codeph">0</code>, and -1.
+                  </p>
+               </div><a id="ODPNT293"></a><div class="props_rev_3"><a id="GUID-93F31E82-A987-4A48-AEF0-3A650033625C" name="GUID-93F31E82-A987-4A48-AEF0-3A650033625C"></a><h4 id="ODPNT-GUID-93F31E82-A987-4A48-AEF0-3A650033625C" class="sect4">Setting InitialLOBFetchSize to Zero </h4>
+                  <div>
+                     <div class="section">
+                        <p>By default, the <code class="codeph">InitialLOBFetchSize</code> property is 0. This value dictates to ODP.NET that any LOBs selected will have their client LOB data fetches deferred until after the <code class="codeph">OracleDataReader</code> <code class="codeph">Read</code>, such as when using the an accessor. Each LOB value is retrieved only at the point it is individually accessed.
+                        </p>
+                        <p>The advantage of using this retrieval strategy is that it conserves client memory and bandwidth. If the LOBs selected are either very large or not necessary to be immediately consumed by the end user, or both, then the application can perform better if LOBs are retrieved as needed, rather than all at once.</p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT294"></a><div class="props_rev_3"><a id="GUID-D1E0F82C-E762-4514-B686-11C5A5E569C7" name="GUID-D1E0F82C-E762-4514-B686-11C5A5E569C7"></a><h4 id="ODPNT-GUID-D1E0F82C-E762-4514-B686-11C5A5E569C7" class="sect4">Setting InitialLOBFetchSize to a Value Greater than Zero </h4>
+                  <div>
+                     <div class="section">
+                        <p>If <code class="codeph">InitialLOBFetchSize</code> is set to a value greater than <code class="codeph">0</code>, ODP.NET caches LOB data up to <code class="codeph">InitialLOBFetchSize</code> characters or bytes for each LOB selected during the <code class="codeph">Read</code> method invocations on the <code class="codeph">OracleDataReader</code> object. The maximum value is 2,147,483,647 (2GB). If the total size of a selected LOB is less than this number, the entire LOB data will be read.
+                        </p>
+                        <p>By pre-fetching all LOB entries in one or more database round trips, applications can perform faster by reducing round trips. This approach is most advantageous when most LOBs are either small in size, or consumed by the end user almost immediately, or both. The down side of a large fetch size is higher memory consumption.</p>
+                        <p>This section discusses the ways to fetch beyond the <code class="codeph">InitialLOBFetchSize</code> characters or bytes that are cached.
+                        </p>
+                        <p>The remaining LOB data is returned when a typed accessor is invoked, regardless of the value set to the <code class="codeph">InitialLOBFetchSize</code> property. Primary key, <code class="codeph">ROWID</code>, or unique columns are not required to be in the query select list to obtain data beyond the specified <code class="codeph">InitialLOBFetchSize</code>.
+                        </p>
+                        <p>The <code class="codeph">GetOracleBlob</code>, <code class="codeph">GetOracleClob</code>, <code class="codeph">GetOracleBlobForUpdate</code>, and <code class="codeph">GetOracleClobForUpdate</code> methods can now be invoked even if <code class="codeph">InitialLOBFetchSize</code> is greater than <code class="codeph">0</code>.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT297"></a><div class="props_rev_3"><a id="GUID-BFADC77E-17B3-4492-89F7-8928D282D25B" name="GUID-BFADC77E-17B3-4492-89F7-8928D282D25B"></a><h4 id="ODPNT-GUID-BFADC77E-17B3-4492-89F7-8928D282D25B" class="sect4">Setting InitialLOBFetchSize to -1</h4>
+                  <div>
+                     <div class="section">
+                        <p>To fetch all LOB data selected during the read operation and not be bound by a set limit per LOB, set <code class="codeph">InitialLOBFetchSize</code> to <code class="codeph">-1</code>. A new default behavior has been introduced for ODP.NET Release 12.1.0.2 and higher when <code class="codeph">InitialLobFetchSize</code> is set to <code class="codeph">-1</code>.
+                        </p>
+                        <p>When <code class="codeph">LegacyEntireLOBFetch = 0</code>, which is the default value, the following operations are invoked for a LOB column:
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">OracleDataReader.GetOracleClob()</code>: returns <code class="codeph">OracleClob</code> object
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataReader.GetOracleBlob() </code>: returns <code class="codeph">OracleBlob</code> object
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataReader.GetOracleClobForUpdate()</code>: returns <code class="codeph">OracleClob</code> object
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataReader.GetOracleBlobForUpdate()</code>: returns <code class="codeph">OracleBlob</code> object
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataReader.GetOracleValue()</code>: returns <code class="codeph">OracleClob</code> object for a CLOB column
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataReader.GetOracleValue()</code>: returns <code class="codeph">OracleBlob</code> object for a BLOB column
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataAdapter.Fill()</code> with <code class="codeph">ProviderSpecificTypes=true</code>: populates <code class="codeph">DataTable</code> with <code class="codeph">OracleClob</code> for a <code class="codeph">CLOB</code> column
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataAdapter.Fill() </code>with <code class="codeph">ProviderSpecificTypes=true</code>: populates <code class="codeph">DataTable</code> with <code class="codeph">OracleBlob</code> for a <code class="codeph">BLOB</code> column
+                              </p>
+                           </li>
+                        </ul>
+                        <p>To use the old behavior, set <code class="codeph">LegacyEntireLobFetch = 1</code> in the ODP.NET configuration.
+                        </p>
+                        <p>When <code class="codeph">LegacyEntireLobFetch = 1</code> and <code class="codeph">InitialLOBFetchSize = -1</code>, <code class="codeph">GetOracleClob</code>, <code class="codeph">GetOracleClobForUpdate</code>, <code class="codeph">GetOracleBlob</code>, and <code class="codeph">GetOracleBlobForUpdate</code> methods are not supported. The following operations are invoked for a LOB column in this scenario:
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">OracleDataReader.GetOracleClob()</code>: throws <code class="codeph">InvalidCastException()</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataReader.GetOracleBlob()</code>: throws <code class="codeph">InvalidCastException()</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataReader.GetOracleClobForUpdate()</code>: throws <code class="codeph">InvalidCastException()</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataReader.GetOracleBlobForUpdate()</code>: throws <code class="codeph">InvalidCastException()</code></p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataReader.GetOracleValue()</code>: returns <code class="codeph">OracleString</code> object for a <code class="codeph">CLOB</code> column
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataReader.GetOracleValue()</code>: returns <code class="codeph">OracleBinary</code> object for a <code class="codeph">BLOB</code> column
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataAdapter.Fill()</code> with <code class="codeph">ProviderSpecificTypes=true</code>: populates <code class="codeph">DataTable</code> with <code class="codeph">OracleString</code> for a <code class="codeph">CLOB</code> column
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">OracleDataAdapter.Fill() </code>with <code class="codeph">ProviderSpecificTypes=true</code>: populates <code class="codeph">DataTable</code> with <code class="codeph">OracleBinary</code> for a <code class="codeph">BLOB</code> column
+                              </p>
+                           </li>
+                        </ul>
+                        <p>For releases prior to ODP.NET 12.1.0.2, by setting <code class="codeph">InitialLOBFetchSize</code> to <code class="codeph">-1</code>, it is possible to fetch the entire LOB data from the database for a select query, without requiring a primary key, <code class="codeph">ROWID</code>, or unique column in the select list. When <code class="codeph">InitialLOBFetchSize</code> is set to <code class="codeph">-1</code>, the entire LOB column data is fetched and cached during the <code class="codeph">Read</code> method invocations on the <code class="codeph">OracleDataReader</code> object. Calls to <code class="codeph">GetString</code>, <code class="codeph">GetOracleString</code>, <code class="codeph">GetChars</code>, <code class="codeph">GetBytes</code>, or <code class="codeph">GetOracleBinary</code> in the <code class="codeph">OracleDataReader</code> allow retrieving all data.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div><a id="ODPNT299"></a><a id="ODPNT300"></a><a id="ODPNT298"></a><div class="props_rev_3"><a id="GUID-CBF5E75E-0ACF-4B6C-9A8C-A44B82A2414C" name="GUID-CBF5E75E-0ACF-4B6C-9A8C-A44B82A2414C"></a><h5 id="ODPNT-GUID-CBF5E75E-0ACF-4B6C-9A8C-A44B82A2414C" class="sect5">Methods Supported for InitialLOBFetchSize of -1 and LegacyEntireLobFetch of 1</h5>
+                     <div>
+                        <div class="section">
+                           <p>This section lists supported and not supported methods for the <code class="codeph">CLOB</code> and <code class="codeph">BLOB</code> data types when the <code class="codeph">InitialLOBFetchSize</code> property is set to <code class="codeph">-1</code> and <code class="codeph">LegacyEntireLobFetch</code> property is set to <code class="codeph">1</code>.
+                           </p>
+                           <p><a href="featData.html#GUID-CBF5E75E-0ACF-4B6C-9A8C-A44B82A2414C__CJABGICJ" title="First column lists OracleDataReader CLOB methods. Second lists whether they are supported or not.">Table 3-16</a> lists supported and not supported methods for the <code class="codeph">CLOB</code> data types. 
+                           </p>
+                        </div>
+                        <!-- class="section" -->
+                        <div class="tblformal" id="GUID-CBF5E75E-0ACF-4B6C-9A8C-A44B82A2414C__CJABGICJ">
+                           <p class="titleintable">Table 3-16 Supported OracleDataReader CLOB Methods for InitialLOBFetchSize of -1 and LegacyEntireLobFetch of 1</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="Supported OracleDataReader CLOB Methods for InitialLOBFetchSize of -1 and LegacyEntireLobFetch of 1" summary="First column lists OracleDataReader CLOB methods. Second lists whether they are supported or not." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" id="d83188e2163">OracleDataReader CLOB Methods</th>
+                                    <th align="left" valign="bottom" id="d83188e2166">Supported</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2171" headers="d83188e2163 ">
+                                       <p><code class="codeph">GetChars</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2171 d83188e2166 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2179" headers="d83188e2163 ">
+                                       <p><code class="codeph">GetString</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2179 d83188e2166 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2187" headers="d83188e2163 ">
+                                       <p><code class="codeph">GetValue</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2187 d83188e2166 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2195" headers="d83188e2163 ">
+                                       <p><code class="codeph">GetValues</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2195 d83188e2166 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2203" headers="d83188e2163 ">
+                                       <p><code class="codeph">GetOracleString</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2203 d83188e2166 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2211" headers="d83188e2163 ">
+                                       <p><code class="codeph">GetOracleValue</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2211 d83188e2166 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2219" headers="d83188e2163 ">
+                                       <p><code class="codeph">GetOracleValues</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2219 d83188e2166 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2227" headers="d83188e2163 ">
+                                       <p><code class="codeph">GetOracleClob</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2227 d83188e2166 ">
+                                       <p>No</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2235" headers="d83188e2163 ">
+                                       <p><code class="codeph">GetOracleClobForUpdate</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2235 d83188e2166 ">
+                                       <p>No</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <!-- class="inftblhruleinformal" -->
+                        <div class="section">
+                           <p><a href="featData.html#GUID-CBF5E75E-0ACF-4B6C-9A8C-A44B82A2414C__CJAHIHEG" title="First column lists OracleDataReader BLOB methods. Second lists whether they are supported or not.">Table 3-17</a> lists supported and not supported methods for the <code class="codeph">BLOB</code> data types. 
+                           </p>
+                        </div>
+                        <!-- class="section" -->
+                        <div class="tblformal" id="GUID-CBF5E75E-0ACF-4B6C-9A8C-A44B82A2414C__CJAHIHEG">
+                           <p class="titleintable">Table 3-17 Supported OracleDataReader BLOB Methods for InitialLOBFetchSize of -1 and LegacyEntireLobFetch of 1</p>
+                           <table cellpadding="4" cellspacing="0" class="Formal" title="Supported OracleDataReader BLOB Methods for InitialLOBFetchSize of -1 and LegacyEntireLobFetch of 1" summary="First column lists OracleDataReader BLOB methods. Second lists whether they are supported or not." width="100%" frame="hsides" border="1" rules="rows">
+                              <thead>
+                                 <tr align="left" valign="top">
+                                    <th align="left" valign="bottom" id="d83188e2262">OracleDataReader BLOB Methods</th>
+                                    <th align="left" valign="bottom" id="d83188e2265">Supported</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2270" headers="d83188e2262 ">
+                                       <p><code class="codeph">GetBytes</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2270 d83188e2265 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2278" headers="d83188e2262 ">
+                                       <p><code class="codeph">GetValue</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2278 d83188e2265 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2286" headers="d83188e2262 ">
+                                       <p><code class="codeph">GetValues</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2286 d83188e2265 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2294" headers="d83188e2262 ">
+                                       <p><code class="codeph">GetOracleBinary</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2294 d83188e2265 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2302" headers="d83188e2262 ">
+                                       <p><code class="codeph">GetOracleValue</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2302 d83188e2265 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2310" headers="d83188e2262 ">
+                                       <p><code class="codeph">GetOracleValues</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2310 d83188e2265 ">
+                                       <p>Yes</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2318" headers="d83188e2262 ">
+                                       <p><code class="codeph">GetOracleBlob</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2318 d83188e2265 ">
+                                       <p>No</p>
+                                    </td>
+                                 </tr>
+                                 <tr align="left" valign="top">
+                                    <td align="left" valign="top" id="d83188e2326" headers="d83188e2262 ">
+                                       <p><code class="codeph">GetOracleBlobForUpdate</code></p>
+                                    </td>
+                                    <td align="left" valign="top" headers="d83188e2326 d83188e2265 ">
+                                       <p>No</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <!-- class="inftblhruleinformal" -->
+                     </div>
+                  </div>
+               </div><a id="ODPNT301"></a><div class="props_rev_3"><a id="GUID-C9583D46-26BC-45C6-A25E-0CA2543C6F78" name="GUID-C9583D46-26BC-45C6-A25E-0CA2543C6F78"></a><h4 id="ODPNT-GUID-C9583D46-26BC-45C6-A25E-0CA2543C6F78" class="sect4">Performance Considerations Related to the InitialLOBFetchSize Property</h4>
+                  <div>
+                     <div class="section">
+                        <p>This section discusses the advantages and disadvantages of the various <code class="codeph">InitialLOBFetchSize</code> property settings in different situations. 
+                        </p>
+                        <p>An application does not have to choose between performance and <code class="codeph">OracleBlob</code> and <code class="codeph">OracleClob</code> functionality. Setting the <code class="codeph">InitialLOBFetchSize</code> property results in a performance boost and still gives the flexibility to use the <code class="codeph">OracleBlob</code> and <code class="codeph">OracleClob</code> objects. 
+                        </p>
+                        <p>If the size of the LOB data is unknown or if the LOB data size varies irregularly, then it is better to leave the <code class="codeph">InitialLOBFetchSize</code> property to its default value of <code class="codeph">0</code>. This still gives better performance in most cases. 
+                        </p>
+                        <p>Setting the <code class="codeph">InitialLOBFetchSize</code> property to a size equal to or greater than the LOB data size for most rows improves performance. It is generally recommended that the <code class="codeph">InitialLOBFetchSize</code> property be set to a value larger than the size of the LOB data for more than 80% of the rows returned by the query. For example, if the size of the LOB data is less than 1 KB in 80% of the rows, and more than 1 MB for 20% of the rows, set the <code class="codeph">InitialLOBFetchSize</code> property to 1 KB.
+                        </p>
+                        <div class="infoboxnotealso" id="GUID-C9583D46-26BC-45C6-A25E-0CA2543C6F78__GUID-91D9E166-E992-426C-85D7-2EBC15D27345">
+                           <p class="notep1">See Also:</p>
+                           <p> </p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p><span class="q">"<a href="featLOBsupp.html#GUID-499E925C-C014-419A-B411-FF2C39170C67">LOB Support</a>"</span></p>
+                              </li>
+                              <li>
+                                 <p><span class="q">"<a href="CommandInitialLOBFetchSize.html#GUID-323D5DA4-D5DE-4CA6-A262-0A4F3F311DCA">InitialLOBFetchSize</a>"</span></p>
+                              </li>
+                              <li>
+                                 <p><span class="q">"<a href="CommandInitialLONGFetchSize.html#GUID-7AFA7559-8EC4-41AA-ACBA-AD5941EC5CBE">InitialLONGFetchSize</a>"</span></p>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div><a id="ODPNT304"></a><div class="props_rev_3"><a id="GUID-1C5F9FA6-2161-4B61-A33C-3426EE0D98F3" name="GUID-1C5F9FA6-2161-4B61-A33C-3426EE0D98F3"></a><h3 id="ODPNT-GUID-1C5F9FA6-2161-4B61-A33C-3426EE0D98F3" class="sect3">Controlling the Number of Rows Fetched in One Database Round-Trip</h3>
+               <div>
+                  <div class="section">
+                     <p>Application performance depends on the number of rows the application needs to fetch, and the number of database round-trips that are needed to retrieve them.</p>
+                  </div>
+                  <!-- class="section" -->
+               </div><a id="ODPNT305"></a><div class="props_rev_3"><a id="GUID-36FFD0C8-514D-466A-8EAB-22566AD9569A" name="GUID-36FFD0C8-514D-466A-8EAB-22566AD9569A"></a><h4 id="ODPNT-GUID-36FFD0C8-514D-466A-8EAB-22566AD9569A" class="sect4">Use of FetchSize</h4>
+                  <div>
+                     <div class="section">
+                        <p>The <code class="codeph">FetchSize</code> property represents the total memory size in bytes that ODP.NET allocates to cache the data fetched from a database round-trip. 
+                        </p>
+                        <p>The <code class="codeph">FetchSize</code> property can be set on the <code class="codeph">OracleCommand,</code> <code class="codeph">OracleDataReader</code>, or <code class="codeph">OracleRefCursor</code> object, depending on the situation. It controls the fetch size for filling a <code class="codeph">DataSet</code> or <code class="codeph">DataTable</code> using an <code class="codeph">OracleDataAdapter</code>.
+                        </p>
+                        <p>If the <code class="codeph">FetchSize</code> property is set on the <code class="codeph">OracleCommand</code> object, then the newly created <code class="codeph">OracleDataReader</code> object inherits the <code class="codeph">FetchSize</code> property of the <code class="codeph">OracleCommand</code> object. This inherited <code class="codeph">FetchSize</code> value can be left as is, or modified to override the inherited value. The <code class="codeph">FetchSize</code> property of the <code class="codeph">OracleDataReader</code> object can be changed before the first <code class="codeph">Read</code> method invocation, which allocates memory specified by the <code class="codeph">FetchSize</code> property. All subsequent fetches from the database use the same cache allocated for that <code class="codeph">OracleDataReader</code> object. Therefore, changing the <code class="codeph">FetchSize</code> value after the first <code class="codeph">Read</code> method invocation has no effect. 
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT306"></a><div class="props_rev_3"><a id="GUID-E1EF9DDF-BB3A-4ED7-A62A-794877898525" name="GUID-E1EF9DDF-BB3A-4ED7-A62A-794877898525"></a><h4 id="ODPNT-GUID-E1EF9DDF-BB3A-4ED7-A62A-794877898525" class="sect4">Fine-Tuning FetchSize</h4>
+                  <div>
+                     <div class="section">
+                        <p>By fine-tuning the <code class="codeph">FetchSize</code> property, applications can control memory usage and the number of rows fetched in one database round-trip for better performance. 
+                        </p>
+                        <p>For example, if a query returns 100 rows and each row takes 1024 bytes, then setting the <code class="codeph">FetchSize</code> property to 102400 takes just one database round-trip to fetch 100 rows. For the same query, if the <code class="codeph">FetchSize</code> property is set to 10240, it takes 10 database round-trips to retrieve 100 rows. If the application requires all the rows to be fetched from the result set, the first scenario is faster than the second. However, if the application requires just the first 10 rows from the result set, the second scenario can perform better because it fetches only 10 rows, not 100 rows. When the next 10 rows are fetched, then the memory allocated for rows 1-10 is reused for rows 11-20. 
+                        </p>
+                        <p>The larger the <code class="codeph">FetchSize</code>, the more system memory is used. Developers should not set large fetch sizes if their client systems have limited memory resources.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="ODPNT307"></a><div class="props_rev_3"><a id="GUID-B2743785-2D8A-4A21-A967-93006D25F7CD" name="GUID-B2743785-2D8A-4A21-A967-93006D25F7CD"></a><h4 id="ODPNT-GUID-B2743785-2D8A-4A21-A967-93006D25F7CD" class="sect4">Using the RowSize Property</h4>
+                  <div>
+                     <div class="section">
+                        <p>The <code class="codeph">RowSize</code> property of the <code class="codeph">OracleCommand</code> or <code class="codeph">OracleRefCursor</code> object is populated with the row size (in bytes) after an execution of a <code class="codeph">SELECT</code> statement. The <code class="codeph">FetchSize</code> property can then be set to a value relative to the <code class="codeph">RowSize</code> property by setting it to the result of multiplying the <code class="codeph">RowSize</code> value times the number of rows to fetch for each database round-trip. 
+                        </p>
+                        <p>For example, setting the <code class="codeph">FetchSize</code> to <code class="codeph">RowSize</code> * 10 forces the <code class="codeph">OracleDataReader</code> object to fetch exactly 10 rows for each database round-trip. Note that the <code class="codeph">RowSize</code> value does not change due to the data length in each individual column. Instead, the <code class="codeph">RowSize</code> value is determined strictly from the metadata information of the database table(s) that the <code class="codeph">SELECT</code> statement is executed against. 
+                        </p>
+                        <p>The <code class="codeph">RowSize</code> property can be used to set the <code class="codeph">FetchSize</code> property at design time or at run time, as described in the following sections.
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div><a id="ODPNT308"></a><div class="props_rev_3"><a id="GUID-743BE199-FA26-4816-8305-007ADBD4A3C0" name="GUID-743BE199-FA26-4816-8305-007ADBD4A3C0"></a><h5 id="ODPNT-GUID-743BE199-FA26-4816-8305-007ADBD4A3C0" class="sect5">Setting FetchSize Value in the Registry</h5>
+                     <div>
+                        <div class="section">
+                           <p>The <code class="codeph">HKLM\Software\Oracle\ODP.NET\</code><span class="italic"><code class="codeph"> version</code></span><code class="codeph">\FetchSize</code> registry entry can be set to specify the default result set fetch size (in bytes) for all applications that use that particular version of ODP.NET or the <code class="codeph">FetchSize</code> attribute in the application configuration or <code class="codeph">web.config</code> file can specify the default value for a given application. By default, the fetch size is 131072 bytes. This value can be overridden programmatically by having the applications set the <code class="codeph">FetchSize</code> property on either the <code class="codeph">OracleCommand</code> or the <code class="codeph">OracleDataReader</code> at run time. 
+                           </p>
+                        </div>
+                        <!-- class="section" -->
+                     </div>
+                  </div><a id="ODPNT309"></a><div class="props_rev_3"><a id="GUID-AF4F6BDF-7C7E-47F8-856D-FC9CBAAB056D" name="GUID-AF4F6BDF-7C7E-47F8-856D-FC9CBAAB056D"></a><h5 id="ODPNT-GUID-AF4F6BDF-7C7E-47F8-856D-FC9CBAAB056D" class="sect5">Setting FetchSize Value at Design Time</h5>
+                     <div>
+                        <div class="section">
+                           <p>If the row size for a particular <code class="codeph">SELECT</code> statement is already known from a previous execution, the <code class="codeph">FetchSize</code> value of the <code class="codeph">OracleCommand</code> object can be set at design time to the result of multiplying that row size times the number of rows the application wishes to fetch for each database round-trip. The <code class="codeph">FetchSize</code> value set on the <code class="codeph">OracleCommand</code> object is inherited by the <code class="codeph">OracleDataReader</code> object that is created by the <code class="codeph">ExecuteReader</code> method invocation on the <code class="codeph">OracleCommand</code> object. Rather than setting the <code class="codeph">FetchSize</code> value on the <code class="codeph">OracleCommand</code> object, the <code class="codeph">FetchSize</code> value can also be set on the <code class="codeph">OracleDataReader</code> object directly. In either case, the <code class="codeph">FetchSize</code> value is set at design time, without accessing the <code class="codeph">RowSize</code> property value at run time. 
+                           </p>
+                        </div>
+                        <!-- class="section" -->
+                     </div>
+                  </div><a id="ODPNT310"></a><div class="props_rev_3"><a id="GUID-973BA072-07CD-4B57-843B-10025C061332" name="GUID-973BA072-07CD-4B57-843B-10025C061332"></a><h5 id="ODPNT-GUID-973BA072-07CD-4B57-843B-10025C061332" class="sect5">Setting FetchSize Value at Run Time</h5>
+                     <div>
+                        <div class="section">
+                           <p>Applications that do not know the row size at design time can use the <code class="codeph">RowSize</code> property of the <code class="codeph">OracleCommand</code> object to set the <code class="codeph">FetchSize</code> property of the <code class="codeph">OracleDataReader</code> object. The <code class="codeph">RowSize</code> property provides a dynamic way of setting the <code class="codeph">FetchSize</code> property based on the size of a row. 
+                           </p>
+                           <p>After an <code class="codeph">OracleDataReader</code> object is obtained by invoking the <code class="codeph">ExecuteReader</code> method on the <code class="codeph">OracleCommand</code> object, the <code class="codeph">RowSize</code> property is populated with the size of the row (in bytes). By using the <code class="codeph">RowSize</code> property, the application can dynamically set the <code class="codeph">FetchSize</code> property of the <code class="codeph">OracleDataReader</code> object to the product of the <code class="codeph">RowSize</code> property value multiplied by the number of rows the application wishes to fetch for each database round-trip. In this scenario, the <code class="codeph">FetchSize</code> property is set by accessing the <code class="codeph">RowSize</code> property at run time.
+                           </p>
+                        </div>
+                        <!-- class="section" -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

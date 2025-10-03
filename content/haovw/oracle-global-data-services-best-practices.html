@@ -1,0 +1,1774 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Oracle Global Data Services Best Practices">
+      <meta name="abstract" content="Oracle Database Global Data Services (GDS) is a holistic automated workload management feature of Oracle Database.">
+      <meta name="description" content="Oracle Database Global Data Services (GDS) is a holistic automated workload management feature of Oracle Database.">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Orientation">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-D1E1C05D-0BE9-4E1C-B759-D3D0F69133FA">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Oracle Database Global Data Services (GDS) is a holistic automated workload management feature of Oracle Database.">
+      <meta name="description" content="Oracle Database Global Data Services (GDS) is a holistic automated workload management feature of Oracle Database.">
+      <title>Oracle Global Data Services Best Practices</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content="Oracle Database Global Data Services (GDS) is a holistic automated workload management feature of Oracle Database.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="oracle-flashback-best-practices.html" title="Previous" type="text/html">
+      <link rel="next" href="oracle-rac-and-clusterware-best-practices.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Oracle Global Data Services Best Practices","description":"Oracle Database Global Data Services (GDS) is a holistic automated workload management feature of Oracle Database.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="oracle-flashback-best-practices.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="oracle-rac-and-clusterware-best-practices.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-D1E1C05D-0BE9-4E1C-B759-D3D0F69133FA" name="GUID-D1E1C05D-0BE9-4E1C-B759-D3D0F69133FA"></a>
+         
+         <h2 id="HAOVW-GUID-D1E1C05D-0BE9-4E1C-B759-D3D0F69133FA" class="sect2"><span class="enumeration_chapter">11 </span>Oracle Global Data Services Best
+        Practices
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Oracle Database Global Data Services (GDS) is a holistic automated workload
+        management feature of Oracle Database.</p>
+               <p>GDS provides workload routing, load balancing, inter-database service failover,
+            replication lag-based routing, role-based global services, and centralized workload
+            management for a set of replicated databases that are globally distributed or located
+            within the same data center. </p>
+               <p>You can use GDS to achieve these benefits without the need to integrate with
+            multiple-point solutions or homegrown products. GDS provides optimized hardware and
+            software utilization, better performance, scalability, and availability for application
+            workloads running on replicated databases.</p>
+            </div>
+            <div class="sect2"><a id="GUID-19915970-71AC-405E-BEC2-085F4A12CF54" name="GUID-19915970-71AC-405E-BEC2-085F4A12CF54"></a><h3 id="HAOVW-GUID-19915970-71AC-405E-BEC2-085F4A12CF54" class="sect3">Introduction to Global Data
+        Services</h3>
+               <div>
+                  <p></p>
+                  <p>Numerous organizations have multiple copies of their production or standby databases
+            either locally or in different geographical locations. This redundancy fulfills various
+            business needs, such as ensuring uninterrupted availability, preparing for disaster
+            recovery, localizing content and caching, scaling operations, optimizing performance for
+            local users, and complying with local regulations. Oracle Active Data Guard and Oracle
+            GoldenGate, which synchronize these copies, are Oracle's strategic disaster recovery and
+            replication technologies that provide the lowest Recovery Time Objective (RTO) and
+            Recovery Point Objectives (RPO).</p>
+                  <p>Achieving high performance and high availability by distributing workload across multiple
+            database replicas presents challenges that extend beyond the capabilities of the
+            replication technology. The workload must be load-balanced to use resources effectively
+            and achieve the best performance. Outages must be handled intelligently so that
+            applications remain available and deliver the best possible quality of service should a
+            replica go offline. In an ideal world, load balancing and high availability using a pool
+            of replicated databases occurs seamlessly and optimally using real-time information
+            available from the Oracle Database. This ideal is achievable using Oracle Global Data
+            Services (GDS).</p>
+                  <p>GDS extends the concept of database services, a mechanism used for workload management in
+            Oracle Real Application Clusters (RAC), to a globally replicated configuration that
+            includes any combination of Oracle RAC, single instance database, Oracle Active Data
+            Guard, and Oracle GoldenGate. GDS allows services to be deployed anywhere within this
+            globally replicated configuration, supporting load balancing, high availability,
+            regional affinity, and so on. GDS is built on time-tested technological building blocks
+            such as services (Dynamic Workload Management), Oracle Active Data Guard and GoldenGate
+            replication, and Oracle Net Listener.</p>
+                  <p>Even though the feature is called Global Data Services, the databases that constitute the
+            GDS configuration can be globally distributed or located within the same data center.
+            Clients can securely connect by specifying a service name without needing to know where
+            the physical data center assets providing that service are located, enabling a highly
+            flexible deployment for an enterprise data cloud. With GDS, replicated databases appear
+            to the applications as a single data source.</p>
+                  <p>A GDS configuration contains multiple global service managers per region. The global
+            service managers are “global listeners,” which understand real-time load characteristics
+            and the user-defined service placement policies on the replicated databases. These
+            global service managers are instrumental in performing inter-database service failovers
+            and load balancing of GDS. GDS is a shared infrastructure that can govern multiple sets
+            of replicated databases. This documentation describes the configuration and operational
+            practices for GDS. It is intended for enterprise architects, database architects,
+            database administrators, technology managers, solution architects, application
+            architects, and those who are influential in the overall database architecture
+            design.</p>
+               </div>
+               <div class="sect3"><a id="GUID-474AFE0B-C6B7-4BD1-89D3-6008B11106DD" name="GUID-474AFE0B-C6B7-4BD1-89D3-6008B11106DD"></a><h4 id="HAOVW-GUID-474AFE0B-C6B7-4BD1-89D3-6008B11106DD" class="sect4">Global Data Services
+        Concepts</h4>
+                  <div>
+                     <p></p>
+                     <p>Database services are logical abstractions for managing workloads in an Oracle database.
+            Each service represents a workload with common attributes, service-level thresholds, and
+            priorities. The grouping can be based on work characteristics, including the application
+            function. For example, the Oracle E-Business Suite defines a service for each
+            application module, such as general ledger, accounts receivable, and order entry.
+            Services are built into Oracle Database, providing a single system image for workloads.
+            Services enable administrators to configure a workload, administer it, enable and
+            disable it, and measure the workload as a single entity. Clients connect using a
+            database service name.</p>
+                     <p>In Oracle RAC, a service can span one or more instances and facilitate workload balancing
+            based on real-time transaction performance. This provides high availability, rolling
+            changes by workload, and complete location transparency. For replicated environments,
+            GDS introduces the concept of a "global service". Global services are provided across a
+            set of databases containing replicated data that belongs to a particular administrative
+            domain known as a GDS pool. Examples of a GDS pool are a SALES pool or an HR pool. A set
+            of databases in a GDS configuration and the database clients are said to be in the same
+            GDS region if they share the network proximity. Examples of GDS regions are the Asian
+            region, European region, and so on.</p>
+                     <p>All of the characteristics of traditional database services are supported by global
+            services. Global services extends traditional database services with additional
+            attributes such as global service placement, replication lag (Oracle Active Data Guard
+            and Oracle GoldenGate from 19c onwards), and region affinity.</p>
+                     <p><span class="bold">Global service placement:</span> When a global service is created, GDS allows the
+            preferred and available databases for that service to be specified. The available
+            databases support a global service if the preferred database fails. In addition, GDS
+            allows you to configure a service to run on all the replicas of a given GDS pool.
+                     </p>
+                     <p><span class="bold">Replication lag:</span> Clients can be routed to the Oracle Active Data Guard standbys
+            that are not lagging by the tolerance limit established with the lag attribute of a
+            global service.
+                     </p>
+                     <p><span class="bold">Region affinity:</span> A global service allows you to set preferences to which region
+            (for example Asia or Europe) your given applications should connect.
+                     </p>
+                     <div class="figure" id="GUID-474AFE0B-C6B7-4BD1-89D3-6008B11106DD__FIG_PXD_4LN_SBC">
+                        <p class="titleinfigure">Figure 11-1 Workload Balancing with Global Data Services</p><br><div class="imageleft"><img class="imageleft" id="GUID-474AFE0B-C6B7-4BD1-89D3-6008B11106DD__IMAGE_QXD_4LN_SBC" height="466" width="975" src="img/gds-workload-balancing.png" alt="Description of Figure 11-1 follows" title="Description of Figure 11-1 follows" longdesc="img_text/gds-workload-balancing.html"><br><a href="img_text/gds-workload-balancing.html">Description of "Figure 11-1 Workload Balancing with Global Data Services"</a></div><br></div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-554EB7D8-5C3B-404C-88C8-CABECCF3BFA8" name="GUID-554EB7D8-5C3B-404C-88C8-CABECCF3BFA8"></a><h4 id="HAOVW-GUID-554EB7D8-5C3B-404C-88C8-CABECCF3BFA8" class="sect4">Key Capabilities of Global Data
+        Services</h4>
+                  <div>
+                     <p></p>
+                     <p>Global Data Services (GDS) technology provides the following principal capabilities:</p>
+                     <ul style="list-style-type: disc;" id="GUID-554EB7D8-5C3B-404C-88C8-CABECCF3BFA8__UL_K5D_VLN_SBC">
+                        <li>
+                           
+                           <p>Region-based workload routing: With GDS, you can choose to configure client
+                    connections to be routed among a set of replicated databases in a local region.
+                    This capability allows you to maximize application performance (avoiding the
+                    network latency overhead of accessing databases in remote areas).</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Connect-time load balancing: Global service managers use the load statistics from
+                    all databases in the GDS pool, inter-region network latency, and the configured
+                    connect-time load balancing goal to route the incoming connections to the best
+                    database in a GDS pool.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Runtime load balancing: GDS enables runtime load balancing across replicated
+                    databases by publishing a real-time load balancing advisory for connection
+                    pool-based clients (for example, OCI, JDBC, ODP.NET, WebLogic, and so on.). The
+                    connection pool-based clients subscribe to this load-balancing advisory and
+                    route database requests in real time across already-established connections. </p>
+                           
+                           <p>With GDS's runtime connection load balancing feature, application client work
+                    requests are dynamically routed to the database that offers the best
+                    performance. In addition, GDS also supports the ability to dynamically
+                    re-distribute connections when the database performance changes.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Inter-database service failover: If a database global service crash occurs, GDS,
+                    considering the service placement attributes, automatically performs an
+                    inter-database service failover to another available database in the pool. GDS
+                    sends Fast Application Notification (FAN) events so that the client connection
+                    pools can reconnect to the new database where the global service has been
+                    started.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Replication lag-based workload routing: With Oracle Active Data Guard, standbys
+                    may lag behind the primary database. A global service allows you to choose the
+                    acceptable lag tolerance for a given application. GDS routes requests to a
+                    standby database whose lag is below the limit. If the lag exceeds the lag limit,
+                    the service is relocated to another available standby database that lags below
+                    the threshold. New requests are routed to a standby database that satisfies the
+                    lag limit. The global service is shut down if there is no available database.
+                    When the lag is resolved or comes within the limit, GDS automatically brings up
+                    the service. </p>
+                           
+                           <p>With Oracle GoldenGate replication, when the lag exceeds the lag threshold
+                    defined for a service (lag defined by <code class="codeph">SELECT MAX(INCOMING_LAG FROM
+                        GGADMIN.GG_LAG)</code>, that service is stopped on that database. The
+                    service defines the effect of that; it may or may not terminate all the sessions
+                    based on the configuration. The service is restarted if the lag comes back
+                    within the threshold. After the service has been stopped, the global service
+                    manager automatically performs failover processing. Any new connections to this
+                    service are directed elsewhere than the lagged database. So, if there are two
+                    databases in the pool, and the service is <code class="codeph">preferred_all</code> with
+                        <code class="codeph">lag=10</code> initially, the service runs on both databases, and
+                    the connections are load-balanced. If the second database goes past the lag
+                    threshold, the service is stopped there, and any new connections are directed
+                    only to the first database. If the lag comes back within the threshold, the
+                    service is restarted, load balancing continues, and new connections can use the
+                    second database.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Role-based global services: When a database role transition is performed with
+                    Oracle Data Guard Broker, GDS can automatically relocate the global service to
+                    the new primary database and the new standby if the role assigned to the service
+                    matches the role of the database.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Centralized workload management for replicas: GDS allows more straightforward
+                    configuration and management of the replicated databases' resources located
+                    anywhere with a single unified framework.</p>
+                           
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-6D6D6BD6-9731-4F1A-B04B-3A0BF907E157" name="GUID-6D6D6BD6-9731-4F1A-B04B-3A0BF907E157"></a><h4 id="HAOVW-GUID-6D6D6BD6-9731-4F1A-B04B-3A0BF907E157" class="sect4">Benefits of Global Data
+        Services</h4>
+                  <div>
+                     <p></p>
+                     <p>Global Data Services (GDS) allows fault-tolerant database services to be
+            deployed and centrally managed across a set of replicated databases. The GDS framework
+            provides workload balancing across these databases. More specifically, GDS is an
+            Oracle-integrated solution that renders the following benefits:</p>
+                     <ul style="list-style-type: disc;" id="GUID-6D6D6BD6-9731-4F1A-B04B-3A0BF907E157__UL_INK_VMN_SBC">
+                        <li>
+                           
+                           <p>Higher availability and global scalability support seamless
+                    inter-database service failover among replicated databases in any data center,
+                    yielding higher application availability.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>GDS provides application scalability on demand by allowing dynamic
+                    addition of databases. It enables replicated databases to be added to the GDS
+                    infrastructure dynamically and transparently to obtain additional resource
+                    capability to scale application workloads. GDS allows this with no change to the
+                    application configuration or client connectivity.</p>
+                           
+                        </li>
+                     </ul>
+                     <p><span class="bold">Better Performance and Elasticity</span></p>
+                     <p>With integrated load balancing across multiple databases, GDS addresses inter-region
+            resource fragmentation. Under-utilized resources in one region can be put to work on the
+            workload of another region's over-utilized resources, achieving optimal resource
+            utilization. GDS sends work requests to less powerful databases in a GDS pool containing
+            replicated databases running on database servers of different processor generations and
+            various resources (CPU, memory, I/O). When more powerful databases are overloaded, the
+            goal should be to equalize the response time.</p>
+                     <p><span class="bold">Improved Manageability</span></p>
+                     <p>The GDSCTL command-line interface or the Oracle Enterprise Manager Cloud Control
+            graphical user interface can administer a GDS configuration. With centralized
+            administration of global resources, geographically dispersed replicated databases,
+            whether regional or global, can be effectively utilized within the unified framework of
+            GDS.</p>
+                     <p>Centralized workload management of replicated databases, inter-database service failover,
+            and runtime load balancing are unique features of GDS. GDS enables a truly elastic and
+            agile enterprise and extends the benefits of a private data cloud.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-AB3743E0-8689-44B9-B1DB-7E4B4A3C2171" name="GUID-AB3743E0-8689-44B9-B1DB-7E4B4A3C2171"></a><h3 id="HAOVW-GUID-AB3743E0-8689-44B9-B1DB-7E4B4A3C2171" class="sect3">Application Workload Suitability
+        for Global Data Services</h3>
+               <div>
+                  <p></p>
+                  <p>Global Data Services (GDS) is best for replication-aware application workloads; it is
+            designed to work in replicated environments. Applications that are suitable for GDS
+            adoption possess any of the following characteristics:</p>
+                  <ul style="list-style-type: disc;" id="GUID-AB3743E0-8689-44B9-B1DB-7E4B4A3C2171__UL_CQR_GNN_SBC">
+                     <li>
+                        
+                        <p>The application can separate its work into read-only, read-mostly, and read-write
+                    services to use Oracle Active Data Guard or Oracle GoldenGate replicas. GDS does
+                    not distinguish between read-only, read-write, and read-mostly transactions. The
+                    application connectivity has to be updated to separate read-only or read-mostly
+                    services from read-write services, and the GDS administrator can configure the
+                    global services on appropriate databases. For example, a reporting application
+                    can function directly with a read-only service at an Oracle Active Data Guard
+                    standby database.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Administrators should be aware of and avoid or resolve multi-master update
+                    conflicts to take advantage of Oracle GoldenGate replicas. For example, an
+                    internet directory application with built-in conflict resolution enables the
+                    read-write workload to be distributed across multiple databases, each open
+                    read-write and synchronized using Oracle GoldenGate multi-master
+                    replication.</p>
+                        
+                     </li>
+                     <li>
+                        
+                        <p>Ideally, the application is tolerant of replication lag. For example, a web-based
+                    package tracking application that allows customers to track the status of their
+                    shipments using a read-only replica, where the replica does not lag the source
+                    transactional system by more than 10 seconds.</p>
+                        
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-7938D4B3-5EB3-46F9-835D-DF14C7237A10" name="GUID-7938D4B3-5EB3-46F9-835D-DF14C7237A10"></a><h3 id="HAOVW-GUID-7938D4B3-5EB3-46F9-835D-DF14C7237A10" class="sect3">Global Data Services in Oracle
+        Maximum Availability Architecture</h3>
+               <div>
+                  <p></p>
+                  <p>The Oracle Maximum Availability Architecture (MAA) is Oracle’s best practices blueprint
+            for the integrated suite of Oracle’s advanced High Availability (HA) technologies.
+            Enterprises that leverage MAA in their IT infrastructure find they can quickly and
+            efficiently deploy applications that meet their business requirements for high
+            availability.</p>
+                  <p>Without Oracle Global Data Services, administrators were required to deploy 3rd party
+            load balancers or have opted for custom-written connection managers. The 3rd party
+            solutions come with significant integration costs, and the DIY homegrown solutions
+            require high initial cost and time to value as well as an overhead of maintenance and
+            support effort.</p>
+                  <p>Using Global Data Services, you can unify replicated database resources within a single
+            framework, avoiding the need to produce homegrown or 3rd party integration for load
+            balancing. You can minimize the vendor integration touch points in their high
+            availability and disaster recovery stack.</p>
+                  <div class="figure" id="GUID-7938D4B3-5EB3-46F9-835D-DF14C7237A10__FIG_AHB_HQN_SBC">
+                     <p class="titleinfigure">Figure 11-2 Oracle Global Data Services in Maximum Availability Architecture</p><br><div class="imageleft"><img class="imageleft" id="GUID-7938D4B3-5EB3-46F9-835D-DF14C7237A10__IMAGE_BHB_HQN_SBC" height="235" width="439" src="img/gds-maa-detail.png" alt="Description of Figure 11-2 follows" title="Description of Figure 11-2 follows" longdesc="img_text/gds-maa-detail.html"><br><a href="img_text/gds-maa-detail.html">Description of "Figure 11-2 Oracle Global Data Services in Maximum Availability Architecture"</a></div><br></div>
+                  <p>Global Data Services is a strategic MAA component available within the Oracle Database.
+            GDS is well integrated with the Oracle ecosystem, providing workload routing, load
+            balancing, and service failover across replicated databases located within and across
+            data centers. Simply put, GDS is a database load balancer for replicated databases and
+            provides high availability through the inter-database service failover capability.</p>
+                  <p>Global Data Services lets administrators manage client workloads automatically and
+            transparently across replicated databases that offer common services. A database service
+            is a named representation of one or more database instances. Services let you group
+            database workloads and route a particular work request to an appropriate instance. A
+            global service is provided by multiple databases synchronized through data
+            replication.</p>
+                  <p>Global Data Services provides dynamic load balancing, failover, and centralized service
+            management for replicated databases that offer common services. The set of databases can
+            include Oracle RAC and non-cluster Oracle databases interrelated through Oracle Data
+            Guard, databases consolidated under Oracle Multitenant, Oracle GoldenGate, or any other
+            replication technology.</p>
+                  <p>For detailed information about GDS, see the Global Data Services technical brief at <a href="http://oracle.com/goto/gds" target="_blank">http://oracle.com/goto/gds</a>.
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-0A6D338E-E1ED-49BB-B1CE-5BDC3EB87CD3" name="GUID-0A6D338E-E1ED-49BB-B1CE-5BDC3EB87CD3"></a><h3 id="HAOVW-GUID-0A6D338E-E1ED-49BB-B1CE-5BDC3EB87CD3" class="sect3">Partial or Full Site Outage with
+        Global Data Services</h3>
+               <div>
+                  <p></p>
+                  <p>Complete-site failure results in both the application and database tiers being
+            unavailable. To maintain availability, users must be redirected to a secondary site that
+            hosts a redundant application tier and a synchronized copy of the production database.
+            MAA's best practice is to maintain a running application tier at the standby site to
+            avoid startup time and use Oracle Data Guard to manage the synchronized copy of the
+            production database. Upon site failure, a WAN traffic manager performs a DNS failover
+            (manually or automatically) to redirect all users to the application tier at the standby
+            site. In contrast, a failover transitions the standby database to the primary production
+            role.</p>
+                  <p>A partial-site failure is when the application or database stack encounters an outage.
+            Connecting clients to the disaster recovery site application stack can mitigate
+            application stack failure. However, when the primary database becomes unavailable, the
+            application tier connected to the primary database remains intact. All that is required
+            to maintain availability is to redirect the application tier to the new primary database
+            after a Data Guard failover has been completed. In this use case, the standby database
+            is located within a distance from the surviving application tier such that it can
+            deliver acceptable performance using a remote connection after a database failover has
+            occurred.</p>
+                  <p>Global Data Services (GDS) enables service management and load balancing between
+            replicated databases <span class="italic">within</span>a region. However, the application tier still
+            functions when GDS global service managers can route connections to the best available
+            replica based on load balancing policies and service availability. By contrast, an
+            out-of-region failover requires users to be directed to a remote application tier local
+            to the new production database (serviced by a different set of in-region global service
+            managers. This document focuses on GDS configuration for failover within a region.
+                
+                  </p>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-219E07D1-93F2-4844-90E7-F575D1D4F565" name="GUID-219E07D1-93F2-4844-90E7-F575D1D4F565"></a><h3 id="HAOVW-GUID-219E07D1-93F2-4844-90E7-F575D1D4F565" class="sect3">Global Data Services
+        Configuration</h3>
+               <div>
+                  <p></p>
+               </div>
+               <div class="sect3"><a id="GUID-A544AC9F-E3C1-496C-AA97-327BE87B5120" name="GUID-A544AC9F-E3C1-496C-AA97-327BE87B5120"></a><h4 id="HAOVW-GUID-A544AC9F-E3C1-496C-AA97-327BE87B5120" class="sect4">High-Level Deployment Steps</h4>
+                  <div>
+                     <p>The following are the basic steps you would take to implement Global Data
+        Services.</p>
+                     <ol>
+                        <li class="stepexpand"><span>Install Global Data Services (GDS) global service manager software on global
+                    service manager servers.</span><div>
+                              
+                              <ul style="list-style-type: disc;" id="GUID-A544AC9F-E3C1-496C-AA97-327BE87B5120__UL_ODK_MB4_SBC">
+                                 <li>Minimum of 1 global service manager for each region</li>
+                                 <li>Recommended 3 global service managers for each region</li>
+                              </ul>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Pre-create the GDS catalog database.</span></li>
+                        <li class="stepexpand"><span>Set up GDS Administrator accounts and privileges.</span></li>
+                        <li class="stepexpand"><span>Configure GDS.</span><div>
+                              
+                              <ul style="list-style-type: disc;" id="GUID-A544AC9F-E3C1-496C-AA97-327BE87B5120__UL_SY4_5B4_SBC">
+                                 <li>Create the GDS catalog and standby databases.</li>
+                                 <li>Add global service managers, regions, pools, databases, and global
+                            services.</li>
+                              </ul>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Set up client connectivity.</span></li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-6EDA55DB-DF3D-486C-814B-5293146787E2" name="GUID-6EDA55DB-DF3D-486C-814B-5293146787E2"></a><h4 id="HAOVW-GUID-6EDA55DB-DF3D-486C-814B-5293146787E2" class="sect4">Configuration Example</h4>
+                  <div>
+                     <p>The following steps describe how to implement Global Data
+        Services.</p>
+                     <div class="section">
+                        
+                        <p>This example configuration of Global Data Services (GDS) uses an
+                Administrator-managed Oracle RAC database. Administrator-managed deployment means
+                that you configure database services to run on specific instances belonging to a
+                particular database using a preferred and available designation.</p>
+                        
+                        <p>Policy-managed deployment is based on server pools, where database services run
+                within a server pool as singletons or uniformly across all of the servers in the
+                server pool. Databases are deployed in one or more server pools, and the size of the
+                server pools determines the number of database instances in the deployment. For
+                detailed information about GDS, see <a href="../gsmug/intro-global-data-services.html#GSMUG-GUID-829434C7-608D-40D4-81C8-A77A63FCD7EB" target="_blank">Global Data Services Concepts and Administration
+                Guide</a></p>
+                        
+                     </div>
+                     <ol>
+                        <li class="stepexpand"><span>Create and prepare a GDS catalog database.</span><div>
+                              
+                              <p>GDS uses a catalog database to store meta-data relating to the layout and
+                        status of the GDS configuration. For maximum availability, Oracle recommends
+                        that the GDS catalog database be deployed independently and that Oracle's
+                        high-availability features, such as Oracle Real Application Clusters (Oracle
+                        RAC) and Oracle Data Guard, be used to protect the catalog database against
+                        outages.</p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Create the <code class="codeph">GSM_ADMIN</code> user and assign that user the
+                        <code class="codeph">GSMADMIN_ROLE</code>.</span><div>
+                              
+                              <p>Note that by default, the password for both <code class="codeph">GSM_ADMIN</code>,
+                            <code class="codeph">GSMUSER</code>, and <code class="codeph">GSMCATUSER</code> expires after
+                        180 days.
+                              </p>
+                              <pre class="pre codeblock"><code>SQL&gt; create user gsm_admin identified by <span class="variable" translate="no">password</span>;
+
+User created.
+
+SQL&gt; grant gsmadmin_role to gsm_admin;
+
+Grant succeeded.
+
+SQL&gt; exit</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Copy the Oracle Net alias that can be used to access the catalog database and
+                    place it in the tnsnames.ora file in the global service manager home.</span><div>
+                              <pre class="pre codeblock"><code>GDSCAT =
+(DESCRIPTION =
+(ADDRESS = (PROTOCOL = TCP)(HOST = &lt;hostmane&gt;)(PORT = 1521))
+(CONNECT_DATA =
+(SERVER = DEDICATED)
+(SERVICE_NAME = gdscat)
+))</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>With the environment configured for the global service manager home, use GDSCTL
+                    to connect to and create the GDS catalog with Auto VNCR disabled (Auto VNCR can
+                    cause problems with Oracle RAC deployments).</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;create catalog -database gdscat -user gsm_admin -autovncr OFF
+
+"gsm_admin" password:
+
+Catalog is created</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Connect to the catalog database, unlock the <code class="codeph">GSMCATUSER</code> user,
+                    and set the password.</span><div>
+                              <pre class="pre codeblock"><code>SQL&gt; alter user gsmcatuser account unlock;
+
+User altered.
+
+SQL&gt; alter user gsmcatuser identified by <span class="variable" translate="no">password</span>;
+
+User altered.</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>With the environment configured for the global service manager home, use GDSCTL
+                    to connect to, create, and start the global service manager listeners.</span><div>
+                              
+                              <p>As a best practice, global service manager listeners should reside on
+                        hardware separate from that hosting the Oracle Databases in the GDS
+                        configuration. The resource requirements for hardware needed to run global
+                        service manager listeners are lightweight and can easily be accommodated
+                        using virtual machines.</p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;add gsm -gsm gsm1 -listener 1522 -catalog gdscat
+
+"gsmcatuser" password:
+
+Create credential oracle.security.client.connect_string1
+
+GSM successfully added
+
+GDSCTL&gt;start gsm -gsm gsm1
+
+GSM is started successfully
+
+GDSCTL&gt;status
+
+Alias GSM1
+Version 19.17.0.3.0
+Start Date 13-APR-2023 09:40:59
+Trace Level off
+Listener Log File
+ /u01/app/oracle/diag/gsm/<span class="variable" translate="no">hostname</span>/gsm1/alert/log.xml
+Listener Trace File
+ /u01/app/oracle/diag/gsm/<span class="variable" translate="no">hostname</span>/gsm1/trace/ora_64863_139739749930432.trc
+Endpoint summary
+(ADDRESS=(HOST=<span class="variable" translate="no">hostname</span>.example.com)(PORT=1522)(PROTOCOL=tcp))
+GSMOCI Version 0.6.11
+Mastership Y
+Connected to GDS catalog Y
+Process Id 64883
+Number of reconnections 0
+Pending tasks. Total 0
+Tasks in process. Total 0
+Regional Mastership TRUE
+Total messages published 0
+Time Zone -04:00
+Orphaned Buddy Regions: None
+GDS region regionora</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>With the environment configured for the global service manager home, use GDSCTL
+                    to create a default GDS pool and default region.</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;add gdspool -gdspool sales
+
+GDSCTL&gt;add region -region slc
+
+GDSCTL&gt;add region -region sca</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>With Auto VNCR disabled during GDS catalog creation to avoid issues, use GDSCTL
+                    to add hosts using the add invitednode command, using the host name or IP
+                    address appropriately.</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;add invitednode 192.0.2.1
+
+GDSCTL&gt;add invitednode host1.example.com</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Unlock the <code class="codeph">GSMUSER</code> account.</span><div>
+                              
+                              <p>Before adding a database to a pool, the database administrator should unlock
+                        the <code class="codeph">GSMUSER</code> account and give the password to the GDS pool
+                        administrator, as shown in the following example.
+                              </p>
+                              <pre class="pre codeblock"><code>SQL&gt; alter user gsmuser account unlock;
+
+User altered.
+
+SQL&gt; alter user gsmuser identified by <span class="variable" translate="no">password</span>;
+
+User altered.</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Add databases to the GDS pool.</span><div>
+                              
+                              <p>To be part of a GDS pool, a database must use a server parameter file
+                        (SPFILE). An Oracle RAC database should also have SCAN set up.</p>
+                              
+                              <p>To add a database, connect to the GDS catalog using the GDS pool or GDS
+                        administrator credentials. For example, without Data Guard, the following
+                        add database command can be used.</p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;add database -connect mts -region sca -gdspool sales
+
+Catalog connection is established
+
+"gsmuser" password:
+
+DB Unique Name: mts</code></pre>
+                              <div class="infoboxnote" id="GUID-6EDA55DB-DF3D-486C-814B-5293146787E2__GUID-4DD9D50A-BD05-4548-9259-225C8D915EE2">
+                                 <p class="notep1">Note:</p>When using Oracle Active Data Guard with GDS, use <code class="codeph">add
+                            brokerconfig</code> instead of <code class="codeph">add database</code>, and then
+                        use <code class="codeph">modify database</code> to configure the standby database  (see
+                            <a href="../gsmug/gdsctl-reference.html#GSMUG-GUID-A2F086A1-9846-488E-9DE8-F98723E8AF9C" target="_blank">add brokerconfig</a>). The syntax for
+                        these commands would be like the
+                        following.<pre class="pre codeblock"><code>GDSCTL&gt;add brokerconfig -connect &lt;primary_db&gt; -gdspool &lt;dbpool&gt; -region &lt;dc&gt; -pwd &lt;gsmuser_pwd&gt;
+
+GDSCTL&gt;modify database -database &lt;standby_db&gt; -connect &lt;dc&gt; -gdspool &lt;dbpool&gt; -region &lt;dc&gt; -pwd &lt;gsmuser_pwd&gt;</code></pre></div>
+                              
+                              <p>Database instance registration with a global service manager succeeds only
+                        when the request originates from a valid node. If a host on which a database
+                        resides contains multiple network interfaces, the auto-configuration could
+                        register the wrong set of IP addresses, leading to the database registration
+                        being rejected.</p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Correct any rejected registration and properly discover all database
+                    instances.</span><div>
+                              
+                              <p> If a firewall exists between the global service managers, and the databases
+                        and the ports are not opened, the registration fails. From the global
+                        service manageralert log, you will see entries similar to the following.</p>
+                              <pre class="pre codeblock"><code>Listener(VNCR option 1) rejected Registration request from destination
+
+192.0.2.2
+
+Listener(VNCR option 1) rejected Registration request from destination
+
+192.0.2.3</code></pre>
+                              <p>You will find that the database object exists in the GDS catalog, but some or
+                        all instances associated with specific hosts are missing. </p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;databases
+
+Database: "mts" Registered: Y State: Ok ONS: Y. Role: PRIMARY
+
+Instances: 1 Region: slc
+
+Registered instances:
+
+sales%1</code></pre>
+                              <p>To correct the rejected registration and properly discover all database
+                        instances, run <code class="codeph">add invitednode</code> using the rejected IP
+                        address listed in the global service manager alert log.
+                              </p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>If there is a firewall between the global service managers and the database,
+                    then once the ports have been opened and verified using tnsping, issue the
+                        <code class="codeph">add invitenode</code> command as shown here.</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;add invitednode 192.0.2.3
+
+GDSCTL&gt;databases
+
+Database: "mts" Registered: Y State: Ok ONS: Y. Role: PRIMARY
+
+Instances: 2 Region: slc
+
+Registered instances:
+
+sales%1
+
+sales%2</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Create a service on the GDS pool databases.</span><div>
+                              
+                              <p>The GDSCTL <code class="codeph">add service</code> command creates a service on the GDS
+                        pool databases.
+                              </p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;add service -service sales_sb -preferred_all -gdspool sales -notification TRUE</code></pre>
+                              <p>If this is an Oracle RAC database being added with multiple instances, then
+                        you must modify the service to add the database instances.</p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;modify service -gdspool sales -service sales_sb -database mts -add_instances -preferred mts1,mts2
+
+GDSCTL&gt;modify service -gdspool sales -service sales_sb -database stm -add_instances -preferred stm1,stm2
+
+GDSCTL&gt;start service -service sales_sb -gdspool sales</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Verify that the global service is running.</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;services
+
+Service "sales_sb.sales.oradbcloud" has 2 instance(s). Affinity: ANYWHERE
+
+Instance "sales%1", name: "mts1", db: "mts", region: "slc", status: ready.
+
+Instance "sales%2", name: "mts2", db: "mts", region: "slc", status: ready.</code></pre>
+                              </div>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-5493DE99-0287-44F8-BB53-7C11D05F2FD0" name="GUID-5493DE99-0287-44F8-BB53-7C11D05F2FD0"></a><h4 id="HAOVW-GUID-5493DE99-0287-44F8-BB53-7C11D05F2FD0" class="sect4">Configuration Best
+        Practices</h4>
+                  <div>
+                     <p>Oracle MAA recommends the following best practices for implementing Global
+        Data Services:</p>
+                     <ul style="list-style-type: disc;" id="GUID-5493DE99-0287-44F8-BB53-7C11D05F2FD0__UL_WMF_JVT_SBC">
+                        <li>
+                           
+                           <p>Each client communicates using an Oracle-integrated connection pool such as UCP,
+                    OCI, or ODP.NET. The connection pools will be notified about any service
+                    failovers and load balancing advisory notifications using Fast Application
+                    Notification Events.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><span class="bold">Run three global service managers in each region</span>. Create three global
+                    service managers in each region so that if one global service manager goes down,
+                    you have two remaining global service managers to provide redundancy. Each
+                    global service manager should reside on separate hardware. Global service
+                    managers enable connection routing among replicated databases. A global service
+                    manager is a stateless, lightweight, and intelligent listener that can
+                    repopulate its metadata from the GDS catalog.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p><span class="bold">Protect the GDS catalog database with Oracle Data Guard.</span>The GDS catalog is
+                    a small (&lt; 100 GBs) repository that hosts the metadata of the GDS
+                    configuration, regions, global service managers, global services, databases, and
+                    so on. MAA recommends that you set up a local Data Guard standby database
+                    configured with Maximum Availability database protection mode, Data Guard
+                    Fast-Start failover, and a remote physical standby database. All GDS catalog
+                    standby databases should use Oracle Active Data Guard for the best data
+                    protection and reside on separate hardware and storage.
+                           </p>
+                           
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-5A4FE3AB-1AB3-4912-BD07-CFA7150E0165" name="GUID-5A4FE3AB-1AB3-4912-BD07-CFA7150E0165"></a><h4 id="HAOVW-GUID-5A4FE3AB-1AB3-4912-BD07-CFA7150E0165" class="sect4">Using&nbsp;FAN ONS with Global Data
+        Services</h4>
+                  <div>
+                     <p>Fast Application Notification (FAN) uses the Oracle Notification Service
+        (ONS) for event propagation to all Oracle Database clients, including JDBC, Tuxedo, and
+        listener clients.</p>
+                     <p>ONS is installed as part of Oracle Global Data Services, Oracle Grid Infrastructure on a
+            cluster, in an Oracle Data Guard installation, and when Oracle WebLogic is
+            installed.</p>
+                     <p>ONS propagates FAN events to all other ONS daemons it is registered with. No steps are
+            needed to configure or enable FAN on the database server side, with one exception: OCI
+            FAN and ODP FAN require that notification be set to TRUE for the service by GDSCTL. With
+            FAN auto-configuration at the client, ONS jar files must be on the CLASSPATH or in the
+            ORACLE_HOME, depending on your client.</p>
+                     <p><span class="bold">General Best Practices for Configuring FCF Clients</span></p>
+                     <p>Follow these best practices before progressing to driver-specific instructions.</p>
+                     <ul style="list-style-type: disc;" id="GUID-5A4FE3AB-1AB3-4912-BD07-CFA7150E0165__UL_AJW_KWT_SBC">
+                        <li>
+                           
+                           <p>Use a dynamic database service. Using FAN requires that the application connects
+                    to the database using a dynamic global database service. This is a service
+                    created using GDSCTL.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Do not connect using the database service or PDB service. These services are for
+                    administration only and are not supported for FAN. The TNSnames entry or URL
+                    must use the service name syntax and follow best practices by specifying a
+                    dynamic database service name. Refer to the examples later in this document.
+                </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Use the Oracle Notification Service when you use FAN with JDBC thin, Oracle
+                    Database OCI, or ODP.Net clients. FAN is received over ONS. Accordingly, in the
+                    Oracle Database, ONS FAN auto-configuration is introduced so that FCF clients
+                    can discover the server-side ONS networks and self-configure. FAN is
+                    automatically enabled when ONS libraries or jars are present.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Enabling FAN on most FCF clients is still necessary in the Oracle Database. FAN
+                    auto-configuration removes the need to list the global service managers an FCF
+                    client needs.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Listing server hosts is incompatible with location transparency and causes issues
+                    with updating clients when the server configuration changes. Clients already use
+                    a TNS address string or URL to locate the global service manager listeners.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>FAN auto-configuration uses the TNS addresses to locate the global service
+                    manager listeners and then asks each server database for the ONS server-side
+                    addresses. When there is more than one global service manager FAN
+                    auto-configuration contacts each and obtains an ONS configuration for each
+                    one.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>The ONS network is discovered from the URL when using the Oracle Database. An ONS
+                    node group is automatically obtained for each address list when
+                        <code class="codeph">LOAD_BALANCE</code> is off across the address lists.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>By default, the FCF client maintains three hosts for redundancy in each node
+                    group in the ONS configuration.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Each node group corresponds to each GDS data center. For example, if there is a
+                    primary database and several Oracle Data Guard standbys, there are by default
+                    three ONS connections maintained at each node group. The node groups are
+                    discovered when using FAN auto-configuration. </p>
+                           
+                           <p>With <code class="codeph">node_groups</code> defined by FAN auto-configuration, and
+                        <code class="codeph">load_balance=false</code> (the default), more ONS endpoints are
+                    not required. If you want to increase the number of endpoints, you can do this
+                    by increasing max connections. This applies to each node group. Increasing to 4
+                    in this example maintains four ONS connections at each node. Increasing this
+                    value consumes more sockets.
+                           </p>
+                           
+                           <p><code class="codeph">oracle.ons.maxconnections=4 ONS</code></p>
+                           
+                        </li>
+                        <li>If the client is to connect to multiple clusters and receive FAN events from them,
+                for example in Oracle RAC with a Data Guard event, then multiple ONS node groups are
+                needed. FAN auto-configuration creates these node groups using the URL or TNS name.
+                If automatic configuration of ONS (Auto-ONS) is not used, specify the node groups in
+                the Oracle Grid Infrastructure or oraaccess.xml configuration files.</li>
+                     </ul>
+                     <p><span class="bold">Client Side Configuration</span></p>
+                     <p>As a best practice, multiple global service managers should be highly available. Clients
+            should be configured for multiple connection endpoints where these endpoints are global
+            service managers rather than local, remote, or single client access name (SCAN)
+            listeners. For OCI / ODP .Net clients use the following TNS name structure.</p><pre class="pre codeblock"><code>(DESCRIPTION=(CONNECT_TIMEOUT=90)(RETRY_COUNT=30)(RETRY_DELAY=3) (TRANSPORT_CONNECT_TIMEOUT=3)
+&nbsp; (ADDRESS_LIST =
+&nbsp;&nbsp; (LOAD_BALANCE=on)
+&nbsp;&nbsp; (ADDRESS=(PROTOCOL=TCP)(HOST=GSM1)(PORT=1522))
+&nbsp;&nbsp; (ADDRESS=(PROTOCOL=TCP)(HOST=GSM2)(PORT=1522))
+&nbsp;&nbsp; (ADDRESS=(PROTOCOL=TCP)(HOST=GSM3)(PORT=1522)))
+&nbsp; (ADDRESS_LIST=
+&nbsp;&nbsp; (LOAD_BALANCE=on)
+&nbsp;&nbsp; (ADDRESS=(PROTOCOL=TCP)(HOST=GSM2)(PORT=1522)))
+&nbsp;(CONNECT_DATA=(SERVICE_NAME=sales)))</code></pre><p>Always use dynamic global database services created by GDSCTL to connect to the database.
+            Do not use the database service or PDB service, which are for administration only not
+            for application usage and they do not provide FAN and many other features because they
+            are only available at mount.</p>
+                     <p>Use the latest client driver aligned with the latest or older RDBMS for JDBC. Use one
+                <code class="codeph">DESCRIPTION</code> in the TNS names entry or URL Using more causes long
+            delays connecting when <code class="codeph">RETRY_COUNT</code> and <code class="codeph">RETRY_DELAY</code> are
+            used. Set <code class="codeph">CONNECT_TIMEOUT=90</code> or higher to prevent logon storms for OCI
+            and ODP clients.
+                     </p>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-EA67A426-4CE0-4A57-A925-705A2A5CB312" name="GUID-EA67A426-4CE0-4A57-A925-705A2A5CB312"></a><h4 id="HAOVW-GUID-EA67A426-4CE0-4A57-A925-705A2A5CB312" class="sect4">Application-Level
+        Configuration</h4>
+                  <div>
+                     <p></p>
+                     <p><span class="bold">Configuring FAN for Java Clients Using Universal Connection Pool</span></p>
+                     <p>The best way to take advantage of FCF with the Oracle Database JDBC thin driver is to use
+            the Universal Connection Pool (UCP) or WebLogic Server Active GridLink.</p>
+                     <p>Setting the pool property <code class="codeph">FastConnectionFailoverEnabled</code> on the Universal
+            Connection Pool enables Fast Connection Failover (FCF). Active GridLink always has FCF
+            enabled by default. Third-party application servers, including IBM WebSphere and Apache
+            Tomcat, support UCP as a connection pool replacement.
+                     </p>
+                     <p>For more information about embedding UCP with other web servers, see the following
+            technical briefs.</p>
+                     <ul style="list-style-type: disc;" id="GUID-EA67A426-4CE0-4A57-A925-705A2A5CB312__UL_AMH_QYT_SBC">
+                        <li>
+                           
+                           <p>Design and deploy WebSphere applications for planned or unplanned database
+                    downtimes and runtime load balancing with UCP (<a href="https://www.oracle.com/docs/tech/database/planned-unplanned-rlb-ucp-websphere.pdf" target="_blank">https://www.oracle.com/docs/tech/database/planned-unplanned-rlb-ucp-websphere.pdf</a>)
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Design and deploy Tomcat applications for planned or unplanned database downtimes
+                    and Runtime Load Balancing with UCP (<a href="https://www.oracle.com/docs/tech/database/planned-unplanned-rlb-ucp-tomcat.pdf" target="_blank">https://www.oracle.com/docs/tech/database/planned-unplanned-rlb-ucp-tomcat.pdf</a>)
+                           </p>
+                           
+                        </li>
+                     </ul>
+                     <p>Follow these configuration steps to enable Fast Connection Failover.</p>
+                     <ol id="GUID-EA67A426-4CE0-4A57-A925-705A2A5CB312__OL_Z4R_RYT_SBC">
+                        <li>
+                           
+                           <p>The connection URL must use the service name syntax and follow best practices by
+                    specifying a dynamic database service name and the JDBC URL structure (above and
+                    below).</p>
+                           
+                           <p>All other URL formats are not highly available. The URL may use JDBC thin or JDBC
+                    OCI.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>If wallet authentication has not been established, remote ONS configuration is
+                    needed.</p>
+                           
+                           <p>Set the pool property <code class="codeph">setONSConfiguration</code> in a property file as
+                    shown in the following example. The property file specified must contain an
+                        <code class="codeph">ons.nodes</code> property and, optionally, properties for
+                        <code class="codeph">oracle.ons.walletfile</code> and
+                        <code class="codeph">oracle.ons.walletpassword</code>. An example of an
+                        <code class="codeph">ons.properties</code> file is shown here.
+                           </p>
+                           <pre class="pre codeblock"><code>PoolDataSource pds = PoolDataSourceFactory.getPoolDataSource();
+pds.setConnectionPoolName("FCFSamplePool"); pds.setFastConnectionFailoverEnabled(true);
+ pds.<span class="bold">setONSConfiguration</span>("propertiesfile=/usr/ons/ons.properties");
+pds.setConnectionFactoryClassName("oracle.jdbc.pool.OracleDataSource");
+pds.setURL("jdbc:oracle:thin@((CONNECT_TIMEOUT=4)(RETRY_COUNT=30)(RETRY_DELAY=3) "+ "
+ (ADDRESS_LIST = "+ " (LOAD_BALANCE=on) "+ " ( ADDRESS =
+ (PROTOCOL = TCP)(HOST=GSM1)(PORT=1522))) "+ " (ADDRESS_LIST = "+ " (LOAD_BALANCE=on)
+ "+ "( ADDRESS = (PROTOCOL = TCP)(HOST=GSM2)(PORT=1522)))"+
+ "(CONNECT_DATA=(SERVICE_NAME=service_name)))");</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>Ensure the pool property <code class="codeph">setFastConnectionFailoverEnabled=true</code>
+                    is set.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>The <code class="codeph">CLASSPATH</code> must contain ons.jar, ucp.jar, and the JDBC driver
+                    jar file.
+                           </p>
+                           
+                           <p>For example, ojdbc8.jar.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>If you are using JDBC thin with Oracle Database, Application Continuity can be
+                    configured to failover the connections after FAN is received.</p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>If the database needs different ONS endpoints than those autoconfigured, the ONS
+                    endpoints can be enabled.</p>
+                           
+                           <p>In a situation where multiple clusters exist with auto-ons enabled, auto-ons
+                    would generate node lists with the following guidelines: </p>
+                           
+                           <p>For EVERY active nodelist <code class="codeph">oracle.ons.maxconnections</code> is set to 3
+                    by default, so there is no need to set this explicitly. This example will result
+                    in the ONS client trying to maintain six total connections.
+                           </p>
+                           
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-C1FD00FE-1C13-40AF-8705-C307B810097F" name="GUID-C1FD00FE-1C13-40AF-8705-C307B810097F"></a><h4 id="HAOVW-GUID-C1FD00FE-1C13-40AF-8705-C307B810097F" class="sect4">Configuring FAN for OCI Clients</h4>
+                  <div>
+                     <p>OCI clients use ONS for FAN transport.</p>
+                     <div class="section">
+                        
+                        <p>OCI clients embed FAN at the driver level so that all clients can use it regardless
+                of the pooling solution. Ideally, both the server and the client would use release
+                19c or later.</p>
+                        
+                        <p><span class="bold">Configuration for SQL*Plus and PHP</span></p>
+                        
+                        <ol id="GUID-C1FD00FE-1C13-40AF-8705-C307B810097F__OL_VWZ_425_SBC">
+                           <li>
+                              
+                              <p>Set notification for the service.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>For PHP clients only, add <code class="codeph">oci8.events=On</code> to
+                            <code class="codeph">php.ini</code>.
+                              </p>
+                              
+                              <p><span class="bold">Important:</span> If xml is present with <span class="bold">events=-false</span> or events are
+                        not specified, this disables the usage of FAN. To maintain FAN with SQL*Plus
+                        and PHP when <code class="codeph">oraccess.xml</code> is in use, set
+                            <code class="codeph">events=-true</code>.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>On the client side, using a client and Oracle Database, enable FAN in
+                        xml.</p>
+                              
+                           </li>
+                        </ol>
+                        
+                        <p><span class="bold">Configuration for OCI Clients</span></p>
+                        
+                        <ol id="GUID-C1FD00FE-1C13-40AF-8705-C307B810097F__OL_FC3_W25_SBC">
+                           <li>
+                              
+                              <p>Tell OCI where to find ONS Listeners Starting. </p>
+                              
+                              <p>The client installation comes with ONS linked into the client library. Using
+                        auto-config, the ONS endpoints are discovered from the TNS address. This
+                        automatic method is the recommended approach. Like ODP.Net, manual ONS
+                        configuration is also supported using <code class="codeph">oraaccess.xml</code>.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Enable FAN high availability events for the OCI connections.</p>
+                              
+                              <p>To enable FAN you edit the OCI file xml to specify the global parameter
+                        events. This file is located in $ORACLE_HOME/network/admin. See <a href="Chunk1671116835.html#GUID-2EFA9025-50E7-4E0F-8EDE-B815973005A2">Step 3: Ensure That FAN Is Used and ONS port 6200 is Open</a> for more information.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Tell OCI where to find ONS Listeners.</p>
+                              
+                              <p>The client installation comes with ONS linked into the client library. Using
+                        auto-config, the ONS endpoints are discovered from the TNS address. This
+                        automatic method is the recommended approach. Like ODP.Net, manual ONS
+                        configuration is also supported using <code class="codeph">oraaccess.xml</code>.
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Enable FAN on the server for all OCI clients.</p>
+                              
+                              <p>It is still necessary to enable FAN on the database server for all OCI
+                        clients (including SQL*Plus).</p>
+                              
+                           </li>
+                        </ol>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-D10F6552-02A8-4291-A5FE-522FE9A87415" name="GUID-D10F6552-02A8-4291-A5FE-522FE9A87415"></a><h4 id="HAOVW-GUID-D10F6552-02A8-4291-A5FE-522FE9A87415" class="sect4">Controlling Logon Storms</h4>
+                  <div>
+                     <p>Small connection pools are strongly recommended, but controlling logon
+        storms can be done with tuning when you have many connections.</p>
+                     <div class="section">
+                        
+                        <p>Oracle MAA recommends the following tuning on servers that host Global Service
+                Managers.</p>
+                        
+                        <ol id="GUID-D10F6552-02A8-4291-A5FE-522FE9A87415__OL_MWM_GG5_SBC">
+                           <li>
+                              
+                              <p>Increase the Listen backlog at the OS level.</p>
+                              
+                              <p>To have the new value take effect without rebooting the server, perform the
+                        following as root.</p>
+                              <pre class="pre codeblock"><code>echo 8000 &gt; /proc/sys/net/core/somaxconn</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p>To persist the value across reboots, add this setting to
+                        /etc/sysctl.conf.</p>
+                              <pre class="pre codeblock"><code>net.core.somaxconn=6000</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p>Increase <code class="codeph">queuesize</code> for the global service manager
+                        listener.
+                              </p>
+                              
+                              <p>Update ora in Oracle home that the listeners are running from to increase the
+                            <code class="codeph">queuesize</code> parameter:
+                              </p>
+                              <pre class="pre codeblock"><code>TCP.QUEUESIZE=6000</code></pre>
+                              </li>
+                        </ol>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-02B9B454-7A7E-421B-A328-B1BB3583C8ED" name="GUID-02B9B454-7A7E-421B-A328-B1BB3583C8ED"></a><h4 id="HAOVW-GUID-02B9B454-7A7E-421B-A328-B1BB3583C8ED" class="sect4">Graceful Application
+        Switchover</h4>
+                  <div>
+                     <p>Database services are used to manage workloads during the planned outage
+        properly. Services must be properly created, and the application must obtain connections
+        from a service.</p>
+                     <p>These recommendations assume using a FAN-aware connection pool, such as Oracle Universal
+            Connection Pool (UCP) to gracefully drain connections without application interruption
+            from a service that is stopped. Your applications can use other connection types that
+            don't support FAN-aware connection pools or have long-running transactions. Ideally,
+            these applications will be disconnected before the maintenance window.</p>
+                     <p>The recommendations below describe how to disconnect some sessions when their transaction
+            ends in a timely manner or, ultimately, when the instance is shut down for
+            maintenance.</p>
+                     <p>The recommended and validated approach to understanding and optimizing your application's
+            connection configuration is provided in the following sections; certain applications may
+            have specific guidelines to follow. </p>
+                     <p><span class="bold">Understanding Your Application's Use of Connections</span></p>
+                     <p>Understanding how your application obtains and releases its connections is critical to
+            determining whether it can gracefully switch to other instances in the cluster. </p>
+                     <p>Find the following information about your application:</p>
+                     <ul style="list-style-type: disc;" id="GUID-02B9B454-7A7E-421B-A328-B1BB3583C8ED__UL_RWK_3H5_SBC">
+                        <li>
+                           
+                           <p>What was the workload during the planned outage (OLTP/short or batch/long
+                    transactions)?</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-02B9B454-7A7E-421B-A328-B1BB3583C8ED__UL_SWK_3H5_SBC">
+                              <li>
+                                 
+                                 <p>Short transactions using a connection pool such as UCP or ODP.NET can be
+                            quiesced rapidly.</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>Long transactions need additional time to quiesce or must have batch jobs
+                            stopped or queued at an appropriate time in advance.</p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>What type of connection was obtained: Java, OCI, ODP with C#, or ODP with
+                    OCI)?</p>
+                           
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 
+                                 <p>UCP, ICC, ODP.NET, and OCI session pools use Fast Application
+                            Notification (FAN) to drain the pool quickly; other connections require
+                            waiting until the connection is closed (or termination if the
+                            application allows)</p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>What is the amount of time to wait for the connection pool to quiesce before
+                    stopping the service?</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-02B9B454-7A7E-421B-A328-B1BB3583C8ED__UL_TWK_3H5_SBC">
+                              <li>
+                                 
+                                 <p>Useful to know the proper amount of time is given before disconnection is
+                            performed</p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Can the application handle disconnection after the transaction completes (applies
+                    to batch workloads)?</p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-02B9B454-7A7E-421B-A328-B1BB3583C8ED__UL_UWK_3H5_SBC">
+                              <li>
+                                 
+                                 <p>If the application can't handle being disconnected gracefully, it must be
+                            stopped before the planned maintenance, or Application Continuity might
+                            be an option to avoid interruption.</p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </li>
+                     </ul>
+                     <p><span class="bold">Services and Application Configuration Best Practices</span></p>
+                     <p>You must have properly configured services and application attributes to perform a
+            graceful switchover successfully. See My Oracle Support Doc ID <a href="https://support.oracle.com/rs?type=doc&amp;id=1617163.1" target="_blank">1617163.1</a> for a matrix of validated drivers and applications
+            clients.
+                     </p>
+                     <div class="infoboxnote" id="GUID-02B9B454-7A7E-421B-A328-B1BB3583C8ED__GUID-5935AD3D-AAF6-4658-BF7B-4AEFBEDC1384">
+                        <p class="notep1">Note:</p>You must test your configuration to ensure that it is set up and performs switchover
+            properly before relying on it for a production system.
+                     </div>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-3CD6F770-C675-4293-B646-4A48E4139A7F" name="GUID-3CD6F770-C675-4293-B646-4A48E4139A7F"></a><h4 id="HAOVW-GUID-3CD6F770-C675-4293-B646-4A48E4139A7F" class="sect4">Using Oracle Active Data Guard&nbsp;with Global
+        Data Services</h4>
+                  <div>
+                     <p>Configure sessions to move in a rolling manner for Oracle Active Data Guard
+        reader farm.</p>
+                     <div class="p">
+                        
+                        <p><span class="bold">Prerequisites</span></p>
+                        
+                        <p>You must have the following in place for this procedure to work correctly.</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-3CD6F770-C675-4293-B646-4A48E4139A7F__UL_OBL_JJ5_SBC">
+                           <li>
+                              
+                              <p>Oracle Active Data Guard configuration using Oracle Database (release 19c or
+                        later recommended).</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Global Data Services (GDS) configuration using global service manager
+                        (release 19c or later recommended).</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>A GDS service has been created to run on all Active Data Guard databases in
+                        the configuration.</p>
+                              
+                              <p>For example:</p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;add service -service sales_sb -preferred_all -gdspool sales
+ &#x2013;role physical_standby -notification TRUE
+GDSCTL&gt;modify service -gdspool sales -service sales_sb -database mts -add_instances
+ -preferred mts1,mts2
+GDSCTL&gt;modify service -gdspool sales -service sales_sb -database stm -add_instances
+ -preferred stm1,stm2
+GDSCTL&gt;start service -service sales_sb -gdspool sales</code></pre>
+                              </li>
+                        </ul>
+                        
+                     </div>
+                     <ol>
+                        <li class="stepexpand"><span>Check the current status of the services and related instances to ensure that
+                    services can be moved successfully.</span><div>
+                              
+                              <p> Note that the service should only be available on the source standby
+                        database at this point.</p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;services
+Service "sales_sb.sales.oradbcloud" has 2 instance(s). Affinity: ANYWHERE
+&nbsp;&nbsp; Instance "sales%1", name: "mts1", db: "mts", region: "slc", status: ready.
+&nbsp;&nbsp; Instance "sales%2", name: "mts2", db: "mts", region: "slc", status: ready.</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Stop services typically (not using the FORCE option) on the source database
+                    where connections are to be removed.</span><div>
+                              
+                              <ul style="list-style-type: disc;" id="GUID-3CD6F770-C675-4293-B646-4A48E4139A7F__UL_MXR_DK5_SBC">
+                                 <li>This step will quiesce the FAN-aware connection pools using FAN.</li>
+                                 <li>New connections are directed to other instances offering that service,
+                            and idle sessions are disconnected from the pool using the
+                            services.</li>
+                                 <li>Existing connections can continue until their work is complete and they
+                            are returned to the connection pool.</li>
+                              </ul>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;stop service -service sales_sb -database mts -gdspool sales</code></pre>
+                              <p>Allow an agreed upon time for the sessions to disconnect and relocate, then
+                        continue with the next steps.</p>
+                              
+                              <div class="infoboxnote" id="GUID-3CD6F770-C675-4293-B646-4A48E4139A7F__GUID-D19BF0C4-2ECB-4A67-97C0-92EC0B73D354">
+                                 <p class="notep1">Note:</p>If you are performing a rolling upgrade of an Active Data Guard reader
+                        farm and the services are not running on other Active Data Guard reader
+                        nodes, you can complete the service stop on this database before performing
+                        the GDSCTL <code class="codeph">stop service</code> described in this step.
+                              </div>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Disconnect long-running sessions after the current query is completed.</span><div>
+                              
+                              <p>Preferably, long-running queries have been scheduled to stop or
+                        are queued before the window when connections are to be moved. This step
+                        handles long-running sessions that are still running and now need to be
+                        stopped (killed) abruptly. </p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Log on to the instance that you intend to shut down.</span></li>
+                        <li class="stepexpand"><span>Check V$SESSION to see if any sessions are still connected to the
+                    service.</span><div>
+                              <pre class="pre codeblock"><code>SQL&gt; SELECT service_name, count(1) FROM v$session
+ GROUP BY service_name ORDER BY 2;</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Run the <code class="codeph">DBMS_SERVICE.DISCONNECT_SESSION</code> package for the
+                    service you stopped earlier.</span><div>
+                              
+                              <p>For example:</p>
+                              <pre class="pre codeblock"><code>SQL&gt; exec
+ dbms_service.disconnect_session('oltp_work',DBMS_SERVICE.POST_TRANSACTION);</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Check <code class="codeph">V$SESSION</code> again to ensure that sessions have logged off
+                    from the service.</span><div>
+                              <pre class="pre codeblock"><code>SQL&gt; SELECT service_name, count(1) FROM v$session
+ GROUP BY service_name ORDER BY 2;</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Start the GDS service on the target database and allow sessions to
+                    connect.</span><div>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;start service -service sales_sb -database stm -gdspool sales</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Log on to the target database and check <code class="codeph">V$SESSION</code> to see
+                    sessions connected to the service.</span><div>
+                              <pre class="pre codeblock"><code>SQL&gt; SELECT service_name, count(1) FROM v$session
+ GROUP BY service_name ORDER BY 2;</code></pre>
+                              </div>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="sect3"><a id="GUID-D7BA84ED-0B09-4918-813B-534666D03E42" name="GUID-D7BA84ED-0B09-4918-813B-534666D03E42"></a><h4 id="HAOVW-GUID-D7BA84ED-0B09-4918-813B-534666D03E42" class="sect4">Using Oracle GoldenGate with Global Data
+        Services</h4>
+                  <div>
+                     <p></p>
+                     <div class="section">
+                        
+                        <p>The following Oracle GoldenGate role transition example topology consists of two
+                databases: GG replica1 and GG replica2. Oracle GoldenGate is set up with
+                uni-directional replication, with Extract running initially on GG replica1 and
+                Replicat running initially on GG replica2. The generic steps still apply for
+                bi-directional GoldenGate replicas or downstream mining GoldenGate replicas.</p>
+                        
+                     </div>
+                     <div class="p">
+                        
+                        <p><span class="bold">Prerequisites</span></p>
+                        
+                        <p>You must have the following in place for this procedure to work correctly.</p>
+                        
+                        <ul style="list-style-type: disc;" id="GUID-D7BA84ED-0B09-4918-813B-534666D03E42__UL_KF2_QM5_SBC">
+                           <li>
+                              
+                              <p>Oracle GoldenGate configuration that uses Oracle Database (19c or higher
+                        recommended)</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>GoldenGate processes should not connect to the source or target database
+                        using the GDS service name, but a dedicated TNS alias. Using the GDS service
+                        will cause the database connections to terminate prematurely, causing
+                        possible data loss.</p>
+                              
+                           </li>
+                           <li>A heartbeat table has been implemented in the GoldenGate source and target
+                    databases to track replication latency and ensure the Replicat applied SCN
+                    synchronization. The GoldenGate automatic heartbeat table feature should be
+                    enabled. Refer to the Oracle GoldenGate Administration Guide for details on the
+                    automatic heartbeat table: <a href="https://docs.oracle.com/en/middleware/goldengate/core/19.1/gclir/add-heartbeattable.html" target="_blank">https://docs.oracle.com/en/middleware/goldengate/core/19.1/gclir/add-heartbeattable.html</a>.
+                           </li>
+                           <li>
+                              
+                              <p>Global Data Services (GDS) configuration using global service manager (19c or
+                        higher recommended)</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>GDS service has been created so that it can be run on all databases in the
+                        GoldenGate configuration. </p>
+                              
+                              <p>For example:</p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;add service -service sales_sb -preferred_all -gdspool sales
+GDSCTL&gt;modify service -gdspool sales -service sales_sb -database mts
+ -add_instances -preferred mts1,mts2
+GDSCTL&gt;modify service -gdspool sales -service sales_sb -database stm
+ -add_instances -preferred stm1,stm2
+GDSCTL&gt;start service -service sales_sb -gdspool sales</code></pre>
+                              </li>
+                        </ul>
+                        
+                        <div class="infoboxnote" id="GUID-D7BA84ED-0B09-4918-813B-534666D03E42__GUID-BA1E2F65-49D1-44CD-8125-37E50380A052">
+                           <p class="notep1">Note:</p>If you are using the lag tolerance option, specify the lag limit for the global
+                service in seconds. Options for <code class="codeph">add service</code> or <code class="codeph">modify
+                    service</code> are <code class="codeph">-lag {lag_value | ANY}</code>.
+                        </div>
+                        
+                     </div>
+                     <ol>
+                        <li class="stepexpand"><span>Check the current status of the services and related instances to ensure that
+                    they can be moved successfully.</span><div>
+                              
+                              <p>At this point, the service should only be available on the source
+                        database.</p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;services
+Service "sales_sb.sales.oradbcloud" has 2 instance(s). Affinity: ANYWHERE
+&nbsp;&nbsp; Instance "sales%1", name: "mts1", db: "mts", region: "slc", status: ready.
+&nbsp;&nbsp; Instance "sales%2", name: "mts2", db: "mts", region: "slc", status: ready.</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Stop services (not using the FORCE option) on the source database where
+                    connections are to be removed.</span><div>
+                              
+                              <ul style="list-style-type: disc;" id="GUID-D7BA84ED-0B09-4918-813B-534666D03E42__UL_JHB_CT5_SBC">
+                                 <li>This step will quiesce the FAN-aware connection pools using FAN.</li>
+                                 <li>New connections are directed to other instances offering that service,
+                            and idle sessions are disconnected from the pool using the
+                            services.</li>
+                                 <li>Existing connections can continue until their work is complete and they
+                            are returned to the connection pool.</li>
+                              </ul>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;stop service -service sales_sb -database mts -gdspool sales -force</code></pre>
+                              <p>Allow an agreed upon time for the sessions to disconnect and relocate, then
+                        continue with the next steps. The time to allow for sessions to drain
+                        depends on the workload and user transactions for your application.</p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Disconnect long-running sessions after the current transaction is
+                    completed.</span><div>
+                              
+                              <p>Preferably, long-running batch jobs are scheduled to be stopped or queued
+                        before the maintenance window. This step handles long-running sessions that
+                        are still running and must be stopped abruptly (e.g., killed). Check with
+                        the application developers if these long-running batch jobs are idempotent
+                        and recoverable before disconnecting long-running sessions.</p>
+                              
+                           </div>
+                        </li>
+                        <li class="stepexpand"><span>Log on to the instance that you intend to shut down, and check
+                        <code class="codeph">V$SESSION</code> to see if any sessions are still connected to the
+                    service.</span><div>
+                              <pre class="pre codeblock"><code>SQL&gt; SELECT service_name, count(1) FROM v$session
+ GROUP BY service_name ORDER BY 2;</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Run the <code class="codeph">DBMS_SERVICE.DISCONNECT_SESSION</code> package for the
+                    service you stopped earlier.</span><div>
+                              
+                              <p>For example:</p>
+                              <pre class="pre codeblock"><code>SQL&gt; exec
+ dbms_service.disconnect_session('oltp_work',DBMS_SERVICE.POST_TRANSACTION);</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>Check <code class="codeph">V$SESSION</code> again to ensure sessions have logged off from
+                    the service.</span><div>
+                              <pre class="pre codeblock"><code>SQL&gt; SELECT service_name, count(1) FROM v$session
+ GROUP BY service_name ORDER BY 2;</code></pre>
+                              </div>
+                        </li>
+                        <li class="stepexpand"><span>When all sessions associated with the GDS service have been disconnected,
+                    verify that all data from the GoldenGate source databases have been replicated
+                    to the target database.</span><div>
+                              
+                              <ul style="list-style-type: disc;" id="GUID-D7BA84ED-0B09-4918-813B-534666D03E42__UL_HXS_ST5_SBC">
+                                 <li>
+                                    
+                                    <p>Record the current database SCN from the GoldenGate SOURCE
+                                database.</p>
+                                    <pre class="pre codeblock"><code>SQL&gt; SELECT current_scn FROM v$database;</code></pre>
+                                    </li>
+                                 <li>
+                                    
+                                    <p>On the GoldenGate TARGET database, continue to monitor the Replicat
+                                applied SCN using the following query.</p>
+                                    <pre class="pre codeblock"><code>SQL&gt; SELECT lwm_position FROM v$gg_apply_coordinator;</code></pre>
+                                    </li>
+                                 <li>When the target <code class="codeph">LWM_POSITION</code> SCN is greater than the
+                                <code class="codeph">CURRENT_SCN</code> recorded in the first step, it is safe
+                            to assume that all transactions have been replicated from the source to
+                            the target database. The users can now be switched over to the
+                            GoldenGate target database.
+                                 </li>
+                              </ul>
+                              
+                           </div>
+                        </li>
+                     </ol>
+                     <div class="section">
+                        
+                        <p>The above steps allow for a graceful switchover. However, if this is a failover event
+                where the source database is unavailable, you can estimate the data loss using the
+                steps below.</p>
+                        
+                        <ol id="GUID-D7BA84ED-0B09-4918-813B-534666D03E42__UL_NTK_G55_SBC">
+                           <li>
+                              
+                              <p>When using the automatic heartbeat table, use the following query to
+                        determine the replication latency.</p>
+                              <pre class="pre codeblock"><code>SQL&gt; col Lag(secs) format 999.9
+SQL&gt; col "Seconds since heartbeat" format 999.9
+SQL&gt; col "GG Path" format a32
+SQL&gt; col TARGET format a12
+SQL&gt; col SOURCE format a12
+SQL&gt; set lines 140
+SQL&gt; select remote_database "SOURCE", local_database "TARGET", incoming_path "GG Path",
+ incoming_lag "Lag(secs)", incoming_heartbeat_age "Seconds since heartbeat" from gg_lag;
+
+SOURCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;TARGET&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GG Path&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lag(secs) Seconds since heartbeat
+------------ &nbsp;------------ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-------------------------------- --------- -----------------------
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GDST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EXT_1A ==&gt; DPUMP_1A ==&gt; REP_1A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;7.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;9.0</code></pre>
+                              <p>The above example shows a possible 7.3 seconds of data loss between the
+                        source and target databases.</p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p>Start the GDS service on the target database and allow sessions to
+                        connect.</p>
+                              
+                              <p>Note that if the application workload can accept a certain level of data lag,
+                        it is possible to perform this step much earlier than step two listed
+                        above.</p>
+                              <pre class="pre codeblock"><code>GDSCTL&gt;start service -service sales_sb -database stm -gdspool sales</code></pre>
+                              </li>
+                           <li>
+                              
+                              <p>Log on to the target database and check <code class="codeph">V$SESSION</code> to see
+                        sessions connected to the service.
+                              </p>
+                              <pre class="pre codeblock"><code>SQL&gt; SELECT service_name, count(1) FROM v$session
+ GROUP BY service_name ORDER BY 2;</code></pre>
+                              </li>
+                        </ol>
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-DB0148A6-0CAA-44F9-B65A-FDB1B8138BB7" name="GUID-DB0148A6-0CAA-44F9-B65A-FDB1B8138BB7"></a><h3 id="HAOVW-GUID-DB0148A6-0CAA-44F9-B65A-FDB1B8138BB7" class="sect3">Global Data Services Failover
+        Across Regions Flow</h3>
+               <div>
+                  <p></p>
+                  <ol id="GUID-DB0148A6-0CAA-44F9-B65A-FDB1B8138BB7__OL_N22_Y55_SBC">
+                     <li>The administrator has failed over or switched the production database to the
+                secondary site. This is automatic if you are using Data Guard fast-start
+                failover.</li>
+                     <li>The administrator starts the middle-tier application servers on the secondary site
+                if they are not already running.</li>
+                     <li>The wide-area traffic manager selection of the secondary site can be automatic in
+                the case of an entire site failure. The wide-area traffic manager at the secondary
+                site returns the virtual IP address of a load balancer at the secondary site, and
+                clients are directed automatically on the subsequent reconnect. In this scenario,
+                the site failover is accomplished by an automatic domain name system (DNS)
+                failover.</li>
+                     <li>Alternatively, a DNS administrator can manually change the wide-area traffic manager
+                selection to the secondary site for the entire site or specific applications. 
+                        <p>The
+                    following is an example of a manual DNS failover:</p>
+                        <ul style="list-style-type: disc;" id="GUID-DB0148A6-0CAA-44F9-B65A-FDB1B8138BB7__UL_O22_Y55_SBC">
+                           <li>Change the DNS to point to the secondary site load balancer: The primary
+                        (primary) DNS server is updated with the new zone information, and the
+                        change is announced with DNS NOTIFY.</li>
+                           <li>The secondary DNS servers are notified of the zone update with a DNS NOTIFY
+                        announcement, and the secondary DNS servers pull the new zone
+                        information.</li>
+                           <li>Clear affected records from caching DNS servers.
+                              <p>A caching DNS server is
+                            used primarily for performance and fast response. The caching server
+                            obtains information from an authoritative DNS server in response to a
+                            host query and then saves (caches) the data locally. On a second or
+                            subsequent request for the same data, the caching DNS server responds
+                            with its locally stored data (the cache) until the response's
+                            time-to-live (TTL) value expires. At this time, the server refreshes the
+                            data from the zone master. If the DNS record is changed on the primary
+                            DNS server, then the caching DNS server does not pick up the change for
+                            cached records until TTL expires. Flushing the cache forces the caching
+                            DNS server to go to an authoritative DNS server again for the updated
+                            DNS information.</p>
+                           </li>
+                           <li>Flush the cache if the DNS server being used supports such a capability. The
+                        following is the flush capability of standard DNS BIND versions:
+                              <ul style="list-style-type: disc;" id="GUID-DB0148A6-0CAA-44F9-B65A-FDB1B8138BB7__UL_Q22_Y55_SBC">
+                                 <li>BIND 9.3.0: The command <code class="codeph">rndc flushname name</code> flushes
+                                individual entries from the cache.
+                                 </li>
+                                 <li>BIND 9.2.0 and 9.2.1: The cache can be flushed with the command
+                                    <code class="codeph">rndc flush</code>.
+                                 </li>
+                                 <li>BIND 8 and BIND 9 up to 9.1.3: Restarting the named server clears
+                                the cache.</li>
+                              </ul>
+                           </li>
+                        </ul>
+                     </li>
+                     <li>Refresh local DNS service caching.
+                        <p>Some operating systems might cache DNS
+                    information locally in the local name service cache. If so, this cache must also
+                    be cleared to recognize DNS updates quickly.</p>
+                     </li>
+                     <li>The secondary site load balancer directs traffic to the secondary site middle-tier
+                application server.</li>
+                  </ol>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-C63F7A31-B412-4115-AA8D-9283215162B1" name="GUID-C63F7A31-B412-4115-AA8D-9283215162B1"></a><h3 id="HAOVW-GUID-C63F7A31-B412-4115-AA8D-9283215162B1" class="sect3">Global Data Services Limitations
+        and Requirements</h3>
+               <div>
+                  <p></p>
+                  <table cellpadding="4" cellspacing="0" summary frame="hsides" border="1" rules="rows" id="GUID-C63F7A31-B412-4115-AA8D-9283215162B1__SIMPLETABLE_CCR_H4V_SBC" role="presentation">
+                     <tr>
+                        <td valign="top" width="50%"><span class="bold">A Single GDS Manages</span></td>
+                        <td valign="top" width="50%"><span class="bold">GDS Databases</span></td>
+                     </tr>
+                     <tr>
+                        <td valign="top">
+                           
+                           <ul style="list-style-type: disc;" id="GUID-C63F7A31-B412-4115-AA8D-9283215162B1__UL_QST_K4V_SBC">
+                              <li>
+                                 
+                                 <p>5,000 GDS Pools</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>10 GDS Regions</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>5 global service managers per Region</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>10,000 Database instances</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>10,000 Global Services</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>1,000 Mid-tier connection pools</p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </td>
+                        <td valign="top">
+                           
+                           <ul style="list-style-type: disc;" id="GUID-C63F7A31-B412-4115-AA8D-9283215162B1__UL_L1N_M4V_SBC">
+                              <li>
+                                 
+                                 <p>Can be a Single Instance or RAC</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>Can be CDB or Non-CDB</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>Can run on commodity or Engineered systems (Oracle
+                                Exadata, ODA)</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>Are managed with GDSCTL CLI or Enterprise Manager DB
+                                Plug-in</p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p>Must be licensed for Oracle Active Data Guard or Oracle
+                                GoldenGate</p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </td>
+                     </tr>
+                  </table>
+                  <div class="tblformal" id="GUID-C63F7A31-B412-4115-AA8D-9283215162B1__TABLE_GBN_R4V_SBC">
+                     <table cellpadding="4" cellspacing="0" class="Formal" title summary="benefits of network load balancers vs GDS" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d26120e1722">Requirement</th>
+                              <th align="left" valign="bottom" width="0%" id="d26120e1724">Network Load Balancer</th>
+                              <th align="left" valign="bottom" width="0%" id="d26120e1726">Oracle GDS</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d26120e1730" headers="d26120e1722 ">Locality-based routing</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1730 d26120e1724 ">Yes</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1730 d26120e1726 ">Yes</td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d26120e1737" headers="d26120e1722 ">Connect-time database load balancing</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1737 d26120e1724 ">Yes</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1737 d26120e1726 ">Yes</td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d26120e1744" headers="d26120e1722 ">Publish routing and failover intelligence to clients</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1744 d26120e1724 ">No</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1744 d26120e1726 ">Yes</td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d26120e1751" headers="d26120e1722 ">Replication lag-based database workload routing</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1751 d26120e1724 ">No</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1751 d26120e1726 ">Yes</td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d26120e1758" headers="d26120e1722 ">Inter-database global service failover</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1758 d26120e1724 ">No</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1758 d26120e1726 ">Yes</td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d26120e1765" headers="d26120e1722 ">Automatic role-based global services</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1765 d26120e1724 ">No</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1765 d26120e1726 ">Yes</td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d26120e1772" headers="d26120e1722 ">Centralized management of database services across replicas</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1772 d26120e1724 ">No</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1772 d26120e1726 ">Yes</td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d26120e1779" headers="d26120e1722 ">Native integration for Oracle Active Data Guard</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1779 d26120e1724 ">No</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1779 d26120e1726 ">Yes</td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d26120e1786" headers="d26120e1722 ">Cost effectiveness</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1786 d26120e1724 ">Additional expenditure required</td>
+                              <td align="left" valign="top" width="0%" headers="d26120e1786 d26120e1726 ">Included with Oracle Active Data Guard or Oracle GoldenGate
+                            license</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Guaranteeing Uniqueness in Updating DataSet to Database</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="featRequery.html" title="Previous" type="text/html">
+      <link rel="next" href="featGlobal.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="featRequery.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="featGlobal.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="features.html" property="item" typeof="WebPage"><span property="name">Features of Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Guaranteeing Uniqueness in Updating DataSet to Database</li>
+            </ol>
+            <a id="GUID-8D1FCB1E-FE1D-4C4B-B3A4-92B0EB6A456B" name="GUID-8D1FCB1E-FE1D-4C4B-B3A4-92B0EB6A456B"></a><a id="ODPNT433"></a>
+            
+            <h2 id="ODPNT-GUID-8D1FCB1E-FE1D-4C4B-B3A4-92B0EB6A456B" class="sect2">Guaranteeing Uniqueness in Updating DataSet to Database</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>This section describes how the <code class="codeph">OracleDataAdapter</code> object configures the <code class="codeph">PrimaryKey</code> and <code class="codeph">Constraints</code> properties of the <code class="codeph">DataTable</code> object which guarantee uniqueness when the <code class="codeph">OracleCommandBuilder</code> object is updating <code class="codeph">DataSet</code> changes to the database. 
+               </p>
+               <p>Using the <code class="codeph">OracleCommandBuilder</code> object to dynamically generate DML statements to be executed against the database is one of the ways to reconcile changes made in a single <code class="codeph">DataTable</code> object with the database.
+               </p>
+               <p>In this process, the <code class="codeph">OracleCommandBuilder</code> object must not be allowed to generate DML statements that may affect (update or delete) more that a single row in the database when reconciling a single <code class="codeph">DataRow</code> change. Otherwise the <code class="codeph">OracleCommandBuilder</code> could corrupt data in the database.
+               </p>
+               <p>To guarantee that each <code class="codeph">DataRow</code> object change affects only a single row, there must be a set of <code class="codeph">DataColumn</code> objects in the <code class="codeph">DataTable</code> for which all rows in the <code class="codeph">DataTable</code> have a unique set of values. The set of <code class="codeph">DataColumn</code> objects indicated by the properties <code class="codeph">DataTable.PrimaryKey</code> and <code class="codeph">DataTable.Constraints</code> meets this requirement. The <code class="codeph">OracleCommandBuilder</code> object determines uniqueness in the <code class="codeph">DataTable</code> by checking if the <code class="codeph">DataTable.PrimaryKey</code> is not a null value or if there exists a <code class="codeph">UniqueConstraint</code> object in the <code class="codeph">DataTable.Constraints</code> collection.
+               </p>
+               <p>This discussion first explains what constitutes uniqueness in <code class="codeph">DataRow</code> objects and then explains how to maintain that uniqueness while updating, through the <code class="codeph">DataTable</code> property configuration.
+               </p>
+               <p>This section includes the following topics:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="featUnique.html#GUID-34069BAB-40B8-4DF7-96F9-D779D30D2ECE">What Constitutes Uniqueness in DataRow Objects?</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featUnique.html#GUID-0F6411B5-006D-48A2-82C7-543E66168DD1">Configuring PrimaryKey and Constraints Properties</a></p>
+                  </li>
+                  <li>
+                     <p><a href="featUnique.html#GUID-2F290630-1BC2-443B-A06C-1BEA48207916">Updating Without PrimaryKey and Constraints Configuration</a></p>
+                  </li>
+               </ul>
+            </div><a id="ODPNT434"></a><div class="props_rev_3"><a id="GUID-34069BAB-40B8-4DF7-96F9-D779D30D2ECE" name="GUID-34069BAB-40B8-4DF7-96F9-D779D30D2ECE"></a><h3 id="ODPNT-GUID-34069BAB-40B8-4DF7-96F9-D779D30D2ECE" class="sect3">What Constitutes Uniqueness in DataRow Objects?</h3>
+               <div>
+                  <p>This section describes the minimal conditions that must be met to guarantee uniqueness of <code class="codeph">DataRow</code> objects. The condition of uniqueness must be guaranteed before the <code class="codeph">DataTable.PrimaryKey</code> and <code class="codeph">DataTable.Constraints</code> properties can be configured, as described in the next section.
+                  </p>
+                  <p>Uniqueness is guaranteed in a <code class="codeph">DataTable</code> object if any one of the following is true:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>All the columns of the primary key are in the select list of the <code class="codeph">OracleDataAdapter.SelectCommand</code> property.
+                        </p>
+                     </li>
+                     <li>
+                        <p>All the columns of a unique constraint are in the select list of the <code class="codeph">OracleDataAdapter.SelectCommand</code> property, with at least one involved column having a <code class="codeph">NOT</code> <code class="codeph">NULL</code> constraint defined on it.
+                        </p>
+                     </li>
+                     <li>
+                        <p>All the columns of a unique index are in the select list of the <code class="codeph">OracleDataAdapter.SelectCommand</code> property, with at least one of the involved columns having a <code class="codeph">NOT</code> <code class="codeph">NULL</code> constraint defined on it.
+                        </p>
+                     </li>
+                     <li>
+                        <p>A <code class="codeph">ROWID</code> is present in the select list of the <code class="codeph">OracleDataAdapter.SelectCommand</code> property.
+                        </p>
+                     </li>
+                  </ul>
+                  <div class="infoboxnote" id="GUID-34069BAB-40B8-4DF7-96F9-D779D30D2ECE__GUID-F23810B2-2EC1-4938-B698-3F222E7AE280">
+                     <p class="notep1">Note:</p>
+                     <p>A set of columns, on which a unique constraint has been defined or a unique index has been created, requires at least one column that cannot be null for the following reason: if all the columns of the column set can be null, then multiple rows could exist that have a <code class="codeph">NULL</code> value for each column in the column set. This would violate the uniqueness condition that each row has a unique set of values for the column set.
+                     </p>
+                  </div>
+               </div>
+            </div><a id="ODPNT435"></a><div class="props_rev_3"><a id="GUID-0F6411B5-006D-48A2-82C7-543E66168DD1" name="GUID-0F6411B5-006D-48A2-82C7-543E66168DD1"></a><h3 id="ODPNT-GUID-0F6411B5-006D-48A2-82C7-543E66168DD1" class="sect3">Configuring PrimaryKey and Constraints Properties</h3>
+               <div>
+                  <p>If the minimal conditions described in <span class="q">"<a href="featUnique.html#GUID-34069BAB-40B8-4DF7-96F9-D779D30D2ECE">What Constitutes Uniqueness in DataRow Objects?</a>"</span> are met, then the <code class="codeph">DataTable.PrimaryKey</code> or <code class="codeph">DataTable.Constraints</code> properties can be set. 
+                  </p>
+                  <p>After these properties are set, the <code class="codeph">OracleCommandBuilder</code> object can determine uniqueness in the <code class="codeph">DataTable</code> by checking the <code class="codeph">DataTable.PrimaryKey</code> property or the presence of a <code class="codeph">UniqueConstraint</code> object in the <code class="codeph">DataTable.Constraints</code> collection. Once uniqueness is determined, the <code class="codeph">OracleCommandBuilder</code> object can safely generate DML statements to update the database.
+                  </p>
+                  <p>The <code class="codeph">OracleDataAdapter.FillSchema</code> method attempts to set these properties according to this order of priority:
+                  </p>
+                  <ol>
+                     <li>
+                        <p>If the primary key is returned in the select list, it is set as the <code class="codeph">DataTable.PrimaryKey</code> property.
+                        </p>
+                     </li>
+                     <li>
+                        <p>If a set of columns that meets the following criteria is returned in the select list, it is set as the <code class="codeph">DataTable.PrimaryKey</code> property.
+                        </p>
+                        <p>Criteria: The set of columns has a unique constraint defined on it or a unique index created on it, with each column having a <code class="codeph">NOT</code> <code class="codeph">NULL</code> constraint defined on it.
+                        </p>
+                     </li>
+                     <li>
+                        <p>If a set of columns that meets the following criteria is returned in the select list, a <code class="codeph">UniqueConstraint</code> object is added to the <code class="codeph">DataTable.Constraints</code> collection, but the <code class="codeph">DataTable.PrimaryKey</code> property is not set.
+                        </p>
+                        <p>Criteria: The set of columns has a unique constraint defined on it or a unique index created on it, with at least one column having a <code class="codeph">NOT</code> <code class="codeph">NULL</code> constraint defined on it.
+                        </p>
+                     </li>
+                     <li>
+                        <p>If a <code class="codeph">ROWID</code> is part of the select list, it is set as the <code class="codeph">DataTable.PrimaryKey</code> property.
+                        </p>
+                     </li>
+                  </ol>
+                  <p>Additionally, the <code class="codeph">OracleDataAdapter.FillSchema</code> method performs as follows:
+                  </p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>Setting the <code class="codeph">DataTable.PrimaryKey</code> property implicitly creates a <code class="codeph">UniqueConstraint</code> object.
+                        </p>
+                     </li>
+                     <li>
+                        <p>If a column is part of the <code class="codeph">DataTable.PrimaryKey</code> property or the <code class="codeph">UniqueConstraint</code> object, or both, it will be repeated for each occurrence of the column in the select list.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+            </div><a id="ODPNT436"></a><div class="props_rev_3"><a id="GUID-2F290630-1BC2-443B-A06C-1BEA48207916" name="GUID-2F290630-1BC2-443B-A06C-1BEA48207916"></a><h3 id="ODPNT-GUID-2F290630-1BC2-443B-A06C-1BEA48207916" class="sect3">Updating Without PrimaryKey and Constraints Configuration</h3>
+               <div>
+                  <p>If the <code class="codeph">DataTable.PrimaryKey</code> or <code class="codeph">Constraints</code> properties have not been configured, for example, if the application has not called the <code class="codeph">OracleDataAdapter.FillSchema</code> method, the <code class="codeph">OracleCommandBuilder</code> object directly checks the select list of the <code class="codeph">OracleDataAdapter.SelectCommand</code> property to determine if it guarantees uniqueness in the <code class="codeph">DataTable</code>. However this check results in a database round-trip to retrieve the metadata for the <code class="codeph">SELECT</code> statement of the <code class="codeph">OracleDataAdapter.SelectCommand</code>. 
+                  </p>
+                  <p>Note that <code class="codeph">OracleCommandBuilder</code> object cannot update a <code class="codeph">DataTable</code> created from PL/SQL statements because they do not return any key information in their metadata.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Database Sharding</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="featAppCont.html" title="Previous" type="text/html">
+      <link rel="next" href="featOraCommand.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="featAppCont.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="featOraCommand.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="features.html" property="item" typeof="WebPage"><span property="name">Features of Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Database Sharding</li>
+            </ol>
+            <a id="GUID-D42183C2-3C84-443E-9A92-93EF764D5770" name="GUID-D42183C2-3C84-443E-9A92-93EF764D5770"></a><a id="ODPNT8599"></a>
+            
+            <h2 id="ODPNT-GUID-D42183C2-3C84-443E-9A92-93EF764D5770" class="sect2">Database Sharding</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>Sharding is a data tier architecture, where data is horizontally partitioned across independent databases. Each database in such a configuration is called a shard. All shards together make up a single logical database, which is referred to as a sharded database. Sharding is a shared-nothing database architecture. The independent physical databases do not share CPU, memory, or storage devices. However, from the perspective of an application, the collection of physical databases looks like a single logical database.</p>
+               <p>Sharding uses Global Data Services (GDS), where GDS routes a client request to an appropriate database based on parameters such as availability, load, network latency, and replication lag. A GDS pool is a set of replicated databases that offers the same global service. The databases in a GDS pool can be located in multiple data centers across different regions. A sharded GDS pool contains all shards of a sharded database and their replicas, and appears as a single sharded database to database clients.</p>
+               <p>Applications can connect to multiple databases (shards) where data is partitioned based on one or more sharding strategies. The strategy can be hash based, range based, or list based. Each time a database operation is required, the application needs to determine which shard it must connect to. </p>
+               <p>A sharding key provides the partitioning key that determines in which shard a row of data is stored. A table can be partitioned using a sharding key. </p>
+               <p>A super sharding key is a collection of shard chunks, where only those chunks, which have a specific value of the super shard key identifier, are stored. A super sharding key is used for distributing data across database groups. Specifying super sharding keys are a way through which user-controlled data partitioning is possible.</p>
+            </div><a id="ODPNT8601"></a><a id="ODPNT8600"></a><div class="props_rev_3"><a id="GUID-62BDF67D-3BA3-4C89-87DB-54E0C9AE0A33" name="GUID-62BDF67D-3BA3-4C89-87DB-54E0C9AE0A33"></a><h3 id="ODPNT-GUID-62BDF67D-3BA3-4C89-87DB-54E0C9AE0A33" class="sect3">ODP.NET Sharding</h3>
+               <div>
+                  <p>Starting from version 12.2, ODP.NET and Oracle Database both support sharding.</p>
+                  <div class="infoboxnote" id="GUID-62BDF67D-3BA3-4C89-87DB-54E0C9AE0A33__GUID-FBD910AA-D276-4689-B91C-9594858A8FE7">
+                     <p class="notep1">Note:</p>
+                     <p>ODP.NET, Managed Driver and ODP.NET Core do not support sharding.</p>
+                  </div>
+                  <p>ODP.NET applications must provide the sharding key and super sharding key information before opening the database connection for single shard queries. These sharding values cannot be set or changed after opening the connection. If any of the shard key values need to be modified, a new connection must be created with the new values and then opened.</p>
+                  <p>If shard keys are set after the connection has been opened, the ODP.NET connection will not use these new shard key values until after the next <code class="codeph">OracleConnection.Open()</code> call.
+                  </p>
+                  <p>The <code class="codeph">OracleShardingKey</code> object stores one or more key values. Multiple keys can be set to create a composite key. ODP.NET recognizes the sharding key(s) specified and connects to the correct shard and chunk.
+                  </p>
+                  <p>Sharding is supported with or without connection pooling. The ODP.NET connection pool maintains connections to different shards and chunks of the sharded GDS database within the same shared pool. </p>
+                  <p>The shard key (<code class="codeph">SHARD_KEY</code>) and super sharding key (<code class="codeph">GROUP_KEY</code>) can be specified in the TNS connect descriptor, rather than in the application code. The .NET developer then chooses the connect descriptor applicable to the shard that the application will use.
+                  </p>
+                  <p>The data distribution across the shards and chunks in the database is transparent to the end user. ODP.NET minimizes the end user impact of chunk resharding within GDS. </p>
+                  <p>To perform cross-shard queries, no ODP.NET shard APIs are used. Instead, applications connect to the GDS catalog service, allowing access to all the sharded databases. The SQL query is specifically constructed to iterate over all the necessary shards. For example, the non-shard database query <code class="codeph">select count(*) from employees</code> is equivalent to the cross- shard query <code class="codeph">select sum(c) from (Iterator(select count(*) c from employees(i))</code>.
+                  </p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-62BDF67D-3BA3-4C89-87DB-54E0C9AE0A33__GUID-38C2AA3B-8D41-4157-AABC-3DE37F5C8188">ODP.NET Single Shard Query Example</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section"><pre class="oac_no_warn" dir="ltr">using System;
+using Oracle.DataAccess.Client;
+ 
+class Sharding
+{
+  static void Main()
+  {
+    OracleConnection con = new OracleConnection("user id=hr;password=hr;Data Source=orcl;");
+    //Setting a shard key
+    OracleShardingKey shardingKey = new OracleShardingKey(OracleDbType.Int32, 123);
+    //Setting a second shard key value for a composite key
+    shardingKey.SetShardingKey(OracleDbType.Varchar2, "gold");
+    //Creating and setting the super shard key
+    OracleShardingKey superShardingKey = new OracleShardingKey();
+    superShardingKey.SetShardingKey(OracleDbType.Int32, 1000);
+    
+    //Setting super sharding key and sharding key on the connection
+    con.SetShardingKey(shardingKey, superShardingKey);
+    con.Open();
+ 
+    //perform SQL query
+  }
+}
+</pre><div class="infoboxnotealso" id="GUID-62BDF67D-3BA3-4C89-87DB-54E0C9AE0A33__GUID-4BE2AB75-87AB-43CF-AA44-9FFA2ADFCF3D">
+                        <p class="notep1">See Also:</p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><a href="OracleShardingKeyClass.html#GUID-5B4A88CD-58DD-4475-822F-91A4B11FDD75">OracleShardingKey Class</a></p>
+                           </li>
+                           <li>
+                              <p><a href="ConnectionSetShardingKey.html#GUID-EB81E649-8C68-4C48-8A71-3F5C3C0AC073">SetShardingKey(OracleShardingKey, OracleShardingKey)</a></p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

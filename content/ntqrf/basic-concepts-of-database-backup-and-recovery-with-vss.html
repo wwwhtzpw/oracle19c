@@ -1,0 +1,144 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="Basic Concepts of Database Backup and Recovery with VSS">
+      <meta name="abstract" content="VSS is an infrastructure on Windows server platforms that enables applications to create shadow copies.">
+      <meta name="description" content="VSS is an infrastructure on Windows server platforms that enables applications to create shadow copies.">
+      <meta name="DC.subject" content="using VSS, database backup and recovery, concepts, VSS, VSS requester, VSS provider, Oracle VSS Writer">
+      <meta name="keywords" content="using VSS, database backup and recovery, concepts, VSS, VSS requester, VSS provider, Oracle VSS Writer">
+      <meta name="DC.Relation" scheme="URI" content="performing-database-backup-and-recovery-with-vss.html#GUID-B97FED01-7746-4C7A-9F9E-3EE2C147E4AF">
+      <meta name="DC.Relation" scheme="URI" content="componentbased-shadow-copies.html#GUID-1F19B972-4BF1-463C-B01A-783A93A7BD3C">
+      <meta name="DC.Relation" scheme="URI" content="volume-based-shadow-copies.html#GUID-674D4194-5C7E-4B5F-AB62-4A4F9B37319B">
+      <meta name="DC.Relation" scheme="URI" content="oracle-vss-backup-types.html#GUID-E80A9CAC-A3BD-4C07-AD75-97FED36EB6C0">
+      <meta name="DC.Contributor" content="Lance Ashdown">
+      <meta name="DC.Creator" content="Sunil Surabhi">
+      <meta name="DC.Creator" content="Alexander Keh">
+      <meta name="DC.Creator" content="Sivaselvam Narayanasamy">
+      <meta name="DC.Creator" content="Ricky Chen">
+      <meta name="DC.Creator" content="David Collelo">
+      <meta name="DC.Creator" content="David Friedman">
+      <meta name="DC.Creator" content="Prakash Jashnani">
+      <meta name="DC.Creator" content="Mark Bauer">
+      <meta name="DC.Creator" content="Sue K. Lee">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Ravi Thammaiah">
+      <meta name="DC.Creator" content="Michael Verheij">
+      <meta name="DC.Creator" content="Tanaya Bhattacharjee">
+      <meta name="DC.Publisher" content="January2020">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-C085101B-237F-4773-A2BF-1C8FD040C701">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="VSS is an infrastructure on Windows server platforms that enables applications to create shadow copies.">
+      <meta name="description" content="VSS is an infrastructure on Windows server platforms that enables applications to create shadow copies.">
+      <title>Basic Concepts of Database Backup and Recovery with VSS</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Administrator's Reference ">
+      <meta property="og:description" content="VSS is an infrastructure on Windows server platforms that enables applications to create shadow copies.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Administrator's Reference for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="administrators-reference-guide-microsoft-windows.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2020-01-09T06:34:26-08:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2020">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96296-03">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="purpose-of-database-backup-and-recovery-with-vss.html" title="Previous" type="text/html">
+      <link rel="next" href="componentbased-shadow-copies.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Administrator's Reference Guide for Microsoft Windows">
+    <meta name="dcterms.isVersionOf" content="NTQRF">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="purpose-of-database-backup-and-recovery-with-vss.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="componentbased-shadow-copies.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Database Administrator's Reference </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="performing-database-backup-and-recovery-with-vss.html" property="item" typeof="WebPage"><span property="name">Performing Database Backup and Recovery with VSS </span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Basic Concepts of Database Backup and Recovery with VSS</li>
+            </ol>
+            <a id="GUID-C085101B-237F-4773-A2BF-1C8FD040C701" name="GUID-C085101B-237F-4773-A2BF-1C8FD040C701"></a><a id="NTQRF288"></a>
+            
+            <h2 id="NTQRF-GUID-C085101B-237F-4773-A2BF-1C8FD040C701" class="sect2">Basic Concepts of Database Backup and Recovery with VSS</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>VSS is an infrastructure on Windows server platforms that enables applications to create shadow copies.</p>
+               <p>A shadow copy is a consistent snapshot of the data held on a volume or component at a well-defined point in time. A shadow copy set is a collection of shadow copies that are all taken at the same time. VSS identifies each shadow copy and shadow copy set by a persistent Global Unique Identifier (GUID).</p>
+               <p>VSS provides the following infrastructure for running VSS applications:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p>Coordinates activities of requesters, providers, and writers in the creation and use of shadow copies</p>
+                  </li>
+                  <li>
+                     <p>Furnishes the default system provider</p>
+                  </li>
+                  <li>
+                     <p>Implements low-level driver functionality necessary for any provider to work</p>
+                  </li>
+               </ul>
+               <p>A VSS requester is an application that requests VSS services to create shadow copies. Typically, VSS requesters are backup applications. Requesters communicate with writers to gather system data and signal writers to prepare data for backup.</p>
+               <p>A VSS provider manages storage volumes and creates shadow copies on demand. In response to a requester, a provider generates COM events to signal applications of an impending shadow copy and creates and maintains this copy until it is no longer needed. During the life cycle of the shadow copy, the provider effectively supports two independent copies: the disk that is actively updated and a fixed copy that is stable for backup.</p>
+               <p>A VSS writer is an application or a service that writes data to a disk and cooperates with VSS providers and requesters. During backups, writers ensure that data is in the proper state for a shadow copy.</p>
+               <p>The Oracle VSS writer is a Windows service that coordinates an Oracle Database
+            instance and other VSS components. The writer service, which is started under the user
+            account with <code class="codeph">SYSDBA</code> privileges, runs separately from the database
+            instance. If the writer service runs as a non administrator user, then the user should
+            also be a part of Backup Operators group. You must use third-party requesters to perform
+            backup and recovery within the VSS infrastructure.
+               </p>
+               <p>As explained in the following sections, the Oracle VSS writer supports both volume-based and component-based shadow copies. You can use these shadow copies in a backup and recovery strategy or to create a copy of your original database. You can use the duplicate database for testing or as a standby database.</p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="componentbased-shadow-copies.html#GUID-1F19B972-4BF1-463C-B01A-783A93A7BD3C">Component-Based Shadow Copies</a><br>The Oracle VSS writer supports component-based shadow copies, which are sets of database files. 
+                  </li>
+                  <li class="ulchildlink"><a href="volume-based-shadow-copies.html#GUID-674D4194-5C7E-4B5F-AB62-4A4F9B37319B">Volume-Based Shadow Copies</a><br>The Oracle VSS writer supports volume-based shadow copies, which are snapshots of complete drive or volumes.
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-vss-backup-types.html#GUID-E80A9CAC-A3BD-4C07-AD75-97FED36EB6C0">Oracle VSS Backup Types</a><br>Oracle VSS writer supports log, copy, full, differential, and incremental backups. 
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="performing-database-backup-and-recovery-with-vss.html#GUID-B97FED01-7746-4C7A-9F9E-3EE2C147E4AF">Performing Database Backup and Recovery with VSS</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

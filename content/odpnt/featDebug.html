@@ -1,0 +1,121 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Debug Tracing</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide for Microsoft Windows">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="data-provider-net-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:44:16-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96613-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="featGlobal.html" title="Previous" type="text/html">
+      <link rel="next" href="featSqlTranslationFW.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Data Provider for .NET Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="ODPNT">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="featGlobal.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="featSqlTranslationFW.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li property="itemListElement" typeof="ListItem"><a href="features.html" property="item" typeof="WebPage"><span property="name">Features of Oracle Data Provider for .NET</span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem">Debug Tracing</li>
+            </ol>
+            <a id="GUID-A1A17BCF-10B2-4A61-8A50-A6CA91CD7CAE" name="GUID-A1A17BCF-10B2-4A61-8A50-A6CA91CD7CAE"></a><a id="ODPNT446"></a>
+            
+            <h2 id="ODPNT-GUID-A1A17BCF-10B2-4A61-8A50-A6CA91CD7CAE" class="sect2">Debug Tracing</h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>ODP.NET provides debug tracing support, which allows logging of all the ODP.NET activities into a trace file. Different levels of tracing are available.</p>
+               <p>The provider can record the following information:</p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p>Entry and exit information for the ODP.NET public methods</p>
+                  </li>
+                  <li>
+                     <p>User-provided SQL statements as well as SQL statements modified by the provider</p>
+                  </li>
+                  <li>
+                     <p>Connection pooling statistics such as enlistment and delistment</p>
+                  </li>
+                  <li>
+                     <p>Thread ID (entry and exit)</p>
+                  </li>
+                  <li>
+                     <p>HA Events and Load Balancing information</p>
+                  </li>
+                  <li>
+                     <p>Distributed Transactions</p>
+                  </li>
+                  <li>
+                     <p>Self-tuning information</p>
+                  </li>
+                  <li>
+                     <p>User-mode dumps upon unmanaged exceptions</p>
+                  </li>
+               </ul>
+               <p>To enable ODP.NET for tracing, <code class="codeph">TraceFileLocation</code>, <code class="codeph">TraceLevel</code>, and <code class="codeph">TraceOption</code> must be set appropriately either in the Windows Registry or in an XML configuration file. ODP.NET, Managed and Unmanaged Drivers support the XML configuration file. Windows Registry settings are available for ODP.NET, Unmanaged Driver only.
+               </p>
+               <p>In ODAC 12<span class="italic">c</span> Release 4, ODP.NET now uses new directories to write trace files to by default.
+               </p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p>ODP.NET, Managed Driver: <span class="italic"><code class="codeph">&lt;Windows user temporary folder&gt;</code></span><code class="codeph">\ODP.NET\managed\trace</code></p>
+                  </li>
+                  <li>
+                     <p>ODP.NET, Unmanaged Driver: &lt;Windows user temporary folder&gt;<code class="codeph">\ODP.NET\unmanaged\trace</code></p>
+                  </li>
+               </ul>
+               <p>The Windows user temporary folder is determined by your local Windows settings, such as your Windows <code class="codeph">TMP</code> or <code class="codeph">TEMP</code> environment variable. Typically, it can be <code class="codeph">C:\temp</code> or <code class="codeph">C:\Users\</code><span class="italic"><code class="codeph">&lt;user name&gt;</code></span><code class="codeph">\AppData\Local\Temp</code>. ODP.NET will create an entry in the Windows event log where the trace was created anytime it creates a trace file. ODP.NET Core does not support writing to the Windows event log.
+               </p>
+               <p>For ODP.NET, Unmanaged Driver specifically, <code class="codeph">TraceFileLocation</code> is now supported similar to ODP.NET, Managed Driver. <code class="codeph">TraceFileLocation</code> defines the directory where the trace files will be created. Neither <code class="codeph">TraceFileName</code> nor <code class="codeph">TraceFileLocation</code> will be created by default in the Windows Registry.
+               </p>
+               <div class="infoboxnotealso" id="GUID-A1A17BCF-10B2-4A61-8A50-A6CA91CD7CAE__GUID-F5C3272D-5F83-43E7-B51B-2F03DE3DC710">
+                  <p class="notep1">See Also:</p>
+                  <p><span class="q">"<a href="InstallConfig.html#GUID-1F689B90-2CC4-4907-B8FE-A5F4EE36F673" title="Automatic ODP.NET machine-wide configuration upon installation is no longer available as of ODAC 18c. This change improves compatibility when applications on the same machine use different ODP.NET versions and/or depend on application-specific configuration settings instead of machine-wide assembly registration and configuration.">Configuring Oracle Data Provider for .NET</a>"</span> for further details
+                  </p>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

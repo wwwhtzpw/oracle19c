@@ -1,0 +1,138 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Description of the illustration
+        customer-orders-schema</title>
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+   
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+    <meta name="dcterms.created" content="2019-11-13T15:32:19+00:00">
+    <meta name="dcterms.title" content="Database Sample Schemas">
+    <meta name="dcterms.category" content="database">
+    <meta name="dcterms.isVersionOf" content="COMSC">
+    <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+    <meta name="dcterms.identifier" content="E96482-02">
+    <meta name="dcterms.release" content="Release 19">
+  <script id="ssot-metadata" type="application/json"> {"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}} </script>
+    </head>
+   <body>
+      <article>
+         <header>
+            <h1>Description of the illustration
+        customer-orders-schema</h1>
+         </header>
+         <div>
+            <p>This figure shows the relational tables in schema CO and the columns in each
+        table, as well as dependencies between the tables. </p>
+            <p>The table <code class="codeph">products</code> has the following attributes:
+            </p>
+            <ul style="list-style-type: disc;" id="GUID-CDDD11DB-213C-464D-9DD7-F3EDCEC36585__UL_MNB_V4C_R3B">
+               <li><span class="bold">Columns:</span>
+                  <code class="codeph">product_id</code> (primary key), <code class="codeph">product_name</code>,<code class="codeph">
+                    unit_price</code>, <code class="codeph">product_details</code>,
+                    <code class="codeph">product_image</code>,<code class="codeph"> image_mime_type</code>,
+                    <code class="codeph">image_charset</code>, <code class="codeph">image_filename</code>,<code class="codeph">
+                    image_last_updated</code>.
+               </li>
+               <li><span class="bold">Relationships:</span><ul style="list-style-type: disc;" id="GUID-CDDD11DB-213C-464D-9DD7-F3EDCEC36585__UL_G5Q_3DT_S3B">
+                     <li>Column <code class="codeph">product_id</code> relates each row of the table
+                            <code class="codeph">products</code> to none or more rows of
+                            <code class="codeph">product_id</code> in the <code class="codeph">order_items</code>
+                        table.
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+            <p>The <code class="codeph">customers</code> table has the following attributes:
+            </p>
+            <ul style="list-style-type: disc;" id="GUID-CDDD11DB-213C-464D-9DD7-F3EDCEC36585__UL_OYS_YDT_S3B">
+               <li><span class="bold">Columns:</span>
+                  <code class="codeph">customer_id</code> (primary key), <code class="codeph">email_address</code>,
+                    <code class="codeph">full_name</code></li>
+               <li><span class="bold">Relationships:</span><ul style="list-style-type: disc;" id="GUID-CDDD11DB-213C-464D-9DD7-F3EDCEC36585__UL_AHJ_F2T_S3B">
+                     <li>Column <code class="codeph">customer_id</code> relates each row of the table
+                            <code class="codeph">customers</code> to none or more rows of
+                            <code class="codeph">customer_id</code> in the <code class="codeph">orders</code> table.
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+            <p>The <code class="codeph">order_items</code> table has the following attributes:
+            </p>
+            <ul style="list-style-type: disc;" id="GUID-CDDD11DB-213C-464D-9DD7-F3EDCEC36585__UL_TYK_M2T_S3B">
+               <li><span class="bold">Columns:</span>
+                  <code class="codeph">order_id</code> and <code class="codeph">line_item_id</code> (a
+                                composite primary key), <code class="codeph">product_id</code>,
+                                        <code class="codeph">unit_price</code>, <code class="codeph">quantity</code>. The
+                                table also has a composite unique key on <code class="codeph">order_id</code>
+                                and <code class="codeph">product_id</code>.
+               </li>
+               <li><span class="bold">Relationships:</span><ul style="list-style-type: disc;" id="GUID-CDDD11DB-213C-464D-9DD7-F3EDCEC36585__UL_UYK_M2T_S3B">
+                     <li>Column <code class="codeph">product_id</code> relates each row of the table
+                            <code class="codeph">order_items</code> to exactly one value of
+                            <code class="codeph">product_id</code> in the <code class="codeph">products</code> table.
+                     </li>
+                     <li>Each <code class="codeph">order_items</code> record is associated with a record in
+                            <code class="codeph">orders</code> table through the
+                        <code class="codeph">order_id.</code></li>
+                  </ul>
+               </li>
+            </ul>
+            <p>The <code class="codeph">orders</code> table has the following attributes:
+            </p>
+            <ul style="list-style-type: disc;" id="GUID-CDDD11DB-213C-464D-9DD7-F3EDCEC36585__UL_JQR_4B5_S3B">
+               <li><span class="bold">Columns:</span>
+                  <code class="codeph">order_id</code> (primary key), <code class="codeph">order_datetime</code>,
+                    <code class="codeph">customer_id</code>, <code class="codeph">order_status</code>,
+                    <code class="codeph">store_id</code>.
+               </li>
+               <li><span class="bold">Relationships:</span><ul style="list-style-type: disc;" id="GUID-CDDD11DB-213C-464D-9DD7-F3EDCEC36585__UL_KQR_4B5_S3B">
+                     <li>Column <code class="codeph">order_id</code> relates each row of the table
+                            <code class="codeph">orders</code> to none or more rows of
+                            <code class="codeph">order_id</code> in the <code class="codeph">order_items</code>
+                        table.
+                     </li>
+                     <li>Column <code class="codeph">customer_id</code> relates none or more rows of the table
+                            <code class="codeph">orders</code> to the corresponding values in the
+                            <code class="codeph">customer_id</code> column of the table
+                            <code class="codeph">customers</code>.
+                     </li>
+                     <li>Column <code class="codeph">store_id</code> relates none or more rows of the table
+                            <code class="codeph">orders</code> to the corresponding values in the
+                            <code class="codeph">store_id</code> column of the table
+                        <code class="codeph">stores</code>.
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+            <p>The <code class="codeph">stores</code> table has the following attributes:
+            </p>
+            <ul style="list-style-type: disc;" id="GUID-CDDD11DB-213C-464D-9DD7-F3EDCEC36585__UL_AGK_BG5_S3B">
+               <li><span class="bold">Columns:</span>
+                  <code class="codeph">store_id</code> (primary key),
+                    <code class="codeph">store_name</code>,<code class="codeph">web_address</code>,
+                    <code class="codeph">physical_address</code>, <code class="codeph">latitude</code>,<code class="codeph">
+                    longitude</code>, <code class="codeph">logo</code>, <code class="codeph">logo_mime_type</code>,
+                    <code class="codeph">logo_charset</code>, <code class="codeph">logo_filename</code>,<code class="codeph">
+                    logo_last_updated</code>.
+               </li>
+               <li><span class="bold">Relationships:</span><ul style="list-style-type: disc;" id="GUID-CDDD11DB-213C-464D-9DD7-F3EDCEC36585__UL_BGK_BG5_S3B">
+                     <li>Column <code class="codeph">store_id</code> relates each row of the table
+                            <code class="codeph">stores</code> to none or more rows of
+                            <code class="codeph">store_id</code> in the <code class="codeph">customers</code> table.
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+         </div>
+      </article>
+      
+      <div class="footer copyrightlogo">
+         <span><a href="./sp_common/en/cpyr.htm">Copyright&nbsp;&copy;&nbsp;2002, 2019, Oracle&nbsp;and/or&nbsp;its&nbsp;affiliates.&nbsp;All&nbsp;rights&nbsp;reserved.</a></span></div>
+   </body>
+</html>

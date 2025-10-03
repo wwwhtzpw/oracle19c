@@ -1,0 +1,847 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Features of Oracle OLAP Provider for OLE DB</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Developer's Guide ">
+      <meta property="og:description" content>
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Developer's Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="olap-provider-ole-db-developers-guide.pdf" title="PDF File" type="application/pdf">
+      <meta name="robots" content="all">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2019-05-23T21:07:02-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2018, 2019">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96618-01">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="introduction.html" title="Previous" type="text/html">
+      <link rel="next" href="core-provider.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="OLAP Provider for OLE DB Developer's Guide ">
+    <meta name="dcterms.isVersionOf" content="OOPOD">
+    <meta name="dcterms.release" content="Release 19">
+  </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="introduction.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="core-provider.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article>
+         <header>
+            <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+               <li property="itemListElement" typeof="ListItem"><a href="index.html" property="item" typeof="WebPage"><span property="name">Developer's Guide </span></a></li>
+               <li class="active" property="itemListElement" typeof="ListItem"> Features of Oracle OLAP Provider for OLE DB</li>
+            </ol>
+            <a id="GUID-241CC833-8214-4386-A8F2-BA19FB8BDAC9" name="GUID-241CC833-8214-4386-A8F2-BA19FB8BDAC9"></a><a id="OOPOD002"></a>
+            
+            <h2 id="OOPOD-GUID-241CC833-8214-4386-A8F2-BA19FB8BDAC9" class="sect2"><span class="enumeration_chapter">2 </span> Features of Oracle OLAP Provider for OLE DB
+            </h2>
+         </header>
+         <div class="ind">
+            <div>
+               <p>These topics describe the components of Oracle OLAP Provider for OLE DB (the provider) and how they are used to develop OLE DB for OLAP<a id="d3270e30" class="indexterm-anchor"></a> applications.
+               </p>
+               <ul style="list-style-type: disc;">
+                  <li>
+                     <p><a href="features.html#GUID-BE19174B-2423-49D6-8A5A-CFC39CBE5E95">Using Oracle OLAP Provider for OLE DB</a></p>
+                  </li>
+                  <li>
+                     <p><a href="features.html#GUID-21516C79-A795-4508-9819-EC3895A02E2E">Sessions</a></p>
+                  </li>
+                  <li>
+                     <p><a href="features.html#GUID-1CCB7EFB-52F3-4099-BB95-4545B289EB78">Schema Information</a></p>
+                  </li>
+                  <li>
+                     <p><a href="features.html#GUID-C6A5ED58-F2F5-4AFC-B334-1185E4CE17D0">Provider-Specific Properties</a></p>
+                  </li>
+                  <li>
+                     <p><a href="features.html#GUID-2BA4BADF-7911-4DB2-8739-04D142C0BA16">MDX Execution</a></p>
+                  </li>
+                  <li>
+                     <p><a href="features.html#GUID-28799B21-2356-41FE-808E-0E954407BD07">Result Set</a></p>
+                  </li>
+                  <li>
+                     <p><a href="features.html#GUID-A3C480C2-920B-4E6D-879A-7D628D6B612E">Unicode Support</a></p>
+                  </li>
+                  <li>
+                     <p><a href="features.html#GUID-C7005B70-A229-4E59-B51D-3EC9B0158B7C">Error Message Information</a></p>
+                  </li>
+               </ul>
+            </div><a id="OOPOD131"></a><a id="OOPOD132"></a><a id="OOPOD130"></a><div class="props_rev_3"><a id="GUID-BE19174B-2423-49D6-8A5A-CFC39CBE5E95" name="GUID-BE19174B-2423-49D6-8A5A-CFC39CBE5E95"></a><h3 id="OOPOD-GUID-BE19174B-2423-49D6-8A5A-CFC39CBE5E95" class="sect3">Using Oracle OLAP Provider for OLE DB</h3>
+               <div>
+                  <p>To use any provider, the application must be able to uniquely identify it. The identification process differs depending on whether OLE DB or ADO MD is used to invoke the provider. </p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-BE19174B-2423-49D6-8A5A-CFC39CBE5E95__GUID-90BEC824-AA95-451D-AA4B-CA3276968551">OLE DB </p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>A class ID (CLSID) uniquely identifies an OLE DB provider. The macro <code class="codeph">CLSID_OraOLEDBOLAP</code>, which is defined in <code class="codeph">OraOLEDBOLAP.h</code>, defines the CLSID for OraOLEDB OLAP. The <code class="codeph">CoCreateInstance()</code> API uses this macro as a parameter to create an instance of the provider's data source object and to obtain an interface pointer to it, as shown in the following code snippet:
+                     </p><pre class="oac_no_warn" dir="ltr">#include &lt;OraOLEDBOLAP.h&gt;
+ 
+...
+HRESULT hr;
+IDBInitialize *pIDBInitialize;
+hr = CoCreateInstance(CLSID_OraOLEDBOLAP, NULL, CLSCTX_INPROC_SERVER, 
+     IID_IDBInitialize, (void**)&amp;pIDBInitialize); 
+</pre><p>To use the OLE DB services (client cursor, connection pooling, and so on) in conjunction with OraOLEDB OLAP, invoke the following APIs instead:</p><pre class="oac_no_warn" dir="ltr">#include &lt;OraOLEDBOLAP.h&gt;
+ 
+...
+HRESULT hr;
+IDataInitialize *pIDataInitialize;
+IDBInitialize *pIDBInitialize;
+ 
+hr = CoCreateInstance(CLSID_MSDAINITIALIZE, NULL, CLSCTX_INPROC_SERVER, 
+     IID_IDataInitialize,(void**)&amp;pIDataInitialize);
+hr = pIDataInitialize-&gt;CreateDBInstance(CLSID_OraOLEDBOLAP, NULL, 
+     CLSCTX_INPROC_SERVER,NULL, IID_IDBInitialize,(IUnknown**) 
+     &amp;pIDBInitialize);
+</pre></div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-BE19174B-2423-49D6-8A5A-CFC39CBE5E95__GUID-85C7952F-376B-4B93-849B-92475E737603">ADO MD</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>To use a particular OLE DB for OLAP provider through ADO MD, a Program ID (ProgID) must be supplied as a value for the "<code class="codeph">Provider</code>" connection string attribute. Set the provider value to "<code class="codeph">OraOLEDB.OLAP</code>" as shown in the following code snippet:
+                     </p><pre class="oac_no_warn" dir="ltr">Dim cat As New ADOMD.Catalog
+... 
+cat.ActiveConnection = "Provider=OraOLEDB.OLAP;" &amp; _ 
+  "User Id=sh;Password=sh;Data Source=oracle;"
+</pre><p>When ADO MD is used, OLE DB Services are automatically enabled.</p>
+                  </div>
+                  <!-- class="section" -->
+               </div><a id="OOPOD134"></a><a id="OOPOD135"></a><a id="OOPOD133"></a><div class="props_rev_3"><a id="GUID-A8109D8C-66E6-4786-8422-C9AE1BAEAB0E" name="GUID-A8109D8C-66E6-4786-8422-C9AE1BAEAB0E"></a><h4 id="OOPOD-GUID-A8109D8C-66E6-4786-8422-C9AE1BAEAB0E" class="sect4">Connecting to Oracle Database</h4>
+                  <div>
+                     <p>OraOLEDB OLAP supports connections to Oracle databases. In most cases, the <code class="codeph">User</code> <code class="codeph">Id</code>, <code class="codeph">Password</code>, and the <code class="codeph">Data</code> <code class="codeph">Source</code> are required to establish a connection. The data source is not required when connecting to a local database. However, when connecting to a remote database, the data source must be supplied and set to the appropriate Oracle Net Service Name, which should be included as an alias in the <code class="codeph">tnsnames.ora</code> file.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A8109D8C-66E6-4786-8422-C9AE1BAEAB0E__GUID-D4B24874-2A25-496E-93F2-F222CF89976A">OLE DB</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p>For an OLE DB application to connect to an Oracle database, a consumer typically sets the following properties of the <code class="codeph">DBPROPSET_DBINIT</code> property set:
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">DBPROP_AUTH_USERNAME</code> 
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">DBPROP_AUTH_PASSWORD</code>  
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">DBPROP_INIT_DATABASE</code> 
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-A8109D8C-66E6-4786-8422-C9AE1BAEAB0E__GUID-6FE475D1-DC77-4B2E-8553-86D9C4CFB4F6">ADO MD</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="section">
+                        <p>For ADO MD applications, the username, password, and the data source are set within the connection string, as in the following example:</p><pre class="oac_no_warn" dir="ltr">Dim cat As New ADOMD.Catalog
+...
+cat.ActiveConnection = "Provider=OraOLEDB.OLAP;" &amp; _ 
+  "User Id=<span class="italic">&lt;userid&gt;</span>;Password=<span class="italic">&lt;password&gt;</span>;Data Source=oracle;"
+</pre><div class="infoboxnotealso" id="GUID-A8109D8C-66E6-4786-8422-C9AE1BAEAB0E__GUID-E1D04034-62E5-429B-829E-527075173E4E">
+                           <p class="notep1">See Also:</p>
+                           <p> <a href="../netag/introducing-oracle-net-services.html#NETAG-GUID-7A30E150-8CB3-44BA-8966-FC8F28C1638B" target="_blank"><span class="italic">Oracle Net Services Administrator's Guide</span></a> for more information
+                           </p>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="OOPOD136"></a><div class="props_rev_3"><a id="GUID-4F3F511C-AA39-4CF6-AB81-5A5B8D452312" name="GUID-4F3F511C-AA39-4CF6-AB81-5A5B8D452312"></a><h4 id="OOPOD-GUID-4F3F511C-AA39-4CF6-AB81-5A5B8D452312" class="sect4">Provider-Specific Connection String Attributes     </h4>
+                  <div>
+                     <p>The following is a list of Oracle OLAP Provider for OLE DB provider-specific connection string attributes:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><code class="codeph">OSAuthent</code> - Operating System Authentication
+                           </p>
+                           <p>This feature enables operating system users to connect to an Oracle database. </p>
+                           <p>To enable operating system users to connect to the database, either:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>Set the <code class="codeph">OSAuthent</code> connection string attribute to <code class="codeph">"1"</code></p>
+                                 <p>or</p>
+                              </li>
+                              <li>
+                                 <p>Set the <code class="codeph">User</code> <code class="codeph">Id</code> connection string attribute to <code class="codeph">"/"</code>.
+                                 </p>
+                              </li>
+                           </ul>
+                           <p>To disable operating system users from connecting to the database:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>Set the <code class="codeph">OSAuthent</code> connection string attribute to <code class="codeph">"0"</code>.
+                                 </p>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <p><code class="codeph">PwdChgDlg</code><a id="d3270e368" class="indexterm-anchor"></a><a id="d3270e370" class="indexterm-anchor"></a> - Password Change Dialog 
+                           </p>
+                           <p>This feature enables the provider to display a password change dialog box for non-console applications during logon if the password has expired.</p>
+                           <p>To enable the dialog box to be displayed in the event of a password expiration:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>Set the <code class="codeph">PwdChgDlg</code> connection string attribute to <code class="codeph">"1"</code>.
+                                 </p>
+                              </li>
+                           </ul>
+                           <p>To disable the dialog box from displaying in the event of a password expiration:</p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>Set the <code class="codeph">PwdChgDlg</code> connection string attribute to <code class="codeph">"0"</code></p>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <p><code class="codeph">PreserveMaxPrecision</code><a id="d3270e402" class="indexterm-anchor"></a><a id="d3270e404" class="indexterm-anchor"></a> - Preserve Maximum Precision
+                           </p>
+                           <p>This feature allows the application to specify whether the maximum precision of <code class="codeph">NUMBER</code> and <code class="codeph">FLOAT</code> column values are preserved.  If this feature is enabled, the provider preserves the maximum precision of the column values by fetching them as an Oracle native type. If this feature is disabled, the provider fetches the column values as C native types, which can cause some precision loss based on the limitations of the C native type. However, this approach provides better performance than fetching numeric data as an Oracle native type.
+                           </p>
+                           <p>To preserve maximum precision of <code class="codeph">NUMBER</code> and <code class="codeph">FLOAT</code> column values:
+                           </p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>Set the <code class="codeph">PreserverMaxPrecision</code> connection string attribute to <code class="codeph">"1"</code>.
+                                 </p>
+                              </li>
+                           </ul>
+                           <p>To disable preservation of maximum precision for <code class="codeph">NUMBER</code> and <code class="codeph">FLOAT</code> column values:
+                           </p>
+                           <ul style="list-style-type: disc;">
+                              <li>
+                                 <p>Set the <code class="codeph">PreserverMaxPrecision</code> connection string attribute to  <code class="codeph">"0"</code></p>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </div><a id="OOPOD138"></a><a id="OOPOD139"></a><a id="OOPOD137"></a><div class="props_rev_3"><a id="GUID-E46F63B9-DCED-48F6-A09A-17770519B106" name="GUID-E46F63B9-DCED-48F6-A09A-17770519B106"></a><h5 id="OOPOD-GUID-E46F63B9-DCED-48F6-A09A-17770519B106" class="sect5">Default Connection String Attribute Values</h5>
+                     <div>
+                        <p>The provider obtains the default attribute values for provider-specific connection string attributes from the <code class="codeph">\\HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE \OLEDBOLAP</code> registry key. If the provider-specific connection string attributes are not set in the connection string, the values specified in the registry are used. If these attributes are set in the connection string, the specified values override the default values set in the registry.
+                        </p>
+                        <p>Changing the registry default values can affect all OraOLEDB OLAP applications if they do not override the default attribute values within the connection string.</p>
+                        <div class="infoboxnote" id="GUID-E46F63B9-DCED-48F6-A09A-17770519B106__GUID-B3F504C3-2614-4045-86A1-A60E78745B9A">
+                           <p class="notep1">Note:</p>
+                           <p>The provider only reads the registry values once at load time, so changes to the registry values do not affect applications that are already running.</p>
+                        </div>
+                        <div class="section">
+                           <p class="subhead3" id="GUID-E46F63B9-DCED-48F6-A09A-17770519B106__GUID-45955667-790E-4A3C-B88B-9F22992BDCE3">OLE DB</p>
+                        </div>
+                        <!-- class="section" -->
+                        <div class="section">
+                           <p>To set any provider-specific connection string attributes from an OLE DB application, the <code class="codeph">DBPROP_INIT_PROVIDERSTRING</code> property is used. To set more than one provider-specific connection string attribute, separate the attribute value pair with a semi-colon. To enable both <code class="codeph">OSAuthent</code> and <code class="codeph">PwdChgDlg</code>, for example, the OLE DB application can set the <code class="codeph">DBPROP_INIT_PROVIDERSTRING</code> property to <code class="codeph">"OSAuthent=1;PwdChgDlg=1;PreserveMaxPrecision=1"</code>.
+                           </p>
+                        </div>
+                        <!-- class="section" -->
+                        <div class="section">
+                           <p class="subhead3" id="GUID-E46F63B9-DCED-48F6-A09A-17770519B106__GUID-F1866222-3256-4CE9-A4D6-1E8829A74517">ADO MD</p>
+                        </div>
+                        <!-- class="section" -->
+                        <div class="section">
+                           <p>ADO MD applications can set these provider-specific attribute values in the connection string along with the username, password, and data source, as in the following code snippet:</p><pre class="oac_no_warn" dir="ltr">Dim cat As New ADOMD.Catalog
+... 
+cat.ActiveConnection = "Provider=OraOLEDB.OLAP;" &amp; _ 
+    "User Id=<span class="italic">&lt;userid&gt;</span>;Password=<span class="italic">&lt;password&gt;</span>;Data Source=oracle;" &amp; _ 
+    "OSAuthent=1;PwdChgDlg=1;PreserveMaxPrecision=1"
+</pre><div class="infoboxnotealso" id="GUID-E46F63B9-DCED-48F6-A09A-17770519B106__GUID-F561B8F7-8BE7-4D4E-A85D-ED8CAA2BAE3E">
+                              <p class="notep1">See Also:</p>
+                              <p><a href="../dbseg/introduction-to-oracle-database-security.html#DBSEG-GUID-41040F53-D7A6-48FA-A92A-0C23118BC8A0" target="_blank"><span class="italic">Oracle Database Security Guide</span></a> for more information on password expiration and authenticating database users in Windows
+                              </p>
+                           </div>
+                        </div>
+                        <!-- class="section" -->
+                     </div>
+                  </div>
+               </div>
+            </div><a id="OOPOD141"></a><a id="OOPOD142"></a><a id="OOPOD140"></a><div class="props_rev_3"><a id="GUID-21516C79-A795-4508-9819-EC3895A02E2E" name="GUID-21516C79-A795-4508-9819-EC3895A02E2E"></a><h3 id="OOPOD-GUID-21516C79-A795-4508-9819-EC3895A02E2E" class="sect3">Sessions</h3>
+               <div>
+                  <p>OraOLEDB OLAP establishes connections and sessions to the Oracle database. </p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-21516C79-A795-4508-9819-EC3895A02E2E__GUID-D20AEB9D-62FD-4AF2-9C31-51E528B7EDFD">OLE DB</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>When the OLE DB data source object is instantiated, the provider establishes both a connection and a session for it. The first OLE DB session object that is instantiated from that data source object inherits the already established connection and session. Any subsequent OLE DB session objects created from the same OLE DB data source object establishes its own connection and session.</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-21516C79-A795-4508-9819-EC3895A02E2E__GUID-1F963E39-C579-4716-B90E-B5F63EACC003">ADO MD</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>Whenever a new connection is established by an ADO MD object, a session is implicitly created for the connection.</p>
+                  </div>
+                  <!-- class="section" -->
+               </div>
+            </div><a id="OOPOD143"></a><div class="props_rev_3"><a id="GUID-1CCB7EFB-52F3-4099-BB95-4545B289EB78" name="GUID-1CCB7EFB-52F3-4099-BB95-4545B289EB78"></a><h3 id="OOPOD-GUID-1CCB7EFB-52F3-4099-BB95-4545B289EB78" class="sect3">Schema Information</h3>
+               <div>
+                  <p>OraOLEDB OLAP supports both core OLE DB and OLE DB for OLAP schema rowsets as listed in this section. <code class="codeph">DBSCHEMA</code> and <code class="codeph">MDSCHEMA</code> macros can be used by OLE DB applications. <code class="codeph">SchemaEnum</code> values, in parentheses, can be used by ADO MD applications.
+                  </p>
+               </div><a id="OOPOD144"></a><div class="props_rev_3"><a id="GUID-0E745952-73E1-442C-99FC-15F784B79723" name="GUID-0E745952-73E1-442C-99FC-15F784B79723"></a><h4 id="OOPOD-GUID-0E745952-73E1-442C-99FC-15F784B79723" class="sect4">Core OLE DB Schema Rowsets</h4>
+                  <div>
+                     <div class="section">
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">DBSCHEMA_COLUMNS</code> (<code class="codeph">adSchemaColumns</code>)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">DBSCHEMA_SCHEMATA</code> (<code class="codeph">adSchemaSchemata</code>)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">DBSCHEMA_TABLES</code> (<code class="codeph">adSchemaTables</code>)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">DBSCHEMA_PROVIDER_TYPES</code> (<code class="codeph">adSchemaProviderTypes</code>)
+                              </p>
+                           </li>
+                        </ul>
+                        <div class="infoboxnotealso" id="GUID-0E745952-73E1-442C-99FC-15F784B79723__GUID-45F5DC26-1893-42EE-929C-8DA06DB34F8A">
+                           <p class="notep1">See Also:</p>
+                           <p> <span class="q">"<a href="core-provider.html#GUID-FA912D02-0C04-416D-86FA-B46828B73814">Core OLE DB Schema Rowsets</a>"</span> for supported Schema Rowset columns 
+                           </p>
+                        </div>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="OOPOD145"></a><div class="props_rev_3"><a id="GUID-A81BD04E-42CE-404F-8B8D-5D60FADCEAE2" name="GUID-A81BD04E-42CE-404F-8B8D-5D60FADCEAE2"></a><h4 id="OOPOD-GUID-A81BD04E-42CE-404F-8B8D-5D60FADCEAE2" class="sect4">OLE DB for OLAP Schema Rowsets</h4>
+                  <div>
+                     <div class="section">
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">MDSCHEMA_CUBES</code> (<code class="codeph">adSchemaCubes</code>)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">MDSCHEMA_DIMENSIONS</code> (<code class="codeph">adSchemaDimensions</code>)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">MDSCHEMA_FUNCTIONS</code> (<code class="codeph">adSchemaFunctions</code>)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">MDSCHEMA_HIERARCHIES</code> (<code class="codeph">adSchemaHierarchies</code>)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">MDSCHEMA_LEVELS</code> (<code class="codeph">adSchemaLevels</code>)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">MDSCHEMA_MEASURES</code> (<code class="codeph">adSchemaMeasures</code>)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">MDSCHEMA_MEMBERS</code> (<code class="codeph">adSchemaMembers</code>)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">MDSCHEMA_PROPERTIES</code> (<code class="codeph">adSchemaProperties</code>)
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">MDSCHEMA_SETS</code> (<code class="codeph">adSchemaSets</code>)
+                              </p>
+                           </li>
+                        </ul>
+                        <div class="infoboxnotealso" id="GUID-A81BD04E-42CE-404F-8B8D-5D60FADCEAE2__GUID-2933A756-A717-4B71-BAB9-42A076CF8EE8">
+                           <p class="notep1">See Also:</p>
+                           <p> <span class="q">"<a href="core-provider.html#GUID-068E149F-9544-453A-93EE-AABF1D3BE63F">OLE DB for OLAP Schema Rowsets</a>"</span> for supported Schema Rowset Columns
+                           </p>
+                        </div>
+                        <p>The unique names generated by OraOLEDB OLAP are consistent from one session to the next, if the underlying metadata does not change. Since dimensions can be shared between cubes, the same unique name can appear in multiple cubes. However, the provider guarantees that within the context of a cube, the unique name is genuinely unique.</p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div>
+            </div><a id="OOPOD146"></a><div class="props_rev_3"><a id="GUID-C6A5ED58-F2F5-4AFC-B334-1185E4CE17D0" name="GUID-C6A5ED58-F2F5-4AFC-B334-1185E4CE17D0"></a><h3 id="OOPOD-GUID-C6A5ED58-F2F5-4AFC-B334-1185E4CE17D0" class="sect3">Provider-Specific Properties</h3>
+               <div>
+                  <p>OraOLEDB OLAP exposes the following provider-specific property sets and properties which can only be used by OLE DB applications.</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><code class="codeph">DBPROPSET_ORAOLEDBOLAP_ROWSET</code> property set
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">DBPROP_ORAOLEDBOLAP_ROWSETFETCHSIZE</code> property
+                              </p>
+                           </li>
+                        </ul>
+                     </li>
+                     <li>
+                        <p><code class="codeph">DBPROPSET_ORAOLEDBOLAP_COMMAND</code> property set
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><code class="codeph">MDPROP_ORAOLEDBOLAP_CELLDATACACHE</code> property
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">MDPROP_ORAOLEDBOLAP_CACHEBLOCKSIZE</code> property
+                              </p>
+                           </li>
+                           <li>
+                              <p><code class="codeph">MDPROP_ORAOLEDBOLAP_PRESERVEMAXPRECISION</code> property
+                              </p>
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+                  <p>For ADO MD applications, the default property values are used.</p>
+               </div><a id="OOPOD148"></a><a id="OOPOD147"></a><div class="props_rev_3"><a id="GUID-A1072651-33D5-4961-AAC8-A68BACD56F0F" name="GUID-A1072651-33D5-4961-AAC8-A68BACD56F0F"></a><h4 id="OOPOD-GUID-A1072651-33D5-4961-AAC8-A68BACD56F0F" class="sect4">Provider-Specific Rowset Property</h4>
+                  <div>
+                     <div class="section">
+                        <p><a href="features.html#GUID-A1072651-33D5-4961-AAC8-A68BACD56F0F__CJADDHBC" title="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value">Table 2-1</a> lists the <code class="codeph">DBPROP_ORAOLEDBOLAP_ROWSETFETCHSIZE</code> property which is part of the <code class="codeph">DBPROPSET_ORAOLEDBOLAP_ROWSET</code> property set. <code class="codeph">DBPROPSET_ORAOLEDBOLAP_ROWSET</code> belongs to the Rowset property group. 
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformal" id="GUID-A1072651-33D5-4961-AAC8-A68BACD56F0F__CJADDHBC">
+                        <p class="titleintable">Table 2-1 Provider-Specific Rowset Property</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Provider-Specific Rowset Property" summary="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="56%" id="d3270e967">Property Name</th>
+                                 <th align="left" valign="bottom" width="14%" id="d3270e970">Type</th>
+                                 <th align="left" valign="bottom" width="10%" id="d3270e973">R/W</th>
+                                 <th align="left" valign="bottom" width="20%" id="d3270e976">Default Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="56%" id="d3270e981" headers="d3270e967 ">
+                                    <p><code class="codeph">DBPROP_ORAOLEDBOLAP_ROWSETFETCHSIZE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="14%" headers="d3270e981 d3270e970 ">
+                                    <p><code class="codeph">VT_I4 </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="10%" headers="d3270e981 d3270e973 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="20%" headers="d3270e981 d3270e976 ">
+                                    <p><code class="codeph">262144</code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                     <div class="section">
+                        <p>The property can only be set when requesting a Schema Rowset using the <code class="codeph">IDBSchemaRowset::GetRowset()</code> method. The property value specifies the maximum amount of data in bytes that OraOLEDB OLAP should fetch for each server round-trip made for a particular schema rowset. 
+                        </p>
+                     </div>
+                     <!-- class="section" -->
+                  </div>
+               </div><a id="OOPOD150"></a><a id="OOPOD151"></a><a id="OOPOD152"></a><a id="OOPOD153"></a><a id="OOPOD154"></a><a id="OOPOD149"></a><div class="props_rev_3"><a id="GUID-CE55C2D2-BD44-4A61-B1E3-FED807E2878E" name="GUID-CE55C2D2-BD44-4A61-B1E3-FED807E2878E"></a><h4 id="OOPOD-GUID-CE55C2D2-BD44-4A61-B1E3-FED807E2878E" class="sect4">Provider-Specific Command Properties</h4>
+                  <div>
+                     <p>Provider-specific properties are part of the <code class="codeph">DBPROPSET_ORAOLEDBOLAP_COMMAND</code> property set, which is part of the Rowset property set group. 
+                     </p>
+                     <p><a href="features.html#GUID-CE55C2D2-BD44-4A61-B1E3-FED807E2878E__CJAEGBIF" title="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value">Table 2-2</a> lists the provider-specific OLE DB command properties. All these properties take effect only if they are set before the execution of the MDX statement:
+                     </p>
+                     <div class="tblformal" id="GUID-CE55C2D2-BD44-4A61-B1E3-FED807E2878E__CJAEGBIF">
+                        <p class="titleintable">Table 2-2 Provider-Specific Command Properties</p>
+                        <table cellpadding="4" cellspacing="0" class="Formal" title="Provider-Specific Command Properties" summary="Rows are properties, first col.umn is property, second column R or W for Read or Write, third column is default value" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="58%" id="d3270e1089">Property Name</th>
+                                 <th align="left" valign="bottom" width="18%" id="d3270e1092">Type</th>
+                                 <th align="left" valign="bottom" width="8%" id="d3270e1095">R/W</th>
+                                 <th align="left" valign="bottom" width="16%" id="d3270e1098">Default Value</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="58%" id="d3270e1103" headers="d3270e1089 ">
+                                    <p><code class="codeph">MDPROP_ORAOLEDBOLAP_CELLDATACACHE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d3270e1103 d3270e1092 ">
+                                    <p><code class="codeph">VT_BOOL</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="8%" headers="d3270e1103 d3270e1095 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d3270e1103 d3270e1098 ">
+                                    <p><code class="codeph">VARIANT_TRUE</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="58%" id="d3270e1119" headers="d3270e1089 ">
+                                    <p><code class="codeph">MDPROP_ORAOLEDBOLAP_CACHEBLOCKSIZE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d3270e1119 d3270e1092 ">
+                                    <p><code class="codeph">VT_ARRAY |</code></p>
+                                    <p><code class="codeph">VT_I4 </code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="8%" headers="d3270e1119 d3270e1095 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d3270e1119 d3270e1098 ">
+                                    <p><code class="codeph">NULL</code></p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="58%" id="d3270e1138" headers="d3270e1089 ">
+                                    <p><code class="codeph">MDPROP_ORAOLEDBOLAP_PRESERVEMAXPRECISION</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="18%" headers="d3270e1138 d3270e1092 ">
+                                    <p><code class="codeph">VT_BOOL</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="8%" headers="d3270e1138 d3270e1095 ">
+                                    <p>R/W</p>
+                                 </td>
+                                 <td align="left" valign="top" width="16%" headers="d3270e1138 d3270e1098 ">
+                                    <p><code class="codeph">VARIANT_FALSE </code></p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                     <div class="section">
+                        <p class="subhead3" id="GUID-CE55C2D2-BD44-4A61-B1E3-FED807E2878E__GUID-E088DCF6-FCC5-49D9-A900-DFB960AC4102">MDPROP_ORAOLEDBOLAP_CELLDATACACHE (Cell Data Cache)</p>
+                     </div>
+                     <!-- class="section" -->
+                     <p>OLE DB consumers can enable or disable caching of the result set data cell by setting the <code class="codeph">MDPROP_ORAOLEDBOLAP_CELLDATACACHE</code> property to either <code class="codeph">VARIANT_TRUE</code> or <code class="codeph">VARIANT_FALSE</code>, respectively. 
+                     </p>
+                     <p>If cell data cache is enabled, the OraOLEDB OLAP provider tries to fetch, at least, the number of cells specified by the <code class="codeph">MDPROP_ORAOLEDBOLAP_CACHEBLOCKSIZE</code> for every server round-trip. 
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-CE55C2D2-BD44-4A61-B1E3-FED807E2878E__GUID-FF637265-C7CD-449F-9C10-C2ED5BAEB4F8">MDPROP_ORAOLEDBOLAP_CACHEBLOCKSIZE (Cache Block Size)</p>
+                     </div>
+                     <!-- class="section" -->
+                     <p>OLE DB consumers can explicitly set the Cache Block Size by setting the     <code class="codeph">MDPROP_ORAOLEDBOLAP_CACHEBLOCKSIZE</code> property with an array of <code class="codeph">VT_I4</code> values.
+                     </p>
+                     <p>If Cell Data Cache is enabled, the Cache Block Size determines the following:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p>The shape of the cache block.</p>
+                        </li>
+                        <li>
+                           <p>The minimum amount of cell data the provider attempts to fetch for each server round-trip.</p>
+                        </li>
+                     </ul>
+                     <p>If Cache Block Size is set to its default value of <code class="codeph">NULL</code>, the provider determines a reasonable Cache Block Size for the result set.
+                     </p>
+                     <p>To override the default behavior, the OLE DB consumer must provide an array of four-byte integers. OraOLEDB OLAP uses the supplied array values to determine the shape of the Cache Block Size. The value at the <code class="codeph">0</code>th index of the array determines the number of cells that are to be fetched from the X-axis (that is, <code class="codeph">Axis(0)</code>). The value at the 1st index of the array determines the number of cells that are to be fetched from the Y-axis (that is, <code class="codeph">Axis(1)</code>). In general, the value at the <span class="italic"><code class="codeph">n</code></span>th index of the array determines the number of cells that are to be fetched from <code class="codeph">Axis(</code><span class="italic"><code class="codeph">n</code></span><code class="codeph">)</code>.
+                     </p>
+                     <p>If the length of the array is greater than the actual number of axes that exist on the result set, then the extra values are ignored. However, if the length of the array is less than the actual number of axes that exist on the result set, the provider populates the missing values with reasonable values.</p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-CE55C2D2-BD44-4A61-B1E3-FED807E2878E__GUID-C49C8168-510D-4D66-9BDA-C177AB0060C9">MDPROP_ORAOLEDBOLAP_PRESERVEMAXPRECISION (Preserve Maximum Precision) </p>
+                     </div>
+                     <!-- class="section" -->
+                     <p>OLE DB consumers can choose to either preserve maximum precision or maximize performance when fetching numeric cell data by setting the <code class="codeph">MDPROP_ORAOLEDBOLAP_PRESERVEMAXPRECISION</code> property to either <code class="codeph">VARIANT_TRUE</code> or <code class="codeph">VARIANT_FALSE</code>, respectively.
+                     </p>
+                     <p>This property can also be set by using the <code class="codeph">PreserveMaxPrecision</code> connection string attribute which overrides the registry value. 
+                     </p>
+                     <p>All the commands created from that connection inherit the value specified in the connection string (or the registry, if it is set there). The <code class="codeph">MDPROP_ORAOLEDBOLAP_PRESERVEMAXPRECISION</code> property exposed on the command object allows OLE DB consumers to override this inherited value on a particular command object.
+                     </p>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-CE55C2D2-BD44-4A61-B1E3-FED807E2878E__GUID-BBC3DF9B-F981-4FBE-BCDD-375C6F92010C">OLE DB Example</p>
+                     </div>
+                     <!-- class="section" --><pre class="oac_no_warn" dir="ltr">...
+ 
+  HRESULT             hr              = S_OK;
+  ICommandText       *pICmdText       = NULL;
+  ICommandProperties *pICmdProperties = NULL;
+  IMDDataset         *pIMDDataset     = NULL:
+  long               *px              = NULL;
+  SAFEARRAY          *psa             = NULL;
+  SAFEARRAYBOUND      rgsabound[1];
+  DBPROPSET           dbPropSets[1];
+  DBPROP              dbProp[3];
+ 
+  ...
+ 
+  hr = pIDBCreateCmd-&gt;CreateCommand(NULL, IID_ICommandText,  
+          (IUnknown **)&amp;pICmdText);
+ 
+  hr = pICmdText-&gt;SetCommandText(DBGUID_DEFAULT, pCmdText);
+ 
+  hr = pICmdText-&gt;QueryInterface(IID_ICommandProperties,
+           (void**)&amp;pICmdProperties);
+ 
+  // Create the SAFEARRAY
+  rgsabound[0].lLbound = 0;
+  rgsabound[0].cElements = 3;
+  psa = SafeArrayCreate(VT_I4, 1, rgsabound);
+ 
+  // Get a pointer to the elements of the array.
+  hr = SafeArrayAccessData(psa, (void HUGEP* FAR*)&amp;px);
+ 
+  // Create an array for a cache block size of {20, 40, 1}
+  //   that will fetch 800 cells for each server round-trip
+  px[0] = 20; // 20 coordinates from Axis(0)
+  px[1] = 40; // 40 coordinates from Axis(1)
+  px[2] = 1;  // 1 coordinate from Axis(2)
+ 
+  dbPropSets[0].rgProperties    = &amp;dbProp[0];
+  dbPropSets[0].guidPropertySet = DBPROPSET_ORAOLEDBOLAP_COMMAND;
+  dbPropSets[0].cProperties     = 3;
+ 
+  dbProp[0].dwPropertyID        = MDPROP_ORAOLEDBOLAP_CELLDATACACHE;
+  dbProp[0].dwOptions           = DBPROPOPTIONS_OPTIONAL;
+  dbProp[0].colid               = DB_NULLID;
+  V_VT(&amp;(dbProp[0].vValue))     = VT_BOOL;
+  dbProp[0].vValue.boolVal      = VARIANT_TRUE;
+ 
+  dbProp[1].dwPropertyID        = MDPROP_ORAOLEDBOLAP_CACHEBLOCKSIZE;
+  dbProp[1].dwOptions           = DBPROPOPTIONS_OPTIONAL;
+  dbProp[1].colid               = DB_NULLID;
+  V_VT(&amp;(dbProp[1].vValue))     = VT_ARRAY | VT_I4;
+  dbProp[1].vValue.parray       = psa;
+ 
+  dbProp[2].dwPropertyId    = MDPROP_ORAOLEDBOLAP_PRESERVEMAXPRECISION;
+  dbProp[2].dwOptions       = DBPROPOPTIONS_OPTIONAL;
+  dbProp[2].colid           = DB_NULLID;
+  V_VT(&amp;(dbProp[2].vValue)) = VT_BOOL;
+  dbProp[2].vValue.boolVal  = VARIANT_FALSE;
+  hr = pICmdProperties-&gt;SetProperties(1, dbPropSets);
+ 
+  SafeArrayUnaccessData(psa);
+  SafeArrayDestroy(psa);
+ 
+  // Execute the MDX statement
+  hr = pICmdText-&gt;Execute(NULL, IID_IMDDataset, NULL, NULL, 
+           (IUnknown **)&amp;pIMDDataset);
+ 
+  ...</pre></div><a id="OOPOD155"></a><div class="props_rev_3"><a id="GUID-42E1C3A8-6963-4723-B605-2AE0D6014FEC" name="GUID-42E1C3A8-6963-4723-B605-2AE0D6014FEC"></a><h5 id="OOPOD-GUID-42E1C3A8-6963-4723-B605-2AE0D6014FEC" class="sect5">Caching Behavior</h5>
+                     <div>
+                        <p>For every <code class="codeph">IMDDataset::GetCellData()</code> invocation, the provider checks to see whether all requested cells are in the cache or not. If all the requested cells are in the cache, the cell data is returned without incurring a server round-trip. If there are any cells that must be fetched from the database to satisfy the request, the provider incurs a server round-trip and fetches at least the number of cells specified by the Cache Block Size.
+                        </p>
+                        <p>If a cell retrieval request by the application spans multiple cache blocks, the provider only incurs a single server round-trip to fetch all the blocks.</p>
+                     </div>
+                  </div><a id="OOPOD156"></a><div class="props_rev_3"><a id="GUID-2A6710ED-F52A-4501-9085-56304305E578" name="GUID-2A6710ED-F52A-4501-9085-56304305E578"></a><h5 id="OOPOD-GUID-2A6710ED-F52A-4501-9085-56304305E578" class="sect5">Performance</h5>
+                     <div>
+                        <p>A typical spreadsheet-like OLAP application displays a finite set of data on a grid of C columns and R rows. For such applications, the Cache Block Size should be set to at least <code class="codeph">{C,</code> <code class="codeph">R</code>, <code class="codeph">1,</code> <code class="codeph">1,...}</code> so that the initial grid display does not incur more than one server round-trip. With this approach, additional server-round-trips are only required when the application user requests data beyond the initial C columns and R rows. 
+                        </p>
+                        <p>If users typically request data beyond these initial C columns and R rows, a Cache Block Size that is slightly larger than <code class="codeph">{C,</code> <code class="codeph">R,</code> <code class="codeph">1,</code> <code class="codeph">1,...}</code> (for example, <code class="codeph">{C * 2,</code> <code class="codeph">R</code> <code class="codeph">*</code> <code class="codeph">2,</code> <code class="codeph">1,</code> <code class="codeph">1,...}</code>) can enhance performance. However, unnecessarily using a large Cache Block Size may complicate the fetch request and require more processing time on the server-side. 
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="OOPOD157"></a><div class="props_rev_3"><a id="GUID-2BA4BADF-7911-4DB2-8739-04D142C0BA16" name="GUID-2BA4BADF-7911-4DB2-8739-04D142C0BA16"></a><h3 id="OOPOD-GUID-2BA4BADF-7911-4DB2-8739-04D142C0BA16" class="sect3">MDX Execution</h3>
+               <div>
+                  <p>OraOLEDB OLAP supports MDX statements only.</p>
+               </div><a id="OOPOD158"></a><div class="props_rev_3"><a id="GUID-92DD3445-277F-4FAE-BF50-53A6B625FCBF" name="GUID-92DD3445-277F-4FAE-BF50-53A6B625FCBF"></a><h4 id="OOPOD-GUID-92DD3445-277F-4FAE-BF50-53A6B625FCBF" class="sect4">MDX Keywords</h4>
+                  <div>
+                     <p>OraOLEDB OLAP supports a collection of MDX keywords which are provided in the appendix. </p>
+                     <div class="infoboxnotealso" id="GUID-92DD3445-277F-4FAE-BF50-53A6B625FCBF__GUID-50970362-0952-4695-91C8-CC1CCB137ED6">
+                        <p class="notep1">See Also:</p>
+                        <p> <span class="q">"<a href="core-provider.html#GUID-DCCDBF79-547A-4962-8F12-2C7D59CD873E">MDX Keywords</a>"</span> for a detailed keyword list
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="OOPOD159"></a><div class="props_rev_3"><a id="GUID-298A76D4-925C-4711-A003-FC9A3EEE1EE4" name="GUID-298A76D4-925C-4711-A003-FC9A3EEE1EE4"></a><h4 id="OOPOD-GUID-298A76D4-925C-4711-A003-FC9A3EEE1EE4" class="sect4">MDX Operators</h4>
+                  <div>
+                     <div class="section">
+                        <p>OraOLEDB OLAP supports the following MDX operators:</p>
+                     </div>
+                     <!-- class="section" -->
+                     <div class="tblformal" id="GUID-298A76D4-925C-4711-A003-FC9A3EEE1EE4__GUID-33D98BCA-73E2-4A1D-9F62-3254BBCF6152">
+                        <table cellpadding="4" cellspacing="0" class="Formal" title summary="rows are operators, first column is operator, second column is description" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="40%" id="d3270e1507">Operator</th>
+                                 <th align="left" valign="bottom" width="60%" id="d3270e1510">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d3270e1515" headers="d3270e1507 ">
+                                    <p><code class="codeph">*</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d3270e1515 d3270e1510 ">
+                                    <p>cross join operator</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d3270e1523" headers="d3270e1507 ">
+                                    <p><code class="codeph">&lt;</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d3270e1523 d3270e1510 ">
+                                    <p>less than</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d3270e1531" headers="d3270e1507 ">
+                                    <p><code class="codeph">&lt;=</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d3270e1531 d3270e1510 ">
+                                    <p>less than or equal to</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d3270e1539" headers="d3270e1507 ">
+                                    <p><code class="codeph">&gt;</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d3270e1539 d3270e1510 ">
+                                    <p>greater than</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d3270e1547" headers="d3270e1507 ">
+                                    <p><code class="codeph">&gt;=</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d3270e1547 d3270e1510 ">
+                                    <p>greater than or equal to</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d3270e1555" headers="d3270e1507 ">
+                                    <p><code class="codeph">&lt;&gt;</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d3270e1555 d3270e1510 ">
+                                    <p>not equal to</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d3270e1563" headers="d3270e1507 ">
+                                    <p><code class="codeph">=</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d3270e1563 d3270e1510 ">
+                                    <p>equal to</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <!-- class="inftblhruleinformal" -->
+                  </div>
+               </div>
+            </div><a id="OOPOD160"></a><div class="props_rev_3"><a id="GUID-28799B21-2356-41FE-808E-0E954407BD07" name="GUID-28799B21-2356-41FE-808E-0E954407BD07"></a><h3 id="OOPOD-GUID-28799B21-2356-41FE-808E-0E954407BD07" class="sect3">Result Set</h3>
+               <div>
+                  <p>The dataset represents the result set from the execution of a MDX statement. Consumers can obtain axis information as well as cell data from the dataset. </p>
+               </div><a id="OOPOD161"></a><div class="props_rev_3"><a id="GUID-1F7F0820-C1E3-4CB7-AFE1-8C944E868DA6" name="GUID-1F7F0820-C1E3-4CB7-AFE1-8C944E868DA6"></a><h4 id="OOPOD-GUID-1F7F0820-C1E3-4CB7-AFE1-8C944E868DA6" class="sect4">Cell Properties</h4>
+                  <div>
+                     <p>OraOLEDB OLAP supports the following cell properties:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><code class="codeph">VALUE</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">FORMATTED_VALUE</code></p>
+                           <p>OraOLEDB OLAP uses the <code class="codeph">FORMAT_STRING</code>, <code class="codeph">VALUE</code>, and user default-locale identifier to generate the <code class="codeph">FORMATTED_VALUE</code>. The <code class="codeph">FORMATTED_VALUE</code> is not affected by any Oracle NLS parameters.
+                           </p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">CELL_ORDINAL</code></p>
+                        </li>
+                        <li>
+                           <p><code class="codeph">FORMAT_STRING</code></p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div><a id="OOPOD162"></a><div class="props_rev_3"><a id="GUID-A3C480C2-920B-4E6D-879A-7D628D6B612E" name="GUID-A3C480C2-920B-4E6D-879A-7D628D6B612E"></a><h3 id="OOPOD-GUID-A3C480C2-920B-4E6D-879A-7D628D6B612E" class="sect3">Unicode Support</h3>
+               <div>
+                  <p>Oracle OLAP Provider for OLE DB supports the Unicode character set, enabling consumers to retrieve data in various languages on the same client computer. It can be especially useful in creating global Internet applications supporting as many languages as the Unicode standard entails. For example, you can write a single Active Server Page (ASP) that accesses an Oracle database to dynamically generate contents in Japanese, Arabic, English, and Thai.</p>
+               </div><a id="OOPOD163"></a><div class="props_rev_3"><a id="GUID-EE2C665E-3EF3-446F-8D6E-6A08E6CA0AB3" name="GUID-EE2C665E-3EF3-446F-8D6E-6A08E6CA0AB3"></a><h4 id="OOPOD-GUID-EE2C665E-3EF3-446F-8D6E-6A08E6CA0AB3" class="sect4">Types of Unicode Encoding</h4>
+                  <div>
+                     <p>The Oracle databases store the Unicode data in the UTF8 encoding scheme, which is an ASCII compatible multibyte encoding of Unicode. Supported Microsoft operating system use the UCS2 encoding, which is a 2-byte fixed width encoding scheme. OraOLEDB OLAP transparently converts the data between the two encoding schemes allowing the consumers to deal with only UCS2.</p>
+                     <div class="infoboxnote" id="GUID-EE2C665E-3EF3-446F-8D6E-6A08E6CA0AB3__GUID-8CD638C8-11C8-4F00-B0E1-0EF505B398BE">
+                        <p class="notep1">Note:</p>
+                        <p>The Unicode support is transparent to ADO MD consumers. OLE DB consumers using C/C++ need to explicitly specify <code class="codeph">DBTYPE_WSTR</code> in their datatype bindings when Unicode data in involved.
+                        </p>
+                     </div>
+                  </div>
+               </div><a id="OOPOD164"></a><div class="props_rev_3"><a id="GUID-DC897E1C-EAD5-48C2-9A0E-80C8123884F2" name="GUID-DC897E1C-EAD5-48C2-9A0E-80C8123884F2"></a><h4 id="OOPOD-GUID-DC897E1C-EAD5-48C2-9A0E-80C8123884F2" class="sect4">Unicode Support Setup</h4>
+                  <div>
+                     <p>In order to prevent any data loss, the database character set should be UTF8. Other than this, there is no other setup required for the Unicode support.</p>
+                     <div class="infoboxnotealso" id="GUID-DC897E1C-EAD5-48C2-9A0E-80C8123884F2__GUID-82F6ADC6-80D0-4183-AC42-8390B78F3EAD">
+                        <p class="notep1">See Also:</p>
+                        <p></p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              <p><a href="../admin/getting-started-with-database-administration.html#ADMIN-GUID-EA8CC987-EF18-4434-B962-01312CD3A8AC" target="_blank"><span class="italic">Oracle Database Administrator's Guide</span></a></p>
+                           </li>
+                           <li>
+                              <p><a href="../nlspg/overview-of-globalization-support.html#NLSPG-GUID-4530259E-9CA6-4FC3-A024-3EB6C2D90DAE" target="_blank"><span class="italic">Oracle Database Globalization Support Guide</span></a></p>
+                           </li>
+                           <li>
+                              <p><span class="q">"<a href="oledb-info.html#GUID-547A9467-0A7E-47FE-BA53-4D540CBD3777">Datatype Mappings</a>"</span></p>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="OOPOD166"></a><a id="OOPOD167"></a><a id="OOPOD165"></a><div class="props_rev_3"><a id="GUID-C7005B70-A229-4E59-B51D-3EC9B0158B7C" name="GUID-C7005B70-A229-4E59-B51D-3EC9B0158B7C"></a><h3 id="OOPOD-GUID-C7005B70-A229-4E59-B51D-3EC9B0158B7C" class="sect3">Error Message Information</h3>
+               <div>
+                  <p>OraOLEDB OLAP supports extended error information. The mechanism to obtain this information differs based on whether OLE DB or ADO MD is used to invoke OraOLEDB OLAP.</p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-C7005B70-A229-4E59-B51D-3EC9B0158B7C__GUID-ADB59B30-B520-4055-8989-CDC020E5B9DD">OLE DB</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>OLE DB and COM objects report errors through the <code class="codeph">HRESULT</code> return code of the object member functions. An OLE/COM <code class="codeph">HRESULT</code> is a bit-packed structure. OLE DB provides macros that dereference structure members. Oracle OLAP Provider for OLE DB exposes <code class="codeph">IErrorLookup</code> to retrieve information about an error.
+                     </p>
+                     <p>All objects support extended error information. For this, the consumer must instantiate the OLE DB Extended Error object followed by calling the method <code class="codeph">GetErrorDescription()</code> to get the error text.
+                     </p><pre class="oac_no_warn" dir="ltr">// Instantiate OraOLEDBOLAPErrorLookup and obtain a pointer to its
+//  IErrorLookup interface
+IErrorLookup *pErrorLookup = NULL;
+CoCreateInstance(CLSID_OraOLEDBOLAPErrorLookup, NULL, CLSCTX_INPROC_SERVER,
+                 IID_IErrorLookup, (void **)&amp;pIErrorLookup)
+//Call the method GetErrorDescription() to get the full error text
+pIErrorLookup-&gt;GetErrorDescription()
+</pre></div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p class="subhead2" id="GUID-C7005B70-A229-4E59-B51D-3EC9B0158B7C__GUID-1E4201D8-82CA-455E-8874-09DBA861C2EB">ADO MD</p>
+                  </div>
+                  <!-- class="section" -->
+                  <div class="section">
+                     <p>For ADO MD users, the generic <code class="codeph">Error</code> object can be used to fetch error information:
+                     </p><pre class="oac_no_warn" dir="ltr">Dim cat As New ADOMD.Catalog
+ 
+Sub Connect()
+ 
+  On Error GoTo ErrorHandler
+ 
+  cat.ActiveConnection = "Provider=OraOLEDB.OLAP;" &amp; _ 
+    "User Id=sh;Password=sh;Data Source=oracle;"
+  Exit Sub
+ 
+  ErrorHandler:
+    Debug.Print Err.Description
+End Sub
+</pre></div>
+                  <!-- class="section" -->
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

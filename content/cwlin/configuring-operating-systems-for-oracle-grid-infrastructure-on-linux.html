@@ -1,0 +1,173 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="Configuring Operating Systems for Oracle Grid Infrastructure on Linux">
+      <meta name="abstract" content="Complete operating system configuration requirements and checks for Linux operating systems before you start installation.">
+      <meta name="description" content="Complete operating system configuration requirements and checks for Linux operating systems before you start installation.">
+      <meta name="DC.Relation" scheme="URI" content="guidelines-for-linux-operating-system-installation.html#GUID-11991892-6B97-4283-B042-E894BBF9B3BF">
+      <meta name="DC.Relation" scheme="URI" content="reviewing-operating-system-and-software-upgrade-best-practices.html#GUID-5E1F8A88-1AD8-4CF5-8EDC-A83DAB77C5C3">
+      <meta name="DC.Relation" scheme="URI" content="reviewing-operating-system-security-common-practices.html#GUID-D50A5D72-AC1A-47CE-A7AC-DAE22BA5912D">
+      <meta name="DC.Relation" scheme="URI" content="about-installation-fixup-scripts.html#GUID-B427B3F7-BFE3-4ACF-89FD-A79A5774C7AA">
+      <meta name="DC.Relation" scheme="URI" content="about-operating-system-requirements.html#GUID-9758581C-6925-4A0E-B321-9E424575E7F2">
+      <meta name="DC.Relation" scheme="URI" content="using-oracle-rpm-checker-on-zlinux.html#GUID-B9454934-4123-4415-A03D-DF925677BEDF">
+      <meta name="DC.Relation" scheme="URI" content="operating-system-requirements-for-x86-64-linux-platforms.html#GUID-3F647617-7FF5-4EE4-BBA8-9A5E3EEC888F">
+      <meta name="DC.Relation" scheme="URI" content="operating-system-requirements-for-zlinux.html#GUID-E815D2C7-B366-4DB3-BF00-99C211835F03">
+      <meta name="DC.Relation" scheme="URI" content="operating-system-reqs-arm.html#GUID-7744E340-220A-4A6D-A70B-C412F7777437">
+      <meta name="DC.Relation" scheme="URI" content="additional-drivers-and-software-packages-for-linux.html#GUID-F09C1AE2-FEE2-42A6-BEEF-289251413841">
+      <meta name="DC.Relation" scheme="URI" content="checking-kernel-and-package-requirements-for-linux.html#GUID-7065A86D-C2AB-4731-953B-12AC25C94156">
+      <meta name="DC.Relation" scheme="URI" content="setting-clock-source-for-vm-on-linux.html#GUID-E55821AE-E001-4490-9545-DBAB652D896E">
+      <meta name="DC.Relation" scheme="URI" content="installing-the-cvuqdisk-rpm-for-linux.html#GUID-8A74CA97-D2FA-4016-8B61-99D6CB52A40E">
+      <meta name="DC.Relation" scheme="URI" content="reviewing-hugespages-memory-allocation.html#GUID-C042125D-9BE1-48D0-8C70-74251A0AF60C">
+      <meta name="DC.Relation" scheme="URI" content="setting-thp-uek.html#GUID-8FBE8A40-14EF-4C79-B05C-03837BE0BF11">
+      <meta name="DC.Relation" scheme="URI" content="enabling-the-name-service-cache-daemon.html#GUID-2578FE34-E846-4D0D-85AC-E2A191915578">
+      <meta name="DC.Relation" scheme="URI" content="using-automatic-ssh-configuration-during-installation.html#GUID-51280BE9-4B2A-4BE3-9DA3-68B795D9FBA2">
+      <meta name="DC.Relation" scheme="URI" content="setting-the-disk-io-scheduler-on-linux-8.html#GUID-AB706834-3DEB-4278-8872-96961C7379A8">
+      <meta name="DC.Relation" scheme="URI" content="setting-the-disk-io-scheduler-on-linux.html#GUID-B59FCEFB-20F9-4E64-8155-7A61B38D8CDF">
+      <meta name="DC.Relation" scheme="URI" content="setting-network-time-protocol-for-cluster-time-synchronization.html#GUID-D2CDFAC3-4CE2-4E56-B34F-81D0FD20CEFA">
+      <meta name="DC.Contributor" content="Aparna Kamath">
+      <meta name="DC.Contributor" content="Douglas Williams">
+      <meta name="DC.Contributor" content="Mark Bauer">
+      <meta name="DC.Contributor" content="Prakash Jashnani">
+      <meta name="DC.Contributor" content="Janet Stern">
+      <meta name="DC.Creator" content="Markus Michalewicz">
+      <meta name="DC.Creator" content="Aneesh Khandelwal">
+      <meta name="DC.Creator" content="James Williams">
+      <meta name="DC.Creator" content="Ian Cookson">
+      <meta name="DC.Creator" content="Rajesh Dasari">
+      <meta name="DC.Creator" content="Pallavi Kamath">
+      <meta name="DC.Creator" content="Donald Graves">
+      <meta name="DC.Creator" content="Jonathan Creighton">
+      <meta name="DC.Creator" content="Angad Gokakkar">
+      <meta name="DC.Creator" content="Srinivas Poovala">
+      <meta name="DC.Creator" content="Prasad Bagal">
+      <meta name="DC.Creator" content="Balaji Pagadala">
+      <meta name="DC.Creator" content="Neha Avasthy">
+      <meta name="DC.Creator" content="Mark Scardina">
+      <meta name="DC.Creator" content="Hanlin Chien">
+      <meta name="DC.Creator" content="Anil Nair">
+      <meta name="DC.Creator" content="Apparsamy Perumal">
+      <meta name="DC.Creator" content="Samarjeet Tomar">
+      <meta name="DC.Creator" content="Akshay Shah">
+      <meta name="DC.Creator" content="Kevin Jernigan">
+      <meta name="DC.Creator" content="Eric Belden">
+      <meta name="DC.Creator" content="Mark Fuller">
+      <meta name="DC.Creator" content="Barbara Glover">
+      <meta name="DC.Creator" content="Saar Maoz">
+      <meta name="DC.Creator" content="Binoy Sukumaran">
+      <meta name="DC.Creator" content="Subhash Chandra">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-B8649E42-4918-49EA-A608-446F864EB7A0">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Complete operating system configuration requirements and checks for Linux operating systems before you start installation.">
+      <meta name="description" content="Complete operating system configuration requirements and checks for Linux operating systems before you start installation.">
+      <title>Configuring Operating Systems for Oracle Grid Infrastructure on Linux</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Grid Infrastructure Installation and Upgrade Guide">
+      <meta property="og:description" content="Complete operating system configuration requirements and checks for Linux operating systems before you start installation.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Grid Infrastructure Installation and Upgrade Guide for Linux">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="grid-infrastructure-installation-and-upgrade-guide-linux.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T01:22:43-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2013, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96272-36">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="configure-additional-operating-system-features.html" title="Previous" type="text/html">
+      <link rel="next" href="guidelines-for-linux-operating-system-installation.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Grid Infrastructure Installation and Upgrade Guide for Linux">
+    <meta name="dcterms.isVersionOf" content="CWLIN">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Configuring Operating Systems for Oracle Grid Infrastructure on Linux","description":"Complete operating system configuration requirements and checks for Linux operating systems before you start installation.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="configure-additional-operating-system-features.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="guidelines-for-linux-operating-system-installation.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-B8649E42-4918-49EA-A608-446F864EB7A0" name="GUID-B8649E42-4918-49EA-A608-446F864EB7A0"></a>
+         
+         <h2 id="CWLIN-GUID-B8649E42-4918-49EA-A608-446F864EB7A0" class="sect2"><span class="enumeration_chapter">4 </span>Configuring Operating Systems for Oracle Grid Infrastructure on Linux
+         </h2>
+         <div class="ind">
+            <div>
+               <p>Complete operating system configuration requirements and checks for Linux operating systems before you start installation.</p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="guidelines-for-linux-operating-system-installation.html#GUID-11991892-6B97-4283-B042-E894BBF9B3BF">Guidelines for Linux Operating System Installation</a><br>Operating system guidelines to be aware of before proceeding with an Oracle installation.
+                  </li>
+                  <li class="ulchildlink"><a href="reviewing-operating-system-and-software-upgrade-best-practices.html#GUID-5E1F8A88-1AD8-4CF5-8EDC-A83DAB77C5C3">Reviewing Operating System and Software Upgrade Best Practices</a><br>These topics provide general planning guidelines and platform-specific information about upgrades and migration.
+                  </li>
+                  <li class="ulchildlink"><a href="reviewing-operating-system-security-common-practices.html#GUID-D50A5D72-AC1A-47CE-A7AC-DAE22BA5912D">Reviewing Operating System Security Common Practices</a><br>Secure operating systems are an important basis for general system security. 
+                  </li>
+                  <li class="ulchildlink"><a href="about-installation-fixup-scripts.html#GUID-B427B3F7-BFE3-4ACF-89FD-A79A5774C7AA">About Installation Fixup Scripts</a><br>Oracle Universal Installer detects when the minimum requirements for an installation are not met, and creates shell scripts, called fixup scripts, to finish incomplete system configuration steps.
+                  </li>
+                  <li class="ulchildlink"><a href="about-operating-system-requirements.html#GUID-9758581C-6925-4A0E-B321-9E424575E7F2">About Operating System Requirements</a><br>Depending on the products that you intend to install, verify that you have the required operating system kernel and packages installed.
+                  </li>
+                  <li class="ulchildlink"><a href="using-oracle-rpm-checker-on-zlinux.html#GUID-B9454934-4123-4415-A03D-DF925677BEDF">Using Oracle RPM Checker on IBM: Linux on System z</a><br>Use the Oracle RPM Checker utility to verify that you have the required Red Hat Enterprise Linux or SUSE packages installed on the operating system before you start the Oracle Database or Oracle Grid Infrastructure installation.
+                  </li>
+                  <li class="ulchildlink"><a href="operating-system-requirements-for-x86-64-linux-platforms.html#GUID-3F647617-7FF5-4EE4-BBA8-9A5E3EEC888F">Operating System Requirements for x86-64 Linux Platforms</a><br>The Linux distributions and packages listed in this section are supported for this release on x86-64.
+                  </li>
+                  <li class="ulchildlink"><a href="operating-system-requirements-for-zlinux.html#GUID-E815D2C7-B366-4DB3-BF00-99C211835F03">Operating System Requirements for IBM: Linux on System z</a><br>The Linux distributions and packages listed in this section are supported for this release on IBM: Linux on System z.
+                  </li>
+                  <li class="ulchildlink"><a href="operating-system-reqs-arm.html#GUID-7744E340-220A-4A6D-A70B-C412F7777437">Operating System Requirements for Linux for Arm (aarch64)</a><br>The Linux distribution and packages listed in this section are supported for this release on Linux for Arm (aarch64).
+                  </li>
+                  <li class="ulchildlink"><a href="additional-drivers-and-software-packages-for-linux.html#GUID-F09C1AE2-FEE2-42A6-BEEF-289251413841">Additional Drivers and Software Packages for Linux</a><br>Information about optional drivers and software packages.
+                  </li>
+                  <li class="ulchildlink"><a href="checking-kernel-and-package-requirements-for-linux.html#GUID-7065A86D-C2AB-4731-953B-12AC25C94156">Checking Kernel and Package Requirements for Linux</a><br>Verify your kernel and packages to see if they meet minimum requirements for installation.
+                  </li>
+                  <li class="ulchildlink"><a href="setting-clock-source-for-vm-on-linux.html#GUID-E55821AE-E001-4490-9545-DBAB652D896E">Setting Clock Source for VMs on Linux x86-64</a><br>Oracle recommends that you set the clock source to <code class="codeph">tsc</code> for better performance in virtual environments (VM) on Linux x86-64.
+                  </li>
+                  <li class="ulchildlink"><a href="installing-the-cvuqdisk-rpm-for-linux.html#GUID-8A74CA97-D2FA-4016-8B61-99D6CB52A40E">Installing the cvuqdisk RPM for Linux</a><br>If you do not use an Oracle Database Preinstallation RPM, and you want to use the Cluster Verification Utility, then you must install the <code class="codeph">cvuqdisk</code> RPM.
+                  </li>
+                  <li class="ulchildlink"><a href="reviewing-hugespages-memory-allocation.html#GUID-C042125D-9BE1-48D0-8C70-74251A0AF60C">Reviewing HugePages Memory Allocation</a><br>Review this information if your operating system has HugePages enabled.
+                  </li>
+                  <li class="ulchildlink"><a href="setting-thp-uek.html#GUID-8FBE8A40-14EF-4C79-B05C-03837BE0BF11">Setting and Disabling Transparent HugePages on UEK Kernels</a><br>Learn when to set Transparent HugePages and when to disable Transparent HugePages depending on your UEK kernel version.
+                  </li>
+                  <li class="ulchildlink"><a href="enabling-the-name-service-cache-daemon.html#GUID-2578FE34-E846-4D0D-85AC-E2A191915578">Enabling the Name Service Cache Daemon</a><br>To allow Oracle Clusterware to better tolerate network failures with NAS devices or NFS mounts, enable the Name Service Cache Daemon (<code class="codeph">nscd</code>).
+                  </li>
+                  <li class="ulchildlink"><a href="using-automatic-ssh-configuration-during-installation.html#GUID-51280BE9-4B2A-4BE3-9DA3-68B795D9FBA2">Using Automatic SSH Configuration During Installation</a><br>To install Oracle software, configure secure shell (SSH) connectivity between all cluster member nodes. 
+                  </li>
+                  <li class="ulchildlink"><a href="setting-the-disk-io-scheduler-on-linux-8.html#GUID-AB706834-3DEB-4278-8872-96961C7379A8">Verifying the Disk I/O Scheduler on Linux 8 and Later Systems</a><br>Disk I/O schedulers reorder, delay, or merge requests for disk I/O to                 achieve better throughput and lower latency.
+                  </li>
+                  <li class="ulchildlink"><a href="setting-the-disk-io-scheduler-on-linux.html#GUID-B59FCEFB-20F9-4E64-8155-7A61B38D8CDF">Verifying the Disk I/O Scheduler on Linux 7 Systems</a><br>Disk I/O schedulers reorder, delay, or merge requests for disk I/O                 to achieve better throughput and lower latency.
+                  </li>
+                  <li class="ulchildlink"><a href="setting-network-time-protocol-for-cluster-time-synchronization.html#GUID-D2CDFAC3-4CE2-4E56-B34F-81D0FD20CEFA">Setting Network Time Protocol for Cluster Time Synchronization</a><br>Use either the Oracle Cluster Time Synchronization or network time protocol (NTP) option for time synchronization.
+                  </li>
+               </ul>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

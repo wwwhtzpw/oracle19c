@@ -1,0 +1,869 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="concept">
+      <meta name="DC.Title" content="How the Unified Auditing Migration Affects Individual Audit Features">
+      <meta name="abstract" content="Most of the pre-Oracle Database 12c release 1 (12.1) auditing features can be used before a unified auditing migration.">
+      <meta name="description" content="Most of the pre-Oracle Database 12c release 1 (12.1) auditing features can be used before a unified auditing migration.">
+      <meta name="DC.Relation" scheme="URI" content="part_7.html">
+      <meta name="DC.Contributor" content="Sumit Jeloka">
+      <meta name="DC.Creator" content="Suraj Adhikari">
+      <meta name="DC.Creator" content="Thomas Baby">
+      <meta name="DC.Creator" content="Tammy Bednar">
+      <meta name="DC.Creator" content="Todd Bottger">
+      <meta name="DC.Creator" content="Sanjay Bharadwaj">
+      <meta name="DC.Creator" content="Leo Cloutier">
+      <meta name="DC.Creator" content="Sudha Duraiswamy">
+      <meta name="DC.Creator" content="Naveen Gopal">
+      <meta name="DC.Creator" content="Rishabh Gupta">
+      <meta name="DC.Creator" content="Yong Hu">
+      <meta name="DC.Creator" content="Srinidhi Kayoor">
+      <meta name="DC.Creator" content="Peter Knaggs">
+      <meta name="DC.Creator" content="Andre Kruklikov">
+      <meta name="DC.Creator" content="Sanjay Kulhari">
+      <meta name="DC.Creator" content="Anup A. Kumar">
+      <meta name="DC.Creator" content="Bryn Llewellyn">
+      <meta name="DC.Creator" content="Dah-Yoh Lim">
+      <meta name="DC.Creator" content="Rahil Mir">
+      <meta name="DC.Creator" content="Hari Mohankumar">
+      <meta name="DC.Creator" content="Gopal Mulagund">
+      <meta name="DC.Creator" content="Abhishek Munnolimath">
+      <meta name="DC.Creator" content="Paul Needham">
+      <meta name="DC.Creator" content="Robert Pang">
+      <meta name="DC.Creator" content="Dilip Raj">
+      <meta name="DC.Creator" content="Kumar Rajamani">
+      <meta name="DC.Creator" content="Kathy Rich">
+      <meta name="DC.Creator" content="Saikat Saha">
+      <meta name="DC.Creator" content="Vipin Samar">
+      <meta name="DC.Creator" content="Saravana Soundararajan">
+      <meta name="DC.Creator" content="James Spiller">
+      <meta name="DC.Creator" content="Srividya Tata">
+      <meta name="DC.Creator" content="Kamal Tbeileh">
+      <meta name="DC.Creator" content="Can Tuzla">
+      <meta name="DC.Creator" content="Anand Verma">
+      <meta name="DC.Creator" content="Patrick Wheeler">
+      <meta name="DC.Creator" content="Peter H. Wong">
+      <meta name="DC.Creator" content="Patricia Huey">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-22ED5B2A-13F9-4448-BE3E-578CE3691F3B">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="Most of the pre-Oracle Database 12c release 1 (12.1) auditing features can be used before a unified auditing migration.">
+      <meta name="description" content="Most of the pre-Oracle Database 12c release 1 (12.1) auditing features can be used before a unified auditing migration.">
+      <title>How the Unified Auditing Migration Affects Individual Audit Features</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Security Guide ">
+      <meta property="og:description" content="Most of the pre-Oracle Database 12c release 1 (12.1) auditing features can be used before a unified auditing migration.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Security Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-security-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-16T13:22:48-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96299-54">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="using-the-orapki-utility-to-manage-pki-elements.html" title="Previous" type="text/html">
+      <link rel="next" href="glossary.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Database Security Guide">
+    <meta name="dcterms.isVersionOf" content="DBSEG">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"How the Unified Auditing Migration Affects Individual Audit Features","description":"Most of the pre-Oracle Database 12c release 1 (12.1) auditing features can be used before a unified auditing migration.","datePublished":"2025-07-16 CST","dateModified":"2025-07-16 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="using-the-orapki-utility-to-manage-pki-elements.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="glossary.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-22ED5B2A-13F9-4448-BE3E-578CE3691F3B" name="GUID-22ED5B2A-13F9-4448-BE3E-578CE3691F3B"></a><a id="DBSEG968"></a><a id="DBSEG341"></a>
+         
+         <h2 id="DBSEG-GUID-22ED5B2A-13F9-4448-BE3E-578CE3691F3B" class="sect2"><span class="enumeration_chapter">G </span>How the Unified Auditing Migration Affects Individual Audit Features
+         </h2>
+         <div class="ind"><script type="text/javascript">window.name='how-unified-auditing-migration-affects-individual-audit-features'</script><script type="text/javascript">
+    function footdisplay(footnum,footnote) {
+    var msg = window.open('about:blank', 'NewWindow' + footnum,
+        'directories=no,height=100,location=no,menubar=no,resizable=yes,' +
+        'scrollbars=yes,status=no,toolbar=no,width=598');
+    msg.document.open('text/html');
+    msg.document.write('<!DOCTYPE html ');
+    msg.document.write('PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" ');
+    msg.document.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'); 
+    msg.document.write('<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us" dir="ltr"><head><title>');
+   
+    msg.document.write('Footnote&nbsp; ' + footnum);
+    msg.document.write('<\/title><meta http-equiv="Content-Type" ');
+    msg.document.write('content="text/html; charset=utf-8" />');
+    msg.document.write('<meta http-equiv="Content-Script-Type" ');
+    msg.document.write('content="text/javascript" />');
+    msg.document.write('<style type="text/css"> <![CDATA[ ');
+    msg.document.write('h1 {text-align: center; font-size: 14pt;}');
+    msg.document.write('fieldset {border: none;}');
+    msg.document.write('form {text-align: center;}');
+    msg.document.write(' ]]\u003e <\/style>');
+    msg.document.write('<\/head><body><div id="footnote"><h1>Footnote&nbsp; ' + footnum + '<\/h1><p>');
+    msg.document.write(footnote);
+    msg.document.write('<\/p><form action="" method="post"><fieldset>');
+    msg.document.write('<input type="button" value="OK" ');
+    msg.document.write('onclick="window.close();" />');
+    msg.document.write('<\/fieldset><\/form><\/div><\/body><\/html>');
+    msg.document.close();
+    setTimeout(function() {
+        var height = msg.document.getElementById('footnote').offsetHeight;
+        msg.resizeTo(598, height + 100);
+    }
+    , 100);
+    msg.focus();
+}
+            </script><noscript>
+               <p>The script content on this page is for navigation purposes only and does not alter the content in any way.</p>
+            </noscript>
+            <div>
+               <p>Most of the pre-Oracle Database 12<span class="italic">c</span> release 1 (12.1) auditing features can be used before a unified auditing migration.
+               </p>
+               <p><a href="how-unified-auditing-migration-affects-individual-audit-features.html#GUID-22ED5B2A-13F9-4448-BE3E-578CE3691F3B__CIHDIGAD" title="How the Unified Auditing Migration Affects Individual Audit Features">Table G-1</a> describes how the pre-Oracle Database 12<span class="italic">c</span> audit features change in the migration.
+               </p>
+               <div class="tblformalwide" id="GUID-22ED5B2A-13F9-4448-BE3E-578CE3691F3B__CIHDIGAD">
+                  <p class="titleintable">Table G-1 Availability of Unified Auditing Features Before and After Migration</p>
+                  <table cellpadding="4" cellspacing="0" class="FormalWide" title="Availability of Unified Auditing Features Before and After Migration" summary="How the Unified Auditing Migration Affects Individual Audit Features" width="100%" frame="hsides" border="1" rules="rows">
+                     <thead>
+                        <tr align="left" valign="top">
+                           <th align="left" valign="bottom" width="34%" id="d230397e119">Feature</th>
+                           <th align="left" valign="bottom" width="34%" id="d230397e122">Availability in Pre-Migrated Environment</th>
+                           <th align="left" valign="bottom" width="32%" id="d230397e125">Availability in Post-Migrated Environment</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e130" headers="d230397e119 ">
+                              <p><span class="bold">General Auditing Features</span></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e130 d230397e122 ">
+                              <p>-</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e130 d230397e125 ">
+                              <p>-</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e141" headers="d230397e119 ">
+                              <p>Operating system audit trail</p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e141 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e141 d230397e125 ">
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e151" headers="d230397e119 ">
+                              <p>XML file audit trail</p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e151 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e151 d230397e125 ">
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e161" headers="d230397e119 ">
+                              <p>Network auditing</p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e161 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e161 d230397e125 ">
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e171" headers="d230397e119 ">
+                              <p>The ability of users to audit and to removing auditing from their own schema objects</p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e171 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e171 d230397e125 ">
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e181" headers="d230397e119 ">
+                              <p>Mandatory auditing of audit administrative actions</p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e181 d230397e122 ">
+                              <p>No</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e181 d230397e125 ">
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e191" headers="d230397e119 ">
+                              <p><span class="bold">Auditing Roles</span></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e191 d230397e122 ">
+                              <p>-</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e191 d230397e125 ">
+                              <p>-</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e202" headers="d230397e119 ">
+                              <p><code class="codeph">AUDIT_ADMIN</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e202 d230397e122 ">
+                              <p>Yes, but not needed for users who want to audit their own objects, nor for users who already have the <code class="codeph">ALTER SYSTEM</code> privilege and want to change the auditing initialization parameters
+                              </p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e202 d230397e125 ">
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e216" headers="d230397e119 ">
+                              <p><code class="codeph">AUDIT_VIEWER</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e216 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e216 d230397e125 ">
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e227" headers="d230397e119 ">
+                              <p><span class="bold">System Tables</span></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e227 d230397e122 ">
+                              <p>- </p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e227 d230397e125 ">
+                              <p>-</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e238" headers="d230397e119 ">
+                              <p><code class="codeph">SYS.AUD$</code> 
+                              </p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e238 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e238 d230397e125 ">
+                              <p>Yes, but will only have pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e251" headers="d230397e119 ">
+                              <p><code class="codeph">SYS.FGA_LOG$</code> 
+                              </p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e251 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e251 d230397e125 ">
+                              <p>Yes, but will only have pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e263" headers="d230397e119 ">
+                              <p><span class="bold">Initialization Parameters</span></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e263 d230397e122 ">
+                              <p>-</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e263 d230397e125 ">
+                              <p>-</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e274" headers="d230397e119 ">
+                              <p><code class="codeph">AUDIT_TRAIL</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e274 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e274 d230397e125 ">
+                              <p>Yes, but will not have any effect</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e285" headers="d230397e119 ">
+                              <p><code class="codeph">AUDIT_FILE_DEST</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e285 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e285 d230397e125 ">
+                              <p>Yes, but will not have any effect</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e296" headers="d230397e119 ">
+                              <p><code class="codeph">AUDIT_SYS_OPERATIONS</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e296 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e296 d230397e125 ">
+                              <p>Yes, but will not have any effect</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e307" headers="d230397e119 ">
+                              <p><code class="codeph">AUDIT_SYSLOG_LEVEL</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e307 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e307 d230397e125 ">
+                              <p>Yes, but will not have any effect</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e318" headers="d230397e119 ">
+                              <p><code class="codeph">UNIFIED_AUDIT_SGA_QUEUE_SIZE</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e318 d230397e122 ">
+                              <p>Yes, but note that this parameter has been deprecated, but is currently retained for backward compatibility.</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e318 d230397e125 ">
+                              <p>Yes, but note that this parameter has been deprecated, but is currently retained for backward compatibility.</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e329" headers="d230397e119 ">
+                              <p><span class="bold">Data Dictionary Views</span> <a id="fn_1" name="fn_1" href="#fn_1" onclick='footdisplay(1, "These data dictionary views will continue to show audit data from audit records that are still in the SYS.AUD$ and SYS.FGA_LOG$ system tables. Unified audit trail records are shown only in the unified audit trail-specific views. You must be granted the AUDIT_ADMIN or AUDIT_VIEWER role to query any views that are not prefaced with USER_. ")'><sup>Foot&nbsp;1</sup></a></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e329 d230397e122 ">
+                              <p>-</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e329 d230397e125 ">
+                              <p>-</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e359" headers="d230397e119 ">
+                              <p><code class="codeph">ALL_AUDIT_POLICIES</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e359 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e359 d230397e125 ">
+                              <p>Yes, but only if fine-grained audit policies are created using the <code class="codeph">DBMS_FGA</code> PL/SQL package
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e373" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_AUDIT_POLICIES</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e373 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e373 d230397e125 ">
+                              <p>Yes, but only if fine-grained audit policies are created using the <code class="codeph">DBMS_FGA</code> PL/SQL package
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e387" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_AUDIT_POLICY_COLUMNS</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e387 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e387 d230397e125 ">
+                              <p>Yes, but only if fine-grained audit policies are created using the <code class="codeph">DBMS_FGA</code> PL/SQL package
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e402" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_COMMON_AUDIT_TRAIL</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e402 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e402 d230397e125 ">
+                              <p>Yes, but will only have pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e413" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_AUDIT_EXISTS</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e413 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e413 d230397e125 ">
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e424" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_AUDIT_OBJECT</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e424 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e424 d230397e125 ">
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e435" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_AUDIT_POLICIES</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e435 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e435 d230397e125 ">
+                              <p>Yes, but only if fine-grained audit policies are created using the <code class="codeph">DBMS_FGA</code> PL/SQL package
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e449" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_AUDIT_POLICY_COLUMNS</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e449 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e449 d230397e125 ">
+                              <p>Yes, but only if fine-grained audit policies are created using the <code class="codeph">DBMS_FGA</code> PL/SQL package
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e463" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_AUDIT_SESSION</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e463 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e463 d230397e125 ">
+                              <p>Yes, but will only have pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e474" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_AUDIT_STATEMENT</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e474 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e474 d230397e125 ">
+                              <p>Yes, but will only have pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e485" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_AUDIT_TRAIL</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e485 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e485 d230397e125 ">
+                              <p>Yes, but will only have pre-unified audit records. The <code class="codeph">RLS_INFO</code> column captures audited Oracle VPD predicates.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e499" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_FGA_AUDIT_TRAIL</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e499 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e499 d230397e125 ">
+                              <p>Yes, but will only have pre-unified audit records. The <code class="codeph">RLS_INFO</code> column captures audited Oracle VPD predicates.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e513" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_OBJ_AUDIT_OPTS</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e513 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e513 d230397e125 ">
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e524" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_PRIV_AUDIT_OPTS</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e524 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e524 d230397e125 ">
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e536" headers="d230397e119 ">
+                              <p><code class="codeph">DBA_STMT_AUDIT_OPTS</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e536 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e536 d230397e125 ">
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e547" headers="d230397e119 ">
+                              <p><code class="codeph">UNIFIED_AUDIT_TRAIL</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e547 d230397e122 ">
+                              <p>Yes, but does not collect any audit records</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e547 d230397e125 ">
+                              <p>Yes, and collects audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e558" headers="d230397e119 ">
+                              <p><code class="codeph">USER_AUDIT_OBJECT</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e558 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e558 d230397e125 ">
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e569" headers="d230397e119 ">
+                              <p><code class="codeph">USER_AUDIT_POLICY_COLUMN</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e569 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e569 d230397e125 ">
+                              <p>Yes, but only if fine-grained audit policies are created using the <code class="codeph">DBMS_FGA</code> PL/SQL package
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e583" headers="d230397e119 ">
+                              <p><code class="codeph">USER_AUDIT_POLICIES</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e583 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e583 d230397e125 ">
+                              <p>Yes, but only if fine-grained audit policies are created using the <code class="codeph">DBMS_FGA</code> PL/SQL package
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e597" headers="d230397e119 ">
+                              <p><code class="codeph">USER_AUDIT_SESSION</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e597 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e597 d230397e125 ">
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e608" headers="d230397e119 ">
+                              <p><code class="codeph">USER_AUDIT_STATEMENT</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e608 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e608 d230397e125 ">
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e619" headers="d230397e119 ">
+                              <p><code class="codeph">USER_AUDIT_TRAIL</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e619 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e619 d230397e125 ">
+                              <p>Yes, but will only have pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e630" headers="d230397e119 ">
+                              <p><code class="codeph">USER_OBJ_AUDIT_OPTS</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e630 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e630 d230397e125 ">
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e641" headers="d230397e119 ">
+                              <p><code class="codeph">V$XML_AUDIT_TRAIL</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e641 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e641 d230397e125 ">
+                              <p>Yes, but will only have pre-unified audit records. The <code class="codeph">RLS_INFO</code> column captures audited Oracle VPD predicates.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e655" headers="d230397e119 ">
+                              <p><span class="bold">CREATE AUDIT POLICY, ALTER AUDIT POLICY, and DROP AUDIT POLICY Statements</span></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e655 d230397e122 ">
+                              <p>The statements are available, but the audit policies will not write to the old audit trails. When a policy is enabled, its audit records are written to the unified audit trail.</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e655 d230397e125 ">
+                              <p>Yes, but writes the audit record to the unified audit trail only</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e667" headers="d230397e119 ">
+                              <p><span class="bold">AUDIT and NOAUDIT Statements</span></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e667 d230397e122 ">
+                              <p>-</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e667 d230397e125 ">
+                              <p>-</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e678" headers="d230397e119 ">
+                              <p><code class="codeph">AUDIT</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e678 d230397e122 ">
+                              <p>Yes, and can be used in a multitenant environment</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e678 d230397e125 ">
+                              <p>Yes, but enhanced to enable audit policies; create application context audit settings; create audit records on success, failure, or both; and use in a multitenant environment</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e689" headers="d230397e119 ">
+                              <p><code class="codeph">NOAUDIT</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e689 d230397e122 ">
+                              <p>Yes, and can be used in a multitenant environment</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e689 d230397e125 ">
+                              <p>Yes, but changed to disable audit policies, disable application context audit settings, and use in a multitenant environment</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e700" headers="d230397e119 ">
+                              <p><span class="bold">DBMS_FGA.ADD_POLICY Procedure</span> <span class="bold">Parameters</span></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e700 d230397e122 ">
+                              <p>-</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e700 d230397e125 ">
+                              <p>-</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e714" headers="d230397e119 ">
+                              <p><code class="codeph">audit_trail</code> 
+                              </p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e714 d230397e122 ">
+                              <p>Yes, and is used as in previous releases</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e714 d230397e125 ">
+                              <p>Yes, but when unified auditing is enabled, you can omit this parameter because all records will be written to the unified audit trail.</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e726" headers="d230397e119 ">
+                              <p><span class="bold">DBMS_AUDIT_MGMT Package  AUDIT_TRAIL_TYPE Property Options</span></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e726 d230397e122 ">
+                              <p>-</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e726 d230397e125 ">
+                              <p>-</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e739" headers="d230397e119 ">
+                              <p><code class="codeph">DBMS_AUDIT_MGMT.AUDIT_TRAIL_AUD_STD</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e739 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e739 d230397e125 ">
+                              <p>Yes, but only pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e750" headers="d230397e119 ">
+                              <p><code class="codeph">DBMS_AUDIT_MGMT.AUDIT_TRAIL_FGA_STD</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e750 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e750 d230397e125 ">
+                              <p>Yes, but only pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e761" headers="d230397e119 ">
+                              <p><code class="codeph">DBMS_AUDIT_MGMT.AUDIT_TRAIL_DB_STD</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e761 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e761 d230397e125 ">
+                              <p>Yes, but only pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e772" headers="d230397e119 ">
+                              <p><code class="codeph">DBMS_AUDIT_MGMT.AUDIT_TRAIL_OS</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e772 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e772 d230397e125 ">
+                              <p>Yes, but only pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e783" headers="d230397e119 ">
+                              <p><code class="codeph">DBMS_AUDIT_MGMT.AUDIT_TRAIL_XML</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e783 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e783 d230397e125 ">
+                              <p>Yes, but only pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e795" headers="d230397e119 ">
+                              <p><code class="codeph">DBMS_AUDIT_MGMT.AUDIT_TRAIL_FILES</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e795 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e795 d230397e125 ">
+                              <p>Yes, but only pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e806" headers="d230397e119 ">
+                              <p><code class="codeph">DBMS_AUDIT_MGMT.AUDIT_TRAIL_ALL</code></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e806 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e806 d230397e125 ">
+                              <p>Yes, but only pre-unified audit records</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e817" headers="d230397e119 ">
+                              <p><span class="bold">Oracle Database Vault Features</span></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e817 d230397e122 ">
+                              <p>-</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e817 d230397e125 ">
+                              <p>-</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e828" headers="d230397e119 ">
+                              <p><code class="codeph">DVSYS.AUDIT_TRAIL$</code> system table
+                              </p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e828 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e828 d230397e125 ">
+                              <p>Is renamed to <code class="codeph">DVSYS.OLD_AUDIT_TRAIL$</code> and retains the old audit records. The previous <code class="codeph">DVSYS.AUDIT_TRAIL$</code> table is made into a view named <code class="codeph">DVSYS.AUDIT_TRAIL$</code>. No new audit records are added.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e849" headers="d230397e119 ">
+                              <p><span class="bold">Oracle Label Security Features</span></p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e849 d230397e122 ">
+                              <p>-</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e849 d230397e125 ">
+                              <p>-</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="34%" id="d230397e860" headers="d230397e119 ">
+                              <p><code class="codeph">SA_AUDIT_ADMIN</code> PL/SQL package
+                              </p>
+                           </td>
+                           <td align="left" valign="top" width="34%" headers="d230397e860 d230397e122 ">
+                              <p>Yes</p>
+                           </td>
+                           <td align="left" valign="top" width="32%" headers="d230397e860 d230397e125 ">
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="tablefootnote"><sup class="tablefootnote">Footnote&nbsp;1 </sup></p><p>These data dictionary views will continue to show audit data from audit records that are still in the <code class="codeph">SYS.AUD$</code> and <code class="codeph">SYS.FGA_LOG$</code> system tables. Unified audit trail records are shown only in the unified audit trail-specific views. You must be granted the <code class="codeph">AUDIT_ADMIN</code> or <code class="codeph">AUDIT_VIEWER</code> role to query any views that are not prefaced with <code class="codeph">USER_</code>. 
+                  </p>
+               <p></p>
+            </div>
+            <div>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="part_7.html" title="Part VII contains a set of reference appendixes.">Appendixes</a></p>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+      </article>
+   </body>
+</html>

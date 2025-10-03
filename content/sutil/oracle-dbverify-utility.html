@@ -1,0 +1,636 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="DBVERIFY: Offline Database Verification Utility">
+      <meta name="abstract" content="DBVERIFY is an external command-line utility that performs a physical data structure integrity check.">
+      <meta name="description" content="DBVERIFY is an external command-line utility that performs a physical data structure integrity check.">
+      <meta name="DC.subject" content="DBVERIFY utility, restrictions, validating disk blocks, syntax, output, validating a segment">
+      <meta name="keywords" content="DBVERIFY utility, restrictions, validating disk blocks, syntax, output, validating a segment">
+      <meta name="DC.Relation" scheme="URI" content="other-oracle-utilities.html#GUID-FCEA49BD-D3AF-4337-88F1-3A23545F35A6">
+      <meta name="DC.Relation" scheme="URI" content="oracle-dbverify-utility.html#GUID-8D0DA90D-A711-4AEE-B546-53446F3F8053">
+      <meta name="DC.Relation" scheme="URI" content="oracle-dbverify-utility.html#GUID-820047A4-496A-4AAE-A18A-DDD8C65780E6">
+      <meta name="DC.Creator" content="William Beauregard">
+      <meta name="DC.Creator" content="Steve DiPirro">
+      <meta name="DC.Creator" content="John Kalogeropoulos">
+      <meta name="DC.Creator" content="Dan Mullen">
+      <meta name="DC.Creator" content="Rod Payne">
+      <meta name="DC.Creator" content="Rich Phillips">
+      <meta name="DC.Creator" content="Mike Sakayeda">
+      <meta name="DC.Creator" content="Jim Stenoish">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Douglas Williams">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-05C9875B-1AC1-433D-A71E-B7C0667EE1F1">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="DBVERIFY is an external command-line utility that performs a physical data structure integrity check.">
+      <meta name="description" content="DBVERIFY is an external command-line utility that performs a physical data structure integrity check.">
+      <title>DBVERIFY: Offline Database Verification Utility</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Utilities ">
+      <meta property="og:description" content="DBVERIFY is an external command-line utility that performs a physical data structure integrity check.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Utilities">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-database-utilities-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-16T12:44:53-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96081-31">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="oracle-adr-command-interpreter-adrci.html" title="Previous" type="text/html">
+      <link rel="next" href="oracle-dbnewid-utility.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Database Utilities Guide">
+    <meta name="dcterms.isVersionOf" content="SUTIL">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"DBVERIFY: Offline Database Verification Utility","description":"DBVERIFY is an external command-line utility that performs a physical data structure integrity check.","datePublished":"2025-06-16 CST","dateModified":"2025-06-16 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="oracle-adr-command-interpreter-adrci.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="oracle-dbnewid-utility.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-05C9875B-1AC1-433D-A71E-B7C0667EE1F1" name="GUID-05C9875B-1AC1-433D-A71E-B7C0667EE1F1"></a><a id="SUTIL013"></a>
+         
+         <h2 id="SUTIL-GUID-05C9875B-1AC1-433D-A71E-B7C0667EE1F1" class="sect2"><span class="enumeration_chapter">21 </span> DBVERIFY: Offline Database Verification Utility
+         </h2>
+         <div class="ind">
+            <div>
+               <p>DBVERIFY is an external command-line utility that performs a physical data structure integrity check. </p>
+               <p>DBVERIFY can be used on offline or online databases, as well on backup files. You use DBVERIFY primarily when you need to ensure that a backup database (or data file) is valid before it is restored, or as a diagnostic aid when you have encountered data corruption problems. Because DBVERIFY can be run against an offline database, integrity checks are significantly faster.</p>
+               <p>DBVERIFY checks are limited to cache-managed blocks (that is, data blocks). Because DBVERIFY is only for use with data files, it does not work against control files or redo logs.</p>
+               <p>There are two command-line interfaces to DBVERIFY. With the first interface, you specify disk blocks of a single data file for checking. With the second interface, you specify a segment for checking. Both interfaces are started with the <code class="codeph">dbv</code> command. The following sections provide descriptions of these interfaces:
+               </p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="oracle-dbverify-utility.html#GUID-8D0DA90D-A711-4AEE-B546-53446F3F8053">Using DBVERIFY to Validate Disk Blocks of a Single Data File</a><br>In this mode, DBVERIFY scans one or more disk blocks of a single data file and performs page checks.
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-dbverify-utility.html#GUID-820047A4-496A-4AAE-A18A-DDD8C65780E6">Using DBVERIFY to Validate a Segment</a><br>In this mode, DBVERIFY enables you to specify a table segment or index segment for verification. 
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="other-oracle-utilities.html#GUID-FCEA49BD-D3AF-4337-88F1-3A23545F35A6">Other Utilities</a></p>
+                  </div>
+               </div>
+            </div>
+            <a id="SUTIL1532"></a><div class="props_rev_3"><a id="GUID-8D0DA90D-A711-4AEE-B546-53446F3F8053" name="GUID-8D0DA90D-A711-4AEE-B546-53446F3F8053"></a><h3 id="SUTIL-GUID-8D0DA90D-A711-4AEE-B546-53446F3F8053" class="sect3"><span class="enumeration_section">21.1 </span>Using DBVERIFY to Validate Disk Blocks of a Single Data File
+               </h3>
+               <div>
+                  <p>In this mode, DBVERIFY scans one or more disk blocks of a single data file and performs page checks.</p>
+                  <p>If the file you are verifying is an Oracle Automatic Storage Management (Oracle ASM) file, then you must supply a <code class="codeph">USERID</code>. This is because DBVERIFY needs to connect to an Oracle instance to access Oracle ASM files.
+                  </p>
+               </div>
+               <div>
+                  <ul class="ullinks">
+                     <li class="ulchildlink"><a href="oracle-dbverify-utility.html#GUID-6FF4BDDC-52FD-45C9-A39A-75B0D50F42DC">DBVERIFY Syntax When Validating Blocks of a Single File</a><br>See the syntax for using <code class="codeph">DBVERIFY</code> to validate blocks of a         single file.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-dbverify-utility.html#GUID-EF7EB366-D15E-4293-B9F0-3AA127A5207A">DBVERIFY Parameters When Validating Blocks of a Single File</a><br>See the <code class="codeph">DBVERIFY</code> parameters that you can use to validate         blocks of a single file.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-dbverify-utility.html#GUID-3A0924BD-1F5D-4E29-B995-AC82C9EA9580">Example DBVERIFY Output For a Single Data File</a><br>See an example of verification for a single data file, and how you can         interpret it.
+                     </li>
+                  </ul>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-dbverify-utility.html#GUID-05C9875B-1AC1-433D-A71E-B7C0667EE1F1" title="DBVERIFY is an external command-line utility that performs a physical data structure integrity check.">DBVERIFY: Offline Database Verification Utility</a></p>
+                     </div>
+                  </div>
+               </div>
+               <a id="SUTIL1533"></a><div class="props_rev_3"><a id="GUID-6FF4BDDC-52FD-45C9-A39A-75B0D50F42DC" name="GUID-6FF4BDDC-52FD-45C9-A39A-75B0D50F42DC"></a><h4 id="SUTIL-GUID-6FF4BDDC-52FD-45C9-A39A-75B0D50F42DC" class="sect4"><span class="enumeration_section">21.1.1 </span>DBVERIFY Syntax When Validating Blocks of a Single File
+                  </h4>
+                  <div>
+                     <p>See the syntax for using <code class="codeph">DBVERIFY</code> to validate blocks of a
+        single file.
+                     </p>
+                     <div class="section">
+                        <p>The syntax for <code class="codeph">DBVERIFY</code> when you want to validate disk blocks of a single data file is as follows:
+                        </p>
+                        <div class="figure" id="GUID-6FF4BDDC-52FD-45C9-A39A-75B0D50F42DC__GUID-DC0EF076-1A59-4AD7-8BC6-55A0E7C0ADBC"><img height="299" width="299" src="img/dbverify.gif" alt="Description of dbverify.eps follows" title="Description of dbverify.eps follows" longdesc="img_text/dbverify.html"><br><a href="img_text/dbverify.html">Description of the illustration dbverify.eps</a></div>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbverify-utility.html#GUID-8D0DA90D-A711-4AEE-B546-53446F3F8053" title="In this mode, DBVERIFY scans one or more disk blocks of a single data file and performs page checks.">Using DBVERIFY to Validate Disk Blocks of a Single Data File</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL1534"></a><div class="props_rev_3"><a id="GUID-EF7EB366-D15E-4293-B9F0-3AA127A5207A" name="GUID-EF7EB366-D15E-4293-B9F0-3AA127A5207A"></a><h4 id="SUTIL-GUID-EF7EB366-D15E-4293-B9F0-3AA127A5207A" class="sect4"><span class="enumeration_section">21.1.2 </span>DBVERIFY Parameters When Validating Blocks of a Single File
+                  </h4>
+                  <div>
+                     <p>See the <code class="codeph">DBVERIFY</code> parameters that you can use to validate
+        blocks of a single file.
+                     </p>
+                     <div class="tblformal" id="GUID-EF7EB366-D15E-4293-B9F0-3AA127A5207A__GUID-B8960422-3AC7-4A55-83E7-FA26F81F6D12">
+                        <table cellpadding="4" cellspacing="0" class="Formal" title summary="DBVERIFY parameters for validating disk blocks of a single data file" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="40%" id="d156059e291">
+                            Parameter
+                        </th>
+                                 <th align="left" valign="bottom" width="60%" id="d156059e296">
+                            Description
+                        </th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d156059e303" headers="d156059e291 ">
+                                    
+                                    <p><code class="codeph">USERID</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d156059e303 d156059e296 ">
+                                    
+                                    <p>Specifies your username and password.</p>
+                                    
+                                    <p>This parameter is only necessary when the files being
+                                verified are Oracle ASM files.</p>
+                                    
+                                    <p> If you do specify this parameter, then you must enter
+                                both a username and a password; otherwise, a <code class="codeph">DBV-00112:
+                                    USERID incorrectly specified</code> error is returned.
+                                    </p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d156059e324" headers="d156059e291 ">
+                                    
+                                    <p><code class="codeph">FILE</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d156059e324 d156059e296 ">
+                                    
+                                    <p>The name of the database file that you want to
+                                verify.</p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d156059e336" headers="d156059e291 ">
+                                    
+                                    <p><code class="codeph">START</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d156059e336 d156059e296 ">
+                                    
+                                    <p>The starting block address that you want to verify.
+                                Specify block addresses in Oracle blocks (as opposed to operating
+                                system blocks). If you do not specify <code class="codeph">START</code>, then
+                                    <code class="codeph">DBVERIFY</code> defaults to the first block in the
+                                file.
+                                    </p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d156059e354" headers="d156059e291 ">
+                                    
+                                    <p><code class="codeph">END</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d156059e354 d156059e296 ">
+                                    
+                                    <p>The ending block address that you want to verify. If you
+                                do not specify <code class="codeph">END</code>, then <code class="codeph">DBVERIFY</code>
+                                defaults to the last block in the file.
+                                    </p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d156059e372" headers="d156059e291 ">
+                                    
+                                    <p><code class="codeph">BLOCKSIZE</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d156059e372 d156059e296 ">
+                                    
+                                    <p><code class="codeph">BLOCKSIZE</code> is required only if the file
+                                that you want to be verified does not have a block size of 2 KB. If
+                                the file does not have block size of 2 KB, and you do not specify
+                                    <code class="codeph">BLOCKSIZE</code>, then you will receive the error
+                                DBV-00103.
+                                    </p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d156059e389" headers="d156059e291 ">
+                                    
+                                    <p><code class="codeph">HIGH_SCN</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d156059e389 d156059e296 ">
+                                    
+                                    <p>When a value is specified for <code class="codeph">HIGH_SCN</code>,
+                                    <code class="codeph">DBVERIFY</code> writes diagnostic messages for each
+                                block whose block-level system change number (SCN) exceeds the value
+                                specified. 
+                                    </p>
+                                    
+                                    <p>This parameter is optional. There is no default.</p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d156059e410" headers="d156059e291 ">
+                                    
+                                    <p><code class="codeph">LOGFILE</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d156059e410 d156059e296 ">
+                                    
+                                    <p>Specifies the log file name and path to which logging
+                                information should be written. The default sends output to the
+                                terminal display. </p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d156059e422" headers="d156059e291 ">
+                                    
+                                    <p><code class="codeph">FEEDBACK</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d156059e422 d156059e296 ">
+                                    
+                                    <p>Causes <code class="codeph">DBVERIFY</code> to send a progress
+                                display to the terminal in the form of a single period (.) for
+                                        <code class="codeph"><span class="variable" translate="no">n</span></code> number of
+                                pages verified during the <code class="codeph">DBVERIFY</code> run. If
+                                        <code class="codeph"><span class="variable" translate="no">n</span></code> = 0, then
+                                there is no progress display.
+                                    </p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d156059e448" headers="d156059e291 ">
+                                    
+                                    <p><code class="codeph">HELP</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d156059e448 d156059e296 ">
+                                    
+                                    <p>Provides online help. For help on command line parameters
+                                in a given version of <code class="codeph">DBVERIFY</code>, type <code class="codeph">dbv
+                                    help=y</code> at the command line.
+                                    </p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="40%" id="d156059e466" headers="d156059e291 ">
+                                    
+                                    <p><code class="codeph">PARFILE</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="60%" headers="d156059e466 d156059e296 ">
+                                    
+                                    <p>Specifies the name of the parameter file to use. You can
+                                store various values for <code class="codeph">DBVERIFY</code> parameters in
+                                flat files. Doing this enables you to customize parameter files to
+                                handle different types of data files, and to perform specific types
+                                of integrity checks on data files. 
+                                    </p>
+                                    
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="https://support.oracle.com/rs?type=doc&amp;id=35512.1" target="_blank">DBVERIFY - Database file Verification Utility (Doc ID 35512.1)</a></li>
+                        </ul>
+                     </div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbverify-utility.html#GUID-8D0DA90D-A711-4AEE-B546-53446F3F8053" title="In this mode, DBVERIFY scans one or more disk blocks of a single data file and performs page checks.">Using DBVERIFY to Validate Disk Blocks of a Single Data File</a></p>
+                        </div>
+                     </div>
+                  </div>
+               </div><a id="SUTIL1535"></a><div class="props_rev_4"><a id="GUID-3A0924BD-1F5D-4E29-B995-AC82C9EA9580" name="GUID-3A0924BD-1F5D-4E29-B995-AC82C9EA9580"></a><h4 id="SUTIL-GUID-3A0924BD-1F5D-4E29-B995-AC82C9EA9580" class="sect4"><span class="enumeration_section">21.1.3 </span>Example DBVERIFY Output For a Single Data
+        File
+                  </h4>
+                  <div>
+                     <p>See an example of verification for a single data file, and how you can
+        interpret it.</p>
+                     <p>The following is an example verification of the file
+                <code class="codeph">t_db1.dbf</code>. The feedback parameter has been given the value 100 to
+            display one period (.) for every 100 pages processed. 
+                     </p><pre class="pre codeblock"><code>% dbv FILE=t_db1.dbf FEEDBACK=100</code></pre><div class="section">
+                        <p class="subhead3" id="GUID-3A0924BD-1F5D-4E29-B995-AC82C9EA9580__GUID-21B5DFE5-5AC4-4359-8F5A-5AC3D9DE2A3E">Output example</p>
+                        
+                        
+                        <p>The output of this command is as follows: </p>
+                        <pre class="nocopybutton"><code>
+.
+.
+.
+DBVERIFY - Verification starting : FILE = t_db1.f
+DBVERIFY - Verification complete
+
+Total Pages Examined : 120424
+Total Pages Processed (Data) : 79507
+Total Pages Failing (Data) : 0
+Total Pages Processed (Index): 15236
+Total Pages Failing (Index): 0
+Total Pages Processed (Other): 5626
+Total Pages Processed (Seg) : 1
+Total Pages Failing (Seg) : 0
+Total Pages Empty : 20055
+Total Pages Marked Corrupt : 0
+Total Pages Influx : 0
+Total Pages Encrypted : 0
+Highest block SCN : 25565681 (0.25565681)</code></pre>
+                        </div>
+                     <div class="section">
+                        <p class="subhead3" id="GUID-3A0924BD-1F5D-4E29-B995-AC82C9EA9580__GUID-BD6B3F69-A4AE-4201-9DCE-8780FD470724">Notes</p>
+                        
+                        
+                        <ul style="list-style-type: disc;" id="GUID-3A0924BD-1F5D-4E29-B995-AC82C9EA9580__UL_O2X_PPS_DZB">
+                           <li>Pages = Blocks </li>
+                           <li>Total Pages Examined = number of blocks in the file.</li>
+                           <li>Total Pages Processed (Data) = number of blocks that were verified (formatted
+                    blocks).</li>
+                           <li>Total Pages Processed (Other) =  metadata blocks. These blocks are not being
+                    verified, so there is no output for "Total Pages Failing (Other)."</li>
+                           <li>Total Pages Processed (Seg) = number of segment header blocks.</li>
+                           <li>Total Pages Failing (Data) = number of blocks that failed the data
+                    block checking routine.</li>
+                           <li>Total Pages Failing (Index) = number of blocks that failed the
+                    index block checking routine.</li>
+                           <li>Total Pages Marked Corrupt = number of blocks for which the cache
+                    header is invalid, thereby making it impossible for <code class="codeph">DBVERIFY</code> to
+                    identify the block type.
+                           </li>
+                           <li>Total Pages Influx = number of blocks that are being read and
+                    written to at the same time. If the database is open when
+                        <code class="codeph">DBVERIFY</code> is run, then <code class="codeph">DBVERIFY</code> reads
+                    blocks multiple times to obtain a consistent image. But because the database is
+                    open, there can be blocks that are being read and written to at the same time
+                        (<code class="codeph">INFLUX</code>). In that event, <code class="codeph">DBVERIFY</code> cannot
+                    obtain a consistent image of pages that are in flux.
+                           </li>
+                           <li>Total Pages Encrypted = all blocks (Data, Index, Other, Seg), not only Data or
+                    Index. When "Total Pages Encrypted" is different than zero, DBVERIFY outputs the
+                    message "DBVerify cannot perform logical check against encrypted blocks, RMAN
+                    should be used."</li>
+                        </ul>
+                        
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbverify-utility.html#GUID-8D0DA90D-A711-4AEE-B546-53446F3F8053" title="In this mode, DBVERIFY scans one or more disk blocks of a single data file and performs page checks.">Using DBVERIFY to Validate Disk Blocks of a Single Data File</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div>
+            </div><a id="SUTIL1536"></a><div class="props_rev_3"><a id="GUID-820047A4-496A-4AAE-A18A-DDD8C65780E6" name="GUID-820047A4-496A-4AAE-A18A-DDD8C65780E6"></a><h3 id="SUTIL-GUID-820047A4-496A-4AAE-A18A-DDD8C65780E6" class="sect3"><span class="enumeration_section">21.2 </span>Using DBVERIFY to Validate a Segment
+               </h3>
+               <div>
+                  <p>In this mode, DBVERIFY enables you to specify a table segment or index segment for verification. </p>
+                  <p>It checks to ensure that a row chain pointer is within the segment being verified.</p>
+                  <p>This mode requires that you specify a segment (data or index) to be validated. It also requires that you log on to the database with <code class="codeph">SYSDBA</code> privileges, because information about the segment must be retrieved from the database.
+                  </p>
+                  <p>During this mode, the segment is locked. If the specified segment is an index, then the parent table is locked. Note that some indexes, such as IOTs, do not have parent tables.</p>
+               </div>
+               <div>
+                  <ul class="ullinks">
+                     <li class="ulchildlink"><a href="oracle-dbverify-utility.html#GUID-2D21EE08-554A-42C6-AED6-50FBCD350433">DBVERIFY Syntax When Validating a Segment</a><br>See the syntax for using <code class="codeph">DBVERIFY</code> to validate a         segment.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-dbverify-utility.html#GUID-371A0917-9267-4704-8CF3-6E5120034B9A">DBVERIFY Parameters When Validating a Single Segment</a><br>See the <code class="codeph">DBVERIFY</code> parameters that you can use to validate a         single segment.
+                     </li>
+                     <li class="ulchildlink"><a href="oracle-dbverify-utility.html#GUID-50FB7BD4-33F5-4A09-B80D-B4E268C16298">Example DBVERIFY Output For a Validated Segment</a><br>See an example of a verification for a validated segment.
+                     </li>
+                  </ul>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-dbverify-utility.html#GUID-05C9875B-1AC1-433D-A71E-B7C0667EE1F1" title="DBVERIFY is an external command-line utility that performs a physical data structure integrity check.">DBVERIFY: Offline Database Verification Utility</a></p>
+                     </div>
+                  </div>
+               </div>
+               <a id="SUTIL1537"></a><div class="props_rev_3"><a id="GUID-2D21EE08-554A-42C6-AED6-50FBCD350433" name="GUID-2D21EE08-554A-42C6-AED6-50FBCD350433"></a><h4 id="SUTIL-GUID-2D21EE08-554A-42C6-AED6-50FBCD350433" class="sect4"><span class="enumeration_section">21.2.1 </span>DBVERIFY Syntax When Validating a Segment
+                  </h4>
+                  <div>
+                     <p>See the syntax for using <code class="codeph">DBVERIFY</code> to validate a
+        segment.
+                     </p>
+                     <div class="section">
+                        <p>The syntax for <code class="codeph">DBVERIFY</code> when you want to validate a segment is as follows:
+                        </p>
+                        <div class="figure" id="GUID-2D21EE08-554A-42C6-AED6-50FBCD350433__GUID-2156E49F-3638-47E9-9AFB-123DFAA83CE6"><img height="285" width="285" src="img/dbverify_seg.gif" alt="Description of dbverify_seg.eps follows" title="Description of dbverify_seg.eps follows" longdesc="img_text/dbverify_seg.html"><br><a href="img_text/dbverify_seg.html">Description of the illustration dbverify_seg.eps</a></div>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbverify-utility.html#GUID-820047A4-496A-4AAE-A18A-DDD8C65780E6" title="In this mode, DBVERIFY enables you to specify a table segment or index segment for verification.">Using DBVERIFY to Validate a Segment</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL1538"></a><div class="props_rev_4"><a id="GUID-371A0917-9267-4704-8CF3-6E5120034B9A" name="GUID-371A0917-9267-4704-8CF3-6E5120034B9A"></a><h4 id="SUTIL-GUID-371A0917-9267-4704-8CF3-6E5120034B9A" class="sect4"><span class="enumeration_section">21.2.2 </span>DBVERIFY Parameters When Validating a Single Segment
+                  </h4>
+                  <div>
+                     <p>See the <code class="codeph">DBVERIFY</code> parameters that you can use to validate a
+        single segment.
+                     </p>
+                     <div class="tblformal" id="GUID-371A0917-9267-4704-8CF3-6E5120034B9A__GUID-0DF0F45A-1506-4207-987A-ECE9FA228610">
+                        <table cellpadding="4" cellspacing="0" class="Formal" title summary="DBVERIFY parameters to validate a single segment" width="100%" frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="29%" id="d156059e824">Parameter</th>
+                                 <th align="left" valign="bottom" width="71%" id="d156059e827">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d156059e832" headers="d156059e824 ">
+                                    <p><code class="codeph">USERID</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="71%" headers="d156059e832 d156059e827 ">
+                                    <p>Specifies your username and password. If you do not enter both a username and a
+                                password, then the error <code class="codeph">DBV-00112: USERID incorrectly
+                                    specified</code> is returned.
+                                    </p>
+                                    <p> If you are connecting to a container database (CDB), then you would enter <span class="variable" translate="no">username</span>@<span class="variable" translate="no">cdbname</span>/<span class="variable" translate="no">password</span>.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d156059e854" headers="d156059e824 ">
+                                    <p><code class="codeph">SEGMENT_ID</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="71%" headers="d156059e854 d156059e827 ">
+                                    
+                                    <p>Specifies the segment that you want to verify. A segment
+                                identifier is composed of the tablespace ID number
+                                    (<code class="codeph">tsn</code>), segment header file number
+                                    (<code class="codeph">segfile</code>), and segment header block number
+                                    (<code class="codeph">segblock</code>). You can obtain this information
+                                from <code class="codeph">SYS_USER_SEGS</code>. The relevant columns are
+                                    <code class="codeph">TABLESPACE_ID</code>, <code class="codeph">HEADER_FILE</code>,
+                                and <code class="codeph">HEADER_BLOCK</code>. To query
+                                    <code class="codeph">SYS_USER_SEGS</code>, you must have
+                                    <code class="codeph">SYSDBA</code> privileges.
+                                    </p>
+                                    
+                                    <p>For example, if the tablespace number (<code class="codeph">TS#)</code> is 2,
+                                the segment header file number (<code class="codeph">HEADER_FILE)</code> is 5,
+                                and the segment header block number (<code class="codeph">HEADER_BLOCK)</code>
+                                is 37767, then check that segment using
+                                    <code class="codeph">SEGMENT_ID=2.5.37767</code></p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d156059e906" headers="d156059e824 ">
+                                    <p><code class="codeph">HIGH_SCN</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="71%" headers="d156059e906 d156059e827 ">
+                                    <p>When a value is specified for <code class="codeph">HIGH_SCN</code>, <code class="codeph">DBVERIFY</code>
+                                writes diagnostic messages for each block whose block-level SCN
+                                exceeds the value specified. 
+                                    </p>
+                                    <p>This parameter is optional. There is no default.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d156059e922" headers="d156059e824 ">
+                                    <p><code class="codeph">LOGFILE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="71%" headers="d156059e922 d156059e827 ">
+                                    <p>Specifies the file to which logging information should be written. The default sends output to the terminal display. </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d156059e930" headers="d156059e824 ">
+                                    <p><code class="codeph">FEEDBACK</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="71%" headers="d156059e930 d156059e827 ">
+                                    <p>Causes <code class="codeph">DBVERIFY</code> to send a progress display to the terminal in the
+                                form of a single period (.) for
+                                    <code class="codeph"><span class="variable" translate="no">n</span></code> number of pages verified
+                                during the DBVERIFY run. If <code class="codeph"><span class="variable" translate="no">n</span></code> =
+                                0, then there is no progress display.
+                                    </p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d156059e949" headers="d156059e824 ">
+                                    <p><code class="codeph">HELP</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="71%" headers="d156059e949 d156059e827 ">
+                                    <p>Provides online help.</p>
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="29%" id="d156059e957" headers="d156059e824 ">
+                                    <p><code class="codeph">PARFILE</code></p>
+                                 </td>
+                                 <td align="left" valign="top" width="71%" headers="d156059e957 d156059e827 ">
+                                    <p>Specifies the name of the parameter file that you want to use. You can store various
+                                values for <code class="codeph">DBVERIFY</code> parameters in flat files. Doing
+                                this enables you to customize parameter files to handle different
+                                types of data files, and to perform specific types of integrity
+                                checks on data files. 
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+                  <div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbverify-utility.html#GUID-820047A4-496A-4AAE-A18A-DDD8C65780E6" title="In this mode, DBVERIFY enables you to specify a table segment or index segment for verification.">Using DBVERIFY to Validate a Segment</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div><a id="SUTIL1539"></a><div class="props_rev_4"><a id="GUID-50FB7BD4-33F5-4A09-B80D-B4E268C16298" name="GUID-50FB7BD4-33F5-4A09-B80D-B4E268C16298"></a><h4 id="SUTIL-GUID-50FB7BD4-33F5-4A09-B80D-B4E268C16298" class="sect4"><span class="enumeration_section">21.2.3 </span>Example DBVERIFY Output For a Validated
+        Segment
+                  </h4>
+                  <div>
+                     <p>See an example of a verification for a validated segment.</p>
+                     <p>The following is an example of using the <code class="codeph">DBVERIFY</code> command
+            with a tablespace segment, and the output produced by a <code class="codeph">DBVERIFY</code>
+            operation. 
+                     </p><pre class="pre codeblock"><code>% dbv userid=system/ SEGMENT_ID=2.5.37767</code></pre><p>The output of this command is as follows: </p><pre class="nocopybutton" dir="ltr">DBVERIFY - Verification starting : SEGMENT_ID = 2.5.37767
+
+DBVERIFY - Verification complete
+
+Total Pages Examined : 640
+Total Pages Processed (Data) : 0 
+Total Pages Failing (Data) : 0
+Total Pages Processed (Index): 0 
+Total Pages Failing (Index): 0
+Total Pages Processed (Other): 591
+Total Pages Processed (Seg) : 8
+Total Pages Failing (Seg) : 0
+Total Pages Empty : 13
+Total Pages Marked Corrupt : 0
+Total Pages Influx : 0
+Total Pages Encrypted : 28 
+Highest block SCN : 7877587 (0.7877587)</pre></div>
+                  <div>
+                     <div class="relinfo">
+                        <p><strong>Related Topics</strong></p>
+                        <ul>
+                           <li><a href="https://support.oracle.com/rs?type=doc&amp;id=139962.1" target="_blank">DBVERIFY enhancement - How to scan an object/segment (Doc ID
+                139962.1)</a></li>
+                        </ul>
+                     </div>
+                     <div class="familylinks">
+                        <div class="parentlink">
+                           <p><strong>Parent topic:</strong> <a href="oracle-dbverify-utility.html#GUID-820047A4-496A-4AAE-A18A-DDD8C65780E6" title="In this mode, DBVERIFY enables you to specify a table segment or index segment for verification.">Using DBVERIFY to Validate a Segment</a></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

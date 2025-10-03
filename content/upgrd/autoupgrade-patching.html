@@ -1,0 +1,1302 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="AutoUpgrade Patching">
+      <meta name="abstract" content="AutoUpgrade has enhanced capability that enables it to automate all of the necessary steps in the database patching process, including optional downloading of patches.">
+      <meta name="description" content="AutoUpgrade has enhanced capability that enables it to automate all of the necessary steps in the database patching process, including optional downloading of patches.">
+      <meta name="DC.subject" content="autoupgrade patching, AutoUpgrade Patching, Modes and stages, AutoUpgrade, PDB priority">
+      <meta name="keywords" content="autoupgrade patching, AutoUpgrade Patching, Modes and stages, AutoUpgrade, PDB priority">
+      <meta name="DC.Relation" scheme="URI" content="using-autoupgrade-oracle-database-upgrades.html#GUID-71883C8C-7A34-4E93-8955-040CB04F2109">
+      <meta name="DC.Relation" scheme="URI" content="autoupgrade-patching.html#GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5">
+      <meta name="DC.Relation" scheme="URI" content="autoupgrade-patching.html#GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0">
+      <meta name="DC.Relation" scheme="URI" content="autoupgrade-patching.html#GUID-1BF06E22-F473-4020-A5FA-C794F1E4FE25">
+      <meta name="DC.Relation" scheme="URI" content="autoupgrade-patching.html#GUID-B4169A36-FA3F-430E-B5FE-E72082D0B6AD">
+      <meta name="DC.Relation" scheme="URI" content="autoupgrade-patching.html#GUID-903F01E9-719F-481D-80DD-2BCFD995F9E6">
+      <meta name="DC.Relation" scheme="URI" content="autoupgrade-patching.html#GUID-291AF989-ACB9-42CE-8FC5-617A70D57A4E">
+      <meta name="DC.Creator" content="Douglas Williams">
+      <meta name="DC.Creator" content="Drew Adams">
+      <meta name="DC.Creator" content="Pablo Sainz Albanez">
+      <meta name="DC.Creator" content="Frederick Alvarez">
+      <meta name="DC.Creator" content="Yasin Baskan">
+      <meta name="DC.Creator" content="Subhransu Basu">
+      <meta name="DC.Creator" content="Rae Burns">
+      <meta name="DC.Creator" content="Rhonda Day">
+      <meta name="DC.Creator" content="Mike Dietrich">
+      <meta name="DC.Creator" content="Joseph Errede">
+      <meta name="DC.Creator" content="Daniel Overby Hansen">
+      <meta name="DC.Creator" content="Yuan Hao">
+      <meta name="DC.Creator" content="Subrahmanyam Kodavaluru">
+      <meta name="DC.Creator" content="Jai Krisnani">
+      <meta name="DC.Creator" content="Cindy Lim">
+      <meta name="DC.Creator" content="Valarie Moore">
+      <meta name="DC.Creator" content="Byron Motta">
+      <meta name="DC.Creator" content="Satish Panchumarthy">
+      <meta name="DC.Creator" content="Geetha Ravi">
+      <meta name="DC.Creator" content="Carol Tagliaferri">
+      <meta name="DC.Creator" content="Hector Vieyra">
+      <meta name="DC.Creator" content="douglas williams">
+      <meta name="DC.Publisher" content="April2025">
+      <meta name="DC.Date.Modified" content="2024-10-17">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-20D02F58-2A55-4FC6-B726-113AB44FDCB7">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="AutoUpgrade has enhanced capability that enables it to automate all of the necessary steps in the database patching process, including optional downloading of patches.">
+      <meta name="description" content="AutoUpgrade has enhanced capability that enables it to automate all of the necessary steps in the database patching process, including optional downloading of patches.">
+      <title>AutoUpgrade Patching</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Upgrade Guide">
+      <meta property="og:description" content="AutoUpgrade has enhanced capability that enables it to automate all of the necessary steps in the database patching process, including optional downloading of patches.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Upgrade Guide">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-database-upgrade-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-04-29T15:37:34-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="1996, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96252-69">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="autoupgrade-oracle-database-config-options.html" title="Previous" type="text/html">
+      <link rel="next" href="autoupgrade-configuration-file-examples.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Database Upgrade Guide">
+    <meta name="dcterms.isVersionOf" content="UPGRD">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"AutoUpgrade Patching","description":"AutoUpgrade has enhanced capability that enables it to automate all of the necessary steps in the database patching process, including optional downloading of patches.","datePublished":"2025-04-29 CST","dateModified":"2025-04-29 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="autoupgrade-oracle-database-config-options.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="autoupgrade-configuration-file-examples.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-20D02F58-2A55-4FC6-B726-113AB44FDCB7" name="GUID-20D02F58-2A55-4FC6-B726-113AB44FDCB7"></a>
+         
+         <h2 id="UPGRD-GUID-20D02F58-2A55-4FC6-B726-113AB44FDCB7" class="sect2">AutoUpgrade Patching</h2>
+         <div class="ind">
+            <div>
+               <p>AutoUpgrade has enhanced capability that enables it to automate all of the
+                necessary steps in the database patching process, including optional downloading of
+                patches.</p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="autoupgrade-patching.html#GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5">How AutoUpgrade Performs AutoUpgrade Patching</a><br>AutoUpgrade Patching extends the AutoUpgrade upgrade process to patching,         which enables you to perform out-of-place patching for multiple databases using a single         command.
+                  </li>
+                  <li class="ulchildlink"><a href="autoupgrade-patching.html#GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0">AutoUpgrade Patching Stages and Workflows</a><br>AutoUpgrade Patching supports three different job modes. Each mode runs         a different set of stages.
+                  </li>
+                  <li class="ulchildlink"><a href="autoupgrade-patching.html#GUID-1BF06E22-F473-4020-A5FA-C794F1E4FE25">PDB Priority and AutoUpgrade</a><br>For both AutoUpgrade patching and upgrades, AutoUpgrade honors how PDBs will         be prioritized by setting the priority on specifuc PDBs.
+                  </li>
+                  <li class="ulchildlink"><a href="autoupgrade-patching.html#GUID-B4169A36-FA3F-430E-B5FE-E72082D0B6AD">Configuration Parameters and Command-Line Options for AutoUprade Patching</a><br>In addition to other configuration file parameters and command-line options,         there are specific parameters and options for AutoUpgrade Patching.
+                  </li>
+                  <li class="ulchildlink"><a href="autoupgrade-patching.html#GUID-903F01E9-719F-481D-80DD-2BCFD995F9E6">AutoUpgrade Patching Configuration Files and Log Files</a><br>See examples of configuration files and log files for AutoUpgrade Patching.  
+                  </li>
+                  <li class="ulchildlink"><a href="autoupgrade-patching.html#GUID-291AF989-ACB9-42CE-8FC5-617A70D57A4E">AutoUpgrade Patching Workflow Examples</a><br>Use this example of an AutoUpgrade patching workflow to understand the         AutoUpgrade patching procedure. 
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="using-autoupgrade-oracle-database-upgrades.html#GUID-71883C8C-7A34-4E93-8955-040CB04F2109" title="Learn how to use AutoUpgrade to simplify your upgrade tasks.">Using AutoUpgrade for Oracle Database Upgrades</a></p>
+                  </div>
+               </div>
+            </div>
+            
+            <div class="sect2"><a id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5" name="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5"></a><h3 id="UPGRD-GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5" class="sect3">How AutoUpgrade Performs
+        AutoUpgrade Patching</h3>
+               <div>
+                  <p>AutoUpgrade Patching extends the AutoUpgrade upgrade process to patching,
+        which enables you to perform out-of-place patching for multiple databases using a single
+        command.</p>
+                  <div class="infoboxnote" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__GUID-D95BF368-3747-4B58-BA88-26E0748DE8DD">
+                     <p class="notep1">Note:</p>Oracle recommends that you use Oracle
+            Fleet Patching and Provisioning for Oracle Real Application Clusters environments. 
+                  </div>
+                  <p>With the latest release of AutoUpgrade the AutoUpgrade Patching procedure
+            can be performed on Release Update (RU), Monthly Recommended Patches (MRPs), and one-off
+            patches, using out-of-place patching. When you patch from an earlier RU or MRP with
+            AutoUpgrade, the simplicity, reliability, and recoverability of AutoUpgrade is extended
+            to the patching process. As a result, patching is easier to perform, and you also obtain
+            simpler recovery from any issues that can arise during the patch deployment. </p>
+                  <p>There are no additional parameters or options that you need to set in the
+            configuration file for AutoUpgrade to perform patching. Just specify the source and
+            target Oracle homes, and AutoUpgrade will apply changes to the databases. When the
+            source and target Oracle homes are the same Oracle Database release (for example, from
+            19.11 to 19.13), AutoUpgrade identifies the operation as an RU or MRP patch operation.
+            This capability also applies to one-off patches: If the RU or MRP applied to the target
+            Oracle home is later than the RU or MRP of the source Oracle home, then you can apply
+            one-off patches as needed to the target Oracle home using this
+            method.</p>
+                  <p>As AutoUpgrade performs the patch operation, it uses Datapatch to apply an
+            RU or MRP to databases. The process of patching takes advantage of existing AutoUpgrade
+            options and operations, as with a full release upgrade, including creating a Guarantee
+            Restore Point. During the patching process, the database is shut down in the source
+            Oracle home, and brought back up in the target Oracle home. RU or MRP updates are
+            performed in upgrade mode, using Datapatch. </p>
+                  <div class="infoboxnote" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__GUID-C36BDAE7-B1EF-4E3A-9525-9226A5E2EED0">
+                     <p class="notep1">Note:</p>AutoUpgrade does not perform rolling
+            upgrades of Oracle Database releases. Oracle recommends that you use Oracle Fleet
+            Patching and Provisioning to be able to obtain rolling patch maintenance for Oracle Real
+            Application Clusters (Oracle RAC) environments. 
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__GUID-424820BC-2593-41F8-AB3A-772A4462E3D2">Benefits of AutoUpgrade
+                Patching</p>
+                     
+                     
+                     <ul style="list-style-type: disc;" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__UL_BZ4_V4X_DSB">
+                        <li>AutoUpgrade enables patching of all databases specified in the
+                    configuration file, in one operation.</li>
+                        <li>Resume capabilities are already included with AutoUpgrade.</li>
+                        <li>Restore capabilities are provided so that it is possible to roll
+                    back to the earlier release Oracle home: 
+                           <ul style="list-style-type: disc;" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__UL_HJP_5HF_QTB">
+                              <li>Restore using the Guarantee Restore Point (GRP) generated
+                            during the patching process.</li>
+                              <li>If a GRP is not present, then the Datapatch rollback
+                            functionality can also perform a restore. AutoUpgrade detects that a GRP
+                            does not exist, and automatically performs the restore using Datapatch.
+                            To enable a Datapatch rollback restore, set the restoration
+                            configuration option to <code class="codeph">no</code>. For example:
+                                <code class="codeph">sales1.restoration=no</code>. 
+                              </li>
+                           </ul>
+                        </li>
+                        <li>Oracle RAC management is provided automatically with
+                    AutoUpgrade.</li>
+                        <li>The error management reporting features of AutoUpgrade are extended
+                    to patching.</li>
+                        <li>The JSON status and progress reporting of AutoUpgrade are extended
+                    to patching. </li>
+                        <li>AutoUpgrade uses the Datapatch JSON status files to determine
+                    success or failure of each process, and reports those results to you at the
+                    completion of the process.</li>
+                     </ul>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__GUID-AB0A7282-2788-43A4-817E-E22BBCBC4E4B">Features Supported for AutoUpgrade
+                Patching</p>
+                     
+                     
+                     <p>The following features are provided with AutoUpgrade Patching</p>
+                     
+                     <ul style="list-style-type: disc;" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__UL_THN_G54_4TB">
+                        <li>Patching of databases encrypted with Transparent Data Encryption
+                    (TDE).</li>
+                        <li>Hot Cloning/Relocate, which enables you to create PDBs from a
+                    Non-CDB, or from a PDB on a remote host.</li>
+                        <li>Proactive Fixups, which runs postfixups on the PDB as soon as the
+                    PDB is patched. Note that proactive fixups is currently not supported on
+                    Microsofts Windows. </li>
+                        <li>Multi-node patching and upgrades using Oracle Real Application
+                    Clusters (Oracle RAC), which enables AutoUpgrade to spread the workload across
+                    multiple nodes.</li>
+                        <li>Configuration management, by copying or merging the source Oracle
+                    home configuration files (<code class="codeph">tnsnames.ora</code>,
+                        <code class="codeph">sqlnet.ora</code>, and other files) to the target Oracle
+                    home.
+                        </li>
+                        <li>Analysis of the database before starting a patching procedure, to
+                    ensure patch readiness.</li>
+                        <li>Running fixups during production before patching, so that you reduce
+                    downtime. You can then use <code class="codeph">-mode upgrade</code> to bypass running
+                    fixups and proceed directly to patching the database. 
+                        </li>
+                        <li>Performing all patching tasks in Deploy mode, to achieve end-to-end
+                    patching.</li>
+                        <li>Enhanced reporting of the patching process, which enables you to
+                    diagnose errors more easily by using the <code class="codeph">datapatch_summary.log</code>
+                    report.
+                        </li>
+                        <li>Datapatch log files found in the Datapatch summary JSON file are
+                    copied to the output file of the apply or rollback operational logs as
+                        follows:
+                           <ul style="list-style-type: disc;" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__UL_ZYQ_RV4_4TB">
+                              <li>Apply log format, where <code class="codeph"><span class="variable" translate="no">dbname</span></code> is the name of the database:
+                                    <code class="codeph">applydatapatchlogfiles#<span class="variable" translate="no">dbname</span>.log</code></li>
+                              <li>Rollback log format, where <code class="codeph"><span class="variable" translate="no">dbname</span></code> is the name of the database:
+                                    <code class="codeph">rollbackdatapatchlogfiles#<span class="variable" translate="no">dbname</span>.log</code></li>
+                           </ul>
+                        </li>
+                        <li>Datapatch output is logged to following operational logs:
+                           <ul style="list-style-type: disc;" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__UL_L4K_S3W_4TB">
+                              <li>Apply log format, where <code class="codeph"><span class="variable" translate="no">dbname</span></code> is the name of the database:
+                                    <code class="codeph">applyautoupgrade#<span class="variable" translate="no">dbname</span>.log</code></li>
+                              <li>Rollback log format, where <code class="codeph"><span class="variable" translate="no">dbname</span></code> is the name of the database:
+                                    <code class="codeph">rollbackautoupgrade#<span class="variable" translate="no">dbname</span>.log</code></li>
+                           </ul>
+                        </li>
+                        <li>Datapatch JSON output is logged to the following operational
+                        logs:
+                           <ul style="list-style-type: disc;" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__UL_FBW_W3W_4TB">
+                              <li>Apply log format, where <code class="codeph"><span class="variable" translate="no">dbname</span></code> is the name of the database:
+                                    <code class="codeph">applydatapatchsummary#<span class="variable" translate="no">dbname</span>.log</code></li>
+                              <li>Rollback log format, where <code class="codeph"><span class="variable" translate="no">dbname</span></code> is the name of the database:
+                                    <code class="codeph">rollbackdatapatchsummary#<span class="variable" translate="no">dbname</span>.log</code></li>
+                           </ul>
+                        </li>
+                        <li>Storage of all related patching log files produced by AutoUpgrade
+                    are stored in the <code class="codeph">dbupgrade</code> directory.
+                        </li>
+                        <li>Standard Datapatch log files are stored in <code class="codeph"><span class="variable" translate="no">Oracle-base</span>/cfgtoollogs/sqlpatch</code>.
+                        </li>
+                        <li>Starting with AutoUpgrade 23.1, Patching is supported for
+                    single-instance databases on Microsoft Windows. It is not supported with Oracle
+                    Real Application Clusters (Oracle RAC).
+                    </li>
+                     </ul>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__GUID-872FB728-909C-4BF5-8785-6582C61A27D8">Requirements and Restrictions for
+                using AutoUpgrade Patching</p>
+                     
+                     
+                     <ul style="list-style-type: disc;" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__UL_EMG_B2X_DSB">
+                        <li>Downtime is required to use AutoUpgrade Patching:
+                           <ul style="list-style-type: disc;" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__UL_CPH_FHM_STB">
+                              <li>After the patch operation is completed, the database is
+                            restarted.</li>
+                              <li>Patching in normal mode enables the database to be
+                            available in the target home while the patching is proceeding.</li>
+                              <li>Patching in upgrade mode requires the patching to be
+                            completed before the database is restarted in the target home.</li>
+                              <li>During the patch operation, the CDB and PDBs are opened in
+                            normal mode after drain operations complete, and patching proceeds.
+                            However, rolling patching for Oracle Real Application Clusters is not
+                            supported at this time.</li>
+                              <li>To enable PDBs to become available as soon as they are
+                            successfully patched, then ensure that you set the
+                                <code class="codeph">tune_settings</code> option
+                                <code class="codeph">make_pdbs_avaliable</code> to <code class="codeph">true</code> in
+                            your configuration file. For example:
+                                <code class="codeph">sales3.tune_setting=proactive_fixups=true,make_pdbs_available=true</code></li>
+                              <li>Because downtime is required, rolling upgrades of Oracle
+                            RAC are not supported at this time. </li>
+                           </ul>
+                        </li>
+                        <li>AutoUpgrade can support a target RU or MRP that has additional
+                    patches applied. However, the source Oracle Database must be on an earlier RU or
+                    MRP than the target Oracle Database RU or MRP. </li>
+                        <li>AutoUpgrade does not move the listener to the new Oracle home. If
+                    needed, you must manually move the listener to the new Oracle home before you
+                    start AutoUpgrade.
+                    </li>
+                        <li>Installation and configuration of the target Oracle Database home
+                    must be complete before you can run RUs and MRPs on the target home using
+                    AutoUpgrade Patching. If a target RU is patched after it has been applied to the
+                    database, then you can no longer use AutoUpgrade Patching. Instead, you must use
+                    Datapatch to apply the updates.</li>
+                        <li>Performing rolling patches of Oracle Database (single-instance or
+                    Oracle RAC) is not supported. When you use AutoUpgrade Patching on a
+                    single-instance or Oracle RAC Oracle Database, AutoUpgrade's Oracle RAC
+                    management will shut down the database on all
+                    nodes.</li>
+                        <li>The target Oracle Database RU must be at least Oracle Database 19c,
+                    RU 19.3, or later releases. You cannot use AutoUpgrade Patching to perform RUs
+                    or MRPs to earlier Oracle Database releases. </li>
+                        <li>The effect of AutoUpgrade Patching on databases using Oracle Data
+                    Guard Physical Standby or Oracle Data Guard Logical Standby and Rolling Upgrade
+                    is the same as with using Datapatch. AutoUpgrade patching can be a part of the
+                    procedures.
+                        
+                           <div class="infoboxnote" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__GUID-3713579D-BF86-4CBB-A61C-6EE64F6EF96F">
+                              <p class="notep1">Note:</p> Oracle recommends that you
+                        use Oracle Fleet Patching and Provisioning for databases deployed with
+                        Oracle Data Guard 
+                           </div>
+                        </li>
+                        <li>AutoUpgrade supports physically moving a database to different
+                    hardware. When the database is moved to a different target system, AutoUpgrade
+                    Patching can be used with the <code class="codeph">-mode upgrade</code> option. However,
+                    when the database is moved to a different system, AutoUpgrade is unable to
+                    perform a restore of the database. In that case, the upgrade options for
+                    patching follow the same rules that apply for upgrading your database.
+                        </li>
+                        <li>In describing AutoUpgrade, this documentation generally refers to
+                    AutoUpgrade performing upgrades. When AutoUpgrade performs patching, patching is
+                    functionally similar to upgrades. Accordingly, references to upgrades in this
+                    guide or in diagrams are applicable to both upgrade and patching with
+                    AutoUpgrade Patching.</li>
+                        <li>Performing patching with AutoUpgrade Patching supports all
+                    AutoUpgrade <code class="codeph">-mode</code> options except the
+                        <code class="codeph">preupgrade</code> mode, which is only supported for upgrades. 
+                        </li>
+                        <li>When patching or upgrading relocatable PDBs the configuration file
+                    cannot contain a mixture of patch clone PDBs and upgraded clone PDBs. The
+                    configuration for the clone PDBs must be either all upgrade clones, or all
+                    patched clones.</li>
+                        <li>
+                           
+                           
+                           <p>AutoUpgrade patching supports only one
+                            <code class="codeph">catctl_options</code> setting, <code class="codeph">-n <span class="variable" translate="no">number</span></code>, where <code class="codeph"><span class="variable" translate="no">number</span></code> is the number of processes to
+                        use for parallel operations. The <code class="codeph">catctl_options=-n</code> setting
+                        enables you to control the total number of PDBs that you want to run
+                        concurrently during the patching process. The default is
+                            <code class="codeph">CPU_COUNT</code> divided by 2. For example if
+                            <code class="codeph">CPU_COUNT</code> is set to 24 then by default, 12 PDBs
+                        (Datapatch instances) can run concurrently during the patching process. 
+                           </p>
+                           
+                           <p>To overwrite the default, add <code class="codeph"><span class="variable" translate="no">prefix</span>.catctl_options</code> to your configuration file
+                        with a value for the number of concurrent Datapatch instances you want to
+                        run. For example, to configure AutoUpgrade to run 6 PDBs (Datapatch
+                        instances) for the patch operations specified with the prefix
+                            <code class="codeph">sales</code>, overriding the default, add the following line
+                        to your configuration file: 
+                           </p>
+                           <pre class="pre codeblock"><code>sales.catctl_options=-n 6 </code></pre>
+                           <div class="infobox-caution" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__GUID-57A92B3C-DF93-4C05-B940-0E6156567BC5">
+                              <p class="notep1">Caution:</p>
+                              
+                              <p>For 19.13 and earlier release updates (RUs), Oracle strongly
+                            recommends that you set the <code class="codeph">catctl_options</code> parameter
+                            for patching operations.
+                              </p>
+                              
+                              <p>With 19.13 and earlier RUs, the default value of SQL*Plus
+                            processors allocated to each Datapatch instance is
+                                <code class="codeph">CPU_COUNT</code> multiplied by two (CPU_COUNT*2)
+                            processors for each Datapatch instance that AutoUpgrade starts. This
+                            default SQL*Plus processor allocation can quickly overload your system.
+                            To restrict system resources allocated to the patch operation,
+                            restricting how many Datapatch instances running simultaneously is the
+                            only option. For RU 19.13 and later, only one SQL*Plus process is
+                            started for each instance of Datapatch. This change enables AutoUpgrade
+                            to run more PDBs in parallel without consuming a large amount of system
+                            resources.
+                              </p>
+                              
+                           </div>
+                           
+                        </li>
+                     </ul>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__GUID-CC9AD480-3BA1-43DE-BD2D-396B563B60DC">Security Characteristics of
+                AutoUpgrade Patching</p>
+                     
+                     
+                     
+                     <ul style="list-style-type: disc;" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__UL_AD5_FQX_DSB">
+                        <li>The user running AutoUpgrade Patching must have the
+                        <code class="codeph">SYSDBA</code> system privilege to log into the database, and run
+                    the patching operation. For an Oracle Real Application Clusters database, the
+                    user must be the owner of the source and target Oracle Database Oracle homes. 
+                        </li>
+                        <li>The same security rules that apply for upgrades also apply with
+                    AutoUpgrade Patching. </li>
+                     </ul>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__GUID-FD57456E-CF1F-4EB8-804C-CB5EA89C2160">Performance Characteristics of
+                AutoUpgrade Patching</p>
+                     
+                     
+                     <ul style="list-style-type: disc;" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__UL_MNF_NNX_DSB">
+                        <li>The speed of deploying an RU or MRP depends on the number of PDBs in
+                    a CDB, and on changes in the release update or release update revision. If the
+                    number of changes from the source RU or MRP patches are relatively few, then
+                    deployment of patches should be quick. If the patches have many changes, then
+                    applying the patches requires more time.</li>
+                        <li>Because AutoUpgrade Patching includes a number of additional
+                    automated procedures, release update deployment is slightly slower than running
+                    Datapatch manually. For example, AutoUpgrade Patching automatically includes
+                    recompiling invalid objects, and configuring Oracle RAC management on the target
+                    system.</li>
+                     </ul>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__GUID-AE0A7FE0-A4DD-48D7-8A7A-FB5B34A86BE4">What Happens If AutoUpgrade
+                Patching Rolls Back a Release Update</p>
+                     
+                     
+                     <ul style="list-style-type: disc;" id="GUID-79B47B14-A05D-4D0A-8D3B-4436383B2BA5__UL_TBG_VRR_DSB">
+                        <li>AutoUpgrade uses the Guarantee Restore Point (GRP) generated during
+                    the patch process to roll back to the earlier release Oracle home.</li>
+                        <li> If no GRP is created, then AutoUpgrade automatically calls
+                    Datapatch to rollback the changes.</li>
+                     </ul>
+                     
+                  </div>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="https://mikedietrichde.com/2024/10/28/autoupgrades-patching-the-feature-you-waited-for/" target="_blank">Mike Dietrich Upgrade Your Database Now: AutoUpgrade's Patching: the feature
+                you waited for</a></li>
+                        <li><a href="https://dohdatabase.com/2025/01/13/how-to-roll-back-after-patching/" target="_blank">Daniel Overby Hansen Databases are Fun: How To Roll Back After
+                Patching</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="autoupgrade-patching.html#GUID-20D02F58-2A55-4FC6-B726-113AB44FDCB7" title="AutoUpgrade has enhanced capability that enables it to automate all of the necessary steps in the database patching process, including optional downloading of patches.">AutoUpgrade Patching</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0" name="GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0"></a><h3 id="UPGRD-GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0" class="sect3">AutoUpgrade Patching Stages
+        and Workflows</h3>
+               <div>
+                  <p>AutoUpgrade Patching supports three different job modes. Each mode runs
+        a different set of stages.</p>
+                  <p>AutoUpgrade Patching supports four different job modes. Each mode runs a
+            different set of stages. In AutoUpgrade Patching operations, there are four job modes,
+            with AutoUpgrade stages that are completed in these modes:</p>
+                  <ul style="list-style-type: disc;" id="GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0__UL_KYY_2FV_BDC">
+                     <li><span class="bold">Analyze</span>: In this mode, the PRECHECKS stage is run. 
+                     </li>
+                     <li><span class="bold">Fixups</span>: In this mode, the PRECHECKS and PREFIXUPS stages are
+                run. 
+                     </li>
+                     <li><span class="bold">Deploy</span>: In this mode, the following stages are run: GRP,
+                PREACTIONS, PRECHECKS, PREFIXUPS, EXTRACT, DBTOOLS, INSTALL, ROOH (Optional),
+                OH_PATCHING, OPTIONS, ROOTSH (Optional), DB_PATCHING, POSTCHECKS, POSTFIXUPS,
+                UPGRMAN (Optional), POSTACTIONS, and DROPGRP.
+                     </li>
+                     <li><span class="bold">create_home</span>: In this mode, the following stages are run:
+                EXTRACT, DBTOOLS, INSTALL, ROOH (Optional), OH_PATCHING, OPTIONS, ROOTSH
+                (Optional).
+                     </li>
+                  </ul>
+                  <p>The stages performed during AutoUpgrade Patching are consistent with stages
+            performed in other AutoUpgrade operations,but the descriptions that follow provide you
+            with further information in a patching context. </p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0__GUID-60D82A0F-6A6A-4C16-AA17-5506E460215F">Processes Performed During
+                AutoUpgrade Patching Stages</p>
+                     
+                     
+                     <div class="infoboxnote" id="GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0__GUID-A9799F90-78C1-4286-B7F6-B26B1FA6A640">
+                        <p class="notep1">Note:</p>
+                        
+                        <p>Actual step labels can vary depending on your patching choices and
+                    version of AutoUpgrade.</p>
+                        
+                        
+                     </div>
+                     
+                     <ul style="list-style-type: disc;" id="GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0__UL_UWP_SFV_BDC">
+                        <li><span class="bold">GRP</span> When <code class="codeph">restoration=YES</code> is set in the
+                    AutoUpgrade configuration file, creates a Guaranteed Restore Point (GRP) in the
+                    database before applying the patches.
+                        </li>
+                        <li><span class="bold">PREACTIONS</span> Runs any actions defined by the
+                        <code class="codeph">before_action</code> parameter in the AutoUpgrade configuration
+                    file.
+                        </li>
+                        <li><span class="bold">PRECHECKS</span> Runs the patching prechecks.
+                        </li>
+                        <li><span class="bold">PREFIXUPS</span> Runs the fixups for any failing prechecks that have
+                    an automated fixup.
+                        </li>
+                        <li><span class="bold">EXTRACT</span> Extracts the base image that will be used to create
+                    the new target Oracle home.
+                        </li>
+                        <li><span class="bold">DBTOOLS</span> Installs a newer version of OPatch into the target
+                    Oracle home, if
+                    necessary.
+                        </li>
+                        <li><span class="bold">INSTALL</span> Installs the new target Oracle home by running
+                        <code class="codeph">runInstaller</code> in silent mode.
+                        </li>
+                        <li><span class="bold">ROOH</span> (Optional) Installs the read-only Oracle home.
+                        </li>
+                        <li><span class="bold">OH_PATCHING</span> Installs each of the necessary patches into the
+                    Oracle home.
+                        </li>
+                        <li><span class="bold">OPTIONS</span> Synchronizes the binary options from the source
+                        <code class="codeph">ORACLE_HOME</code> with the newly created target
+                        <code class="codeph">ORACLE_HOME</code>. The supported options include the following:
+                        
+                           <ul style="list-style-type: disc;" id="GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0__UL_ZB5_123_G2C">
+                              <li><code class="codeph">ASM</code> (Oracle Automatic Storage
+                            Management)
+                              </li>
+                              <li><code class="codeph">OLAP</code> (Online Analytic Processing)
+                              </li>
+                              <li><code class="codeph">PART</code> (Partitioning)
+                              </li>
+                              <li><code class="codeph">RAT</code> (Oracle Real Application Testing)
+                              </li>
+                              <li><code class="codeph">UNIAUD</code> (Unified Auditing) 
+                              </li>
+                           </ul>
+                        </li>
+                        <li><span class="bold">ROOTSH</span> (Optional) Uses <code class="codeph">sudo</code> to run the
+                        <code class="codeph">root.sh</code> script from the target ORACLE_HOME as well as the
+                        <code class="codeph">orainstRoot.sh</code> script when needed. If <code class="codeph">sudo</code>
+                    requires a password, then running this script will fail, and reminders are given
+                    to the user to run these scripts after patching is complete.
+                        </li>
+                        <li><span class="bold">DB_PATCHING</span> Runs a second copy of AutoUpgrade without the
+                        <code class="codeph">-patch</code> option to move the database from the source Oracle
+                    home to the target Oracle home. 
+                        </li>
+                        <li><span class="bold">POSTCHECKS</span> Runs the patching postchecks.
+                        </li>
+                        <li><span class="bold">POSTFIXUPS</span> Runs the fixups for any failing postchecks that
+                    have an automated fixup.
+                        </li>
+                        <li><span class="bold">UPGRMAN</span> (Optional): Perform manual upgrades.
+                        </li>
+                        <li><span class="bold">POSTACTIONS</span> Runs any actions defined by the
+                        <code class="codeph">after_action</code> parameter in the AutoUpgrade configuration
+                    file.
+                        </li>
+                        <li><span class="bold">DROPGRP</span> Drops the guaranteed restore point (GRP) if one was
+                    created by AutoUpgrade Patching, and if
+                        <code class="codeph">drop_grp_after_patching=YES</code> is set in the AutoUpgrade
+                    configuration file. 
+                        </li>
+                     </ul>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0__GUID-F77AD24E-2F0A-4528-89AD-6A8C5D5257EC">AutoUpgrade Patching Status and
+                Progress Files </p>
+                     
+                     
+                     <p>Status and progress files are available in the directory that you
+                specify in the AutoUpgrade configuration file with the configuration parameter
+                    <code class="codeph">global.global_log_dir</code>. The location of these files are placed
+                as follows, where <code class="codeph"><span class="variable" translate="no">global-log</span></code> is the
+                directory path specified by <code class="codeph">global.global_log_dir</code>: 
+                     </p>
+                     <pre class="pre codeblock"><code><span class="variable" translate="no">global_log</span>/cfgtoollogs/patch/auto/status/</code></pre>
+                     </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0__GUID-FCAAB688-A7D9-4CB2-8DE4-120CD7988B19">AutoUpgrade with the -patch
+                parameter</p>
+                     
+                     
+                     
+                     <div class="infoboxnote" id="GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0__GUID-D95BF368-3747-4B58-BA88-26E0748DE8DD">
+                        <p class="notep1">Note:</p>Oracle recommends that you use
+                Oracle Fleet Patching and Provisioning (FPP) for Oracle Real Application Clusters
+                and deployments with Oracle Data Guard.
+                     </div>
+                     
+                     <p>AutoUpgrade patching using the <code class="codeph">-patch</code> parameter
+                performs out-of-place patch maintenance, which is Oracle's recommended method of
+                patching. In out-of-place patching, AutoUpgrade creates a new target Oracle home
+                using a base image of the database's initial release. It installs the patches that
+                you specify, and then moves the source database to the new target Oracle home. In
+                addition, you can use AutoUpgrade for patch maintenance for database releases where
+                you are unable to use FPP or DBCA.
+                     </p>
+                     
+                     
+                     
+                     <p>To use AutoUpgrade patching, your system should be consistent with the
+                following requirements:</p>
+                     
+                     
+                     <ul style="list-style-type: disc;" id="GUID-99C49E70-D706-4BB4-A2E4-FB3669DF0FB0__UL_C1P_LZ5_BDC">
+                        <li>Single-Instance Oracle Database</li>
+                        <li>Oracle Release 19c (19.3) or later release</li>
+                     </ul>
+                     
+                  </div>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="autoupgrade-patching.html#GUID-20D02F58-2A55-4FC6-B726-113AB44FDCB7" title="AutoUpgrade has enhanced capability that enables it to automate all of the necessary steps in the database patching process, including optional downloading of patches.">AutoUpgrade Patching</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="sect2"><a id="GUID-1BF06E22-F473-4020-A5FA-C794F1E4FE25" name="GUID-1BF06E22-F473-4020-A5FA-C794F1E4FE25"></a><h3 id="UPGRD-GUID-1BF06E22-F473-4020-A5FA-C794F1E4FE25" class="sect3">PDB Priority and
+        AutoUpgrade</h3>
+               <div>
+                  <p>For both AutoUpgrade patching and upgrades, AutoUpgrade honors how PDBs will
+        be prioritized by setting the priority on specifuc PDBs.</p>
+                  <p>The priority set on each of the PDBs is used to determine which PDBs will be
+            patched or upgraded first. For both patching and upgrades, the control structure
+                <code class="codeph">CDB$ROOT</code> and the template structure <code class="codeph">PDB$SEED</code> will
+            always be updated first. All other PDBs will be updated after CDB$ROOT is updated.
+            PDB$SEED will always be processed in the first batch. When priority is set on PDBs, the
+            PDBs are updated in priority order. For example, PDBs with priority 3 will be processed
+            before PDBs with priority 4. PDBs with no priority will be processed last.
+                  </p>
+                  <p>This AutoUpgrade feature is supported for Oracle Database 12c release 2 and later
+            releases.  </p>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="../multi/index.html" target="_blank">To Set the Priority of a PDB</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="autoupgrade-patching.html#GUID-20D02F58-2A55-4FC6-B726-113AB44FDCB7" title="AutoUpgrade has enhanced capability that enables it to automate all of the necessary steps in the database patching process, including optional downloading of patches.">AutoUpgrade Patching</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-B4169A36-FA3F-430E-B5FE-E72082D0B6AD" name="GUID-B4169A36-FA3F-430E-B5FE-E72082D0B6AD"></a><h3 id="UPGRD-GUID-B4169A36-FA3F-430E-B5FE-E72082D0B6AD" class="sect3">Configuration Parameters and
+        Command-Line Options for AutoUprade Patching</h3>
+               <div>
+                  <p>In addition to other configuration file parameters and command-line options,
+        there are specific parameters and options for AutoUpgrade Patching.</p>
+                  <p>To specify the AutoUpgrade Patching process options, you use configuration parameters
+            that apply specifically patching.</p>
+                  <div class="infoboxnote" id="GUID-B4169A36-FA3F-430E-B5FE-E72082D0B6AD__GUID-72287495-944E-4364-89C9-C56B1F0B8442">
+                     <p class="notep1">Note:</p>
+                     
+                     <p>AutoUpgrade Patching requires the Oracle Database 19.3 base image to be available in
+                the directory specified by the <code class="codeph">folder</code> configuration parameter. The
+                base image can not be automatically downloaded by AutoUpgrade Patching, but can be
+                done manually from this link:
+                     </p>
+                     
+                     <p><a href="https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html" target="_blank">https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html</a></p>
+                     
+                     <p>Downloading the Oracle Database 19.3 base image is a one-time operation.
+                The same base image can be reused for all out-of-place patching options that are
+                performed by AutoUpgrade Patching. </p>
+                     
+                  </div>
+                  <div class="tblformal" id="GUID-B4169A36-FA3F-430E-B5FE-E72082D0B6AD__TABLE_QF3_WSV_BDC">
+                     <p class="titleintable">Table 3-1 AutoUpgrade Patching Configuration File Parameters</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="AutoUpgrade Patching Configuration File Parameters" summary="AutoUpgrade Patching Configuration File Parameters" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="25%" id="d41316e1019">
+                            Parameter
+                        </th>
+                              <th align="left" valign="bottom" width="75%" id="d41316e1024">
+                            Description
+                        </th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="25%" id="d41316e1031" headers="d41316e1019 ">
+                                 
+                                 <p><code class="codeph">folder</code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="75%" headers="d41316e1031 d41316e1024 ">
+                                 
+                                 <p>Specifies the directory that contains the patch zip files
+                                as well as the required base image. There is no default value. You
+                                must provide the directory path. </p>
+                                 
+                                 <p>When <code class="codeph">download=YES</code>, this is the
+                                directory to which the patches will be downloaded
+                                 </p>
+                                 
+                                 <p>When <code class="codeph">download=NO</code>, this is the directory
+                                that must contain the patches that have been manually
+                                downloaded.
+                                 </p>
+                                 
+                                 <p>The directory that you specify with the
+                                    <code class="codeph">folder</code> parameter must contain the base image of
+                                the source database's release (for example, Oracle Database Release
+                                19.3). 
+                                 </p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="25%" id="d41316e1061" headers="d41316e1019 ">
+                                 
+                                 <p><code class="codeph">patch</code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="75%" headers="d41316e1061 d41316e1024 ">
+                                 
+                                 <p>A comma-delimited list of the patches that you want to
+                                install. </p>
+                                 
+                                 <p><span class="bold">Note</span>: When <code class="codeph">method=outofplace</code> is
+                                set, then the patch list must include
+                                    <code class="codeph">RU</code>,<code class="codeph">OPATCH</code></p>
+                                 
+                                 <p>The default value is <code class="codeph">RECOMMENDED</code>. 
+                                 </p>
+                                 
+                                 <p>Supported value: </p>
+                                 
+                                 <p><code class="codeph">RECOMMENDED</code>: Alias for all of the
+                                following options: <code class="codeph">RU</code>, <code class="codeph">OPATCH</code>,
+                                    <code class="codeph">OJVM</code>, <code class="codeph">DPBP</code>. 
+                                 </p>
+                                 
+                                 <p><code class="codeph">RU</code>: Latest release update
+                                 </p>
+                                 
+                                 <p><code class="codeph">RU:x.y</code>: A release update (RU) of the
+                                specified release version, where <code class="codeph"><span class="variable" translate="no">x</span></code> is the major release number, and
+                                        <code class="codeph"><span class="variable" translate="no">y</span></code> is the RU.
+                                For example: <code class="codeph">RU:19:24</code></p>
+                                 
+                                 <p><code class="codeph">OPATCH</code>: Use latest version of
+                                OPatch
+                                 </p>
+                                 
+                                 <p><code class="codeph">OJVM</code>: Apply the Oracle Java VM patch
+                                that applies to the specified RU. 
+                                 </p>
+                                 
+                                 <p><code class="codeph">OJVM:x.y</code>: Apply the Oracle Java VM patch
+                                of the specified release version, where <code class="codeph"><span class="variable" translate="no">x</span></code> is the major release number, and
+                                        <code class="codeph"><span class="variable" translate="no">y</span></code> is the
+                                RU. For example: <code class="codeph">RU:19.24</code></p>
+                                 
+                                 <p><code class="codeph">DPBP</code>: Apply the Oracle Data Pump patch
+                                for the specified RU
+                                 </p>
+                                 
+                                 
+                                 <p><code class="codeph"><span class="variable" translate="no">patch-number</span></code>: Provide a specific one-off
+                                patch number. For example: <code class="codeph">upg1.patch=p12345678</code></p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="25%" id="d41316e1172" headers="d41316e1019 ">
+                                 
+                                 <p><code class="codeph">download</code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="75%" headers="d41316e1172 d41316e1024 ">
+                                 
+                                 <p>Specifies whether to automatically download patches from
+                                My Oracle Support. The default is YES. </p>
+                                 
+                                 <p>When set to YES, you must also load the My Oracle
+                                Support (MOS) credentials into AutoUpgrade Patching using the
+                                    <code class="codeph">-load_password</code> command-line option. 
+                                 </p>
+                                 
+                                 <p>The patches that are downloaded are placed into the
+                                directory folder specified by the <code class="codeph">folder</code> parameter. 
+                                 </p>
+                                 
+                                 <p>If proxy information is required to connect to My Oracle
+                                Support, then set proxy values using the Linux operating system
+                                environment variables <code class="codeph">https_proxy</code>,
+                                    <code class="codeph">http_proxy</code>, and <code class="codeph">no_proxy</code>. The
+                                supported format of the proxy definition is as follows, where
+                                        <code class="codeph"><span class="variable" translate="no">user_info</span></code> is a user
+                                account, <code class="codeph"><span class="variable" translate="no">site</span></code> is a URL, and
+                                        <code class="codeph"><span class="variable" translate="no">port</span></code> is a designated
+                                port for the proxy listener: 
+                                 </p>
+                                 
+                                 <p><code class="codeph">[https|http|socks5|socks]://(<span class="variable" translate="no">user_info</span>@)<span class="variable" translate="no">site</span>:<span class="variable" translate="no">port</span></code></p>
+                                 
+                                 <p>Adding <code class="codeph"><span class="variable" translate="no">user_info
+                                    </span></code>to the proxy definition is optional, and has
+                                a format of <span class="variable" translate="no">username:password</span> for the
+                                credentials of the proxy.
+                                 </p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="25%" id="d41316e1244" headers="d41316e1019 ">
+                                 
+                                 <p><code class="codeph">method </code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="75%" headers="d41316e1244 d41316e1024 ">
+                                 
+                                 <p>Specifies whether to create a new target Oracle home, and
+                                if so, how it will be created. The default value is
+                                    <code class="codeph">OUTOFPLACE</code>. 
+                                 </p>
+                                 
+                                 <p><code class="codeph">OUTOFPLACE</code>: Creates a new target Oracle
+                                home using the base image contained in the directory specified by
+                                the <code class="codeph">folder</code> parameter.
+                                 </p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <p>For AutoUpgrade Patching, you must specify the following command-line options: </p>
+                  <div class="tblformal" id="GUID-B4169A36-FA3F-430E-B5FE-E72082D0B6AD__TABLE_SJY_5WV_BDC">
+                     <p class="titleintable">Table 3-2 AutoUpgrade Patching Command-Line Options</p>
+                     <table cellpadding="4" cellspacing="0" class="Formal" title="AutoUpgrade Patching Command-Line Options" summary="AutoUpgrade Patching Command-Line Options" frame="hsides" border="1" rules="rows">
+                        <thead>
+                           <tr align="left" valign="top">
+                              <th align="left" valign="bottom" width="0%" id="d41316e1278">
+                            Command-Line Option
+                        </th>
+                              <th align="left" valign="bottom" width="0%" id="d41316e1283">
+                            Description
+                        </th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d41316e1290" headers="d41316e1278 ">
+                                 
+                                 <p><code class="codeph">target_home</code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d41316e1290 d41316e1283 ">
+                                 
+                                 <p>Specifies the directory that will be used to create the
+                                new target Oracle home. </p>
+                                 
+                                 <p>This directory will be created by AutoUpgrade Patching
+                                and should not exist or be empty. Ensure that the location you
+                                specify on the filesystem contains sufficient free disk space for
+                                the creation of a new Oracle home.</p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d41316e1305" headers="d41316e1278 ">
+                                 
+                                 <p><code class="codeph">sid</code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d41316e1305 d41316e1283 ">
+                                 
+                                 <p>Specifies the ORACLE_SID value of the source database. </p>
+                                 
+                                 <p>If you specify <code class="codeph">-config_values</code> and the
+                                    <code class="codeph">ORACLE_SID</code> Linux environment variable is
+                                defined, then this parameter becomes optional.
+                                 </p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d41316e1326" headers="d41316e1278 ">
+                                 
+                                 <p><code class="codeph">source_home</code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d41316e1326 d41316e1283 ">
+                                 
+                                 <p>Specifies the Oracle home value of the source database. </p>
+                                 
+                                 <p>If you specify <code class="codeph">-config_values</code> and the
+                                    <code class="codeph">ORACLE_HOME</code> Linux environment variable is
+                                defined, then this parameter becomes optional.
+                                 </p>
+                                 
+                              </td>
+                           </tr>
+                           <tr align="left" valign="top">
+                              <td align="left" valign="top" width="0%" id="d41316e1347" headers="d41316e1278 ">
+                                 
+                                 <p><code class="codeph">keystore</code></p>
+                                 
+                              </td>
+                              <td align="left" valign="top" width="0%" headers="d41316e1347 d41316e1283 ">
+                                 
+                                 <p>Specifies the secure directory (keystore) that will
+                                contain the keystore files.</p>
+                                 
+                                 <p>If you specify <code class="codeph">DOWNLOAD=NO</code>, then this
+                                parameter becomes optional.
+                                 </p>
+                                 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="autoupgrade-patching.html#GUID-20D02F58-2A55-4FC6-B726-113AB44FDCB7" title="AutoUpgrade has enhanced capability that enables it to automate all of the necessary steps in the database patching process, including optional downloading of patches.">AutoUpgrade Patching</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="sect2"><a id="GUID-903F01E9-719F-481D-80DD-2BCFD995F9E6" name="GUID-903F01E9-719F-481D-80DD-2BCFD995F9E6"></a><h3 id="UPGRD-GUID-903F01E9-719F-481D-80DD-2BCFD995F9E6" class="sect3">AutoUpgrade Patching Configuration
+        Files and Log Files</h3>
+               <div>
+                  <p>See examples of configuration files and log files for AutoUpgrade Patching.  </p>
+                  <p>An AutoUpgrade Patching configuration file is essentially the same as an AutoUpgrade
+			configuration file for upgrades. However, instead of AutoUpgrade using the parameters
+			you specify to perform an upgrade, AutoUpgrade performs a patch operation from a source
+			Oracle Database patch release to a target Oracle Database patch release, and AutoUpgrade
+			runs Datapatch as part of the procedure. </p>
+                  <div class="example" id="GUID-903F01E9-719F-481D-80DD-2BCFD995F9E6__GUID-A04A6E75-5DEF-474B-B121-8F5700C26107">
+                     <p class="titleinexample">Example 3-10 AutoUpgrade Configuration Files
+                for Different Patching Scenarios</p>
+                     <p>In the following configuration file examples, the following Oracle Databases are
+                patched from Oracle Database 19c patched to Release Update (RU) 11 to 19c RU 13: </p>
+                     
+                     <ul style="list-style-type: disc;" id="GUID-903F01E9-719F-481D-80DD-2BCFD995F9E6__UL_GYP_JBW_4TB">
+                        <li>A non-CDB database patched from 19.11.0 to 19.13.0, designated with the prefix
+						<code class="codeph">patch1</code></li>
+                        <li>An Oracle Database 19c CDB patched from 19.11 to 19.13, designated with the
+					prefix <code class="codeph">patch2</code>
+                           				
+                        </li>
+                        <li>An encrypted PDB patched by unplug-plug, designated with the prefix
+						<code class="codeph">patch3</code>
+                           				
+                        </li>
+                        <li>A non-CDB, which is patched and converted to a CDB, designated with
+					the prefix <code class="codeph">patch4</code></li>
+                        <li>A CDB with a PDB that is relocated during the patching operation,
+					designated with the prefix <code class="codeph">patch5</code></li>
+                        <li>An Oracle Real Application Clusters (Oracle RAC) database,
+					designated with the prefix <code class="codeph">patch6</code></li>
+                        <li>An Oracle RAC database in a distributed cluster configuration,
+					designated with the prefix <code class="codeph">patch7</code></li>
+                     </ul>
+                     <pre class="pre codeblock"><code>#
+# Global log directory for patch logs
+#
+global.autoupg_log_dir=/databases/patchlogs
+#
+# Non-CDB patch to Non-CDB patch, source and target home
+#
+patch1.sid=db19
+patch1.source_home=/databases/ee/product/1911/dbhome_1
+patch1.target_home=/databases/ee/product/1913/dbhome_2
+#
+#
+# CDB patch, Source and Target home
+#
+patch2.sid=cdb19
+patch2.source_home=/databases/ee/product/1911/dbhome_1
+patch2.target_home=/databases/ee/product/1913/dbhome_2
+#
+# Unplug-Plug with KeyStore
+#
+global.keystore=/databases/tde
+patch3.sid=cdb19
+patch3.source_home=/databases/ee/product/1911/dbhome_1
+patch3.target_home=/databases/ee/product/1913/dbhome_2
+patch3.target_cdb=cdb1913
+patch3.target_pdb_name=sales
+patch3.target_pdb_copy_option=file_name_convert=('/databases/ee/oradata/CDB19/sales', '/databases/ee/oradata/CDB1913/sales')
+#
+# Non-CDB to CDB, Source and Target home
+#
+patch4.sid=db19
+patch4.source_home=/databases/ee/product/1911/dbhome_1
+patch4.target_home=/databases/ee/product/1913/dbhome_2
+patch4.target_cdb=cdb1913
+patch4.target_pdb_name=emp
+patch4.target_pdb_copy_option=file_name_convert=('/databases/ee/oradata/DB19', '/databases/ee/oradata/CDB1913/emp')
+#
+# Patch relocate DB
+#
+patch5.sid=cdb19
+patch5.source_home=/databases/ee/product/1911/dbhome_1
+patch5.target_home=/databases/ee/product/1913/dbhome_2
+patch5.target_cdb=cdb1913
+patch5.pdbs=cars
+patch5.target_pdb_copy_option.cars=file_name_convert=('/databases/ee/oradata/CDB19/cars', '/databases/ee/oradata/CDB1913/cars')
+patch5.source_dblink.cars=db19_link
+#
+# Oracle RAC
+#
+patch6.sid=rac1
+patch6.source_home=/databases/ee/product/1911/dbhome_1
+patch6.target_home=/databases/ee/product/1913/dbhome_2
+#
+# Distributed Oracle RAC with proactive fixups
+#
+patch7.sid=rac2
+patch7.source_home=/databases/ee/product/1911/dbhome_1
+patch7.target_home=/databases/ee/product/1913/dbhome_2
+patch7.tune_setting=distributed_upgrade=true</code></pre></div>
+                  <div class="example" id="GUID-903F01E9-719F-481D-80DD-2BCFD995F9E6__GUID-4E2B5D84-F7E7-421A-BEF3-A0962689B668">
+                     <p class="titleinexample">Example 3-11 A Summary Log File for AutoUpgrade Patching</p>
+                     
+                     
+                     <p>In this patching summary report file, you can see how AutoUpgrade applies patches to
+                the CDB and PDBs. </p>
+                     <pre class="pre codeblock"><code>
+********************************************************************************
+		Datapatch Apply Summary Report for CDB$ROOT
+
+	Return code        = 0 SUCCESS
+	Failure reason     = null
+	Total time         = 161.721805095673
+	Install patches    = 1
+	Database Open      = SUCCESS
+	Invocation Log     = /databases/cfgtoollogs/sqlpatch/sqlpatch_17781_2022_05_18_10_57_58/sqlpatch_invocation.log
+	Bootstrap Required = 1
+	Bootstrap Status   = SUCCESS
+	Bootstrap Log      = /databases/cfgtoollogs/sqlpatch/sqlpatch_17781_2022_05_18_10_57_58/bootstrap1_CDB19X_CDBROOT.log
+	Total patches      = 1
+
+	Patch Key          = 33192793-24462514
+	Mode               = apply
+	Status             = SUCCESS
+	Patch Log File     = /databases/cfgtoollogs/sqlpatch/33192793/24462514/33192793_apply_CDB19X_CDBROOT_2022May18_10_58_06.log
+	RU Log File        = /databases/cfgtoollogs/sqlpatch/33192793/24462514/33192793_ru_apply_CDB19X_CDBROOT_2022May18_10_58_05.log
+	RU Errors          = N/A
+
+********************************************************************************
+		Datapatch Apply Summary Report for PDBX
+
+	Return code        = 0 SUCCESS
+	Failure reason     = null
+	Total time         = 123.969398021698
+	Install patches    = 1
+	Database Open      = SUCCESS
+	Invocation Log     = /databases/cfgtoollogs/sqlpatch/sqlpatch_18416_2022_05_18_11_01_40/sqlpatch_invocation.log
+	Bootstrap Required = 1
+	Bootstrap Status   = SUCCESS
+	Bootstrap Log      = /databases/cfgtoollogs/sqlpatch/sqlpatch_18416_2022_05_18_11_01_40/bootstrap1_CDB19X_PDBX.log
+	Total patches      = 1
+
+	Patch Key          = 33192793-24462514
+	Mode               = apply
+	Status             = SUCCESS
+	Patch Log File     = /databases/cfgtoollogs/sqlpatch/33192793/24462514/33192793_apply_CDB19X_PDBX_2022May18_11_01_55.log
+	RU Log File        = /databases/cfgtoollogs/sqlpatch/33192793/24462514/33192793_ru_apply_CDB19X_PDBX_2022May18_11_01_55.log
+	RU Errors          = N/A
+
+********************************************************************************
+		Datapatch Apply Summary Report for PDB$SEED
+
+	Return code        = 0 SUCCESS
+	Failure reason     = null
+	Total time         = 124.234117984772
+	Install patches    = 1
+	Database Open      = SUCCESS
+	Invocation Log     = /databases/cfgtoollogs/sqlpatch/sqlpatch_18406_2022_05_18_11_01_40/sqlpatch_invocation.log
+	Bootstrap Required = 1
+	Bootstrap Status   = SUCCESS
+	Bootstrap Log      = /databases/cfgtoollogs/sqlpatch/sqlpatch_18406_2022_05_18_11_01_40/bootstrap1_CDB19X_PDBSEED.log
+	Total patches      = 1
+
+	Patch Key          = 33192793-24462514
+	Mode               = apply
+	Status             = SUCCESS
+	Patch Log File     = /databases/cfgtoollogs/sqlpatch/33192793/24462514/33192793_apply_CDB19X_PDBSEED_2022May18_11_01_55.log
+	RU Log File        = /databases/cfgtoollogs/sqlpatch/33192793/24462514/33192793_ru_apply_CDB19X_PDBSEED_2022May18_11_01_55.log
+	RU Errors          = N/A
+</code></pre>
+                     </div>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="autoupgrade-patching.html#GUID-20D02F58-2A55-4FC6-B726-113AB44FDCB7" title="AutoUpgrade has enhanced capability that enables it to automate all of the necessary steps in the database patching process, including optional downloading of patches.">AutoUpgrade Patching</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="sect2"><a id="GUID-291AF989-ACB9-42CE-8FC5-617A70D57A4E" name="GUID-291AF989-ACB9-42CE-8FC5-617A70D57A4E"></a><h3 id="UPGRD-GUID-291AF989-ACB9-42CE-8FC5-617A70D57A4E" class="sect3">AutoUpgrade Patching Workflow Examples</h3>
+               <div>
+                  <p>Use this example of an AutoUpgrade patching workflow to understand the
+        AutoUpgrade patching procedure. </p>
+                  <div class="section">
+                     
+                     <p>In this scenario, you use AutoUpgrade Patching to download the patch,
+                deploy the patch, and start the patching operation. </p>
+                     
+                  </div>
+                  <div class="example" id="GUID-291AF989-ACB9-42CE-8FC5-617A70D57A4E__GUID-2911C88E-1F63-4E15-8908-2914F02A1EBE">
+                     <p class="titleinexample">Example 3-12 Configuration files for AutoUpgrade Patching </p>
+                     
+                     
+                     <p>You can choose to have AutoUpgrade patching to download patches, or you can first
+                download patches manually and then run AutoUpgrade patching. </p>
+                     
+                     <p>In the following configuration file example, we set the download option
+                for job <code class="codeph">upg1</code> to <code class="codeph">YES</code>:
+                     </p>
+                     <pre class="pre codeblock"><code>global.global_log_dir=/logs/patching
+global.keystore=/secure/keystore
+upg1.sid=DB19X
+upg1.source_home=/databases/19x/dbhome_1
+upg1.target_home=/databases/19x/dbhome_2
+upg1.folder=/storage/patches
+<span class="bold">upg1.download=YES</span></code></pre>
+                     <p>In the following configuration file example, we set the download option
+                for job <code class="codeph">upg1</code> to <code class="codeph">NO</code>:
+                     </p>
+                     <pre class="pre codeblock"><code>global.global_log_dir=/logs/patching
+upg1.sid=DB19X
+upg1.source_home=/databases/19x/dbhome_1
+upg1.target_home=/databases/19x/dbhome_2
+upg1.folder=/storage/patches
+upg1.patch=RU,OPATCH
+<span class="bold">upg1.download=NO</span></code></pre>
+                     </div>
+                  <div class="example" id="GUID-291AF989-ACB9-42CE-8FC5-617A70D57A4E__GUID-37971618-619A-414E-8565-79F3BB12F523">
+                     <p class="titleinexample">Example 3-13  AutoUpgrade Patching Download Option</p>
+                     
+                     
+                     <p>To enable AutoUpgrade patching to automatically download patches, you
+                have to set the download parameter in the configuration file for the job running the
+                patch. As AutoUpgrade runs, all identified patches will be automatically downloaded
+                and verified. If a patch is already in the directory that you defined in the
+                configuration file using the <code class="codeph">folder</code> configuration parameter, then
+                download of that patch will be skipped. If a proxy is needed to connect to My Oracle
+                Support, then you can set the Linux environment variables
+                    <code class="codeph">https_proxy</code>, <code class="codeph">http_proxy</code> and
+                    <code class="codeph">no_proxy</code> so that AutoUpgrade can connect to Oracle Support.
+                     </p>
+                     
+                     <p>Complete this procedure:</p>
+                     
+                     <ol id="GUID-291AF989-ACB9-42CE-8FC5-617A70D57A4E__OL_DML_L4V_BDC">
+                        <li>
+                           
+                           <p>Ensure that the configuration file uses the <code class="codeph">download=YES</code>
+                        option, or leave this option  unspecified; the default value will include
+                        it. The global keystore parameter will also be required.
+                           </p>
+                           
+                           <p>For example: </p>
+                           <pre class="pre codeblock"><code>global.global_log_dir=/logs/patching
+global.keystore=/secure/keystore
+. . .
+upg1.sid=DB19X
+upg1.source_home=/databases/19x/dbhome_1
+upg1.target_home=/databases/19x/dbhome_2
+<span class="bold">upg1.folder=/patches</span>
+upg1.patch=RECOMMENDED
+<span class="bold">upg1.download=YES</span></code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>Load the My Oracle Support credentials into the keystore by using the
+                            <code class="codeph">-load_password</code> command line option:
+                           </p>
+                           <pre class="pre codeblock"><code>java -jar autoupgrade.jar -patch -config config.cfg -load_password</code></pre>
+                           <p>When the password console loads, add the necessary My Oracle Support
+                        credentials by using the <code class="codeph">add</code> option.
+                           </p>
+                           
+                           <p>For example:</p>
+                           <pre class="pre codeblock"><code>MOS&gt; group MOS
+MOS&gt; add -user user@company.com
+    Enter your secret/Password:
+    Re-enter your secret/Password:   
+MOS&gt; list
+    MOS Credentials Loaded - Connection Successful</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>Run AutoUpgrade Patching in any of the supported modes: ANALYZE,
+                        FIXUPS, DEPLOY, DOWNLOAD, CREATE_HOME.</p>
+                           
+                           <p>For example, run the analyze mode: </p>
+                           <pre class="pre codeblock"><code>java -jar autoupgrade.jar -patch -config config.cfg -mode analyze</code></pre>
+                           </li>
+                     </ol>
+                     
+                  </div>
+                  <div class="example" id="GUID-291AF989-ACB9-42CE-8FC5-617A70D57A4E__GUID-257D7D09-CFA3-4439-B87C-96014F22EA45">
+                     <p class="titleinexample">Example 3-14 AutoUpgrade Patching Deploy Option</p>
+                     
+                     
+                     <p>After you have loaded My Oracle Support credentials into the keystore, you can patch
+                the source database using the DEPLOY option. </p>
+                     
+                     <p>In the following example, using the same configuration file
+                    (<code class="codeph">config.cfg</code>) for the 19X database shown in the previous
+                example, we deploy the patches with AutoUpgrade:
+                     </p>
+                     <pre class="pre codeblock"><code>java -jar autoupgrade.jar -patch -config config.cfg -mode deploy</code></pre>
+                     <p>The console output for this example operation is as follows: </p>
+                     <pre class="pre codeblock"><code>   AutoUpgrade Patching 24.1.240816 launched with default internal options
+   Processing config file ...
+   Loading AutoUpgrade Patching keystore
+
+   -----------------------------
+   Downloading files to /patches
+   -----------------------------
+   DATABASE RELEASE UPDATE 19.24.0.0.0
+       File: p36582781_190000_Linux-x86-64.zip - VALIDATED
+
+   DATAPUMP BUNDLE PATCH 19.24.0.0.0
+       File: p36682332_1924000DBRU_Generic.zip - VALIDATED
+
+   OJVM RELEASE UPDATE 19.24.0.0.0
+       File: p36414915_190000_Linux-x86-64.zip - VALIDATED
+
+   OPatch 12.2.0.1.43 for DB 19.0.0.0.0 (Jul 2024)
+       File: p6880880_190000_Linux-x86-64.zip - VALIDATED
+   -----------------------------
+
+   +-----------------------------------------+
+   | Starting AutoUpgrade Patching execution |
+   +-----------------------------------------+
+   1 Non-CDB(s) will be processed
+   Type 'help' to list console commands
+   patch&gt; Job 100 completed
+   ------------------- Final Summary --------------------
+   Number of databases            [ 1 ]
+
+   Jobs finished                  [1]
+   Jobs failed                    [0]
+   Jobs restored                  [0]
+   Jobs pending                   [0]
+
+   ---- Drop GRP at your convenience once you consider it is no longer needed ----
+   Drop GRP from DB19X: drop restore point AU_PATCHING_9212_DB19X1919000
+
+
+   Please check the summary report at:
+   /logs/patching/cfgtoollogs/patch/auto/status/status.html
+   /logs/patching/cfgtoollogs/patch/auto/status/status.log
+   </code></pre>
+                     </div>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="autoupgrade-patching.html#GUID-20D02F58-2A55-4FC6-B726-113AB44FDCB7" title="AutoUpgrade has enhanced capability that enables it to automate all of the necessary steps in the database patching process, including optional downloading of patches.">AutoUpgrade Patching</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

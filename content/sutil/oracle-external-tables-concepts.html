@@ -1,0 +1,1375 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="topic">
+      <meta name="DC.Title" content="External Tables Concepts">
+      <meta name="abstract" content="The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.">
+      <meta name="description" content="The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.">
+      <meta name="DC.subject" content="tables, external, external tables, opaque_format_spec, access parameters">
+      <meta name="keywords" content="tables, external, external tables, opaque_format_spec, access parameters">
+      <meta name="DC.Relation" scheme="URI" content="oracle-external-tables.html#GUID-038ED956-A6EE-4C6D-B7C9-0D406B8088B6">
+      <meta name="DC.Relation" scheme="URI" content="oracle-external-tables-concepts.html#GUID-ACF1D3AA-1D61-4682-AEC5-42C944756E12">
+      <meta name="DC.Relation" scheme="URI" content="oracle-external-tables-concepts.html#GUID-05AA7C84-2C2D-45CE-8F52-392D4A2B4864">
+      <meta name="DC.Relation" scheme="URI" content="oracle-external-tables-concepts.html#GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B">
+      <meta name="DC.Relation" scheme="URI" content="oracle-external-tables-concepts.html#GUID-C34F5A59-2E8B-4162-8F5B-AF26EDA232A2">
+      <meta name="DC.Relation" scheme="URI" content="oracle-external-tables-concepts.html#unique_696595376">
+      <meta name="DC.Relation" scheme="URI" content="oracle-external-tables-concepts.html#GUID-07D30CE6-128D-426F-8B76-B13E1C53BD5A">
+      <meta name="DC.Relation" scheme="URI" content="oracle-external-tables-concepts.html#GUID-7AB423F1-C688-4A1C-A940-77C221839BCA">
+      <meta name="DC.Creator" content="William Beauregard">
+      <meta name="DC.Creator" content="Steve DiPirro">
+      <meta name="DC.Creator" content="John Kalogeropoulos">
+      <meta name="DC.Creator" content="Dan Mullen">
+      <meta name="DC.Creator" content="Rod Payne">
+      <meta name="DC.Creator" content="Rich Phillips">
+      <meta name="DC.Creator" content="Mike Sakayeda">
+      <meta name="DC.Creator" content="Jim Stenoish">
+      <meta name="DC.Creator" content="Roy Swonger">
+      <meta name="DC.Creator" content="Douglas Williams">
+      <meta name="DC.Publisher" content="June2025">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-44323E01-7D72-45EC-915A-99E596769D9E">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.">
+      <meta name="description" content="The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.">
+      <title>External Tables Concepts</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Utilities ">
+      <meta property="og:description" content="The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Utilities">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="oracle-database-utilities-guide.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-06-16T12:44:53-07:00">
+      
+      <meta name="dcterms.dateCopyrighted" content="2002, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96081-31">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="oracle-external-tables.html" title="Previous" type="text/html">
+      <link rel="next" href="oracle_loader-access-driver.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.title" content="Oracle Database Utilities Guide">
+    <meta name="dcterms.isVersionOf" content="SUTIL">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"External Tables Concepts","description":"The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.","datePublished":"2025-06-16 CST","dateModified":"2025-06-16 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="oracle-external-tables.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="oracle_loader-access-driver.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-44323E01-7D72-45EC-915A-99E596769D9E" name="GUID-44323E01-7D72-45EC-915A-99E596769D9E"></a><a id="SUTIL011"></a>
+         
+         <h2 id="SUTIL-GUID-44323E01-7D72-45EC-915A-99E596769D9E" class="sect2"><span class="enumeration_chapter">14 </span> External Tables Concepts
+         </h2>
+         <div class="ind">
+            <div>
+               <p>The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database. </p>
+            </div>
+            <div>
+               <ul class="ullinks">
+                  <li class="ulchildlink"><a href="oracle-external-tables-concepts.html#GUID-ACF1D3AA-1D61-4682-AEC5-42C944756E12">How Are External Tables Created?</a><br>External tables are created using the SQL <code class="codeph">CREATE TABLE...ORGANIZATION             EXTERNAL</code> statement. 
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-external-tables-concepts.html#GUID-05AA7C84-2C2D-45CE-8F52-392D4A2B4864">Location of Data Files and Output Files</a><br>Data files and output files must be located on the server. You must have a directory object that specifies the location from which to read and write files. 
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-external-tables-concepts.html#GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B">CREATE_EXTERNAL_PART_TABLE Procedure</a><br>This procedure creates an external partitioned table on files in the Cloud.       This procedure enables you to run queries on external data in Oracle Autonomous Database,       using the <code class="codeph">ORACLE_BIGDATA </code>driver.
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-external-tables-concepts.html#GUID-C34F5A59-2E8B-4162-8F5B-AF26EDA232A2">CREATE_EXTERNAL_TABLE Procedure</a><br>This procedure creates an external table on files in the Cloud or from files       in a directory. This enables you to run queries on external data from Oracle       Database.
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-external-tables-concepts.html#unique_696595376">Location of Data Files and Output Files</a><br>Data files and output files must be located on the server. You must have a directory object that specifies the location from which to read and write files. 
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-external-tables-concepts.html#GUID-07D30CE6-128D-426F-8B76-B13E1C53BD5A">Access Parameters for External Tables</a><br>To modify the default behavior of the access driver for external tables, specify access parameters. 
+                  </li>
+                  <li class="ulchildlink"><a href="oracle-external-tables-concepts.html#GUID-7AB423F1-C688-4A1C-A940-77C221839BCA">Data Type Conversion During External Table Use</a><br>If source and target data types do not match, then conversion errors can         occur when Oracle Database reads from external tables, and when it writes to external         tables.
+                  </li>
+               </ul>
+               <div class="familylinks">
+                  <div class="parentlink">
+                     <p><strong>Parent topic:</strong> <a href="oracle-external-tables.html#GUID-038ED956-A6EE-4C6D-B7C9-0D406B8088B6">External Tables</a></p>
+                  </div>
+               </div>
+            </div>
+            <a id="SUTIL1357"></a><div class="props_rev_3"><a id="GUID-ACF1D3AA-1D61-4682-AEC5-42C944756E12" name="GUID-ACF1D3AA-1D61-4682-AEC5-42C944756E12"></a><h3 id="SUTIL-GUID-ACF1D3AA-1D61-4682-AEC5-42C944756E12" class="sect3"><span class="enumeration_section">14.1 </span>How Are External Tables Created?
+               </h3>
+               <div>
+                  <p>External tables are created using the SQL <code class="codeph">CREATE TABLE...ORGANIZATION
+            EXTERNAL</code> statement. 
+                  </p>
+                  <p>Note that SQL*Loader may be the better choice in data loading situations that
+            require additional indexing of the staging table. See <span class="q">"Behavior Differences Between
+                SQL*Loader and External Tables"</span>  for more information about how load behavior
+            differs between SQL*Loader and external tables.
+                  </p>
+                  <p>As of Oracle Database 12c Release 2 (12.2.0.1), you can partition data contained in
+            external tables, which allows you to take advantage of the same performance improvements
+            provided when you partition tables stored in a database (for example, partition
+            pruning).</p>
+                  <div class="infoboxnote" id="GUID-ACF1D3AA-1D61-4682-AEC5-42C944756E12__GUID-A01A2BC3-CFE0-429C-A41E-9D86ACF56C3A">
+                     <p class="notep1">Note:</p>
+                     <p>External tables can be used as inline external tables in SQL statements, thus eliminating the need to create an external table as a persistent database object in the data dictionary. For additional information, see <a href="../sqlrf/SELECT.html#SQLRF-GUID-CFA006CA-6FF1-4972-821E-6996142A51C6" target="_blank"><span><cite>Oracle Database SQL Language Reference</cite></span></a>.
+                     </p>
+                  </div>
+                  <p>When you create an external table, you specify the following attributes:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><code class="codeph">TYPE</code> — specifies the type of external table. Each type of external table is supported by its own access driver.
+                        </p>
+                        <ul style="list-style-type: disc;">
+                           <li>
+                              
+                              <p><code class="codeph">ORACLE_LOADER</code> — this is the default access
+                            driver. It loads data from external tables to internal tables. The data
+                            must come from text data files. (The <code class="codeph">ORACLE_LOADER</code>
+                            access driver cannot perform unloads; that is, it cannot move data from
+                            an internal table to an external table.)
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><code class="codeph">ORACLE_DATAPUMP</code> — this access driver can
+                            perform both loads and unloads. The data must come from binary dump
+                            files. Loads to internal tables from external tables are done by
+                            fetching from the binary dump files. Unloads from internal tables to
+                            external tables are done by populating the binary dump files of the
+                            external table. The <code class="codeph">ORACLE_DATAPUMP</code> access driver can
+                            write dump files only as part of creating an external table with the SQL
+                                <code class="codeph">CREATE TABLE AS SELECT</code> statement. After the dump
+                            file is created, it can be read any number of times, but it cannot be
+                            modified (that is, no DML operations can be performed).
+                              </p>
+                              
+                           </li>
+                           <li>
+                              
+                              <p><code class="codeph">ORACLE_HIVE</code> — extracts data stored in
+                            Apache HIVE.
+                              </p>
+                              
+                           </li>
+                           <li><code class="codeph">ORACLE_BIGDATA</code> — this access driver enables you to access
+                        data stored in object stores as if that data was stored in tables in an
+                        Oracle Database.
+                           </li>
+                        </ul>
+                     </li>
+                     <li>
+                        <p><code class="codeph">DEFAULT DIRECTORY</code> — specifies the default directory to use for all
+                    input and output files that do not explicitly name a directory object. The
+                    location is specified with a directory object, not a directory path. You must
+                    create the directory object before you create the external table; otherwise, an
+                    error is generated. See <a href="oracle-external-tables-concepts.html#unique_696595376" title="Data files and output files must be located on the server. You must have a directory object that specifies the location from which to read and write files.">Location of Data Files and Output Files</a> for more
+                    information.
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">ACCESS PARAMETERS</code> — describe the external data source and implement
+                    the type of external table that was specified. Each type of external table has
+                    its own access driver that provides access parameters unique to that type of
+                    external table. Access parameters are optional. See <a href="oracle-external-tables-concepts.html#GUID-07D30CE6-128D-426F-8B76-B13E1C53BD5A" title="To modify the default behavior of the access driver for external tables, specify access parameters.">Access Parameters</a>.
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">LOCATION</code> — specifies the data files for the external table.
+                        </p>
+                        
+                        
+                        <p>For <code class="codeph">ORACLE_LOADER</code>, <code class="codeph">ORACLE_BIGDATA</code>,
+                    and <code class="codeph">ORACLE_DATAPUMP</code>, the files are named in the form
+                            <code class="codeph"><span class="variable" translate="no">directory:file</span></code>. The
+                            <code class="codeph"><span class="variable" translate="no">directory</span></code> portion is
+                    optional. If it is missing, then the default directory is used as the directory
+                    for the file. If you are using the <code class="codeph">ORACLE_LOADER</code> access driver,
+                    then you can use wildcards in the file name: an asterisk (*) signifies multiple
+                    characters, a question mark (?) signifies a single character.
+                        </p>
+                        
+                     </li>
+                  </ul>
+                  <p>The following examples briefly show the use of attributes for each of the access drivers.</p>
+                  <div class="example" id="GUID-ACF1D3AA-1D61-4682-AEC5-42C944756E12__GUID-C0EE1690-9140-4243-80FC-EA88AC886123">
+                     <p class="titleinexample">Example 14-1 Specifying Attributes for the ORACLE_LOADER Access Driver</p>
+                     <p>The following example uses the <code class="codeph">ORACLE_LOADER</code> access driver to show the use of each of these attributes (it assumes that the default directory <code class="codeph">def_dir1</code> already exists):
+                     </p><pre class="pre codeblock"><code>SQL&gt; CREATE TABLE emp_load
+  2    (employee_number      CHAR(5),
+  3     employee_dob         CHAR(20),
+  4     employee_last_name   CHAR(20),
+  5     employee_first_name  CHAR(15),
+  6     employee_middle_name CHAR(15),
+  7     employee_hire_date   DATE)
+  8  ORGANIZATION EXTERNAL
+  9    (<span class="bold">TYPE</span> ORACLE_LOADER
+ 10     <span class="bold">DEFAULT DIRECTORY</span> def_dir1
+ 11     <span class="bold">ACCESS PARAMETERS</span>
+ 12       (RECORDS DELIMITED BY NEWLINE
+ 13        FIELDS (employee_number      CHAR(2),
+ 14                employee_dob         CHAR(20),
+ 15                employee_last_name   CHAR(18),
+ 16                employee_first_name  CHAR(11),
+ 17                employee_middle_name CHAR(11),
+ 18                employee_hire_date   CHAR(10) date_format DATE mask "mm/dd/yyyy"
+ 19               )
+ 20       )
+ 21     <span class="bold">LOCATION</span> ('info.dat')
+ 22    );
+ 
+Table created.
+</code></pre><p>The information you provide through the access driver ensures that data from the data
+                source is processed so that it matches the definition of the external table. The
+                fields listed after <code class="codeph">CREATE TABLE emp_load</code> are actually defining the
+                metadata for the data in the <code class="codeph">info.dat</code> source file. 
+                     </p>
+                  </div>
+                  <div class="example" id="GUID-ACF1D3AA-1D61-4682-AEC5-42C944756E12__GUID-B81DE8BA-774C-48AA-86AD-55E41B276AC3">
+                     <p class="titleinexample">Example 14-2 Specifying Attributes for the ORACLE_DATAPUMP Access Driver</p>
+                     <p>This example creates an external table named <code class="codeph">inventories_xt</code> and populates the dump file for the external table with the data from table <code class="codeph">inventories</code> in the <code class="codeph">oe</code> sample schema.
+                     </p><pre class="pre codeblock"><code>SQL&gt; CREATE TABLE inventories_xt
+2 ORGANIZATION EXTERNAL
+3 (
+4 TYPE ORACLE_DATAPUMP
+5 DEFAULT DIRECTORY def_dir1
+6 LOCATION ('inv_xt.dmp')
+7 )
+8 AS SELECT * FROM inventories;
+Table created.</code></pre></div>
+                  <div class="example" id="GUID-ACF1D3AA-1D61-4682-AEC5-42C944756E12__GUID-94542F48-C4CF-47E9-8089-7ABF3BC9E666">
+                     <p class="titleinexample">Example 14-3 Specifying Attributes for the
+                ORACLE_BIGDATA Access Driver</p>
+                     
+                     
+                     <pre class="pre codeblock"><code>CREATE TABLE tab_from_csv
+     (
+      c0 number,
+      c1 varchar2(20)
+     )
+     ORGANIZATION external
+     (
+      TYPE oracle_bigdata
+      DEFAULT DIRECTORY data_pump_dir
+      ACCESS PARAMETERS
+      (
+       com.oracle.bigdata.fileformat=csv
+      )
+      location
+      (
+       'data.csv'
+      )
+     )REJECT LIMIT 1
+     ;
+</code></pre>
+                     </div>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="oracle-sql-loader-concepts.html#GUID-AC0DBDB3-BD68-45A4-ABA3-3DE38BB038ED" title="Oracle recommends that you review the differences between loading data with external tables, using the ORACLE_LOADER access driver, and loading data with SQL*Loader conventional and direct path loads.">Behavior Differences Between SQL*Loader and External Tables</a></li>
+                        <li><a href="../admin/managing-tables.html#ADMIN-GUID-F6948F0E-0557-4C42-9145-1897DE974CC3" target="_blank"><span><cite>Oracle Database Administrator’s Guide</cite></span>
+                Managing External Tables</a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-external-tables-concepts.html#GUID-44323E01-7D72-45EC-915A-99E596769D9E" title="The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.">External Tables Concepts</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="SUTIL1359"></a><div class="props_rev_3"><a id="GUID-05AA7C84-2C2D-45CE-8F52-392D4A2B4864" name="GUID-05AA7C84-2C2D-45CE-8F52-392D4A2B4864"></a><h3 id="SUTIL-GUID-05AA7C84-2C2D-45CE-8F52-392D4A2B4864" class="sect3"><span class="enumeration_section">14.2 </span>Location of Data Files and Output Files
+               </h3>
+               <div>
+                  <p>Data files and output files must be located on the server. You must have a directory object that specifies the location from which to read and write files. </p>
+                  <div class="infoboxnote" id="GUID-05AA7C84-2C2D-45CE-8F52-392D4A2B4864__GUID-45EEFFDC-F14B-4FFD-AF03-349102267FCD">
+                     <p class="notep1">Note:</p>The information in this section about directory objects does not apply to data files for the <code class="codeph">ORACLE_HDFS</code> access driver or <code class="codeph">ORACLE_HIVE</code> access driver. With the <code class="codeph">ORACLE_HDFS</code> driver, the location of data is specified with a list of URIs for a directory or for a file, and there is no directory object associated with a URI. The <code class="codeph">ORACLE_HIVE</code> driver does not specify a data source location; it reads the Hive metastore table to get that information, so no directory object is needed.
+                  </div>
+                  <p>The access driver runs inside the database server. This behavior is different from SQL*Loader, which is a client program that sends the data to be loaded over to the server. This difference has the following implications:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>The server requires access to files that the access driver can load.</p>
+                     </li>
+                     <li>
+                        <p>The server must create and write the output files created by the access driver: the log file, bad file, discard file, and also any dump files created by the <code class="codeph">ORACLE_DATAPUMP</code> access driver.
+                        </p>
+                     </li>
+                  </ul>
+                  <p>To specify the location from which to read and write files, the access driver requires that you use a directory object. A directory object maps a name to a directory name on the file system. For example, the following statement creates a directory object named <code class="codeph">ext_tab_dir</code> that is mapped to a directory located at <code class="codeph">/usr/apps/datafiles.</code></p><pre class="pre codeblock"><code>CREATE DIRECTORY ext_tab_dir AS '/usr/apps/datafiles';
+</code></pre><p>DBAs or any user can create directory objects with the <code class="codeph">CREATE</code> <code class="codeph">ANY</code> <code class="codeph">DIRECTORY</code> privilege. 
+                  </p>
+                  <div class="infoboxnote" id="GUID-05AA7C84-2C2D-45CE-8F52-392D4A2B4864__GUID-92D64368-0498-4BCD-AAF8-D4F444B61A6C">
+                     <p class="notep1">Note:</p>
+                     <p>To use external tables in an Oracle Real Applications Cluster (Oracle RAC) configuration, you must ensure that the directory object path is on a cluster-wide file system.</p>
+                  </div>
+                  <p>After a directory is created, the user creating the directory object must grant <code class="codeph">READ</code> and <code class="codeph">WRITE</code> privileges on the directory to other users. These privileges must be explicitly granted, rather than assigned by using roles. For example, to allow the server to read files on behalf of user <code class="codeph">scott</code> in the directory named by <code class="codeph">ext_tab_dir</code>, the user who created the directory object must execute the following command:
+                  </p><pre class="pre codeblock"><code>GRANT READ ON DIRECTORY ext_tab_dir TO scott;
+</code></pre><p>The Oracle Database <code class="codeph">SYS</code> user is the only user that can own
+            directory objects, but the <code class="codeph">SYS</code> user can grant other Oracle Database
+            users the privilege to create directory objects.<code class="codeph">READ</code> or
+                <code class="codeph">WRITE</code> permission to a directory object means that only Oracle
+            Database reads or writes that file on your behalf. You are not given direct access to
+            those files outside of Oracle Database, unless you have the appropriate operating system
+            privileges. Similarly, Oracle Database requires permission from the operating system to
+            read and write files in the directories.
+                  </p>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-external-tables-concepts.html#GUID-44323E01-7D72-45EC-915A-99E596769D9E" title="The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.">External Tables Concepts</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="sect2"><a id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B" name="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B"></a><h3 id="SUTIL-GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B" class="sect3"><span class="enumeration_section">14.3 </span>CREATE_EXTERNAL_PART_TABLE
+      Procedure
+               </h3>
+               <div>
+                  <p>This procedure creates an external partitioned table on files in the Cloud.
+      This procedure enables you to run queries on external data in Oracle Autonomous Database,
+      using the <code class="codeph">ORACLE_BIGDATA </code>driver.
+                  </p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__GUID-96476F1C-C8A6-4598-B846-FC7C7BC0C42F">Use Case</p>
+                     
+                     
+                     
+                     <p>Starting with Oracle Database 19c, when you are using the
+               <code class="codeph">ORACLE_BIGDATA</code> driver with object stores, you are now able to select
+            column values from a path in external tables. This feature enables you to query and load
+            files in object storage that are partitioned, which represent the partition columns for
+            the table. 
+                     </p>
+                     
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__GUID-3E44E81A-F2AC-475B-A2DA-B700A46AD9BE">Syntax</p>
+                     
+                     
+                     
+                     <pre class="language-sql"><code>DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE (
+	table_name           IN VARCHAR2,
+	credential_name      IN VARCHAR2,
+	partitioning_clause  IN CLOB,
+	column_list          IN CLOB,
+	field_list           IN CLOB DEFAULT,
+	format               IN CLOB DEFAULT);
+</code></pre>
+                     </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__GUID-B33AD677-BD24-48FE-9494-B9BBBD5182FC">Parameters</p>
+                     
+                     
+                     <div class="tblformal" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__GUID-3C611C7B-871A-45F1-9E8B-6F7CF4BB1690">
+                        <table cellpadding="4" cellspacing="0" class="Formal" title summary="Shows parameters and descriptions for&#xA;                  CREATE_EXTERNAL_PART_TABLE." frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="30%" id="d98092e596">
+                        Parameter
+                     </th>
+                                 <th align="left" valign="bottom" width="70%" id="d98092e601">
+                        Description
+                     </th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e608" headers="d98092e596 ">
+                                    
+                                    <p><code class="codeph">table_name</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e608 d98092e601 ">
+                                    
+                                    <p>The name of the external table. For example:
+                              <code class="codeph">'mysales'</code></p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e622" headers="d98092e596 ">
+                                    
+                                    <p><code class="codeph">credential_name</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e622 d98092e601 ">
+                                    
+                                    <p>The name of the credential to access the Cloud Object
+                           Storage. When resource principal is enabled, you can use
+                              <code class="codeph">'OCI$RESOURCE_PRINCIPAL'</code> as the
+                              <code class="codeph">credential_name</code></p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e639" headers="d98092e596 ">
+                                    
+                                    <p><code class="codeph">partitioning_clause</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e639 d98092e601 ">
+                                    
+                                    
+                                    <p>Specifies the complete partitioning clause, including the
+                           location information for individual partitions.</p>
+                                    
+                                    <p>If you use the <code class="codeph">partitioning_clause</code>
+                           parameter, then the <code class="codeph">file_url_list</code> parameter is not
+                           allowed.
+                                    </p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e660" headers="d98092e596 ">
+                                    
+                                    <p><code class="codeph">file_uri_list</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e660 d98092e601 ">
+                                    
+                                    <p>There are two options for the <code class="codeph">file_uri_list</code>
+                           parameter:
+                                    </p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__UL_VNX_MLC_DSB">
+                                       <li>A comma-delimited list of individual file URIs without
+                              wildcards.</li>
+                                       <li>A single file URI with wildcards. The wildcards can only
+                              be after the last slash "<code class="codeph">/</code>".
+                                       </li>
+                                    </ul>
+                                    
+                                    <p>If you use the parameter <code class="codeph">file_url_list</code>,
+                           then the <code class="codeph">partitioning_clause</code> parameter is not allowed.
+                           The specification should be the root folder in a nested path, where are
+                           multiple files within a folder structure that have the same schema. For
+                           example:
+                                    </p>
+                                    
+                                    <p><code class="codeph">https://objectstorage.us-phoenix-1.oraclecloud.com/n/namespace-string/b/mybucket/0/sales/month=jan2022.csv
+                              https://objectstorage.us-phoenix-1.oraclecloud.com/n/namespace-string/b/mybucket/0/sales/month=feb2022.csv</code></p>
+                                    
+                                    <p>In this case, the root folder for the sales table is
+                              <code class="codeph">/0/sales</code></p>
+                                    
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e702" headers="d98092e596 ">
+                                    
+                                    <p><code class="codeph">column_list</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e702 d98092e601 ">
+                                    
+                                    <p>Comma-delimited list of column names and data types for the
+                           external table. This parameter has the following requirements, depending
+                           on the type of the data files specified with the
+                              <code class="codeph">file_url_list</code> parameter:
+                                    </p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__UL_PFX_ZLC_DSB">
+                                       <li>The <code class="codeph">column_list</code> parameter is required
+                              with unstructured files. Using unstructured files, for example with
+                              CSV text files, the <code class="codeph">column_list</code> parameter must
+                              specify all the column names and data types inside the data file as
+                              well as the partition columns derived from the object name.
+                                       </li>
+                                       <li>The <code class="codeph">column_list</code> parameter is optional
+                              with structured files. For example, with Avro, ORC, or Parquet data
+                              files, the <code class="codeph">column_list</code> is not required. When the
+                                 <code class="codeph">column_list</code> is not included, the
+                                 <code class="codeph">format</code> parameter
+                                 <code class="codeph">partition_columns</code> option must include
+                              specifications for both column names (<code class="codeph">name</code>) and data
+                              types (<code class="codeph">type</code>).
+                                       </li>
+                                    </ul>
+                                    
+                                    <p>For example:</p>
+                                    
+                                    <p><code class="codeph">'product varchar2(100), units number, country
+                              varchar2(100), year number, month varchar2(2)',</code></p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e758" headers="d98092e596 ">
+                                    
+                                    <p><code class="codeph">field_list</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e758 d98092e601 ">
+                                    
+                                    <p>Identifies the fields in the source files and their data
+                           types. The default value is <code class="codeph">NULL</code>, meaning the fields and
+                           their data types are determined by the <code class="codeph">column_list</code>
+                           parameter. This argument's syntax is the same as the
+                              <code class="codeph">field_list</code> clause in regular Oracle Database external
+                           tables. 
+                                    </p>
+                                    
+                                    <p>The field_list is not required for structured files, such as
+                           Apache Parquet files..</p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e782" headers="d98092e596 ">
+                                    
+                                    <p><code class="codeph">format</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e782 d98092e601 ">
+                                    
+                                    <p>The format option <code class="codeph">partition_columns</code>
+                           specifies the <code class="codeph">DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE</code>
+                           column names and data types of partition columns when the partition
+                           columns are derived from the file path, depending on the type of data
+                           file, structured or unstructured:
+                                    </p>
+                                    
+                                    <ul style="list-style-type: disc;" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__UL_PRM_34C_DSB">
+                                       <li>
+                                          
+                                          <p>When the
+                                    <code class="codeph">DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE</code> includes
+                                 the <code class="codeph">column_list</code> parameter and the data files are
+                                 unstructured, such as with CSV text files,
+                                    <code class="codeph">partition_columns</code> does not include the data
+                                 type. For example, use a format such as the following for this type
+                                 of <code class="codeph">partition_columns</code> specification:
+                                          </p>
+                                          <pre class="pre codeblock"><code>'"partition_columns":["state","zipcode"]'</code></pre>
+                                          <p>The data type is not required because it is specified
+                                 in the <code class="codeph">DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE
+                                    </code><code class="codeph">column_list</code> parameter. 
+                                          </p>
+                                          
+                                       </li>
+                                       <li>
+                                          
+                                          <p>When the
+                                    <code class="codeph">DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE</code> does not
+                                 include the <code class="codeph">column_list</code> parameter and the data
+                                 files are structured, such as Avro, ORC, or Parquet files, the
+                                    <code class="codeph">partition_columns</code> option includes both the
+                                 column name, <code class="codeph">name</code> sub-clause, and the data type,
+                                    <code class="codeph">type</code> sub-clause. For example, the following
+                                 shows a <code class="codeph">partition_columns</code> specification:
+                                          </p>
+                                          <pre class="pre codeblock"><code>'"partition_columns":[
+               {"name":"country", "type":"varchar2(10)"},
+               {"name":"year", "type":"number"},
+               {"name":"month", "type":"varchar2(10)"}]'</code></pre>
+                                          </li>
+                                    </ul>
+                                    
+                                    <p>If the data files are unstructured and the
+                              <code class="codeph">type</code> sub-clause is specified with
+                              <code class="codeph">partition_columns</code>, the <code class="codeph">type</code>
+                           sub-clause is ignored.
+                                    </p>
+                                    
+                                    <p>For object names that are not based on hive format, the
+                           order of the <code class="codeph">partition_columns</code> specified columns must
+                           match the order as they appear in the object name in the file path
+                           specified in the <code class="codeph">file_url_list</code> parameter.
+                                    </p>
+                                    
+                                    
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__GUID-D0526E95-8339-4BBE-BA00-68D8B7FCD02A">Usage Notes</p>
+                     
+                     
+                     <ul style="list-style-type: disc;" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__UL_IBJ_FYD_QJB">
+                        <li>
+                           
+                           <p>You cannot call this procedure with both
+                     <code class="codeph">partitioning_clause</code> and <code class="codeph">file_url_list</code>
+                  parameters.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Specifying the <code class="codeph">column_list</code> parameter is optional
+                  with structured data files, including Avro, Parquet, or ORC data files. If
+                     <code class="codeph">column_list</code> is not specified, the <code class="codeph">format</code>
+                  parameter <code class="codeph">partition_columns</code> option must include both
+                     <code class="codeph">name</code> and <code class="codeph">type</code>. 
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>The <code class="codeph">column_list</code> parameter is required with
+                  unstructured data files, such as CSV text files.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <div class="p">The procedure <code class="codeph">DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE</code>
+                  supports external partitioned files in the supported cloud object storage
+                  services, including: 
+                              <ul style="list-style-type: disc;" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__UL_DGH_JVP_SMB">
+                                 <li>Oracle Cloud Infrastructure Object Storage</li>
+                                 <li>
+                                    
+                                    <p>Azure Blob Storage</p>
+                                    
+                                 </li>
+                                 <li>Amazon S3-Compatible, including: Oracle Cloud Infrastructure
+                        Object Storage, Google Cloud Storage, and Wasabi Hot Cloud storage.</li>
+                                 <li>GitHub Repository</li>
+                              </ul>
+                           </div>
+                           
+                           
+                        </li>
+                        <li>
+                           
+                           <p>When you call <code class="codeph">DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE</code>
+                  with the <code class="codeph">file_url_list</code> parameter, the types for columns specified
+                  in the Cloud Object Store file name must be one of the following types:
+                           </p>
+                           <pre class="pre codeblock"><code>VARCHAR2(n)
+NUMBER(n)
+NUMBER(p,s)
+NUMBER
+DATE
+TIMESTAMP(9)</code></pre>
+                           </li>
+                        <li>
+                           
+                           <p>The default record delimiter is <code class="codeph">detected newline</code>.
+                  With <code class="codeph">detected newline</code>, <code class="codeph">DBMS_CLOUD</code> tries to
+                  automatically find the correct newline character to use as the record delimiter.
+                     <code class="codeph">DBMS_CLOUD</code> first searches for the Windows newline character
+                     <code class="codeph">\r\n</code>. If it finds the Windows newline character, this is used
+                  as the record delimiter for all files in the procedure. If a Windows newline
+                  character is not found, <code class="codeph">DBMS_CLOUD</code> searches for the UNIX/Linux
+                  newline character <code class="codeph">\n</code>, and if it finds one it uses
+                     <code class="codeph">\n</code> as the record delimiter for all files in the procedure. If
+                  the source files use a combination of different record delimiters, you may
+                  encounter an error such as, "<code class="codeph">KUP-04020: found record longer than buffer
+                     size supported</code>". In this case, you need to either modify the source
+                  files to use the same record delimiter or only specify the source files that use
+                  the same record delimiter.
+                           </p>
+                           
+                           
+                        </li>
+                        <li>
+                           
+                           <p>The external partitioned tables that you create with
+                     <code class="codeph">DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE</code> include two invisible
+                  columns, <code class="codeph">file$path</code> and <code class="codeph">file$name</code>. These columns
+                  help identify which file a record is coming from.
+                           </p>
+                           
+                           <ul style="list-style-type: disc;" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__UL_Q24_YQM_4RB">
+                              <li>
+                                 
+                                 <p><code class="codeph">file$path</code>: Specifies the file path text up to
+                        the beginning of the object name.
+                                 </p>
+                                 
+                              </li>
+                              <li>
+                                 
+                                 <p><code class="codeph">file$name</code>: Specifies the object name, including
+                        all the text that follows the bucket name.
+                                 </p>
+                                 
+                              </li>
+                           </ul>
+                           
+                        </li>
+                     </ul>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__GUID-A4F18A88-1501-4975-93E5-7C89E8F9A52F">Examples</p>
+                     
+                     
+                     <p>Example using the <code class="codeph">partitioning_clause</code> parameter:
+                     </p>
+                     <pre class="language-sql"><code>BEGIN  
+   DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE(
+      table_name =&gt;'PET1',  
+      credential_name =&gt;'OBJ_STORE_CRED',
+      format =&gt; json_object('delimiter' value ',', 'recorddelimiter' value 'newline', 'characterset' value 'us7ascii'),
+      column_list =&gt; 'col1 number, col2 number, col3 number',
+      partitioning_clause =&gt; 'partition by range (col1)
+                                (partition p1 values less than (1000) location
+                                    ( ''&amp;base_URL//file_11.txt'')
+                                 ,
+                                 partition p2 values less than (2000) location
+                                    ( ''&amp;base_URL/file_21.txt'')
+                                 ,
+                                 partition p3 values less than (3000) location 
+                                    ( ''&amp;base_URL/file_31.txt'')
+                                 )'
+     );
+   END;
+/  
+
+</code></pre>
+                     <p>Example using the <code class="codeph">file_uri_list</code> and
+               <code class="codeph">column_list</code> parameters with unstructured data files:
+                     </p>
+                     <pre class="language-sql"><code>BEGIN
+  DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE(
+   table_name =&gt; 'MYSALES',
+   credential_name =&gt; 'DEF_CRED_NAME',
+   file_uri_list     =&gt; 'https://objectstorage.us-phoenix-1.oraclecloud.com/n/<span class="variable" translate="no">namespace-string</span>/b/<span class="variable" translate="no">bucketname</span>/o/*.csv', 
+   column_list       =&gt; 'product varchar2(100), units number, country varchar2(100), year number, month varchar2(2)', 
+   field_list        =&gt; 'product, units', --[Because country, year and month are not in the file, they are not listed in the field list]
+   format            =&gt; '{"type":"csv", "partition_columns":["country","year","month"]}');
+END;
+/ 
+</code></pre>
+                     <p>Example using the <code class="codeph">file_uri_list</code> without the
+               <code class="codeph">column_list</code> parameter with structured data files:
+                     </p>
+                     <pre class="language-sql"><code>BEGIN
+  DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE(
+  table_name =&gt; 'MYSALES',
+  credential_name =&gt; 'DEF_CRED_NAME',
+  DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE(
+    table_name      =&gt; 'MYSALES',
+    credential_name =&gt; 'DEF_CRED_NAME',
+    file_uri_list   =&gt; 'https://objectstorage.us-phoenix-1.oraclecloud.com/n/<span class="variable" translate="no">namespace-string</span>/b/<span class="variable" translate="no">bucketname</span>/o/*.parquet',
+    format          =&gt; 
+        json_object('type' value 'parquet', 'schema' value 'first',
+                    'partition_columns' value 
+                          json_array(
+                                json_object('name' value 'country', 'type' value 'varchar2(100)'),
+                                json_object('name' value 'year', 'type' value 'number'),
+                                json_object('name' value 'month', 'type' value 'varchar2(2)')
+                          )
+         )
+    );
+END;
+/</code></pre>
+                     <p>Example with a partitioned Apache Parquet source. You can run this example, because the
+            data is public. </p>
+                     
+                     <p>In this case, data is organized into months. The resource principal was enabled, as
+            shown below. However, because this is a public data source, it is not required. </p>
+                     
+                     <div class="infoboxnote" id="GUID-D4910711-01ED-49FA-ADC3-CBF19FE51A0B__GUID-DB9104B9-8C3A-42E5-A4B9-B27D3A5D4BA4">
+                        <p class="notep1">Note:</p>The list of columns is not required, because it is derived from the Parquet source.
+            You do need to specify the data type for month, because there is no column list.
+                     </div>
+                     <pre class="pre codeblock"><code>BEGIN
+  DBMS_CLOUD.CREATE_EXTERNAL_PART_TABLE(
+   credential_name =&gt; 'OCI$RESOURCE_PRINCIPAL',
+   table_name =&gt; 'sales',
+   file_uri_list =&gt; 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/c4u04/b/moviestream_gold/o/custsales/*.parquet',
+   format =&gt; '{"type":"parquet","partition_columns":[{name:"month","type":"varchar2(20)"}]}'
+   );
+END;
+/
+mgubar: Finally, here is the generated ddl:
+CREATE TABLE sales
+   ( "DAY_ID" TIMESTAMP (6),
+      "GENRE_ID" NUMBER(19,0),
+      "MOVIE_ID" NUMBER(19,0),
+      "CUST_ID" NUMBER(19,0),
+      "APP" VARCHAR2(4000 BYTE),
+      "DEVICE" VARCHAR2(4000 BYTE),
+      "OS" VARCHAR2(4000 BYTE),
+      "PAYMENT_METHOD" VARCHAR2(4000 BYTE),
+      "LIST_PRICE" BINARY_DOUBLE,
+      "DISCOUNT_TYPE" VARCHAR2(4000 BYTE),
+      "DISCOUNT_PERCENT" BINARY_DOUBLE,
+      "ACTUAL_PRICE" BINARY_DOUBLE,
+      "MONTH" VARCHAR2(20 BYTE)
+   )
+   ORGANIZATION EXTERNAL
+    ( TYPE ORACLE_BIGDATA
+      DEFAULT DIRECTORY "DATA_PUMP_DIR"
+      ACCESS PARAMETERS
+      ( com.oracle.bigdata.fileformat=parquet
+com.oracle.bigdata.filename.columns=["month"]
+com.oracle.bigdata.file_uri_list="https://objectstorage.us-ashburn-1.oraclecloud.com/n/c4u04/b/moviestream_gold/o/custsales/*.parquet"
+com.oracle.bigdata.credential.schema="ADMIN"
+com.oracle.bigdata.credential.name="OCI$RESOURCE_PRINCIPAL"
+com.oracle.bigdata.trimspaces=notrim
+  )
+    )
+   REJECT LIMIT 0
+  PARTITION BY LIST ("MONTH")
+ (PARTITION "P1" VALUES (('2019-01'))
+      LOCATION
+       ( 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/c4u04/b/moviestream_gold/o/custsales/month=2019-01/*.parquet'
+       ),
+ PARTITION "P2" VALUES (('2019-02'))
+      LOCATION
+       ( 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/c4u04/b/moviestream_gold/o/custsales/month=2019-02/*.parquet'
+       ),
+ PARTITION "P3" VALUES (('2019-03'))
+      LOCATION
+       ( 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/c4u04/b/moviestream_gold/o/custsales/month=2019-03/*.parquet'
+       ),
+ PARTITION "P4" VALUES (('2019-04'))
+      LOCATION
+       ( 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/c4u04/b/moviestream_gold/o/custsales/month=2019-04/*.parquet'
+       ),
+ ...
+ PARTITION "P24" VALUES (('2020-12'))
+      LOCATION
+       ( 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/c4u04/b/moviestream_gold/o/custsales/month=2020-12/*.parquet'
+       ))
+  PARALLEL ;</code></pre>
+                     <p>Example of not requiring a field list. Parquet is a structured file. Because the file is
+            Parquet, the field list is derived from the structured file.</p>
+                     <pre class="pre codeblock"><code>CREATE TABLE ADMIN.EXT_CUSTSALES
+   ( DAY_ID TIMESTAMP (6),
+      GENRE_ID NUMBER(19,0),
+      MOVIE_ID NUMBER(19,0),
+      CUST_ID NUMBER(19,0),
+      APP VARCHAR2(4000 BYTE),
+      DEVICE VARCHAR2(4000 BYTE),
+      OS VARCHAR2(4000 BYTE),
+      PAYMENT_METHOD VARCHAR2(4000 BYTE),
+      LIST_PRICE BINARY_DOUBLE,
+      DISCOUNT_TYPE VARCHAR2(4000 BYTE),
+      DISCOUNT_PERCENT BINARY_DOUBLE,
+      ACTUAL_PRICE BINARY_DOUBLE
+   ) DEFAULT COLLATION USING_NLS_COMP
+   ORGANIZATION EXTERNAL
+    ( TYPE ORACLE_BIGDATA
+      DEFAULT DIRECTORY DATA_PUMP_DIR
+      ACCESS PARAMETERS
+      ( com.oracle.bigdata.fileformat=parquet
+com.oracle.bigdata.trimspaces=notrim
+  )
+      LOCATION
+       ( 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/c4u04/b/moviestream_landing/o/sales_sample/*.parquet'
+       )
+    )
+   REJECT LIMIT UNLIMITED
+  PARALLEL ;
+</code></pre>
+                     </div>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="oracle_loader-access-driver.html#SUTIL-GUID-5CAF68BD-5C79-4473-AAA3-AB7CDA00B434" target="_blank">ORACLE_LOADER Access Driver field_list under field_definitions
+            Clause</a></li>
+                        <li><a href="../arpls/DBMS_CLOUD.html#ARPLS-GUID-08C44CDA-7C81-481A-BA0A-F7346473B703" target="_blank">DBMS_CLOUD Package Format Format Options in <span><cite>Oracle Database PL/SQL Packages and Types Reference</cite></span></a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-external-tables-concepts.html#GUID-44323E01-7D72-45EC-915A-99E596769D9E" title="The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.">External Tables Concepts</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2"><a id="GUID-C34F5A59-2E8B-4162-8F5B-AF26EDA232A2" name="GUID-C34F5A59-2E8B-4162-8F5B-AF26EDA232A2"></a><h3 id="SUTIL-GUID-C34F5A59-2E8B-4162-8F5B-AF26EDA232A2" class="sect3"><span class="enumeration_section">14.4 </span>CREATE_EXTERNAL_TABLE Procedure
+               </h3>
+               <div>
+                  <p>This procedure creates an external table on files in the Cloud or from files
+      in a directory. This enables you to run queries on external data from Oracle
+      Database.</p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-C34F5A59-2E8B-4162-8F5B-AF26EDA232A2__GUID-96476F1C-C8A6-4598-B846-FC7C7BC0C42F">Use Case</p>
+                     
+                     
+                     
+                     <p>Starting with Oracle Database 19c, when you are using the
+               <code class="codeph">ORACLE_BIGDATA</code> driver with object stores, you are now able to select
+            column values from a path in external tables. 
+                     </p>
+                     
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-C34F5A59-2E8B-4162-8F5B-AF26EDA232A2__GUID-6FA834CA-DAE5-4656-902D-847195680A70">Syntax</p>
+                     
+                     
+                     <pre class="language-sql"><code>DBMS_CLOUD.CREATE_EXTERNAL_TABLE (
+    table_name       IN VARCHAR2,
+    credential_name  IN VARCHAR2,
+    file_uri_list    IN CLOB,
+    column_list      IN CLOB,
+    field_list       IN CLOB DEFAULT,
+    format           IN CLOB DEFAULT);
+</code></pre>
+                     </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-C34F5A59-2E8B-4162-8F5B-AF26EDA232A2__GUID-B33AD677-BD24-48FE-9494-B9BBBD5182FC">Parameters</p>
+                     
+                     
+                     <div class="tblformal" id="GUID-C34F5A59-2E8B-4162-8F5B-AF26EDA232A2__GUID-3C611C7B-871A-45F1-9E8B-6F7CF4BB1690">
+                        <table cellpadding="4" cellspacing="0" class="Formal" title summary="Parameters and descriptions for CREATE_EXTERNAL_TABLE." frame="hsides" border="1" rules="rows">
+                           <thead>
+                              <tr align="left" valign="top">
+                                 <th align="left" valign="bottom" width="30%" id="d98092e1192">
+                        Parameter
+                     </th>
+                                 <th align="left" valign="bottom" width="70%" id="d98092e1197">
+                        Description
+                     </th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e1204" headers="d98092e1192 ">
+                                    
+                                    <p><code class="codeph">table_name</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e1204 d98092e1197 ">
+                                    
+                                    <p>The name of the external table.</p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e1216" headers="d98092e1192 ">
+                                    
+                                    <p><code class="codeph">credential_name</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e1216 d98092e1197 ">
+                                    
+                                    <p>The name of the credential to access the Cloud Object
+                           Storage.</p>
+                                    
+                                    <p>This parameter is not used when you specify a directory with
+                              <code class="codeph">file_uri_list</code>.
+                                    </p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e1234" headers="d98092e1192 ">
+                                    
+                                    <p><code class="codeph">file_uri_list</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e1234 d98092e1197 ">
+                                    
+                                    
+                                    <p>Comma-delimited list of source file URIs. You can use wildcards in the
+                           file names in your URIs. The character "*" can be used as the wildcard
+                           for multiple characters, the character "?" can be used as the wildcard
+                           for a single character.</p>
+                                    
+                                    <p>The format of the URIs depend on the Cloud Object Storage service you are
+                           using. For details see:</p>
+                                    
+                                    
+                                    <p><a href="../arpls/DBMS_CLOUD.html#ARPLS-GUID-5D3E1614-ADF2-4DB5-B2B2-D5613F10E4FA" target="_blank">DBMS_CLOUD URI Formats</a></p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e1254" headers="d98092e1192 ">
+                                    
+                                    <p><code class="codeph">column_list</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e1254 d98092e1197 ">
+                                    
+                                    <p>Comma-delimited list of column names and data types for the
+                           external table.</p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e1266" headers="d98092e1192 ">
+                                    
+                                    <p><code class="codeph">field_list</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e1266 d98092e1197 ">
+                                    
+                                    <p>Identifies the fields in the source files and their data
+                           types. The default value is NULL meaning the fields and their data types
+                           are determined by the <code class="codeph">column_list</code> parameter. This
+                           argument's syntax is the same as the <code class="codeph">field_list</code> clause
+                           in regular Oracle external tables. For more information about
+                              <code class="codeph">field_list</code> see: <a href="oracle_loader-access-driver.html#SUTIL-GUID-5CAF68BD-5C79-4473-AAA3-AB7CDA00B434" target="_blank">ORACLE_LOADER Access
+                              Driver field_list under field_definitions Clause</a>.
+                                    </p>
+                                    
+                                 </td>
+                              </tr>
+                              <tr align="left" valign="top">
+                                 <td align="left" valign="top" width="30%" id="d98092e1291" headers="d98092e1192 ">
+                                    
+                                    <p><code class="codeph">format</code></p>
+                                    
+                                 </td>
+                                 <td align="left" valign="top" width="70%" headers="d98092e1291 d98092e1197 ">
+                                    
+                                    <p>The options describing the format of the source files. For
+                           the list of the options and how to specify the values see:</p>
+                                    
+                                    
+                                    <p><a href="../arpls/DBMS_CLOUD.html#ARPLS-GUID-08C44CDA-7C81-481A-BA0A-F7346473B703" target="_blank">DBMS_CLOUD Package Format
+                              Options in <span><cite>Oracle Database PL/SQL Packages and Types Reference</cite></span></a></p>
+                                    
+                                    
+                                    <p>For Avro or Parquet format files, see:</p>
+                                    
+                                    <p><a href="../arpls/DBMS_CLOUD.html#ARPLS-GUID-D23C5CEF-770C-436D-B856-4C6C318FA045" target="_blank">DBMS_CLOUD CREATE_EXTERNAL_TABLE
+                              Procedure for Avro or Parquet Files in <span><cite>Oracle Database PL/SQL Packages and Types Reference</cite></span></a></p>
+                                    
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-C34F5A59-2E8B-4162-8F5B-AF26EDA232A2__GUID-4D648C7F-3C06-4E04-8A0F-B9FC738CE384">Usage Notes</p>
+                     
+                     
+                     <p>The procedure <code class="codeph">DBMS_CLOUD.CREATE_EXTERNAL_TABLE</code> supports external
+            partitioned files in the supported cloud object storage services, including:
+                     </p>
+                     
+                     <ul style="list-style-type: disc;" id="GUID-C34F5A59-2E8B-4162-8F5B-AF26EDA232A2__UL_FBP_FG3_S1C">
+                        <li>Oracle Cloud Infrastructure Object Storage</li>
+                        <li>Azure Blob Storage</li>
+                        <li>Amazon S3</li>
+                     </ul>
+                     
+                     <p>The credential is a table level property; therefore, the external files must be on the
+            same object store.</p>
+                     
+                     
+                     <p>See <a href="../arpls/DBMS_CLOUD.html#ARPLS-GUID-5D3E1614-ADF2-4DB5-B2B2-D5613F10E4FA" target="_blank">DBMS_CLOUD URI Formats in <span><cite>Oracle Database PL/SQL Packages and Types Reference</cite></span></a></p>
+                     
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-C34F5A59-2E8B-4162-8F5B-AF26EDA232A2__GUID-A4F18A88-1501-4975-93E5-7C89E8F9A52F">Example</p>
+                     
+                     
+                     <pre class="pre codeblock"><code>BEGIN  
+   DBMS_CLOUD.CREATE_EXTERNAL_TABLE(   
+      table_name =&gt;'WEATHER_REPORT_DOUBLE_DATE',   
+      credential_name =&gt;'OBJ_STORE_CRED',   
+      file_uri_list =&gt;'&amp;base_URL/Charlotte_NC_Weather_History_Double_Dates.csv',
+      format =&gt; json_object('type' value 'csv', 'skipheaders' value '1'),   
+      field_list =&gt; 'REPORT_DATE DATE''mm/dd/yy'',                   
+                     REPORT_DATE_COPY DATE ''yyyy-mm-dd'',
+                     ACTUAL_MEAN_TEMP,                 
+                     ACTUAL_MIN_TEMP,                 
+                     ACTUAL_MAX_TEMP,                 
+                     AVERAGE_MIN_TEMP,                    
+                     AVERAGE_MAX_TEMP,     
+                     AVERAGE_PRECIPITATION',   
+      column_list =&gt; 'REPORT_DATE DATE,   
+                     REPORT_DATE_COPY DATE,
+                     ACTUAL_MEAN_TEMP NUMBER,  
+                     ACTUAL_MIN_TEMP NUMBER,  
+                     ACTUAL_MAX_TEMP NUMBER,  
+                     AVERAGE_MIN_TEMP NUMBER,   
+                     AVERAGE_MAX_TEMP NUMBER,                  
+                     AVERAGE_PRECIPITATION NUMBER');
+   END;
+/ 
+
+SELECT * FROM WEATHER_REPORT_DOUBLE_DATE where         
+   actual_mean_temp &gt; 69 and actual_mean_temp &lt; 74</code></pre>
+                     </div>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="../arpls/DBMS_CLOUD.html#ARPLS-GUID-6CCC322D-26A9-47E7-8FF5-5FF23807C968" target="_blank">DBMS_CLOUD in <span><cite>Oracle Database PL/SQL Packages and Types Reference</cite></span></a></li>
+                     </ul>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-external-tables-concepts.html#GUID-44323E01-7D72-45EC-915A-99E596769D9E" title="The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.">External Tables Concepts</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="SUTIL1359"></a><div class="props_rev_3"><a id="unique_696595376" name="unique_696595376"></a><h3 id="SUTIL-unique_696595376" class="sect3"><span class="enumeration_section">14.5 </span>Location of Data Files and Output Files
+               </h3>
+               <div>
+                  <p>Data files and output files must be located on the server. You must have a directory object that specifies the location from which to read and write files. </p>
+                  <div class="infoboxnote" id="unique_696595376__GUID-45EEFFDC-F14B-4FFD-AF03-349102267FCD">
+                     <p class="notep1">Note:</p>The information in this section about directory objects does not apply to data files for the <code class="codeph">ORACLE_HDFS</code> access driver or <code class="codeph">ORACLE_HIVE</code> access driver. With the <code class="codeph">ORACLE_HDFS</code> driver, the location of data is specified with a list of URIs for a directory or for a file, and there is no directory object associated with a URI. The <code class="codeph">ORACLE_HIVE</code> driver does not specify a data source location; it reads the Hive metastore table to get that information, so no directory object is needed.
+                  </div>
+                  <p>The access driver runs inside the database server. This behavior is different from SQL*Loader, which is a client program that sends the data to be loaded over to the server. This difference has the following implications:</p>
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p>The server requires access to files that the access driver can load.</p>
+                     </li>
+                     <li>
+                        <p>The server must create and write the output files created by the access driver: the log file, bad file, discard file, and also any dump files created by the <code class="codeph">ORACLE_DATAPUMP</code> access driver.
+                        </p>
+                     </li>
+                  </ul>
+                  <p>To specify the location from which to read and write files, the access driver requires that you use a directory object. A directory object maps a name to a directory name on the file system. For example, the following statement creates a directory object named <code class="codeph">ext_tab_dir</code> that is mapped to a directory located at <code class="codeph">/usr/apps/datafiles.</code></p><pre class="pre codeblock"><code>CREATE DIRECTORY ext_tab_dir AS '/usr/apps/datafiles';
+</code></pre><p>DBAs or any user can create directory objects with the <code class="codeph">CREATE</code> <code class="codeph">ANY</code> <code class="codeph">DIRECTORY</code> privilege. 
+                  </p>
+                  <div class="infoboxnote" id="unique_696595376__GUID-92D64368-0498-4BCD-AAF8-D4F444B61A6C">
+                     <p class="notep1">Note:</p>
+                     <p>To use external tables in an Oracle Real Applications Cluster (Oracle RAC) configuration, you must ensure that the directory object path is on a cluster-wide file system.</p>
+                  </div>
+                  <p>After a directory is created, the user creating the directory object must grant <code class="codeph">READ</code> and <code class="codeph">WRITE</code> privileges on the directory to other users. These privileges must be explicitly granted, rather than assigned by using roles. For example, to allow the server to read files on behalf of user <code class="codeph">scott</code> in the directory named by <code class="codeph">ext_tab_dir</code>, the user who created the directory object must execute the following command:
+                  </p><pre class="pre codeblock"><code>GRANT READ ON DIRECTORY ext_tab_dir TO scott;
+</code></pre><p>The Oracle Database <code class="codeph">SYS</code> user is the only user that can own
+            directory objects, but the <code class="codeph">SYS</code> user can grant other Oracle Database
+            users the privilege to create directory objects.<code class="codeph">READ</code> or
+                <code class="codeph">WRITE</code> permission to a directory object means that only Oracle
+            Database reads or writes that file on your behalf. You are not given direct access to
+            those files outside of Oracle Database, unless you have the appropriate operating system
+            privileges. Similarly, Oracle Database requires permission from the operating system to
+            read and write files in the directories.
+                  </p>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-external-tables-concepts.html#GUID-44323E01-7D72-45EC-915A-99E596769D9E" title="The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.">External Tables Concepts</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div><a id="SUTIL1358"></a><div class="props_rev_3"><a id="GUID-07D30CE6-128D-426F-8B76-B13E1C53BD5A" name="GUID-07D30CE6-128D-426F-8B76-B13E1C53BD5A"></a><h3 id="SUTIL-GUID-07D30CE6-128D-426F-8B76-B13E1C53BD5A" class="sect3"><span class="enumeration_section">14.6 </span>Access Parameters for External Tables
+               </h3>
+               <div>
+                  <p>To modify the default behavior of the access driver for external tables, specify access parameters. </p>
+                  <p>When you create an external table of a particular type, you can specify access parameters to modify the default behavior of the access driver. Each access driver has its own syntax for access parameters. Oracle provides the following access drivers for use with external tables: <code class="codeph">ORACLE_LOADER</code> , <code class="codeph">ORACLE_DATAPUMP</code>, <code class="codeph">ORACLE_HDFS</code>, and <code class="codeph">ORACLE_HIVE</code>.
+                  </p>
+                  <div class="infoboxnote" id="GUID-07D30CE6-128D-426F-8B76-B13E1C53BD5A__GUID-A53BD2B8-51CE-478E-B02A-B0D8B1BA9542">
+                     <p class="notep1">Note:</p>
+                     <p>These access parameters are collectively referred to as the
+                    <code class="codeph">opaque_format_spec</code> in the SQL <code class="codeph">CREATE
+                    TABLE...ORGANIZATION EXTERNAL</code> statement. The <code class="codeph">ACCESS</code>
+                parameter clause allows SQL comments.
+                     </p>
+                  </div>
+               </div>
+               <div>
+                  <div class="relinfo">
+                     <p><strong>Related Topics</strong></p>
+                     <ul>
+                        <li><a href="oracle_loader-access-driver.html#SUTIL-GUID-EA56D498-E8BB-4E02-8ABF-12E7083ED9D5" target="_blank">The ORACLE_LOADER Access Driver</a></li>
+                        <li><a href="oracle_datapump-access-driver.html#SUTIL-GUID-084DC623-9656-499C-885B-D8180C07704B" target="_blank">The ORACLE_DATAPUMP Access Driver</a></li>
+                        <li><a href="../sqlrf/CREATE-TABLE.html#GUID-F9CE0CC3-13AE-4744-A43C-EAC7A71AAAB6" target="_blank">CREATE TABLE in<span><cite>Oracle Database SQL Language Reference</cite></span></a></li>
+                     </ul>
+                  </div>
+                  <div class="infoboxnotealso" id="GUID-07D30CE6-128D-426F-8B76-B13E1C53BD5A__GUID-195C9544-02C6-4F63-B2A2-9586DD340712">
+                     <p class="notep1">See Also:</p>
+                     
+                     <p><span><cite>Oracle Database SQL Language Reference</cite></span> for information about specifying
+                    <code class="codeph">opaque_format_spec</code> when using the SQL <code class="codeph">CREATE
+                    TABLE</code> statement
+                     </p>
+                  </div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-external-tables-concepts.html#GUID-44323E01-7D72-45EC-915A-99E596769D9E" title="The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.">External Tables Concepts</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div><a id="SUTIL1365"></a><div class="props_rev_3"><a id="GUID-7AB423F1-C688-4A1C-A940-77C221839BCA" name="GUID-7AB423F1-C688-4A1C-A940-77C221839BCA"></a><h3 id="SUTIL-GUID-7AB423F1-C688-4A1C-A940-77C221839BCA" class="sect3"><span class="enumeration_section">14.7 </span>Data Type Conversion During External Table Use
+               </h3>
+               <div>
+                  <p>If source and target data types do not match, then conversion errors can
+        occur when Oracle Database reads from external tables, and when it writes to external
+        tables.</p>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-7AB423F1-C688-4A1C-A940-77C221839BCA__GUID-B7E4AA53-3D5A-4D82-8D0D-AEB1E9901C8F">Conversion Errors When Reading External Tables</p>
+                     <p>When you select rows from an external table, the access driver performs any transformations necessary to make the data from the data source match the data type of the corresponding column in the external table.  Depending on the data and the types of transformations required, the transformation can encounter errors.</p>
+                     <p>To illustrate the types of data conversion problems that can occur when reading from
+                an external table, suppose you create the following external table,
+                    <code class="codeph">KV_TAB_XT</code>, with two columns: <code class="codeph">KEY</code>, whose data
+                type is <code class="codeph">VARCHAR2(4)</code>, and <code class="codeph">VAL</code>, whose data type is
+                    <code class="codeph">NUMBER</code>.
+                     </p><pre class="pre codeblock"><code>SQL&gt; CREATE TABLE KV_TAB_XT (KEY VARCHAR2(4), VAL NUMBER)
+2 ORGANIZATION EXTERNAL
+3 (DEFAULT DIRECTORY DEF_DIR1 LOCATION (‘key_val.csv’));</code></pre><p> The external table <code class="codeph">KV_TAB_XT</code> uses default values for the access
+                parameters. The following is therefore true:
+                     </p>
+                     <ul style="list-style-type: disc;">
+                        <li>Records are delimited by new lines.</li>
+                        <li>The data file and the database have the same character set.</li>
+                        <li>The fields in the data file have the same name and are in the same order as the
+                    columns in the external table.</li>
+                        <li>The data type of the field is <code class="codeph">CHAR(255)</code>.
+                        </li>
+                        <li>Data for each field is terminated by a comma.</li>
+                     </ul>
+                     <p>The records in the data file for the <code class="codeph">KV_TAB_XT</code> external table
+                should have the following:
+                     </p>
+                     <ul style="list-style-type: disc;">
+                        <li>A string, up to 4 bytes long.&nbsp; If the string is empty, then the value for the field
+                    is <code class="codeph">NULL</code>.
+                        </li>
+                        <li>A terminating comma.</li>
+                        <li>A string of numeric characters.&nbsp;If the string is empty, then the value for this
+                    field is <code class="codeph">NULL</code>.
+                        </li>
+                        <li>An optional terminating comma.</li>
+                     </ul>
+                     <p>When the access driver reads a record from the data file, it verifies that the
+                length of the value of the <code class="codeph">KEY</code> field in the data file is less than
+                or equal to 4, and it attempts to convert the value of the <code class="codeph">VAL</code>
+                field in the data file to an Oracle Database number.
+                     </p>
+                     <p>If the length of the value of the <code class="codeph">KEY</code> field is greater than 4, or
+                if there is a non-numeric character in the value for <code class="codeph">VAL</code>, then the
+                    <code class="codeph">ORACLE_LOADER</code> access driver rejects the row. The result is that
+                a copy of the row is written to the bad file, and an error message is written to the
+                log file.
+                     </p>
+                     <p>All access drivers must handle conversion from the data type of fields in the source
+                for the external table and the data type for the columns of the external tables.&nbsp;
+                The following are some examples of the types of conversions and checks that access
+                drivers perform:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>Convert character data from character set used by the source data to the character
+                    set used by the database.</li>
+                        <li>Convert from character data to numeric data.</li>
+                        <li>Convert from numeric data to character data.</li>
+                        <li>Convert from character data to a date or timestamp.</li>
+                        <li>Convert from a date or timestamp to character data.</li>
+                        <li>Convert from character data to an interval data type.</li>
+                        <li>Convert from an interval data type to a character data.</li>
+                        <li>Verify that the length of data value for a character column does not exceed the
+                    length limits of that column.</li>
+                     </ul>
+                     <p>When the access driver encounters an error doing the required conversion or
+                verification, it can decide how to handle the error. When the
+                    <code class="codeph">ORACLE_LOADER</code> and <code class="codeph">ORACLE_DATAPUMP</code> access
+                drivers encounter errors, they reject the record, and write an error message to the
+                log file.&nbsp;In that event it is as if that record were not in the data source.&nbsp;When
+                the <code class="codeph">ORACLE_HDFS</code> and <code class="codeph">ORACLE_HIVE</code> access drivers
+                encounter errors, the value of the field in which the error is encountered is set to
+                    <code class="codeph">NULL</code>. This action is consistent with the behavior of how Hive
+                handles errors in Hadoop.
+                     </p>
+                     <p>Even after the access driver has converted the data from the data source to match the
+                data type of the external table columns, the SQL statement that is accessing the
+                external table could require additional data type conversions. If any of these
+                additional conversions encounter an error, then the entire statement fails. (The
+                exception to this is if you use the DML error logging feature in the SQL statement
+                to handle these errors.) These conversions are the same as any that typically can be
+                required when running a SQL statement. For example, suppose you change the
+                definition of the <code class="codeph">KV_TAB_XT</code> external table to only have columns
+                with character data types, and then you run an <code class="codeph">INSERT</code> statement to
+                load data from the external table into another table that has a
+                    <code class="codeph">NUMBER</code> data type for column <code class="codeph">VAL</code>:
+                     </p><pre class="pre codeblock"><code>SQL&gt; CREATE TABLE KV_TAB_XT (KEY VARCHAR2(20), VAL VARCHAR2(20))
+2 ORGANIZATION EXTERNAL
+3 (DEFAULT DIRECTORY DEF_DIR1 LOCATION (‘key_val.csv’));
+4 CREATE TABLE KV_TAB (KEY VARCHAR2(4), VAL NUMBER);
+5 INSERT INTO KV_TAB SELECT * FROM KV_TAB_XT;</code></pre><p>In this example, the access driver will not reject a record if the data for
+                    <code class="codeph">VAL</code> contains a non-numeric character, because the data type of
+                    <code class="codeph">VAL</code> in the external table is now <code class="codeph">VARCHAR2</code>
+                (instead of <code class="codeph">NUMBER</code>). However, SQL processing now must handle the
+                conversion from character data type in <code class="codeph">KV_TAB_XT</code> to number data
+                type in <code class="codeph">KV_TAB</code>. If there is a non-numeric character in the value
+                for <code class="codeph">VAL</code> in the external table, then SQL raises a conversion error,
+                and rolls back any rows that were inserted. To avoid conversion errors in SQL Oracle
+                recommends that you make the data types of the columns in the external table match
+                the data types expected by other tables or functions that will be using the values
+                of those columns.
+                     </p>
+                  </div>
+                  <div class="section">
+                     <p class="subhead2" id="GUID-7AB423F1-C688-4A1C-A940-77C221839BCA__GUID-5F43FDDF-21F7-4131-9085-CB1DEE6D2D57">Conversion Errors When Writing to External Tables</p>
+                     <p>The <code class="codeph">ORACLE_DATAPUMP</code> access driver allows you to use a <code class="codeph">CREATE
+                    TABLE AS SELECT</code> statement to unload data into an external table. Data
+                conversion occurs if the data type of a column in the <code class="codeph">SELECT</code>
+                expression does not match the data type of the column in the external table. If SQL
+                encounters an error while converting the data type, then SQL stops the statement,
+                and the data file will not be readable.
+                     </p>
+                     <p>To avoid problems with conversion errors that cause the operation to fail, the data
+                type of the column in the external table should match the data type of the column in
+                the source table or expression used to write to the external table. This is not
+                always possible, because external tables do not support all data types. In these
+                cases, the unsupported data types in the source table must be converted into a data
+                type that the external table can support. The following <code class="codeph">CREATE
+                    TABLE</code> statement shows an example of this conversion:
+                     </p><pre class="pre codeblock"><code>CREATE TABLE LONG_TAB_XT (LONG_COL CLOB) 
+ORGANIZATION EXTERNAL...SELECT TO_LOB(LONG_COL) FROM LONG_TAB;</code></pre><p>The source table named <code class="codeph">LONG_TAB</code> has a <code class="codeph">LONG</code> column.
+                Because of that, the corresponding column in the external table being created,
+                    <code class="codeph">LONG_TAB_XT</code>, must be a <code class="codeph">CLOB</code>, and the
+                    <code class="codeph">SELECT</code> subquery that is used to populate the external table
+                must use the <code class="codeph">TO_LOB</code> operator to load the column.
+                     </p>
+                     
+                     
+                     <div class="infoboxnote" id="GUID-7AB423F1-C688-4A1C-A940-77C221839BCA__GUID-6493F82E-1D61-4C48-BDD6-B59561F0244B">
+                        <p class="notep1">Note:</p>
+                        
+                        <p>All forms of <code class="codeph">LONG</code> data types (<code class="codeph">LONG</code>,
+                        <code class="codeph">LONG RAW</code>, <code class="codeph">LONG VARCHAR</code>, <code class="codeph">LONG
+                        VARRAW</code>) were deprecated in Oracle8i Release 8.1.6. For succeeding
+                    releases, the <code class="codeph">LONG</code> data type was provided for backward
+                    compatibility with existing applications. In new applications developed with
+                    later releases, Oracle strongly recommends that you use <code class="codeph">CLOB</code>
+                    and <code class="codeph">NCLOB</code> data types for large amounts of character data. 
+                        </p>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div>
+                  <div class="familylinks">
+                     <div class="parentlink">
+                        <p><strong>Parent topic:</strong> <a href="oracle-external-tables-concepts.html#GUID-44323E01-7D72-45EC-915A-99E596769D9E" title="The external tables feature is a complement to existing SQL*Loader functionality. It enables you to access data in external sources as if it were in a table in the database.">External Tables Concepts</a></p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="task">
+      <meta name="DC.Title" content="Task 6: Create Oracle GoldenGate Deployment Directories">
+      <meta name="abstract" content="The Oracle GoldenGate Service Manager and deployment are already created on the primary cluster, as required by the prerequisites, but certain directories and symbolic links need to be configured on the standby cluster nodes.">
+      <meta name="description" content="The Oracle GoldenGate Service Manager and deployment are already created on the primary cluster, as required by the prerequisites, but certain directories and symbolic links need to be configured on the standby cluster nodes.">
+      <meta name="DC.Publisher" content="July2025">
+      <meta name="template" content="Task">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-1ADF9C6F-F47C-4207-BA9E-3D33C7200280">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="The Oracle GoldenGate Service Manager and deployment are already created on the primary cluster, as required by the prerequisites, but certain directories and symbolic links need to be configured on the standby cluster nodes.">
+      <meta name="description" content="The Oracle GoldenGate Service Manager and deployment are already created on the primary cluster, as required by the prerequisites, but certain directories and symbolic links need to be configured on the standby cluster nodes.">
+      <title>Task 6: Create Oracle GoldenGate Deployment Directories</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="High Availability Overview and Best Practices">
+      <meta property="og:description" content="The Oracle GoldenGate Service Manager and deployment are already created on the primary cluster, as required by the prerequisites, but certain directories and symbolic links need to be configured on the standby cluster nodes.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="High Availability Overview and Best Practices">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="high-availability-overview-and-best-practices.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2025-07-10T09:33:01-07:00">
+      <meta name="dcterms.title" content="High Availability Overview and Best Practices">
+      <meta name="dcterms.dateCopyrighted" content="2005, 2025">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="F23691-40">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="task-5-install-oracle-goldengate-software.html" title="Previous" type="text/html">
+      <link rel="next" href="task-7-configure-standby-nginx-reverse-proxy.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.isVersionOf" content="HAOVW">
+    <meta name="dcterms.release" content="Release 19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Task 6: Create Oracle GoldenGate Deployment Directories","description":"The Oracle GoldenGate Service Manager and deployment are already created on the primary cluster, as required by the prerequisites, but certain directories and symbolic links need to be configured on the standby cluster nodes.","datePublished":"2025-07-10 CST","dateModified":"2025-07-10 CST"}</script>
+    </head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="task-5-install-oracle-goldengate-software.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="task-7-configure-standby-nginx-reverse-proxy.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-1ADF9C6F-F47C-4207-BA9E-3D33C7200280" name="GUID-1ADF9C6F-F47C-4207-BA9E-3D33C7200280"></a>
+         
+         <h2 id="HAOVW-GUID-1ADF9C6F-F47C-4207-BA9E-3D33C7200280" class="sect2">Task 6: Create Oracle GoldenGate Deployment
+        Directories</h2>
+         <div class="ind">
+            <div>
+               <p>The Oracle GoldenGate Service Manager and deployment are already created on
+        the primary cluster, as required by the prerequisites, but certain directories and symbolic
+        links need to be configured on the standby cluster nodes.</p>
+               <div class="p">
+                  
+                  <p>These directories and symbolic links were created on the primary cluster, in the
+                tasks you performed as part of <a href="ogg-microservices-premises1.html#GUID-55FA8876-984F-4E88-9157-CAF1550C261E" title="Use these best practices for configuring Oracle GoldenGate Microservices Architecture for on-premises systems, including Oracle Exadata, to work with Oracle Real Application Clusters (RAC), Oracle Clusterware, and Oracle Database File System (DBFS) or Oracle Advanced Cluster File System (ACFS).">On-Premises: Oracle GoldenGate Microservices Architecture with Oracle Real Application Clusters Configuration Best Practices</a>.
+                  </p>
+                  
+                  <p>Now you create the following directories and symbolic links on the all Oracle RAC
+                nodes on the standby cluster as follows.</p>
+                  
+               </div>
+               <ol>
+                  <li class="stepexpand"><span>If there are multiple GoldenGate Service Managers configured on the primary
+                    cluster, each with their own deployment, and individually registered with XAG,
+                    they must belong to separate <code class="codeph">OGG_HOME</code> software installation
+                    directories.</span><div>
+                        
+                        <p>The same directories and symbolic links for the <code class="codeph">OGG_HOME</code>
+                        directories that were configured on primary cluster, must match on the
+                        standby cluster.
+                        </p>
+                        
+                     </div>
+                  </li>
+                  <li class="stepexpand"><span>If the GoldenGate deployment was created with the Performance Metric Server
+                    enabled, the metric datastore home directory must be created on the standby
+                    Oracle RAC nodes.</span><div>
+                        
+                        <p>For example, determine the datastore directory on the primary cluster
+                        nodes:</p>
+                        <pre class="pre codeblock"><code>$ grep RepoDatastorePath &lt;deployment directory&gt;/var/log/pmsrvr.log|uniq
+
+"RepoDatastorePath": "",
+&nbsp;"RepoDatastorePath": "/u01/oracle/goldengate/datastores/ggnorth",</code></pre>
+                        <p>Then create the directory on all standby cluster nodes:</p>
+                        <pre class="pre codeblock"><code>$ mkdir -p /u01/oracle/goldengate/datastores/ggnorth</code></pre>
+                        </div>
+                  </li>
+                  <li class="stepexpand"><span>If the database release is earlier than Oracle Database 21c (21.3), create the
+                    Oracle GoldenGate deployment temp directory local storage to match the symbolic
+                    link created on the primary cluster.</span><div>
+                        
+                        <p>For example, on the primary cluster if you have:</p>
+                        <pre class="pre codeblock"><code>$ ls &#x2013;lrt <span class="variable" translate="no">DBFS_GoldenGate_deployment_home_directory</span>/var/temp
+
+lrwxrwxrwx&nbsp; 1 oracle oinstall 32 Aug 31 12:27 temp
+ -&gt; /u01/oracle/goldengate/deployments/ggnorth/temp</code></pre>
+                        <p>Then create the same directory on the standby cluster nodes:</p>
+                        <pre class="pre codeblock"><code>$ mkdir &#x2013;p /u01/oracle/goldengate/deployments/ggnorth/temp</code></pre>
+                        </div>
+                  </li>
+               </ol>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>
